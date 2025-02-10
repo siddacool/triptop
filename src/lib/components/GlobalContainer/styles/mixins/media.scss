@@ -1,0 +1,29 @@
+@mixin media($query) {
+  @media #{$query} {
+    @content;
+  }
+}
+
+@mixin mediaSm {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
+
+@mixin mediaMd {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin mediaLg {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin mediaXl {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
