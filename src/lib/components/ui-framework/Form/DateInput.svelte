@@ -2,7 +2,7 @@
   import ErrorMessage from './shared/ErrorMessage.svelte';
   import FormLabel from './shared/FormLabel.svelte';
 
-  interface TextInputProps {
+  interface DateInputProps {
     name?: string;
     id?: string;
     label?: string;
@@ -12,7 +12,8 @@
     error?: string;
     onchange?: (e: Event) => void;
     oninput?: (e: Event) => void;
-    type?: 'text' | 'email' | 'mobile';
+    min?: string;
+    max?: string;
   }
 
   let {
@@ -25,19 +26,20 @@
     oninput,
     disabled = false,
     error,
-    type = 'text',
-  }: TextInputProps = $props();
+    min,
+    max,
+  }: DateInputProps = $props();
 
   let active = $state(false);
 </script>
 
-<div class="TextInput">
+<div class="DateInput">
   {#if label}
     <FormLabel {name} {error} {active} {disabled} {label} />
   {/if}
 
   <input
-    {type}
+    type="date"
     {name}
     {id}
     {placeholder}
@@ -48,6 +50,8 @@
     onfocus={() => (active = true)}
     onblur={() => (active = false)}
     class:error
+    {min}
+    {max}
   />
 
   {#if error && !disabled}

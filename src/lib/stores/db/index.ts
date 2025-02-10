@@ -1,13 +1,19 @@
 import Dexie, { type Table } from 'dexie';
-import type { Silk } from '../silk/types';
+import type { Trip } from '../trips/types';
+import type { Budget } from '../budget/types';
+import type { Expense } from '../expense/types';
 
 export class MySubClassedDexie extends Dexie {
-  silk!: Table<Silk>;
+  trips!: Table<Trip>;
+  budget!: Table<Budget>;
+  expense!: Table<Expense>;
 
   constructor() {
-    super('silkDatabase');
+    super('trawell');
     this.version(1).stores({
-      silk: '++id, _id',
+      trips: '++id, _id',
+      budget: '++id, _id',
+      expense: '++id, _id',
     });
   }
 }

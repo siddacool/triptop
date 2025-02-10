@@ -1,63 +1,72 @@
 <script lang="ts">
-  import Box from '$lib/components/Box.svelte';
-  import SilkList from '$lib/components/SilkList.svelte';
-  import SilkUpdateTool from '$lib/components/SilkUpdateTool.svelte';
-  import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
-  import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
-  import { useCountStore } from '$lib/stores/count/count.svelte';
-  import { useSilkStore } from '$lib/stores/silk/silk.svelte';
+  import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
+  import Card from '$lib/components/ui-framework/Layout/Card.svelte';
+  import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import Icon from '@iconify/svelte';
 
-  const mounted = $derived(useSilkStore.mounted ? true : false);
+  const mounted = $derived(useTripsStore.mounted ? true : false);
 </script>
 
-{#if mounted}
-  <main>
-    <Box>
-      <Stack space={2}>
-        <StackItem>
-          <h1>{useCountStore.count} <b>🍫</b></h1>
-          <h2>Silks Pending</h2>
-        </StackItem>
-        <StackItem><SilkUpdateTool /></StackItem>
-      </Stack>
+<h2>
+  Trawell <AnchorButton href="/trips/create" variant="primary" compact>
+    <Icon icon="mdi:plus" />
+  </AnchorButton>
+</h2>
 
-      <br />
-      <br />
-
-      <SilkList />
-    </Box>
-  </main>
+{#if mounted && useTripsStore.data.length}
+  <ul>
+    {#each useTripsStore.data as trip}
+      <li>
+        <a href={`/trips/${trip._id}`}>
+          <Card>
+            <h3>
+              {trip.name}
+            </h3>
+          </Card>
+        </a>
+      </li>
+    {/each}
+  </ul>
 {/if}
 
 <style lang="scss">
-  main {
-    height: 100vh;
-    width: 100vw;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  h1 {
-    font-size: 5rem;
+  h2 {
+    font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 8px;
-    margin-top: 40px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+  }
 
-    b {
-      font-size: 2.6rem;
+  ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+
+    :global(.Card) {
+      &:hover {
+        background-color: var(--color-primary-100);
+      }
     }
   }
 
-  h2 {
+  li {
+    display: block;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 16px;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  h3 {
+    font-size: 1.3rem;
     font-weight: 500;
-    text-align: center;
-    font-size: 2rem;
-    margin-top: 0;
-    position: relative;
-    top: -10px;
-    margin-bottom: 50px;
   }
 </style>

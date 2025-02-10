@@ -17,3 +17,7 @@ export const timeout = (ms: number): Promise<void> =>
       resolve();
     }, ms);
   });
+
+export function newDateStringToYearMonthDay(date: Date | null) {
+  return date ? new Date(date)?.toISOString().split('T')[0] : undefined;
+}
