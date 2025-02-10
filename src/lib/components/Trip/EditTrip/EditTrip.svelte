@@ -64,7 +64,7 @@
       useTripsStore.add(name, startDate, endDate);
     }
 
-    goto('/');
+    goto(`/trips/${tripId}`);
   }
 </script>
 

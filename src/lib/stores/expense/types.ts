@@ -23,7 +23,7 @@ export interface Expense {
   budgetId?: string;
   category?: Category;
   date: Date;
-  time: Date;
+  time: string;
 
   // if no budgetId
   paymentMode?: PaymentModes;

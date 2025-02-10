@@ -5,7 +5,7 @@ import type { PaymentModes } from '../payment-mode/types';
 
 async function getBudget(idToFind: string) {
   try {
-    const trip = await db.trips.where({ _id: idToFind }).first();
+    const trip = await db.budget.where({ _id: idToFind }).first();
 
     return Promise.resolve(trip);
   } catch (error) {
@@ -46,7 +46,7 @@ function createBudgetStore() {
         mounted = true;
       }
     },
-    async add(name: string, amount: number, paymentMode: PaymentModes, tripId: string) {
+    async add(tripId: string, name: string, amount: number, paymentMode: PaymentModes) {
       try {
         fetching = true;
 
@@ -78,6 +78,8 @@ function createBudgetStore() {
         fetching = true;
 
         const target = await getBudget(idToUpdate);
+
+        console.log(target);
 
         if (!target) {
           throw Error('Budget:update: budget is missing');

@@ -1,4 +1,4 @@
 export const enum PaymentModes {
-  CASH,
-  CARD,
+  CASH = 'CASH',
+  CARD = 'CARD',
 }

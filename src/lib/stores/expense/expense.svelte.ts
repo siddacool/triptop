@@ -47,10 +47,10 @@ function createExpenseStore() {
       }
     },
     async add(
+      tripId: string,
       name: string,
       amount: number,
-      tripId: string,
-      time: Date,
+      time: string,
       date: Date,
       category?: Category,
       budgetId?: string,
@@ -90,7 +90,7 @@ function createExpenseStore() {
       idToUpdate: string,
       name: string,
       amount: number,
-      time: Date,
+      time: string,
       date: Date,
       category?: Category,
       budgetId?: string,
