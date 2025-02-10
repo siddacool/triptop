@@ -26,6 +26,7 @@
     "globals": "^15.14.0",
     "prettier": "^3.4.2",
     "prettier-plugin-svelte": "^3.3.3",
+    "sass": "^1.84.0",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
     "typescript": "^5.0.0",
@@ -41,5 +42,11 @@
     "node": "22.13.1",
     "pnpm": "10.0.0"
   },
-  "packageManager": "pnpm@10.0.0"
+  "packageManager": "pnpm@10.0.0",
+  "dependencies": {
+    "@iconify/svelte": "^4.2.0",
+    "dayjs": "^1.11.13",
+    "dexie": "^4.0.11",
+    "nanoid": "^5.0.9"
+  }
 }
