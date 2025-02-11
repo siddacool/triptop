@@ -5,6 +5,7 @@
   import DateInput from '$lib/components/ui-framework/Form/DateInput.svelte';
   import NumberInput from '$lib/components/ui-framework/Form/NumberInput.svelte';
   import Select from '$lib/components/ui-framework/Form/Select.svelte';
+  import ErrorMessage from '$lib/components/ui-framework/Form/shared/ErrorMessage.svelte';
   import FormLabel from '$lib/components/ui-framework/Form/shared/FormLabel.svelte';
   import TextInput from '$lib/components/ui-framework/Form/TextInput.svelte';
   import TimeInput from '$lib/components/ui-framework/Form/TimeInput.svelte';
@@ -59,6 +60,18 @@
   const budgets = $derived(useBudgetStore.data.filter((item) => item.tripId === tripId));
 
   const targetBudget = $derived(useBudgetStore.data.find((item) => item._id === budgetId));
+
+  const targetBudgetExpenses = $derived(
+    useExpenseStore.data.filter((item) => item.budgetId === targetBudget?._id),
+  );
+
+  const totalBudgetExpenses = $derived(
+    targetBudgetExpenses
+      .map((item) => item.amount || 0)
+      .reduce((partialSum, a) => partialSum + a, 0),
+  );
+
+  const remainingBudget = $derived(targetBudget ? targetBudget?.amount - totalBudgetExpenses : 0);
 
   function oninput(e: Event) {
     const target = e.target as HTMLInputElement;
@@ -186,21 +199,30 @@
       </Select>
     </StackItem>
     <StackItem>
-      <Select label="Budget" name="budget" onchange={oninput}>
+      <Select
+        label="Budget"
+        name="budget"
+        onchange={oninput}
+        error={targetBudget && amount > remainingBudget
+          ? 'Not enough amount in selected budget'
+          : ''}
+      >
         <option value={undefined} selected={category === undefined}>Not Selected</option>
         {#each budgets as budget}
-          <option value={budget._id} selected={budget._id === budgetId}>{budget.name}</option>
+          <option value={budget._id} selected={budget._id === budgetId}
+            >{budget.name} : 💰 ₹{budget.amount}</option
+          >
         {/each}
       </Select>
     </StackItem>
 
-    <StackItem>
-      {#if targetBudget}
-        <div>
-          <FormLabel label="Payment mode" />
-          {paymentModeOptions.find((item) => item.value === targetBudget.paymentMode)?.label}
-        </div>
-      {:else}
+    {#if targetBudget}
+      <StackItem>
+        <FormLabel label="Payment mode" />
+        {paymentModeOptions.find((item) => item.value === targetBudget.paymentMode)?.label}
+      </StackItem>
+    {:else}
+      <StackItem>
         <Select label="Payment mode" name="paymentMode" onchange={oninput}>
           {#each paymentModeOptions as paymentModeOption}
             <option
@@ -211,8 +233,8 @@
             </option>
           {/each}
         </Select>
-      {/if}
-    </StackItem>
+      </StackItem>
+    {/if}
 
     <StackItem>
       <Button type="submit" disabled={!name.trim() || !date || !time}>Save</Button>
