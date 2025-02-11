@@ -3,10 +3,21 @@
   import FormLabel from '$lib/components/ui-framework/Form/shared/FormLabel.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import { getMoment } from '$lib/helpers/time';
+  import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
+  import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
 
   const id = page.params.id;
   const targetTrip = $derived(useTripsStore.data.find((item) => item._id === id));
+  const budgets = $derived(useBudgetStore.data.filter((item) => item.tripId === id));
+  const totalBudget = $derived(
+    budgets.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
+  );
+
+  const expenses = $derived(useExpenseStore.data.filter((item) => item.tripId === id));
+  const totalExpenses = $derived(
+    expenses.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
+  );
 </script>
 
 <div class="TripStats">
@@ -16,13 +27,29 @@
         <div class="TotalExpense">
           <FormLabel label="Total Expense" />
 
-          <b>₹60000000</b>
+          <b>₹{totalExpenses}</b>
         </div>
       </li>
       <li>
-        <div class="StatsLabel">Budget</div>
+        <div class="StatsLabel">Budget: Total</div>
         <div class="StatsValue">
-          <a href={`/trips/${id}/budget`}>Add budget</a>
+          <a href={`/trips/${id}/budget`}>
+            {#if budgets.length}
+              ₹{totalBudget}
+            {:else}
+              Add budget
+            {/if}
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="StatsLabel">Budget: Remaining</div>
+        <div class="StatsValue">
+          <a href={`/trips/${id}/budget`}>
+            {#if budgets.length}
+              <u>₹{totalBudget - totalExpenses}</u>
+            {/if}
+          </a>
         </div>
       </li>
       <li>
@@ -76,6 +103,11 @@
       a {
         text-decoration: none;
         color: var(--color-primary-800);
+      }
+
+      u {
+        color: var(--color-danger-900);
+        text-decoration: none;
       }
     }
   }

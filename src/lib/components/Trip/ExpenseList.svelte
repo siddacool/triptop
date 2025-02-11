@@ -23,11 +23,7 @@
               </span>
               <span>
                 {getMoment(expense.date).format('MMM,D')}
-                {getMoment()
-                  .startOf('day')
-                  .add(Number(expense.time.split(':')[0]), 'hour')
-                  .add(Number(expense.time.split(':')[1]), 'minute')
-                  .format('hh:mm A')}
+                {getMoment(expense.date).format('hh:mm A')}
               </span>
             </div>
           </Card>

@@ -24,6 +24,7 @@
 
   const startDateString = $derived(newDateStringToYearMonthDay(startDate));
   const endDateString = $derived(newDateStringToYearMonthDay(endDate));
+  const endDateMoment = $derived(endDate ? getMoment(endDate) : null);
 
   function oninput(e: Event) {
     const target = e.target as HTMLInputElement;
@@ -35,10 +36,7 @@
       case 'startDate':
         startDate = target.valueAsDate;
 
-        const startDateMoment = getMoment(target.valueAsDate);
-        const endDateMoment = endDate ? getMoment(endDate) : null;
-
-        if (endDateMoment && startDateMoment.isAfter(endDateMoment)) {
+        if (endDateMoment && getMoment(target.valueAsDate).isAfter(endDateMoment)) {
           endDate = null;
         }
 
@@ -65,6 +63,18 @@
     }
 
     goto(`/trips/${tripId}`);
+  }
+
+  function ondelete(e: Event) {
+    e.preventDefault();
+
+    if (!tripId) {
+      return;
+    }
+
+    useTripsStore.delete(tripId);
+
+    goto(`/`);
   }
 </script>
 
@@ -94,6 +104,13 @@
     <StackItem>
       <Button type="submit" disabled={!name.trim() || !startDate || !endDate}>Save</Button>
     </StackItem>
+
+    {#if tripId}
+      <StackItem></StackItem>
+      <StackItem>
+        <Button variant="danger" onclick={ondelete}>Delete trip</Button>
+      </StackItem>
+    {/if}
   </Stack>
 </form>
 

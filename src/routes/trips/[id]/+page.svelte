@@ -24,7 +24,12 @@
 
 {#if mounted && targetTrip}
   <h2>
-    {targetTrip?.name}
+    <div>
+      <AnchorButton href={`/`} compact>
+        <Icon icon="lets-icons:back" />
+      </AnchorButton>
+      {targetTrip?.name}
+    </div>
     <AnchorButton href={`/trips/${id}/edit`} variant="primary" compact>
       <Icon icon="material-symbols:edit" />
     </AnchorButton>

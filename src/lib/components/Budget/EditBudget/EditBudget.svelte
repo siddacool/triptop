@@ -59,6 +59,18 @@
       goto(`/trips/${tripId}/budget/`);
     }
   }
+
+  function ondelete(e: Event) {
+    e.preventDefault();
+
+    if (!budgetId) {
+      return;
+    }
+
+    useBudgetStore.delete(budgetId);
+
+    goto(`/trips/${tripId}/budget/`);
+  }
 </script>
 
 <form {onsubmit}>
@@ -78,6 +90,13 @@
     <StackItem>
       <Button type="submit" disabled={!name.trim() || !amount || !paymentMode}>Save</Button>
     </StackItem>
+
+    {#if budgetId}
+      <StackItem></StackItem>
+      <StackItem>
+        <Button variant="danger" onclick={ondelete}>Delete budget</Button>
+      </StackItem>
+    {/if}
   </Stack>
 </form>
 

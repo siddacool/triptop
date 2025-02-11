@@ -11,6 +11,12 @@ export const enum Category {
   MART = 'MART',
 }
 
+export type CategoryOption = {
+  label: string;
+  value: Category | undefined;
+  logo?: string;
+};
+
 export interface Expense {
   id?: number;
   _id: string;
@@ -22,8 +28,7 @@ export interface Expense {
   tripId: string;
   budgetId?: string;
   category?: Category;
-  date: Date;
-  time: string;
+  date: number;
 
   // if no budgetId
   paymentMode?: PaymentModes;

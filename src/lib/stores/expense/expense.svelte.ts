@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { db } from '../db';
-import type { Category, Expense } from './types';
+import { Category, type CategoryOption, type Expense } from './types';
 import type { PaymentModes } from '../payment-mode/types';
 
 async function getExpense(idToFind: string) {
@@ -12,6 +12,53 @@ async function getExpense(idToFind: string) {
     return Promise.reject(error);
   }
 }
+
+export const categoryOptions: CategoryOption[] = [
+  {
+    label: 'Food',
+    value: Category.FOOD,
+    logo: '🍗',
+  },
+  {
+    label: 'Shopping',
+    value: Category.SHOPPING,
+    logo: '🛍️',
+  },
+  {
+    label: 'Tour',
+    value: Category.TOUR,
+    logo: '⛵',
+  },
+  {
+    label: 'Transport',
+    value: Category.TRANSPORT,
+    logo: '🚌',
+  },
+  {
+    label: 'Stay',
+    value: Category.STAY,
+    logo: '🛎️',
+  },
+  {
+    label: 'Flight',
+    value: Category.FLIGHT,
+    logo: '✈️',
+  },
+  {
+    label: 'Entertainment',
+    value: Category.ENTERTAINMENT,
+    logo: '🍿',
+  },
+  {
+    label: 'Mart',
+    value: Category.MART,
+    logo: '🛒',
+  },
+  {
+    label: 'Other',
+    value: undefined,
+  },
+];
 
 function createExpenseStore() {
   let data: Expense[] = $state([]);
@@ -50,8 +97,7 @@ function createExpenseStore() {
       tripId: string,
       name: string,
       amount: number,
-      time: string,
-      date: Date,
+      date: number,
       category?: Category,
       budgetId?: string,
       paymentMode?: PaymentModes,
@@ -69,7 +115,6 @@ function createExpenseStore() {
           budgetId,
           category,
           date,
-          time,
           paymentMode,
         });
 
@@ -90,8 +135,7 @@ function createExpenseStore() {
       idToUpdate: string,
       name: string,
       amount: number,
-      time: string,
-      date: Date,
+      date: number,
       category?: Category,
       budgetId?: string,
       paymentMode?: PaymentModes,
@@ -109,7 +153,6 @@ function createExpenseStore() {
           name: name.trim(),
           amount,
           updatedAt: Date.now(),
-          time,
           date,
           category,
           budgetId,

@@ -50,11 +50,7 @@
           <div class="StatsLabel">Date and time</div>
           <div class="StatsValue">
             {getMoment(targetExpense.date).format('MMM,D YYYY')}
-            {getMoment()
-              .startOf('day')
-              .add(Number(targetExpense.time.split(':')[0]), 'hour')
-              .add(Number(targetExpense.time.split(':')[1]), 'minute')
-              .format('hh:mm A')}
+            {getMoment(targetExpense.date).format('hh:mm A')}
           </div>
         </li>
       </ul>

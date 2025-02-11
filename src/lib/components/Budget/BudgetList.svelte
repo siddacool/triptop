@@ -63,15 +63,5 @@
       font-size: 1rem;
       margin-bottom: 10px;
     }
-
-    .expenseValue {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-
-      span {
-        margin-bottom: 5px;
-      }
-    }
   }
 </style>
