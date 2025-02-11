@@ -22,7 +22,7 @@
               <span>
                 <b><FormattedCurrency value={expense.amount} /></b>
               </span>
-              <span>
+              <span class="timevalue">
                 {getMoment(expense.date).format('MMM,D')}
                 {getMoment(expense.date).format('hh:mm A')}
               </span>
@@ -54,10 +54,10 @@
       display: flex;
       justify-content: space-between;
       border-color: transparent;
-      background-color: var(--color-grey-100);
+      background-color: var(--color-primary-100);
 
       &:hover {
-        background-color: var(--color-primary-100);
+        background-color: var(--color-primary-200);
       }
     }
 
@@ -83,6 +83,12 @@
       span {
         margin-bottom: 5px;
       }
+    }
+
+    .timevalue {
+      font-size: 0.9rem;
+      margin-top: 6px;
+      opacity: 0.9;
     }
   }
 </style>
