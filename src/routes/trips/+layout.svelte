@@ -23,8 +23,6 @@
 
     fetchData();
   });
-
-  console.log(page);
 </script>
 
 <div class="tripLayout">

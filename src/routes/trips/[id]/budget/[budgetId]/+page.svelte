@@ -16,13 +16,6 @@
   const tripId = page.params.id;
   const id = page.params.budgetId;
   const targetBudget = $derived(useBudgetStore.data.find((item) => item._id === id));
-  const targetExpenses = $derived(
-    useExpenseStore.data.filter((item) => item.budgetId === targetBudget?._id),
-  );
-
-  const totalExpenses = $derived(
-    targetExpenses.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
-  );
 
   const paymentModeValue = $derived(
     paymentModeOptions.find((item) => item.value === targetBudget?.paymentMode)?.label ||

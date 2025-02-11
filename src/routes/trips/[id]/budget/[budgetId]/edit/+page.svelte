@@ -14,5 +14,6 @@
 </script>
 
 {#if mounted && targetBudget}
+  <h2>Edit budget</h2>
   <EditBudget budgetId={id} />
 {/if}

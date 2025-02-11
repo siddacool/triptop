@@ -14,6 +14,7 @@
 </script>
 
 {#if mounted && targetExpense}
+  <h2>Edit expense</h2>
   <EditExpense expenseId={id} />
 {/if}
 
