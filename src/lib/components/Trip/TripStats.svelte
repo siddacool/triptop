@@ -15,10 +15,14 @@
     budgets.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
   );
 
-  const expensesFiltered = $derived(
-    useExpenseStore.data.filter((item) => item.tripId === id && item.budgetId),
-  );
+  const expenses = $derived(useExpenseStore.data.filter((item) => item.tripId === id));
+
+  const expensesFiltered = $derived(expenses.filter((item) => item.tripId === id && item.budgetId));
   const totalExpenses = $derived(
+    expenses.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
+  );
+
+  const totalExpensesFiltred = $derived(
     expensesFiltered.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
   );
 </script>
@@ -50,7 +54,7 @@
         <div class="StatsValue">
           <a href={`/trips/${id}/budget`}>
             {#if budgets.length}
-              <u><FormattedCurrency value={totalBudget - totalExpenses} /></u>
+              <u><FormattedCurrency value={totalBudget - totalExpensesFiltred} /></u>
             {/if}
           </a>
         </div>

@@ -46,6 +46,7 @@
     onfocus={() => (active = true)}
     onblur={() => (active = false)}
     class:error
+    step=".01"
   />
 
   {#if error && !disabled}
