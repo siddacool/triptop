@@ -241,7 +241,9 @@
     {/if}
 
     <StackItem>
-      <Button type="submit" disabled={!name.trim() || !date || !time}>Save</Button>
+      <Button type="submit" disabled={!name.trim() || !date || !time} variant="primary">
+        Save
+      </Button>
     </StackItem>
 
     {#if expenseId}

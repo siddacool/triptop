@@ -4,7 +4,7 @@
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import { getMoment } from '$lib/helpers/time';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
-  import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
+  import { categoryOptions, useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
   import Icon from '@iconify/svelte';
@@ -50,7 +50,9 @@
         <li>
           <div class="StatsLabel">Category</div>
           <div class="StatsValue">
-            {targetExpense?.category || 'Other'}
+            {categoryOptions.find((item) => item.value === targetExpense?.category)?.logo || ''}
+            {categoryOptions.find((item) => item.value === targetExpense?.category)?.label ||
+              'Other'}
           </div>
         </li>
         <li>

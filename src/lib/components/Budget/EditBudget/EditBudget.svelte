@@ -88,7 +88,9 @@
       </Select>
     </StackItem>
     <StackItem>
-      <Button type="submit" disabled={!name.trim() || !amount || !paymentMode}>Save</Button>
+      <Button type="submit" disabled={!name.trim() || !amount || !paymentMode} variant="primary">
+        Save
+      </Button>
     </StackItem>
 
     {#if budgetId}

@@ -104,7 +104,9 @@
       />
     </StackItem>
     <StackItem>
-      <Button type="submit" disabled={!name.trim() || !startDate || !endDate}>Save</Button>
+      <Button type="submit" disabled={!name.trim() || !startDate || !endDate} variant="primary">
+        Save
+      </Button>
     </StackItem>
 
     {#if tripId}
