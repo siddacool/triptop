@@ -58,11 +58,13 @@
 
     if (tripId) {
       useTripsStore.update(tripId, name, startDate, endDate);
+
+      goto(`/trips/${tripId}`);
     } else {
       useTripsStore.add(name, startDate, endDate);
-    }
 
-    goto(`/trips/${tripId}`);
+      goto(`/`);
+    }
   }
 
   function ondelete(e: Event) {
