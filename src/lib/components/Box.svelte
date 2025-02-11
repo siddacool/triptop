@@ -6,7 +6,7 @@
   const { children }: BoxProps = $props();
 </script>
 
-<div>
+<div class="Box">
   {#if children}
     {@render children()}
   {/if}
@@ -21,6 +21,7 @@
     margin: 0 auto;
     padding: 10px;
     padding-top: 0;
+    height: 100vh;
 
     @include mediaLg {
       padding: 16px;

@@ -23,24 +23,37 @@
 
     fetchData();
   });
+
+  console.log(page);
 </script>
 
-<div>
-  {#if page.route.id !== '/trips/[id]'}
-    <header>
-      <a href={`/trips/${targetTrip?._id}/`}>{targetTrip?.name}</a>
-    </header>
-  {/if}
+<div class="tripLayout">
+  <div>
+    {#if children}
+      {@render children()}
+    {/if}
+  </div>
 
-  {#if children}
-    {@render children()}
+  {#if page.route.id !== '/trips/[id]'}
+    <footer>
+      <a href={`/trips/${targetTrip?._id}/`}>{targetTrip?.name}</a>
+    </footer>
   {/if}
 </div>
 
 <style lang="scss">
-  header {
-    margin: 16px 0;
+  .tripLayout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
   }
+
+  footer {
+    margin: 0;
+    margin-top: 16px;
+  }
+
   a {
     cursor: pointer;
     color: var(--color-primary-800);

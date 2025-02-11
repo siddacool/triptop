@@ -14,8 +14,6 @@ export function calculatePercentage(part: number, whole: number): number {
     return NaN; // Avoid division by zero
   }
 
-  console.log(part, whole);
-
   return (part / whole) * 100;
 }
 

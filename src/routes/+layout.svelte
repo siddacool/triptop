@@ -23,11 +23,9 @@
 
 <main>
   <Box>
-    <div>
-      {#if children}
-        {@render children()}
-      {/if}
-    </div>
+    {#if children}
+      {@render children()}
+    {/if}
   </Box>
 </main>
 
