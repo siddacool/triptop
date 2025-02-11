@@ -1,11 +1,11 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/state';
+  import BudgetProgress from '$lib/components/Budget/BudgetProgress.svelte';
   import Button from '$lib/components/ui-framework/Form/Button.svelte';
   import DateInput from '$lib/components/ui-framework/Form/DateInput.svelte';
   import NumberInput from '$lib/components/ui-framework/Form/NumberInput.svelte';
   import Select from '$lib/components/ui-framework/Form/Select.svelte';
-  import ErrorMessage from '$lib/components/ui-framework/Form/shared/ErrorMessage.svelte';
   import FormLabel from '$lib/components/ui-framework/Form/shared/FormLabel.svelte';
   import TextInput from '$lib/components/ui-framework/Form/TextInput.svelte';
   import TimeInput from '$lib/components/ui-framework/Form/TimeInput.svelte';
@@ -209,11 +209,15 @@
       >
         <option value={undefined} selected={category === undefined}>Not Selected</option>
         {#each budgets as budget}
-          <option value={budget._id} selected={budget._id === budgetId}
-            >{budget.name} : 💰 ₹{budget.amount}</option
-          >
+          <option value={budget._id} selected={budget._id === budgetId}>
+            {budget.name} | ₹{budget.amount}
+          </option>
         {/each}
       </Select>
+
+      {#if targetBudget}
+        <BudgetProgress budgetId={targetBudget._id} />
+      {/if}
     </StackItem>
 
     {#if targetBudget}
@@ -248,6 +252,3 @@
     {/if}
   </Stack>
 </form>
-
-<style lang="scss">
-</style>
