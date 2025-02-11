@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state';
   import BudgetProgress from '$lib/components/Budget/BudgetProgress.svelte';
+  import FormattedCurrency from '$lib/components/FormattedCurrency.svelte';
   import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
@@ -37,7 +38,7 @@
         <li>
           <div class="StatsLabel">Amount</div>
           <div class="StatsValue">
-            ₹{targetBudget.amount}
+            <FormattedCurrency value={targetBudget.amount} />
           </div>
         </li>
         <li>

@@ -171,7 +171,7 @@
   }
 </script>
 
-<form {onsubmit}>
+<form {onsubmit} class="EditExpense">
   <Stack space={2}>
     <StackItem>
       <NumberInput label="Amount" value={amount} {oninput} name="amount" placeholder="Add amount" />
@@ -210,7 +210,7 @@
         <option value={undefined} selected={category === undefined}>Not Selected</option>
         {#each budgets as budget}
           <option value={budget._id} selected={budget._id === budgetId}>
-            {budget.name} | ₹{budget.amount}
+            {budget.name}
           </option>
         {/each}
       </Select>

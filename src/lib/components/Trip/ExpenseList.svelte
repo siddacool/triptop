@@ -2,6 +2,7 @@
   import { page } from '$app/state';
   import { getMoment } from '$lib/helpers/time';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
+  import FormattedCurrency from '../FormattedCurrency.svelte';
   import Card from '../ui-framework/Layout/Card.svelte';
 
   const id = page.params.id;
@@ -19,7 +20,7 @@
             </div>
             <div class="expenseValue">
               <span>
-                <b>₹{expense.amount}</b>
+                <b><FormattedCurrency value={expense.amount} /></b>
               </span>
               <span>
                 {getMoment(expense.date).format('MMM,D')}
@@ -67,6 +68,11 @@
       justify-content: space-between;
       font-size: 1rem;
       margin-bottom: 10px;
+    }
+
+    .expenseLabel {
+      font-weight: 500;
+      font-size: 1.1rem;
     }
 
     .expenseValue {

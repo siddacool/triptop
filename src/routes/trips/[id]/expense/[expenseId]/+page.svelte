@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import FormattedCurrency from '$lib/components/FormattedCurrency.svelte';
   import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import { getMoment } from '$lib/helpers/time';
@@ -44,7 +45,7 @@
         <li>
           <div class="StatsLabel">Amount</div>
           <div class="StatsValue">
-            {targetExpense.amount}
+            <FormattedCurrency value={targetExpense.amount} />
           </div>
         </li>
         <li>

@@ -2,6 +2,7 @@
   import { calculatePercentage } from '$lib/helpers/percentage';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
+  import FormattedCurrency from '../FormattedCurrency.svelte';
   import ProgressBar from '../ui-framework/FormattedInfo/ProgressBar.svelte';
 
   interface Props {
@@ -26,9 +27,10 @@
 </script>
 
 <div class="BudgetProgress">
-  {totalExpenses}
+  <FormattedCurrency value={totalExpenses} />
   <ProgressBar fill={diff} />
-  {remainingBudget}/{targetBudget?.amount}
+  <FormattedCurrency value={remainingBudget} />/
+  <FormattedCurrency value={targetBudget?.amount || 0} />
 </div>
 
 <style lang="scss">

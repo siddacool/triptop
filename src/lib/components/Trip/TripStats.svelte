@@ -6,6 +6,7 @@
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import FormattedCurrency from '../FormattedCurrency.svelte';
 
   const id = page.params.id;
   const targetTrip = $derived(useTripsStore.data.find((item) => item._id === id));
@@ -29,7 +30,7 @@
         <div class="TotalExpense">
           <FormLabel label="Total Expense" />
 
-          <b>₹{totalExpenses}</b>
+          <b><FormattedCurrency value={totalExpenses} /></b>
         </div>
       </li>
       <li>
@@ -37,7 +38,7 @@
         <div class="StatsValue">
           <a href={`/trips/${id}/budget`}>
             {#if budgets.length}
-              ₹{totalBudget}
+              <FormattedCurrency value={totalBudget} />
             {:else}
               Add budget
             {/if}
@@ -49,7 +50,7 @@
         <div class="StatsValue">
           <a href={`/trips/${id}/budget`}>
             {#if budgets.length}
-              <u>₹{totalBudget - totalExpenses}</u>
+              <u><FormattedCurrency value={totalBudget - totalExpenses} /></u>
             {/if}
           </a>
         </div>

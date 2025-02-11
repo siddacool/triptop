@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import FormattedCurrency from '$lib/components/FormattedCurrency.svelte';
   import PaymentChip from '$lib/components/PaymentChip.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import type { Budget } from '$lib/stores/budget/types';
@@ -19,7 +20,7 @@
     <Card>
       <h2>{budget.name}</h2>
       <h2>
-        ₹{budget.amount}
+        <FormattedCurrency value={budget.amount} />
       </h2>
       <BudgetProgress budgetId={budget._id} />
       <p>
