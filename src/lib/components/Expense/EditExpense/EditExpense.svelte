@@ -5,6 +5,7 @@
   import DateInput from '$lib/components/ui-framework/Form/DateInput.svelte';
   import NumberInput from '$lib/components/ui-framework/Form/NumberInput.svelte';
   import Select from '$lib/components/ui-framework/Form/Select.svelte';
+  import FormLabel from '$lib/components/ui-framework/Form/shared/FormLabel.svelte';
   import TextInput from '$lib/components/ui-framework/Form/TextInput.svelte';
   import TimeInput from '$lib/components/ui-framework/Form/TimeInput.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
@@ -13,6 +14,7 @@
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { categoryOptions, useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import { Category } from '$lib/stores/expense/types';
+  import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
   import { PaymentModes } from '$lib/stores/payment-mode/types';
 
   interface Props {
@@ -42,12 +44,12 @@
       ? getMoment(useExpenseStore.data.find((item) => item._id === expenseId)?.date).format(
           'YYYY-MM-DD',
         )
-      : '',
+      : getMoment().format('YYYY-MM-DD'),
   );
   let time = $state(
     useExpenseStore.data.find((item) => item._id === expenseId)?.date
-      ? getMoment(useExpenseStore.data.find((item) => item._id === expenseId)?.date).format('mm:HH')
-      : '',
+      ? getMoment(useExpenseStore.data.find((item) => item._id === expenseId)?.date).format('HH:mm')
+      : getMoment().format('HH:mm'),
   );
 
   let budgetId = $state(
@@ -55,6 +57,8 @@
   );
 
   const budgets = $derived(useBudgetStore.data.filter((item) => item.tripId === tripId));
+
+  const targetBudget = $derived(useBudgetStore.data.find((item) => item._id === budgetId));
 
   function oninput(e: Event) {
     const target = e.target as HTMLInputElement;
@@ -79,14 +83,19 @@
         paymentMode = target.value as PaymentModes;
         break;
       case 'category':
-        category = target.value as Category;
+        if (target.value) {
+          category = target.value as Category;
+        } else {
+          category = undefined;
+        }
+
         break;
       case 'budget':
-        budgetId = target.value;
-
         if (target.value) {
+          budgetId = target.value;
           paymentMode = undefined;
         } else {
+          budgetId = undefined;
           if (!paymentMode) {
             paymentMode = PaymentModes.CASH;
           }
@@ -101,17 +110,19 @@
   function onsubmit(e: Event) {
     e.preventDefault();
 
-    if (!name.trim() || !date || !amount || !time) {
+    if (!name.trim() || !date || !time) {
       return;
     }
 
     const formattedDate = getMoment(`${date} ${time}`, 'YYYY-MM-DD HH:mm').valueOf();
 
     if (expenseId) {
+      console.log(budgetId);
+
       useExpenseStore.update(
         expenseId,
         name,
-        amount,
+        amount || 0,
         formattedDate,
         category,
         budgetId,
@@ -120,7 +131,15 @@
 
       goto(`/trips/${tripId}/expense/${expenseId}/`);
     } else {
-      useExpenseStore.add(tripId, name, amount, formattedDate, category, budgetId, paymentMode);
+      useExpenseStore.add(
+        tripId,
+        name,
+        amount || 0,
+        formattedDate,
+        category,
+        budgetId,
+        paymentMode,
+      );
 
       goto(`/trips/${tripId}/`);
     }
@@ -168,28 +187,35 @@
     </StackItem>
     <StackItem>
       <Select label="Budget" name="budget" onchange={oninput}>
-        {#each budgets as budget}
-          <option value={budget} selected={budget._id === budgetId}>{budget.name}</option>
-        {/each}
         <option value={undefined} selected={category === undefined}>Not Selected</option>
+        {#each budgets as budget}
+          <option value={budget._id} selected={budget._id === budgetId}>{budget.name}</option>
+        {/each}
       </Select>
     </StackItem>
 
-    {#if !budgetId}
-      <StackItem>
+    <StackItem>
+      {#if targetBudget}
+        <div>
+          <FormLabel label="Payment mode" />
+          {paymentModeOptions.find((item) => item.value === targetBudget.paymentMode)?.label}
+        </div>
+      {:else}
         <Select label="Payment mode" name="paymentMode" onchange={oninput}>
-          <option value={PaymentModes.CASH} selected={paymentMode === PaymentModes.CASH}>
-            Cash
-          </option>
-          <option value={PaymentModes.CARD} selected={paymentMode === PaymentModes.CARD}>
-            Card
-          </option>
+          {#each paymentModeOptions as paymentModeOption}
+            <option
+              value={paymentModeOption.value}
+              selected={paymentMode === paymentModeOption.value}
+            >
+              {paymentModeOption.label}
+            </option>
+          {/each}
         </Select>
-      </StackItem>
-    {/if}
+      {/if}
+    </StackItem>
 
     <StackItem>
-      <Button type="submit" disabled={!name.trim() || !date || !amount || !time}>Save</Button>
+      <Button type="submit" disabled={!name.trim() || !date || !time}>Save</Button>
     </StackItem>
 
     {#if expenseId}

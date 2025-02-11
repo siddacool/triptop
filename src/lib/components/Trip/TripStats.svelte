@@ -14,9 +14,11 @@
     budgets.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
   );
 
-  const expenses = $derived(useExpenseStore.data.filter((item) => item.tripId === id));
+  const expensesFiltered = $derived(
+    useExpenseStore.data.filter((item) => item.tripId === id && item.budgetId),
+  );
   const totalExpenses = $derived(
-    expenses.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
+    expensesFiltered.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
   );
 </script>
 

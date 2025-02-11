@@ -5,6 +5,7 @@
   import { getMoment } from '$lib/helpers/time';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
+  import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
   import Icon from '@iconify/svelte';
 
@@ -15,6 +16,18 @@
   const tripId = page.params.id;
   const id = page.params.expenseId;
   const targetExpense = $derived(useExpenseStore.data.find((item) => item._id === id));
+  const targetBudget = $derived(
+    useBudgetStore.data.find((item) => item._id === targetExpense?.budgetId),
+  );
+
+  const paymentModeRaw = $derived(
+    targetBudget ? targetBudget.paymentMode : targetExpense?.paymentMode,
+  );
+
+  const paymentModeValue = $derived(
+    paymentModeOptions.find((item) => item.value === paymentModeRaw)?.label ||
+      paymentModeOptions[0]?.label,
+  );
 </script>
 
 {#if mounted && targetExpense}
@@ -43,7 +56,11 @@
         <li>
           <div class="StatsLabel">Payment mode</div>
           <div class="StatsValue">
-            {targetExpense?.paymentMode}
+            {paymentModeValue}
+
+            {#if targetBudget}
+              ({targetBudget.name})
+            {/if}
           </div>
         </li>
         <li>

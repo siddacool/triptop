@@ -81,7 +81,7 @@ function createExpenseStore() {
 
         const unordered = await db.expense?.toArray();
 
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = unordered?.sort((a, b) => b?.date - a?.date);
 
         return Promise.resolve();
       } catch (e) {
@@ -120,7 +120,7 @@ function createExpenseStore() {
 
         const unordered = await db.expense?.toArray();
 
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = unordered?.sort((a, b) => b?.date - a?.date);
 
         return Promise.resolve();
       } catch (e) {
@@ -161,7 +161,7 @@ function createExpenseStore() {
 
         const unordered = await db.expense?.toArray();
 
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = unordered?.sort((a, b) => b?.date - a?.date);
 
         return Promise.resolve();
       } catch (e) {
@@ -186,7 +186,7 @@ function createExpenseStore() {
 
         const unordered = await db.expense?.toArray();
 
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = unordered?.sort((a, b) => b?.date - a?.date);
 
         return Promise.resolve();
       } catch (e) {
@@ -208,7 +208,7 @@ function createExpenseStore() {
 
         const unordered = await db.expense?.toArray();
 
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = unordered?.sort((a, b) => b?.date - a?.date);
 
         return Promise.resolve();
       } catch (e) {
