@@ -109,7 +109,7 @@
       }
 
       u {
-        color: var(--color-danger-900);
+        color: var(--color-danger-800);
         text-decoration: none;
       }
     }
