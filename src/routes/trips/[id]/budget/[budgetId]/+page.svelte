@@ -4,6 +4,7 @@
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
+  import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
   import Icon from '@iconify/svelte';
 
@@ -14,6 +15,18 @@
   const tripId = page.params.id;
   const id = page.params.budgetId;
   const targetBudget = $derived(useBudgetStore.data.find((item) => item._id === id));
+  const targetExpenses = $derived(
+    useExpenseStore.data.filter((item) => item.budgetId === targetBudget?._id),
+  );
+
+  const totalExpenses = $derived(
+    targetExpenses.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
+  );
+
+  const paymentModeValue = $derived(
+    paymentModeOptions.find((item) => item.value === targetBudget?.paymentMode)?.label ||
+      paymentModeOptions[0]?.label,
+  );
 </script>
 
 {#if mounted && targetBudget}
@@ -30,13 +43,19 @@
         <li>
           <div class="StatsLabel">Amount</div>
           <div class="StatsValue">
-            {targetBudget.amount}
+            ₹{totalExpenses} / ₹{targetBudget.amount}
+          </div>
+        </li>
+        <li>
+          <div class="StatsLabel">Remaining</div>
+          <div class="StatsValue">
+            ₹{targetBudget.amount - totalExpenses}
           </div>
         </li>
         <li>
           <div class="StatsLabel">Payment mode</div>
           <div class="StatsValue">
-            {targetBudget?.paymentMode}
+            {paymentModeValue}
           </div>
         </li>
       </ul>

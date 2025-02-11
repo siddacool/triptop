@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import BudgetList from '$lib/components/Budget/BudgetList.svelte';
+  import BudgetList from '$lib/components/Budget/BudgetList/BudgetList.svelte';
   import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
