@@ -8,7 +8,7 @@
 </script>
 
 <h2>
-  Trawell <AnchorButton href="/trips/create" variant="primary" compact>
+  Triptop <AnchorButton href="/trips/create" variant="primary" compact>
     <Icon icon="mdi:plus" />
   </AnchorButton>
 </h2>
