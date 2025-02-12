@@ -9,7 +9,7 @@ export class MySubClassedDexie extends Dexie {
   expense!: Table<Expense>;
 
   constructor() {
-    super('trawell');
+    super('triptop');
     this.version(1).stores({
       trips: '++id, _id',
       budget: '++id, _id',

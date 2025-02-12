@@ -1,1 +1,3 @@
-# trawell
+# Triptop
+
+Travel budgeting app
