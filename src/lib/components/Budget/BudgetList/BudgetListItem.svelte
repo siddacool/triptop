@@ -4,6 +4,7 @@
   import PaymentChip from '$lib/components/PaymentChip.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import type { Budget } from '$lib/stores/budget/types';
+  import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import BudgetProgress from '../BudgetProgress.svelte';
 
   type Props = {
@@ -13,19 +14,21 @@
   const tripId = page.params.id;
 
   const { budget }: Props = $props();
+
+  const isAnyExpense = $derived(useExpenseStore.data.some((item) => item.budgetId === budget._id));
 </script>
 
 <li>
   <a href={`/trips/${tripId}/budget/${budget._id}`}>
     <Card>
-      <h2>{budget.name}</h2>
+      <h2>{budget.name} <PaymentChip paymentMode={budget.paymentMode} /></h2>
       <h2>
         <FormattedCurrency value={budget.amount} />
       </h2>
-      <BudgetProgress budgetId={budget._id} />
-      <p>
-        <PaymentChip paymentMode={budget.paymentMode} />
-      </p>
+
+      {#if isAnyExpense}
+        <BudgetProgress budgetId={budget._id} />
+      {/if}
     </Card>
   </a>
 </li>
@@ -36,6 +39,10 @@
     font-weight: 500;
     display: flex;
     align-items: center;
+
+    :global(.Chip) {
+      margin-left: 8px;
+    }
   }
 
   li {

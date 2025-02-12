@@ -62,7 +62,9 @@
   const targetBudget = $derived(useBudgetStore.data.find((item) => item._id === budgetId));
 
   const targetBudgetExpenses = $derived(
-    useExpenseStore.data.filter((item) => item.budgetId === targetBudget?._id),
+    useExpenseStore.data.filter(
+      (item) => item.budgetId === targetBudget?._id && item._id !== expenseId,
+    ),
   );
 
   const totalBudgetExpenses = $derived(
@@ -174,10 +176,10 @@
 <form {onsubmit} class="EditExpense">
   <Stack space={2}>
     <StackItem>
-      <NumberInput label="Amount" value={amount} {oninput} name="amount" placeholder="Add amount" />
+      <TextInput label="Title" value={name} {oninput} name="name" placeholder="Title" />
     </StackItem>
     <StackItem>
-      <TextInput label="Title" value={name} {oninput} name="name" placeholder="Title" />
+      <NumberInput label="Amount" value={amount} {oninput} name="amount" placeholder="Add amount" />
     </StackItem>
     <!-- <StackItem>
       <TextArea label="Description" value={description} {oninput} name="description" />
@@ -216,7 +218,11 @@
       </Select>
 
       {#if targetBudget}
-        <BudgetProgress budgetId={targetBudget._id} />
+        <BudgetProgress
+          budgetId={targetBudget._id}
+          expenseToSkipId={expenseId}
+          artificalAmount={amount}
+        />
       {/if}
     </StackItem>
 

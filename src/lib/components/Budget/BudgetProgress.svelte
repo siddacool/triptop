@@ -7,18 +7,29 @@
 
   interface Props {
     budgetId: string;
+    expenseToSkipId?: string;
+    artificalAmount?: number;
   }
 
-  const { budgetId }: Props = $props();
+  const { budgetId, expenseToSkipId, artificalAmount = 0 }: Props = $props();
 
   const targetBudget = $derived(useBudgetStore.data.find((item) => item._id === budgetId));
 
   const expenses = $derived(
-    useExpenseStore.data.filter((item) => item.budgetId === targetBudget?._id),
+    useExpenseStore.data.filter((item) => {
+      if (expenseToSkipId) {
+        if (item._id === expenseToSkipId) {
+          return false;
+        }
+      }
+
+      return item.budgetId === targetBudget?._id;
+    }),
   );
 
   const totalExpenses = $derived(
-    expenses.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
+    expenses.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0) +
+      artificalAmount,
   );
 
   const diff = $derived(calculatePercentage(totalExpenses, targetBudget?.amount || 0));
