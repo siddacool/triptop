@@ -38,23 +38,38 @@
 </script>
 
 <div class="BudgetProgress">
-  <FormattedCurrency value={totalExpenses} />
+  <FormattedCurrency value={totalExpenses || 0} />
   <ProgressBar fill={diff} />
-  <FormattedCurrency value={remainingBudget} />/
-  <FormattedCurrency value={targetBudget?.amount || 0} />
+  <section>
+    <FormattedCurrency value={remainingBudget || 0} class="remainingBudget" />
+    <FormattedCurrency value={targetBudget?.amount || 0} />
+  </section>
 </div>
 
 <style lang="scss">
   .BudgetProgress {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 14px;
+    margin-bottom: 14px;
     font-size: 0.85rem;
-    font-weight: 700;
+    font-weight: 600;
     display: flex;
     align-items: center;
+    width: 100%;
 
-    :global(.Progress) {
+    :global(.ProgressBar) {
       margin: 0 8px;
+      flex: 1;
+    }
+
+    section {
+      display: flex;
+      flex-direction: column;
+      color: var(--color-primary-800);
+
+      :global(.remainingBudget) {
+        color: var(--color-danger-800);
+        margin-bottom: 6px;
+      }
     }
   }
 </style>
