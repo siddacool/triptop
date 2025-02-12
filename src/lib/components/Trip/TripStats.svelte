@@ -7,6 +7,7 @@
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
   import FormattedCurrency from '../FormattedCurrency.svelte';
+  import AnchorButton from '../ui-framework/Form/AnchorButton.svelte';
 
   const id = page.params.id;
   const targetTrip = $derived(useTripsStore.data.find((item) => item._id === id));
@@ -32,9 +33,11 @@
     <ul>
       <li>
         <div class="TotalExpense">
-          <FormLabel label="Total Expense" />
-
-          <b><FormattedCurrency value={totalExpenses} /></b>
+          <div>
+            <FormLabel label="Total Expense" />
+            <b><FormattedCurrency value={totalExpenses} /></b>
+          </div>
+          <AnchorButton href={`/trips/${id}/stats`}>Stats</AnchorButton>
         </div>
       </li>
       <li>
@@ -95,6 +98,12 @@
     }
 
     .TotalExpense {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+
       b {
         font-size: 1.5rem;
         font-weight: 500;
