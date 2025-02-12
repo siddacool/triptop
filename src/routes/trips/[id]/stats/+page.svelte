@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import StatisticsList from '$lib/components/Statistics/StatisticsList/StatisticsList.svelte';
+  import CategoryList from '$lib/components/Statistics/CategoryList';
+  import PaymentModeList from '$lib/components/Statistics/PaymentModeList';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
@@ -19,7 +20,8 @@
 
 {#if mounted && targetTrip}
   <h2>{targetTrip?.name}: Stats</h2>
-  <StatisticsList />
+  <CategoryList />
+  <PaymentModeList />
 {/if}
 
 {#if fetching}

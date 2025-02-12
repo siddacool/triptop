@@ -1,18 +1,26 @@
 <script lang="ts">
   import { categoryOptions } from '$lib/stores/expense/expense.svelte';
-  import StatItem from './StatItem.svelte';
+  import CategoryListItem from './CategoryListItem.svelte';
 </script>
+
+<h2>Category</h2>
 
 <table>
   {#each categoryOptions as category}
-    <StatItem {category} />
+    <CategoryListItem {category} />
   {/each}
 </table>
 
 <style lang="scss">
   table {
-    margin-top: 32px;
     width: 100%;
     border-collapse: collapse;
+    margin-top: 8px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0;
   }
 </style>
