@@ -22,6 +22,8 @@
   const targetTrip = $derived(useTripsStore.data.find((item) => item._id === id));
 </script>
 
+<title>{targetTrip?.name}</title>
+
 {#if mounted && targetTrip}
   <h2>
     <div>

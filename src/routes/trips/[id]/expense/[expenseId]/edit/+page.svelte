@@ -13,6 +13,8 @@
   const targetExpense = $derived(useExpenseStore.data.find((item) => item._id === id));
 </script>
 
+<title>Edit expense</title>
+
 {#if mounted && targetExpense}
   <h2>Edit expense</h2>
   <EditExpense expenseId={id} />

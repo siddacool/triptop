@@ -1,3 +1,5 @@
 # Triptop
 
-Travel budgeting app
+Triptop - Travel budgeting app
+
+Made with 💖 for Sru

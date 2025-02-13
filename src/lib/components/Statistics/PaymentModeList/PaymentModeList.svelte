@@ -15,10 +15,10 @@
 </script>
 
 <tr class="header">
-  <td colspan="2" class="seperator"></td>
+  <td colspan="3" class="seperator"></td>
 </tr>
 <tr class="header">
-  <td colspan="2">Payment Mode</td>
+  <td colspan="3">Payment Mode</td>
 </tr>
 {#each paymentModeOptions as paymentMode}
   <PaymentModeListItem {paymentMode} {totalExpenses} />

@@ -14,7 +14,7 @@
 </script>
 
 <tr class="header">
-  <td colspan="2"> Category </td>
+  <td colspan="3"> Category </td>
 </tr>
 {#each categoryOptions as category}
   <CategoryListItem {category} {totalExpenses} />

@@ -34,10 +34,12 @@
       {category.logo}
     </span>
     <span>{category.label}</span>
+  </td>
 
+  <td>
     {#if diff}
       <div class="progress">
-        <span>{parseInt(`${diff}`, 10)}%</span>
+        <span class="percent">{parseInt(`${diff}`, 10)}%</span>
         <ProgressBar fill={diff} />
       </div>
     {/if}
@@ -50,16 +52,13 @@
 
 <style lang="scss">
   tr {
-    font-size: 1.1rem;
     .logo {
-      margin-right: 6px;
+      margin-right: 3px;
     }
 
     td {
       padding: 10px;
       border-bottom: 1px solid var(--color-grey-400);
-
-
     }
 
     &:hover {

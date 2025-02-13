@@ -31,10 +31,12 @@
 <tr>
   <td>
     <span>{paymentMode.label}</span>
+  </td>
 
+  <td>
     {#if diff}
       <div class="progress">
-        <span>{parseInt(`${diff}`, 10)}%</span>
+        <span class="percent">{parseInt(`${diff}`, 10)}%</span>
         <ProgressBar fill={diff} />
       </div>
     {/if}

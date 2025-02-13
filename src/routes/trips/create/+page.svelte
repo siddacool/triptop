@@ -9,6 +9,8 @@
   );
 </script>
 
+<title>Create trip</title>
+
 {#if mounted}
   <h2>Create trip</h2>
 

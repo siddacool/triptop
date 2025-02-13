@@ -13,6 +13,8 @@
   </AnchorButton>
 </h2>
 
+<title>Triptop - Travel budgeting app</title>
+
 {#if mounted && useTripsStore.data.length}
   <ul>
     {#each useTripsStore.data as trip}

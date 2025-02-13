@@ -31,6 +31,8 @@
   );
 </script>
 
+<title>{targetExpense?.name}</title>
+
 {#if mounted && targetExpense}
   <h2>
     {targetExpense.name}

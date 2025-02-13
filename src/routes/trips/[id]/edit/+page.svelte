@@ -13,6 +13,8 @@
   const targetTrip = $derived(useTripsStore.data.find((item) => item._id === id));
 </script>
 
+<title>Edit: {targetTrip?.name}</title>
+
 {#if mounted && targetTrip}
   <h2>Edit: {targetTrip.name}</h2>
 

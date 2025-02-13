@@ -25,6 +25,8 @@
   );
 </script>
 
+<title>{targetTrip?.name}: Stats</title>
+
 {#if mounted && targetTrip}
   <h2>{targetTrip?.name}: Stats</h2>
   <p>Total Expense: <FormattedCurrency value={totalExpenses} /></p>
@@ -48,7 +50,7 @@
     margin-top: 8px;
 
     :global(tr) {
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-weight: 500;
 
       &:hover {
@@ -70,23 +72,40 @@
     }
 
     :global(td) {
-      padding: 8px;
+      padding: 8px 5px;
       border-bottom: 1px solid var(--color-grey-400);
       vertical-align: baseline;
+      position: relative;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
     }
 
     :global(.progress) {
       display: flex;
-      margin-top: 8px;
+      width: 100%;
+      min-width: 100px;
     }
 
-    :global(.progress span) {
-      margin-right: 8px;
+    :global(.progress .percent) {
+      font-size: 0.85rem;
+      position: absolute;
+      top: 5px;
+      font-weight: 500;
     }
 
     :global(.ProgressBar) {
       margin-top: 8px;
       margin-bottom: 8px;
+      width: 100%;
+      position: relative;
+      top: 7px;
+      height: 4px;
     }
   }
 

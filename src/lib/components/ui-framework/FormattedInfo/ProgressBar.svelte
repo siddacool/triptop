@@ -25,7 +25,6 @@
       background-color: var(--color-primary-700);
       transition: width 400ms;
       border-radius: 2px;
-      margin: 0;
     }
   }
 </style>

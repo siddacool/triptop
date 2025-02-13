@@ -9,6 +9,8 @@
   );
 </script>
 
+<title>Create expense</title>
+
 {#if mounted}
   <h2>Create expense</h2>
 
