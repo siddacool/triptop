@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { goto } from '$app/navigation';
+  import { beforeNavigate, goto } from '$app/navigation';
   import { page } from '$app/state';
   import ExpenseList from '$lib/components/Trip/ExpenseList/ExpenseList.svelte';
   import TripStats from '$lib/components/Trip/TripStats.svelte';
@@ -24,15 +24,15 @@
   const id = page.params.id;
   const targetTrip = $derived(useTripsStore.data.find((item) => item._id === id));
 
-  function goBack() {
-    useLocalSettingsStore.resetLastOpenTrip();
-
-    goto(`/`);
-  }
-
   $effect(() => {
     if (targetTrip) {
       useLocalSettingsStore.updateLastOpenTrip(targetTrip._id);
+    }
+  });
+
+  beforeNavigate((val) => {
+    if (val.to?.route?.id === '/') {
+      useLocalSettingsStore.resetLastOpenTrip();
     }
   });
 </script>
@@ -42,9 +42,9 @@
 {#if mounted && targetTrip}
   <h2>
     <div>
-      <Button onclick={goBack} compact variant="inert" class="BackButton">
+      <AnchorButton href="/" compact variant="inert" class="BackButton">
         <Icon icon="lets-icons:back" />
-      </Button>
+      </AnchorButton>
       {targetTrip?.name}
     </div>
     <AnchorButton href={`/trips/${id}/edit`} variant="primary" compact>
