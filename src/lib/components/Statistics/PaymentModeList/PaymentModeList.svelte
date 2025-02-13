@@ -1,27 +1,36 @@
 <script lang="ts">
+  import { page } from '$app/state';
+  import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
   import PaymentModeListItem from './PaymentModeListItem.svelte';
+
+  const tripId = page.params.id;
+
+  // Total expense
+  const expenses = $derived(useExpenseStore.data.filter((item) => item.tripId === tripId));
+
+  const totalExpenses = $derived(
+    expenses.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
+  );
 </script>
 
-<h2>Payment Mode</h2>
-
-<table>
-  {#each paymentModeOptions as paymentMode}
-    <PaymentModeListItem {paymentMode} />
-  {/each}
-</table>
+<tr class="header">
+  <td colspan="2" class="seperator"></td>
+</tr>
+<tr class="header">
+  <td colspan="2">Payment Mode</td>
+</tr>
+{#each paymentModeOptions as paymentMode}
+  <PaymentModeListItem {paymentMode} {totalExpenses} />
+{/each}
 
 <style lang="scss">
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 8px;
+  td {
+    font-weight: 600;
+    font-size: 1.2rem;
   }
 
-  h2 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0;
-    margin-top: 50px;
+  .seperator {
+    border-bottom: 0;
   }
 </style>

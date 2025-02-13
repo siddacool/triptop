@@ -1,26 +1,34 @@
 <script lang="ts">
-  import { categoryOptions } from '$lib/stores/expense/expense.svelte';
+  import { page } from '$app/state';
+  import { categoryOptions, useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import CategoryListItem from './CategoryListItem.svelte';
+
+  const tripId = page.params.id;
+
+  // Total expense
+  const expenses = $derived(useExpenseStore.data.filter((item) => item.tripId === tripId));
+
+  const totalExpenses = $derived(
+    expenses.map((item) => item.amount || 0).reduce((partialSum, a) => partialSum + a, 0),
+  );
 </script>
 
-<h2>Category</h2>
-
-<table>
-  {#each categoryOptions as category}
-    <CategoryListItem {category} />
-  {/each}
-</table>
+<tr class="header">
+  <td colspan="2"> Category </td>
+</tr>
+{#each categoryOptions as category}
+  <CategoryListItem {category} {totalExpenses} />
+{/each}
 
 <style lang="scss">
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 8px;
+  tr {
+    &:hover {
+      background-color: transparent;
+    }
   }
 
-  h2 {
-    font-size: 1.2rem;
+  td {
     font-weight: 600;
-    margin-bottom: 0;
+    font-size: 1.2rem;
   }
 </style>
