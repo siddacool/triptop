@@ -7,13 +7,9 @@
   const mounted = $derived(useTripsStore.mounted ? true : false);
 </script>
 
-<h2>
-  Triptop <AnchorButton href="/trips/create" variant="primary" compact>
-    <Icon icon="mdi:plus" />
-  </AnchorButton>
-</h2>
-
 <title>Triptop - Travel budgeting app</title>
+
+<h2><img src="web-app-manifest-192x192.png" alt="icon" /> Triptop</h2>
 
 {#if mounted && useTripsStore.data.length}
   <ul>
@@ -31,13 +27,19 @@
   </ul>
 {/if}
 
+<div class="CreateButtonSection">
+  <AnchorButton href="/trips/create" variant="primary" compact>
+    <Icon icon="mdi:plus" />
+  </AnchorButton>
+</div>
+
 <style lang="scss">
   h2 {
-    font-size: 2rem;
-    font-weight: 600;
+    font-size: 2.5rem;
+    font-weight: 500;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   ul {
@@ -70,5 +72,19 @@
   h3 {
     font-size: 1.3rem;
     font-weight: 500;
+  }
+
+  .CreateButtonSection {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 8px;
+    opacity: 0.8;
+    border: 1px solid var(--color-primary-300);
   }
 </style>

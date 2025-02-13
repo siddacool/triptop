@@ -27,7 +27,7 @@
 {#if mounted && targetTrip}
   <h2>
     <div>
-      <AnchorButton href={`/`} compact>
+      <AnchorButton href={`/`} compact variant="inert" class="BackButton">
         <Icon icon="lets-icons:back" />
       </AnchorButton>
       {targetTrip?.name}
@@ -65,6 +65,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    :global(.BackButton) {
+      min-width: initial;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+    }
   }
 
   .create {
