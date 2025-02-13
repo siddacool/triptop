@@ -3,6 +3,7 @@ import { db } from '../db';
 import type { Trip } from './types';
 import { useBudgetStore } from '../budget/budget.svelte';
 import { useExpenseStore } from '../expense/expense.svelte';
+import { useLocalSettingsStore } from '../local-settings/local-settings.svelte';
 
 async function getTrip(idToFind: string) {
   try {
@@ -121,6 +122,8 @@ function createTripsStore() {
 
         await useBudgetStore.deleteAllBudgetsFromTrip(idToDelete);
         await useExpenseStore.deleteAllExpensesFromTrip(idToDelete);
+
+        useLocalSettingsStore.resetLastOpenTrip();
 
         return Promise.resolve();
       } catch (e) {

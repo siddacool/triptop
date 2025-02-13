@@ -1,12 +1,15 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
   import { page } from '$app/state';
   import ExpenseList from '$lib/components/Trip/ExpenseList/ExpenseList.svelte';
   import TripStats from '$lib/components/Trip/TripStats.svelte';
   import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
+  import Button from '$lib/components/ui-framework/Form/Button.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
+  import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
   import Icon from '@iconify/svelte';
 
@@ -20,6 +23,18 @@
 
   const id = page.params.id;
   const targetTrip = $derived(useTripsStore.data.find((item) => item._id === id));
+
+  function goBack() {
+    useLocalSettingsStore.resetLastOpenTrip();
+
+    goto(`/`);
+  }
+
+  $effect(() => {
+    if (targetTrip) {
+      useLocalSettingsStore.updateLastOpenTrip(targetTrip._id);
+    }
+  });
 </script>
 
 <title>{targetTrip?.name}</title>
@@ -27,9 +42,9 @@
 {#if mounted && targetTrip}
   <h2>
     <div>
-      <AnchorButton href={`/`} compact variant="inert" class="BackButton">
+      <Button onclick={goBack} compact variant="inert" class="BackButton">
         <Icon icon="lets-icons:back" />
-      </AnchorButton>
+      </Button>
       {targetTrip?.name}
     </div>
     <AnchorButton href={`/trips/${id}/edit`} variant="primary" compact>
