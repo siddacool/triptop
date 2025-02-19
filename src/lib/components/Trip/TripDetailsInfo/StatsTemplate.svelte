@@ -1,5 +1,4 @@
 <script lang="ts">
-  import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import type { Snippet } from 'svelte';
 
   interface StatsTemplateProps {

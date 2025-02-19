@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
   import FormLabel from '$lib/components/ui-framework/Form/shared/FormLabel.svelte';
-  import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import FormattedCurrency from '../../FormattedCurrency.svelte';
   import AnchorButton from '../../ui-framework/Form/AnchorButton.svelte';
