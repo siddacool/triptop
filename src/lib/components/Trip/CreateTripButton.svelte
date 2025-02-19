@@ -6,7 +6,7 @@
 
 <StackItem>
   <div class="CreateButtonSection">
-    <AnchorButton href="/trips/create" variant="primary" compact>
+    <AnchorButton href="/create" variant="primary" compact>
       <Icon icon="mdi:plus" />
     </AnchorButton>
   </div>

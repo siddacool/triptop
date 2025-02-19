@@ -13,14 +13,14 @@
     );
 
     if (isTrip) {
-      goto(`/trips/${useLocalSettingsStore.lastOpenTrip}`);
+      goto(`/${useLocalSettingsStore.lastOpenTrip}`);
     }
   });
 </script>
 
 <title>Triptop - Travel budgeting app</title>
 
-<Stack space={5}>
+<Stack space={4}>
   <TripHeader />
   <TripList />
   <CreateTripButton />

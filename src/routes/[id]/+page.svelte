@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { beforeNavigate, goto } from '$app/navigation';
+  import { beforeNavigate } from '$app/navigation';
   import { page } from '$app/state';
   import ExpenseList from '$lib/components/Trip/ExpenseList/ExpenseList.svelte';
-  import TripStats from '$lib/components/Trip/TripStats.svelte';
+  import TripDetailsHeader from '$lib/components/Trip/TripDetailsHeader.svelte';
+  import TripDetailsInfo from '$lib/components/Trip/TripDetailsInfo';
   import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
-  import Button from '$lib/components/ui-framework/Form/Button.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
@@ -39,56 +39,28 @@
 
 <title>{targetTrip?.name}</title>
 
-{#if mounted && targetTrip}
-  <h2>
-    <div>
-      <AnchorButton href="/" compact variant="inert" class="BackButton">
-        <Icon icon="lets-icons:back" />
-      </AnchorButton>
-      {targetTrip?.name}
-    </div>
-    <AnchorButton href={`/trips/${id}/edit`} variant="primary" compact>
-      <Icon icon="material-symbols:edit" />
-    </AnchorButton>
-  </h2>
-  <Stack space={3}>
-    <StackItem>
-      <TripStats />
-    </StackItem>
-    <StackItem>
-      <ExpenseList />
-    </StackItem>
-
+<Stack space={4}>
+  {#if mounted && targetTrip}
+    <TripDetailsHeader />
+    <TripDetailsInfo />
     <StackItem>
       <div class="create">
-        <AnchorButton href={`/trips/${id}/expense/create`} variant="primary" compact>
+        <AnchorButton href={`/${id}/expense/create`} variant="primary" compact>
           <Icon icon="mdi:plus" />
         </AnchorButton>
       </div>
     </StackItem>
-  </Stack>
-{/if}
-
-{#if fetching}
-  <p>Loading...</p>
-{/if}
+    <ExpenseList />
+  {:else if fetching}
+    <StackItem>Loading...</StackItem>
+  {:else}
+    <StackItem>
+      <h3>No trip found</h3>
+    </StackItem>
+  {/if}
+</Stack>
 
 <style lang="scss">
-  h2 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    :global(.BackButton) {
-      min-width: initial;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-    }
-  }
-
   .create {
     display: flex;
     align-items: center;

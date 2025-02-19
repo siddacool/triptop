@@ -80,43 +80,42 @@
   }
 </script>
 
-<form {onsubmit}>
-  <Stack space={2}>
-    <StackItem>
-      <TextInput
-        label="Trip Name"
-        value={name}
-        {oninput}
-        name="name"
-        placeholder="Name your trip"
-      />
-    </StackItem>
-    <StackItem>
-      <DateInput label="Start date" value={startDateString} {oninput} name="startDate" />
-    </StackItem>
-    <StackItem>
-      <DateInput
-        label="End date"
-        value={endDateString}
-        {oninput}
-        min={startDateString}
-        name="endDate"
-      />
-    </StackItem>
-    <StackItem>
-      <Button type="submit" disabled={!name.trim() || !startDate || !endDate} variant="primary">
-        Save
-      </Button>
-    </StackItem>
-
-    {#if tripId}
-      <StackItem></StackItem>
+<StackItem>
+  <form {onsubmit}>
+    <Stack space={2}>
       <StackItem>
-        <Button variant="danger" onclick={ondelete}>Delete trip</Button>
+        <TextInput
+          label="Trip Name"
+          value={name}
+          {oninput}
+          name="name"
+          placeholder="Name your trip"
+        />
       </StackItem>
-    {/if}
-  </Stack>
-</form>
+      <StackItem>
+        <DateInput label="Start date" value={startDateString} {oninput} name="startDate" />
+      </StackItem>
+      <StackItem>
+        <DateInput
+          label="End date"
+          value={endDateString}
+          {oninput}
+          min={startDateString}
+          name="endDate"
+        />
+      </StackItem>
+      <StackItem>
+        <Button type="submit" disabled={!name.trim() || !startDate || !endDate} variant="primary">
+          Save
+        </Button>
+      </StackItem>
 
-<style lang="scss">
-</style>
+      {#if tripId}
+        <StackItem></StackItem>
+        <StackItem>
+          <Button variant="danger" onclick={ondelete}>Delete trip</Button>
+        </StackItem>
+      {/if}
+    </Stack>
+  </form>
+</StackItem>

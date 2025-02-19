@@ -47,7 +47,7 @@
   <ul>
     {#each dateGroup.expenses as expense}
       <li>
-        <a href={`/trips/${id}/expense/${expense._id}`}>
+        <a href={`/${id}/expense/${expense._id}`}>
           <Card>
             <div class="expenseLabel">
               {expense.name}

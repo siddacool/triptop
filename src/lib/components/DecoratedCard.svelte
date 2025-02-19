@@ -2,6 +2,7 @@
   import type { SvelteComponentProps } from '$lib/types/svelte-component';
   import type { Snippet } from 'svelte';
   import Card from './ui-framework/Layout/Card.svelte';
+  import H3 from './ui-framework/Headings/H3.svelte';
 
   interface DecoratedCardProps extends SvelteComponentProps {
     active?: boolean;
@@ -22,9 +23,9 @@
 {#snippet card()}
   <Card>
     {#if title}
-      <h3>
+      <H3>
         {@render title()}
-      </h3>
+      </H3>
     {/if}
 
     <div class="Content">
@@ -63,6 +64,10 @@
         }
       }
     }
+
+    :global(.H3) {
+      margin-bottom: 8px;
+    }
   }
 
   a {
@@ -70,11 +75,5 @@
     width: 100%;
     text-decoration: none;
     color: inherit;
-  }
-
-  h3 {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-top: 0;
   }
 </style>

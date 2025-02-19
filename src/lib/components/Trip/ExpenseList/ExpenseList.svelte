@@ -1,5 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import ItemList from '$lib/components/ItemList.svelte';
+  import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getMoment } from '$lib/helpers/time';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import type { Expense } from '$lib/stores/expense/types';
@@ -33,20 +35,10 @@
   const targetExpenseDateGroup = $derived(groupExpensesByDateArray(targetExpense));
 </script>
 
-<div class="ExpenseList">
-  <ul>
+<StackItem>
+  <ItemList>
     {#each targetExpenseDateGroup as dateGroup}
       <ExpenseListItem {dateGroup} />
     {/each}
-  </ul>
-</div>
-
-<style lang="scss">
-  .ExpenseList {
-    ul {
-      display: block;
-      margin: 0;
-      padding: 0;
-    }
-  }
-</style>
+  </ItemList>
+</StackItem>
