@@ -17,7 +17,7 @@
 
   div {
     width: 100%;
-    max-width: 700px;
+    max-width: 550px;
     margin: 0 auto;
     padding: 10px;
     padding-top: 0;
