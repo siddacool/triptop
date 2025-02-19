@@ -18,7 +18,7 @@
 <title>Edit: {targetTrip?.name}</title>
 
 {#if mounted && targetTrip}
-  <Stack space={2}>
+  <Stack space={4}>
     <EditTripHeader />
   </Stack>
 

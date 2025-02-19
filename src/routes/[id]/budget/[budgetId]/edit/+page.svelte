@@ -17,7 +17,7 @@
 </script>
 
 {#if mounted && targetBudget}
-  <Stack space={3}>
+  <Stack space={4}>
     <StackItem>
       <H2>Edit budget</H2>
     </StackItem>

@@ -52,11 +52,11 @@
     if (budgetId) {
       useBudgetStore.update(budgetId, name, amount, paymentMode);
 
-      goto(`/trips/${tripId}/budget/${budgetId}/`);
+      goto(`/${tripId}/budget/${budgetId}/`);
     } else {
       useBudgetStore.add(tripId, name, amount, paymentMode);
 
-      goto(`/trips/${tripId}/budget/`);
+      goto(`/${tripId}/budget/`);
     }
   }
 
@@ -69,7 +69,7 @@
 
     useBudgetStore.delete(budgetId);
 
-    goto(`/trips/${tripId}/budget/`);
+    goto(`/${tripId}/budget/`);
   }
 </script>
 

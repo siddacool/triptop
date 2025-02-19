@@ -19,7 +19,7 @@
 <title>Edit expense</title>
 
 {#if mounted && targetExpense}
-  <Stack space={3}>
+  <Stack space={4}>
     <StackItem><H2>Edit expense</H2></StackItem>
     <StackItem><EditExpense expenseId={id} /></StackItem>
   </Stack>

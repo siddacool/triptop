@@ -12,7 +12,7 @@
 
 <title>Create trip</title>
 
-<Stack space={2}>
+<Stack space={4}>
   <StackItem><H2>Create trip</H2></StackItem>
   <EditTrip />
 </Stack>

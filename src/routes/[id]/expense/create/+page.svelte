@@ -15,7 +15,7 @@
 <title>Create expense</title>
 
 {#if mounted}
-  <Stack space={3}>
+  <Stack space={4}>
     <StackItem>
       <H2>Create expense</H2>
     </StackItem>

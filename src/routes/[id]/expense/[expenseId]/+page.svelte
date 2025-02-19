@@ -18,7 +18,7 @@
 <title>{targetExpense?.name}</title>
 
 {#if mounted && targetExpense}
-  <Stack space={3}>
+  <Stack space={4}>
     <EditTripHeader />
     <ExpenseTripStats />
   </Stack>

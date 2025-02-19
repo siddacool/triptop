@@ -30,7 +30,7 @@
 
 <title>{targetTrip?.name}: Stats</title>
 
-<Stack space={3}>
+<Stack space={4}>
   {#if mounted && targetTrip}
     <StackItem>
       <H2>{targetTrip?.name}: Stats</H2>

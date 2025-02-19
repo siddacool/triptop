@@ -16,7 +16,7 @@
 </script>
 
 {#if mounted && targetBudget}
-  <Stack space={3}>
+  <Stack space={4}>
     <BudgetStatsHeader />
     <BudgetStats />
   </Stack>
