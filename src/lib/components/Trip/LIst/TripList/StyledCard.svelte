@@ -1,11 +1,15 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import CreateTripButton from '$lib/components/Trip/CreateTripButton.svelte';
-  import TripHeader from '$lib/components/Trip/TripHeader.svelte';
-  import TripList from '$lib/components/Trip/LIst/TripList/TripList.svelte';
-  import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
+  import DecoratedCard from '$lib/components/DecoratedCard.svelte';
   import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import type { Trip } from '$lib/stores/trips/types';
+
+  type Props = {
+    trip: Trip;
+  };
+
+  const { trip }: Props = $props();
 
   $effect(() => {
     const isTrip = useTripsStore.data.some(
@@ -18,10 +22,8 @@
   });
 </script>
 
-<title>Triptop - Travel budgeting app</title>
-
-<Stack space={4}>
-  <TripHeader />
-  <TripList />
-  <CreateTripButton />
-</Stack>
+<DecoratedCard href={`/${trip._id}`} active>
+  {#snippet title()}
+    {trip.name}
+  {/snippet}
+</DecoratedCard>
