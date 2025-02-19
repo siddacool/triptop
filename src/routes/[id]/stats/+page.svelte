@@ -1,8 +1,11 @@
 <script lang="ts">
   import { page } from '$app/state';
   import FormattedCurrency from '$lib/components/FormattedCurrency.svelte';
-  import CategoryList from '$lib/components/Statistics/CategoryList';
-  import PaymentModeList from '$lib/components/Statistics/PaymentModeList';
+  import CategoryTable from '$lib/components/Statistics/CategoryTable/CategoryTable.svelte';
+  import H2 from '$lib/components/ui-framework/Headings/H2.svelte';
+  import H3 from '$lib/components/ui-framework/Headings/H3.svelte';
+  import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
+  import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
@@ -27,90 +30,24 @@
 
 <title>{targetTrip?.name}: Stats</title>
 
-{#if mounted && targetTrip}
-  <h2>{targetTrip?.name}: Stats</h2>
-  <p>Total Expense: <FormattedCurrency value={totalExpenses} /></p>
-
-  <table>
-    <tbody>
-      <CategoryList />
-      <PaymentModeList />
-    </tbody>
-  </table>
-{/if}
-
-{#if fetching}
-  <p>Loading...</p>
-{/if}
+<Stack space={3}>
+  {#if mounted && targetTrip}
+    <StackItem>
+      <H2>{targetTrip?.name}: Stats</H2>
+      <p>Total Expense: <FormattedCurrency value={totalExpenses} /></p>
+    </StackItem>
+    <CategoryTable />
+  {:else if fetching}
+    <StackItem><H3>Loading...</H3></StackItem>
+  {:else}
+    <StackItem>
+      <H3>No trip found</H3>
+    </StackItem>
+  {/if}
+</Stack>
 
 <style lang="scss">
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 8px;
-
-    :global(tr) {
-      font-size: 0.95rem;
-      font-weight: 500;
-
-      &:hover {
-        background-color: var(--color-primary-100);
-      }
-    }
-
-    :global(tr.header) {
-      font-weight: 600;
-      font-size: 1.2rem;
-
-      &:hover {
-        background-color: transparent;
-      }
-    }
-
-    :global(.logo) {
-      margin-right: 4px;
-    }
-
-    :global(td) {
-      padding: 8px 5px;
-      border-bottom: 1px solid var(--color-grey-400);
-      vertical-align: baseline;
-      position: relative;
-
-      &:first-child {
-        padding-left: 0;
-      }
-
-      &:last-child {
-        padding-right: 0;
-      }
-    }
-
-    :global(.progress) {
-      display: flex;
-      width: 100%;
-      min-width: 100px;
-    }
-
-    :global(.progress .percent) {
-      font-size: 0.85rem;
-      position: absolute;
-      top: 5px;
-      font-weight: 500;
-    }
-
-    :global(.ProgressBar) {
-      margin-top: 8px;
-      margin-bottom: 8px;
-      width: 100%;
-      position: relative;
-      top: 7px;
-      height: 4px;
-    }
-  }
-
-  h2 {
-    font-size: 1.3rem;
-    font-weight: 600;
+  p {
+    margin-bottom: 0;
   }
 </style>

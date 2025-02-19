@@ -39,6 +39,5 @@
     width: 100vw;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-top: 24px;
   }
 </style>

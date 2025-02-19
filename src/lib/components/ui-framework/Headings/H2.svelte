@@ -8,7 +8,7 @@
   const { children, class: className = '' }: H2Props = $props();
 </script>
 
-<h2 class={`H3 ${className}`}>
+<h2 class={`H2 ${className}`}>
   {#if children}
     {@render children()}
   {/if}

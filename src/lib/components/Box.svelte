@@ -22,6 +22,7 @@
     padding: 10px;
     padding-top: 0;
     height: 100vh;
+    padding-top: 24px;
 
     @include mediaLg {
       padding: 16px;

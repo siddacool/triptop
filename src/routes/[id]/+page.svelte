@@ -5,6 +5,7 @@
   import TripDetailsHeader from '$lib/components/Trip/TripDetailsHeader.svelte';
   import TripDetailsInfo from '$lib/components/Trip/TripDetailsInfo';
   import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
+  import H3 from '$lib/components/ui-framework/Headings/H3.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
@@ -52,10 +53,10 @@
     </StackItem>
     <ExpenseList />
   {:else if fetching}
-    <StackItem>Loading...</StackItem>
+    <StackItem><H3>Loading...</H3></StackItem>
   {:else}
     <StackItem>
-      <h3>No trip found</h3>
+      <H3>No trip found</H3>
     </StackItem>
   {/if}
 </Stack>

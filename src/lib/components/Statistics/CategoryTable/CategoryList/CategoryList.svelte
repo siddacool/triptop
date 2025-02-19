@@ -19,16 +19,3 @@
 {#each categoryOptions as category}
   <CategoryListItem {category} {totalExpenses} />
 {/each}
-
-<style lang="scss">
-  tr {
-    &:hover {
-      background-color: transparent;
-    }
-  }
-
-  td {
-    font-weight: 600;
-    font-size: 1.2rem;
-  }
-</style>

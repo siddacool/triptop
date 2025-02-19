@@ -144,7 +144,7 @@
         paymentMode,
       );
 
-      goto(`/trips/${tripId}/expense/${expenseId}/`);
+      goto(`/${tripId}/expense/${expenseId}/`);
     } else {
       useExpenseStore.add(
         tripId,
@@ -156,7 +156,7 @@
         paymentMode,
       );
 
-      goto(`/trips/${tripId}/`);
+      goto(`/${tripId}/`);
     }
   }
 
@@ -169,94 +169,102 @@
 
     useExpenseStore.delete(expenseId);
 
-    goto(`/trips/${tripId}/`);
+    goto(`/${tripId}/`);
   }
 </script>
 
-<form {onsubmit} class="EditExpense">
-  <Stack space={2}>
-    <StackItem>
-      <TextInput label="Title" value={name} {oninput} name="name" placeholder="Title" />
-    </StackItem>
-    <StackItem>
-      <NumberInput label="Amount" value={amount} {oninput} name="amount" placeholder="Add amount" />
-    </StackItem>
-    <!-- <StackItem>
+<StackItem>
+  <form {onsubmit} class="EditExpense">
+    <Stack space={2}>
+      <StackItem>
+        <TextInput label="Title" value={name} {oninput} name="name" placeholder="Title" />
+      </StackItem>
+      <StackItem>
+        <NumberInput
+          label="Amount"
+          value={amount}
+          {oninput}
+          name="amount"
+          placeholder="Add amount"
+        />
+      </StackItem>
+      <!-- <StackItem>
       <TextArea label="Description" value={description} {oninput} name="description" />
     </StackItem> -->
-    <StackItem>
-      <DateInput label="Date" value={date} {oninput} name="date" />
-    </StackItem>
-    <StackItem>
-      <TimeInput label="Time" {oninput} name="time" value={time} />
-    </StackItem>
-    <StackItem>
-      <Select label="Category" name="category" onchange={oninput}>
-        {#each categoryOptions as categoryOption}
-          <option value={categoryOption.value} selected={category === categoryOption.value}>
-            {categoryOption.logo}
-            {categoryOption.label}
-          </option>
-        {/each}
-      </Select>
-    </StackItem>
-    <StackItem>
-      <Select
-        label="Budget"
-        name="budget"
-        onchange={oninput}
-        error={targetBudget && amount > remainingBudget
-          ? 'Not enough amount in selected budget'
-          : ''}
-      >
-        <option value={undefined} selected={category === undefined}>Not Selected</option>
-        {#each budgets as budget}
-          <option value={budget._id} selected={budget._id === budgetId}>
-            {budget.name}
-          </option>
-        {/each}
-      </Select>
-
-      {#if targetBudget}
-        <BudgetProgress
-          budgetId={targetBudget._id}
-          expenseToSkipId={expenseId}
-          artificalAmount={amount}
-        />
-      {/if}
-    </StackItem>
-
-    {#if targetBudget}
       <StackItem>
-        <FormLabel label="Payment mode" />
-        {paymentModeOptions.find((item) => item.value === targetBudget.paymentMode)?.label}
+        <DateInput label="Date" value={date} {oninput} name="date" />
       </StackItem>
-    {:else}
       <StackItem>
-        <Select label="Payment mode" name="paymentMode" onchange={oninput}>
-          {#each paymentModeOptions as paymentModeOption}
-            <option
-              value={paymentModeOption.value}
-              selected={paymentMode === paymentModeOption.value}
-            >
-              {paymentModeOption.label}
+        <TimeInput label="Time" {oninput} name="time" value={time} />
+      </StackItem>
+      <StackItem>
+        <Select label="Category" name="category" onchange={oninput}>
+          {#each categoryOptions as categoryOption}
+            <option value={categoryOption.value} selected={category === categoryOption.value}>
+              {categoryOption.logo}
+              {categoryOption.label}
             </option>
           {/each}
         </Select>
       </StackItem>
-    {/if}
-
-    <StackItem>
-      <Button type="submit" disabled={!name.trim() || !date || !time} variant="primary">
-        Save
-      </Button>
-    </StackItem>
-
-    {#if expenseId}
-      <StackItem></StackItem>
       <StackItem>
-        <Button variant="danger" onclick={ondelete}>Delete expense</Button>
+        <Select
+          label="Budget"
+          name="budget"
+          onchange={oninput}
+          error={targetBudget && amount > remainingBudget
+            ? 'Not enough amount in selected budget'
+            : ''}
+        >
+          <option value={undefined} selected={category === undefined}>Not Selected</option>
+          {#each budgets as budget}
+            <option value={budget._id} selected={budget._id === budgetId}>
+              {budget.name}
+            </option>
+          {/each}
+        </Select>
+
+        {#if targetBudget}
+          <BudgetProgress
+            budgetId={targetBudget._id}
+            expenseToSkipId={expenseId}
+            artificalAmount={amount}
+          />
+        {/if}
       </StackItem>
-    {/if}
-  </Stack>
-</form>
+
+      {#if targetBudget}
+        <StackItem>
+          <FormLabel label="Payment mode" />
+          {paymentModeOptions.find((item) => item.value === targetBudget.paymentMode)?.label}
+        </StackItem>
+      {:else}
+        <StackItem>
+          <Select label="Payment mode" name="paymentMode" onchange={oninput}>
+            {#each paymentModeOptions as paymentModeOption}
+              <option
+                value={paymentModeOption.value}
+                selected={paymentMode === paymentModeOption.value}
+              >
+                {paymentModeOption.label}
+              </option>
+            {/each}
+          </Select>
+        </StackItem>
+      {/if}
+
+      <StackItem>
+        <Button type="submit" disabled={!name.trim() || !date || !time} variant="primary">
+          Save
+        </Button>
+      </StackItem>
+
+      {#if expenseId}
+        <StackItem></StackItem>
+        <StackItem>
+          <Button variant="danger" onclick={ondelete}>Delete expense</Button>
+        </StackItem>
+      {/if}
+    </Stack>
+  </form>
+</StackItem>

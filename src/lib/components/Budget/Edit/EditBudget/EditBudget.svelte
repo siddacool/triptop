@@ -73,34 +73,43 @@
   }
 </script>
 
-<form {onsubmit}>
-  <Stack space={2}>
-    <StackItem>
-      <TextInput label="Title" value={name} {oninput} name="name" placeholder="Title" />
-    </StackItem>
-    <StackItem>
-      <NumberInput label="Amount" value={amount} {oninput} name="amount" placeholder="Add amount" />
-    </StackItem>
-    <StackItem>
-      <Select label="Payment mode" name="paymentMode" onchange={oninput}>
-        <option value={PaymentModes.CASH} selected={paymentMode === PaymentModes.CASH}>Cash</option>
-        <option value={PaymentModes.CARD} selected={paymentMode === PaymentModes.CARD}>Card</option>
-      </Select>
-    </StackItem>
-    <StackItem>
-      <Button type="submit" disabled={!name.trim() || !amount || !paymentMode} variant="primary">
-        Save
-      </Button>
-    </StackItem>
-
-    {#if budgetId}
-      <StackItem></StackItem>
+<StackItem>
+  <form {onsubmit}>
+    <Stack space={2}>
       <StackItem>
-        <Button variant="danger" onclick={ondelete}>Delete budget</Button>
+        <TextInput label="Title" value={name} {oninput} name="name" placeholder="Title" />
       </StackItem>
-    {/if}
-  </Stack>
-</form>
+      <StackItem>
+        <NumberInput
+          label="Amount"
+          value={amount}
+          {oninput}
+          name="amount"
+          placeholder="Add amount"
+        />
+      </StackItem>
+      <StackItem>
+        <Select label="Payment mode" name="paymentMode" onchange={oninput}>
+          <option value={PaymentModes.CASH} selected={paymentMode === PaymentModes.CASH}
+            >Cash</option
+          >
+          <option value={PaymentModes.CARD} selected={paymentMode === PaymentModes.CARD}
+            >Card</option
+          >
+        </Select>
+      </StackItem>
+      <StackItem>
+        <Button type="submit" disabled={!name.trim() || !amount || !paymentMode} variant="primary">
+          Save
+        </Button>
+      </StackItem>
 
-<style lang="scss">
-</style>
+      {#if budgetId}
+        <StackItem></StackItem>
+        <StackItem>
+          <Button variant="danger" onclick={ondelete}>Delete budget</Button>
+        </StackItem>
+      {/if}
+    </Stack>
+  </form>
+</StackItem>

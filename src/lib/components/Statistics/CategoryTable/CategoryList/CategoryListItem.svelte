@@ -1,10 +1,10 @@
 <script lang="ts">
   import { page } from '$app/state';
   import FormattedCurrency from '$lib/components/FormattedCurrency.svelte';
-  import ProgressBar from '$lib/components/ui-framework/FormattedInfo/ProgressBar.svelte';
   import { calculatePercentage } from '$lib/helpers/percentage';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import type { CategoryOption } from '$lib/stores/expense/types';
+  import Progress from '../Progress.svelte';
 
   interface Props {
     category: CategoryOption;
@@ -37,12 +37,7 @@
   </td>
 
   <td>
-    {#if diff}
-      <div class="progress">
-        <span class="percent">{parseInt(`${diff}`, 10)}%</span>
-        <ProgressBar fill={diff} />
-      </div>
-    {/if}
+    <Progress value={diff} />
   </td>
 
   <td>
@@ -54,15 +49,6 @@
   tr {
     .logo {
       margin-right: 3px;
-    }
-
-    td {
-      padding: 10px;
-      border-bottom: 1px solid var(--color-grey-400);
-    }
-
-    &:hover {
-      background-color: var(--color-primary-100);
     }
   }
 </style>

@@ -59,7 +59,7 @@
     if (tripId) {
       useTripsStore.update(tripId, name, startDate, endDate);
 
-      goto(`/trips/${tripId}`);
+      goto(`/${tripId}`);
     } else {
       useTripsStore.add(name, startDate, endDate);
 

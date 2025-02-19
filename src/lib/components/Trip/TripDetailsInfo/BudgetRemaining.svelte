@@ -35,6 +35,8 @@
 
 <style lang="scss">
   a {
-    color: var(--color-danger-800);
+    :global(.FormattedCurrency) {
+      color: var(--color-danger-800);
+    }
   }
 </style>

@@ -1,7 +1,8 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import BudgetList from '$lib/components/Budget/BudgetList/BudgetList.svelte';
+  import BudgetList from '$lib/components/Budget/List/BudgetList/BudgetList.svelte';
   import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
+  import H2 from '$lib/components/ui-framework/Headings/H2.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
@@ -19,12 +20,15 @@
 {#if mounted}
   <Stack space={3}>
     <StackItem>
+      <H2>Budget</H2>
+    </StackItem>
+    <StackItem>
       <BudgetList />
     </StackItem>
 
     <StackItem>
       <div class="create">
-        <AnchorButton href={`/trips/${tripId}/budget/create`} variant="primary" compact>
+        <AnchorButton href={`/${tripId}/budget/create`} variant="primary" compact>
           <Icon icon="mdi:plus" />
         </AnchorButton>
       </div>
