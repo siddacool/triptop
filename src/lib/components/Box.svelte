@@ -19,13 +19,8 @@
     width: 100%;
     max-width: 550px;
     margin: 0 auto;
-    padding: 10px;
+    padding: 0 10px;
     height: 100vh;
     padding-top: 32px;
-
-    @include mediaLg {
-      padding: 16px;
-      padding-top: 32px;
-    }
   }
 </style>
