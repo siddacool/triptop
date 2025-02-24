@@ -1,7 +1,7 @@
 <script lang="ts">
   import Box from '$lib/components/Box.svelte';
   import GlobalContainer from '$lib/components/GlobalContainer';
-  import TheFooter from '$lib/components/TheFooter/TheFooter.svelte';
+  // import TheFooter from '$lib/components/TheFooter/TheFooter.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
@@ -35,7 +35,7 @@
         {/if}
       </div>
 
-      <TheFooter />
+      <!-- <TheFooter /> -->
     </div>
   </Box>
 </main>
