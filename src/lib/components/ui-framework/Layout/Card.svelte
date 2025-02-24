@@ -17,8 +17,9 @@
     background-color: var(--color-white);
     display: block;
     border: 1px solid;
-    border-color: var(--color-grey-300);
-    padding: 12px;
-    border-radius: 16px;
+    border-color: var(--color-grey-500);
+    padding: 16px;
+    border-radius: 20px;
+    transition: background-color 100ms;
   }
 </style>

@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { db } from '../db';
-import type { Trip } from './types';
+import type { Trip, TripFormData } from './types';
 import { useBudgetStore } from '../budget/budget.svelte';
 import { useExpenseStore } from '../expense/expense.svelte';
 import { useLocalSettingsStore } from '../local-settings/local-settings.svelte';
@@ -48,17 +48,17 @@ function createTripsStore() {
         mounted = true;
       }
     },
-    async add(name: string, startDate: Date, endDate: Date) {
+    async add(tripFormData: TripFormData) {
       try {
         fetching = true;
 
         await db.trips.add({
           _id: nanoid(),
-          name,
+          name: tripFormData.name.trim(),
           createdAt: Date.now(),
           updatedAt: Date.now(),
-          startDate,
-          endDate,
+          startDate: tripFormData.startDate,
+          endDate: tripFormData.endDate,
         });
 
         const unordered = await db.trips?.toArray();
@@ -74,7 +74,7 @@ function createTripsStore() {
         fetching = false;
       }
     },
-    async update(idToUpdate: string, name: string, startDate: Date, endDate: Date) {
+    async update(idToUpdate: string, tripFormData: TripFormData) {
       try {
         fetching = true;
 
@@ -85,10 +85,10 @@ function createTripsStore() {
         }
 
         await db.trips.update(targetTrip.id, {
-          name: name.trim(),
+          name: tripFormData.name.trim(),
           updatedAt: Date.now(),
-          startDate,
-          endDate,
+          startDate: tripFormData.startDate,
+          endDate: tripFormData.endDate,
         });
 
         const unordered = await db.trips?.toArray();

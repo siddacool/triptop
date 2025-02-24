@@ -204,6 +204,10 @@ function createExpenseStore() {
         const relatedExpense = await db.expense?.where({ tripId }).toArray();
         const relatedExpenseKeys = relatedExpense.map((item) => item.id);
 
+        if (!relatedExpenseKeys.length) {
+          return Promise.resolve();
+        }
+
         await db.expense.bulkDelete(relatedExpenseKeys);
 
         const unordered = await db.expense?.toArray();

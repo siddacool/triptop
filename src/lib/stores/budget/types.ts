@@ -9,4 +9,5 @@ export interface Budget {
   amount: number;
   tripId: string;
   paymentMode: PaymentModes;
+  currency?: string;
 }

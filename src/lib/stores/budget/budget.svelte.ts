@@ -135,7 +135,12 @@ function createBudgetStore() {
         fetching = true;
 
         const relatedBudget = await db.budget?.where({ tripId }).toArray();
+
         const relatedBudgetKeys = relatedBudget.map((item) => item.id);
+
+        if (!relatedBudgetKeys.length) {
+          return Promise.resolve();
+        }
 
         await db.budget.bulkDelete(relatedBudgetKeys);
 

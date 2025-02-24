@@ -32,4 +32,5 @@ export interface Expense {
 
   // if no budgetId
   paymentMode?: PaymentModes;
+  currency?: string;
 }
