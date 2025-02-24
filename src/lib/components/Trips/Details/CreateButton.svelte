@@ -9,7 +9,7 @@
 
 <StackItem>
   <div>
-    <AnchorButton variant="primary" compact href={`/${tripId}/create`}>
+    <AnchorButton variant="primary" compact href={`/${tripId}/add`}>
       <Icon icon="material-symbols:add" />
     </AnchorButton>
   </div>

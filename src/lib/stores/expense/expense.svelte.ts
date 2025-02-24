@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid';
 import { db } from '../db';
-import { Category, type CategoryOption, type Expense } from './types';
-import type { PaymentModes } from '../payment-mode/types';
+import { Category, type CategoryOption, type Expense, type ExpenseFormData } from './types';
 
 async function getExpense(idToFind: string) {
   try {
@@ -93,29 +92,21 @@ function createExpenseStore() {
         mounted = true;
       }
     },
-    async add(
-      tripId: string,
-      name: string,
-      amount: number,
-      date: number,
-      category?: Category,
-      budgetId?: string,
-      paymentMode?: PaymentModes,
-    ) {
+    async add(tripId: string, expenseFormData: ExpenseFormData) {
       try {
         fetching = true;
 
         await db.expense.add({
           _id: nanoid(),
-          name,
+          name: expenseFormData.name.trim(),
           createdAt: Date.now(),
           updatedAt: Date.now(),
-          amount,
-          tripId,
-          budgetId,
-          category,
-          date,
-          paymentMode,
+          amount: expenseFormData.amount,
+          tripId: tripId,
+          budgetId: expenseFormData.budgetId,
+          category: expenseFormData.category,
+          date: expenseFormData.date,
+          paymentMode: expenseFormData.paymentMode,
         });
 
         const unordered = await db.expense?.toArray();
@@ -131,15 +122,7 @@ function createExpenseStore() {
         fetching = false;
       }
     },
-    async update(
-      idToUpdate: string,
-      name: string,
-      amount: number,
-      date: number,
-      category?: Category,
-      budgetId?: string,
-      paymentMode?: PaymentModes,
-    ) {
+    async update(idToUpdate: string, expenseFormData: ExpenseFormData) {
       try {
         fetching = true;
 
@@ -150,13 +133,13 @@ function createExpenseStore() {
         }
 
         await db.expense.update(target.id, {
-          name: name.trim(),
-          amount,
+          name: expenseFormData.name.trim(),
+          amount: expenseFormData.amount,
           updatedAt: Date.now(),
-          date,
-          category,
-          budgetId,
-          paymentMode,
+          date: expenseFormData.date,
+          category: expenseFormData.category,
+          budgetId: expenseFormData.budgetId,
+          paymentMode: expenseFormData.paymentMode,
         });
 
         const unordered = await db.expense?.toArray();

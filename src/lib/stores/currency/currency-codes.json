@@ -25,17 +25,9 @@
   },
   {
     "entity": "GEORGIA",
-    "currency": "Lari",
+    "currency": "Georgian Lari",
     "alphabeticcode": "GEL",
     "numericcode": "981",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "GUAM",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
     "minorunit": "2",
     "withdrawaldate": null
   },
@@ -49,7 +41,7 @@
   },
   {
     "entity": "MONGOLIA",
-    "currency": "Tugrik",
+    "currency": "Mongolian Tugrik",
     "alphabeticcode": "MNT",
     "numericcode": "496",
     "minorunit": "2",
@@ -65,7 +57,7 @@
   },
   {
     "entity": "UKRAINE",
-    "currency": "Hryvnia",
+    "currency": "Ukrainan Hryvnia",
     "alphabeticcode": "UAH",
     "numericcode": "980",
     "minorunit": "2",
@@ -73,7 +65,7 @@
   },
   {
     "entity": "VENEZUELA (BOLIVARIAN REPUBLIC OF)",
-    "currency": "Bol\u00edvar",
+    "currency": "Venezuelan Bol\u00edvar",
     "alphabeticcode": "VEF",
     "numericcode": "937",
     "minorunit": null,
@@ -97,17 +89,9 @@
   },
   {
     "entity": "CAMBODIA",
-    "currency": "Riel",
+    "currency": "Cambodian Riel",
     "alphabeticcode": "KHR",
     "numericcode": "116",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "COOK ISLANDS (THE)",
-    "currency": "New Zealand Dollar",
-    "alphabeticcode": "NZD",
-    "numericcode": "554",
     "minorunit": "2",
     "withdrawaldate": null
   },
@@ -120,34 +104,10 @@
     "withdrawaldate": null
   },
   {
-    "entity": "ECUADOR",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "HAITI",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
     "entity": "INDIA",
     "currency": "Indian Rupee",
     "alphabeticcode": "INR",
     "numericcode": "356",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "MONTENEGRO",
-    "currency": "Euro",
-    "alphabeticcode": "EUR",
-    "numericcode": "978",
     "minorunit": "2",
     "withdrawaldate": null
   },
@@ -161,17 +121,9 @@
   },
   {
     "entity": "NICARAGUA",
-    "currency": "Cordoba Oro",
+    "currency": "Nicaraguan Cordoba Oro",
     "alphabeticcode": "NIO",
     "numericcode": "558",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "SAINT PIERRE AND MIQUELON",
-    "currency": "Euro",
-    "alphabeticcode": "EUR",
-    "numericcode": "978",
     "minorunit": "2",
     "withdrawaldate": null
   },
@@ -192,60 +144,12 @@
     "withdrawaldate": null
   },
   {
-    "entity": "TURKS AND CAICOS ISLANDS (THE)",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
     "entity": "URUGUAY",
     "currency": "Unidad Previsional",
     "alphabeticcode": "UYW",
     "numericcode": "927",
     "minorunit": "4",
     "withdrawaldate": null
-  },
-  {
-    "entity": "VIRGIN ISLANDS (BRITISH)",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "ZZ11_Silver",
-    "currency": "Silver",
-    "alphabeticcode": "XAG",
-    "numericcode": "961",
-    "minorunit": "-",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "GERMANY",
-    "currency": "Deutsche Mark",
-    "alphabeticcode": "DEM",
-    "numericcode": "276",
-    "minorunit": null,
-    "withdrawaldate": "2002-03"
-  },
-  {
-    "entity": "LESOTHO",
-    "currency": "Financial Rand",
-    "alphabeticcode": "ZAL",
-    "numericcode": "991",
-    "minorunit": null,
-    "withdrawaldate": "1995-03"
-  },
-  {
-    "entity": "ZZ05_UIC-Franc",
-    "currency": "UIC-Franc",
-    "alphabeticcode": "XFU",
-    "numericcode": null,
-    "minorunit": null,
-    "withdrawaldate": "2013-11"
   },
   {
     "entity": "BRUNEI DARUSSALAM",
@@ -536,14 +440,6 @@
     "withdrawaldate": null
   },
   {
-    "entity": "ZZ10_Platinum",
-    "currency": "Platinum",
-    "alphabeticcode": "XPT",
-    "numericcode": "962",
-    "minorunit": "-",
-    "withdrawaldate": null
-  },
-  {
     "entity": "BRAZIL",
     "currency": "Cruzeiro",
     "alphabeticcode": "BRB",
@@ -582,14 +478,6 @@
     "numericcode": "858",
     "minorunit": null,
     "withdrawaldate": "1993-03"
-  },
-  {
-    "entity": "ZZ02_RINET Funds Code",
-    "currency": "RINET Funds Code",
-    "alphabeticcode": "XRE",
-    "numericcode": null,
-    "minorunit": null,
-    "withdrawaldate": "1999-11"
   },
   {
     "entity": "ALGERIA",
@@ -716,14 +604,6 @@
     "currency": "Kwanza",
     "alphabeticcode": "AOA",
     "numericcode": "973",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "BRITISH INDIAN OCEAN TERRITORY (THE)",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
     "minorunit": "2",
     "withdrawaldate": null
   },
@@ -1032,14 +912,6 @@
     "withdrawaldate": null
   },
   {
-    "entity": "ZZ04_Bond Markets Unit European_EUA-17",
-    "currency": "Bond Markets Unit European Unit of Account 17 (E.U.A.-17)",
-    "alphabeticcode": "XBD",
-    "numericcode": "958",
-    "minorunit": "-",
-    "withdrawaldate": null
-  },
-  {
     "entity": "ALBANIA",
     "currency": "Old Lek",
     "alphabeticcode": "ALK",
@@ -1153,7 +1025,7 @@
   },
   {
     "entity": "PANAMA",
-    "currency": "Balboa",
+    "currency": "Panaman Balboa",
     "alphabeticcode": "PAB",
     "numericcode": "590",
     "minorunit": "2",
@@ -1165,14 +1037,6 @@
     "alphabeticcode": "XOF",
     "numericcode": "952",
     "minorunit": "0",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "ZZ06_Testing_Code",
-    "currency": "Codes specifically reserved for testing purposes",
-    "alphabeticcode": "XTS",
-    "numericcode": "963",
-    "minorunit": "-",
     "withdrawaldate": null
   },
   {
@@ -1316,14 +1180,6 @@
     "currency": "Singapore Dollar",
     "alphabeticcode": "SGD",
     "numericcode": "702",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "TIMOR-LESTE",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
     "minorunit": "2",
     "withdrawaldate": null
   },
@@ -1497,7 +1353,7 @@
   },
   {
     "entity": "HONDURAS",
-    "currency": "Lempira",
+    "currency": "Honduran Lempira",
     "alphabeticcode": "HNL",
     "numericcode": "340",
     "minorunit": "2",
@@ -1505,7 +1361,7 @@
   },
   {
     "entity": "MAURITANIA",
-    "currency": "Ouguiya",
+    "currency": "Mauritanian Ouguiya",
     "alphabeticcode": "MRU",
     "numericcode": "929",
     "minorunit": "2",
@@ -1516,14 +1372,6 @@
     "currency": "Euro",
     "alphabeticcode": "EUR",
     "numericcode": "978",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "PALAU",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
     "minorunit": "2",
     "withdrawaldate": null
   },
@@ -1624,14 +1472,6 @@
     "withdrawaldate": "2001-04"
   },
   {
-    "entity": "BONAIRE, SINT EUSTATIUS AND SABA",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
     "entity": "CAMEROON",
     "currency": "CFA Franc BEAC",
     "alphabeticcode": "XAF",
@@ -1668,22 +1508,6 @@
     "currency": "Euro",
     "alphabeticcode": "EUR",
     "numericcode": "978",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "NORTHERN MARIANA ISLANDS (THE)",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "PANAMA",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
     "minorunit": "2",
     "withdrawaldate": null
   },
@@ -1808,14 +1632,6 @@
     "withdrawaldate": null
   },
   {
-    "entity": "MICRONESIA (FEDERATED STATES OF)",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
     "entity": "NIGER (THE)",
     "currency": "CFA Franc BCEAO",
     "alphabeticcode": "XOF",
@@ -1849,7 +1665,7 @@
   },
   {
     "entity": "THAILAND",
-    "currency": "Baht",
+    "currency": "Thai Baht",
     "alphabeticcode": "THB",
     "numericcode": "764",
     "minorunit": "2",
@@ -1968,14 +1784,6 @@
     "withdrawaldate": null
   },
   {
-    "entity": "ZZ08_Gold",
-    "currency": "Gold",
-    "alphabeticcode": "XAU",
-    "numericcode": "959",
-    "minorunit": "-",
-    "withdrawaldate": null
-  },
-  {
     "entity": "CROATIA",
     "currency": "Croatian Kuna",
     "alphabeticcode": "HRK",
@@ -2064,14 +1872,6 @@
     "withdrawaldate": null
   },
   {
-    "entity": "UNITED STATES MINOR OUTLYING ISLANDS (THE)",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
     "entity": "VANUATU",
     "currency": "Vatu",
     "alphabeticcode": "VUV",
@@ -2140,14 +1940,6 @@
     "currency": "Rupiah",
     "alphabeticcode": "IDR",
     "numericcode": "360",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "MARSHALL ISLANDS (THE)",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
     "minorunit": "2",
     "withdrawaldate": null
   },
@@ -2405,22 +2197,6 @@
     "alphabeticcode": "SLE",
     "numericcode": "925",
     "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "VENEZUELA (BOLIVARIAN REPUBLIC OF)",
-    "currency": "Bol\u00edvar Soberano",
-    "alphabeticcode": "VES",
-    "numericcode": "928",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "ZZ07_No_Currency",
-    "currency": "The codes assigned for transactions where no currency is involved",
-    "alphabeticcode": "XXX",
-    "numericcode": "999",
-    "minorunit": "-",
     "withdrawaldate": null
   },
   {
@@ -2744,14 +2520,6 @@
     "withdrawaldate": "1987-05"
   },
   {
-    "entity": "ZZ01_Gold-Franc",
-    "currency": "Gold-Franc",
-    "alphabeticcode": "XFO",
-    "numericcode": null,
-    "minorunit": null,
-    "withdrawaldate": "2006-10"
-  },
-  {
     "entity": "BARBADOS",
     "currency": "Barbados Dollar",
     "alphabeticcode": "BBD",
@@ -2776,14 +2544,6 @@
     "withdrawaldate": null
   },
   {
-    "entity": "EL SALVADOR",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
     "entity": "LUXEMBOURG",
     "currency": "Euro",
     "alphabeticcode": "EUR",
@@ -2796,14 +2556,6 @@
     "currency": "Zloty",
     "alphabeticcode": "PLN",
     "numericcode": "985",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "PUERTO RICO",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
     "minorunit": "2",
     "withdrawaldate": null
   },
@@ -2821,22 +2573,6 @@
     "alphabeticcode": "NOK",
     "numericcode": "578",
     "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "ZZ01_Bond Markets Unit European_EURCO",
-    "currency": "Bond Markets Unit European Composite Unit (EURCO)",
-    "alphabeticcode": "XBA",
-    "numericcode": "955",
-    "minorunit": "-",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "ZZ02_Bond Markets Unit European_EMU-6",
-    "currency": "Bond Markets Unit European Monetary Unit (E.M.U.-6)",
-    "alphabeticcode": "XBB",
-    "numericcode": "956",
-    "minorunit": "-",
     "withdrawaldate": null
   },
   {
@@ -3000,19 +2736,11 @@
     "withdrawaldate": null
   },
   {
-    "entity": "UNITED STATES OF AMERICA (THE)",
+    "entity": "UNITED STATES OF AMERICA",
     "currency": "US Dollar",
     "alphabeticcode": "USD",
     "numericcode": "840",
     "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "ZZ03_Bond Markets Unit European_EUA-9",
-    "currency": "Bond Markets Unit European Unit of Account 9 (E.U.A.-9)",
-    "alphabeticcode": "XBC",
-    "numericcode": "957",
-    "minorunit": "-",
     "withdrawaldate": null
   },
   {
@@ -3041,17 +2769,9 @@
   },
   {
     "entity": "ALBANIA",
-    "currency": "Lek",
+    "currency": "Albanian Lek",
     "alphabeticcode": "ALL",
     "numericcode": "008",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "AMERICAN SAMOA",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
     "minorunit": "2",
     "withdrawaldate": null
   },
@@ -3133,14 +2853,6 @@
     "alphabeticcode": "AUD",
     "numericcode": "036",
     "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "ZZ09_Palladium",
-    "currency": "Palladium",
-    "alphabeticcode": "XPD",
-    "numericcode": "964",
-    "minorunit": "-",
     "withdrawaldate": null
   },
   {
@@ -3508,14 +3220,6 @@
     "currency": "Qatari Rial",
     "alphabeticcode": "QAR",
     "numericcode": "634",
-    "minorunit": "2",
-    "withdrawaldate": null
-  },
-  {
-    "entity": "VIRGIN ISLANDS (U.S.)",
-    "currency": "US Dollar",
-    "alphabeticcode": "USD",
-    "numericcode": "840",
     "minorunit": "2",
     "withdrawaldate": null
   },

@@ -24,7 +24,11 @@ function generateFormatedCurrencyCodes() {
   for (let index = 0; index < currencyCodesRaw.length; index++) {
     const element = currencyCodesRaw[index];
 
-    if (!element.alphabeticcode || !element.numericcode) {
+    if (!element.alphabeticcode || !element.numericcode || element.withdrawaldate) {
+      continue;
+    }
+
+    if (filtredCurrency.some((item) => item.alphabeticCode === element.alphabeticcode)) {
       continue;
     }
 
@@ -36,7 +40,7 @@ function generateFormatedCurrencyCodes() {
     });
   }
 
-  return filtredCurrency.sort((a, b) => a.entity.localeCompare(b.entity));
+  return filtredCurrency.sort((a, b) => a.currency.localeCompare(b.currency));
 }
 
 export const currencyCodes = generateFormatedCurrencyCodes();

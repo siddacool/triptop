@@ -17,7 +17,7 @@
     <h2>{name}</h2>
   </section>
 
-  <AnchorButton variant="primary" compact href={`/${tripId}/edit`}>
+  <AnchorButton compact href={`/${tripId}/edit`}>
     <Icon icon="material-symbols:edit" />
   </AnchorButton>
 </header>

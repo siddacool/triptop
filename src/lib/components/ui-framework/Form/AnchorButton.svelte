@@ -81,7 +81,7 @@
 
         &--default {
           background-color: var(--color-primary-200);
-          color: var(--color-grey-font-900);
+          color: var(--color-primary-700);
 
           &:hover {
             background-color: var(--color-primary-300);

@@ -34,3 +34,16 @@ export interface Expense {
   paymentMode?: PaymentModes;
   currency?: string;
 }
+
+export type ExpenseFormData = {
+  name: string;
+  description?: string;
+  amount: number;
+  budgetId?: string;
+  category?: Category;
+  date: number;
+
+  // if no budgetId
+  paymentMode?: PaymentModes;
+  currency?: string;
+};
