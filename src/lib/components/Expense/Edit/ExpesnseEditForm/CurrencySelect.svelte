@@ -1,14 +1,14 @@
 <script lang="ts">
   import Select from '$lib/components/ui-framework/Form/Select.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
-  import { currencyCodes } from '$lib/stores/currency/currency-codes';
+  import { currencyCodes, DEFUALT_CURRENCY } from '$lib/stores/currency/currency-codes';
 
   interface Props {
     onchange: (e: Event) => void;
     value: string;
   }
 
-  const { onchange, value = 'INR' }: Props = $props();
+  const { onchange, value = DEFUALT_CURRENCY.alphabeticCode }: Props = $props();
 </script>
 
 <StackItem>

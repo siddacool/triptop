@@ -1,20 +1,23 @@
 <script lang="ts">
+  import { DEFUALT_CURRENCY } from '$lib/stores/currency/currency-codes';
+
   type FormattedCurrencyProps = {
     currency?: string;
-    language?: string;
     value: number;
     class?: string;
   };
 
   const {
-    currency = 'INR',
-    language = 'en-IN',
+    currency = DEFUALT_CURRENCY.alphabeticCode,
     value,
     class: className = '',
   }: FormattedCurrencyProps = $props();
 
   const formattedValue = $derived(
-    new Intl.NumberFormat(language, { style: 'currency', currency: currency }).format(value),
+    new Intl.NumberFormat(currency === DEFUALT_CURRENCY.alphabeticCode ? 'en-IN' : 'en-US', {
+      style: 'currency',
+      currency: currency,
+    }).format(value),
   );
 </script>
 
@@ -24,5 +27,6 @@
   .FormattedCurrency {
     display: inline-flex;
     font-family: inherit;
+    color: inherit;
   }
 </style>

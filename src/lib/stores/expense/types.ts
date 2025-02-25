@@ -47,3 +47,9 @@ export type ExpenseFormData = {
   paymentMode?: PaymentModes;
   currency?: string;
 };
+
+export type CurrencyWiseExpense = {
+  currency: string;
+  expenses: Expense[];
+  total: number;
+};

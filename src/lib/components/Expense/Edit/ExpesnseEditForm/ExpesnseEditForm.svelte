@@ -4,6 +4,7 @@
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getMoment } from '$lib/helpers/time';
+  import { DEFUALT_CURRENCY } from '$lib/stores/currency/currency-codes';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import type { Category, ExpenseFormData } from '$lib/stores/expense/types';
   import { PaymentModes } from '$lib/stores/payment-mode/types';
@@ -25,7 +26,8 @@
   let budgetId = $state(useExpenseStore.data.find((item) => item._id === expenseId)?.budgetId);
   let amount = $state(useExpenseStore.data.find((item) => item._id === expenseId)?.amount || 0);
   let currency = $state(
-    useExpenseStore.data.find((item) => item._id === expenseId)?.currency || 'INR',
+    useExpenseStore.data.find((item) => item._id === expenseId)?.currency ||
+      DEFUALT_CURRENCY.alphabeticCode,
   );
   let category = $state(useExpenseStore.data.find((item) => item._id === expenseId)?.category);
   let paymentMode = $state(

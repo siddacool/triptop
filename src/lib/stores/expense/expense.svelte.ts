@@ -1,6 +1,13 @@
 import { nanoid } from 'nanoid';
 import { db } from '../db';
-import { Category, type CategoryOption, type Expense, type ExpenseFormData } from './types';
+import {
+  Category,
+  type CategoryOption,
+  type CurrencyWiseExpense,
+  type Expense,
+  type ExpenseFormData,
+} from './types';
+import { DEFUALT_CURRENCY } from '../currency/currency-codes';
 
 async function getExpense(idToFind: string) {
   try {
@@ -210,3 +217,36 @@ function createExpenseStore() {
 }
 
 export const useExpenseStore = createExpenseStore();
+
+export function getCurrencyWiseExpenseForTrip(tripId: string) {
+  const targetExpenses = useExpenseStore.data.filter((item) => item.tripId === tripId);
+
+  const expenses: CurrencyWiseExpense[] = [];
+
+  targetExpenses.forEach((item) => {
+    const itemCurrency = item.currency || DEFUALT_CURRENCY.alphabeticCode;
+
+    const targetIndex = expenses.findIndex((item) => item.currency === itemCurrency);
+
+    if (targetIndex < 0) {
+      expenses.push({
+        currency: itemCurrency,
+        expenses: [item],
+        total: item.amount,
+      });
+    } else {
+      expenses[targetIndex].expenses.push(item);
+      expenses[targetIndex].total += item.amount;
+    }
+  });
+
+  return expenses;
+}
+
+export function getExpenseUsedBudget(budgetId: string) {
+  const budgetUsed = useExpenseStore.data
+    .filter((item) => item.budgetId === budgetId)
+    .reduce((acc, obj) => acc + obj.amount, 0);
+
+  return budgetUsed;
+}

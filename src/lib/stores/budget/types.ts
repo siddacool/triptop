@@ -11,3 +11,10 @@ export interface Budget {
   paymentMode: PaymentModes;
   currency?: string;
 }
+
+export type BudgetWiseExpense = {
+  currency: string;
+  budgets: Budget[];
+  total: number;
+  budgetUsed: number;
+};

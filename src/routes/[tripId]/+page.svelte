@@ -3,6 +3,7 @@
   import { page } from '$app/state';
   import CreateButton from '$lib/components/Trips/Details/CreateButton.svelte';
   import Header from '$lib/components/Trips/Details/Header.svelte';
+  import TripDetailCard from '$lib/components/Trips/Details/TripDetailCard/TripDetailCard.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
@@ -29,6 +30,7 @@
 <Header />
 
 <Stack space={4}>
+  <TripDetailCard />
   <CreateButton />
 </Stack>
 

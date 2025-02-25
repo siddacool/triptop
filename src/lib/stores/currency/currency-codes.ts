@@ -44,3 +44,14 @@ function generateFormatedCurrencyCodes() {
 }
 
 export const currencyCodes = generateFormatedCurrencyCodes();
+
+export const DEFUALT_CURRENCY: CurrencyCode = {
+  entity: 'INDIA',
+  currency: 'Indian Rupee',
+  alphabeticCode: 'INR',
+  numericCode: 356,
+};
+
+export function getCurrencyCodeFromAlphabeticCode(alphabeticCode: string) {
+  return currencyCodes.find((item) => item.alphabeticCode === alphabeticCode);
+}

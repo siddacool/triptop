@@ -1,7 +1,9 @@
 import { nanoid } from 'nanoid';
 import { db } from '../db';
-import type { Budget } from './types';
+import type { Budget, BudgetWiseExpense } from './types';
 import type { PaymentModes } from '../payment-mode/types';
+import { DEFUALT_CURRENCY } from '../currency/currency-codes';
+import { getExpenseUsedBudget } from '../expense/expense.svelte';
 
 async function getBudget(idToFind: string) {
   try {
@@ -161,3 +163,30 @@ function createBudgetStore() {
 }
 
 export const useBudgetStore = createBudgetStore();
+
+export function getCurrencyWiseBudgetForTrip(tripId: string) {
+  const targetBudget = useBudgetStore.data.filter((item) => item.tripId === tripId);
+
+  const budgets: BudgetWiseExpense[] = [];
+
+  targetBudget.forEach((item) => {
+    const itemCurrency = item.currency || DEFUALT_CURRENCY.alphabeticCode;
+
+    const targetIndex = budgets.findIndex((item) => item.currency === itemCurrency);
+    const budgetUsed = getExpenseUsedBudget(item._id);
+
+    if (targetIndex < 0) {
+      budgets.push({
+        currency: itemCurrency,
+        budgets: [item],
+        total: item.amount,
+        budgetUsed,
+      });
+    } else {
+      budgets[targetIndex].budgets.push(item);
+      budgets[targetIndex].total += item.amount;
+    }
+  });
+
+  return budgets;
+}
