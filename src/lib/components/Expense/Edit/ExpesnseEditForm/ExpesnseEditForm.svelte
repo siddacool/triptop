@@ -11,7 +11,7 @@
   import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
   import { PaymentModes } from '$lib/stores/payment-mode/types';
   import Amount from './Amount.svelte';
-  import BudgetSelect from './BudgetSelect.svelte';
+  import BudgetSelect from './BudgetSelect/BudgetSelect.svelte';
   import CategorySelect from './CategorySelect.svelte';
   import CurrencySelect from './CurrencySelect.svelte';
   import Date from './Date.svelte';
@@ -66,6 +66,7 @@
         break;
       case 'budgetId':
         budgetId = element.value;
+
         break;
       case 'amount':
         amount = element.valueAsNumber;
@@ -135,10 +136,15 @@
           placeholder="Lunch, Dinner, train to somewhere"
         />
       </StackItem>
+
       <BudgetSelect onchange={oninput} value={budgetId} />
-      <CurrencySelect onchange={oninput} value={currency} />
-      <PaymentModeSelect value={paymentMode} onchange={oninput} />
-      <Amount {currency} {oninput} value={amount} />
+
+      {#if !budgetId}
+        <CurrencySelect onchange={oninput} value={currency} />
+        <PaymentModeSelect value={paymentMode} onchange={oninput} />
+      {/if}
+
+      <Amount {oninput} value={amount} />
       <CategorySelect value={category} onchange={oninput} />
       <Date {dateDate} {dateTime} {oninput} />
       <StackItem></StackItem>
