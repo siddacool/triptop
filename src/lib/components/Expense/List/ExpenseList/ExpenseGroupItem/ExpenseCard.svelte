@@ -83,6 +83,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-weight: 500;
 
       :global(.FormattedCurrency) {
         font-weight: 500;
@@ -91,10 +92,12 @@
 
     .date {
       font-size: 0.9rem;
+      font-weight: 400;
     }
 
     .paymentMode {
       font-size: 0.9rem;
+      font-weight: 400;
     }
   }
 </style>
