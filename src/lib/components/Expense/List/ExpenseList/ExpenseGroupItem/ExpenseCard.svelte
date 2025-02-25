@@ -17,7 +17,7 @@
 </script>
 
 <li class="ExpenseCard">
-  <a href={`/${tripId}/expenses/${expense._id}`}>
+  <a href={`/${tripId}/${expense._id}`}>
     <Card>
       <Stack space={1}>
         <StackItem>

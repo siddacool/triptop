@@ -1,8 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
-  import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
-  import { getCurrencyCodeFromAlphabeticCode } from '$lib/stores/currency/currency-codes';
+  import AmountDisplay from '$lib/components/ui-framework/FormattedInfo/AmountDisplay.svelte';
   import { getCurrencyWiseExpenseForTrip } from '$lib/stores/expense/expense.svelte';
 
   const tripId = page.params.tripId;
@@ -15,12 +13,7 @@
   <ul>
     {#each expenses as expense}
       <li>
-        <article>
-          <section>{getCurrencyCodeFromAlphabeticCode(expense.currency)?.alphabeticCode}</section>
-          <section>
-            <FormattedCurrency value={expense.total} currency={expense.currency} />
-          </section>
-        </article>
+        <AmountDisplay currency={expense.currency} value={expense.total} />
       </li>
     {/each}
   </ul>
@@ -56,13 +49,6 @@
 
       &:last-child {
         margin-bottom: 0;
-      }
-
-      section {
-        &:last-child {
-          font-size: 1.5rem;
-          font-weight: 400;
-        }
       }
     }
   }
