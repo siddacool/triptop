@@ -15,7 +15,7 @@
     try {
       await useExpenseStore.add(tripId, data);
 
-      goto('/');
+      goto(`/${tripId}`);
     } catch (e) {
       console.log(e);
     }

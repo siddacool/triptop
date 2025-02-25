@@ -32,6 +32,7 @@
       ? useExpenseStore.data.find((item) => item._id === expenseId)?.budgetId
       : useBudgetStore.data.find((item) => item._id === lastBudget)?._id,
   );
+
   let amount = $state(useExpenseStore.data.find((item) => item._id === expenseId)?.amount || 0);
   let currency = $state(
     useExpenseStore.data.find((item) => item._id === expenseId)?.currency ||
@@ -54,7 +55,7 @@
     ).format('HH:mm'),
   );
   let loading = $state(false);
-  const disabled = $derived(!name || !category || !dateDate || !dateTime || loading);
+  const disabled = $derived(!name || !dateDate || !dateTime || loading);
 
   function oninput(e: Event) {
     const element = e.target as HTMLInputElement;
@@ -103,6 +104,8 @@
 
       useLocalSettingsStore.updateLastBudget(budgetId);
 
+      console.log(budgetId);
+
       await onSave({
         name,
         budgetId,
@@ -129,7 +132,7 @@
           {oninput}
           name="name"
           label="Enter expense name"
-          placeholder="Lunch"
+          placeholder="Lunch, Dinner, train to somewhere"
         />
       </StackItem>
       <BudgetSelect onchange={oninput} value={budgetId} />
