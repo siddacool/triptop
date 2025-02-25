@@ -4,9 +4,11 @@
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getMoment } from '$lib/helpers/time';
+  import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { DEFUALT_CURRENCY } from '$lib/stores/currency/currency-codes';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import type { Category, ExpenseFormData } from '$lib/stores/expense/types';
+  import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
   import { PaymentModes } from '$lib/stores/payment-mode/types';
   import Amount from './Amount.svelte';
   import BudgetSelect from './BudgetSelect.svelte';
@@ -22,8 +24,14 @@
 
   const { expenseId, onSave }: Props = $props();
 
+  const lastBudget = $derived(useLocalSettingsStore.lastBudget);
+
   let name = $state(useExpenseStore.data.find((item) => item._id === expenseId)?.name || '');
-  let budgetId = $state(useExpenseStore.data.find((item) => item._id === expenseId)?.budgetId);
+  let budgetId = $state(
+    expenseId
+      ? useExpenseStore.data.find((item) => item._id === expenseId)?.budgetId
+      : useBudgetStore.data.find((item) => item._id === lastBudget)?._id,
+  );
   let amount = $state(useExpenseStore.data.find((item) => item._id === expenseId)?.amount || 0);
   let currency = $state(
     useExpenseStore.data.find((item) => item._id === expenseId)?.currency ||
@@ -93,6 +101,8 @@
 
       const date = getMoment(`${dateDate} ${dateTime}`, 'YYYY-MM-DD HH:mm').valueOf();
 
+      useLocalSettingsStore.updateLastBudget(budgetId);
+
       await onSave({
         name,
         budgetId,
@@ -124,9 +134,9 @@
       </StackItem>
       <BudgetSelect onchange={oninput} value={budgetId} />
       <CurrencySelect onchange={oninput} value={currency} />
+      <PaymentModeSelect value={paymentMode} onchange={oninput} />
       <Amount {currency} {oninput} value={amount} />
       <CategorySelect value={category} onchange={oninput} />
-      <PaymentModeSelect value={paymentMode} onchange={oninput} />
       <Date {dateDate} {dateTime} {oninput} />
       <StackItem></StackItem>
       <StackItem>
