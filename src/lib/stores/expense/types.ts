@@ -53,3 +53,8 @@ export type CurrencyWiseExpense = {
   expenses: Expense[];
   total: number;
 };
+
+export type ExpenseDateGroup = {
+  date: string;
+  expenses: Expense[];
+};

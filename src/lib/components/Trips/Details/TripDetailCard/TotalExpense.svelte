@@ -30,6 +30,7 @@
   .TotalExpense {
     padding: 16px;
     padding-top: 8px;
+    padding-bottom: 0;
 
     h3 {
       margin: 0;

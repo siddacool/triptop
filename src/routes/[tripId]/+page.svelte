@@ -1,6 +1,7 @@
 <script lang="ts">
   import { beforeNavigate } from '$app/navigation';
   import { page } from '$app/state';
+  import ExpenseList from '$lib/components/Expense/List/ExpenseList/ExpenseList.svelte';
   import CreateButton from '$lib/components/Trips/Details/CreateButton.svelte';
   import Header from '$lib/components/Trips/Details/Header.svelte';
   import TripDetailCard from '$lib/components/Trips/Details/TripDetailCard/TripDetailCard.svelte';
@@ -32,6 +33,7 @@
 <Stack space={4}>
   <TripDetailCard />
   <CreateButton />
+  <ExpenseList />
 </Stack>
 
 <style lang="scss">

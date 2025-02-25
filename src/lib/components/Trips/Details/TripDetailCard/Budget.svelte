@@ -13,7 +13,7 @@
 </script>
 
 <div class="Budget">
-  <Stack space={3}>
+  <Stack space={2}>
     <StackItem>
       <h3>Budget</h3>
       <ul>

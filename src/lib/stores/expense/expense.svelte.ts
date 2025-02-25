@@ -5,9 +5,11 @@ import {
   type CategoryOption,
   type CurrencyWiseExpense,
   type Expense,
+  type ExpenseDateGroup,
   type ExpenseFormData,
 } from './types';
 import { DEFUALT_CURRENCY } from '../currency/currency-codes';
+import { getMoment } from '$lib/helpers/time';
 
 async function getExpense(idToFind: string) {
   try {
@@ -249,4 +251,26 @@ export function getExpenseUsedBudget(budgetId: string) {
     .reduce((acc, obj) => acc + obj.amount, 0);
 
   return budgetUsed;
+}
+
+export function getExpenseDateGroups(tripId: string) {
+  const targetExpenses = useExpenseStore.data.filter((item) => item.tripId === tripId);
+
+  const expenses: ExpenseDateGroup[] = [];
+
+  targetExpenses.forEach((item) => {
+    const formattedDate = getMoment(item.date).format('YYYY-MM-DD');
+    const targetIndex = expenses.findIndex((item) => item.date === formattedDate);
+
+    if (targetIndex < 0) {
+      expenses.push({
+        date: formattedDate,
+        expenses: [item],
+      });
+    } else {
+      expenses[targetIndex].expenses.push(item);
+    }
+  });
+
+  return expenses;
 }
