@@ -2,12 +2,14 @@
   import { beforeNavigate } from '$app/navigation';
   import { page } from '$app/state';
   import ExpenseList from '$lib/components/Expense/List/ExpenseList/ExpenseList.svelte';
+  import PageHeader from '$lib/components/PageHeader.svelte';
   import CreateButton from '$lib/components/Trips/Details/CreateButton.svelte';
-  import Header from '$lib/components/Trips/Details/Header.svelte';
   import TripDetailCard from '$lib/components/Trips/Details/TripDetailCard/TripDetailCard.svelte';
+  import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import Icon from '@iconify/svelte';
 
   const tripId = page.params.tripId;
 
@@ -28,7 +30,11 @@
 
 <title>{targetTrip?.name || ''}</title>
 
-<Header />
+<PageHeader title={targetTrip?.name || ''} backTo="/">
+  <AnchorButton compact href={`/${tripId}/edit`}>
+    <Icon icon="material-symbols:edit" />
+  </AnchorButton>
+</PageHeader>
 
 <Stack space={4}>
   <TripDetailCard />

@@ -1,8 +1,8 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import PageHeader from '$lib/components/PageHeader.svelte';
   import TripEditForm from '$lib/components/Trips/Edit/TripEditForm';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
-  import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
   import type { TripFormData } from '$lib/stores/trips/types';
 
@@ -19,16 +19,8 @@
 
 <title>Create a new trip</title>
 
+<PageHeader title="Create a new trip" backTo={`/`} />
+
 <Stack space={4}>
-  <StackItem>
-    <h2>Create a new trip</h2>
-  </StackItem>
   <TripEditForm {onSave} />
 </Stack>
-
-<style lang="scss">
-  h2 {
-    margin: 0;
-    font-weight: 500;
-  }
-</style>

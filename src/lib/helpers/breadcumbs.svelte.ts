@@ -23,12 +23,12 @@ export function createBreadcrumbs(
 
   routes.forEach((item) => {
     const label = item
-      .replace('[id]', targetTrip?.name || '')
+      .replace('[tripId]', targetTrip?.name || '')
       .replace('[expenseId]', targetExpense?.name || '')
       .replace('[budgetId]', targetBudget?.name || '');
 
     const value = item
-      .replace('[id]', targetTrip?._id || '')
+      .replace('[tripId]', targetTrip?._id || '')
       .replace('[expenseId]', targetExpense?._id || '')
       .replace('[budgetId]', targetBudget?._id || '');
 
@@ -51,5 +51,5 @@ export function createBreadcrumbs(
     });
   });
 
-  return breadcrumbs.filter((item) => item.value !== 'expense');
+  return breadcrumbs;
 }

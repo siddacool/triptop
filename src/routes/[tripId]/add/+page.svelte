@@ -2,8 +2,8 @@
   import { goto } from '$app/navigation';
   import { page } from '$app/state';
   import ExpesnseEditForm from '$lib/components/Expense/Edit/ExpesnseEditForm/ExpesnseEditForm.svelte';
+  import PageHeader from '$lib/components/PageHeader.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
-  import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import type { ExpenseFormData } from '$lib/stores/expense/types';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
@@ -24,16 +24,8 @@
 
 <title>Add expense: {name}</title>
 
+<PageHeader title={`Add expense: ${name}`} backTo={`/${tripId}`} />
+
 <Stack space={4}>
-  <StackItem>
-    <h2>Add expense: {name}</h2>
-  </StackItem>
   <ExpesnseEditForm {onSave} />
 </Stack>
-
-<style lang="scss">
-  h2 {
-    margin: 0;
-    font-weight: 500;
-  }
-</style>

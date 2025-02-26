@@ -1,13 +1,11 @@
 <script lang="ts">
   import { page } from '$app/state';
   import AmountDisplay from '$lib/components/ui-framework/FormattedInfo/AmountDisplay.svelte';
-  import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getMoment } from '$lib/helpers/time';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
-  import { categoryOptions } from '$lib/stores/expense/expense.svelte';
   import type { Expense } from '$lib/stores/expense/types';
   import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
 
