@@ -8,7 +8,11 @@
     usedAmount: number;
   };
 
-  const { currency = DEFUALT_CURRENCY.alphabeticCode, total, usedAmount }: RemainingAmount = $props();
+  const {
+    currency = DEFUALT_CURRENCY.alphabeticCode,
+    total,
+    usedAmount,
+  }: RemainingAmount = $props();
 
   const remainingAmount = $derived(total - usedAmount);
 </script>
@@ -33,6 +37,7 @@
 
     :global(.remaining) {
       color: var(--color-primary-800);
+      font-weight: 500;
     }
 
     :global(.remaining--negative) {

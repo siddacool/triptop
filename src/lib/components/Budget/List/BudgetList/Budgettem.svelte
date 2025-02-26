@@ -1,10 +1,12 @@
 <script lang="ts">
   import { page } from '$app/state';
   import AmountDisplay from '$lib/components/ui-framework/FormattedInfo/AmountDisplay.svelte';
+  import RemainingAmount from '$lib/components/ui-framework/FormattedInfo/RemainingAmount.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import type { Budget } from '$lib/stores/budget/types';
+  import { getExpenseUsedBudget } from '$lib/stores/expense/expense.svelte';
   import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
 
   interface Props {
