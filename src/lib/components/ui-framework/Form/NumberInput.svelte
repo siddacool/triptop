@@ -75,6 +75,7 @@
     font-family: inherit;
     background-color: var(--color-white);
     color: var(--color-black-pure);
+    width: 100%;
 
     &::-webkit-input-placeholder {
       /* Chrome */

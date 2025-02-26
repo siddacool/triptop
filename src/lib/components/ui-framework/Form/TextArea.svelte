@@ -72,6 +72,7 @@
     background-color: var(--color-white);
     color: var(--color-black-pure);
     resize: vertical;
+    width: 100%;
 
     &::-webkit-input-placeholder {
       /* Chrome */
