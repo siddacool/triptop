@@ -21,15 +21,17 @@
 
 <style lang="scss">
   .TotalExpense {
-    padding: 16px;
+    padding: 20px 16px;
     padding-top: 8px;
     padding-bottom: 0;
 
     h3 {
       margin: 0;
-      margin-bottom: 8px;
-      font-size: 0.85rem;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
       font-weight: 500;
+      color: var(--color-primary-800);
+      text-align: center;
     }
 
     ul {

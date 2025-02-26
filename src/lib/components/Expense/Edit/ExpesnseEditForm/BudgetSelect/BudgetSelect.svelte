@@ -10,9 +10,11 @@
   interface Props {
     onchange: (e: Event) => void;
     value: string | undefined;
+    expenseId?: string;
+    amount: number;
   }
 
-  const { onchange, value = undefined }: Props = $props();
+  const { onchange, value = undefined, expenseId, amount }: Props = $props();
 
   const targetBudgets = $state(useBudgetStore.data.filter((item) => item.tripId === tripId));
 </script>
@@ -26,6 +28,6 @@
   </Select>
 
   {#if value}
-    <BudgetSpecs budgetId={value} />
+    <BudgetSpecs budgetId={value} {expenseId} {amount} />
   {/if}
 </StackItem>

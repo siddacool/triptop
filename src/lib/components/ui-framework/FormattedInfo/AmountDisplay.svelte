@@ -26,7 +26,7 @@
     &:last-child {
       font-size: 1.5rem;
       font-weight: 400;
-      color: var(--color-grey-font-800);
+      color: var(--color-primary-800);
     }
   }
 </style>

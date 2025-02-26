@@ -21,7 +21,7 @@
 
 <style lang="scss">
   .ExpenseGroupItem {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
 
     ul {
       margin: 0;

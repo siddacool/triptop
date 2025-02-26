@@ -1,19 +1,42 @@
 <script lang="ts">
-  import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
+  import RemainingAmount from '$lib/components/ui-framework/FormattedInfo/RemainingAmount.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { DEFUALT_CURRENCY } from '$lib/stores/currency/currency-codes';
-  import { getExpenseUsedBudget } from '$lib/stores/expense/expense.svelte';
+  import { getExpenseUsedBudget, useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
 
   interface Props {
     budgetId: string;
+    expenseId?: string;
+    amount?: number;
   }
 
-  const { budgetId }: Props = $props();
+  const { budgetId, expenseId, amount = 0 }: Props = $props();
 
-  const targetBudget = $state(useBudgetStore.data.find((item) => item._id === budgetId));
-  const usedBudget = $derived(getExpenseUsedBudget(budgetId) || 0);
-  const remainingBudget = $derived(targetBudget?.amount || 0 - usedBudget);
+  const targetBudget = $derived(useBudgetStore.data.find((item) => item._id === budgetId));
+  const targetBudgetAmount = $derived(
+    useBudgetStore.data.find((item) => item._id === budgetId)?.amount || 0,
+  );
+  const targetExpenseAmount = $derived(
+    useExpenseStore.data.find((item) => item._id === expenseId && item.budgetId === budgetId)
+      ?.amount || 0,
+  );
+
+  let usedAmount = $state(0);
+
+  $effect(() => {
+    // console.log(targetExpenseAmount, amount, usedBudget);
+
+    let usedBudget = getExpenseUsedBudget(budgetId) || 0;
+
+    // remove old target expense amount
+    usedBudget = usedBudget - targetExpenseAmount;
+
+    // add new amount
+    usedBudget = usedBudget + amount;
+
+    usedAmount = isNaN(usedBudget) ? targetBudgetAmount : usedBudget;
+  });
 </script>
 
 {#if targetBudget}
@@ -23,18 +46,10 @@
         paymentModeOptions[0].label}
     </span>
     <span class="currency">
-      Currency: {targetBudget?.currency || DEFUALT_CURRENCY.alphabeticCode}
+      {targetBudget?.currency || DEFUALT_CURRENCY.alphabeticCode}
     </span>
     <span class="currency">
-      <FormattedCurrency
-        value={remainingBudget}
-        currency={targetBudget.currency}
-        class="remaining"
-      /> / <FormattedCurrency
-        value={targetBudget.amount}
-        currency={targetBudget.currency}
-        class="total"
-      />
+      <RemainingAmount total={targetBudgetAmount} {usedAmount} currency={targetBudget.currency} />
     </span>
   </article>
 {/if}
@@ -58,14 +73,6 @@
 
     .currency {
       margin-left: 16px;
-
-      :global(.remaining) {
-        color: var(--color-danger-800);
-      }
-
-      :global(.total) {
-        color: var(--color-primary-800);
-      }
     }
   }
 </style>

@@ -19,7 +19,7 @@
 
 <style lang="scss">
   .TripDate {
-    padding: 16px;
+    padding: 20px 16px;
     display: flex;
     justify-content: space-between;
     font-weight: 500;

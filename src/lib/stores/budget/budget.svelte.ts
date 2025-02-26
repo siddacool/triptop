@@ -189,5 +189,5 @@ export function getCurrencyWiseBudgetForTrip(tripId: string) {
     }
   });
 
-  return budgets;
+  return budgets.sort((a, b) => a.currency.localeCompare(b.currency));
 }

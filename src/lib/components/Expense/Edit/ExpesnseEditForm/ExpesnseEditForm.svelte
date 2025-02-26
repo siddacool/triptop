@@ -137,7 +137,7 @@
         />
       </StackItem>
 
-      <BudgetSelect onchange={oninput} value={budgetId} />
+      <BudgetSelect onchange={oninput} value={budgetId} {amount} {expenseId} />
 
       {#if !budgetId}
         <CurrencySelect onchange={oninput} value={currency} />

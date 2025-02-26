@@ -2,6 +2,7 @@
   import { page } from '$app/state';
   import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
   import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
+  import RemainingAmount from '$lib/components/ui-framework/FormattedInfo/RemainingAmount.svelte';
   import { Stack } from '$lib/components/ui-framework/Layout/Stack';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getCurrencyWiseBudgetForTrip } from '$lib/stores/budget/budget.svelte';
@@ -13,32 +14,30 @@
 </script>
 
 <div class="Budget">
-  <Stack space={2}>
+  <Stack space={3}>
     <StackItem>
       <h3>Budget</h3>
-      <ul>
-        {#each budgets as budget}
-          <li>
-            <article>
-              {getCurrencyCodeFromAlphabeticCode(budget.currency)?.alphabeticCode}
-              <section>
-                <a href={`/${tripId}/budget`} class="budget-details">
-                  <FormattedCurrency
-                    value={budget.total - budget.budgetUsed}
-                    currency={budget.currency}
-                    class="remaining"
-                  /> /
-                  <FormattedCurrency
-                    value={budget.total}
-                    currency={budget.currency}
-                    class="total"
-                  />
-                </a>
-              </section>
-            </article>
-          </li>
-        {/each}
-      </ul>
+
+      {#if budgets.length}
+        <ul>
+          {#each budgets as budget}
+            <li>
+              <article>
+                {getCurrencyCodeFromAlphabeticCode(budget.currency)?.alphabeticCode}
+                <section>
+                  <a href={`/${tripId}/budget`} class="budget-details">
+                    <RemainingAmount
+                      usedAmount={budget.budgetUsed}
+                      total={budget.total}
+                      currency={budget.currency}
+                    />
+                  </a>
+                </section>
+              </article>
+            </li>
+          {/each}
+        </ul>
+      {/if}
     </StackItem>
     <StackItem>
       <div class="addBudgetButtonSection">
@@ -50,13 +49,15 @@
 
 <style lang="scss">
   .Budget {
-    padding: 16px;
+    padding: 20px 16px;
 
     h3 {
       margin: 0;
-      margin-bottom: 8px;
-      font-size: 0.85rem;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
       font-weight: 500;
+      color: var(--color-primary-800);
+      text-align: center;
     }
 
     ul {
@@ -70,7 +71,7 @@
       padding: 0;
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 14px;
       font-weight: 500;
       font-size: 1rem;
 
@@ -89,18 +90,18 @@
         text-decoration: none;
         display: inline-block;
         :global(.remaining) {
-          color: var(--color-danger-800);
+          color: var(--color-primary-800);
         }
 
         :global(.total) {
-          color: var(--color-primary-800);
+          color: var(--color-grey-font-800);
         }
       }
     }
 
     .addBudgetButtonSection {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
     }
   }
 </style>

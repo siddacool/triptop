@@ -74,7 +74,7 @@
       &.variant {
         &--inert {
           background-color: transparent;
-          color: var(--color-primary-700);
+          color: var(--color-primary-800);
 
           &:hover {
             background-color: var(--color-primary-200);
