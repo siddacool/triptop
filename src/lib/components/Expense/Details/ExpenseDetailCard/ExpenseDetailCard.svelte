@@ -14,7 +14,7 @@
   const targetBudget = $derived(
     useBudgetStore.data.find((item) => item._id === targetExpense?.budgetId),
   );
-  const currency = $derived(targetBudget?.currency || targetExpense?.currency || 'INR');
+  const currency = $derived(targetBudget?.currency || targetExpense?.currency);
   const paymentMode = $derived(targetBudget?.paymentMode || targetExpense?.paymentMode);
 </script>
 

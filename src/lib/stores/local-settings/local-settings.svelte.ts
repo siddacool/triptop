@@ -62,11 +62,13 @@ function createLocalSettingsStore() {
       return Promise.resolve();
     },
     toggleTripDetailCardOpen() {
-      if (browser) {
-        localStorage.setItem(TRIP_DETAIL_CARD_OPEN, tripDetailCardOpen ? 'true' : 'false');
-      }
+      const newCondition = !tripDetailCardOpen;
 
-      tripDetailCardOpen = !tripDetailCardOpen;
+      tripDetailCardOpen = newCondition;
+
+      if (browser) {
+        localStorage.setItem(TRIP_DETAIL_CARD_OPEN, newCondition ? 'true' : 'false');
+      }
 
       return Promise.resolve();
     },
