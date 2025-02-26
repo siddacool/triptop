@@ -43,7 +43,7 @@
       padding: 0;
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 16px;
       font-weight: 600;
       font-size: 0.85rem;
 

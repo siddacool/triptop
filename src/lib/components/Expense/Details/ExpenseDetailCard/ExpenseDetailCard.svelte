@@ -28,7 +28,7 @@
       </CardSection>
       <hr />
       <CardSection label="Amount">
-        <AmountDisplay {currency} value={targetBudget?.amount || 0} />
+        <AmountDisplay {currency} value={targetExpense?.amount || 0} />
       </CardSection>
       <CardSection label="Payment Mode">
         {paymentModeOptions.find((item) => item.value === paymentMode)?.label ||

@@ -1,10 +1,13 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import AmountDisplay from '$lib/components/ui-framework/FormattedInfo/AmountDisplay.svelte';
   import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getMoment } from '$lib/helpers/time';
+  import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
+  import { categoryOptions } from '$lib/stores/expense/expense.svelte';
   import type { Expense } from '$lib/stores/expense/types';
   import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
 
@@ -14,6 +17,13 @@
 
   const { expense }: Props = $props();
   const tripId = page.params.tripId;
+  const currency = $derived(
+    useBudgetStore.data.find((item) => item._id === expense.budgetId)?.currency || expense.currency,
+  );
+  const paymentMode = $derived(
+    useBudgetStore.data.find((item) => item._id === expense.budgetId)?.paymentMode ||
+      expense.paymentMode,
+  );
 </script>
 
 <li class="ExpenseCard">
@@ -26,7 +36,7 @@
               {expense.name}
             </section>
             <section>
-              <FormattedCurrency value={expense.amount} currency={expense.currency} />
+              <AmountDisplay value={expense.amount} {currency} />
             </section>
           </article>
         </StackItem>
@@ -34,7 +44,7 @@
           <article>
             <section>
               <div class="paymentMode">
-                {paymentModeOptions.find((item) => item.value === expense.paymentMode)?.label ||
+                {paymentModeOptions.find((item) => item.value === paymentMode)?.label ||
                   paymentModeOptions[0].label}
               </div>
             </section>
@@ -98,6 +108,18 @@
     .paymentMode {
       font-size: 0.9rem;
       font-weight: 400;
+    }
+
+    :global(.AmountDisplay section:first-child) {
+      font-size: 0.8rem;
+    }
+
+    :global(.AmountDisplay section:last-child) {
+      font-size: 1.2rem;
+    }
+
+    :global(.AmountDisplay section) {
+      text-align: right;
     }
   }
 </style>

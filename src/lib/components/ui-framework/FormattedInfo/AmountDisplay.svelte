@@ -10,7 +10,7 @@
   const { currency = DEFUALT_CURRENCY.alphabeticCode, value }: AmountDisplayProps = $props();
 </script>
 
-<article>
+<article class="AmountDisplay">
   <section>{currency}</section>
   <section>
     <FormattedCurrency {value} {currency} />
@@ -21,10 +21,12 @@
   section {
     font-weight: 600;
     font-size: 0.85rem;
+    color: var(--color-grey-font-600);
 
     &:last-child {
       font-size: 1.5rem;
       font-weight: 400;
+      color: var(--color-grey-font-800);
     }
   }
 </style>

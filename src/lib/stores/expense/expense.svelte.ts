@@ -10,6 +10,7 @@ import {
 } from './types';
 import { DEFUALT_CURRENCY } from '../currency/currency-codes';
 import { getMoment } from '$lib/helpers/time';
+import { useBudgetStore } from '../budget/budget.svelte';
 
 async function getExpense(idToFind: string) {
   try {
@@ -220,8 +221,22 @@ function createExpenseStore() {
 
 export const useExpenseStore = createExpenseStore();
 
+function attachCurruncyToExpense(expense: Expense) {
+  const targetBudget = useBudgetStore.data.find((item) => item._id === expense.budgetId);
+
+  const newExpense = { ...expense };
+
+  if (targetBudget) {
+    newExpense.currency = targetBudget.currency;
+  }
+
+  return newExpense;
+}
+
 export function getCurrencyWiseExpenseForTrip(tripId: string) {
-  const targetExpenses = useExpenseStore.data.filter((item) => item.tripId === tripId);
+  let targetExpenses = useExpenseStore.data.filter((item) => item.tripId === tripId);
+
+  targetExpenses = targetExpenses.map((item) => attachCurruncyToExpense(item));
 
   const expenses: CurrencyWiseExpense[] = [];
 
@@ -242,7 +257,7 @@ export function getCurrencyWiseExpenseForTrip(tripId: string) {
     }
   });
 
-  return expenses;
+  return expenses.sort((a, b) => a.currency.localeCompare(b.currency));
 }
 
 export function getExpenseUsedBudget(budgetId: string) {
