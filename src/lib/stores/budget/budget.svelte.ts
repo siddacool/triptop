@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid';
 import { db } from '../db';
-import type { Budget, BudgetWiseExpense } from './types';
-import type { PaymentModes } from '../payment-mode/types';
+import type { Budget, BudgetFormData, BudgetWiseExpense } from './types';
 import { DEFUALT_CURRENCY } from '../currency/currency-codes';
 import { getExpenseUsedBudget } from '../expense/expense.svelte';
 
@@ -48,17 +47,18 @@ function createBudgetStore() {
         mounted = true;
       }
     },
-    async add(tripId: string, name: string, amount: number, paymentMode: PaymentModes) {
+    async add(tripId: string, formData: BudgetFormData) {
       try {
         fetching = true;
 
         await db.budget.add({
           _id: nanoid(),
-          name,
+          name: formData.name,
           createdAt: Date.now(),
           updatedAt: Date.now(),
-          paymentMode,
-          amount,
+          paymentMode: formData.paymentMode,
+          amount: formData.amount,
+          currency: formData.currency,
           tripId,
         });
 
@@ -75,7 +75,7 @@ function createBudgetStore() {
         fetching = false;
       }
     },
-    async update(idToUpdate: string, name: string, amount: number, paymentMode: PaymentModes) {
+    async update(idToUpdate: string, formData: BudgetFormData) {
       try {
         fetching = true;
 
@@ -88,9 +88,10 @@ function createBudgetStore() {
         }
 
         await db.budget.update(target.id, {
-          name: name.trim(),
-          amount,
-          paymentMode,
+          name: formData.name.trim(),
+          amount: formData.amount,
+          paymentMode: formData.paymentMode,
+          currency: formData.currency,
           updatedAt: Date.now(),
         });
 

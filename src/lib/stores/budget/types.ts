@@ -18,3 +18,10 @@ export type BudgetWiseExpense = {
   total: number;
   budgetUsed: number;
 };
+
+export type BudgetFormData = {
+  name: string;
+  amount: number;
+  paymentMode: PaymentModes;
+  currency: string;
+};
