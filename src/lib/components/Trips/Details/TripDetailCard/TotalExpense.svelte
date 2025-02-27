@@ -24,7 +24,7 @@
   .TotalExpense {
     padding: 20px 16px;
     padding-top: 8px;
-    padding-bottom: 0;
+    padding-bottom: 8px;
 
     ul {
       margin: 0;

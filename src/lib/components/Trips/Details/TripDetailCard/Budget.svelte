@@ -14,11 +14,13 @@
 </script>
 
 <div class="Budget">
-  <Stack space={3}>
+  <Stack space={2}>
     <StackItem>
       <Heading title="Budget" />
+    </StackItem>
 
-      {#if budgets.length}
+    {#if budgets.length}
+      <StackItem>
         <ul>
           {#each budgets as budget}
             <li>
@@ -37,8 +39,8 @@
             </li>
           {/each}
         </ul>
-      {/if}
-    </StackItem>
+      </StackItem>
+    {/if}
     <StackItem>
       <div class="addBudgetButtonSection">
         <AnchorButton href={`/${tripId}/budget/add`} variant="primary">Add budget</AnchorButton>
@@ -50,6 +52,7 @@
 <style lang="scss">
   .Budget {
     padding: 20px 16px;
+    padding-bottom: 32px;
 
     ul {
       margin: 0;
