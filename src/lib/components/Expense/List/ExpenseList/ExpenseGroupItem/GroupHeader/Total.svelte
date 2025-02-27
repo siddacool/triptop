@@ -22,15 +22,15 @@
 <style lang="scss">
   .total {
     margin: 0;
-    margin-bottom: 14px;
-    margin-top: 8px;
+    margin-bottom: 12px;
+    margin-top: 6px;
     padding: 0;
 
     li {
       margin: 0;
       padding: 0;
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       margin-bottom: 6px;
       font-weight: 500;
       color: var(--color-grey-font-700);

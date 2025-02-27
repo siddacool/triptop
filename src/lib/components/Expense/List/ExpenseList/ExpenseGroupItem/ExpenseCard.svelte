@@ -27,7 +27,7 @@
 <li class="ExpenseCard">
   <a href={`/${tripId}/${expense._id}`}>
     <Card>
-      <Stack space={1}>
+      <Stack space={2}>
         <StackItem>
           <article>
             <section>
@@ -108,12 +108,19 @@
       font-weight: 400;
     }
 
+    :global(.AmountDisplay) {
+      display: flex;
+      align-items: center;
+    }
+
     :global(.AmountDisplay section:first-child) {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
+      margin-right: 6px;
+      font-weight: 600;
     }
 
     :global(.AmountDisplay section:last-child) {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     :global(.AmountDisplay section) {

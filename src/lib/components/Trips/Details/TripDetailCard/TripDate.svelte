@@ -1,7 +1,10 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import { Stack } from '$lib/components/ui-framework/Layout/Stack';
+  import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getMoment } from '$lib/helpers/time';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import Heading from './Heading.svelte';
 
   const tripId = page.params.tripId;
   const startDate = $derived(useTripsStore.data.find((item) => item._id === tripId)?.startDate);
@@ -9,12 +12,18 @@
 </script>
 
 <div class="TripDate">
-  <section>Date</section>
-  <section>
-    {startDate ? getMoment(startDate).format('D MMM YYYY') : ''} - {endDate
-      ? getMoment(endDate).format('D MMM YYYY')
-      : ''}
-  </section>
+  <Stack space={1}>
+    <StackItem>
+      <Heading title="Date" />
+    </StackItem>
+    <StackItem>
+      <section>
+        {startDate ? getMoment(startDate).format('D MMM YYYY') : ''} - {endDate
+          ? getMoment(endDate).format('D MMM YYYY')
+          : ''}
+      </section>
+    </StackItem>
+  </Stack>
 </div>
 
 <style lang="scss">

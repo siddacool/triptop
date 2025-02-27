@@ -15,7 +15,7 @@
 
 <style lang="scss">
   .date {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--color-grey-font-700);
     letter-spacing: 0.3px;

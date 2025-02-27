@@ -14,6 +14,3 @@
     <ExpenseGroupItem {expenseGroup} />
   {/each}
 </StackItem>
-
-<style lang="scss">
-</style>
