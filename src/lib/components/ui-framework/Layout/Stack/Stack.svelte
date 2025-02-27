@@ -7,7 +7,7 @@
 
   const { space = 1, children }: StackProps = $props();
 
-  const stackSpace = (12 * space) / 2;
+  const stackSpace = (8 * space) / 2;
 </script>
 
 <section

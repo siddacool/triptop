@@ -30,7 +30,7 @@
       display: flex;
 
       :global(.DateInput) {
-        margin-right: 20px;
+        margin-right: 16px;
         flex: 1;
       }
 

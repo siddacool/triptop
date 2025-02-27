@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import AmountDisplay from '$lib/components/ui-framework/FormattedInfo/AmountDisplay.svelte';
+  import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
@@ -8,7 +8,6 @@
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { categoryOptions } from '$lib/stores/expense/expense.svelte';
   import type { Expense } from '$lib/stores/expense/types';
-  import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
   import { PaymentModes } from '$lib/stores/payment-mode/types';
 
   interface Props {
@@ -29,14 +28,14 @@
 <li class="ExpenseCard">
   <a href={`/${tripId}/${expense._id}`}>
     <Card>
-      <Stack space={4}>
+      <Stack space={1}>
         <StackItem>
           <article>
             <section>
               {expense.name}
             </section>
             <section>
-              <AmountDisplay value={expense.amount} {currency} />
+              <FormattedCurrency value={expense.amount} {currency} />
             </section>
           </article>
         </StackItem>
@@ -50,7 +49,7 @@
             </section>
             <section>
               <div class="date">
-                {getMoment(expense.date).format('h:mm A, MMM D')}
+                {getMoment(expense.date).format('h:mm a')}
               </div>
             </section>
           </article>
@@ -66,7 +65,7 @@
     margin: 0;
     padding: 0;
 
-    margin-bottom: 20px;
+    margin-bottom: 14px;
 
     &:last-child {
       margin-bottom: 0;
@@ -77,7 +76,7 @@
       color: inherit;
 
       :global(.Card) {
-        padding: 20px 20px;
+        padding: 16px 16px;
       }
 
       &:hover {
@@ -116,19 +115,8 @@
       color: var(--color-grey-font-500);
     }
 
-    :global(.AmountDisplay) {
-      display: flex;
-      align-items: center;
-    }
-
-    :global(.AmountDisplay section:first-child) {
-      font-size: 0.85rem;
-      margin-right: 6px;
-      font-weight: 600;
-    }
-
-    :global(.AmountDisplay section:last-child) {
-      font-size: 1.1rem;
+    :global(.AmountDisplay .FormattedCurrency) {
+      font-weight: 400;
     }
 
     :global(.AmountDisplay section) {

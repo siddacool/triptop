@@ -20,11 +20,11 @@
 
 <style lang="scss">
   article {
-    padding: 14px 20px;
+    padding: 14px 16px;
     display: flex;
     font-size: 1rem;
     font-weight: 500;
-    padding-bottom: 20px;
+    padding-bottom: 16px;
     flex-direction: column;
 
     section {

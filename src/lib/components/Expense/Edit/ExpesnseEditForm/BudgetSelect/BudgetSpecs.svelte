@@ -72,7 +72,7 @@
     }
 
     .currency {
-      margin-left: 20px;
+      margin-left: 16px;
     }
   }
 </style>

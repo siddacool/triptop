@@ -10,12 +10,12 @@
 </script>
 
 <div class="date">
-  {getMoment(expenseGroup.date).format('MMM, D')}
+  {getMoment(expenseGroup.date).format('ddd, MMM D')}
 </div>
 
 <style lang="scss">
   .date {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--color-grey-font-700);
     letter-spacing: 0.3px;

@@ -44,10 +44,10 @@
       <CardSection label="Budget">{targetBudget?.name || 'Other'}</CardSection>
       <hr />
       <CardSection label="Time">
-        {targetExpense?.date ? getMoment(targetExpense.date).format('h:mm A') : ''}
+        {targetExpense?.date ? getMoment(targetExpense.date).format('h:mm a') : ''}
       </CardSection>
       <CardSection label="Date">
-        {targetExpense?.date ? getMoment(targetExpense.date).format('MMM, D YYYY') : ''}
+        {targetExpense?.date ? getMoment(targetExpense.date).format('ddd, MMM D, YYYY') : ''}
       </CardSection>
     </Card>
   </div>

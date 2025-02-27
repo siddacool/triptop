@@ -22,7 +22,7 @@
 
 <style lang="scss">
   .TotalExpense {
-    padding: 20px 20px;
+    padding: 16px 16px;
     padding-top: 8px;
     padding-bottom: 8px;
 
@@ -37,7 +37,7 @@
       padding: 0;
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       font-weight: 600;
       font-size: 0.85rem;
 

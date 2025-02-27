@@ -10,7 +10,6 @@
 
 <style lang="scss">
   .ExportTrip {
-    padding: 20px 20px;
-    padding-bottom: 32px;
+    padding: 16px 20px;
   }
 </style>
