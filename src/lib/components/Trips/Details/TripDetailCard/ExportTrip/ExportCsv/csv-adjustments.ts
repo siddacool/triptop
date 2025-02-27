@@ -1,4 +1,5 @@
 import { replaceCommasWithDots } from '$lib/helpers/text-manipulations/replace-commas-with-dots';
+import { simplifyText } from '$lib/helpers/text-manipulations/simplify-text';
 import { getMoment } from '$lib/helpers/time';
 import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
 import { DEFUALT_CURRENCY } from '$lib/stores/currency/currency-codes';
@@ -46,24 +47,28 @@ export function makeTripExportCsv(exportTripData: ExportTripData) {
   const csvData = convertToExportTripCSVData(exportTripData);
 
   csvData.expense.forEach((item) => {
-    const categoryLabel =
+    const category =
       categoryOptions.find((categoryItem) => categoryItem.value === item.category)?.label ||
       'Other';
 
-    const categoryLogo =
-      categoryOptions.find((categoryItem) => categoryItem.value === item.category)?.logo || '';
-
-    const category = `${categoryLogo} ${categoryLabel}`;
-    const paymentMode =
+    const paymentMode = simplifyText(
       paymentModeOptions.find((paymentModeItem) => paymentModeItem.value === item.paymentMode)
-        ?.label || paymentModeOptions[0].label;
+        ?.label || paymentModeOptions[0].label,
+    );
 
-    csv += `${replaceCommasWithDots(item.name)},${item.currency},${item.amount},${category},${paymentMode},${replaceCommasWithDots(item.budgetName)},${getMoment(item.date).format('hh:mm a')},${getMoment(item.date).format('DD-MM-YYYY')}\n`;
+    const name = `${replaceCommasWithDots(item.name)}`;
+    const budgetName = `${replaceCommasWithDots(item.budgetName)}`;
+    const time = `${getMoment(item.date).format('hh:mm a')}`;
+    const date = `${getMoment(item.date).format('DD-MM-YYYY')}`;
+
+    csv += `${name},${item.currency},${item.amount},${category},${paymentMode},${budgetName},${time},${date}\n`;
   });
 
   csv += `\n\n`;
 
-  csv += `${replaceCommasWithDots(exportTripData.trip.name)}\n`;
+  const tripName = replaceCommasWithDots(exportTripData.trip.name);
+
+  csv += `${tripName}\n`;
 
   const expenses = getCurrencyWiseExpenseForTrip(exportTripData._id);
 
