@@ -25,7 +25,7 @@
   let usedAmount = $state(0);
 
   $effect(() => {
-    // console.log(targetExpenseAmount, amount, usedBudget);
+    const fixedAmount = amount ? amount : 0;
 
     let usedBudget = getExpenseUsedBudget(budgetId) || 0;
 
@@ -33,9 +33,9 @@
     usedBudget = usedBudget - targetExpenseAmount;
 
     // add new amount
-    usedBudget = usedBudget + amount;
+    usedBudget = usedBudget + fixedAmount;
 
-    usedAmount = isNaN(usedBudget) ? targetBudgetAmount : usedBudget;
+    usedAmount = usedBudget;
   });
 </script>
 
