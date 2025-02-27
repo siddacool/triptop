@@ -22,7 +22,7 @@
 <style lang="scss">
   .total {
     margin: 0;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     margin-top: 8px;
     padding: 0;
 

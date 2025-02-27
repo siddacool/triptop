@@ -53,7 +53,7 @@
         font-size: 1rem;
         min-width: 40px;
         height: 35px;
-        padding: 0 12px;
+        padding: 0 14px;
         border-radius: 18px;
 
         :global(svg) {

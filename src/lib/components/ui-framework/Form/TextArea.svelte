@@ -62,7 +62,7 @@
     font-size: 1rem;
     font-weight: 400;
     outline: none;
-    padding: 12px;
+    padding: 14px;
     border: 1px solid;
     border-color: var(--color-grey-500);
     border-radius: 10px;

@@ -54,7 +54,7 @@
     }
 
     :global(.Card) {
-      padding: 20px 16px;
+      padding: 20px 20px;
     }
   }
 

@@ -10,7 +10,7 @@
   footer {
     display: flex;
     flex-direction: column;
-    padding: 16px 0;
+    padding: 20px 0;
     padding-bottom: 24px;
   }
 </style>

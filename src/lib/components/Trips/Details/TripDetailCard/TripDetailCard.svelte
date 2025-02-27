@@ -63,7 +63,7 @@
     }
 
     .space {
-      height: 16px;
+      height: 20px;
     }
   }
 </style>

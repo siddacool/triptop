@@ -46,7 +46,7 @@
 <style lang="scss">
   button {
     margin: 0;
-    padding: 0 16px;
+    padding: 0 20px;
     border: 0;
     font-size: 1rem;
     font-weight: 500;

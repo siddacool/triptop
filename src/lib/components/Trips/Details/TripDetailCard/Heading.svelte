@@ -13,7 +13,7 @@
 <style lang="scss">
   h3 {
     margin: 0;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     font-size: 1rem;
     font-weight: 600;
     text-align: left;

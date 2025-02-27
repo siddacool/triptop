@@ -51,7 +51,7 @@
 
 <style lang="scss">
   .Budget {
-    padding: 20px 16px;
+    padding: 20px 20px;
     padding-bottom: 32px;
 
     ul {

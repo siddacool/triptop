@@ -42,7 +42,7 @@
     margin: 0;
     padding: 0;
 
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 
     &:last-child {
       margin-bottom: 0;
