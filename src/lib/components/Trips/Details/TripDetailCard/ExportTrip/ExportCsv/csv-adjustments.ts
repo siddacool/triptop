@@ -41,7 +41,7 @@ function convertToExportTripCSVData(exportTripData: ExportTripData) {
 }
 
 export function makeTripExportCsv(exportTripData: ExportTripData) {
-  let csv = `Name,Currency,Amount,Category,Payment Mode,Budget,Date \n`;
+  let csv = `Name,Currency,Amount,Category,Payment Mode,Budget,Time,Date\n`;
 
   const csvData = convertToExportTripCSVData(exportTripData);
 
@@ -58,7 +58,7 @@ export function makeTripExportCsv(exportTripData: ExportTripData) {
       paymentModeOptions.find((paymentModeItem) => paymentModeItem.value === item.paymentMode)
         ?.label || paymentModeOptions[0].label;
 
-    csv += `${replaceCommasWithDots(item.name)},${item.currency},${item.amount},${category},${paymentMode},${replaceCommasWithDots(item.budgetName)},${getMoment(item.date).format('hh:mm a DD-MM-YYYY')}\n`;
+    csv += `${replaceCommasWithDots(item.name)},${item.currency},${item.amount},${category},${paymentMode},${replaceCommasWithDots(item.budgetName)},${getMoment(item.date).format('hh:mm a')},${getMoment(item.date).format('DD-MM-YYYY')}\n`;
   });
 
   csv += `\n\n`;
@@ -68,7 +68,7 @@ export function makeTripExportCsv(exportTripData: ExportTripData) {
   const expenses = getCurrencyWiseExpenseForTrip(exportTripData._id);
 
   expenses.forEach((item) => {
-    csv += `${item.currency}, ${item.total}\n`;
+    csv += `${item.currency},${item.total}\n`;
   });
 
   return csv;
