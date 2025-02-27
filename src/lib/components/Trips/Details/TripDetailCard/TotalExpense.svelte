@@ -2,6 +2,7 @@
   import { page } from '$app/state';
   import AmountDisplay from '$lib/components/ui-framework/FormattedInfo/AmountDisplay.svelte';
   import { getCurrencyWiseExpenseForTrip } from '$lib/stores/expense/expense.svelte';
+  import Heading from './Heading.svelte';
 
   const tripId = page.params.tripId;
 
@@ -9,7 +10,7 @@
 </script>
 
 <div class="TotalExpense">
-  <h3>Total Expense</h3>
+  <Heading title="Total Expense" />
   <ul>
     {#each expenses as expense}
       <li>
@@ -24,15 +25,6 @@
     padding: 20px 16px;
     padding-top: 8px;
     padding-bottom: 0;
-
-    h3 {
-      margin: 0;
-      margin-bottom: 16px;
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--color-primary-800);
-      text-align: center;
-    }
 
     ul {
       margin: 0;

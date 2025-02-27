@@ -6,6 +6,7 @@
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getCurrencyWiseBudgetForTrip } from '$lib/stores/budget/budget.svelte';
   import { getCurrencyCodeFromAlphabeticCode } from '$lib/stores/currency/currency-codes';
+  import Heading from './Heading.svelte';
 
   const tripId = page.params.tripId;
 
@@ -15,7 +16,7 @@
 <div class="Budget">
   <Stack space={3}>
     <StackItem>
-      <h3>Budget</h3>
+      <Heading title="Budget" />
 
       {#if budgets.length}
         <ul>
@@ -49,15 +50,6 @@
 <style lang="scss">
   .Budget {
     padding: 20px 16px;
-
-    h3 {
-      margin: 0;
-      margin-bottom: 16px;
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--color-primary-800);
-      text-align: center;
-    }
 
     ul {
       margin: 0;
