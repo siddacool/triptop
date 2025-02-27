@@ -6,8 +6,10 @@
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getMoment } from '$lib/helpers/time';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
+  import { categoryOptions } from '$lib/stores/expense/expense.svelte';
   import type { Expense } from '$lib/stores/expense/types';
   import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
+  import { PaymentModes } from '$lib/stores/payment-mode/types';
 
   interface Props {
     expense: Expense;
@@ -41,9 +43,9 @@
         <StackItem>
           <article>
             <section>
-              <div class="paymentMode">
-                {paymentModeOptions.find((item) => item.value === paymentMode)?.label ||
-                  paymentModeOptions[0].label}
+              <div class="stats">
+                {paymentMode === PaymentModes.CARD ? '💳' : '💵'}
+                {categoryOptions.find((item) => item.value === expense.category)?.logo}
               </div>
             </section>
             <section>
@@ -108,7 +110,7 @@
       color: var(--color-grey-font-500);
     }
 
-    .paymentMode {
+    .stats {
       font-size: 0.9rem;
       font-weight: 400;
       color: var(--color-grey-font-500);
