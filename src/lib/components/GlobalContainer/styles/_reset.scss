@@ -2,11 +2,14 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 18px;
+}
+
 body {
   font-family: var(--font-family-main);
   font-optical-sizing: auto;
   font-style: normal;
-  font-size: 16px;
   background-color: var(--color-white);
   display: flex;
   margin: 0;
