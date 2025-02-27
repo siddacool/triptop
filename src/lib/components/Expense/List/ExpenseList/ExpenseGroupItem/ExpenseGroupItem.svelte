@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { ExpenseDateGroup } from '$lib/stores/expense/types';
   import ExpenseCard from './ExpenseCard.svelte';
-  import GroupHeader from './GroupHeader.svelte';
+  import GroupHeader from './GroupHeader/GroupHeader.svelte';
 
   interface Props {
     expenseGroup: ExpenseDateGroup;

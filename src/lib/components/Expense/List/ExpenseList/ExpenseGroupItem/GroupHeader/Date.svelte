@@ -9,19 +9,15 @@
   const { expenseGroup }: Props = $props();
 </script>
 
-<div class="GroupHeader">
-  <div class="date">
-    {getMoment(expenseGroup.date).format('MMM, D')}
-  </div>
+<div class="date">
+  {getMoment(expenseGroup.date).format('MMM, D')}
 </div>
 
 <style lang="scss">
-  .GroupHeader {
-    margin-bottom: 8px;
-
-    .date {
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
+  .date {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-grey-font-700);
+    letter-spacing: 0.3px;
   }
 </style>

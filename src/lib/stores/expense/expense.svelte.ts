@@ -289,3 +289,30 @@ export function getExpenseDateGroups(tripId: string) {
 
   return expenses;
 }
+
+export function getCurrencyWiseExpense(expensesList: Expense[]) {
+  let targetExpenses = expensesList;
+
+  targetExpenses = targetExpenses.map((item) => attachCurruncyToExpense(item));
+
+  const expenses: CurrencyWiseExpense[] = [];
+
+  targetExpenses.forEach((item) => {
+    const itemCurrency = item.currency || DEFUALT_CURRENCY.alphabeticCode;
+
+    const targetIndex = expenses.findIndex((item) => item.currency === itemCurrency);
+
+    if (targetIndex < 0) {
+      expenses.push({
+        currency: itemCurrency,
+        expenses: [item],
+        total: item.amount,
+      });
+    } else {
+      expenses[targetIndex].expenses.push(item);
+      expenses[targetIndex].total += item.amount;
+    }
+  });
+
+  return expenses.sort((a, b) => a.currency.localeCompare(b.currency));
+}
