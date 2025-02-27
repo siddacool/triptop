@@ -21,7 +21,7 @@
   section {
     font-weight: 600;
     font-size: 0.85rem;
-    color: var(--color-grey-font-600);
+    color: var(--color-grey-font-700);
 
     &:last-child {
       font-size: 1.5rem;

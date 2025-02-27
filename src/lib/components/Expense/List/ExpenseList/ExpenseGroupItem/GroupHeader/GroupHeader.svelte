@@ -17,6 +17,6 @@
 
 <style lang="scss">
   .GroupHeader {
-    margin-bottom: 8px;
+    margin-bottom: 18px;
   }
 </style>

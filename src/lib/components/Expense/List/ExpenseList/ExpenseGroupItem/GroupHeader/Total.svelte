@@ -23,7 +23,7 @@
   .total {
     margin: 0;
     margin-bottom: 12px;
-    margin-top: 6px;
+    margin-top: 8px;
     padding: 0;
 
     li {
@@ -33,7 +33,7 @@
       font-size: 0.88rem;
       margin-bottom: 6px;
       font-weight: 500;
-      color: var(--color-grey-font-700);
+      color: var(--color-grey-font-600);
     }
   }
 </style>

@@ -27,7 +27,7 @@
 <li class="ExpenseCard">
   <a href={`/${tripId}/${expense._id}`}>
     <Card>
-      <Stack space={2}>
+      <Stack space={4}>
         <StackItem>
           <article>
             <section>
@@ -64,7 +64,7 @@
     margin: 0;
     padding: 0;
 
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 
     &:last-child {
       margin-bottom: 0;
@@ -73,6 +73,10 @@
     a {
       text-decoration: initial;
       color: inherit;
+
+      :global(.Card) {
+        padding: 20px 16px;
+      }
 
       &:hover {
         :global(.Card) {
@@ -101,11 +105,13 @@
     .date {
       font-size: 0.9rem;
       font-weight: 400;
+      color: var(--color-grey-font-500);
     }
 
     .paymentMode {
       font-size: 0.9rem;
       font-weight: 400;
+      color: var(--color-grey-font-500);
     }
 
     :global(.AmountDisplay) {
