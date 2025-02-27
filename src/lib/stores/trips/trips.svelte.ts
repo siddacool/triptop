@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { db } from '../db';
-import type { Trip, TripFormData } from './types';
+import type { ExportTripData, Trip, TripFormData } from './types';
 import { useBudgetStore } from '../budget/budget.svelte';
 import { useExpenseStore } from '../expense/expense.svelte';
 import { useLocalSettingsStore } from '../local-settings/local-settings.svelte';
@@ -138,3 +138,29 @@ function createTripsStore() {
 }
 
 export const useTripsStore = createTripsStore();
+
+export async function getExportTripData(tripId: string) {
+  try {
+    const trip = useTripsStore.data.find((item) => item._id === tripId);
+
+    if (!trip) {
+      throw Error('No trip found');
+    }
+
+    const expense = useExpenseStore.data.filter((item) => item.tripId === trip._id);
+    const budget = useBudgetStore.data.filter((item) => item.tripId === trip._id);
+    const exportedAt = new Date();
+
+    const exportData: ExportTripData = {
+      _id: trip._id,
+      trip,
+      expense,
+      budget,
+      exportedAt,
+    };
+
+    return Promise.resolve(exportData);
+  } catch (e) {
+    return Promise.reject(e);
+  }
+}

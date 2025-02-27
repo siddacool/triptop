@@ -35,6 +35,10 @@ export interface Expense {
   currency?: string;
 }
 
+export interface ExpenseWithBudget extends Expense {
+  budgetName: string;
+}
+
 export type ExpenseFormData = {
   name: string;
   description?: string;

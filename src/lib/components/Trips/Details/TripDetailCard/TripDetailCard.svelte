@@ -7,7 +7,7 @@
   import TotalExpense from './TotalExpense.svelte';
   import TripDate from './TripDate.svelte';
   import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
-  import ExportTrip from './ExportTrip.svelte';
+  import ExportTrip from './ExportTrip/ExportTrip.svelte';
 </script>
 
 <StackItem>
