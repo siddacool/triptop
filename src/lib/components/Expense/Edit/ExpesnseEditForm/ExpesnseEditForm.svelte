@@ -19,7 +19,7 @@
 
   interface Props {
     expenseId?: string;
-    onSave: (data: ExpenseFormData) => Promise<void>;
+    onSave: (data: ExpenseFormData, clickedButton?: HTMLButtonElement) => Promise<void>;
   }
 
   const { expenseId, onSave }: Props = $props();
@@ -101,21 +101,27 @@
 
       loading = true;
 
+      const clickedButton = e.submitter as HTMLButtonElement;
+
       const date = getMoment(`${dateDate} ${dateTime}`, 'YYYY-MM-DD HH:mm').valueOf();
 
       useLocalSettingsStore.updateLastBudget(budgetId);
 
-      console.log(budgetId);
+      await onSave(
+        {
+          name,
+          budgetId,
+          amount,
+          category,
+          currency,
+          paymentMode,
+          date,
+        },
+        clickedButton,
+      );
 
-      await onSave({
-        name,
-        budgetId,
-        amount,
-        category,
-        currency,
-        paymentMode,
-        date,
-      });
+      name = '';
+      amount = 0;
     } catch (error) {
       console.log(error);
     } finally {
@@ -150,7 +156,27 @@
       <StackItem></StackItem>
       <StackItem>
         <Button type="submit" variant="primary" {disabled}>Save</Button>
+
+        {#if !expenseId}
+          <Button
+            type="submit"
+            variant="primary"
+            {disabled}
+            name="save-and-add-new"
+            class="saveAndAddNew"
+          >
+            Save and add new
+          </Button>
+        {/if}
       </StackItem>
     </Stack>
   </form>
 </StackItem>
+
+<style lang="scss">
+  form {
+    :global(.saveAndAddNew) {
+      margin-left: 8px;
+    }
+  }
+</style>

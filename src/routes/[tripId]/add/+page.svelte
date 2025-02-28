@@ -11,11 +11,15 @@
   const tripId = page.params.tripId;
   const name = $derived(useTripsStore.data.find((item) => item._id === tripId)?.name || '');
 
-  async function onSave(data: ExpenseFormData) {
+  async function onSave(data: ExpenseFormData, clickedButton?: HTMLButtonElement) {
     try {
       await useExpenseStore.add(tripId, data);
 
-      goto(`/${tripId}`);
+      if (clickedButton?.name === 'save-and-add-new') {
+        console.log('Add new');
+      } else {
+        goto(`/${tripId}`);
+      }
     } catch (e) {
       console.log(e);
     }
