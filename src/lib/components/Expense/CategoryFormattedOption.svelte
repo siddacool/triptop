@@ -56,11 +56,12 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    font-weight: 500;
   }
 
   .Logo {
-    background-color: var(--color-primary-200);
-    color: var(--color-grey-font-700);
+    background-color: var(--color-grey-200);
+    color: var(--color-primary-600);
     width: 38px;
     height: 38px;
     display: inline-flex;

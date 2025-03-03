@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import PaymentModeFormattedOption from '$lib/components/PaymentMode/PaymentModeFormattedOption.svelte';
   import AmountDisplay from '$lib/components/ui-framework/FormattedInfo/AmountDisplay.svelte';
   import AmountProgress from '$lib/components/ui-framework/FormattedInfo/AmountProgress.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
@@ -7,7 +8,6 @@
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import type { Budget } from '$lib/stores/budget/types';
   import { getExpenseUsedBudget } from '$lib/stores/expense/expense.svelte';
-  import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
 
   interface Props {
     budget: Budget;
@@ -32,10 +32,7 @@
           <AmountProgress currency={budget.currency} total={budget.amount} {usedAmount} />
         </StackItem>
         <StackItem>
-          <div class="paymentMode">
-            {paymentModeOptions.find((item) => item.value === budget.paymentMode)?.label ||
-              paymentModeOptions[0].label}
-          </div>
+          <PaymentModeFormattedOption paymentMode={budget.paymentMode} />
         </StackItem>
       </Stack>
     </Card>
@@ -69,10 +66,6 @@
           background-color: var(--color-primary-100);
         }
       }
-    }
-
-    .paymentMode {
-      font-weight: 500;
     }
 
     h3 {

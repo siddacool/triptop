@@ -21,7 +21,7 @@
 </script>
 
 {#snippet logo(option: PaymentModeOption)}
-  <div class="Logo">
+  <div class={`Logo Logo--${option.value}`}>
     {#if option.value === PaymentModes.CARD}
       <Icon icon="f7:creditcard-fill" />
     {:else}
@@ -45,11 +45,10 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    font-weight: 500;
   }
 
   .Logo {
-    background-color: var(--color-primary-200);
-    color: var(--color-grey-font-700);
     width: 38px;
     height: 38px;
     display: inline-flex;
@@ -58,5 +57,15 @@
     border-radius: 50%;
     font-size: 1.35rem;
     margin-right: 8px;
+
+    &--CASH {
+      color: var(--color-safe-600);
+      background-color: var(--color-grey-200);
+    }
+
+    &--CARD {
+      color: var(--color-warning-700);
+      background-color: var(--color-grey-200);
+    }
   }
 </style>
