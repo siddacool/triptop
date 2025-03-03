@@ -1,7 +1,7 @@
 <script lang="ts">
   import { page } from '$app/state';
   import AmountDisplay from '$lib/components/ui-framework/FormattedInfo/AmountDisplay.svelte';
-  import RemainingAmount from '$lib/components/ui-framework/FormattedInfo/RemainingAmount.svelte';
+  import AmountProgress from '$lib/components/ui-framework/FormattedInfo/AmountProgress.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
@@ -26,8 +26,8 @@
       <CardSection label="Amount">
         <AmountDisplay currency={targetBudget?.currency} value={targetBudget?.amount || 0} />
       </CardSection>
-      <CardSection label="Amount Remaining">
-        <RemainingAmount
+      <CardSection label="Stats">
+        <AmountProgress
           currency={targetBudget?.currency}
           total={targetBudget?.amount || 0}
           {usedAmount}
