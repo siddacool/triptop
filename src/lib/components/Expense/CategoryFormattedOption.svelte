@@ -20,21 +20,21 @@
 {#snippet logo(option: CategoryOption)}
   <div class="Logo">
     {#if option.value === Category.FOOD}
-      <Icon icon="fluent:food-16-filled" />
+      <Icon icon="fluent-emoji-flat:cut-of-meat" />
     {:else if option.value === Category.SHOPPING}
-      <Icon icon="ant-design:shopping-filled" />
+      <Icon icon="fluent-emoji-flat:shopping-bags" />
     {:else if option.value === Category.TOUR}
-      <Icon icon="simple-icons:boat" />
+      <Icon icon="noto:sailboat" />
     {:else if option.value === Category.TRANSPORT}
-      <Icon icon="tabler:car-filled" />
+      <Icon icon="fluent-emoji-flat:tram-car" />
     {:else if option.value === Category.STAY}
-      <Icon icon="ri:service-bell-fill" />
+      <Icon icon="fluent-emoji-flat:bellhop-bell" />
     {:else if option.value === Category.FLIGHT}
-      <Icon icon="mdi:flight" />
+      <Icon icon="fluent-emoji-flat:airplane" />
     {:else if option.value === Category.ENTERTAINMENT}
-      <Icon icon="fa6-solid:masks-theater" />
+      <Icon icon="fluent-emoji-flat:popcorn" />
     {:else if option.value === Category.MART}
-      <Icon icon="mdi:cart" />
+      <Icon icon="fluent-emoji-flat:shopping-cart" />
     {:else}
       <Icon icon="ant-design:product-filled" />
     {/if}
@@ -68,7 +68,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    font-size: 1.35rem;
+    font-size: 1.6rem;
     margin-right: 8px;
   }
 </style>

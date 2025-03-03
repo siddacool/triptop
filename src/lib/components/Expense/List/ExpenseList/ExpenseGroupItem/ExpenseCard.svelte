@@ -106,10 +106,14 @@
         align-items: flex-end;
 
         :global(.Logo) {
-          width: 30px;
-          height: 30px;
+          width: 32px;
+          height: 32px;
           font-size: 1.2rem;
           margin-right: 4px;
+        }
+
+        :global(.CategoryFormattedOption .Logo) {
+          font-size: 1.4rem;
         }
       }
     }
