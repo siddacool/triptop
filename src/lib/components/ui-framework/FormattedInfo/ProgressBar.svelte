@@ -11,7 +11,7 @@
   <span class="fill" style={`width: ${fill}%`}></span>
 </div>
 
-<style lang="csss">
+<style lang="scss">
   .ProgressBar {
     display: flex;
     background-color: var(--color-grey-400);

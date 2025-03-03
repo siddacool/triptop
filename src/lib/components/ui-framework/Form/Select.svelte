@@ -27,7 +27,7 @@
   let active = $state(false);
 </script>
 
-<div class="TextInput">
+<div class="Select">
   {#if label}
     <FormLabel {name} {error} {active} {disabled} {label} />
   {/if}

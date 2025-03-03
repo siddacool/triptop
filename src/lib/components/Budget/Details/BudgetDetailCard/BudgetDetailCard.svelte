@@ -1,12 +1,12 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import PaymentModeFormattedOption from '$lib/components/PaymentMode/PaymentModeFormattedOption.svelte';
   import AmountDisplay from '$lib/components/ui-framework/FormattedInfo/AmountDisplay.svelte';
   import AmountProgress from '$lib/components/ui-framework/FormattedInfo/AmountProgress.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { getExpenseUsedBudget } from '$lib/stores/expense/expense.svelte';
-  import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
   import CardSection from './CardSection.svelte';
 
   const budgetId = page.params.budgetId;
@@ -35,8 +35,7 @@
       </CardSection>
       <hr />
       <CardSection label="Payment Mode">
-        {paymentModeOptions.find((item) => item.value === targetBudget?.paymentMode)?.label ||
-          paymentModeOptions[0].label}
+        <PaymentModeFormattedOption paymentMode={targetBudget?.paymentMode} />
       </CardSection>
     </Card>
   </div>

@@ -1,12 +1,13 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import PaymentModeFormattedOption from '$lib/components/PaymentMode/PaymentModeFormattedOption.svelte';
   import AmountDisplay from '$lib/components/ui-framework/FormattedInfo/AmountDisplay.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getMoment } from '$lib/helpers/time';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
-  import { categoryOptions, useExpenseStore } from '$lib/stores/expense/expense.svelte';
-  import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
+  import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
+  import CategoryFormattedOption from '../../CategoryFormattedOption.svelte';
   import CardSection from './CardSection.svelte';
 
   const expenseId = page.params.expenseId;
@@ -31,14 +32,12 @@
         <AmountDisplay {currency} value={targetExpense?.amount || 0} />
       </CardSection>
       <CardSection label="Payment Mode">
-        {paymentModeOptions.find((item) => item.value === paymentMode)?.label ||
-          paymentModeOptions[0].label}
+        <PaymentModeFormattedOption {paymentMode} />
       </CardSection>
 
       <hr />
       <CardSection label="Category">
-        {categoryOptions.find((item) => item.value === targetExpense?.category)?.logo}
-        {categoryOptions.find((item) => item.value === targetExpense?.category)?.label}
+        <CategoryFormattedOption category={targetExpense?.category} />
       </CardSection>
       <hr />
       <CardSection label="Budget">{targetBudget?.name || 'Other'}</CardSection>

@@ -23,7 +23,7 @@
 
 <span class={`FormattedCurrency ${className}`}>{formattedValue}</span>
 
-<style lang="ts">
+<style lang="scss">
   .FormattedCurrency {
     display: inline-flex;
     font-family: inherit;

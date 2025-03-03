@@ -26,45 +26,37 @@ export const categoryOptions: CategoryOption[] = [
   {
     label: 'Food',
     value: Category.FOOD,
-    logo: '🍗',
   },
   {
     label: 'Shopping',
     value: Category.SHOPPING,
-    logo: '🛍️',
   },
   {
     label: 'Tour',
     value: Category.TOUR,
-    logo: '⛵',
   },
   {
     label: 'Transport',
     value: Category.TRANSPORT,
-    logo: '🚌',
   },
   {
     label: 'Stay',
     value: Category.STAY,
-    logo: '🛎️',
   },
   {
     label: 'Flight',
     value: Category.FLIGHT,
-    logo: '✈️',
   },
   {
     label: 'Entertainment',
     value: Category.ENTERTAINMENT,
-    logo: '🍿',
   },
   {
     label: 'Mart',
     value: Category.MART,
-    logo: '🛒',
   },
   {
-    label: 'Other',
+    label: 'Misc',
     value: undefined,
   },
 ];

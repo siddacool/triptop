@@ -1,14 +1,14 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import CategoryFormattedOption from '$lib/components/Expense/CategoryFormattedOption.svelte';
+  import PaymentModeFormattedOption from '$lib/components/PaymentMode/PaymentModeFormattedOption.svelte';
   import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
   import Card from '$lib/components/ui-framework/Layout/Card.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getMoment } from '$lib/helpers/time';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
-  import { categoryOptions } from '$lib/stores/expense/expense.svelte';
   import type { Expense } from '$lib/stores/expense/types';
-  import { PaymentModes } from '$lib/stores/payment-mode/types';
 
   interface Props {
     expense: Expense;
@@ -40,11 +40,11 @@
           </article>
         </StackItem>
         <StackItem>
-          <article>
+          <article class="secondary">
             <section>
               <div class="stats">
-                {paymentMode === PaymentModes.CARD ? '💳' : '💵'}
-                {categoryOptions.find((item) => item.value === expense.category)?.logo}
+                <PaymentModeFormattedOption {paymentMode} hideLabel />
+                <CategoryFormattedOption category={expense.category} hideLabel />
               </div>
             </section>
             <section>
@@ -100,6 +100,17 @@
 
       :global(.FormattedCurrency) {
         font-weight: 500;
+      }
+
+      &.secondary {
+        align-items: flex-end;
+
+        :global(.Logo) {
+          width: 30px;
+          height: 30px;
+          font-size: 1.2rem;
+          margin-right: 4px;
+        }
       }
     }
 

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import PaymentModeSelect from '$lib/components/PaymentMode/PaymentModeSelect.svelte';
   import Button from '$lib/components/ui-framework/Form/Button.svelte';
   import TextInput from '$lib/components/ui-framework/Form/TextInput.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
@@ -15,7 +16,6 @@
   import CategorySelect from './CategorySelect.svelte';
   import CurrencySelect from './CurrencySelect.svelte';
   import Date from './Date.svelte';
-  import PaymentModeSelect from './PaymentModeSelect.svelte';
 
   interface Props {
     expenseId?: string;

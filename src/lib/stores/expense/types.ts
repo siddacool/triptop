@@ -14,7 +14,6 @@ export const enum Category {
 export type CategoryOption = {
   label: string;
   value: Category | undefined;
-  logo?: string;
 };
 
 export interface Expense {
