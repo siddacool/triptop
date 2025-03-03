@@ -12,7 +12,7 @@
 <div class="TotalExpense">
   <Heading title="Total Expense" />
   <ul>
-    {#each expenses as expense}
+    {#each expenses as expense (expense.currency)}
       <li>
         <AmountDisplay currency={expense.currency} value={expense.total} />
       </li>

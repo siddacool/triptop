@@ -13,7 +13,7 @@
 <div class="ExpenseGroupItem">
   <GroupHeader {expenseGroup} />
   <ul>
-    {#each expenseGroup.expenses as expense}
+    {#each expenseGroup.expenses as expense (expense._id)}
       <ExpenseCard {expense} />
     {/each}
   </ul>

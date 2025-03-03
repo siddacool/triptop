@@ -8,7 +8,7 @@
 
 <StackItem>
   <ul class="TripList">
-    {#each trips as trip}
+    {#each trips as trip (trip._id)}
       <ListItem {trip} />
     {/each}
   </ul>

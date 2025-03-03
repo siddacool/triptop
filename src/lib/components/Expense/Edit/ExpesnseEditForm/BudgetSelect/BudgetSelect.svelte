@@ -21,7 +21,7 @@
 
 <StackItem>
   <Select {onchange} name="budgetId" label="Select budget">
-    {#each targetBudgets as budget}
+    {#each targetBudgets as budget (budget._id)}
       <option value={budget._id} selected={value === budget._id}>{budget.name}</option>
     {/each}
     <option value={undefined} selected={value === undefined}>None</option>

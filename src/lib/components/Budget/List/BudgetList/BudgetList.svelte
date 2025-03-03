@@ -10,7 +10,7 @@
 
 <StackItem>
   <ul>
-    {#each targetBudgets as budget}
+    {#each targetBudgets as budget (budget._id)}
       <Budgettem {budget} />
     {/each}
   </ul>

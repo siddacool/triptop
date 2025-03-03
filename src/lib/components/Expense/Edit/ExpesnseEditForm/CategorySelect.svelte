@@ -14,7 +14,7 @@
 
 <StackItem>
   <Select {onchange} name="category" label="Select category">
-    {#each categoryOptions as categoryOption}
+    {#each categoryOptions as categoryOption (categoryOption.value)}
       <option value={categoryOption.value} selected={value === categoryOption.value}>
         {categoryOption.logo}
         {categoryOption.label}

@@ -13,7 +13,7 @@
 
 {#if expenseCurrencyWise.length}
   <ul class="total">
-    {#each expenseCurrencyWise as item}
+    {#each expenseCurrencyWise as item (item.currency)}
       <li>{item.currency} <FormattedCurrency value={item.total} currency={item.currency} /></li>
     {/each}
   </ul>

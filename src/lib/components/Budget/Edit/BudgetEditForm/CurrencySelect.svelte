@@ -13,7 +13,7 @@
 
 <StackItem>
   <Select {onchange} name="currency" label="Select currency">
-    {#each currencyCodes as currencyCode}
+    {#each currencyCodes as currencyCode (currencyCode.alphabeticCode)}
       <option value={currencyCode.alphabeticCode} selected={value === currencyCode.alphabeticCode}>
         {currencyCode.alphabeticCode} - {currencyCode.currency}
       </option>

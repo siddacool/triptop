@@ -22,7 +22,7 @@
     {#if budgets.length}
       <StackItem>
         <ul>
-          {#each budgets as budget}
+          {#each budgets as budget (budget.currency)}
             <li>
               <article>
                 {getCurrencyCodeFromAlphabeticCode(budget.currency)?.alphabeticCode}

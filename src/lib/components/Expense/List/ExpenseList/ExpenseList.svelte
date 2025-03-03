@@ -10,7 +10,7 @@
 </script>
 
 <StackItem>
-  {#each expenseGroups as expenseGroup}
+  {#each expenseGroups as expenseGroup (expenseGroup.date)}
     <ExpenseGroupItem {expenseGroup} />
   {/each}
 </StackItem>

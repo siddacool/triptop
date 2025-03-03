@@ -14,7 +14,7 @@
 
 <StackItem>
   <Select {onchange} name="paymentMode" label="Select payment mode">
-    {#each paymentModeOptions as paymentModeOption}
+    {#each paymentModeOptions as paymentModeOption (paymentModeOption.value)}
       <option value={paymentModeOption.value} selected={value === paymentModeOption.value}>
         {paymentModeOption.label}
       </option>
