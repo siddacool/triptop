@@ -73,7 +73,7 @@ export function makeTripExportCsv(exportTripData: ExportTripData) {
   const expenses = getCurrencyWiseExpenseForTrip(exportTripData._id);
 
   expenses.forEach((item) => {
-    csv += `${item.currency},${item.total}\n`;
+    csv += `,${item.currency},${item.total}\n`;
   });
 
   return csv;
