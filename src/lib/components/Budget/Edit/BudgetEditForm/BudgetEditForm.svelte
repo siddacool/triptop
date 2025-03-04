@@ -89,7 +89,7 @@
       <Amount {oninput} value={amount} />
       <StackItem></StackItem>
       <StackItem>
-        <Button type="submit" variant="primary" {disabled}>Save</Button>
+        <Button type="submit" variant="safe" {disabled}>Save</Button>
       </StackItem>
     </Stack>
   </form>

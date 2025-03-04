@@ -157,12 +157,12 @@
       <Date {dateDate} {dateTime} {oninput} />
       <StackItem></StackItem>
       <StackItem>
-        <Button type="submit" variant="primary" {disabled}>Save</Button>
+        <Button type="submit" variant="safe" {disabled}>Save</Button>
 
         {#if !expenseId}
           <Button
             type="submit"
-            variant="primary"
+            variant="safe"
             {disabled}
             name="save-and-add-new"
             class="saveAndAddNew"

@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  export type ButtonVariant = 'default' | 'primary' | 'danger' | 'inert';
+  export type ButtonVariant = 'default' | 'primary' | 'danger' | 'safe' | 'inert';
 </script>
 
 <script lang="ts">
@@ -99,15 +99,15 @@
         }
 
         &--primary {
-          background-color: var(--color-primary-700);
-          color: var(--color-white-const);
+          background-color: var(--color-accent-600);
+          color: var(--color-black-const);
 
           &:hover {
-            background-color: var(--color-primary-800);
+            background-color: var(--color-accent-700);
           }
 
           &:active {
-            background-color: var(--color-primary-900);
+            background-color: var(--color-accent-800);
           }
         }
 
@@ -121,6 +121,19 @@
 
           &:active {
             background-color: var(--color-danger-400);
+          }
+        }
+
+        &--safe {
+          background-color: var(--color-safe-200);
+          color: var(--color-safe-800);
+
+          &:hover {
+            background-color: var(--color-safe-300);
+          }
+
+          &:active {
+            background-color: var(--color-safe-400);
           }
         }
       }

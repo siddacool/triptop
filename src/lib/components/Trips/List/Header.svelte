@@ -2,7 +2,10 @@
 </script>
 
 <header>
-  <h1>Triptop</h1>
+  <h1>
+    <img src="favicon.svg" alt="icon" />
+    Triptop
+  </h1>
   <h3>Travel budgeting app</h3>
 </header>
 
@@ -16,6 +19,15 @@
     margin: 0;
     margin-bottom: 16px;
     font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 45px;
+      height: auto;
+      margin-right: 12px;
+    }
   }
 
   h3 {
