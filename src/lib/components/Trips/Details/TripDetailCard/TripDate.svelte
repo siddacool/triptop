@@ -8,7 +8,7 @@
 
   const tripId = page.params.tripId;
   const startDate = $derived(useTripsStore.data.find((item) => item._id === tripId)?.startDate);
-  const endDate = $derived(useTripsStore.data.find((item) => item._id === tripId)?.startDate);
+  const endDate = $derived(useTripsStore.data.find((item) => item._id === tripId)?.endDate);
 </script>
 
 <div class="TripDate">
