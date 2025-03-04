@@ -43,7 +43,7 @@
     {/if}
     <StackItem>
       <div class="addBudgetButtonSection">
-        <AnchorButton href={`/${tripId}/budget/add`} variant="primary">Add budget</AnchorButton>
+        <AnchorButton href={`/${tripId}/budget/add`} variant="primary">Add Budget</AnchorButton>
       </div>
     </StackItem>
   </Stack>
