@@ -20,6 +20,7 @@ export type BudgetWiseExpense = {
 };
 
 export type BudgetFormData = {
+  _id?: string;
   name: string;
   amount: number;
   paymentMode: PaymentModes;

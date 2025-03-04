@@ -3,6 +3,8 @@ import { db } from '../db';
 import type { Budget, BudgetFormData, BudgetWiseExpense } from './types';
 import { DEFUALT_CURRENCY } from '../currency/currency-codes';
 import { getExpenseUsedBudget } from '../expense/expense.svelte';
+import type { ExportTripData } from '../trips/types';
+import { getMoment } from '$lib/helpers/time';
 
 async function getBudget(idToFind: string) {
   try {
@@ -52,7 +54,7 @@ function createBudgetStore() {
         fetching = true;
 
         await db.budget.add({
-          _id: nanoid(),
+          _id: formData._id ? formData._id : nanoid(),
           name: formData.name,
           createdAt: Date.now(),
           updatedAt: Date.now(),
@@ -150,6 +152,43 @@ function createBudgetStore() {
         const unordered = await db.budget?.toArray();
 
         data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+
+        return Promise.resolve();
+      } catch (e) {
+        console.error(e);
+
+        return Promise.reject(e);
+      } finally {
+        fetching = false;
+      }
+    },
+    async import(exportTripData: ExportTripData) {
+      try {
+        fetching = true;
+
+        const budgets = exportTripData.budget;
+
+        for (const budget of budgets) {
+          const targetBudget = data.find((item) => item._id === budget._id);
+
+          const budgetFormData: BudgetFormData = {
+            _id: budget._id,
+            name: budget.name,
+            amount: budget.amount,
+            paymentMode: budget.paymentMode,
+            currency: budget.currency || DEFUALT_CURRENCY.alphabeticCode,
+          };
+
+          if (targetBudget) {
+            const isUpdated = getMoment(budget.updatedAt).isAfter(targetBudget.updatedAt);
+
+            if (isUpdated) {
+              await this.update(targetBudget._id, budgetFormData);
+            }
+          } else {
+            await this.add(exportTripData.trip._id, budgetFormData);
+          }
+        }
 
         return Promise.resolve();
       } catch (e) {

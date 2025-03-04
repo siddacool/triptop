@@ -39,6 +39,7 @@ export interface ExpenseWithBudget extends Expense {
 }
 
 export type ExpenseFormData = {
+  _id?: string;
   name: string;
   description?: string;
   amount: number;

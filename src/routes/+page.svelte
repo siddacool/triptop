@@ -2,6 +2,7 @@
   import { goto } from '$app/navigation';
   import CreateButton from '$lib/components/Trips/List/CreateButton.svelte';
   import Header from '$lib/components/Trips/List/Header.svelte';
+  import ImportTrip from '$lib/components/Trips/List/ImportTrip.svelte';
   import TripList from '$lib/components/Trips/List/TripList';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
@@ -25,4 +26,5 @@
 <Stack space={4}>
   <CreateButton />
   <TripList />
+  <ImportTrip />
 </Stack>

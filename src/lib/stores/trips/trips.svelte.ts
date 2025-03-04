@@ -4,6 +4,7 @@ import type { ExportTripData, Trip, TripFormData } from './types';
 import { useBudgetStore } from '../budget/budget.svelte';
 import { useExpenseStore } from '../expense/expense.svelte';
 import { useLocalSettingsStore } from '../local-settings/local-settings.svelte';
+import { getMoment } from '$lib/helpers/time';
 
 async function getTrip(idToFind: string) {
   try {
@@ -53,7 +54,7 @@ function createTripsStore() {
         fetching = true;
 
         await db.trips.add({
-          _id: nanoid(),
+          _id: tripFormData._id ? tripFormData._id : nanoid(),
           name: tripFormData.name.trim(),
           createdAt: Date.now(),
           updatedAt: Date.now(),
@@ -124,6 +125,41 @@ function createTripsStore() {
         await useExpenseStore.deleteAllExpensesFromTrip(idToDelete);
 
         useLocalSettingsStore.resetLastOpenTrip();
+
+        return Promise.resolve();
+      } catch (e) {
+        console.error(e);
+
+        return Promise.reject(e);
+      } finally {
+        fetching = false;
+      }
+    },
+    async import(exportTripData: ExportTripData) {
+      try {
+        fetching = true;
+
+        const targetTrip = data.find((item) => item._id === exportTripData.trip._id);
+
+        const tripFormData: TripFormData = {
+          _id: exportTripData.trip._id,
+          name: exportTripData.trip.name,
+          startDate: exportTripData.trip.startDate,
+          endDate: exportTripData.trip.endDate,
+        };
+
+        if (targetTrip) {
+          const isUpdated = getMoment(exportTripData.trip.updatedAt).isAfter(targetTrip.updatedAt);
+
+          if (isUpdated) {
+            await this.update(targetTrip._id, tripFormData);
+          }
+        } else {
+          await this.add(tripFormData);
+        }
+
+        await useBudgetStore.import(exportTripData);
+        await useExpenseStore.import(exportTripData);
 
         return Promise.resolve();
       } catch (e) {

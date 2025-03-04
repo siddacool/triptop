@@ -11,6 +11,7 @@ import {
 import { DEFUALT_CURRENCY } from '../currency/currency-codes';
 import { getMoment } from '$lib/helpers/time';
 import { useBudgetStore } from '../budget/budget.svelte';
+import type { ExportTripData } from '../trips/types';
 
 async function getExpense(idToFind: string) {
   try {
@@ -99,7 +100,7 @@ function createExpenseStore() {
         fetching = true;
 
         await db.expense.add({
-          _id: nanoid(),
+          _id: expenseFormData._id ? expenseFormData._id : nanoid(),
           name: expenseFormData.name.trim(),
           createdAt: Date.now(),
           updatedAt: Date.now(),
@@ -198,6 +199,46 @@ function createExpenseStore() {
         const unordered = await db.expense?.toArray();
 
         data = unordered?.sort((a, b) => b?.date - a?.date);
+
+        return Promise.resolve();
+      } catch (e) {
+        console.error(e);
+
+        return Promise.reject(e);
+      } finally {
+        fetching = false;
+      }
+    },
+    async import(exportTripData: ExportTripData) {
+      try {
+        fetching = true;
+
+        const expenses = exportTripData.expense;
+
+        for (const expense of expenses) {
+          const targetExpense = data.find((item) => item._id === expense._id);
+
+          const expenseFormData: ExpenseFormData = {
+            _id: expense._id,
+            name: expense.name,
+            amount: expense.amount,
+            budgetId: expense.budgetId,
+            category: expense.category,
+            date: expense.date,
+            paymentMode: expense.paymentMode,
+            currency: expense.currency,
+          };
+
+          if (targetExpense) {
+            const isUpdated = getMoment(expense.updatedAt).isAfter(targetExpense.updatedAt);
+
+            if (isUpdated) {
+              await this.update(targetExpense._id, expenseFormData);
+            }
+          } else {
+            await this.add(exportTripData.trip._id, expenseFormData);
+          }
+        }
 
         return Promise.resolve();
       } catch (e) {

@@ -12,6 +12,7 @@ export interface Trip {
 }
 
 export type TripFormData = {
+  _id?: string;
   name: string;
   startDate: Date;
   endDate: Date;
