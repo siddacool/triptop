@@ -80,10 +80,10 @@
       case 'paymentMode':
         paymentMode = element.value as PaymentModes;
         break;
-      case 'dateDate':
+      case 'date_date':
         dateDate = element.value;
         break;
-      case 'dateTime':
+      case 'date_time':
         dateTime = element.value;
         break;
       default:
@@ -104,6 +104,8 @@
       const clickedButton = e.submitter as HTMLButtonElement;
 
       const date = getMoment(`${dateDate} ${dateTime}`, 'YYYY-MM-DD HH:mm').valueOf();
+
+      console.log(date, dateDate, dateTime);
 
       useLocalSettingsStore.updateLastBudget(budgetId);
 
