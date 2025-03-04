@@ -95,7 +95,7 @@
 
     .addBudgetButtonSection {
       display: flex;
-      justify-content: center;
+      margin-top: 16px;
     }
   }
 </style>

@@ -125,15 +125,15 @@
         }
 
         &--safe {
-          background-color: var(--color-safe-200);
-          color: var(--color-safe-800);
+          background-color: var(--color-safe-500);
+          color: var(--color-white);
 
           &:hover {
-            background-color: var(--color-safe-300);
+            background-color: var(--color-safe-600);
           }
 
           &:active {
-            background-color: var(--color-safe-400);
+            background-color: var(--color-safe-700);
           }
         }
       }
