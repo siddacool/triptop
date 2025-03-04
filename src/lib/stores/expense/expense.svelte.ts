@@ -216,8 +216,6 @@ function createExpenseStore() {
         const expenses = exportTripData.expense;
 
         for (const expense of expenses) {
-          const targetExpense = data.find((item) => item._id === expense._id);
-
           const expenseFormData: ExpenseFormData = {
             _id: expense._id,
             name: expense.name,
@@ -229,15 +227,7 @@ function createExpenseStore() {
             currency: expense.currency,
           };
 
-          if (targetExpense) {
-            const isUpdated = getMoment(expense.updatedAt).isAfter(targetExpense.updatedAt);
-
-            if (isUpdated) {
-              await this.update(targetExpense._id, expenseFormData);
-            }
-          } else {
-            await this.add(exportTripData.trip._id, expenseFormData);
-          }
+          await this.add(exportTripData.trip._id, expenseFormData);
         }
 
         return Promise.resolve();

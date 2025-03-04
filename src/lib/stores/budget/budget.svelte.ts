@@ -4,7 +4,6 @@ import type { Budget, BudgetFormData, BudgetWiseExpense } from './types';
 import { DEFUALT_CURRENCY } from '../currency/currency-codes';
 import { getExpenseUsedBudget } from '../expense/expense.svelte';
 import type { ExportTripData } from '../trips/types';
-import { getMoment } from '$lib/helpers/time';
 
 async function getBudget(idToFind: string) {
   try {
@@ -169,8 +168,6 @@ function createBudgetStore() {
         const budgets = exportTripData.budget;
 
         for (const budget of budgets) {
-          const targetBudget = data.find((item) => item._id === budget._id);
-
           const budgetFormData: BudgetFormData = {
             _id: budget._id,
             name: budget.name,
@@ -179,15 +176,7 @@ function createBudgetStore() {
             currency: budget.currency || DEFUALT_CURRENCY.alphabeticCode,
           };
 
-          if (targetBudget) {
-            const isUpdated = getMoment(budget.updatedAt).isAfter(targetBudget.updatedAt);
-
-            if (isUpdated) {
-              await this.update(targetBudget._id, budgetFormData);
-            }
-          } else {
-            await this.add(exportTripData.trip._id, budgetFormData);
-          }
+          await this.add(exportTripData.trip._id, budgetFormData);
         }
 
         return Promise.resolve();

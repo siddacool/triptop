@@ -4,7 +4,6 @@ import type { ExportTripData, Trip, TripFormData } from './types';
 import { useBudgetStore } from '../budget/budget.svelte';
 import { useExpenseStore } from '../expense/expense.svelte';
 import { useLocalSettingsStore } from '../local-settings/local-settings.svelte';
-import { getMoment } from '$lib/helpers/time';
 
 async function getTrip(idToFind: string) {
   try {
@@ -149,14 +148,13 @@ function createTripsStore() {
         };
 
         if (targetTrip) {
-          const isUpdated = getMoment(exportTripData.trip.updatedAt).isAfter(targetTrip.updatedAt);
-
-          if (isUpdated) {
-            await this.update(targetTrip._id, tripFormData);
-          }
+          await this.update(targetTrip._id, tripFormData);
         } else {
           await this.add(tripFormData);
         }
+
+        await useBudgetStore.deleteAllBudgetsFromTrip(exportTripData.trip._id);
+        await useExpenseStore.deleteAllExpensesFromTrip(exportTripData.trip._id);
 
         await useBudgetStore.import(exportTripData);
         await useExpenseStore.import(exportTripData);
