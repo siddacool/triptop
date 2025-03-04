@@ -26,6 +26,7 @@
   async function onDelete() {
     try {
       await useLocalSettingsStore.resetLastOpenTrip();
+      await useLocalSettingsStore.updateLastBudget(undefined);
       goto('/');
       await useTripsStore.delete(tripId);
     } catch (e) {
