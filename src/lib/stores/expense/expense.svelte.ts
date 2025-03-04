@@ -215,20 +215,35 @@ function createExpenseStore() {
 
         const expenses = exportTripData.expense;
 
-        for (const expense of expenses) {
-          const expenseFormData: ExpenseFormData = {
-            _id: expense._id,
-            name: expense.name,
-            amount: expense.amount,
-            budgetId: expense.budgetId,
-            category: expense.category,
-            date: expense.date,
-            paymentMode: expense.paymentMode,
-            currency: expense.currency,
-          };
+        const newExpenses: Expense[] = [];
 
-          await this.add(exportTripData.trip._id, expenseFormData);
-        }
+        expenses.forEach((itemToUpdate) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { id, ...restItemProps } = itemToUpdate;
+
+          const decoratedItem: Expense = { ...restItemProps };
+
+          // Update group data
+          const targetIndex = data.findIndex((item) => item._id === itemToUpdate._id);
+
+          if (targetIndex < 0) {
+            // New
+            newExpenses.push(decoratedItem);
+            return;
+          }
+
+          // Update approved
+          newExpenses.push({
+            ...data[targetIndex],
+            ...decoratedItem,
+          });
+        });
+
+        await db.expense.bulkPut(newExpenses);
+
+        const unordered = await db.expense?.toArray();
+
+        data = unordered?.sort((a, b) => b?.date - a?.date);
 
         return Promise.resolve();
       } catch (e) {

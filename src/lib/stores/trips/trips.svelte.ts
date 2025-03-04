@@ -145,13 +145,10 @@ function createTripsStore() {
         };
 
         if (targetTrip) {
-          await this.update(targetTrip._id, tripFormData);
-        } else {
-          await this.add(tripFormData);
+          throw Error('Trip: already exists');
         }
 
-        await useBudgetStore.deleteAllBudgetsFromTrip(exportTripData.trip._id);
-        await useExpenseStore.deleteAllExpensesFromTrip(exportTripData.trip._id);
+        await this.add(tripFormData);
 
         await useBudgetStore.import(exportTripData);
         await useExpenseStore.import(exportTripData);

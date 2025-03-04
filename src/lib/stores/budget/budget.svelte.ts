@@ -167,17 +167,35 @@ function createBudgetStore() {
 
         const budgets = exportTripData.budget;
 
-        for (const budget of budgets) {
-          const budgetFormData: BudgetFormData = {
-            _id: budget._id,
-            name: budget.name,
-            amount: budget.amount,
-            paymentMode: budget.paymentMode,
-            currency: budget.currency || DEFUALT_CURRENCY.alphabeticCode,
-          };
+        const newBudgets: Budget[] = [];
 
-          await this.add(exportTripData.trip._id, budgetFormData);
-        }
+        budgets.forEach((itemToUpdate) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const { id, ...restItemProps } = itemToUpdate;
+
+          const decoratedItem: Budget = { ...restItemProps };
+
+          // Update group data
+          const targetIndex = data.findIndex((item) => item._id === itemToUpdate._id);
+
+          if (targetIndex < 0) {
+            // New
+            newBudgets.push(decoratedItem);
+            return;
+          }
+
+          // Update approved
+          newBudgets.push({
+            ...data[targetIndex],
+            ...decoratedItem,
+          });
+        });
+
+        await db.budget.bulkPut(newBudgets);
+
+        const unordered = await db.budget?.toArray();
+
+        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
 
         return Promise.resolve();
       } catch (e) {
