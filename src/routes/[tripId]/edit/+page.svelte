@@ -6,6 +6,7 @@
   import Button from '$lib/components/ui-framework/Form/Button.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
+  import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
   import type { TripFormData } from '$lib/stores/trips/types';
 
@@ -24,9 +25,9 @@
 
   async function onDelete() {
     try {
-      await useTripsStore.delete(tripId);
-
+      await useLocalSettingsStore.resetLastOpenTrip();
       goto('/');
+      await useTripsStore.delete(tripId);
     } catch (e) {
       console.log(e);
     }

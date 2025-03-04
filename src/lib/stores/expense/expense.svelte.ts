@@ -204,7 +204,7 @@ function createExpenseStore() {
       } catch (e) {
         console.error(e);
 
-        return Promise.reject(e);
+        return Promise.resolve();
       } finally {
         fetching = false;
       }

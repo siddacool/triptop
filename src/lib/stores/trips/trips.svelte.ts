@@ -3,7 +3,6 @@ import { db } from '../db';
 import type { ExportTripData, Trip, TripFormData } from './types';
 import { useBudgetStore } from '../budget/budget.svelte';
 import { useExpenseStore } from '../expense/expense.svelte';
-import { useLocalSettingsStore } from '../local-settings/local-settings.svelte';
 
 async function getTrip(idToFind: string) {
   try {
@@ -116,14 +115,12 @@ function createTripsStore() {
 
         await db.trips.delete(targetTrip.id);
 
-        const unordered = await db.trips?.toArray();
+        const unordered = await db.trips.toArray();
 
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = unordered.sort((a, b) => b?.createdAt - a?.createdAt);
 
         await useBudgetStore.deleteAllBudgetsFromTrip(idToDelete);
         await useExpenseStore.deleteAllExpensesFromTrip(idToDelete);
-
-        useLocalSettingsStore.resetLastOpenTrip();
 
         return Promise.resolve();
       } catch (e) {

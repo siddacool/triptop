@@ -148,15 +148,15 @@ function createBudgetStore() {
 
         await db.budget.bulkDelete(relatedBudgetKeys);
 
-        const unordered = await db.budget?.toArray();
+        const unordered = await db.budget.toArray();
 
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = unordered.sort((a, b) => b?.createdAt - a?.createdAt);
 
         return Promise.resolve();
       } catch (e) {
         console.error(e);
 
-        return Promise.reject(e);
+        return Promise.resolve();
       } finally {
         fetching = false;
       }
