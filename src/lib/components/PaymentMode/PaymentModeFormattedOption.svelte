@@ -49,6 +49,7 @@
   }
 
   .Logo {
+    background-color: var(--color-grey-200);
     width: 38px;
     height: 38px;
     display: inline-flex;
@@ -60,12 +61,10 @@
 
     &--CASH {
       color: var(--color-safe-600);
-      background-color: var(--color-grey-200);
     }
 
     &--CARD {
       color: var(--color-warning-700);
-      background-color: var(--color-grey-200);
     }
   }
 </style>

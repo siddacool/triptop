@@ -18,23 +18,23 @@
 </script>
 
 {#snippet logo(option: CategoryOption)}
-  <div class="Logo">
+  <div class={`Logo Logo--${option.value}`}>
     {#if option.value === Category.FOOD}
-      <Icon icon="fluent-emoji-flat:cut-of-meat" />
+      <Icon icon="fluent:food-24-filled" />
     {:else if option.value === Category.SHOPPING}
-      <Icon icon="fluent-emoji-flat:shopping-bags" />
+      <Icon icon="ant-design:shopping-filled" />
     {:else if option.value === Category.TOUR}
-      <Icon icon="noto:sailboat" />
+      <Icon icon="fa6-solid:sailboat" />
     {:else if option.value === Category.TRANSPORT}
-      <Icon icon="fluent-emoji-flat:tram-car" />
+      <Icon icon="ri:taxi-fill" />
     {:else if option.value === Category.STAY}
-      <Icon icon="fluent-emoji-flat:bellhop-bell" />
+      <Icon icon="ri:service-bell-fill" />
     {:else if option.value === Category.FLIGHT}
-      <Icon icon="fluent-emoji-flat:airplane" />
+      <Icon icon="fa6-solid:plane" />
     {:else if option.value === Category.ENTERTAINMENT}
-      <Icon icon="fluent-emoji-flat:popcorn" />
+      <Icon icon="fa6-solid:masks-theater" />
     {:else if option.value === Category.MART}
-      <Icon icon="fluent-emoji-flat:shopping-cart" />
+      <Icon icon="mdi:cart" />
     {:else}
       <Icon icon="ant-design:product-filled" />
     {/if}
@@ -68,7 +68,39 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    font-size: 1.6rem;
+    font-size: 1.35rem;
     margin-right: 8px;
+
+    &--FOOD {
+      color: var(--color-category-FOOD);
+    }
+
+    &--SHOPPING {
+      color: var(--color-category-SHOPPING);
+    }
+
+    &--TOUR {
+      color: var(--color-category-TOUR);
+    }
+
+    &--TRANSPORT {
+      color: var(--color-category-TRANSPORT);
+    }
+
+    &--STAY {
+      color: var(--color-category-STAY);
+    }
+
+    &--FLIGHT {
+      color: var(--color-category-FLIGHT);
+    }
+
+    &--ENTERTAINMENT {
+      color: var(--color-category-ENTERTAINMENT);
+    }
+
+    &--MART {
+      color: var(--color-category-MART);
+    }
   }
 </style>

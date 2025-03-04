@@ -111,10 +111,6 @@
           font-size: 1.2rem;
           margin-right: 4px;
         }
-
-        :global(.CategoryFormattedOption .Logo) {
-          font-size: 1.4rem;
-        }
       }
     }
 
