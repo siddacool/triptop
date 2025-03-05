@@ -30,6 +30,7 @@
     align-items: center;
     font-weight: 500;
     flex-wrap: wrap;
+    padding-bottom: 8px;
 
     :global(.Logo) {
       width: 30px;
