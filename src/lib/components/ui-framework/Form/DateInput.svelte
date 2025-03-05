@@ -63,7 +63,6 @@
     {onchange}
     {oninput}
     {disabled}
-    class:error
     {min}
     {max}
     bind:this={dateInputElement}
@@ -83,7 +82,7 @@
       <div class="placeholder">{placeholder}</div>
     {/if}
 
-    <div class="dateIcon">
+    <div class="InputIcon">
       <Icon icon="mdi:calendar" />
     </div>
   </button>
@@ -104,42 +103,6 @@
       opacity: 0;
       position: absolute;
       z-index: -100;
-
-      &:not(.error):not([disabled]) {
-        &:focus {
-          border-color: var(--color-primary-600);
-
-          & + .mockInput {
-            border-color: var(--color-primary-600);
-          }
-        }
-      }
-
-      &:not([disabled]) {
-        &.error {
-          border-color: var(--color-danger-400);
-
-          & + .mockInput {
-            border-color: var(--color-danger-400);
-          }
-
-          &:focus {
-            border-color: var(--color-danger-600);
-
-            & + .mockInput {
-              border-color: var(--color-danger-600);
-            }
-          }
-        }
-      }
-
-      &[disabled] {
-        & + .mockInput {
-          background-color: var(--color-grey-200);
-          color: var(--color-grey-font-400);
-          border-color: var(--color-grey-200);
-        }
-      }
     }
 
     .mockInput {
@@ -165,7 +128,7 @@
         &:focus {
           border-color: var(--color-primary-600);
 
-          .dateIcon {
+          .InputIcon {
             color: var(--color-primary-700);
           }
         }
@@ -190,7 +153,7 @@
           color: var(--color-grey-font-400);
         }
 
-        .dateIcon {
+        .InputIcon {
           color: var(--color-grey-font-400);
         }
       }
@@ -199,7 +162,7 @@
         color: var(--color-grey-font-600);
       }
 
-      .dateIcon {
+      .InputIcon {
         font-size: 1.4rem;
         color: var(--color-grey-font-600);
         height: 100%;
