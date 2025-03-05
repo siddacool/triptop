@@ -11,7 +11,10 @@
 
 <div class="NameSection">
   <CategoryFormattedOption category={expense.category} hideLabel />
-  {expense.name}
+
+  <div class="name">
+    {expense.name}
+  </div>
 </div>
 
 <style lang="scss">
@@ -20,15 +23,16 @@
     font-weight: 500;
     flex-wrap: wrap;
     position: relative;
-    padding-left: 40px;
-    min-height: 38px;
-    padding-top: 3px;
 
     :global(.Logo) {
       position: absolute;
-      top: -6px;
-      left: -6px;
+      top: -10px;
+      left: -10px;
       margin: 0;
+    }
+
+    .name {
+      margin-left: 36px;
     }
   }
 </style>

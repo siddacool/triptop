@@ -20,7 +20,6 @@
 </script>
 
 <section class="AmountSection">
-  <PaymentModeFormattedOption {paymentMode} hideLabel />
   <FormattedCurrency value={expense.amount} {currency} />
 </section>
 
@@ -30,13 +29,5 @@
     align-items: center;
     font-weight: 500;
     flex-wrap: wrap;
-    position: relative;
-    top: -6px;
-
-    :global(.Logo) {
-      width: 30px;
-      height: 30px;
-      font-size: 1.2rem;
-    }
   }
 </style>
