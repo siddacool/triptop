@@ -37,6 +37,7 @@
       width: 24px;
       height: 24px;
       font-size: 1.1rem;
+      opacity: 0.6;
     }
 
     .date {

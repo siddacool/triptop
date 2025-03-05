@@ -21,7 +21,7 @@
     <Card>
       <Stack space={1}>
         <StackItem>
-          <article>
+          <article class="top">
             <NameSection {expense} />
             <AmountSection {expense} />
           </article>
@@ -73,6 +73,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+
+      &.top {
+        align-items: flex-start;
+      }
     }
   }
 </style>

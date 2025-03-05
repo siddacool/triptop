@@ -1,5 +1,4 @@
 <script lang="ts">
-  import PaymentModeFormattedOption from '$lib/components/PaymentMode/PaymentModeFormattedOption.svelte';
   import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import type { Expense } from '$lib/stores/expense/types';
@@ -11,11 +10,6 @@
   const { expense }: Props = $props();
   const currency = $derived(
     useBudgetStore.data.find((item) => item._id === expense.budgetId)?.currency || expense.currency,
-  );
-
-  const paymentMode = $derived(
-    useBudgetStore.data.find((item) => item._id === expense.budgetId)?.paymentMode ||
-      expense.paymentMode,
   );
 </script>
 
