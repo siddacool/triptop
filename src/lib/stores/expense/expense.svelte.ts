@@ -259,13 +259,14 @@ function createExpenseStore() {
 
 export const useExpenseStore = createExpenseStore();
 
-function attachCurruncyToExpense(expense: Expense) {
+function attachBudgetDetailsToExpense(expense: Expense) {
   const targetBudget = useBudgetStore.data.find((item) => item._id === expense.budgetId);
 
   const newExpense = { ...expense };
 
   if (targetBudget) {
     newExpense.currency = targetBudget.currency;
+    newExpense.paymentMode = targetBudget.paymentMode;
   }
 
   return newExpense;
@@ -274,7 +275,7 @@ function attachCurruncyToExpense(expense: Expense) {
 export function getCurrencyWiseExpenseForTrip(tripId: string) {
   let targetExpenses = useExpenseStore.data.filter((item) => item.tripId === tripId);
 
-  targetExpenses = targetExpenses.map((item) => attachCurruncyToExpense(item));
+  targetExpenses = targetExpenses.map((item) => attachBudgetDetailsToExpense(item));
 
   const expenses: CurrencyWiseExpense[] = [];
 
@@ -331,7 +332,7 @@ export function getExpenseDateGroups(tripId: string) {
 export function getCurrencyWiseExpense(expensesList: Expense[]) {
   let targetExpenses = expensesList;
 
-  targetExpenses = targetExpenses.map((item) => attachCurruncyToExpense(item));
+  targetExpenses = targetExpenses.map((item) => attachBudgetDetailsToExpense(item));
 
   const expenses: CurrencyWiseExpense[] = [];
 
@@ -353,4 +354,12 @@ export function getCurrencyWiseExpense(expensesList: Expense[]) {
   });
 
   return expenses.sort((a, b) => a.currency.localeCompare(b.currency));
+}
+
+export function getExpenseWithBudgetDetails(expensesList: Expense[]) {
+  let targetExpenses = expensesList;
+
+  targetExpenses = targetExpenses.map((item) => attachBudgetDetailsToExpense(item));
+
+  return targetExpenses;
 }
