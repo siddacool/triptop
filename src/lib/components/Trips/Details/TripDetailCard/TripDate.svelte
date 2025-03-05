@@ -18,8 +18,8 @@
     </StackItem>
     <StackItem>
       <section>
-        {startDate ? getMoment(startDate).format('D MMM YYYY') : ''} - {endDate
-          ? getMoment(endDate).format('D MMM YYYY')
+        {startDate ? getMoment(startDate).format('MMM D') : ''} - {endDate
+          ? getMoment(endDate).format('MMM D YYYY')
           : ''}
       </section>
     </StackItem>
