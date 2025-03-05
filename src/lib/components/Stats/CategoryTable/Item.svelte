@@ -2,9 +2,11 @@
   import { page } from '$app/state';
   import CategoryFormattedOption from '$lib/components/Expense/CategoryFormattedOption.svelte';
   import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
+  import { getMoment } from '$lib/helpers/time';
   import { DEFUALT_CURRENCY } from '$lib/stores/currency/currency-codes';
   import { getCurrencyWiseExpense, useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import type { CategoryOption } from '$lib/stores/expense/types';
+  import { useStatisticsStore } from '$lib/stores/statistics/statistics.svelte';
 
   interface ItemProps {
     data?: CategoryOption;
@@ -13,9 +15,20 @@
   const { data }: ItemProps = $props();
   const tripId = page.params.tripId;
   const expenses = $derived(
-    useExpenseStore.data.filter((item) => item.tripId === tripId && item.category === data?.value),
+    useExpenseStore.data
+      .filter((item) =>
+        useStatisticsStore.statsSelectedDate
+          ? getMoment(item.date).format('YYYY-MM-DD') === useStatisticsStore.statsSelectedDate
+          : true,
+      )
+      .filter((item) => item.tripId === tripId && item.category === data?.value),
   );
+
   const expenseCurrencyWise = $derived(getCurrencyWiseExpense(expenses));
+
+  $effect(() => {
+    console.log(expenses);
+  });
 </script>
 
 <tr>
