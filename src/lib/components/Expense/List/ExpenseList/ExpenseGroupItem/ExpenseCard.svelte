@@ -9,6 +9,7 @@
   import { getMoment } from '$lib/helpers/time';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import type { Expense } from '$lib/stores/expense/types';
+  import Icon from '@iconify/svelte';
 
   interface Props {
     expense: Expense;
@@ -28,28 +29,26 @@
 <li class="ExpenseCard">
   <a href={`/${tripId}/${expense._id}`}>
     <Card>
-      <Stack space={1}>
+      <Stack space={2}>
         <StackItem>
           <article>
-            <section>
+            <section class="name-section">
+              <CategoryFormattedOption category={expense.category} hideLabel />
               {expense.name}
             </section>
-            <section>
+            <section class="amount-section">
               <FormattedCurrency value={expense.amount} {currency} />
+              <PaymentModeFormattedOption {paymentMode} hideLabel />
             </section>
           </article>
         </StackItem>
         <StackItem>
           <article class="secondary">
-            <section>
-              <div class="stats">
-                <PaymentModeFormattedOption {paymentMode} hideLabel />
-                <CategoryFormattedOption category={expense.category} hideLabel />
-              </div>
-            </section>
+            <section></section>
             <section>
               <div class="date">
-                {getMoment(expense.date).format('h:mm a')}
+                <Icon icon="tabler:clock" class="Icon" />
+                {getMoment(expense.date).format('h:mm A')}
               </div>
             </section>
           </article>
@@ -98,19 +97,31 @@
       align-items: center;
       font-weight: 500;
 
+      section {
+        display: flex;
+        align-items: center;
+      }
+
+      :global(.Logo) {
+        width: 30px;
+        height: 30px;
+        font-size: 1.2rem;
+        margin-right: 8px;
+      }
+
+      .amount-section {
+        :global(.Logo) {
+          margin-right: 0;
+          margin-left: 8px;
+        }
+      }
+
       :global(.FormattedCurrency) {
         font-weight: 500;
       }
 
       &.secondary {
         align-items: flex-end;
-
-        :global(.Logo) {
-          width: 32px;
-          height: 32px;
-          font-size: 1.2rem;
-          margin-right: 4px;
-        }
       }
     }
 
@@ -118,12 +129,12 @@
       font-size: 0.9rem;
       font-weight: 400;
       color: var(--color-grey-font-500);
-    }
+      display: flex;
+      align-items: center;
 
-    .stats {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: var(--color-grey-font-500);
+      :global(.Icon) {
+        margin-right: 4px;
+      }
     }
 
     :global(.AmountDisplay .FormattedCurrency) {
