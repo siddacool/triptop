@@ -9,7 +9,7 @@
     getExpenseWithBudgetDetails,
     useExpenseStore,
   } from '$lib/stores/expense/expense.svelte';
-  import { PaymentModes, type PaymentModeOption } from '$lib/stores/payment-mode/types';
+  import { type PaymentModeOption } from '$lib/stores/payment-mode/types';
   import { useStatisticsStore } from '$lib/stores/statistics/statistics.svelte';
 
   interface ItemProps {
