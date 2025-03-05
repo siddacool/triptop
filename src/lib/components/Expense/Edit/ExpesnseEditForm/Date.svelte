@@ -15,7 +15,7 @@
 
 <StackItem>
   <div class="Date">
-    <FormLabel label="Enter date" />
+    <FormLabel label="Select date" />
 
     <section>
       <DateInput value={dateDate} {oninput} name="date_date" />

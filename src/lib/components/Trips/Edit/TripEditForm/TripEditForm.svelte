@@ -92,14 +92,14 @@
         />
       </StackItem>
       <StackItem>
-        <DateInput value={startDate} {oninput} name="startDate" label="Enter start date" />
+        <DateInput value={startDate} {oninput} name="startDate" label="Select start date" />
       </StackItem>
       <StackItem>
         <DateInput
           value={endDate}
           {oninput}
           name="endDate"
-          label="Enter end date"
+          label="Select end date"
           min={startDate}
         />
       </StackItem>
