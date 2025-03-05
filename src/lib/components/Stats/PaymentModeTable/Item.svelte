@@ -27,9 +27,7 @@
           ? getMoment(item.date).format('YYYY-MM-DD') === useStatisticsStore.statsSelectedDate
           : true,
       )
-      .filter(
-        (item) => (item.tripId === tripId && item.paymentMode === data?.value) || PaymentModes.CASH,
-      ),
+      .filter((item) => item.tripId === tripId && item.paymentMode === data?.value),
   );
   const expenseCurrencyWise = $derived(getCurrencyWiseExpense(expenses));
 </script>
