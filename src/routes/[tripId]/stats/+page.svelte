@@ -3,7 +3,7 @@
   import PageHeader from '$lib/components/PageHeader.svelte';
   import CategoryTable from '$lib/components/Stats/CategoryTable/CategoryTable.svelte';
   import PaymentModeTable from '$lib/components/Stats/PaymentModeTable/PaymentModeTable.svelte';
-  import StatsDate from '$lib/components/Stats/StatsDate.svelte';
+  import StatsDate from '$lib/components/Stats/StatsDate/StatsDate.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';

@@ -1,7 +1,17 @@
 <script lang="ts">
-  import { categoryOptions } from '$lib/stores/expense/expense.svelte';
+  import { page } from '$app/state';
+  import {
+    getCategoryWiseExpense,
+    useStatisticsStore,
+  } from '$lib/stores/statistics/statistics.svelte';
   import StatsTable from '../StatsTable.svelte';
   import Item from './Item.svelte';
+
+  const tripId = page.params.tripId;
+
+  const categories = $derived(
+    getCategoryWiseExpense(tripId, useStatisticsStore.startDate, useStatisticsStore.endDate),
+  );
 </script>
 
 <StatsTable title="Category">
@@ -12,8 +22,8 @@
     </tr>
   </thead>
   <tbody>
-    {#each categoryOptions as categoryOption (categoryOption.value)}
-      <Item data={categoryOption} />
+    {#each categories as category (category.category)}
+      <Item data={category} />
     {/each}
   </tbody>
 </StatsTable>

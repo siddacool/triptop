@@ -259,7 +259,7 @@ function createExpenseStore() {
 
 export const useExpenseStore = createExpenseStore();
 
-function attachBudgetDetailsToExpense(expense: Expense) {
+export function attachBudgetDetailsToExpense(expense: Expense) {
   const targetBudget = useBudgetStore.data.find((item) => item._id === expense.budgetId);
 
   const newExpense = { ...expense };

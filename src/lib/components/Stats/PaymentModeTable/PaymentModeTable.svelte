@@ -1,7 +1,17 @@
 <script lang="ts">
-  import { paymentModeOptions } from '$lib/stores/payment-mode/payment-mode.svelte';
+  import { page } from '$app/state';
+  import {
+    getPaymentModeWiseExpense,
+    useStatisticsStore,
+  } from '$lib/stores/statistics/statistics.svelte';
   import StatsTable from '../StatsTable.svelte';
   import Item from './Item.svelte';
+
+  const tripId = page.params.tripId;
+
+  const paymentModes = $derived(
+    getPaymentModeWiseExpense(tripId, useStatisticsStore.startDate, useStatisticsStore.endDate),
+  );
 </script>
 
 <StatsTable title="Payment Mode">
@@ -12,8 +22,8 @@
     </tr>
   </thead>
   <tbody>
-    {#each paymentModeOptions as paymentModeOption (paymentModeOption.value)}
-      <Item data={paymentModeOption} />
+    {#each paymentModes as paymentMode (paymentMode.paymentMode)}
+      <Item data={paymentMode} />
     {/each}
   </tbody>
 </StatsTable>
