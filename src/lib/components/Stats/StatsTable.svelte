@@ -1,27 +1,37 @@
 <script lang="ts">
+  import { useStatisticsStore } from '$lib/stores/statistics/statistics.svelte';
   import type { SvelteComponentProps } from '$lib/types/svelte-component';
+  import ToggleButton from '../ui-framework/Form/ToggleButton.svelte';
   import Card from '../ui-framework/Layout/Card.svelte';
   import StackItem from '../ui-framework/Layout/Stack/StackItem.svelte';
 
   interface StatsTableProps extends SvelteComponentProps {
-    title?: string;
+    title: string;
+    name: string;
   }
 
-  const { title, children }: StatsTableProps = $props();
+  const { title, children, name }: StatsTableProps = $props();
+  const openState = $derived(useStatisticsStore.tableState[name] === false ? false : true);
 </script>
 
 <StackItem>
   <div class="StatsTable">
-    {#if title}
-      <h3>{title}</h3>
+    <h3>
+      {title}
+      <ToggleButton
+        isOpen={openState}
+        onclick={() => useStatisticsStore.updateTableState({ [name]: !openState })}
+      />
+    </h3>
+    {#if openState}
+      <Card>
+        <table class="StatsTable">
+          {#if children}
+            {@render children()}
+          {/if}
+        </table>
+      </Card>
     {/if}
-    <Card>
-      <table class="StatsTable">
-        {#if children}
-          {@render children()}
-        {/if}
-      </table>
-    </Card>
   </div>
 </StackItem>
 
@@ -120,5 +130,8 @@
     margin-top: 0;
     margin-bottom: 8px;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 </style>

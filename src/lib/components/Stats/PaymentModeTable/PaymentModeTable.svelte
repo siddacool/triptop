@@ -14,7 +14,7 @@
   );
 </script>
 
-<StatsTable title="Payment Mode">
+<StatsTable title="Payment Mode" name="paymentMode">
   <thead>
     <tr>
       <th>Name</th>

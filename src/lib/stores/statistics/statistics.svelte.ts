@@ -1,3 +1,4 @@
+import { browser } from '$app/environment';
 import { DateFormats, getMoment } from '$lib/helpers/time';
 import { useBudgetStore } from '../budget/budget.svelte';
 import {
@@ -11,11 +12,33 @@ import type {
   BudgetWiseStatsExpense,
   CategoryWiseStatsExpense,
   PaymentModeWiseStatsExpense,
+  StatsTableState,
 } from './types';
+
+const STATS_TABLE_STATE = 'STATS_TABLE_STATE';
+
+const defaultTableStatsData: StatsTableState = {
+  category: true,
+  paymentMode: true,
+  budget: true,
+};
+
+function getDefaultStatsTableStats() {
+  if (!browser) {
+    return defaultTableStatsData;
+  }
+
+  let values = JSON.parse(localStorage.getItem(STATS_TABLE_STATE) || `{}`);
+
+  values = { ...defaultTableStatsData, ...values };
+
+  return values as StatsTableState;
+}
 
 function createStatisticsStore() {
   let startDate: number | undefined = $state(undefined);
   let endDate: number | undefined = $state(undefined);
+  let tableState: StatsTableState = $state(getDefaultStatsTableStats());
 
   return {
     get startDate() {
@@ -24,12 +47,29 @@ function createStatisticsStore() {
     get endDate() {
       return endDate;
     },
+    get tableState() {
+      return tableState;
+    },
     async updateStartDate(date: number | undefined) {
       startDate = date;
       return Promise.resolve();
     },
     async updateEndDate(date: number | undefined) {
       endDate = date;
+      return Promise.resolve();
+    },
+    async updateTableState(data: StatsTableState) {
+      const newState = {
+        ...tableState,
+        ...data,
+      };
+
+      tableState = newState;
+
+      if (browser) {
+        localStorage.setItem(STATS_TABLE_STATE, JSON.stringify(newState));
+      }
+
       return Promise.resolve();
     },
   };

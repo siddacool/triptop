@@ -17,3 +17,5 @@ export type BudgetWiseStatsExpense = {
   budgetId?: string;
   expenses: Expense[];
 };
+
+export type StatsTableState = Record<string, boolean>;

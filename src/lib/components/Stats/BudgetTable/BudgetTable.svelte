@@ -14,7 +14,7 @@
   );
 </script>
 
-<StatsTable title="Budgets">
+<StatsTable title="Budgets" name="budget">
   <thead>
     <tr>
       <th>Name</th>

@@ -14,7 +14,7 @@
   );
 </script>
 
-<StatsTable title="Category">
+<StatsTable title="Category" name="category">
   <thead>
     <tr>
       <th>Name</th>
