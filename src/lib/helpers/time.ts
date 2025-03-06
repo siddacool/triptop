@@ -21,3 +21,7 @@ export const timeout = (ms: number): Promise<void> =>
 export function newDateStringToYearMonthDay(date: Date | null) {
   return date ? new Date(date)?.toISOString().split('T')[0] : undefined;
 }
+
+export const enum DateFormats {
+  YEAR_FIRST_STANDARD = 'YYYY-MM-DD',
+}

@@ -4,7 +4,7 @@
   import TextInput from '$lib/components/ui-framework/Form/TextInput.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
-  import { getMoment } from '$lib/helpers/time';
+  import { DateFormats, getMoment } from '$lib/helpers/time';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
   import type { TripFormData } from '$lib/stores/trips/types';
 
@@ -19,14 +19,14 @@
   let startDate: string | undefined = $state(
     useTripsStore.data.find((item) => item._id === tripId)?.startDate
       ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.startDate).format(
-          'YYYY-MM-DD',
+          DateFormats.YEAR_FIRST_STANDARD,
         )
       : undefined,
   );
   let endDate: string | undefined = $state(
     useTripsStore.data.find((item) => item._id === tripId)?.endDate
       ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.endDate).format(
-          'YYYY-MM-DD',
+          DateFormats.YEAR_FIRST_STANDARD,
         )
       : undefined,
   );

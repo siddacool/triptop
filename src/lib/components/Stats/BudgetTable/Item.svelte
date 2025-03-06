@@ -3,10 +3,10 @@
   import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
   import { DEFUALT_CURRENCY } from '$lib/stores/currency/currency-codes';
   import { getCurrencyWiseExpense } from '$lib/stores/expense/expense.svelte';
-  import type { PaymentModeWiseStatsExpense } from '$lib/stores/statistics/types';
+  import type { BudgetWiseStatsExpense } from '$lib/stores/statistics/types';
 
   interface ItemProps {
-    data: PaymentModeWiseStatsExpense;
+    data: BudgetWiseStatsExpense;
   }
 
   const { data }: ItemProps = $props();
@@ -15,7 +15,12 @@
 </script>
 
 <tr>
-  <td><PaymentModeFormattedOption paymentMode={data.paymentMode} /></td>
+  <td>
+    <div class="holder">
+      <PaymentModeFormattedOption paymentMode={data.paymentMode} hideLabel />
+      {data.name}
+    </div>
+  </td>
   <td>
     <ul>
       {#if expenseCurrencyWise.length}
@@ -33,4 +38,8 @@
 </tr>
 
 <style lang="scss">
+  .holder {
+    display: flex;
+    align-items: center;
+  }
 </style>

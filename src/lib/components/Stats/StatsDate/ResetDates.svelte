@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getMoment } from '$lib/helpers/time';
+  import { DateFormats, getMoment } from '$lib/helpers/time';
   import { useStatisticsStore } from '$lib/stores/statistics/statistics.svelte';
   import StackItem from '../../ui-framework/Layout/Stack/StackItem.svelte';
   import { getExpenseDateGroups } from '$lib/stores/expense/expense.svelte';
@@ -18,7 +18,7 @@
   const tripStartDate = $derived(
     useTripsStore.data.find((item) => item._id === tripId)?.startDate
       ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.startDate).format(
-          'YYYY-MM-DD',
+          DateFormats.YEAR_FIRST_STANDARD,
         )
       : undefined,
   );
@@ -26,7 +26,7 @@
   const tripEndDate = $derived(
     useTripsStore.data.find((item) => item._id === tripId)?.endDate
       ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.endDate).format(
-          'YYYY-MM-DD',
+          DateFormats.YEAR_FIRST_STANDARD,
         )
       : undefined,
   );
@@ -36,12 +36,29 @@
     expenseGroups[expenseGroups.length - 1] ? expenseGroups[expenseGroups.length - 1] : tripEndDate,
   );
 
+  const statsStartDate = $derived(
+    useStatisticsStore.startDate
+      ? getMoment(useStatisticsStore.startDate).format(DateFormats.YEAR_FIRST_STANDARD)
+      : '',
+  );
+
+  const statsEndDate = $derived(
+    useStatisticsStore.endDate
+      ? getMoment(useStatisticsStore.endDate).format(DateFormats.YEAR_FIRST_STANDARD)
+      : '',
+  );
+
   function onclick() {
-    useStatisticsStore.updateStartDate(getMoment(startDate, 'YYYY-MM-DD').valueOf());
-    useStatisticsStore.updateEndDate(getMoment(endDate, 'YYYY-MM-DD').valueOf());
+    useStatisticsStore.updateStartDate(
+      getMoment(startDate, DateFormats.YEAR_FIRST_STANDARD).valueOf(),
+    );
+
+    useStatisticsStore.updateEndDate(getMoment(endDate, DateFormats.YEAR_FIRST_STANDARD).valueOf());
   }
+
+  const isFullRange = $derived(statsStartDate === startDate && statsEndDate === endDate);
 </script>
 
 <StackItem>
-  <Button name="reset-dates" {onclick}>Reset dates</Button>
+  <Button name="reset-dates" {onclick} disabled={isFullRange}>Reset dates</Button>
 </StackItem>

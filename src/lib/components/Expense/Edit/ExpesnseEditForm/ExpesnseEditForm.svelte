@@ -4,7 +4,7 @@
   import TextInput from '$lib/components/ui-framework/Form/TextInput.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
-  import { getMoment } from '$lib/helpers/time';
+  import { DateFormats, getMoment } from '$lib/helpers/time';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { DEFUALT_CURRENCY } from '$lib/stores/currency/currency-codes';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
@@ -47,7 +47,7 @@
       useExpenseStore.data.find((item) => item._id === expenseId)?.date || getMoment().valueOf(),
     )
       .startOf('day')
-      .format('YYYY-MM-DD'),
+      .format(DateFormats.YEAR_FIRST_STANDARD),
   );
   let dateTime = $state(
     getMoment(

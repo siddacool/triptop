@@ -9,7 +9,7 @@ import {
   type ExpenseFormData,
 } from './types';
 import { DEFUALT_CURRENCY } from '../currency/currency-codes';
-import { getMoment } from '$lib/helpers/time';
+import { DateFormats, getMoment } from '$lib/helpers/time';
 import { useBudgetStore } from '../budget/budget.svelte';
 import type { ExportTripData } from '../trips/types';
 
@@ -267,6 +267,7 @@ export function attachBudgetDetailsToExpense(expense: Expense) {
   if (targetBudget) {
     newExpense.currency = targetBudget.currency;
     newExpense.paymentMode = targetBudget.paymentMode;
+    newExpense.budgetName = targetBudget.name;
   }
 
   return newExpense;
@@ -313,7 +314,7 @@ export function getExpenseDateGroups(tripId: string) {
   const expenses: ExpenseDateGroup[] = [];
 
   targetExpenses.forEach((item) => {
-    const formattedDate = getMoment(item.date).format('YYYY-MM-DD');
+    const formattedDate = getMoment(item.date).format(DateFormats.YEAR_FIRST_STANDARD);
     const targetIndex = expenses.findIndex((item) => item.date === formattedDate);
 
     if (targetIndex < 0) {

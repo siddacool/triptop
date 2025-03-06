@@ -3,10 +3,10 @@
   import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
   import { DEFUALT_CURRENCY } from '$lib/stores/currency/currency-codes';
   import { getCurrencyWiseExpense } from '$lib/stores/expense/expense.svelte';
-  import type { CategoryWiseExpense } from '$lib/stores/statistics/types';
+  import type { CategoryWiseStatsExpense } from '$lib/stores/statistics/types';
 
   interface ItemProps {
-    data: CategoryWiseExpense;
+    data: CategoryWiseStatsExpense;
   }
 
   const { data }: ItemProps = $props();

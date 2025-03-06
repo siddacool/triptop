@@ -4,17 +4,17 @@
   import StartDate from './StartDate.svelte';
   import EndDate from './EndDate.svelte';
   import ResetDates from './ResetDates.svelte';
+  import Total from './Total.svelte';
 </script>
 
 <StackItem>
   <div class="StatsDate">
     <Stack space={2}>
-      <StackItem>
-        <StartDate />
-        <EndDate />
-      </StackItem>
-
+      <StartDate />
+      <EndDate />
       <ResetDates />
+      <StackItem />
+      <Total />
     </Stack>
   </div>
 </StackItem>

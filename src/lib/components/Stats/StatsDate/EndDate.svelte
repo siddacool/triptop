@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getMoment } from '$lib/helpers/time';
+  import { DateFormats, getMoment } from '$lib/helpers/time';
   import { useStatisticsStore } from '$lib/stores/statistics/statistics.svelte';
   import StackItem from '../../ui-framework/Layout/Stack/StackItem.svelte';
   import DateInput from '../../ui-framework/Form/DateInput.svelte';
@@ -20,7 +20,7 @@
   const tripEndDate = $derived(
     useTripsStore.data.find((item) => item._id === tripId)?.endDate
       ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.endDate).format(
-          'YYYY-MM-DD',
+          DateFormats.YEAR_FIRST_STANDARD,
         )
       : undefined,
   );
@@ -32,7 +32,9 @@
   function onchange(e: Event) {
     const element = e.target as HTMLInputElement;
 
-    useStatisticsStore.updateEndDate(getMoment(element.value, 'YYYY-MM-DD').valueOf());
+    useStatisticsStore.updateEndDate(
+      getMoment(element.value, DateFormats.YEAR_FIRST_STANDARD).valueOf(),
+    );
   }
 
   function onClearEndDate() {
@@ -40,7 +42,7 @@
   }
 
   $effect(() => {
-    useStatisticsStore.updateEndDate(getMoment(endDate, 'YYYY-MM-DD').valueOf());
+    useStatisticsStore.updateEndDate(getMoment(endDate, DateFormats.YEAR_FIRST_STANDARD).valueOf());
   });
 </script>
 
@@ -50,11 +52,11 @@
       label="End date"
       name="endDate"
       value={useStatisticsStore.endDate
-        ? getMoment(useStatisticsStore.endDate).format('YYYY-MM-DD')
+        ? getMoment(useStatisticsStore.endDate).format(DateFormats.YEAR_FIRST_STANDARD)
         : undefined}
       {onchange}
       min={useStatisticsStore.startDate
-        ? getMoment(useStatisticsStore.startDate).format('YYYY-MM-DD')
+        ? getMoment(useStatisticsStore.startDate).format(DateFormats.YEAR_FIRST_STANDARD)
         : undefined}
       max={endDate}
     />

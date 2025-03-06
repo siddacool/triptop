@@ -1,4 +1,5 @@
-import { getMoment } from '$lib/helpers/time';
+import { DateFormats, getMoment } from '$lib/helpers/time';
+import { useBudgetStore } from '../budget/budget.svelte';
 import {
   attachBudgetDetailsToExpense,
   categoryOptions,
@@ -6,7 +7,11 @@ import {
 } from '../expense/expense.svelte';
 import { paymentModeOptions } from '../payment-mode/payment-mode.svelte';
 import { PaymentModes } from '../payment-mode/types';
-import type { CategoryWiseExpense, PaymentModeWiseExpense } from './types';
+import type {
+  BudgetWiseStatsExpense,
+  CategoryWiseStatsExpense,
+  PaymentModeWiseStatsExpense,
+} from './types';
 
 function createStatisticsStore() {
   let startDate: number | undefined = $state(undefined);
@@ -32,14 +37,14 @@ function createStatisticsStore() {
 
 export const useStatisticsStore = createStatisticsStore();
 
-export function getCategoryWiseExpense(tripId: string, startDate?: number, endDate?: number) {
+export function getExpenseForDateRange(tripId: string, startDate?: number, endDate?: number) {
   let targetExpenses = useExpenseStore.data.filter((item) => item.tripId === tripId);
 
   if (startDate && !endDate) {
-    const startDateFormatted = getMoment(startDate).format('YYYY-MM-DD');
+    const startDateFormatted = getMoment(startDate).format(DateFormats.YEAR_FIRST_STANDARD);
 
     targetExpenses = targetExpenses.filter(
-      (item) => getMoment(item.date).format('YYYY-MM-DD') === startDateFormatted,
+      (item) => getMoment(item.date).format(DateFormats.YEAR_FIRST_STANDARD) === startDateFormatted,
     );
   } else if (startDate && endDate) {
     const startDateFormatted = getMoment(startDate).startOf('D');
@@ -60,9 +65,15 @@ export function getCategoryWiseExpense(tripId: string, startDate?: number, endDa
     });
   }
 
+  return targetExpenses;
+}
+
+export function getCategoryWiseExpense(tripId: string, startDate?: number, endDate?: number) {
+  let targetExpenses = getExpenseForDateRange(tripId, startDate, endDate);
+
   targetExpenses = targetExpenses.map((item) => attachBudgetDetailsToExpense(item));
 
-  const expenses: CategoryWiseExpense[] = categoryOptions.map((item) =>
+  const expenses: CategoryWiseStatsExpense[] = categoryOptions.map((item) =>
     Object.assign({
       category: item.value,
       expenses: [],
@@ -83,36 +94,11 @@ export function getCategoryWiseExpense(tripId: string, startDate?: number, endDa
 }
 
 export function getPaymentModeWiseExpense(tripId: string, startDate?: number, endDate?: number) {
-  let targetExpenses = useExpenseStore.data.filter((item) => item.tripId === tripId);
-
-  if (startDate && !endDate) {
-    const startDateFormatted = getMoment(startDate).format('YYYY-MM-DD');
-
-    targetExpenses = targetExpenses.filter(
-      (item) => getMoment(item.date).format('YYYY-MM-DD') === startDateFormatted,
-    );
-  } else if (startDate && endDate) {
-    const startDateFormatted = getMoment(startDate).startOf('D');
-    const endDateFormatted = getMoment(endDate).startOf('D');
-
-    targetExpenses = targetExpenses.filter((item) => {
-      const itemDateFormatted = getMoment(item.date).startOf('D');
-
-      if (itemDateFormatted.isBefore(startDateFormatted)) {
-        return false;
-      }
-
-      if (itemDateFormatted.isAfter(endDateFormatted)) {
-        return false;
-      }
-
-      return true;
-    });
-  }
+  let targetExpenses = getExpenseForDateRange(tripId, startDate, endDate);
 
   targetExpenses = targetExpenses.map((item) => attachBudgetDetailsToExpense(item));
 
-  const expenses: PaymentModeWiseExpense[] = paymentModeOptions.map((item) =>
+  const expenses: PaymentModeWiseStatsExpense[] = paymentModeOptions.map((item) =>
     Object.assign({
       paymentMode: item.value,
       expenses: [],
@@ -125,6 +111,52 @@ export function getPaymentModeWiseExpense(tripId: string, startDate?: number, en
     const targetIndex = expenses.findIndex(
       (item) => (item.paymentMode || PaymentModes.CASH) === itemPaymentMode,
     );
+
+    if (targetIndex >= 0) {
+      expenses[targetIndex].expenses.push(item);
+    }
+  });
+
+  return expenses;
+}
+
+export function getBudgetWiseExpense(tripId: string, startDate?: number, endDate?: number) {
+  let targetExpenses = getExpenseForDateRange(tripId, startDate, endDate);
+
+  targetExpenses = targetExpenses.map((item) => attachBudgetDetailsToExpense(item));
+
+  const budgets = useBudgetStore.data.filter((item) => item.tripId === tripId);
+
+  const expenses: BudgetWiseStatsExpense[] = budgets.map((item) =>
+    Object.assign({
+      name: item.name,
+      budgetId: item._id,
+      expenses: [],
+      paymentMode: item.paymentMode,
+    }),
+  );
+
+  expenses.push(
+    ...[
+      {
+        name: 'Other - Cash',
+        expenses: [],
+        paymentMode: PaymentModes.CASH,
+      },
+      {
+        name: 'Other - Card',
+        expenses: [],
+        paymentMode: PaymentModes.CARD,
+      },
+    ],
+  );
+
+  targetExpenses.forEach((item) => {
+    const itemBudgetName = item.budgetName
+      ? item.budgetName
+      : `Other - ${item.paymentMode === PaymentModes.CARD ? 'Card' : 'Card'}`;
+
+    const targetIndex = expenses.findIndex((item) => item.name === itemBudgetName);
 
     if (targetIndex >= 0) {
       expenses[targetIndex].expenses.push(item);

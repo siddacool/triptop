@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getMoment } from '$lib/helpers/time';
+  import { DateFormats, getMoment } from '$lib/helpers/time';
   import Icon from '@iconify/svelte';
   import ErrorMessage from './shared/ErrorMessage.svelte';
   import FormLabel from './shared/FormLabel.svelte';
@@ -77,7 +77,7 @@
     onblur={() => (active = false)}
   >
     {#if value}
-      {getMoment(value, 'YYYY-MM-DD').format('MMM D, YYYY')}
+      {getMoment(value, DateFormats.YEAR_FIRST_STANDARD).format('MMM D, YYYY')}
     {:else}
       <div class="placeholder">{placeholder}</div>
     {/if}

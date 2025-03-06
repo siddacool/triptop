@@ -26,6 +26,7 @@ export interface Expense {
   amount: number;
   tripId: string;
   budgetId?: string;
+  budgetName?: string;
   category?: Category;
   date: number;
 

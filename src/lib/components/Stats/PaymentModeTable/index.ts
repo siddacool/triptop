@@ -1,3 +1,3 @@
-import CategoryTable from './PaymentModeTable.svelte';
+import PaymentModeTable from './PaymentModeTable.svelte';
 
-export default CategoryTable;
+export default PaymentModeTable;
