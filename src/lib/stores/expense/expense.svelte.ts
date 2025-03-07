@@ -308,9 +308,7 @@ export function getExpenseUsedBudget(budgetId: string) {
   return budgetUsed;
 }
 
-export function getExpenseDateGroups(tripId: string) {
-  const targetExpenses = useExpenseStore.data.filter((item) => item.tripId === tripId);
-
+export function filterExpenseByDateGroups(targetExpenses: Expense[]) {
   const expenses: ExpenseDateGroup[] = [];
 
   targetExpenses.forEach((item) => {
@@ -326,6 +324,14 @@ export function getExpenseDateGroups(tripId: string) {
       expenses[targetIndex].expenses.push(item);
     }
   });
+
+  return expenses;
+}
+
+export function getExpenseDateGroups(tripId: string) {
+  const targetExpenses = useExpenseStore.data.filter((item) => item.tripId === tripId);
+
+  const expenses: ExpenseDateGroup[] = filterExpenseByDateGroups(targetExpenses);
 
   return expenses;
 }

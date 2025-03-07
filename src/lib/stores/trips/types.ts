@@ -1,5 +1,6 @@
 import type { Budget } from '../budget/types';
-import type { Expense } from '../expense/types';
+import type { Category, Expense } from '../expense/types';
+import type { PaymentModes } from '../payment-mode/types';
 
 export interface Trip {
   id?: number;
@@ -24,4 +25,12 @@ export type ExportTripData = {
   expense: Expense[];
   budget: Budget[];
   exportedAt: Date;
+};
+
+export type TripFilters = {
+  searchTerm?: string;
+  paymentMode?: PaymentModes[];
+  category?: (Category | 'misc')[];
+  budget?: string[];
+  currency?: string[];
 };
