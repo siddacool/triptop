@@ -4,12 +4,12 @@
   import StartDate from './StartDate.svelte';
   import EndDate from './EndDate.svelte';
   import ResetDates from './ResetDates.svelte';
-  import Accordian from '$lib/components/ui-framework/Layout/Accordian.svelte';
   import { useStatisticsStore } from '$lib/stores/statistics/statistics.svelte';
   import { page } from '$app/state';
   import { getExpenseDateGroups } from '$lib/stores/expense/expense.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
   import { DateFormats, getMoment } from '$lib/helpers/time';
+  import Filter from '$lib/components/Filter.svelte';
 
   const tripId = page.params.tripId;
 
@@ -56,31 +56,15 @@
 </script>
 
 <StackItem>
-  <Accordian
-    title="Filters"
+  <Filter
     open={useStatisticsStore.tableFiltersPanel}
     onclick={useStatisticsStore.toggleTableFiltersPanel}
+    isFilter={!isFullRange}
   >
     <Stack space={2}>
       <StartDate />
       <EndDate />
       <ResetDates />
     </Stack>
-
-    {#snippet headerContent()}
-      {#if !isFullRange}
-        <span class="filterActive"> </span>
-      {/if}
-    {/snippet}
-  </Accordian>
+  </Filter>
 </StackItem>
-
-<style lang="scss">
-  .filterActive {
-    display: inline-flex;
-    width: 10px;
-    height: 10px;
-    background-color: var(--color-danger-800);
-    border-radius: 50%;
-  }
-</style>

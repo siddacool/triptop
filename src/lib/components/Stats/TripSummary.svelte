@@ -106,7 +106,7 @@
 
   h3 {
     margin: 0;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
     font-size: 1.1rem;
     font-weight: 500;
     text-align: left;
@@ -125,7 +125,7 @@
 
   h4 {
     margin: 0;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     font-size: 1rem;
     font-weight: 600;
     text-align: left;

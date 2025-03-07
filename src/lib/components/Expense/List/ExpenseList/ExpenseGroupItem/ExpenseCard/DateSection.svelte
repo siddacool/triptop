@@ -38,6 +38,7 @@
       height: 24px;
       font-size: 1.1rem;
       opacity: 0.6;
+      margin: 0;
     }
 
     .date {
@@ -46,6 +47,8 @@
       font-size: 0.9rem;
       font-weight: 400;
       color: var(--color-grey-font-500);
+      width: 84px;
+      justify-content: flex-end;
 
       :global(.Icon) {
         margin-right: 4px;
