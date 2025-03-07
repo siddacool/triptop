@@ -55,6 +55,7 @@
 
     :global(.Button.toggle) {
       color: var(--color-grey-font-800);
+      padding-right: 12px;
     }
   }
 
