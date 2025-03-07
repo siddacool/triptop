@@ -17,6 +17,8 @@ import type {
 
 const STATS_TABLE_STATE = 'STATS_TABLE_STATE';
 
+const STATS_TABLE_FILTERS_PANEL = 'STATS_TABLE_FILTERS_PANEL';
+
 const defaultTableStatsData: StatsTableState = {
   category: true,
   paymentMode: true,
@@ -35,10 +37,21 @@ function getDefaultStatsTableStats() {
   return values as StatsTableState;
 }
 
+function getDefaultStatsTableFiltersPanel() {
+  if (!browser) {
+    return true;
+  }
+
+  const value = localStorage.getItem(STATS_TABLE_FILTERS_PANEL) === 'false' ? false : true;
+
+  return value;
+}
+
 function createStatisticsStore() {
   let startDate: number | undefined = $state(undefined);
   let endDate: number | undefined = $state(undefined);
   let tableState: StatsTableState = $state(getDefaultStatsTableStats());
+  let tableFiltersPanel: boolean = $state(getDefaultStatsTableFiltersPanel());
 
   return {
     get startDate() {
@@ -49,6 +62,9 @@ function createStatisticsStore() {
     },
     get tableState() {
       return tableState;
+    },
+    get tableFiltersPanel() {
+      return tableFiltersPanel;
     },
     async updateStartDate(date: number | undefined) {
       startDate = date;
@@ -68,6 +84,16 @@ function createStatisticsStore() {
 
       if (browser) {
         localStorage.setItem(STATS_TABLE_STATE, JSON.stringify(newState));
+      }
+
+      return Promise.resolve();
+    },
+    async toggleTableFiltersPanel() {
+      const newState = !tableFiltersPanel;
+      tableFiltersPanel = newState;
+
+      if (browser) {
+        localStorage.setItem(STATS_TABLE_FILTERS_PANEL, newState ? 'true' : 'false');
       }
 
       return Promise.resolve();

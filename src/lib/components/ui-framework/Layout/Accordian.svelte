@@ -2,6 +2,7 @@
   import type { SvelteComponentProps } from '$lib/types/svelte-component';
   import type { Snippet } from 'svelte';
   import Icon from '@iconify/svelte';
+  import Button from '../Form/Button.svelte';
 
   interface AccordianProps extends SvelteComponentProps {
     onclick?: (e: MouseEvent) => void;
@@ -23,7 +24,7 @@
 
 <div class={`Accordian ${className}`}>
   <div class="title">
-    <button {onclick}>
+    <Button variant="inert" {onclick} compact class="toggle">
       {#if open}
         <Icon icon="material-symbols:arrow-drop-up-rounded" />
       {:else}
@@ -31,18 +32,17 @@
       {/if}
 
       {title}
-    </button>
-    {#if headerContent}
-      <div class="headerContent">
-        {#if headerContent}
-          {@render headerContent()}
-        {/if}
-      </div>
-    {/if}
+    </Button>
+
+    <div class="headerContent">
+      {#if headerContent}
+        {@render headerContent()}
+      {/if}
+    </div>
   </div>
 
-  {#if open && children}
-    <div class="content">
+  {#if children}
+    <div class="content" class:open>
       {@render children()}
     </div>
   {/if}
@@ -50,7 +50,12 @@
 
 <style lang="scss">
   .Accordian {
-    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+
+    :global(.Button.toggle) {
+      color: var(--color-grey-font-800);
+    }
   }
 
   .headerContent {
@@ -63,37 +68,15 @@
   .content {
     padding-top: 8px;
     padding-bottom: 8px;
+    display: none;
+
+    &.open {
+      display: block;
+    }
   }
 
   .title {
     display: flex;
-  }
-
-  button {
-    cursor: pointer;
-    flex: 1;
-    overflow: hidden;
-    white-space: pre;
-    text-overflow: ellipsis;
-    font-size: 0.9rem;
-    height: 40px;
-    display: flex;
     align-items: center;
-    background-color: transparent;
-    border: 0;
-    color: inherit;
-    font-family: inherit;
-    font-weight: 500;
-    padding: 0;
-    margin: 0;
-    color: var(--color-grey-font-700);
-
-    &:hover {
-      color: var(--color-primary-600);
-    }
-
-    :global(svg) {
-      font-size: 1.8rem;
-    }
   }
 </style>

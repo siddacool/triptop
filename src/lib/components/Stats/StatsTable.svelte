@@ -1,7 +1,7 @@
 <script lang="ts">
   import { useStatisticsStore } from '$lib/stores/statistics/statistics.svelte';
   import type { SvelteComponentProps } from '$lib/types/svelte-component';
-  import ToggleButton from '../ui-framework/Form/ToggleButton.svelte';
+  import Accordian from '../ui-framework/Layout/Accordian.svelte';
   import Card from '../ui-framework/Layout/Card.svelte';
   import StackItem from '../ui-framework/Layout/Stack/StackItem.svelte';
 
@@ -16,14 +16,11 @@
 
 <StackItem>
   <div class="StatsTable">
-    <h3>
+    <Accordian
       {title}
-      <ToggleButton
-        isOpen={openState}
-        onclick={() => useStatisticsStore.updateTableState({ [name]: !openState })}
-      />
-    </h3>
-    {#if openState}
+      open={openState}
+      onclick={() => useStatisticsStore.updateTableState({ [name]: !openState })}
+    >
       <Card>
         <table class="StatsTable">
           {#if children}
@@ -31,7 +28,7 @@
           {/if}
         </table>
       </Card>
-    {/if}
+    </Accordian>
   </div>
 </StackItem>
 
@@ -42,6 +39,11 @@
       padding-right: 0;
       overflow: hidden;
       padding-bottom: 0;
+    }
+
+    :global(.Button.toggle) {
+      font-size: 1.2rem;
+      font-weight: 500;
     }
 
     table {
@@ -124,14 +126,5 @@
         font-weight: 500;
       }
     }
-  }
-
-  h3 {
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
   }
 </style>
