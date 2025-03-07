@@ -47,6 +47,7 @@ function createTripsStore() {
         mounted = true;
       }
     },
+
     async add(tripFormData: TripFormData) {
       try {
         fetching = true;
