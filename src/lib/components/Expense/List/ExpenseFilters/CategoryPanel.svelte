@@ -21,7 +21,11 @@
   }
 </script>
 
-<PanelItem title="Category">
+<PanelItem
+  title="Category"
+  onClear={() => useTripsFilterStore.updateFilters({ category: undefined })}
+  disabledClear={useTripsFilterStore.filters.category?.length ? false : true}
+>
   {#each categoryOptions as categoryOption (categoryOption.value)}
     <TagCheckbox
       name={categoryOption.value || 'misc'}
@@ -32,6 +36,3 @@
     </TagCheckbox>
   {/each}
 </PanelItem>
-
-<style lang="scss">
-</style>

@@ -36,7 +36,7 @@
 
     section {
       display: flex;
-      background-color: var(--color-grey-200);
+      background-color: var(--color-primary-100);
       padding: 0 14px;
       border-radius: 20px;
       height: 40px;
@@ -44,6 +44,7 @@
       cursor: pointer;
       user-select: none;
       transition: background-color 100ms;
+      border: 1px solid transparent;
     }
 
     input {
@@ -52,6 +53,7 @@
       z-index: -200;
       &:checked + section {
         background-color: var(--color-primary-200);
+        border-color: var(--color-primary-600);
       }
     }
   }

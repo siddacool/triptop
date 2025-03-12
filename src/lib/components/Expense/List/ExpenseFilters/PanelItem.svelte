@@ -1,13 +1,16 @@
 <script lang="ts">
   import TagCheckboxGroup from '$lib/components/ui-framework/Form/TagCheckboxGroup/TagCheckboxGroup.svelte';
+  import TagClear from '$lib/components/ui-framework/Form/TagClear.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import type { SvelteComponentProps } from '$lib/types/svelte-component';
 
   interface PanelItemProps extends SvelteComponentProps {
     title: string;
+    onClear?: () => void;
+    disabledClear?: boolean;
   }
 
-  const { children, title }: PanelItemProps = $props();
+  const { children, title, onClear, disabledClear = false }: PanelItemProps = $props();
 </script>
 
 <StackItem>
@@ -16,6 +19,7 @@
     {#if children}
       <TagCheckboxGroup>
         {@render children()}
+        <TagClear title="Clear" onclick={onClear} disabled={disabledClear} />
       </TagCheckboxGroup>
     {/if}
   </div>
