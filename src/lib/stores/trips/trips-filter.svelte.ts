@@ -12,7 +12,7 @@ function getDefaultTripExpenseFiltersPanel() {
     return true;
   }
 
-  const value = localStorage.getItem(TRIP_EXPENSE_FILTERS_PANEL) === 'false' ? false : true;
+  const value = localStorage.getItem(TRIP_EXPENSE_FILTERS_PANEL) === 'true' ? true : false;
 
   return value;
 }

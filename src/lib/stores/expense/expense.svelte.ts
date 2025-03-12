@@ -370,3 +370,23 @@ export function getExpenseWithBudgetDetails(expensesList: Expense[]) {
 
   return targetExpenses;
 }
+
+export function getUniqueCurrency(expensesList: Expense[]) {
+  const currenciesAll = getExpenseWithBudgetDetails(expensesList).map(
+    (item) => item.currency || DEFUALT_CURRENCY.alphabeticCode,
+  );
+
+  const currencies: string[] = [];
+
+  for (let index = 0; index < currenciesAll.length; index++) {
+    const element = currenciesAll[index];
+
+    if (currencies.includes(element)) {
+      continue;
+    }
+
+    currencies.push(element);
+  }
+
+  return currencies.sort();
+}

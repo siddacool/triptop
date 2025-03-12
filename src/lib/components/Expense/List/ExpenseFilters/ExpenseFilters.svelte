@@ -4,8 +4,11 @@
   import { Stack } from '$lib/components/ui-framework/Layout/Stack';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { useTripsFilterStore } from '$lib/stores/trips/trips-filter.svelte';
+  import BudgetPanel from './BudgetPanel.svelte';
   import CategoryPanel from './CategoryPanel.svelte';
   import ClearFilters from './ClearFilters.svelte';
+  import CurrencyPanel from './CurrencyPanel.svelte';
+  import PaymentModePanel from './PaymentModePanel.svelte';
 </script>
 
 <StackItem>
@@ -18,6 +21,9 @@
       <Card>
         <Stack space={2}>
           <CategoryPanel />
+          <PaymentModePanel />
+          <BudgetPanel />
+          <CurrencyPanel />
           <StackItem />
           <ClearFilters />
         </Stack>
