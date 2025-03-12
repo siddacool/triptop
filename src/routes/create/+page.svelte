@@ -19,7 +19,7 @@
 
 <title>Create a new trip</title>
 
-<PageHeader title="Create a new trip" backTo={`/`} />
+<PageHeader title="Create a new trip" backTo="/" />
 
 <Stack space={4}>
   <TripEditForm {onSave} />
