@@ -31,7 +31,7 @@
     margin: 6px;
     border: 0;
     outline: 0;
-    width: 80px;
+    width: 60px;
     justify-content: center;
     font-size: 1.2rem;
 
