@@ -6,6 +6,7 @@ import { PaymentModes } from '../payment-mode/types';
 import type { TripFilters } from './types';
 
 const TRIP_EXPENSE_FILTERS_PANEL = 'TRIP_EXPENSE_FILTERS_PANEL';
+const TRIP_EXPENSE_FILTERS = 'TRIP_EXPENSE_FILTERS';
 
 function getDefaultTripExpenseFiltersPanel() {
   if (!browser) {
@@ -17,10 +18,20 @@ function getDefaultTripExpenseFiltersPanel() {
   return value;
 }
 
+function getDefaultTripExpenseFilters(): TripFilters {
+  if (!browser) {
+    return {};
+  }
+
+  const value = JSON.parse(sessionStorage.getItem(TRIP_EXPENSE_FILTERS) || `{}`) as TripFilters;
+
+  return value;
+}
+
 function createTripsFilterStore() {
   let open: boolean = $state(getDefaultTripExpenseFiltersPanel());
   let updatedAt: number = $state(Date.now());
-  let filters: TripFilters = $state({});
+  let filters: TripFilters = $state(getDefaultTripExpenseFilters());
 
   return {
     get open() {
@@ -30,10 +41,6 @@ function createTripsFilterStore() {
       return filters;
     },
     get isFilters() {
-      if (this.filters.searchTerm?.trim()) {
-        return true;
-      }
-
       if (this.filters.budget?.length) {
         return true;
       }
@@ -66,17 +73,31 @@ function createTripsFilterStore() {
       return Promise.resolve();
     },
     async updateFilters(data: Partial<TripFilters>) {
-      filters = {
+      const newData: TripFilters = {
         ...filters,
         ...data,
       };
+
+      filters = { ...newData };
+
+      if (browser) {
+        sessionStorage.setItem(TRIP_EXPENSE_FILTERS, JSON.stringify(newData));
+      }
 
       updatedAt = Date.now();
 
       return Promise.resolve();
     },
     async clearFilters() {
-      filters = {};
+      const newData: TripFilters = {
+        searchTerm: filters.searchTerm,
+      };
+
+      filters = { ...newData };
+
+      if (browser) {
+        sessionStorage.setItem(TRIP_EXPENSE_FILTERS, JSON.stringify(newData));
+      }
 
       updatedAt = Date.now();
 
