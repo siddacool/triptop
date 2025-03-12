@@ -20,7 +20,7 @@
     <ul>
       <ul>
         {#if expenseCurrencyWise.length}
-          {#each expenseCurrencyWise as item}
+          {#each expenseCurrencyWise as item (item.currency)}
             <li>
               {item.currency || DEFUALT_CURRENCY.alphabeticCode}
               <FormattedCurrency value={item.total || 0} currency={item.currency} />
