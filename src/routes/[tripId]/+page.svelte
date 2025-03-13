@@ -9,6 +9,7 @@
   import AnchorButton from '$lib/components/ui-framework/Form/AnchorButton.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
+  import { useTripsFilterStore } from '$lib/stores/trips/trips-filter.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
   import Icon from '@iconify/svelte';
 
@@ -25,6 +26,7 @@
   beforeNavigate((val) => {
     if (val.to?.route?.id === '/') {
       useLocalSettingsStore.resetLastOpenTrip();
+      useTripsFilterStore.clearAllFilters();
     }
   });
 </script>

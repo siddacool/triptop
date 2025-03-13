@@ -103,6 +103,17 @@ function createTripsFilterStore() {
 
       return Promise.resolve();
     },
+    async clearAllFilters() {
+      filters = {};
+
+      if (browser) {
+        sessionStorage.removeItem(TRIP_EXPENSE_FILTERS);
+      }
+
+      updatedAt = Date.now();
+
+      return Promise.resolve();
+    },
   };
 }
 
