@@ -136,6 +136,7 @@
     width: 100%;
     font-family: inherit;
     color: var(--color-black-pure);
+    height: var(--size-ui-element-input-height);
 
     &::-webkit-input-placeholder {
       /* Chrome */
