@@ -36,8 +36,6 @@
 
 <title>Edit expense: {name}</title>
 
-<meta name="description" content="Expense Edit" />
-
 <PageHeader title={`Edit expense: ${name}`} backTo={`/${tripId}/${expenseId}`} />
 
 <Stack space={4}>

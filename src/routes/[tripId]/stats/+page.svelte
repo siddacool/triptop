@@ -16,7 +16,6 @@
 </script>
 
 <title>Statistics: {name}</title>
-<meta name="description" content="Trip Statistics" />
 
 <PageHeader title={name} backTo={`/${tripId}`} />
 

@@ -15,8 +15,6 @@
 
 <title>{name}</title>
 
-<meta name="description" content="Expense details" />
-
 <PageHeader title="Expense details" backTo={`/${tripId}`}>
   <AnchorButton compact href={`/${tripId}/${expenseId}/edit`} ariaLabel="Edit Expense">
     <Icon icon="material-symbols:edit" />

@@ -18,7 +18,6 @@
 </script>
 
 <title>Create a new trip</title>
-<meta name="description" content="Create a new trip using the following form" />
 
 <PageHeader title="Create a new trip" backTo="/" />
 
