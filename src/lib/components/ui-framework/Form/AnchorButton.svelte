@@ -10,6 +10,7 @@
     class?: string;
     href?: string;
     target?: string;
+    ariaLabel?: string;
   }
 
   const {
@@ -21,6 +22,7 @@
     class: className = '',
     href,
     target,
+    ariaLabel,
   }: AnchorButtonProps = $props();
 </script>
 
@@ -30,6 +32,7 @@
   {title}
   {href}
   {target}
+  aria-label={ariaLabel}
 >
   {#if children}
     {@render children()}

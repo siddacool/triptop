@@ -15,8 +15,10 @@
 
 <title>{name}</title>
 
+<meta name="description" content="Budget details" />
+
 <PageHeader title="Budget details" backTo={`/${tripId}/budget`}>
-  <AnchorButton compact href={`/${tripId}/budget/${budgetId}/edit`}>
+  <AnchorButton compact href={`/${tripId}/budget/${budgetId}/edit`} ariaLabel="Edit Budget">
     <Icon icon="material-symbols:edit" />
   </AnchorButton>
 </PageHeader>

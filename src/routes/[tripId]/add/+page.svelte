@@ -28,6 +28,8 @@
 
 <title>Add expense: {name}</title>
 
+<meta name="description" content="Add a new expense" />
+
 <PageHeader title={`Add expense: ${name}`} backTo={`/${tripId}`} />
 
 <Stack space={4}>

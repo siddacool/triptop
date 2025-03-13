@@ -20,6 +20,7 @@
 </script>
 
 <title>Triptop - Travel budgeting app</title>
+<meta name="description" content="Travel budgeting app" />
 
 <Header />
 

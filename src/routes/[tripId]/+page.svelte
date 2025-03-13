@@ -32,9 +32,10 @@
 </script>
 
 <title>{targetTrip?.name || ''}</title>
+<meta name="description" content="Trip details page" />
 
 <PageHeader title={targetTrip?.name || ''} backTo="/">
-  <AnchorButton compact href={`/${tripId}/edit`}>
+  <AnchorButton compact href={`/${tripId}/edit`} ariaLabel="Edit Trip">
     <Icon icon="material-symbols:edit" />
   </AnchorButton>
 </PageHeader>

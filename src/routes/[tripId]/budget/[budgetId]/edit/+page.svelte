@@ -35,6 +35,7 @@
 </script>
 
 <title>Edit budget: {name}</title>
+<meta name="description" content="Edit Budget" />
 
 <PageHeader title={`Edit budget: ${name}`} backTo={`/${tripId}/budget/${budgetId}`} />
 

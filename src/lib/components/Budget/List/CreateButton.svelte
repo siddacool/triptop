@@ -9,7 +9,7 @@
 
 <StackItem>
   <div>
-    <AnchorButton variant="primary" compact href={`/${tripId}/budget/add`}>
+    <AnchorButton variant="primary" compact href={`/${tripId}/budget/add`} ariaLabel="Add Budget">
       <Icon icon="material-symbols:add" />
     </AnchorButton>
   </div>

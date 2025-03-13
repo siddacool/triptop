@@ -6,7 +6,7 @@
 
 <StackItem>
   <div>
-    <AnchorButton variant="primary" compact href="/create">
+    <AnchorButton variant="primary" compact href="/create" ariaLabel="Create Trip">
       <Icon icon="material-symbols:add" />
     </AnchorButton>
   </div>

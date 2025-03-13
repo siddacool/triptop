@@ -15,7 +15,13 @@
 <header class={`PageHeader ${className}`}>
   <section>
     {#if backTo}
-      <AnchorButton href={backTo} compact variant="inert" class="BackButton">
+      <AnchorButton
+        href={backTo}
+        compact
+        variant="inert"
+        class="BackButton"
+        ariaLabel="Back button"
+      >
         <Icon icon="lets-icons:back" />
       </AnchorButton>
     {/if}

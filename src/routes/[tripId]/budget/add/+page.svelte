@@ -23,6 +23,7 @@
 </script>
 
 <title>Add budget: {name}</title>
+<meta name="description" content="Add budget" />
 
 <PageHeader title={`Add budget: ${name}`} backTo={`/${tripId}`} />
 

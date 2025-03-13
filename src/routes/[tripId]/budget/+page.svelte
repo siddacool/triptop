@@ -12,6 +12,7 @@
 </script>
 
 <title>Budget: {targetTrip?.name || ''}</title>
+<meta name="description" content="Trip Budget" />
 
 <PageHeader title={`Budget: ${targetTrip?.name || ''}`} backTo="/" />
 

@@ -36,6 +36,7 @@
 </script>
 
 <title>Edit: {name}</title>
+<meta name="description" content="Trip Edit" />
 
 <PageHeader title={`Edit: ${name}`} backTo={`/${tripId}`} />
 
