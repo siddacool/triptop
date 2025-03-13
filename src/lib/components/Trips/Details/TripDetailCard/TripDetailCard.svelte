@@ -15,6 +15,7 @@
       class="cardToggleButton"
       onclick={() => useLocalSettingsStore.toggleTripDetailCardOpen()}
       isOpen={useLocalSettingsStore.tripDetailCardOpen}
+      title="Toggle trip details"
     />
     <Card>
       <TotalExpense />
