@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { getTripById } from '$lib/api/trips';
   import CreateButton from '$lib/components/Trips/List/CreateButton.svelte';
   import Header from '$lib/components/Trips/List/Header.svelte';
   import ImportTrip from '$lib/components/Trips/List/ImportTrip.svelte';
@@ -15,7 +16,21 @@
   $effect(() => {
     async function fetchData() {
       try {
-        await useTripsStore.init();
+        const lastOpenTrip = useLocalSettingsStore.lastOpenTrip;
+
+        if (!lastOpenTrip) {
+          await useTripsStore.init();
+          return;
+        }
+
+        const targetTrip = await getTripById(lastOpenTrip);
+
+        if (!targetTrip) {
+          await useTripsStore.init();
+          return;
+        }
+
+        goto(`/${useLocalSettingsStore.lastOpenTrip}`);
       } catch (e) {
         console.log(e);
       }
@@ -23,25 +38,14 @@
 
     fetchData();
   });
-
-  $effect(() => {
-    const isTrip = useTripsStore.data.some(
-      (item) => item._id === useLocalSettingsStore.lastOpenTrip,
-    );
-
-    if (isTrip) {
-      goto(`/${useLocalSettingsStore.lastOpenTrip}`);
-    }
-  });
 </script>
 
 <title>Triptop - Travel budgeting app</title>
 
-<Header />
-
 {#if fetching}
   <p>Loading...</p>
 {:else if mounted}
+  <Header />
   <Stack space={4}>
     <CreateButton />
     <TripList />
