@@ -5,29 +5,24 @@
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { DateFormats, getMoment } from '$lib/helpers/time';
-  import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import { useTripByIdStore } from '$lib/stores/trips/trip-by-id.svelte';
   import type { TripFormData } from '$lib/stores/trips/types';
 
   interface Props {
-    tripId?: string;
     onSave: (data: TripFormData) => Promise<void>;
   }
 
-  const { tripId, onSave }: Props = $props();
+  const { onSave }: Props = $props();
 
-  let name = $state(useTripsStore.data.find((item) => item._id === tripId)?.name || '');
+  let name = $state(useTripByIdStore.data?.name || '');
   let startDate: string | undefined = $state(
-    useTripsStore.data.find((item) => item._id === tripId)?.startDate
-      ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.startDate).format(
-          DateFormats.YEAR_FIRST_STANDARD,
-        )
+    useTripByIdStore.data?.startDate
+      ? getMoment(useTripByIdStore.data?.startDate).format(DateFormats.YEAR_FIRST_STANDARD)
       : undefined,
   );
   let endDate: string | undefined = $state(
-    useTripsStore.data.find((item) => item._id === tripId)?.endDate
-      ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.endDate).format(
-          DateFormats.YEAR_FIRST_STANDARD,
-        )
+    useTripByIdStore.data?.endDate
+      ? getMoment(useTripByIdStore.data?.endDate).format(DateFormats.YEAR_FIRST_STANDARD)
       : undefined,
   );
 

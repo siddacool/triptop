@@ -8,11 +8,11 @@
   import TripSummary from '$lib/components/Stats/TripSummary.svelte';
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
-  import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import { useTripByIdStore } from '$lib/stores/trips/trip-by-id.svelte';
 
   const tripId = page.params.tripId;
 
-  const name = $derived(useTripsStore.data.find((item) => item._id === tripId)?.name || '');
+  const name = $derived(useTripByIdStore.data?.name || '');
 </script>
 
 <title>Statistics: {name}</title>

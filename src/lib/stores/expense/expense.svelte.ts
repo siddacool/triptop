@@ -1,5 +1,4 @@
-import { nanoid } from 'nanoid';
-import { db } from '../db';
+import { db } from '../../db';
 import {
   Category,
   type CategoryOption,
@@ -12,16 +11,14 @@ import { DEFUALT_CURRENCY } from '../currency/currency-codes';
 import { DateFormats, getMoment } from '$lib/helpers/time';
 import { useBudgetStore } from '../budget/budget.svelte';
 import type { ExportTripData } from '../trips/types';
-
-async function getExpense(idToFind: string) {
-  try {
-    const trip = await db.expense.where({ _id: idToFind }).first();
-
-    return Promise.resolve(trip);
-  } catch (error) {
-    return Promise.reject(error);
-  }
-}
+import {
+  addExpense,
+  bulkDeleteExpense,
+  deleteExpense,
+  getTripExpenses,
+  importExpense,
+  updateExpense,
+} from '$lib/api/expenses';
 
 export const categoryOptions: CategoryOption[] = [
   {
@@ -77,13 +74,11 @@ function createExpenseStore() {
     get mounted() {
       return mounted;
     },
-    async init() {
+    async init(targetTripId: string) {
       try {
         fetching = true;
 
-        const unordered = await db.expense?.toArray();
-
-        data = unordered?.sort((a, b) => b?.date - a?.date);
+        data = await getTripExpenses(targetTripId);
 
         return Promise.resolve();
       } catch (e) {
@@ -99,22 +94,7 @@ function createExpenseStore() {
       try {
         fetching = true;
 
-        await db.expense.add({
-          _id: expenseFormData._id ? expenseFormData._id : nanoid(),
-          name: expenseFormData.name.trim(),
-          createdAt: Date.now(),
-          updatedAt: Date.now(),
-          amount: expenseFormData.amount,
-          tripId: tripId,
-          budgetId: expenseFormData.budgetId,
-          category: expenseFormData.category,
-          date: expenseFormData.date,
-          paymentMode: expenseFormData.paymentMode,
-        });
-
-        const unordered = await db.expense?.toArray();
-
-        data = unordered?.sort((a, b) => b?.date - a?.date);
+        data = await addExpense(tripId, expenseFormData);
 
         return Promise.resolve();
       } catch (e) {
@@ -129,25 +109,7 @@ function createExpenseStore() {
       try {
         fetching = true;
 
-        const target = await getExpense(idToUpdate);
-
-        if (!target) {
-          throw Error('Expense:update: expense is missing');
-        }
-
-        await db.expense.update(target.id, {
-          name: expenseFormData.name.trim(),
-          amount: expenseFormData.amount,
-          updatedAt: Date.now(),
-          date: expenseFormData.date,
-          category: expenseFormData.category,
-          budgetId: expenseFormData.budgetId,
-          paymentMode: expenseFormData.paymentMode,
-        });
-
-        const unordered = await db.expense?.toArray();
-
-        data = unordered?.sort((a, b) => b?.date - a?.date);
+        data = await updateExpense(idToUpdate, expenseFormData);
 
         return Promise.resolve();
       } catch (e) {
@@ -162,17 +124,7 @@ function createExpenseStore() {
       try {
         fetching = true;
 
-        const target = await getExpense(idToDelete);
-
-        if (!target) {
-          throw Error('Expense:delete: expense is missing');
-        }
-
-        await db.expense.delete(target.id);
-
-        const unordered = await db.expense?.toArray();
-
-        data = unordered?.sort((a, b) => b?.date - a?.date);
+        data = await deleteExpense(idToDelete);
 
         return Promise.resolve();
       } catch (e) {
@@ -194,11 +146,7 @@ function createExpenseStore() {
           return Promise.resolve();
         }
 
-        await db.expense.bulkDelete(relatedExpenseKeys);
-
-        const unordered = await db.expense?.toArray();
-
-        data = unordered?.sort((a, b) => b?.date - a?.date);
+        data = await bulkDeleteExpense(tripId);
 
         return Promise.resolve();
       } catch (e) {
@@ -213,37 +161,7 @@ function createExpenseStore() {
       try {
         fetching = true;
 
-        const expenses = exportTripData.expense;
-
-        const newExpenses: Expense[] = [];
-
-        expenses.forEach((itemToUpdate) => {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { id, ...restItemProps } = itemToUpdate;
-
-          const decoratedItem: Expense = { ...restItemProps };
-
-          // Update group data
-          const targetIndex = data.findIndex((item) => item._id === itemToUpdate._id);
-
-          if (targetIndex < 0) {
-            // New
-            newExpenses.push(decoratedItem);
-            return;
-          }
-
-          // Update approved
-          newExpenses.push({
-            ...data[targetIndex],
-            ...decoratedItem,
-          });
-        });
-
-        await db.expense.bulkPut(newExpenses);
-
-        const unordered = await db.expense?.toArray();
-
-        data = unordered?.sort((a, b) => b?.date - a?.date);
+        data = await importExpense(exportTripData);
 
         return Promise.resolve();
       } catch (e) {
@@ -273,8 +191,8 @@ export function attachBudgetDetailsToExpense(expense: Expense) {
   return newExpense;
 }
 
-export function getCurrencyWiseExpenseForTrip(tripId: string) {
-  let targetExpenses = useExpenseStore.data.filter((item) => item.tripId === tripId);
+export function getCurrencyWiseExpenseForTrip() {
+  let targetExpenses = useExpenseStore.data;
 
   targetExpenses = targetExpenses.map((item) => attachBudgetDetailsToExpense(item));
 
@@ -328,8 +246,8 @@ export function filterExpenseByDateGroups(targetExpenses: Expense[]) {
   return expenses;
 }
 
-export function getExpenseDateGroups(tripId: string) {
-  const targetExpenses = useExpenseStore.data.filter((item) => item.tripId === tripId);
+export function getExpenseDateGroups() {
+  const targetExpenses = useExpenseStore.data;
 
   const expenses: ExpenseDateGroup[] = filterExpenseByDateGroups(targetExpenses);
 

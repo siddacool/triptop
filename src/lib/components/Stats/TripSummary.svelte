@@ -10,7 +10,7 @@
     getExpenseForDateRange,
     useStatisticsStore,
   } from '$lib/stores/statistics/statistics.svelte';
-  import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import { useTripByIdStore } from '$lib/stores/trips/trip-by-id.svelte';
 
   const tripId = page.params.tripId;
   const expenses = $derived(
@@ -19,24 +19,20 @@
   const expenseCurrencyWise = $derived(getCurrencyWiseExpense(expenses));
 
   const expenseGroups = $derived(
-    getExpenseDateGroups(tripId)
+    getExpenseDateGroups()
       .map((item) => item.date)
       .reverse(),
   );
 
   const tripStartDate = $derived(
-    useTripsStore.data.find((item) => item._id === tripId)?.startDate
-      ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.startDate).format(
-          DateFormats.YEAR_FIRST_STANDARD,
-        )
+    useTripByIdStore.data?.startDate
+      ? getMoment(useTripByIdStore.data?.startDate).format(DateFormats.YEAR_FIRST_STANDARD)
       : undefined,
   );
 
   const tripEndDate = $derived(
-    useTripsStore.data.find((item) => item._id === tripId)?.endDate
-      ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.endDate).format(
-          DateFormats.YEAR_FIRST_STANDARD,
-        )
+    useTripByIdStore.data?.endDate
+      ? getMoment(useTripByIdStore.data?.endDate).format(DateFormats.YEAR_FIRST_STANDARD)
       : undefined,
   );
 

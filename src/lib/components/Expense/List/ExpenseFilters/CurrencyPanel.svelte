@@ -1,13 +1,10 @@
 <script lang="ts">
-  import { page } from '$app/state';
   import TagCheckbox from '$lib/components/ui-framework/Form/TagCheckboxGroup/TagCheckbox.svelte';
   import { getUniqueCurrency, useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import { useTripsFilterStore } from '$lib/stores/trips/trips-filter.svelte';
   import PanelItem from './PanelItem.svelte';
 
-  const tripId = page.params.tripId;
-  const expenses = $derived(useExpenseStore.data.filter((item) => item.tripId === tripId));
-  const currencies = $derived(getUniqueCurrency(expenses));
+  const currencies = $derived(getUniqueCurrency(useExpenseStore.data));
 
   function onclick(event: MouseEvent) {
     const target = event.target as HTMLInputElement;

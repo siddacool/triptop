@@ -10,7 +10,7 @@
 
   const tripId = page.params.tripId;
 
-  const budgets = $derived(getCurrencyWiseBudgetForTrip(tripId));
+  const budgets = $derived(getCurrencyWiseBudgetForTrip());
 </script>
 
 <div class="Budget">

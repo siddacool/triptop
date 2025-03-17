@@ -1,20 +1,18 @@
 <script lang="ts">
-  import { page } from '$app/state';
   import Button from '$lib/components/ui-framework/Form/Button.svelte';
   import { downloadFile } from '$lib/helpers/download-file';
   import { simplifyText } from '$lib/helpers/text-manipulations/simplify-text';
   import { getMoment } from '$lib/helpers/time';
-  import { getExportTripData } from '$lib/stores/trips/trips.svelte';
+  import { getExportTripData } from '$lib/stores/trips/trip-by-id.svelte';
   import { makeTripExportCsv } from './csv-adjustments';
 
-  const tripId = page.params.tripId;
   let loading = $state(false);
 
   async function exportTrip() {
     try {
       loading = true;
 
-      const exportTripData = await getExportTripData(tripId);
+      const exportTripData = await getExportTripData();
 
       const csvData = makeTripExportCsv(exportTripData);
 

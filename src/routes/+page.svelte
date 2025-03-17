@@ -8,6 +8,22 @@
   import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
   import { useTripsStore } from '$lib/stores/trips/trips.svelte';
 
+  const mounted = $derived(useTripsStore.mounted);
+
+  const fetching = $derived(useTripsStore.fetching);
+
+  $effect(() => {
+    async function fetchData() {
+      try {
+        await useTripsStore.init();
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    fetchData();
+  });
+
   $effect(() => {
     const isTrip = useTripsStore.data.some(
       (item) => item._id === useLocalSettingsStore.lastOpenTrip,
@@ -21,11 +37,16 @@
 
 <title>Triptop - Travel budgeting app</title>
 
-
 <Header />
 
-<Stack space={4}>
-  <CreateButton />
-  <TripList />
-  <ImportTrip />
-</Stack>
+{#if fetching}
+  <p>Loading...</p>
+{:else if mounted}
+  <Stack space={4}>
+    <CreateButton />
+    <TripList />
+    <ImportTrip />
+  </Stack>
+{:else}
+  <span></span>
+{/if}

@@ -10,7 +10,7 @@
 
   const tripId = page.params.tripId;
 
-  const expenses = $derived(getCurrencyWiseExpenseForTrip(tripId));
+  const expenses = $derived(getCurrencyWiseExpenseForTrip());
 </script>
 
 <div class="TotalExpense">

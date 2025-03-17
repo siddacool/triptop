@@ -6,10 +6,10 @@
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import { useExpenseStore } from '$lib/stores/expense/expense.svelte';
   import type { ExpenseFormData } from '$lib/stores/expense/types';
-  import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import { useTripByIdStore } from '$lib/stores/trips/trip-by-id.svelte';
 
   const tripId = page.params.tripId;
-  const name = $derived(useTripsStore.data.find((item) => item._id === tripId)?.name || '');
+  const name = $derived(useTripByIdStore.data?.name || '');
 
   async function onSave(data: ExpenseFormData, clickedButton?: HTMLButtonElement) {
     try {
