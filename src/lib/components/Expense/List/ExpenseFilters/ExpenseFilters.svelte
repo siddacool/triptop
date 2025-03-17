@@ -10,6 +10,7 @@
   import CategoryPanel from './CategoryPanel.svelte';
   import ClearFilters from './ClearFilters.svelte';
   import CurrencyPanel from './CurrencyPanel.svelte';
+  import FilteredTotalExpense from './FilteredTotalExpense.svelte';
   import PaymentModePanel from './PaymentModePanel.svelte';
   import SearchExpense from './SearchExpense.svelte';
 
@@ -38,6 +39,7 @@
         </Card>
       </div>
     </Filter>
+    <FilteredTotalExpense />
   </StackItem>
 {/if}
 
