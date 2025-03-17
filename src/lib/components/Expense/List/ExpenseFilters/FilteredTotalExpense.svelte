@@ -1,6 +1,5 @@
 <script lang="ts">
   import FormattedCurrency from '$lib/components/ui-framework/FormattedInfo/FormattedCurrency.svelte';
-  import StackItem from '$lib/components/ui-framework/Layout/Stack/StackItem.svelte';
   import { getCurrencyWiseExpense } from '$lib/stores/expense/expense.svelte';
   import type { CurrencyWiseExpense } from '$lib/stores/expense/types';
   import { getFiltredExpenses, useTripsFilterStore } from '$lib/stores/trips/trips-filter.svelte';
