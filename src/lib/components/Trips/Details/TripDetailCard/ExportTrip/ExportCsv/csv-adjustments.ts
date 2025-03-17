@@ -70,7 +70,7 @@ export function makeTripExportCsv(exportTripData: ExportTripData) {
 
   csv += `${tripName}\n`;
 
-  const expenses = getCurrencyWiseExpenseForTrip(exportTripData._id);
+  const expenses = getCurrencyWiseExpenseForTrip();
 
   expenses.forEach((item) => {
     csv += `,${item.currency},${item.total}\n`;

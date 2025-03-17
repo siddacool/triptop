@@ -5,33 +5,26 @@
   import EndDate from './EndDate.svelte';
   import ResetDates from './ResetDates.svelte';
   import { useStatisticsStore } from '$lib/stores/statistics/statistics.svelte';
-  import { page } from '$app/state';
   import { getExpenseDateGroups } from '$lib/stores/expense/expense.svelte';
-  import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import { useTripByIdStore } from '$lib/stores/trips/trip-by-id.svelte';
   import { DateFormats, getMoment } from '$lib/helpers/time';
   import Filter from '$lib/components/Filter.svelte';
 
-  const tripId = page.params.tripId;
-
   const expenseGroups = $derived(
-    getExpenseDateGroups(tripId)
+    getExpenseDateGroups()
       .map((item) => item.date)
       .reverse(),
   );
 
   const tripStartDate = $derived(
-    useTripsStore.data.find((item) => item._id === tripId)?.startDate
-      ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.startDate).format(
-          DateFormats.YEAR_FIRST_STANDARD,
-        )
+    useTripByIdStore.data?.startDate
+      ? getMoment(useTripByIdStore.data?.startDate).format(DateFormats.YEAR_FIRST_STANDARD)
       : undefined,
   );
 
   const tripEndDate = $derived(
-    useTripsStore.data.find((item) => item._id === tripId)?.endDate
-      ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.endDate).format(
-          DateFormats.YEAR_FIRST_STANDARD,
-        )
+    useTripByIdStore.data?.endDate
+      ? getMoment(useTripByIdStore.data?.endDate).format(DateFormats.YEAR_FIRST_STANDARD)
       : undefined,
   );
 

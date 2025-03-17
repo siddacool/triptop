@@ -4,24 +4,19 @@
   import StackItem from '../../ui-framework/Layout/Stack/StackItem.svelte';
   import DateInput from '../../ui-framework/Form/DateInput.svelte';
   import { getExpenseDateGroups } from '$lib/stores/expense/expense.svelte';
-  import { page } from '$app/state';
-  import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import { useTripByIdStore } from '$lib/stores/trips/trip-by-id.svelte';
   import Button from '../../ui-framework/Form/Button.svelte';
   import Icon from '@iconify/svelte';
 
-  const tripId = page.params.tripId;
-
   const expenseGroups = $derived(
-    getExpenseDateGroups(tripId)
+    getExpenseDateGroups()
       .map((item) => item.date)
       .reverse(),
   );
 
   const tripEndDate = $derived(
-    useTripsStore.data.find((item) => item._id === tripId)?.endDate
-      ? getMoment(useTripsStore.data.find((item) => item._id === tripId)?.endDate).format(
-          DateFormats.YEAR_FIRST_STANDARD,
-        )
+    useTripByIdStore.data?.endDate
+      ? getMoment(useTripByIdStore.data?.endDate).format(DateFormats.YEAR_FIRST_STANDARD)
       : undefined,
   );
 

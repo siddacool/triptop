@@ -1,12 +1,8 @@
 <script lang="ts">
-  import { page } from '$app/state';
   import TagCheckbox from '$lib/components/ui-framework/Form/TagCheckboxGroup/TagCheckbox.svelte';
   import { useBudgetStore } from '$lib/stores/budget/budget.svelte';
   import { useTripsFilterStore } from '$lib/stores/trips/trips-filter.svelte';
   import PanelItem from './PanelItem.svelte';
-
-  const tripId = page.params.tripId;
-  const budgets = $derived(useBudgetStore.data.filter((item) => item.tripId === tripId));
 
   function onclick(event: MouseEvent) {
     const target = event.target as HTMLInputElement;
@@ -28,7 +24,7 @@
   onClear={() => useTripsFilterStore.updateFilters({ budget: undefined })}
   disabledClear={useTripsFilterStore.filters.budget?.length ? false : true}
 >
-  {#each budgets as budget (budget._id)}
+  {#each useBudgetStore.data as budget (budget._id)}
     <TagCheckbox
       name={budget._id}
       {onclick}

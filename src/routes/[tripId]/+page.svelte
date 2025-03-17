@@ -10,12 +10,12 @@
   import Stack from '$lib/components/ui-framework/Layout/Stack/Stack.svelte';
   import { useLocalSettingsStore } from '$lib/stores/local-settings/local-settings.svelte';
   import { useTripsFilterStore } from '$lib/stores/trips/trips-filter.svelte';
-  import { useTripsStore } from '$lib/stores/trips/trips.svelte';
+  import { useTripByIdStore } from '$lib/stores/trips/trip-by-id.svelte';
   import Icon from '@iconify/svelte';
 
   const tripId = page.params.tripId;
 
-  const targetTrip = $derived(useTripsStore.data.find((item) => item._id === tripId));
+  const targetTrip = $derived(useTripByIdStore.data);
 
   $effect(() => {
     if (targetTrip) {
@@ -45,6 +45,3 @@
   <ExpenseFilters />
   <ExpenseList />
 </Stack>
-
-<style lang="scss">
-</style>

@@ -1,19 +1,15 @@
-import { nanoid } from 'nanoid';
-import { db } from '../db';
 import type { Budget, BudgetFormData, BudgetWiseExpense } from './types';
 import { DEFUALT_CURRENCY } from '../currency/currency-codes';
 import { getExpenseUsedBudget } from '../expense/expense.svelte';
 import type { ExportTripData } from '../trips/types';
-
-async function getBudget(idToFind: string) {
-  try {
-    const trip = await db.budget.where({ _id: idToFind }).first();
-
-    return Promise.resolve(trip);
-  } catch (error) {
-    return Promise.reject(error);
-  }
-}
+import {
+  addBudget,
+  bulkDeleteBudget,
+  deleteBudget,
+  getTripBudgets,
+  importBudget,
+  updateBudget,
+} from '$lib/api/budgets';
 
 function createBudgetStore() {
   let data: Budget[] = $state([]);
@@ -30,13 +26,11 @@ function createBudgetStore() {
     get mounted() {
       return mounted;
     },
-    async init() {
+    async init(targetTripId: string) {
       try {
         fetching = true;
 
-        const unordered = await db.budget?.toArray();
-
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = await getTripBudgets(targetTripId);
 
         return Promise.resolve();
       } catch (e) {
@@ -52,20 +46,7 @@ function createBudgetStore() {
       try {
         fetching = true;
 
-        await db.budget.add({
-          _id: formData._id ? formData._id : nanoid(),
-          name: formData.name,
-          createdAt: Date.now(),
-          updatedAt: Date.now(),
-          paymentMode: formData.paymentMode,
-          amount: formData.amount,
-          currency: formData.currency,
-          tripId,
-        });
-
-        const unordered = await db.budget?.toArray();
-
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = await addBudget(tripId, formData);
 
         return Promise.resolve();
       } catch (e) {
@@ -80,25 +61,7 @@ function createBudgetStore() {
       try {
         fetching = true;
 
-        const target = await getBudget(idToUpdate);
-
-        console.log(target);
-
-        if (!target) {
-          throw Error('Budget:update: budget is missing');
-        }
-
-        await db.budget.update(target.id, {
-          name: formData.name.trim(),
-          amount: formData.amount,
-          paymentMode: formData.paymentMode,
-          currency: formData.currency,
-          updatedAt: Date.now(),
-        });
-
-        const unordered = await db.budget?.toArray();
-
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = await updateBudget(idToUpdate, formData);
 
         return Promise.resolve();
       } catch (e) {
@@ -113,17 +76,7 @@ function createBudgetStore() {
       try {
         fetching = true;
 
-        const target = await getBudget(idToDelete);
-
-        if (!target) {
-          throw Error('Budget:delete: budget is missing');
-        }
-
-        await db.budget.delete(target.id);
-
-        const unordered = await db.budget?.toArray();
-
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = await deleteBudget(idToDelete);
 
         return Promise.resolve();
       } catch (e) {
@@ -138,19 +91,7 @@ function createBudgetStore() {
       try {
         fetching = true;
 
-        const relatedBudget = await db.budget?.where({ tripId }).toArray();
-
-        const relatedBudgetKeys = relatedBudget.map((item) => item.id);
-
-        if (!relatedBudgetKeys.length) {
-          return Promise.resolve();
-        }
-
-        await db.budget.bulkDelete(relatedBudgetKeys);
-
-        const unordered = await db.budget.toArray();
-
-        data = unordered.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = await bulkDeleteBudget(tripId);
 
         return Promise.resolve();
       } catch (e) {
@@ -165,37 +106,7 @@ function createBudgetStore() {
       try {
         fetching = true;
 
-        const budgets = exportTripData.budget;
-
-        const newBudgets: Budget[] = [];
-
-        budgets.forEach((itemToUpdate) => {
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { id, ...restItemProps } = itemToUpdate;
-
-          const decoratedItem: Budget = { ...restItemProps };
-
-          // Update group data
-          const targetIndex = data.findIndex((item) => item._id === itemToUpdate._id);
-
-          if (targetIndex < 0) {
-            // New
-            newBudgets.push(decoratedItem);
-            return;
-          }
-
-          // Update approved
-          newBudgets.push({
-            ...data[targetIndex],
-            ...decoratedItem,
-          });
-        });
-
-        await db.budget.bulkPut(newBudgets);
-
-        const unordered = await db.budget?.toArray();
-
-        data = unordered?.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = await importBudget(exportTripData);
 
         return Promise.resolve();
       } catch (e) {
@@ -211,8 +122,8 @@ function createBudgetStore() {
 
 export const useBudgetStore = createBudgetStore();
 
-export function getCurrencyWiseBudgetForTrip(tripId: string) {
-  const targetBudget = useBudgetStore.data.filter((item) => item.tripId === tripId);
+export function getCurrencyWiseBudgetForTrip() {
+  const targetBudget = useBudgetStore.data;
 
   const budgets: BudgetWiseExpense[] = [];
 

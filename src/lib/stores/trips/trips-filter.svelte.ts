@@ -119,9 +119,9 @@ function createTripsFilterStore() {
 
 export const useTripsFilterStore = createTripsFilterStore();
 
-export async function getFiltredExpenses(tripId: string) {
+export async function getFiltredExpenses() {
   try {
-    let expense = useExpenseStore.data.filter((item) => item.tripId === tripId);
+    let expense = useExpenseStore.data;
 
     if (!expense.length) {
       return expense;
@@ -136,7 +136,13 @@ export async function getFiltredExpenses(tripId: string) {
     const paymentMode = filters.paymentMode?.length ? filters.paymentMode : undefined;
     const currency = filters.currency?.length ? filters.currency : undefined;
 
-    if (!searchTerm && !budget?.length && !category?.length && !paymentMode?.length) {
+    if (
+      !searchTerm &&
+      !budget?.length &&
+      !category?.length &&
+      !paymentMode?.length &&
+      !currency?.length
+    ) {
       return expense;
     }
 

@@ -105,8 +105,6 @@
 
       const date = getMoment(`${dateDate} ${dateTime}`, 'YYYY-MM-DD HH:mm').valueOf();
 
-      console.log(date, dateDate, dateTime);
-
       useLocalSettingsStore.updateLastBudget(budgetId);
 
       await onSave(
