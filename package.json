@@ -9,8 +9,7 @@
     "prepare": "svelte-kit sync || echo ''",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint .",
-    "test:unit": "vitest",
-    "test": "npm run test:unit -- --run",
+    "test": "vitest",
     "svelte-check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check": "pnpm run svelte-check && eslint . && pnpm run lint",
     "check:fix": "pnpm run svelte-check && eslint . && pnpm run format"
