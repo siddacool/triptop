@@ -1,0 +1,32 @@
+.Message {
+  letter-spacing: 0.3px;
+  display: flex;
+  font-family: inherit;
+  font-size: 1rem;
+
+  &.color {
+    &--primary {
+      color: var(--dodo-color-primary-600);
+    }
+
+    &--secondary {
+      color: var(--dodo-color-secondary-600);
+    }
+
+    &--neutral {
+      color: var(--dodo-color-neutral-600);
+    }
+
+    &--safe {
+      color: var(--dodo-color-safe-600);
+    }
+
+    &--warning {
+      color: var(--dodo-color-warning-600);
+    }
+
+    &--danger {
+      color: var(--dodo-color-danger-600);
+    }
+  }
+}

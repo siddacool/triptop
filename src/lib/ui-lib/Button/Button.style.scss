@@ -1,0 +1,102 @@
+.Button {
+  min-width: 65px;
+  cursor: pointer;
+  transition: all 0.1s;
+  letter-spacing: 0.3px;
+  height: 44px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-family: inherit;
+  text-decoration: none;
+  margin: 0;
+  border: 0;
+  border-radius: 20px;
+
+  svg.iconify {
+    font-size: 1.55rem;
+  }
+
+  &.color {
+    &--default {
+      color: var(--dodo-color-secondary-700);
+      background-color: var(--dodo-color-secondary-100);
+
+      &:hover {
+        background-color: var(--dodo-color-secondary-200);
+      }
+
+      &:active {
+        background-color: var(--dodo-color-secondary-300);
+      }
+    }
+
+    &--primary {
+      color: var(--dodo-color-constant-black);
+      background-color: var(--dodo-color-accent-400);
+
+      &:hover {
+        background-color: var(--dodo-color-accent-500);
+      }
+
+      &:active {
+        background-color: var(--dodo-color-accent-600);
+      }
+
+      &.theme {
+        &--dark {
+          &:hover {
+            background-color: var(--dodo-color-accent-300);
+          }
+
+          &:active {
+            background-color: var(--dodo-color-accent-200);
+          }
+        }
+      }
+    }
+
+    &--safe {
+      min-width: 85px;
+      color: var(--dodo-color-constant-black);
+      background-color: var(--dodo-color-safe-500);
+
+      &:hover {
+        background-color: var(--dodo-color-safe-600);
+      }
+
+      &:active {
+        background-color: var(--dodo-color-safe-700);
+      }
+    }
+
+    &--danger {
+      min-width: 85px;
+      color: var(--dodo-color-constant-black);
+      background-color: var(--dodo-color-danger-500);
+
+      &:hover {
+        background-color: var(--dodo-color-danger-600);
+      }
+
+      &:active {
+        background-color: var(--dodo-color-danger-700);
+      }
+    }
+  }
+
+  &[disabled] {
+    cursor: default;
+    color: var(--dodo-color-neutral-500);
+    background-color: var(--dodo-color-neutral-300);
+
+    &:hover {
+      background-color: var(--dodo-color-neutral-300);
+    }
+
+    &:active {
+      background-color: var(--dodo-color-neutral-300);
+    }
+  }
+}

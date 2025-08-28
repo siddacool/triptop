@@ -1,9 +1,12 @@
 <script lang="ts">
-  import '@flightlesslabs/colors/global.css';
+  import GlobalStyles from '$lib/components/GlobalStyles';
+  import ThemeSetter from '$lib/components/ThemeSetter';
 
   let { children } = $props();
 </script>
 
+<GlobalStyles />
+<ThemeSetter />
 <main>
   <div class="box">
     {@render children?.()}
@@ -11,19 +14,6 @@
 </main>
 
 <style lang="scss">
-  :global(*) {
-    box-sizing: border-box;
-  }
-
-  :global(body) {
-    font-family: 'Work Sans', serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-    color: var(--dodo-color-black);
-    margin: 0;
-    padding: 0;
-  }
-
   main {
     height: 100vh;
     width: 100vw;
