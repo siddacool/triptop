@@ -39,7 +39,7 @@
 </script>
 
 <div class="TripDetails">
-  <Grid spacing={3}>
+  <Grid spacing={4}>
     <Column>
       <Header backTo="/" aria-label="Back to trips">
         {useTripStore.data?.name}
@@ -73,8 +73,8 @@
       </Column>
       <Column>
         <div class="create-button-holder">
-          <Button href={`/${tripId}/add`} aria-label="Add Expense" color="primary" compact>
-            <Icon icon="material-symbols:add" />
+          <Button href={`/${tripId}/add-expense`} aria-label="Add Expense" color="primary">
+            <Icon icon="material-symbols:add" /> Add Expense
           </Button>
         </div>
       </Column>
@@ -84,8 +84,6 @@
 
 <style lang="scss">
   .TripDetails {
-    padding-top: 20px;
-
     .create-button-holder {
       display: flex;
       align-items: center;

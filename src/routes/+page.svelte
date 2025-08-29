@@ -26,8 +26,8 @@
   </Column>
   <Column>
     <div class="create-button-holder">
-      <Button href="/create" aria-label="Create Trip" color="primary" compact>
-        <Icon icon="material-symbols:add" />
+      <Button href="/create" aria-label="Create Trip" color="primary">
+        <Icon icon="material-symbols:add" /> Create Trip
       </Button>
     </div>
   </Column>
@@ -57,7 +57,6 @@
     justify-content: center;
     align-items: center;
     margin-top: 0;
-    padding-top: 10px;
 
     img {
       width: 45px;

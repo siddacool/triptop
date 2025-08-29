@@ -5,14 +5,15 @@
   import TextInput from '$lib/ui-lib/TextInput';
   import type { EventHandler } from 'svelte/elements';
   import type { Snippet } from 'svelte';
-  import type { CreateTripFormData } from '$lib/stores/trip/create.svelte';
   import Button from '$lib/ui-lib/Button';
   import Message from '$lib/ui-lib/Message/Message.svelte';
+  import type { CreateExpenseFormData } from '$lib/stores/expense/create.svelte';
+  import NumericInput from '$lib/ui-lib/NumericInput/NumericInput.svelte';
 
-  interface EditTripProps {
+  interface EditExpenseProps {
     onsubmit: EventHandler<SubmitEvent, HTMLFormElement>;
     header?: Snippet;
-    formData?: CreateTripFormData;
+    formData?: CreateExpenseFormData;
     errorMessage?: string;
     loading?: boolean;
     createNew?: boolean;
@@ -29,10 +30,12 @@
     createNew = false,
     onchange,
     ondelete,
-  }: EditTripProps = $props();
+  }: EditExpenseProps = $props();
+
+  const disabled = $derived(loading || !formData?.name?.trim() || !formData?.amount ? true : false);
 </script>
 
-<div class="EditTrip">
+<div class="EditExpense">
   <Card>
     <form {onsubmit}>
       <Grid spacing={4}>
@@ -44,12 +47,23 @@
         <Column>
           <Grid spacing={3}>
             <Column>
-              <FormControl label="Enter Trip Name" for="name">
+              <FormControl label="Expense Name:" for="name">
                 <TextInput
                   name="name"
                   id="name"
-                  placeholder="Enter Trip Name"
+                  placeholder="Enter Expense Name"
                   value={formData?.name}
+                  oninput={(e) => onchange(e)}
+                />
+              </FormControl>
+            </Column>
+            <Column>
+              <FormControl label="Amount:" for="amount">
+                <NumericInput
+                  name="amount"
+                  id="amount"
+                  placeholder="Enter Amount"
+                  value={formData?.amount}
                   oninput={(e) => onchange(e)}
                 />
               </FormControl>
@@ -57,31 +71,11 @@
             <Column>
               <div class="Control">
                 {#if createNew}
-                  <Button
-                    type="submit"
-                    disabled={loading || !formData?.name?.trim() ? true : false}
-                    name="save"
-                    color="secondary"
-                  >
-                    Create
-                  </Button>
+                  <Button type="submit" {disabled} name="save" color="secondary">Add</Button>
                 {:else}
-                  <Button
-                    type="submit"
-                    disabled={loading || !formData?.name?.trim() ? true : false}
-                    name="save"
-                    color="secondary"
-                  >
-                    Save
-                  </Button>
-                  <Button
-                    disabled={loading || !formData?.name?.trim() ? true : false}
-                    name="save"
-                    color="danger"
-                    class="Delete"
-                    onclick={ondelete}
-                  >
-                    Delete Trip
+                  <Button type="submit" {disabled} name="save" color="secondary">Save</Button>
+                  <Button {disabled} name="save" color="danger" class="Delete" onclick={ondelete}>
+                    Delete Expense
                   </Button>
                 {/if}
               </div>
@@ -99,7 +93,7 @@
 </div>
 
 <style lang="scss">
-  .EditTrip {
+  .EditExpense {
     form {
       display: block;
     }

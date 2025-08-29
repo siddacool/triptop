@@ -7,20 +7,26 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-family: inherit;
   text-decoration: none;
   margin: 0;
   border: 0;
   border-radius: 20px;
   padding: 0 16px;
-
-  &.compact {
-    min-width: 65px;
-  }
+  font-weight: 500;
 
   svg.iconify {
     font-size: 1.55rem;
+    margin-right: 12px;
+  }
+
+  &.compact {
+    min-width: 65px;
+
+    svg.iconify {
+      margin-right: 0;
+    }
   }
 
   &.color {

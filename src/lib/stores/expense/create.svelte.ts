@@ -4,7 +4,6 @@ import type { Category, PaymentModes } from './individual.svelte';
 
 export interface CreateExpenseFormData {
   name?: string;
-  description?: string;
   amount?: number;
   category?: Category;
   date?: number;
@@ -19,6 +18,9 @@ function createCreateExpenseStore() {
   return {
     get loading() {
       return loading;
+    },
+    get formData() {
+      return formData;
     },
     updateForm(data: Partial<CreateExpenseFormData>) {
       formData = {
