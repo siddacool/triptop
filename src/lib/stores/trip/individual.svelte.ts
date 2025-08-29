@@ -1,4 +1,5 @@
 import { db } from '../db';
+import type { CreateTripFormData } from './create.svelte';
 
 export interface Trip {
   id?: number;
@@ -40,6 +41,19 @@ function createTripStore() {
 
         return Promise.reject(e);
       }
+    },
+    async update(formData: CreateTripFormData) {
+      if (!formData?.name?.trim()) {
+        return;
+      }
+
+      await db.trips.update(data?.id, {
+        name: formData.name.trim(),
+        updatedAt: Date.now(),
+      });
+    },
+    async delete() {
+      await db.trips.delete(data?.id);
     },
     reset() {
       data = undefined;

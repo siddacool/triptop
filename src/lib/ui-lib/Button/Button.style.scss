@@ -1,5 +1,5 @@
 .Button {
-  min-width: 65px;
+  min-width: 85px;
   cursor: pointer;
   transition: all 0.1s;
   letter-spacing: 0.3px;
@@ -13,6 +13,11 @@
   margin: 0;
   border: 0;
   border-radius: 20px;
+  padding: 0 16px;
+
+  &.compact {
+    min-width: 65px;
+  }
 
   svg.iconify {
     font-size: 1.55rem;
@@ -29,6 +34,19 @@
 
       &:active {
         background-color: var(--dodo-color-secondary-300);
+      }
+    }
+
+    &--secondary {
+      color: var(--dodo-color-constant-white);
+      background-color: var(--dodo-color-secondary-400);
+
+      &:hover {
+        background-color: var(--dodo-color-secondary-500);
+      }
+
+      &:active {
+        background-color: var(--dodo-color-secondary-600);
       }
     }
 
@@ -58,7 +76,6 @@
     }
 
     &--safe {
-      min-width: 85px;
       color: var(--dodo-color-constant-black);
       background-color: var(--dodo-color-safe-500);
 
@@ -72,16 +89,15 @@
     }
 
     &--danger {
-      min-width: 85px;
-      color: var(--dodo-color-constant-black);
-      background-color: var(--dodo-color-danger-500);
+      color: var(--dodo-color-constant-white);
+      background-color: var(--dodo-color-danger-400);
 
       &:hover {
-        background-color: var(--dodo-color-danger-600);
+        background-color: var(--dodo-color-danger-500);
       }
 
       &:active {
-        background-color: var(--dodo-color-danger-700);
+        background-color: var(--dodo-color-danger-600);
       }
     }
   }

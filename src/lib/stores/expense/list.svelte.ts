@@ -1,6 +1,11 @@
 import { db } from '../db';
 import type { Expense } from './individual.svelte';
 
+export interface CurrencyWiseTotal {
+  currency: string;
+  total: number;
+}
+
 function createExpensesStore() {
   let data: Expense[] | undefined = $state(undefined);
   let fetching: boolean = $state(false);
@@ -44,3 +49,28 @@ function createExpensesStore() {
 }
 
 export const useExpensesStore = createExpensesStore();
+
+export function getCurrencyWiseTotal(data: Expense[]) {
+  const curruncyWiseTotal: CurrencyWiseTotal[] = [];
+
+  for (let index = 0; index < data.length; index++) {
+    const element = data[index];
+
+    if (curruncyWiseTotal.some((item) => item.currency === element.currency)) {
+      const targetCurrencyWiseTotalIndex = curruncyWiseTotal.findIndex(
+        (item) => item.currency === element.currency,
+      );
+
+      if (targetCurrencyWiseTotalIndex >= 0) {
+        curruncyWiseTotal[targetCurrencyWiseTotalIndex].total += element.amount;
+      }
+    } else {
+      curruncyWiseTotal.push({
+        currency: element.currency,
+        total: element.amount,
+      });
+    }
+  }
+
+  return curruncyWiseTotal;
+}

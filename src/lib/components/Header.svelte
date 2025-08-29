@@ -16,7 +16,7 @@
 <header>
   <div class="backTo">
     {#if backTo}
-      <Button href={backTo} aria-label={ariaLabel}>
+      <Button href={backTo} aria-label={ariaLabel} compact>
         <Icon icon="lets-icons:back" />
       </Button>
     {/if}
@@ -51,6 +51,8 @@
   }
 
   .after {
+    margin-left: auto;
+
     &:empty {
       display: none;
     }

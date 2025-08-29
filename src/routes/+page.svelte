@@ -26,7 +26,7 @@
   </Column>
   <Column>
     <div class="create-button-holder">
-      <Button href="/create" aria-label="Create Trip" color="primary">
+      <Button href="/create" aria-label="Create Trip" color="primary" compact>
         <Icon icon="material-symbols:add" />
       </Button>
     </div>
@@ -37,13 +37,15 @@
     </Column>
   {:else if useTripsStore.data?.length}
     <Column>
-      <Grid spacing={2}>
-        {#each useTripsStore.data as trip (trip._id)}
-          <Column>
-            <TripCard data={trip} />
-          </Column>
-        {/each}
-      </Grid>
+      <div class="trips">
+        <Grid spacing={2}>
+          {#each useTripsStore.data as trip (trip._id)}
+            <Column>
+              <TripCard data={trip} />
+            </Column>
+          {/each}
+        </Grid>
+      </div>
     </Column>
   {/if}
 </Grid>
@@ -55,7 +57,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 0;
-    padding-top: 20px;
+    padding-top: 10px;
 
     img {
       width: 45px;
@@ -74,5 +76,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .trips {
+    max-height: calc(100vh - 259px);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 </style>

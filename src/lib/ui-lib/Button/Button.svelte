@@ -11,7 +11,8 @@
     'aria-label'?: string;
     onclick?: MouseEventHandler<HTMLElement> | null | undefined;
     type?: 'button' | 'submit' | 'reset';
-    color?: 'primary' | 'default' | 'safe' | 'danger';
+    color?: 'primary' | 'secondary' | 'default' | 'safe' | 'danger';
+    compact?: boolean;
   }
 </script>
 
@@ -36,6 +37,7 @@
     name,
     id,
     color = 'default',
+    compact = false,
   }: ButtonProps = $props();
 
   const theme = $derived(
@@ -48,7 +50,7 @@
     {href}
     {disabled}
     {ref}
-    class={['Button', `color--${color}`, theme, className].join(' ')}
+    class={['Button', `color--${color}`, `${compact ? 'compact' : ''}`, theme, className].join(' ')}
     {onclick}
     aria-label={ariaLabel}
     title={title || ariaLabel}

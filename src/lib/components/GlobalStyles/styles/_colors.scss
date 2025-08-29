@@ -89,6 +89,8 @@
 }
 
 .dodo-theme--dark {
+  color-scheme: dark;
+
   /* Dark: Primary color */
   --dodo-color-primary-50: var(--dodo-color-base-moody-blue-950);
   --dodo-color-primary-100: var(--dodo-color-base-moody-blue-900);

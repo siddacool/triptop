@@ -1,0 +1,114 @@
+<script lang="ts">
+  import { page } from '$app/state';
+  import CurrencyAndAmount from '$lib/components/CurrencyAndAmount.svelte';
+  import Header from '$lib/components/Header.svelte';
+  import {
+    getCurrencyWiseTotal,
+    useExpensesStore,
+    type CurrencyWiseTotal,
+  } from '$lib/stores/expense/list.svelte';
+  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import Button from '$lib/ui-lib/Button/Button.svelte';
+  import Card from '$lib/ui-lib/Card/Card.svelte';
+  import Loader from '$lib/ui-lib/Loader';
+  import { Column, Grid } from '@flightlesslabs/grid';
+  import Icon from '@iconify/svelte';
+  import { onMount } from 'svelte';
+
+  const tripId = page.params.tripId;
+
+  let curruncyWiseTotal = $state<CurrencyWiseTotal[]>([]);
+
+  onMount(async () => {
+    if (!tripId) {
+      return;
+    }
+
+    await useTripStore.fetch(tripId);
+    await useExpensesStore.fetch(tripId);
+
+    curruncyWiseTotal = [...getCurrencyWiseTotal(useExpensesStore.data || [])];
+  });
+
+  onMount(() => {
+    return () => {
+      useTripStore.reset();
+      useExpensesStore.reset();
+    };
+  });
+</script>
+
+<div class="TripDetails">
+  <Grid spacing={3}>
+    <Column>
+      <Header backTo="/" aria-label="Back to trips">
+        {useTripStore.data?.name}
+        {#snippet after()}
+          <Button href={`/${tripId}/edit`} aria-label="Edit trip" compact class="EditTrip">
+            <Icon icon="material-symbols:edit" />
+          </Button>
+        {/snippet}
+      </Header>
+    </Column>
+    {#if useTripStore.fetching}
+      <Column>
+        <Loader />
+      </Column>
+    {:else if useTripStore.data?._id}
+      <Column>
+        <Card>
+          <h3>Total Expense:</h3>
+          <ul>
+            {#if curruncyWiseTotal.length}
+              {#each curruncyWiseTotal as item (item.currency)}
+                <li>
+                  <CurrencyAndAmount currency={item.currency} amount={item.total} />
+                </li>
+              {/each}
+            {:else}
+              <li><CurrencyAndAmount amount={0} /></li>
+            {/if}
+          </ul>
+        </Card>
+      </Column>
+      <Column>
+        <div class="create-button-holder">
+          <Button href={`/${tripId}/add`} aria-label="Add Expense" color="primary" compact>
+            <Icon icon="material-symbols:add" />
+          </Button>
+        </div>
+      </Column>
+    {/if}
+  </Grid>
+</div>
+
+<style lang="scss">
+  .TripDetails {
+    padding-top: 20px;
+
+    .create-button-holder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-top: 0;
+    }
+
+    ul {
+      display: block;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: block;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 6px;
+      }
+    }
+  }
+</style>
