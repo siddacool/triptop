@@ -26,7 +26,7 @@ function createExpensesStore() {
         fetching = true;
 
         const expenses = await db.expense.where({ tripId: tripId }).toArray();
-        data = expenses.sort((a, b) => b?.createdAt - a?.createdAt);
+        data = expenses.sort((a, b) => b?.date - a?.date);
 
         mounted = true;
         fetching = false;
@@ -73,4 +73,21 @@ export function getCurrencyWiseTotal(data: Expense[]) {
   }
 
   return curruncyWiseTotal;
+}
+
+export async function getLatestExpense(tripId: string) {
+  try {
+    let expenses = await db.expense.where({ tripId: tripId }).toArray();
+    expenses = expenses.sort((a, b) => b?.date - a?.date);
+
+    console.log(expenses);
+
+    const latestExpense = expenses.length ? expenses[0] : undefined;
+
+    return Promise.resolve(latestExpense);
+  } catch (e) {
+    console.error(e);
+
+    return Promise.reject(e);
+  }
 }

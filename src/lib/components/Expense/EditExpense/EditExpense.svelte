@@ -9,6 +9,10 @@
   import Message from '$lib/ui-lib/Message/Message.svelte';
   import type { CreateExpenseFormData } from '$lib/stores/expense/create.svelte';
   import NumericInput from '$lib/ui-lib/NumericInput/NumericInput.svelte';
+  import Currency from './Currency.svelte';
+  import PaymentMode from './PaymentMode.svelte';
+  import Category from './Category.svelte';
+  import ExpenseDate from './ExpenseDate.svelte';
 
   interface EditExpenseProps {
     onsubmit: EventHandler<SubmitEvent, HTMLFormElement>;
@@ -17,7 +21,7 @@
     errorMessage?: string;
     loading?: boolean;
     createNew?: boolean;
-    onchange: (e: Event) => void;
+    onchange: (e: Event, value?: string) => void;
     ondelete?: () => void;
   }
 
@@ -32,7 +36,9 @@
     ondelete,
   }: EditExpenseProps = $props();
 
-  const disabled = $derived(loading || !formData?.name?.trim() || !formData?.amount ? true : false);
+  const disabled = $derived(
+    loading || !formData?.name?.trim() || !formData?.amount || !formData?.currency ? true : false,
+  );
 </script>
 
 <div class="EditExpense">
@@ -57,6 +63,10 @@
                 />
               </FormControl>
             </Column>
+            <Currency
+              {formData}
+              onchange={(name: string, value: string) => (onchange as any)(name, value)}
+            />
             <Column>
               <FormControl label="Amount:" for="amount">
                 <NumericInput
@@ -68,6 +78,18 @@
                 />
               </FormControl>
             </Column>
+            <PaymentMode
+              {formData}
+              onchange={(name: string, value: string) => (onchange as any)(name, value)}
+            />
+            <Category
+              {formData}
+              onchange={(name: string, value: string) => (onchange as any)(name, value)}
+            />
+            <ExpenseDate
+              {formData}
+              onchange={(name: string, value: string) => (onchange as any)(name, value)}
+            />
             <Column>
               <div class="Control">
                 {#if createNew}

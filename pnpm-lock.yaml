@@ -14,12 +14,18 @@ importers:
       '@flightlesslabs/grid':
         specifier: ^0.2.0
         version: 0.2.0(svelte@5.38.3)
+      '@flightlesslabs/utils':
+        specifier: ^0.3.0
+        version: 0.3.0
       '@iconify/svelte':
         specifier: ^5.0.1
         version: 5.0.1(svelte@5.38.3)
+      '@internationalized/date':
+        specifier: ^3.9.0
+        version: 3.9.0
       bits-ui:
         specifier: ^2.9.4
-        version: 2.9.4(@internationalized/date@3.8.2)(svelte@5.38.3)
+        version: 2.9.4(@internationalized/date@3.9.0)(svelte@5.38.3)
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13
@@ -322,6 +328,9 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
+  '@flightlesslabs/utils@0.3.0':
+    resolution: {integrity: sha512-Ngl0wTQEQrUzWzobSn1Y/DZa4ARTyMqq88VVswcVN9AJq+URyHlrZefQGoOyh7XivL5PXO/ieOgiRGAfQbptyg==}
+
   '@floating-ui/core@1.7.3':
     resolution: {integrity: sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w==}
 
@@ -362,8 +371,8 @@ packages:
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
-  '@internationalized/date@3.8.2':
-    resolution: {integrity: sha512-/wENk7CbvLbkUvX1tu0mwq49CVkkWpkXubGel6birjRPyo6uQ4nQpnq5xZu823zRCwwn82zgHrvgF1vZyvmVgA==}
+  '@internationalized/date@3.9.0':
+    resolution: {integrity: sha512-yaN3brAnHRD+4KyyOsJyk49XUvj2wtbNACSqg0bz3u8t2VuzhC8Q5dfRnrSxjnnbDb+ienBnkn1TzQfE154vyg==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -1804,6 +1813,10 @@ snapshots:
     dependencies:
       svelte: 5.38.3
 
+  '@flightlesslabs/utils@0.3.0':
+    dependencies:
+      dayjs: 1.11.13
+
   '@floating-ui/core@1.7.3':
     dependencies:
       '@floating-ui/utils': 0.2.10
@@ -1837,7 +1850,7 @@ snapshots:
 
   '@iconify/types@2.0.0': {}
 
-  '@internationalized/date@3.8.2':
+  '@internationalized/date@3.9.0':
     dependencies:
       '@swc/helpers': 0.5.17
 
@@ -2292,11 +2305,11 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  bits-ui@2.9.4(@internationalized/date@3.8.2)(svelte@5.38.3):
+  bits-ui@2.9.4(@internationalized/date@3.9.0)(svelte@5.38.3):
     dependencies:
       '@floating-ui/core': 1.7.3
       '@floating-ui/dom': 1.7.4
-      '@internationalized/date': 3.8.2
+      '@internationalized/date': 3.9.0
       esm-env: 1.2.2
       runed: 0.29.2(svelte@5.38.3)
       svelte: 5.38.3

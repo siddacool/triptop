@@ -43,15 +43,17 @@
       "esbuild"
     ]
   },
-  "packageManager": "pnpm@10.5.0",
+  "packageManager": "pnpm@10.15.1",
   "volta": {
     "node": "22.18.0",
-    "pnpm": "10.15.0"
+    "pnpm": "10.15.1"
   },
   "dependencies": {
     "@flightlesslabs/colors": "^0.2.0",
     "@flightlesslabs/grid": "^0.2.0",
+    "@flightlesslabs/utils": "^0.3.0",
     "@iconify/svelte": "^5.0.1",
+    "@internationalized/date": "^3.9.0",
     "bits-ui": "^2.9.4",
     "dayjs": "^1.11.13",
     "dexie": "^4.2.0",

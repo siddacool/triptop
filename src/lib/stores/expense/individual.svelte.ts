@@ -1,6 +1,6 @@
 import { db } from '../db';
 
-export const enum Category {
+export enum Category {
   FOOD = 'FOOD',
   SHOPPING = 'SHOPPING',
   TOUR = 'TOUR',

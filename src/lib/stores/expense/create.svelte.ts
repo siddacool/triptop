@@ -1,6 +1,8 @@
 import { nanoid } from 'nanoid';
 import { db } from '../db';
-import type { Category, PaymentModes } from './individual.svelte';
+import { PaymentModes, type Category } from './individual.svelte';
+import { getMoment } from '@flightlesslabs/utils';
+import { getLatestExpense } from './list.svelte';
 
 export interface CreateExpenseFormData {
   name?: string;
@@ -9,6 +11,17 @@ export interface CreateExpenseFormData {
   date?: number;
   paymentMode?: PaymentModes;
   currency?: string;
+}
+
+function getDefaultFormData(): CreateExpenseFormData {
+  return {
+    name: undefined,
+    amount: undefined,
+    category: undefined,
+    date: getMoment().valueOf(),
+    paymentMode: PaymentModes.CASH,
+    currency: undefined,
+  };
 }
 
 function createCreateExpenseStore() {
@@ -28,27 +41,50 @@ function createCreateExpenseStore() {
         ...data,
       };
     },
+    async substituteFormData(tripId: string) {
+      try {
+        const latestExpense = await getLatestExpense(tripId);
+
+        if (latestExpense) {
+          formData = {
+            name: undefined,
+            amount: latestExpense.amount,
+            category: latestExpense.category,
+            date: latestExpense.date,
+            paymentMode: latestExpense.paymentMode || PaymentModes.CASH,
+            currency: latestExpense.currency,
+          };
+        } else {
+          formData = getDefaultFormData();
+        }
+      } catch (e) {
+        console.error(e);
+
+        return Promise.reject(e);
+      }
+    },
     async create(tripId: string) {
       try {
         loading = true;
 
         if (!formData?.name?.trim() || !formData.amount || !formData.date || !formData.currency) {
-          return;
+          throw 'formData incomplete';
         }
 
         await db.expense.add({
           _id: nanoid(),
           tripId,
-          ...formData,
           name: formData.name.trim(),
           amount: formData.amount,
           date: formData.date,
           currency: formData.currency,
+          paymentMode: formData.paymentMode,
+          category: formData.category,
           createdAt: Date.now(),
           updatedAt: Date.now(),
         });
 
-        formData = {};
+        await this.substituteFormData(tripId);
 
         return Promise.resolve();
       } catch (e) {
@@ -61,7 +97,7 @@ function createCreateExpenseStore() {
     },
     reset() {
       loading = false;
-      formData = {};
+      formData = getDefaultFormData();
     },
   };
 }

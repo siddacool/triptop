@@ -6,7 +6,7 @@
 
   &.theme {
     &--dark {
-      background-color: var(--dodo-color-primary-50);
+      background-color: color-mix(in oklab, var(--dodo-color-primary-50) 95%, #fff);
     }
   }
 

@@ -1,3 +1,3 @@
-import Message from './Message.svelte';
+import FormControl from './FormControl.svelte';
 
-export default Message;
+export default FormControl;

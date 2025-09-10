@@ -1,0 +1,157 @@
+.Select {
+  .SelectInputHolder {
+    position: relative;
+    width: 100%;
+    display: flex;
+    height: 52px;
+    transition: background-color 0.1s;
+    align-items: center;
+    border: 1px solid var(--dodo-color-neutral-400);
+    border-radius: 15px;
+
+    &.theme {
+      &--dark {
+        background-color: rgba(0, 0, 0, 0.23);
+        border-color: var(--dodo-color-neutral-500);
+
+        &.focused {
+          background-color: rgba(0, 0, 0, 0.33);
+        }
+
+        &.open {
+          background-color: rgba(0, 0, 0, 0.33);
+        }
+      }
+    }
+
+    &.focused {
+      border-color: var(--dodo-color-primary-600);
+    }
+
+    &.open {
+      border-color: var(--dodo-color-primary-600);
+    }
+
+    &.error {
+      border-color: var(--dodo-color-danger-500);
+    }
+
+    &.disabled {
+      border-color: var(--dodo-color-neutral-200);
+      color: var(--dodo-color-neutral-600);
+    }
+
+    input {
+      flex: 1;
+      outline: 0;
+      padding: 0 16px;
+      font-family: inherit;
+      font-weight: 400;
+      font-size: 1rem;
+      height: 100%;
+      background-color: transparent;
+      color: inherit;
+      border: 0;
+    }
+
+    .before,
+    .after {
+      height: 100%;
+      padding: 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:empty {
+        display: none;
+      }
+
+      svg.iconify {
+        font-size: 1.55rem;
+      }
+    }
+
+    .before {
+      margin-right: 8px;
+    }
+
+    .after {
+      margin-left: 8px;
+    }
+
+    .SelectTrigger {
+      height: 100%;
+      padding: 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background-color: transparent;
+      border: 0;
+      color: inherit;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
+
+.SelectContent {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  transition: background-color 0.1s;
+  background-color: var(--dodo-color-white);
+  max-height: var(--bits-combobox-content-available-height);
+  width: var(--bits-combobox-anchor-width);
+  min-width: var(--bits-combobox-anchor-width);
+  overflow: auto;
+
+  &.theme {
+    &--dark {
+      background-color: color-mix(in oklab, var(--dodo-color-primary-50) 95%, #000);
+    }
+  }
+}
+
+.SelectViewport {
+  position: relative;
+  flex: 1 1 0%;
+  overflow: auto;
+}
+
+.SelectItem {
+  width: 100%;
+  padding: 16px;
+  cursor: pointer;
+  transition: background-color 0.1s;
+  display: flex;
+  align-items: center;
+
+  .selected-icon {
+    margin-left: 16px;
+  }
+
+  &[data-highlighted] {
+    background-color: var(--dodo-color-primary-50);
+
+    &.theme {
+      &--dark {
+        background-color: color-mix(in oklab, var(--dodo-color-primary-50) 80%, #000);
+      }
+    }
+  }
+}
+
+.SelectNotFound {
+  width: 100%;
+  padding: 16px;
+  display: flex;
+}
+
+.ScrollUpButton {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
