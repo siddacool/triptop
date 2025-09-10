@@ -53,6 +53,13 @@ function createTripStore() {
       });
     },
     async delete() {
+      const expenses = await db.expense.where({ tripId: data?._id }).toArray();
+      const relatedExpenseKeys = expenses.map((item) => item.id);
+
+      if (relatedExpenseKeys.length) {
+        await db.expense.bulkDelete(relatedExpenseKeys);
+      }
+
       await db.trips.delete(data?.id);
     },
     reset() {

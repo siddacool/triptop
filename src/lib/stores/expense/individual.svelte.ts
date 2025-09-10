@@ -1,4 +1,5 @@
 import { db } from '../db';
+import type { CreateExpenseFormData } from './create.svelte';
 
 export enum Category {
   FOOD = 'FOOD',
@@ -63,6 +64,24 @@ function createExpenseStore() {
 
         return Promise.reject(e);
       }
+    },
+    async update(formData: CreateExpenseFormData) {
+      if (!formData?.name?.trim()) {
+        return;
+      }
+
+      await db.expense.update(data?.id, {
+        name: formData.name.trim(),
+        amount: formData.amount,
+        category: formData.category,
+        date: formData.date,
+        paymentMode: formData.paymentMode,
+        currency: formData.currency,
+        updatedAt: Date.now(),
+      });
+    },
+    async delete() {
+      await db.expense.delete(data?.id);
     },
     reset() {
       data = undefined;

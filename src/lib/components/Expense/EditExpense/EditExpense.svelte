@@ -1,4 +1,5 @@
 <script lang="ts">
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   import Card from '$lib/ui-lib/Card/Card.svelte';
   import { Column, Grid } from '@flightlesslabs/grid';
   import FormControl from '$lib/ui-lib/FormControl/FormControl.svelte';

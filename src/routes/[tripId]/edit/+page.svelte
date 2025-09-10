@@ -1,3 +1,18 @@
+<script lang="ts" module>
+  export function editTripOnChange(e: Event) {
+    const target = e.target as HTMLInputElement;
+    const name = target.name;
+
+    switch (name) {
+      case 'name':
+        useCreateTripStore.updateForm({ name: target.value });
+        break;
+      default:
+        break;
+    }
+  }
+</script>
+
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { page } from '$app/state';
@@ -65,19 +80,6 @@
     }
   }
 
-  function onchange(e: Event) {
-    const target = e.target as HTMLInputElement;
-    const name = target.name;
-
-    switch (name) {
-      case 'name':
-        useCreateTripStore.updateForm({ name: target.value });
-        break;
-      default:
-        break;
-    }
-  }
-
   async function ondelete() {
     try {
       loading = true;
@@ -104,7 +106,7 @@
   {:else if useTripStore.data?._id}
     <EditTrip
       {onsubmit}
-      {onchange}
+      onchange={editTripOnChange}
       {errorMessage}
       loading={useCreateTripStore.loading || loading}
       formData={useCreateTripStore.formData}

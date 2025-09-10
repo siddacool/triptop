@@ -79,6 +79,7 @@
     transition: background-color 0.1s;
     background-color: var(--dodo-color-white);
     padding: 20px;
+    z-index: 50;
 
     &.theme {
       &--dark {

@@ -4,6 +4,7 @@
   import EditTrip from '$lib/components/Trip/EditTrip.svelte';
   import { processFirstError } from '$lib/helpers/process-errors';
   import { useCreateTripStore } from '$lib/stores/trip/create.svelte';
+  import { editTripOnChange } from '../[tripId]/edit/+page.svelte';
 
   let errorMessage = $state('');
 
@@ -20,25 +21,12 @@
       errorMessage = processFirstError(error);
     }
   }
-
-  function onchange(e: Event) {
-    const target = e.target as HTMLInputElement;
-    const name = target.name;
-
-    switch (name) {
-      case 'name':
-        useCreateTripStore.updateForm({ name: target.value });
-        break;
-      default:
-        break;
-    }
-  }
 </script>
 
 <div class="CreateTrip">
   <EditTrip
     {onsubmit}
-    {onchange}
+    onchange={editTripOnChange}
     {errorMessage}
     loading={useCreateTripStore.loading}
     formData={useCreateTripStore.formData}

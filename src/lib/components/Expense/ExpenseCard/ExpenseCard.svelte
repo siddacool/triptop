@@ -1,6 +1,9 @@
 <script lang="ts">
+  import CurrencyAndAmount from '$lib/components/CurrencyAndAmount.svelte';
+  import FormattedCurrency from '$lib/components/FormattedCurrency.svelte';
   import type { Expense } from '$lib/stores/expense/individual.svelte';
   import Card from '$lib/ui-lib/Card/Card.svelte';
+  import { getMoment } from '@flightlesslabs/utils';
 
   interface ExpenseCardProps {
     data: Expense;
@@ -13,7 +16,15 @@
   <Card interactive>
     <p>
       {data.name}
+
+      <b>
+        <FormattedCurrency value={data.amount} currency={data.currency} />
+      </b>
     </p>
+
+    <div class="time">
+      {getMoment(data.date).format('h:m a')}
+    </div>
   </Card>
 </a>
 
@@ -23,9 +34,16 @@
     text-decoration: none;
 
     p {
-      margin: 0;
+      margin-top: 0;
       font-size: 1.3rem;
       letter-spacing: 0.4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      b {
+        font-weight: normal;
+      }
     }
   }
 </style>

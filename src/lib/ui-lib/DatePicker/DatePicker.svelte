@@ -64,7 +64,10 @@
         </DatePicker.Trigger>
       {/snippet}
     </DatePicker.Input>
-    <DatePicker.Content sideOffset={6} class={['DatePickerContent', theme].join(' ')}>
+    <DatePicker.Content
+      sideOffset={6}
+      class={['DatePickerContent', 'dodo-shadow-5', theme].join(' ')}
+    >
       <DatePicker.Calendar class="DatePickerCalendar">
         {#snippet children({ months, weekdays })}
           <DatePicker.Header class="DatePickerHeader">

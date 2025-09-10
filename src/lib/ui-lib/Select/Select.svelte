@@ -120,7 +120,7 @@
       </Combobox.Trigger>
     </div>
     <Combobox.Portal>
-      <Combobox.Content class={['SelectContent', 'dodo-shadow-3', theme].join(' ')} sideOffset={10}>
+      <Combobox.Content class={['SelectContent', 'dodo-shadow-5', theme].join(' ')} sideOffset={10}>
         <Combobox.Viewport class="SelectViewport">
           {#each filteredItems as item, i (i + item.value)}
             <Combobox.Item {...item} class={['SelectItem', theme].join(' ')}>

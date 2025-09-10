@@ -22,12 +22,10 @@
   const theme = $derived(
     useThemeStore.theme === AppColorSchemes.DARK ? 'theme--dark' : 'theme--light',
   );
+
+  const shodowClass = interactive ? 'dodo-shadow-2' : 'dodo-shadow-3';
 </script>
 
-<div
-  bind:this={ref}
-  class:interactive
-  class={['Card', 'dodo-shadow-1', theme, className].join(' ')}
->
+<div bind:this={ref} class:interactive class={['Card', shodowClass, theme, className].join(' ')}>
   {@render children?.()}
 </div>

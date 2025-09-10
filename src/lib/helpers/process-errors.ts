@@ -8,6 +8,7 @@
 export function processErrors<T extends Record<string, string[]>>(error: unknown): string[] {
   if (!error) return [];
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const err = error as any;
 
   // Handle structured API errors

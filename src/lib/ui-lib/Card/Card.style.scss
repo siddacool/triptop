@@ -6,31 +6,26 @@
 
   &.theme {
     &--dark {
-      background-color: color-mix(in oklab, var(--dodo-color-primary-50) 95%, #fff);
+      background-color: color-mix(in oklab, var(--dodo-color-primary-50) 97%, #fff);
     }
   }
 
   &.interactive {
     cursor: pointer;
-
-    &:hover {
-      background-color: var(--dodo-color-primary-50);
-    }
-
-    &:active {
-      background-color: var(--dodo-color-primary-100);
-    }
+    background-color: var(--dodo-color-primary-50);
 
     &.theme {
       &--dark {
-        &:hover {
-          background-color: var(--dodo-color-primary-100);
-        }
-
-        &:active {
-          background-color: var(--dodo-color-primary-200);
-        }
+        background-color: color-mix(in oklab, var(--dodo-color-primary-50) 92%, #fff);
       }
+    }
+
+    &:hover {
+      background-color: var(--dodo-color-primary-100);
+    }
+
+    &:active {
+      background-color: var(--dodo-color-primary-200);
     }
   }
 }
