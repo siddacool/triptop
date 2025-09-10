@@ -7,6 +7,8 @@
     placeholder?: string;
     value?: DateValue;
     onchange?: (date: DateValue | undefined) => void;
+    maxValue?: DateValue;
+    minValue?: DateValue;
   }
 </script>
 
@@ -17,6 +19,7 @@
   import './DatePicker.style.scss';
   import Icon from '@iconify/svelte';
   import type { DateValue } from '@internationalized/date';
+  import InputSegment from './InputSegment.svelte';
 
   let {
     class: className = '',
@@ -26,6 +29,8 @@
     value = $bindable<DateValue>(),
     placeholder,
     error = false,
+    maxValue,
+    minValue,
   }: DatePickerProps = $props();
 
   const theme = $derived(
@@ -33,7 +38,14 @@
   );
 </script>
 
-<DatePicker.Root weekdayFormat="short" fixedWeeks={true} bind:value onValueChange={onchange}>
+<DatePicker.Root
+  weekdayFormat="short"
+  fixedWeeks={true}
+  bind:value
+  onValueChange={onchange}
+  {maxValue}
+  {minValue}
+>
   <div class={['DatePicker', theme, className].join(' ')}>
     <DatePicker.Input
       class={[
@@ -46,19 +58,7 @@
       {placeholder}
     >
       {#snippet children({ segments })}
-        {#each segments as { part, value: valueInternal }, i (part + i)}
-          <div class="DatePickerInputSegmentHolder">
-            {#if part === 'literal'}
-              <DatePicker.Segment {part} class="DatePickerInputSegment">
-                {valueInternal}
-              </DatePicker.Segment>
-            {:else}
-              <DatePicker.Segment {part} class="DatePickerInputSegment DatePickerInputSegmentPart">
-                {valueInternal}
-              </DatePicker.Segment>
-            {/if}
-          </div>
-        {/each}
+        <InputSegment data={segments} />
         <DatePicker.Trigger class="DatePickerTrigger" {disabled}>
           <Icon icon="material-symbols:calendar-month-rounded" width="24" height="24" />
         </DatePicker.Trigger>

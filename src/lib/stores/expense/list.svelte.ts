@@ -1,9 +1,15 @@
+import { getMoment } from '@flightlesslabs/utils';
 import { db } from '../db';
 import type { Expense } from './individual.svelte';
 
 export interface CurrencyWiseTotal {
   currency: string;
   total: number;
+}
+
+export interface DateWiseExpense {
+  date: string;
+  expenses: Expense[];
 }
 
 function createExpensesStore() {
@@ -90,4 +96,30 @@ export async function getLatestExpense(tripId: string) {
 
     return Promise.reject(e);
   }
+}
+
+export function getDateWiseExpenses(data: Expense[]) {
+  const dateWiseExpenses: DateWiseExpense[] = [];
+
+  for (let index = 0; index < data.length; index++) {
+    const element = data[index];
+    const dateString = getMoment(element.date).format('YYYY-MM-DD');
+
+    if (dateWiseExpenses.some((item) => item.date === dateString)) {
+      const targetDateWiseExpenseIndex = dateWiseExpenses.findIndex(
+        (item) => item.date === dateString,
+      );
+
+      if (targetDateWiseExpenseIndex >= 0) {
+        dateWiseExpenses[targetDateWiseExpenseIndex].expenses.push(element);
+      }
+    } else {
+      dateWiseExpenses.push({
+        date: dateString,
+        expenses: [element],
+      });
+    }
+  }
+
+  return dateWiseExpenses;
 }

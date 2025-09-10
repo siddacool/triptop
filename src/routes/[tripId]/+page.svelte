@@ -1,11 +1,14 @@
 <script lang="ts">
   import { page } from '$app/state';
   import CurrencyAndAmount from '$lib/components/CurrencyAndAmount.svelte';
+  import ExpenseCardDateGroup from '$lib/components/Expense/ExpenseCardDateGroup';
   import Header from '$lib/components/Header.svelte';
   import {
     getCurrencyWiseTotal,
+    getDateWiseExpenses,
     useExpensesStore,
     type CurrencyWiseTotal,
+    type DateWiseExpense,
   } from '$lib/stores/expense/list.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Button from '$lib/ui-lib/Button/Button.svelte';
@@ -18,6 +21,7 @@
   const tripId = page.params.tripId;
 
   let curruncyWiseTotal = $state<CurrencyWiseTotal[]>([]);
+  let dateWiseExpenses = $state<DateWiseExpense[]>([]);
 
   onMount(async () => {
     if (!tripId) {
@@ -28,6 +32,7 @@
     await useExpensesStore.fetch(tripId);
 
     curruncyWiseTotal = [...getCurrencyWiseTotal(useExpensesStore.data || [])];
+    dateWiseExpenses = [...getDateWiseExpenses(useExpensesStore.data || [])];
   });
 
   onMount(() => {
@@ -78,6 +83,20 @@
           </Button>
         </div>
       </Column>
+
+      {#if dateWiseExpenses.length}
+        <Column>
+          <div class="expenses">
+            <Grid spacing={2}>
+              {#each dateWiseExpenses as expense (expense.date)}
+                <Column>
+                  <ExpenseCardDateGroup data={expense} />
+                </Column>
+              {/each}
+            </Grid>
+          </div>
+        </Column>
+      {/if}
     {/if}
   </Grid>
 </div>

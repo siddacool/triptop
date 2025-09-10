@@ -19,6 +19,7 @@
   const minutes = $derived(Number(getMoment(formData?.date).format('mm')));
 
   const parsedDate = $derived(parseDate(isoStringData));
+  const maxDate = $derived(parseDate(getMoment().format('YYYY-MM-DD')));
   const parsedTime = $derived(new Time(hours, minutes));
 </script>
 
@@ -31,6 +32,7 @@
           placeholder="Select Date"
           value={parsedDate}
           onchange={(val) => onchange('date', val as unknown as string)}
+          maxValue={maxDate}
         />
       </Column>
       <Column md={6}>
