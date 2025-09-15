@@ -1,11 +1,10 @@
 <script lang="ts">
   import { page } from '$app/state';
   import CategoryIcon from '$lib/components/CategoryIcon.svelte';
-  import CurrencyAndAmount from '$lib/components/CurrencyAndAmount.svelte';
   import FormattedCurrency from '$lib/components/FormattedCurrency.svelte';
   import Header from '$lib/components/Header.svelte';
   import PaymentModeIcon from '$lib/components/PaymentModeIcon.svelte';
-  import { PaymentModes, type Expense } from '$lib/stores/expense/individual.svelte';
+  import { type Expense } from '$lib/stores/expense/individual.svelte';
   import Button from '$lib/ui-lib/Button/Button.svelte';
   import Card from '$lib/ui-lib/Card/Card.svelte';
   import { Column, Grid } from '@flightlesslabs/grid';
