@@ -15,7 +15,9 @@
   <DateDisplay data={data.date} />
   <Grid spacing={1}>
     {#each data.expenses as expense (expense._id)}
-      <Column><ExpenseCard data={expense} /></Column>
+      <Column>
+        <ExpenseCard data={expense} />
+      </Column>
     {/each}
   </Grid>
 </div>

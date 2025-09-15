@@ -16,70 +16,86 @@
   });
 </script>
 
-<Grid spacing={4}>
-  <Column>
+<header>
+  <div class="inner">
     <h1>
       <img src="favicon.svg" alt="icon" />
       Triptop
     </h1>
-    <h3>Travel budgeting app</h3>
-  </Column>
-  <Column>
+
     <div class="create-button-holder">
       <Button href="/create" aria-label="Create Trip" color="primary">
-        <Icon icon="material-symbols:add" /> Create Trip
+        <Icon icon="material-symbols:add" /> Create
       </Button>
     </div>
-  </Column>
-  {#if useTripsStore.fetching}
-    <Column>
-      <Loader />
-    </Column>
-  {:else if useTripsStore.data?.length}
-    <Column>
-      <div class="trips">
-        <Grid spacing={2}>
-          {#each useTripsStore.data as trip (trip._id)}
-            <Column>
-              <TripCard data={trip} />
-            </Column>
-          {/each}
-        </Grid>
-      </div>
-    </Column>
-  {/if}
-</Grid>
+  </div>
+</header>
+
+<div class="homepage">
+  <Grid spacing={4}>
+    <Column></Column>
+    {#if useTripsStore.fetching}
+      <Column>
+        <Loader />
+      </Column>
+    {:else if useTripsStore.data?.length}
+      <Column>
+        <div class="trips">
+          <Grid spacing={2}>
+            {#each useTripsStore.data as trip (trip._id)}
+              <Column>
+                <TripCard data={trip} />
+              </Column>
+            {/each}
+          </Grid>
+        </div>
+      </Column>
+    {/if}
+  </Grid>
+</div>
 
 <style lang="scss">
-  h1 {
+  header {
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    left: 0;
     display: flex;
-    font-weight: 500;
     justify-content: center;
-    align-items: center;
-    margin-top: 0;
 
-    img {
-      width: 45px;
-      height: auto;
-      margin-right: 12px;
+    .inner {
+      padding: 16px;
+      display: flex;
+      background-color: var(--dodo-color-neutral-100);
+      justify-content: space-between;
+      width: 100%;
+      max-width: 570px;
+    }
+
+    .create-button-holder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      display: flex;
+      font-weight: 500;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      font-size: 1.3rem;
+      letter-spacing: 1.2px;
+
+      img {
+        width: 45px;
+        height: auto;
+        margin-right: 12px;
+      }
     }
   }
 
-  h3 {
-    text-align: center;
-    margin: 0;
-    font-weight: 400;
-  }
-
-  .create-button-holder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .trips {
-    max-height: calc(100vh - 259px);
-    overflow-y: auto;
-    overflow-x: hidden;
+  .homepage {
+    margin-top: 30px;
   }
 </style>

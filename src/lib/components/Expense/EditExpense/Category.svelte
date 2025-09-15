@@ -12,12 +12,10 @@
 
   const { formData, onchange }: CurrencyProps = $props();
 
-  export const categoryOptions = Object.values(Category).map((value) => ({
+  export const options = Object.values(Category).map((value) => ({
     value,
     label: value.charAt(0) + value.slice(1).toLowerCase(),
   }));
-
-  const options = $derived([...categoryOptions, ...[{ value: 'MISC', label: 'Other' }]]);
 </script>
 
 <Column>

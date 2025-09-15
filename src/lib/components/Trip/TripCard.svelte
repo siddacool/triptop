@@ -21,11 +21,19 @@
   .TripListCard {
     color: inherit;
     text-decoration: none;
+    display: block;
 
     p {
+      font-family: 'Epunda Sans', sans-serif;
       margin: 0;
-      font-size: 1.3rem;
-      letter-spacing: 0.4px;
+      font-size: 1.7rem;
+      letter-spacing: 1.4px;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    :global(.Card) {
+      min-height: 100px;
     }
   }
 </style>

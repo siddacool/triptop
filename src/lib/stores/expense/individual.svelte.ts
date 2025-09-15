@@ -10,6 +10,7 @@ export enum Category {
   FLIGHT = 'FLIGHT',
   ENTERTAINMENT = 'ENTERTAINMENT',
   MART = 'MART',
+  OTHER = 'OTHER',
 }
 
 export const enum PaymentModes {
@@ -73,7 +74,7 @@ function createExpenseStore() {
       await db.expense.update(data?.id, {
         name: formData.name.trim(),
         amount: formData.amount,
-        category: formData.category,
+        category: formData.category || Category.OTHER,
         date: formData.date,
         paymentMode: formData.paymentMode,
         currency: formData.currency,
