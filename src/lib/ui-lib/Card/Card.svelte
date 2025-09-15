@@ -23,7 +23,7 @@
     useThemeStore.theme === AppColorSchemes.DARK ? 'theme--dark' : 'theme--light',
   );
 
-  const shodowClass = interactive ? 'dodo-shadow-2' : 'dodo-shadow-3';
+  const shodowClass = interactive ? 'dodo-shadow-3' : 'dodo-shadow-2';
 </script>
 
 <div bind:this={ref} class:interactive class={['Card', shodowClass, theme, className].join(' ')}>
