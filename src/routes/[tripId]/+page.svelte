@@ -2,6 +2,7 @@
   import { page } from '$app/state';
   import CurrencyAndAmount from '$lib/components/CurrencyAndAmount.svelte';
   import ExpenseCardDateGroup from '$lib/components/Expense/ExpenseCardDateGroup';
+  import ExportCsv from '$lib/components/Expense/ExportTrip/ExportCsv';
   import Header from '$lib/components/Header.svelte';
   import {
     getCurrencyWiseTotal,
@@ -62,18 +63,25 @@
     {:else if useTripStore.data?._id}
       <Column>
         <Card>
-          <h3>Total Expense:</h3>
-          <ul>
-            {#if curruncyWiseTotal.length}
-              {#each curruncyWiseTotal as item (item.currency)}
-                <li>
-                  <CurrencyAndAmount currency={item.currency} amount={item.total} />
-                </li>
-              {/each}
-            {:else}
-              <li><CurrencyAndAmount amount={0} /></li>
-            {/if}
-          </ul>
+          <div class="stats">
+            <div class="amount">
+              <h3>Total Expense:</h3>
+              <ul>
+                {#if curruncyWiseTotal.length}
+                  {#each curruncyWiseTotal as item (item.currency)}
+                    <li>
+                      <CurrencyAndAmount currency={item.currency} amount={item.total} />
+                    </li>
+                  {/each}
+                {:else}
+                  <li><CurrencyAndAmount amount={0} /></li>
+                {/if}
+              </ul>
+            </div>
+            <div class="tool">
+              <ExportCsv />
+            </div>
+          </div>
         </Card>
       </Column>
       <Column>
@@ -126,6 +134,12 @@
         padding: 0;
         margin-bottom: 6px;
       }
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
     }
   }
 </style>
