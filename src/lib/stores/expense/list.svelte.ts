@@ -8,6 +8,12 @@ export interface CurrencyWiseTotal {
 }
 
 export interface DateWiseExpense {
+  id: string;
+  date?: string;
+  expense?: Expense;
+}
+
+export interface DateWiseExpenseRaw {
   date: string;
   expenses: Expense[];
 }
@@ -99,24 +105,45 @@ export async function getLatestExpense(tripId: string) {
 }
 
 export function getDateWiseExpenses(data: Expense[]) {
-  const dateWiseExpenses: DateWiseExpense[] = [];
+  const dateWiseExpensesRaw: DateWiseExpenseRaw[] = [];
 
   for (let index = 0; index < data.length; index++) {
     const element = data[index];
     const dateString = getMoment(element.date).format('YYYY-MM-DD');
 
-    if (dateWiseExpenses.some((item) => item.date === dateString)) {
-      const targetDateWiseExpenseIndex = dateWiseExpenses.findIndex(
+    if (dateWiseExpensesRaw.some((item) => item.date === dateString)) {
+      const targetDateWiseExpenseIndex = dateWiseExpensesRaw.findIndex(
         (item) => item.date === dateString,
       );
 
       if (targetDateWiseExpenseIndex >= 0) {
-        dateWiseExpenses[targetDateWiseExpenseIndex].expenses.push(element);
+        dateWiseExpensesRaw[targetDateWiseExpenseIndex].expenses.push(element);
       }
     } else {
-      dateWiseExpenses.push({
+      dateWiseExpensesRaw.push({
         date: dateString,
         expenses: [element],
+      });
+    }
+  }
+
+  const dateWiseExpenses: DateWiseExpense[] = [];
+
+  for (let index = 0; index < dateWiseExpensesRaw.length; index++) {
+    const element = dateWiseExpensesRaw[index];
+    const expenses = element.expenses;
+
+    dateWiseExpenses.push({
+      id: `${element.date}`,
+      date: element.date,
+    });
+
+    for (let index2 = 0; index2 < expenses.length; index2++) {
+      const expense = expenses[index2];
+
+      dateWiseExpenses.push({
+        id: `${element.date}-${expense._id}`,
+        expense,
       });
     }
   }

@@ -24,7 +24,6 @@ export interface Expense {
   createdAt: number;
   updatedAt: number;
   name: string;
-  description?: string;
   amount: number;
   tripId: string;
   category?: Category;

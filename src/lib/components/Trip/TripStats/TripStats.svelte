@@ -2,7 +2,6 @@
   import ExportCsv from '$lib/components/Expense/ExportTrip/ExportCsv';
   import TotalExpense from '$lib/components/Expense/TotalExpense';
   import type { Expense } from '$lib/stores/expense/individual.svelte';
-  import { Column } from '@flightlesslabs/grid';
 
   interface TripStatsProps {
     expenses?: Expense[];
@@ -12,14 +11,12 @@
 </script>
 
 {#if expenses?.length}
-  <Column>
-    <div class="TripStats">
-      <div class="amount"><TotalExpense data={expenses} /></div>
-      <div class="tool">
-        <ExportCsv />
-      </div>
+  <div class="TripStats">
+    <div class="amount"><TotalExpense data={expenses} /></div>
+    <div class="tool">
+      <ExportCsv />
     </div>
-  </Column>
+  </div>
 {/if}
 
 <style lang="scss">
@@ -27,7 +24,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: -2px;
 
     .amount {
       display: flex;

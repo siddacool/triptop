@@ -17,6 +17,9 @@ importers:
       '@flightlesslabs/utils':
         specifier: ^0.3.0
         version: 0.3.0
+      '@humanspeak/svelte-virtual-list':
+        specifier: ^0.3.2
+        version: 0.3.2(svelte@5.38.10)
       '@iconify/svelte':
         specifier: ^5.0.1
         version: 5.0.2(svelte@5.38.10)
@@ -347,6 +350,11 @@ packages:
   '@humanfs/node@0.16.7':
     resolution: {integrity: sha512-/zUx+yOsIrG4Y43Eh2peDeKCxlRt/gET6aHfaKpuq267qXdYDFViVHfMaLyygZOnl0kGWxFIgsBy8QFuTLUXEQ==}
     engines: {node: '>=18.18.0'}
+
+  '@humanspeak/svelte-virtual-list@0.3.2':
+    resolution: {integrity: sha512-kYzuUOEs7+O15V2YoDDRm4BZ0+afeoJclmw5uS/iaxrbBbAQpbiOytvScLfSIV7kyxs7oVMsnOJwfq8lkGc1CQ==}
+    peerDependencies:
+      svelte: ^5.0.0
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -1835,6 +1843,11 @@ snapshots:
     dependencies:
       '@humanfs/core': 0.19.1
       '@humanwhocodes/retry': 0.4.3
+
+  '@humanspeak/svelte-virtual-list@0.3.2(svelte@5.38.10)':
+    dependencies:
+      esm-env: 1.2.2
+      svelte: 5.38.10
 
   '@humanwhocodes/module-importer@1.0.1': {}
 

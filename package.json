@@ -52,6 +52,7 @@
     "@flightlesslabs/colors": "^0.2.0",
     "@flightlesslabs/grid": "^0.2.0",
     "@flightlesslabs/utils": "^0.3.0",
+    "@humanspeak/svelte-virtual-list": "^0.3.2",
     "@iconify/svelte": "^5.0.1",
     "@internationalized/date": "^3.9.0",
     "bits-ui": "^2.9.4",

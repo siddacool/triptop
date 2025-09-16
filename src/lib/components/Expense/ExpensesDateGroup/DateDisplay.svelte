@@ -25,7 +25,6 @@
   .DateDisplay {
     font-size: 0.95rem;
     margin: 6px 0;
-    margin-top: -8px;
     color: var(--dodo-color-neutral-700);
   }
 </style>

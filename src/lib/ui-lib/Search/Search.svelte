@@ -1,9 +1,9 @@
 <script lang="ts" module>
-  export interface NumericInputProps {
+  export interface SearchProps {
     /** Input ref */
     ref?: HTMLInputElement;
     /** Input value */
-    value?: number;
+    value?: string;
     /** How round should the border radius be? */
     placeholder?: string;
     /** disabled state */
@@ -42,6 +42,10 @@
     onkeypress?: KeyboardEventHandler<HTMLInputElement>;
     /** onkeyup event handler */
     onkeyup?: KeyboardEventHandler<HTMLInputElement>;
+    /** onsearch event handler */
+    onsearch?: () => void;
+    /** onclear event handler */
+    onclear?: () => void;
   }
 </script>
 
@@ -55,13 +59,15 @@
     KeyboardEventHandler,
   } from 'svelte/elements';
 
-  import './NumericInput.style.scss';
+  import './Search.style.scss';
   import type { Snippet } from 'svelte';
   import type {
     DynamicInputFocusEvent,
+    DynamicInputKeyboardEvent,
     TextInputFocusEvent,
     TextInputKeyboardEvent,
   } from '../TextInput/TextInput.svelte';
+  import Icon from '@iconify/svelte';
 
   let {
     name,
@@ -78,14 +84,16 @@
     onkeydown,
     onkeypress,
     onkeyup,
+    onsearch,
+    onclear,
     before,
     after,
     error = false,
-    value = $bindable<number>(),
+    value = $bindable<string>(),
     placeholder,
     ref = $bindable<HTMLInputElement>(),
     readonly = false,
-  }: NumericInputProps = $props();
+  }: SearchProps = $props();
 
   let focused: boolean = $state(false);
 
@@ -109,18 +117,44 @@
     }
   }
 
+  function onkeydownMod(e: DynamicInputKeyboardEvent) {
+    const eTyped = e as TextInputKeyboardEvent;
+
+    if (onkeydown) {
+      onkeydown(eTyped);
+    }
+
+    if (e.key === 'Enter' && onsearch) {
+      e.preventDefault();
+
+      onsearch();
+      return;
+    }
+
+    if (e.key === 'Escape' && onclear) {
+      e.preventDefault();
+
+      onclear();
+      return;
+    }
+  }
+
   const theme = $derived(
     useThemeStore.theme === AppColorSchemes.DARK ? 'theme--dark' : 'theme--light',
   );
 </script>
 
-<div class={['NumericInput', theme, className].join(' ')} class:error class:disabled class:focused>
+<div class={['Search', theme, className].join(' ')} class:error class:disabled class:focused>
   <div class="before">
     {@render before?.()}
   </div>
 
+  <div class="SearchIcon">
+    <Icon icon="material-symbols:search-rounded" width="24" height="24" />
+  </div>
+
   <input
-    type="number"
+    type="search"
     {name}
     {id}
     {disabled}
@@ -132,14 +166,19 @@
     {onpaste}
     {oncopy}
     {oncut}
-    onkeydown={onkeydown ? (e) => onkeydown(e as TextInputKeyboardEvent) : undefined}
+    onkeydown={onkeydownMod}
     onkeypress={onkeypress ? (e) => onkeypress(e as TextInputKeyboardEvent) : undefined}
     onkeyup={onkeyup ? (e) => onkeyup(e as TextInputKeyboardEvent) : undefined}
     {placeholder}
     bind:value
     {readonly}
-    step=".01"
   />
+
+  {#if value && onclear && !disabled}
+    <button class="SearchClear" title="Clear" onclick={onclear}>
+      <Icon icon="material-symbols:close-small" width="28" height="28" />
+    </button>
+  {/if}
 
   <div class="after">
     {@render after?.()}
