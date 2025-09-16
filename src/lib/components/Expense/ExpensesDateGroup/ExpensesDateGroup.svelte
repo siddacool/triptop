@@ -21,17 +21,11 @@
   const tripId = page.params.tripId;
 
   let searchTerm = $state('');
-  let searchTermFixed = $state('');
   let filteredExpenses = $state<Expense[]>([]);
   let dateWiseExpenses = $state<DateWiseExpense[]>([]);
 
-  function onsearch() {
-    searchTermFixed = searchTerm;
-  }
-
   function onsearchclear() {
     searchTerm = '';
-    searchTermFixed = '';
   }
 
   onMount(async () => {
@@ -41,8 +35,6 @@
 
     await useTripStore.fetch(tripId);
     await useExpensesStore.fetch(tripId);
-
-    onsearch();
   });
 
   onMount(() => {
@@ -54,7 +46,7 @@
 
   $effect(() => {
     filteredExpenses = getFilteredExpenses(useExpensesStore.data || [], {
-      search: searchTermFixed,
+      search: searchTerm,
     });
   });
 
@@ -99,7 +91,6 @@
               <Search
                 placeholder="Search expenses"
                 bind:value={searchTerm}
-                {onsearch}
                 onclear={onsearchclear}
               />
             </div>
