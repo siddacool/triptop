@@ -1,4 +1,5 @@
 <script lang="ts">
+  import FixedHeader from '$lib/components/FixedHeader.svelte';
   import TripCard from '$lib/components/Trip/TripCard.svelte';
   import { useTripsStore } from '$lib/stores/trip/list.svelte';
   import Button from '$lib/ui-lib/Button';
@@ -21,14 +22,14 @@
   <meta name="description" content="Triptop - Travel budgeting app" />
 </svelte:head>
 
-<header>
-  <div class="inner">
+<FixedHeader>
+  <header>
     <h1>
       <img src="favicon.svg" alt="icon" />
       Triptop
     </h1>
-  </div>
-</header>
+  </header>
+</FixedHeader>
 
 <div class="homepage">
   <Grid spacing={4}>
@@ -61,21 +62,11 @@
 
 <style lang="scss">
   header {
-    position: fixed;
-    width: 100vw;
-    top: 0;
-    left: 0;
+    padding: 16px;
     display: flex;
     justify-content: center;
-
-    .inner {
-      padding: 16px;
-      display: flex;
-      background-color: var(--dodo-color-neutral-100);
-      justify-content: center;
-      width: 100%;
-      max-width: 570px;
-    }
+    width: 100%;
+    max-width: 570px;
 
     h1 {
       display: flex;

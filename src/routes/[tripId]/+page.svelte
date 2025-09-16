@@ -4,6 +4,7 @@
   import ExpenseCardDateGroup from '$lib/components/Expense/ExpenseCardDateGroup';
   import ExportCsv from '$lib/components/Expense/ExportTrip/ExportCsv';
   import TotalExpense from '$lib/components/Expense/TotalExpense/TotalExpense.svelte';
+  import FixedHeader from '$lib/components/FixedHeader.svelte';
   import Header from '$lib/components/Header.svelte';
   import TripStats from '$lib/components/Trip/TripStats/TripStats.svelte';
   import {
@@ -51,18 +52,21 @@
   <meta name="description" content="Triptop - Trip description" />
 </svelte:head>
 
+<FixedHeader>
+  <div class="Header">
+    <Header backTo="/" aria-label="Back to trips">
+      {useTripStore.data?.name}
+      {#snippet after()}
+        <Button href={`/${tripId}/edit`} aria-label="Edit trip" compact class="EditTrip">
+          <Icon icon="material-symbols:edit" />
+        </Button>
+      {/snippet}
+    </Header>
+  </div>
+</FixedHeader>
+
 <div class="TripDetails">
   <Grid spacing={3}>
-    <Column>
-      <Header backTo="/" aria-label="Back to trips">
-        {useTripStore.data?.name}
-        {#snippet after()}
-          <Button href={`/${tripId}/edit`} aria-label="Edit trip" compact class="EditTrip">
-            <Icon icon="material-symbols:edit" />
-          </Button>
-        {/snippet}
-      </Header>
-    </Column>
     {#if useTripStore.fetching}
       <Column>
         <Loader />
@@ -96,10 +100,19 @@
 
 <style lang="scss">
   .TripDetails {
+    margin-top: 68px;
     .create-button-holder {
       display: flex;
       align-items: center;
       justify-content: center;
     }
+  }
+
+  .Header {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 570px;
   }
 </style>
