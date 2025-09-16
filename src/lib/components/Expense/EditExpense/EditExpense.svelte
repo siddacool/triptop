@@ -14,6 +14,9 @@
   import PaymentMode from './PaymentMode.svelte';
   import Category from './Category.svelte';
   import ExpenseDate from './ExpenseDate.svelte';
+  import HorizontalLine from '$lib/components/Divider.svelte';
+  import FormCardDivider from '$lib/components/FormCardDivider.svelte';
+  import SuperInput from '$lib/components/SuperInput.svelte';
 
   interface EditExpenseProps {
     onsubmit: EventHandler<SubmitEvent, HTMLFormElement>;
@@ -54,31 +57,34 @@
         <Column>
           <Grid spacing={1}>
             <Column>
-              <FormControl label="Expense Name:" for="name">
+              <SuperInput>
                 <TextInput
                   name="name"
                   id="name"
-                  placeholder="Enter Expense Name"
+                  placeholder="Expense Name"
                   value={formData?.name}
                   oninput={(e) => onchange(e)}
+                  class="ExpenseName"
                 />
-              </FormControl>
+              </SuperInput>
             </Column>
+            <Column>
+              <SuperInput>
+                <NumericInput
+                  name="amount"
+                  id="amount"
+                  placeholder="Amount"
+                  value={formData?.amount}
+                  oninput={(e) => onchange(e)}
+                  class="Amount"
+                />
+              </SuperInput>
+            </Column>
+            <FormCardDivider />
             <Currency
               {formData}
               onchange={(name: string, value: string) => (onchange as any)(name, value)}
             />
-            <Column>
-              <FormControl label="Amount:" for="amount">
-                <NumericInput
-                  name="amount"
-                  id="amount"
-                  placeholder="Enter Amount"
-                  value={formData?.amount}
-                  oninput={(e) => onchange(e)}
-                />
-              </FormControl>
-            </Column>
             <PaymentMode
               {formData}
               onchange={(name: string, value: string) => (onchange as any)(name, value)}

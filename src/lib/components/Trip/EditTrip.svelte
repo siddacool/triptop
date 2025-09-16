@@ -8,6 +8,7 @@
   import type { CreateTripFormData } from '$lib/stores/trip/create.svelte';
   import Button from '$lib/ui-lib/Button';
   import Message from '$lib/ui-lib/Message/Message.svelte';
+  import SuperInput from '../SuperInput.svelte';
 
   interface EditTripProps {
     onsubmit: EventHandler<SubmitEvent, HTMLFormElement>;
@@ -44,16 +45,17 @@
         <Column>
           <Grid spacing={1}>
             <Column>
-              <FormControl label="Enter Trip Name" for="name">
+              <SuperInput>
                 <TextInput
                   name="name"
                   id="name"
-                  placeholder="Enter Trip Name"
+                  placeholder="Trip Name"
                   value={formData?.name}
                   oninput={(e) => onchange(e)}
                 />
-              </FormControl>
+              </SuperInput>
             </Column>
+            <Column></Column>
             <Column>
               <div class="Control">
                 {#if createNew}
