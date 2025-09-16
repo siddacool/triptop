@@ -44,7 +44,7 @@
     p {
       margin-top: 0;
       margin-bottom: 4px;
-      font-size: 0.9rem;
+      font-size: 1rem;
       letter-spacing: 0.4px;
       display: flex;
       justify-content: space-between;
@@ -57,7 +57,7 @@
       .name {
         font-family: 'Epunda Sans', sans-serif;
         letter-spacing: 1.1px;
-        font-weight: 400;
+        font-weight: 500;
         font-style: italic;
         display: inline-block;
       }
