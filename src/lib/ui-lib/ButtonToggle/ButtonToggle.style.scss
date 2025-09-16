@@ -3,8 +3,15 @@
   border-radius: 20px;
   overflow: hidden;
   height: 2.375rem;
-  color: var(--dodo-color-neutral-600);
-  background-color: var(--dodo-color-primary-50);
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.23);
+  border: 1px solid var(--dodo-color-neutral-400);
+
+  &.theme {
+    &--dark {
+      border-color: var(--dodo-color-neutral-500);
+    }
+  }
 
   .ButtonToggleItem {
     display: inline-flex;
@@ -38,27 +45,16 @@
     }
 
     &:hover {
-      background-color: var(--dodo-color-primary-100);
+      background-color: rgba(0, 0, 0, 0.33);
     }
   }
 
   [data-state='checked'] {
     & + .ButtonToggleLabel {
-      color: var(--dodo-color-constant-white);
-      background-color: var(--dodo-color-primary-500);
+      background-color: var(--dodo-color-primary-200);
 
       &:hover {
-        background-color: var(--dodo-color-primary-600);
-      }
-
-      &.theme {
-        &--dark {
-          background-color: var(--dodo-color-primary-400);
-
-          &:hover {
-            background-color: var(--dodo-color-primary-500);
-          }
-        }
+        background-color: var(--dodo-color-primary-300);
       }
     }
   }

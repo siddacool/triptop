@@ -20,6 +20,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: 16px;
+    padding-bottom: 0;
   }
 
   .box {

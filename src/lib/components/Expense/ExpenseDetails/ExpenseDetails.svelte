@@ -25,7 +25,8 @@
     <Grid spacing={4}>
       <Column>
         <Header backTo={`/${tripId}`} aria-label="Back to trip">
-          Expense Details {#snippet after()}
+          Expense Details
+          {#snippet after()}
             <Button
               href={`/${tripId}/${expenseId}/edit`}
               aria-label="Edit Expense"
@@ -52,8 +53,12 @@
             <div class="date">
               <Icon icon="material-symbols:calendar-month-rounded" width="20" height="20" />
               {getMoment(data.date).format('ddd, MMM D, YYYY')}
+            </div>
+          </Column>
+          <Column>
+            <div class="date">
               <Icon icon="tabler:clock-filled" width="20" height="20" />
-              {getMoment(data.date).format('h:m A')}
+              {getMoment(data.date).format('h:m a')}
             </div>
           </Column>
         </Grid>
@@ -65,34 +70,36 @@
 <style lang="scss">
   .ExpenseDetails {
     .name {
-      font-size: 1rem;
+      font-size: 1.75rem;
       font-family: 'Epunda Sans', sans-serif;
-      letter-spacing: 1.4px;
-      font-weight: 700;
-      font-style: italic;
+      letter-spacing: 1.1px;
+      font-weight: 400;
 
       :global(.CategoryIcon) {
         vertical-align: middle;
+        transform: scale(1.4);
       }
     }
 
     .currency {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--dodo-color-primary-700);
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.4px;
 
       :global(.PaymentModeIcon) {
         vertical-align: middle;
+        transform: scale(1.2);
       }
     }
 
     .date {
       display: flex;
       align-items: center;
+      font-size: 1rem;
 
       :global(svg) {
         display: inline-flex;
-        margin: 0 4px;
+        margin-right: 4px;
       }
     }
   }

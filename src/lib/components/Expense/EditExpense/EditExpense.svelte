@@ -45,14 +45,14 @@
 <div class="EditExpense">
   <Card>
     <form {onsubmit}>
-      <Grid spacing={3}>
+      <Grid spacing={2}>
         {#if header}
           <Column>
             {@render header?.()}
           </Column>
         {/if}
         <Column>
-          <Grid spacing={2}>
+          <Grid spacing={1}>
             <Column>
               <FormControl label="Expense Name:" for="name">
                 <TextInput
@@ -91,6 +91,7 @@
               {formData}
               onchange={(name: string, value: string) => (onchange as any)(name, value)}
             />
+            <Column></Column>
             <Column>
               <div class="Control">
                 {#if createNew}

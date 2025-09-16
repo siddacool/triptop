@@ -35,14 +35,14 @@
 <div class="EditTrip">
   <Card>
     <form {onsubmit}>
-      <Grid spacing={3}>
+      <Grid spacing={2}>
         {#if header}
           <Column>
             {@render header?.()}
           </Column>
         {/if}
         <Column>
-          <Grid spacing={2}>
+          <Grid spacing={1}>
             <Column>
               <FormControl label="Enter Trip Name" for="name">
                 <TextInput

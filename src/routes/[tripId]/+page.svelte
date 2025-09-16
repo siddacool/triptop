@@ -3,11 +3,28 @@
   import Header from '$lib/components/Header.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Button from '$lib/ui-lib/Button/Button.svelte';
-  import { Column, Grid } from '@flightlesslabs/grid';
   import Icon from '@iconify/svelte';
   import ExpensesDateGroup from '$lib/components/Expense/ExpensesDateGroup';
+  import { useExpensesStore } from '$lib/stores/expense/list.svelte';
+  import { onMount } from 'svelte';
 
   const tripId = page.params.tripId;
+
+  onMount(async () => {
+    if (!tripId) {
+      return;
+    }
+
+    await useTripStore.fetch(tripId);
+    await useExpensesStore.fetch(tripId);
+  });
+
+  onMount(() => {
+    return () => {
+      useTripStore.reset();
+      useExpensesStore.reset();
+    };
+  });
 </script>
 
 <svelte:head>
@@ -16,18 +33,14 @@
 </svelte:head>
 
 <div class="TripDetails">
-  <Grid spacing={2}>
-    <Column>
-      <Header backTo="/" aria-label="Back to trips">
-        {useTripStore.data?.name}
-        {#snippet after()}
-          <Button href={`/${tripId}/edit`} aria-label="Edit trip" compact class="EditTrip">
-            <Icon icon="material-symbols:edit" />
-          </Button>
-        {/snippet}
-      </Header>
-    </Column>
+  <Header backTo="/" aria-label="Back to trips">
+    {useTripStore.data?.name}
+    {#snippet after()}
+      <Button href={`/${tripId}/edit`} aria-label="Edit trip" compact class="EditTrip">
+        <Icon icon="material-symbols:edit" />
+      </Button>
+    {/snippet}
+  </Header>
 
-    <ExpensesDateGroup />
-  </Grid>
+  <ExpensesDateGroup />
 </div>

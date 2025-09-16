@@ -13,8 +13,6 @@
   import { page } from '$app/state';
   import Search from '$lib/ui-lib/Search/Search.svelte';
   import { getFilteredExpenses } from '$lib/stores/expense/filters';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
-  import { onMount } from 'svelte';
   import type { Expense } from '$lib/stores/expense/individual.svelte';
   import TripStats from '$lib/components/Trip/TripStats';
 
@@ -27,22 +25,6 @@
   function onsearchclear() {
     searchTerm = '';
   }
-
-  onMount(async () => {
-    if (!tripId) {
-      return;
-    }
-
-    await useTripStore.fetch(tripId);
-    await useExpensesStore.fetch(tripId);
-  });
-
-  onMount(() => {
-    return () => {
-      useTripStore.reset();
-      useExpensesStore.reset();
-    };
-  });
 
   $effect(() => {
     filteredExpenses = getFilteredExpenses(useExpensesStore.data || [], {
@@ -86,7 +68,7 @@
                 <Icon icon="material-symbols:add" /> Add Expense
               </Button>
             </div>
-          {:else if item.id === 'search'}
+          {:else if item.id === 'search' && useExpensesStore.data?.length}
             <div class="search-holder">
               <Search
                 placeholder="Search expenses"
@@ -105,7 +87,8 @@
 
 <style lang="scss">
   .ExpensesDateGroup {
-    height: calc(100vh - 95px);
+    margin-top: 16px;
+    height: calc(100vh - 75px);
 
     .listItem {
       margin-bottom: 4px;

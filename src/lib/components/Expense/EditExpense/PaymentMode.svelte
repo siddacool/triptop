@@ -2,6 +2,7 @@
   import type { CreateExpenseFormData } from '$lib/stores/expense/create.svelte';
   import { PaymentModes } from '$lib/stores/expense/individual.svelte';
   import ButtonToggle from '$lib/ui-lib/ButtonToggle';
+  import FormControl from '$lib/ui-lib/FormControl';
   import { Column } from '@flightlesslabs/grid';
 
   interface CurrencyProps {
@@ -24,12 +25,14 @@
 </script>
 
 <Column>
-  <ButtonToggle
-    name="paymentMode"
-    {options}
-    value={formData?.paymentMode || PaymentModes.CASH}
-    onchange={(val) => onchange('paymentMode', val)}
-  />
+  <FormControl label="Payment Mode:" for="paymentMode">
+    <ButtonToggle
+      name="paymentMode"
+      {options}
+      value={formData?.paymentMode || PaymentModes.CASH}
+      onchange={(val) => onchange('paymentMode', val)}
+    />
+  </FormControl>
 </Column>
 
 <style lang="scss">
