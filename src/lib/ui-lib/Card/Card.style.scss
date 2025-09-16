@@ -1,5 +1,5 @@
 .Card {
-  padding: 16px;
+  padding: 12px;
   border-radius: 20px;
   transition: background-color 0.1s;
   background-color: var(--dodo-color-white);
@@ -11,7 +11,6 @@
   }
 
   &.interactive {
-    padding: 12px;
     cursor: pointer;
 
     &:hover {
