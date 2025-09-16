@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { DateWiseExpense } from '$lib/stores/expense/list.svelte';
-  import { Column, Grid } from '@flightlesslabs/grid';
   import ExpenseCard from '../ExpenseCard';
   import DateDisplay from './DateDisplay.svelte';
 
