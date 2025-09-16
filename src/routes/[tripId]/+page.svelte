@@ -3,7 +3,9 @@
   import CurrencyAndAmount from '$lib/components/CurrencyAndAmount.svelte';
   import ExpenseCardDateGroup from '$lib/components/Expense/ExpenseCardDateGroup';
   import ExportCsv from '$lib/components/Expense/ExportTrip/ExportCsv';
+  import TotalExpense from '$lib/components/Expense/TotalExpense/TotalExpense.svelte';
   import Header from '$lib/components/Header.svelte';
+  import TripStats from '$lib/components/Trip/TripStats/TripStats.svelte';
   import {
     getCurrencyWiseTotal,
     getDateWiseExpenses,
@@ -50,7 +52,7 @@
 </svelte:head>
 
 <div class="TripDetails">
-  <Grid spacing={4}>
+  <Grid spacing={3}>
     <Column>
       <Header backTo="/" aria-label="Back to trips">
         {useTripStore.data?.name}
@@ -67,29 +69,6 @@
       </Column>
     {:else if useTripStore.data?._id}
       <Column>
-        <Card>
-          <div class="stats">
-            <div class="amount">
-              <h3>Total Expense:</h3>
-              <ul>
-                {#if curruncyWiseTotal.length}
-                  {#each curruncyWiseTotal as item (item.currency)}
-                    <li>
-                      <CurrencyAndAmount currency={item.currency} amount={item.total} />
-                    </li>
-                  {/each}
-                {:else}
-                  <li><CurrencyAndAmount amount={0} /></li>
-                {/if}
-              </ul>
-            </div>
-            <div class="tool">
-              <ExportCsv />
-            </div>
-          </div>
-        </Card>
-      </Column>
-      <Column>
         <div class="create-button-holder">
           <Button href={`/${tripId}/add-expense`} aria-label="Add Expense" color="primary">
             <Icon icon="material-symbols:add" /> Add Expense
@@ -101,6 +80,7 @@
         <Column>
           <div class="expenses">
             <Grid spacing={2}>
+              <TripStats expenses={useExpensesStore.data} />
               {#each dateWiseExpenses as expense (expense.date)}
                 <Column>
                   <ExpenseCardDateGroup data={expense} />
@@ -120,31 +100,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    h3 {
-      font-size: 1rem;
-      font-weight: 500;
-      margin-top: 0;
-    }
-
-    ul {
-      display: block;
-      margin: 0;
-      padding: 0;
-
-      li {
-        display: block;
-        margin: 0;
-        padding: 0;
-        margin-bottom: 6px;
-      }
-    }
-
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
     }
   }
 </style>

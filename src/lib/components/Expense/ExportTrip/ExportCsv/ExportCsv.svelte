@@ -1,11 +1,11 @@
 <script lang="ts">
   import { downloadFile } from '$lib/helpers/download-file';
-  import Button from '$lib/ui-lib/Button';
   import { getMoment } from '@flightlesslabs/utils';
   import { makeTripExportCsv } from './csv-adjustments';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import { useExpensesStore } from '$lib/stores/expense/list.svelte';
   import { simplifyText } from '$lib/helpers/text-manipulations/simplify-text';
+  import TextButton from '$lib/ui-lib/TextButton';
 
   let loading = $state(false);
 
@@ -40,7 +40,7 @@
 </script>
 
 <div class="ExportCsv">
-  <Button disabled={loading} onclick={exportTrip}>Export</Button>
+  <TextButton disabled={loading} onclick={exportTrip}>Export</TextButton>
 </div>
 
 <style lang="scss">

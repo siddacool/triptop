@@ -27,18 +27,18 @@
       <img src="favicon.svg" alt="icon" />
       Triptop
     </h1>
-
-    <div class="create-button-holder">
-      <Button href="/create" aria-label="Create Trip" color="primary">
-        <Icon icon="material-symbols:add" /> Create
-      </Button>
-    </div>
   </div>
 </header>
 
 <div class="homepage">
   <Grid spacing={4}>
-    <Column></Column>
+    <Column>
+      <div class="create-button-holder">
+        <Button href="/create" aria-label="Create Trip" color="primary">
+          <Icon icon="material-symbols:add" /> Create Trip
+        </Button>
+      </div>
+    </Column>
     {#if useTripsStore.fetching}
       <Column>
         <Loader />
@@ -72,15 +72,9 @@
       padding: 16px;
       display: flex;
       background-color: var(--dodo-color-neutral-100);
-      justify-content: space-between;
+      justify-content: center;
       width: 100%;
       max-width: 570px;
-    }
-
-    .create-button-holder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     h1 {
@@ -100,7 +94,13 @@
     }
   }
 
+  .create-button-holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .homepage {
-    margin-top: 30px;
+    margin-top: 68px;
   }
 </style>

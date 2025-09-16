@@ -1,0 +1,39 @@
+.TextButton {
+  cursor: pointer;
+  transition: all 0.1s;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-family: inherit;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--dodo-color-secondary-700);
+  background-color: transparent;
+
+  &:hover {
+    color: var(--dodo-color-secondary-600);
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: var(--dodo-color-secondary-500);
+  }
+
+  &[disabled] {
+    cursor: default;
+    color: var(--dodo-color-neutral-500);
+
+    &:hover {
+      color: var(--dodo-color-neutral-500);
+    }
+
+    &:active {
+      color: var(--dodo-color-neutral-500);
+    }
+  }
+}
