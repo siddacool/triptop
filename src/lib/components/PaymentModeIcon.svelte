@@ -13,7 +13,7 @@
   {#if paymentMode === PaymentModes.CARD}
     <Icon icon="ion:card" width="20" height="20" class="card" />
   {:else}
-    <Icon icon="mdi:cash" width="22" height="22" class="cash" />
+    <Icon icon="mdi:cash" width="24" height="24" class="cash" />
   {/if}
 </span>
 
@@ -24,7 +24,7 @@
     align-items: center;
 
     :global(.card) {
-      color: var(--dodo-color-secondary-500);
+      color: var(--dodo-color-warning-400);
     }
 
     :global(.cash) {

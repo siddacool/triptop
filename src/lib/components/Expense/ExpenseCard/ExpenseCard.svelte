@@ -2,8 +2,7 @@
   import { resolve } from '$app/paths';
   import CategoryIcon from '$lib/components/CategoryIcon.svelte';
   import FormattedCurrency from '$lib/components/FormattedCurrency.svelte';
-  import PaymentModeIcon from '$lib/components/PaymentModeIcon.svelte';
-  import type { Expense } from '$lib/stores/expense/individual.svelte';
+  import { PaymentModes, type Expense } from '$lib/stores/expense/individual.svelte';
   import Card from '$lib/ui-lib/Card/Card.svelte';
   import { getMoment } from '@flightlesslabs/utils';
 
@@ -30,9 +29,12 @@
     </p>
 
     <div class="time">
-      <PaymentModeIcon paymentMode={data.paymentMode} />
       {getMoment(data.date).format('h:m a')}
     </div>
+
+    <div
+      class={['PaymentModeBar', data.paymentMode === PaymentModes.CARD ? 'CARD' : 'CASH'].join(' ')}
+    ></div>
   </Card>
 </a>
 
@@ -43,6 +45,8 @@
 
     :global(.Card) {
       padding: 8px 12px;
+      overflow: hidden;
+      position: relative;
     }
 
     p {
@@ -56,6 +60,8 @@
       b {
         font-weight: 400;
         font-size: 1.1rem;
+        display: flex;
+        flex-direction: column;
       }
 
       .name {
@@ -73,11 +79,23 @@
     .time {
       font-size: 0.85rem;
       color: var(--dodo-color-neutral-600);
+    }
 
-      :global(.PaymentModeIcon) {
-        vertical-align: middle;
-        transform: scale(0.85);
-        opacity: 0.6;
+    .PaymentModeBar {
+      height: 4px;
+      border-radius: 8px;
+      opacity: 0.4;
+      position: absolute;
+      right: 0;
+      width: 100px;
+      bottom: 0;
+
+      &.CARD {
+        background-color: var(--dodo-color-warning-300);
+      }
+
+      &.CASH {
+        background-color: var(--dodo-color-safe-300);
       }
     }
   }

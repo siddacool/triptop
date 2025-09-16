@@ -1,8 +1,7 @@
 <script lang="ts">
-  import CurrencyAndAmount from '$lib/components/CurrencyAndAmount.svelte';
+  import FormattedCurrency from '$lib/components/FormattedCurrency.svelte';
   import type { Expense } from '$lib/stores/expense/individual.svelte';
   import { getCurrencyWiseTotal, type CurrencyWiseTotal } from '$lib/stores/expense/list.svelte';
-  import { Column } from '@flightlesslabs/grid';
 
   interface TotalExpenseProps {
     data?: Expense[];
@@ -18,7 +17,7 @@
     <ul>
       {#each curruncyWiseTotal as item (item.currency)}
         <li>
-          <CurrencyAndAmount currency={item.currency} amount={item.total} />
+          <FormattedCurrency currency={item.currency} value={item.total} />
         </li>
       {/each}
     </ul>
@@ -28,6 +27,7 @@
 <style lang="scss">
   .TotalExpense {
     font-size: 0.9rem;
+    color: var(--dodo-color-primary-700);
 
     ul {
       margin: 0;
@@ -42,10 +42,6 @@
       &:not(&:last-child) {
         margin-bottom: 4px;
       }
-    }
-
-    :global(.CurrencyAndAmount) {
-      display: flex;
     }
 
     :global(.Currency) {

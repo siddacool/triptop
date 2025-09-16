@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { db } from '../db';
-import { PaymentModes, type Category } from './individual.svelte';
+import { Category, PaymentModes } from './individual.svelte';
 import { getMoment } from '@flightlesslabs/utils';
 import { getLatestExpense } from './list.svelte';
 
@@ -17,7 +17,7 @@ function getDefaultFormData(): CreateExpenseFormData {
   return {
     name: undefined,
     amount: undefined,
-    category: undefined,
+    category: Category.OTHER,
     date: getMoment().valueOf(),
     paymentMode: PaymentModes.CASH,
     currency: undefined,
@@ -49,7 +49,7 @@ function createCreateExpenseStore() {
           formData = {
             name: undefined,
             amount: latestExpense.amount,
-            category: latestExpense.category,
+            category: latestExpense.category || Category.OTHER,
             date: latestExpense.date,
             paymentMode: latestExpense.paymentMode || PaymentModes.CASH,
             currency: latestExpense.currency,
@@ -78,8 +78,8 @@ function createCreateExpenseStore() {
           amount: formData.amount,
           date: formData.date,
           currency: formData.currency,
-          paymentMode: formData.paymentMode,
-          category: formData.category,
+          paymentMode: formData.paymentMode || PaymentModes.CASH,
+          category: formData.category || Category.OTHER,
           createdAt: Date.now(),
           updatedAt: Date.now(),
         });
