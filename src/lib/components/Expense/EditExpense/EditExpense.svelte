@@ -45,14 +45,14 @@
 <div class="EditExpense">
   <Card>
     <form {onsubmit}>
-      <Grid spacing={4}>
+      <Grid spacing={3}>
         {#if header}
           <Column>
             {@render header?.()}
           </Column>
         {/if}
         <Column>
-          <Grid spacing={3}>
+          <Grid spacing={2}>
             <Column>
               <FormControl label="Expense Name:" for="name">
                 <TextInput

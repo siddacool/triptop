@@ -65,7 +65,7 @@
 <style lang="scss">
   .ExpenseDetails {
     .name {
-      font-size: 1.3rem;
+      font-size: 1rem;
       font-family: 'Epunda Sans', sans-serif;
       letter-spacing: 1.4px;
       font-weight: 700;
@@ -77,7 +77,7 @@
     }
 
     .currency {
-      font-size: 1.3rem;
+      font-size: 1rem;
       font-weight: 500;
       color: var(--dodo-color-primary-700);
 

@@ -11,9 +11,9 @@
 
 <span class="PaymentModeIcon">
   {#if paymentMode === PaymentModes.CARD}
-    <Icon icon="ion:card" width="22" height="22" class="card" />
+    <Icon icon="ion:card" width="16" height="16" class="card" />
   {:else}
-    <Icon icon="mdi:cash" width="24" height="24" class="cash" />
+    <Icon icon="mdi:cash" width="18" height="18" class="cash" />
   {/if}
 </span>
 

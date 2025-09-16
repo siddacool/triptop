@@ -39,7 +39,7 @@
 
   h1 {
     display: block;
-    font-size: 1.3em;
+    font-size: 1rem;
     margin-block-start: 0.83em;
     margin-block-end: 0.83em;
     margin-inline-start: 0px;

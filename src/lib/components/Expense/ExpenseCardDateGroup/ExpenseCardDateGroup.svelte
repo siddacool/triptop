@@ -13,14 +13,31 @@
 
 <div class="ExpenseCardDateGroup">
   <DateDisplay data={data.date} />
-  <Grid spacing={1}>
+  <ul>
     {#each data.expenses as expense (expense._id)}
-      <Column>
+      <li>
         <ExpenseCard data={expense} />
-      </Column>
+      </li>
     {/each}
-  </Grid>
+  </ul>
 </div>
 
 <style lang="scss">
+  .ExpenseCardDateGroup {
+    ul {
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+
+    li {
+      margin: 0;
+      padding: 0;
+      display: block;
+
+      &:not(&:last-child) {
+        margin-bottom: 4px;
+      }
+    }
+  }
 </style>

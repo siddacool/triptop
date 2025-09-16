@@ -2,7 +2,7 @@
   display: inline-flex;
   border-radius: 20px;
   overflow: hidden;
-  height: 50px;
+  height: 38px;
   color: var(--dodo-color-neutral-600);
   background-color: var(--dodo-color-primary-50);
 
@@ -17,14 +17,14 @@
   }
 
   .ButtonToggleLabel {
-    min-width: 85px;
+    min-width: 80px;
     cursor: pointer;
     transition: all 0.1s;
     letter-spacing: 0.3px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-family: inherit;
     text-decoration: none;
     margin: 0;

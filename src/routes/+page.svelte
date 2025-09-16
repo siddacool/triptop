@@ -83,11 +83,11 @@
       justify-content: center;
       align-items: center;
       margin: 0;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       letter-spacing: 1.2px;
 
       img {
-        width: 45px;
+        width: 38px;
         height: auto;
         margin-right: 12px;
       }

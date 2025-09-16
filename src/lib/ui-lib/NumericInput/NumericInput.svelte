@@ -157,6 +157,7 @@
     {placeholder}
     bind:value
     {readonly}
+    step=".01"
   />
 
   <div class="after">

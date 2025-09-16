@@ -23,6 +23,8 @@
 
 <style lang="scss">
   .DateDisplay {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    margin: 6px 0;
+    margin-top: -8px;
   }
 </style>

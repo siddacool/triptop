@@ -11,23 +11,23 @@
 
 <span class="CategoryIcon">
   {#if category === Category.ENTERTAINMENT}
-    <Icon icon="fa7-solid:masks-theater" width="22" height="22" class="ENTERTAINMENT" />
+    <Icon icon="fa7-solid:masks-theater" width="16" height="16" class="ENTERTAINMENT" />
   {:else if category === Category.FLIGHT}
-    <Icon icon="mdi:flight" width="22" height="22" class="FLIGHT" />
+    <Icon icon="mdi:flight" width="16" height="16" class="FLIGHT" />
   {:else if category === Category.FOOD}
-    <Icon icon="mdi:food" width="22" height="22" class="FOOD" />
+    <Icon icon="mdi:food" width="16" height="16" class="FOOD" />
   {:else if category === Category.MART}
-    <Icon icon="mdi:cart" width="22" height="22" class="MART" />
+    <Icon icon="mdi:cart" width="16" height="16" class="MART" />
   {:else if category === Category.SHOPPING}
-    <Icon icon="mdi:shopping" width="22" height="22" class="SHOPPING" />
+    <Icon icon="mdi:shopping" width="16" height="16" class="SHOPPING" />
   {:else if category === Category.STAY}
-    <Icon icon="material-symbols:hotel" width="22" height="22" class="STAY" />
+    <Icon icon="material-symbols:hotel" width="16" height="16" class="STAY" />
   {:else if category === Category.TOUR}
-    <Icon icon="map:boat-tour" width="24" height="24" class="TOUR" />
+    <Icon icon="map:boat-tour" width="18" height="18" class="TOUR" />
   {:else if category === Category.TRANSPORT}
-    <Icon icon="ri:taxi-fill" width="22" height="22" class="TRANSPORT" />
+    <Icon icon="ri:taxi-fill" width="16" height="16" class="TRANSPORT" />
   {:else}
-    <Icon icon="icon-park-solid:other" width="22" height="22" />
+    <Icon icon="icon-park-solid:other" width="16" height="16" />
   {/if}
 </span>
 

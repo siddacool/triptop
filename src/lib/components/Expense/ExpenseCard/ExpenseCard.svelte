@@ -43,8 +43,8 @@
 
     p {
       margin-top: 0;
-      margin-bottom: 6px;
-      font-size: 0.95rem;
+      margin-bottom: 4px;
+      font-size: 0.85rem;
       letter-spacing: 0.4px;
       display: flex;
       justify-content: space-between;
@@ -72,7 +72,7 @@
     }
 
     .time {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-weight: 300;
       color: var(--dodo-color-neutral-700);
     }

@@ -27,7 +27,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: -16px;
+    margin-bottom: -2px;
 
     .amount {
       display: flex;
