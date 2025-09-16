@@ -16,6 +16,11 @@
   });
 </script>
 
+<svelte:head>
+  <title>Triptop</title>
+  <meta name="description" content="Triptop - Travel budgeting app" />
+</svelte:head>
+
 <header>
   <div class="inner">
     <h1>

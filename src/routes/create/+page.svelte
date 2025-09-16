@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { resolve } from '$app/paths';
   import Header from '$lib/components/Header.svelte';
   import EditTrip from '$lib/components/Trip/EditTrip.svelte';
   import { processFirstError } from '$lib/helpers/process-errors';
@@ -14,7 +15,9 @@
       errorMessage = '';
       await useCreateTripStore.create();
 
-      goto('/');
+      const resolved = resolve(`/`);
+
+      goto(resolved);
     } catch (error) {
       console.log(error);
 
@@ -22,6 +25,11 @@
     }
   }
 </script>
+
+<svelte:head>
+  <title>Create Trip</title>
+  <meta name="description" content="Triptop - Create a new trip" />
+</svelte:head>
 
 <div class="CreateTrip">
   <EditTrip

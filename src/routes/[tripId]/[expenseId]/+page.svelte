@@ -20,6 +20,11 @@
   });
 </script>
 
+<svelte:head>
+  <title>Expense details</title>
+  <meta name="description" content="Triptop - Expense details" />
+</svelte:head>
+
 {#if useExpenseStore.data}
   <ExpenseDetails data={useExpenseStore.data} />
 {/if}

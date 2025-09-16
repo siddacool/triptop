@@ -22,4 +22,7 @@
 </p>
 
 <style lang="scss">
+  .DateDisplay {
+    font-size: 0.9rem;
+  }
 </style>

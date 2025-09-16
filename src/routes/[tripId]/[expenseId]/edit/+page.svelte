@@ -62,6 +62,7 @@
 
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import EditExpense from '$lib/components/Expense/EditExpense';
   import Header from '$lib/components/Header.svelte';
@@ -113,6 +114,10 @@
         return;
       }
 
+      if (!expenseId) {
+        return;
+      }
+
       loading = true;
 
       errorMessage = '';
@@ -121,7 +126,9 @@
 
       await useExpenseStore.update(formData);
 
-      goto(`/${tripId}/${expenseId}`);
+      const resolved = resolve(`/${tripId}/${expenseId}`);
+
+      goto(resolved);
     } catch (error) {
       console.log(error);
 
@@ -136,7 +143,9 @@
       loading = true;
       await useExpenseStore.delete();
 
-      goto(`/${tripId}`);
+      const resolved = resolve(`/${tripId}`);
+
+      goto(resolved);
     } catch (error) {
       console.log(error);
 
@@ -146,6 +155,11 @@
     }
   }
 </script>
+
+<svelte:head>
+  <title>Edit Expense</title>
+  <meta name="description" content="Triptop - Edit Expense" />
+</svelte:head>
 
 <div class="EditExpense">
   {#if useExpenseStore.fetching}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { resolve } from '$app/paths';
   import CategoryIcon from '$lib/components/CategoryIcon.svelte';
   import FormattedCurrency from '$lib/components/FormattedCurrency.svelte';
   import PaymentModeIcon from '$lib/components/PaymentModeIcon.svelte';
@@ -11,9 +12,11 @@
   }
 
   const { data }: ExpenseCardProps = $props();
+
+  const resolved = resolve(`/${data.tripId}/${data._id}`);
 </script>
 
-<a class="ExpenseCard" href={`/${data.tripId}/${data._id}`}>
+<a class="ExpenseCard" href={resolved}>
   <Card interactive>
     <p>
       <span class="name">
@@ -40,19 +43,21 @@
 
     p {
       margin-top: 0;
-      font-size: 1rem;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
       letter-spacing: 0.4px;
       display: flex;
       justify-content: space-between;
 
       b {
-        font-weight: 500;
+        font-weight: 400;
+        color: var(--dodo-color-primary-800);
       }
 
       .name {
         font-family: 'Epunda Sans', sans-serif;
         letter-spacing: 1.1px;
-        font-weight: 700;
+        font-weight: 400;
         font-style: italic;
         display: inline-block;
       }
@@ -64,6 +69,12 @@
       :global(.PaymentModeIcon) {
         vertical-align: middle;
       }
+    }
+
+    .time {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--dodo-color-neutral-700);
     }
   }
 </style>

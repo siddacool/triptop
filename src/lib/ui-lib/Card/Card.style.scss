@@ -1,24 +1,18 @@
 .Card {
-  padding: 24px;
+  padding: 20px;
   border-radius: 20px;
   transition: background-color 0.1s;
   background-color: var(--dodo-color-white);
 
   &.theme {
     &--dark {
-      background-color: color-mix(in oklab, var(--dodo-color-primary-50) 97%, #fff);
+      background-color: color-mix(in oklab, var(--dodo-color-primary-50) 95%, #fff);
     }
   }
 
   &.interactive {
+    padding: 12px;
     cursor: pointer;
-    background-color: var(--dodo-color-primary-50);
-
-    &.theme {
-      &--dark {
-        background-color: color-mix(in oklab, var(--dodo-color-primary-50) 92%, #fff);
-      }
-    }
 
     &:hover {
       background-color: var(--dodo-color-primary-100);

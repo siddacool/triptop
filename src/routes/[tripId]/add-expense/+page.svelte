@@ -7,6 +7,7 @@
   import { useCreateExpenseStore } from '$lib/stores/expense/create.svelte';
   import { onMount } from 'svelte';
   import { editExpenseOnChange } from '../[expenseId]/edit/+page.svelte';
+  import { resolve } from '$app/paths';
 
   let errorMessage = $state('');
 
@@ -35,7 +36,9 @@
       errorMessage = '';
       await useCreateExpenseStore.create(tripId);
 
-      goto(`/${tripId}`);
+      const resolved = resolve(`/${tripId}`);
+
+      goto(resolved);
     } catch (error) {
       console.log(error);
 
@@ -43,6 +46,11 @@
     }
   }
 </script>
+
+<svelte:head>
+  <title>Add Expense</title>
+  <meta name="description" content="Triptop - Add Expense" />
+</svelte:head>
 
 <div class="AddExpense">
   <EditExpense

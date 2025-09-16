@@ -15,6 +15,7 @@
 
 <script lang="ts">
   import { goto } from '$app/navigation';
+  import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import Header from '$lib/components/Header.svelte';
   import EditTrip from '$lib/components/Trip/EditTrip.svelte';
@@ -70,7 +71,9 @@
 
       await useTripStore.update(formData);
 
-      goto(`/${tripId}`);
+      const resolved = resolve(`/${tripId}`);
+
+      goto(resolved);
     } catch (error) {
       console.log(error);
 
@@ -85,7 +88,9 @@
       loading = true;
       await useTripStore.delete();
 
-      goto('/');
+      const resolved = resolve(`/`);
+
+      goto(resolved);
     } catch (error) {
       console.log(error);
 
@@ -95,6 +100,11 @@
     }
   }
 </script>
+
+<svelte:head>
+  <title>Edit Trip: {useTripStore.data?.name}</title>
+  <meta name="description" content="Triptop - Edit Trip" />
+</svelte:head>
 
 <div class="EditTrip">
   {#if useTripStore.fetching}

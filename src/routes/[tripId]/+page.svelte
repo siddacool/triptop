@@ -44,6 +44,11 @@
   });
 </script>
 
+<svelte:head>
+  <title>{useTripStore.data?.name || 'Triptop'}</title>
+  <meta name="description" content="Triptop - Trip description" />
+</svelte:head>
+
 <div class="TripDetails">
   <Grid spacing={4}>
     <Column>
