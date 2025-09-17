@@ -138,5 +138,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  display: none;
+  visibility: hidden;
+  height: 1px;
 }

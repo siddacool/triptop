@@ -1,0 +1,45 @@
+.UtilityButton {
+  cursor: pointer;
+  transition: all 0.1s;
+  letter-spacing: 0.3px;
+  height: 2rem;
+  width: 2rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-family: inherit;
+  text-decoration: none;
+  margin: 0;
+  border: 0;
+  border-radius: 12px;
+  background-color: transparent;
+  color: var(--dodo-color-neutral-700);
+  padding: 0;
+
+  &:hover {
+    background-color: var(--dodo-color-secondary-100);
+  }
+
+  &:active {
+    background-color: var(--dodo-color-secondary-200);
+  }
+
+  svg.iconify {
+    font-size: 1.55rem;
+  }
+
+  &[disabled] {
+    cursor: default;
+    color: var(--dodo-color-neutral-500);
+    background-color: var(--dodo-color-neutral-300);
+
+    &:hover {
+      background-color: var(--dodo-color-neutral-300);
+    }
+
+    &:active {
+      background-color: var(--dodo-color-neutral-300);
+    }
+  }
+}

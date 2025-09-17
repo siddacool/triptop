@@ -68,6 +68,7 @@
   } from '../TextInput/TextInput.svelte';
   import Icon from '@iconify/svelte';
   import InputEnclosure from '../InputEnclosure';
+  import UtilityButton from '../UtilityButton/UtilityButton.svelte';
 
   let {
     name,
@@ -174,8 +175,8 @@
   />
 
   {#if value && onclear && !disabled}
-    <button class="SearchClear" title="Clear" onclick={onclear}>
+    <UtilityButton class="SearchClear" title="Clear" onclick={onclear}>
       <Icon icon="material-symbols:close-small" width="28" height="28" />
-    </button>
+    </UtilityButton>
   {/if}
 </InputEnclosure>

@@ -1,12 +1,10 @@
 <script lang="ts">
   import { downloadFile } from '$lib/helpers/download-file';
   import { getMoment } from '@flightlesslabs/utils';
-  import { makeTripExportCsv } from './csv-adjustments';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
-  import { useExpensesStore } from '$lib/stores/expense/list.svelte';
   import { simplifyText } from '$lib/helpers/text-manipulations/simplify-text';
-  import TextButton from '$lib/ui-lib/TextButton';
   import Button from '$lib/ui-lib/Button';
+  import { useBackupTripStore } from '$lib/stores/trip/backup.svelte';
 
   let loading = $state(false);
 
@@ -14,22 +12,24 @@
     try {
       loading = true;
 
-      if (!useExpensesStore.data) {
-        return;
-      }
-
       if (!useTripStore.data?.name) {
         return;
       }
 
-      const csvData = makeTripExportCsv(useExpensesStore.data);
+      const backupData = await useBackupTripStore.export(useTripStore.data._id);
 
-      const data = new Blob([csvData], { type: 'text/plain' });
+      if (!backupData) {
+        return;
+      }
+
+      const jsonData = JSON.stringify(backupData);
+
+      const data = new Blob([jsonData], { type: 'text/plain' });
 
       const simplifiedName = simplifyText(useTripStore.data?.name, true).toLocaleLowerCase();
 
       await downloadFile(
-        `${simplifiedName}.${getMoment().format('DD-MM-YYYY_HH-mm-ss')}.csv`,
+        `${simplifiedName}.${getMoment(backupData.createdAt).format('DD-MM-YYYY_HH-mm-ss')}.backup.json`,
         data,
       );
     } catch (e) {
@@ -40,12 +40,13 @@
   }
 </script>
 
-<div class="ExportCsv">
-  <Button disabled={loading} onclick={exportTrip} color="safe">Save as CSV</Button>
+<div class="ExportJson">
+  <Button disabled={loading} onclick={exportTrip}>Export Trip</Button>
 </div>
 
 <style lang="scss">
-  .ExportCsv {
+  .ExportJson {
     display: inline-flex;
+    margin-left: 8px;
   }
 </style>

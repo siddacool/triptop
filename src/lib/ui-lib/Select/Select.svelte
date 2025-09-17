@@ -122,8 +122,9 @@
     </InputEnclosure>
     <Combobox.Portal>
       <Combobox.Content class={['SelectContent', 'dodo-shadow-5', theme].join(' ')} sideOffset={10}>
-        <Combobox.ScrollUpButton class={['ScrollButton', 'ScrollButtonUp'].join(' ')}
-        ></Combobox.ScrollUpButton>
+        <Combobox.ScrollUpButton class={['ScrollButton', 'ScrollButtonUp'].join(' ')}>
+          <Icon icon="material-symbols:arrow-drop-up-rounded" width="28" height="28" />
+        </Combobox.ScrollUpButton>
         <Combobox.Viewport class="SelectViewport">
           {#each filteredItems as item, i (i + item.value)}
             <Combobox.Item {...item} class={['SelectItem', theme].join(' ')}>
@@ -143,8 +144,9 @@
             <span class="SelectNotFound"> No results found </span>
           {/each}
         </Combobox.Viewport>
-        <Combobox.ScrollDownButton class={['ScrollButton', 'ScrollButtonDown'].join(' ')}
-        ></Combobox.ScrollDownButton>
+        <Combobox.ScrollDownButton class={['ScrollButton', 'ScrollButtonDown'].join(' ')}>
+          <Icon icon="material-symbols:arrow-drop-up-rounded" width="28" height="28" />
+        </Combobox.ScrollDownButton>
       </Combobox.Content>
     </Combobox.Portal>
   </Combobox.Root>

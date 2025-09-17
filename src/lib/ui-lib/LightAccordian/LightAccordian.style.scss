@@ -1,0 +1,22 @@
+.LightAccordian {
+  width: 100%;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+
+    .headerContent {
+      padding-top: 8px;
+    }
+  }
+
+  .accordianBody {
+    padding-top: 6px;
+    padding-bottom: 12px;
+
+    .Divider {
+      margin-top: 12px;
+    }
+  }
+}
