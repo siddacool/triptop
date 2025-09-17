@@ -48,10 +48,10 @@ function createCreateExpenseStore() {
         if (latestExpense) {
           formData = {
             name: undefined,
-            amount: latestExpense.amount,
-            category: latestExpense.category || Category.OTHER,
+            amount: undefined,
+            category: Category.OTHER,
             date: latestExpense.date,
-            paymentMode: latestExpense.paymentMode || PaymentModes.CASH,
+            paymentMode: PaymentModes.CASH,
             currency: latestExpense.currency,
           };
         } else {
