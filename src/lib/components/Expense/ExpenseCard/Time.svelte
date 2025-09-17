@@ -8,7 +8,7 @@
   const { date }: TimeProps = $props();
 </script>
 
-<div class="Time">{getMoment(date).format('h:m a')}</div>
+<div class="Time">{getMoment(date).format('h:mm a')}</div>
 
 <style lang="scss">
   .Time {

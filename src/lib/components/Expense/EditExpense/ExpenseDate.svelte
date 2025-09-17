@@ -21,10 +21,14 @@
   const parsedDate = $derived(parseDate(isoStringData));
   const maxDate = $derived(parseDate(getMoment().format('YYYY-MM-DD')));
   const parsedTime = $derived(new Time(hours, minutes));
+
+  const formattedDate = $derived(
+    formData?.date ? `${getMoment(formData?.date).format('ddd, MMM D, YYYY. h:mm a')}` : '',
+  );
 </script>
 
 <Column>
-  <FormControl label="Date:" for="date">
+  <FormControl label="Date" for="date">
     <Grid>
       <Column md={6}>
         <DatePicker
@@ -43,6 +47,13 @@
           onchange={(val) => onchange('time', val as unknown as string)}
         />
       </Column>
+      {#if formattedDate}
+        <Column sm={12}>
+          <div class="formattedDate">
+            {formattedDate}
+          </div>
+        </Column>
+      {/if}
     </Grid>
   </FormControl>
 </Column>
