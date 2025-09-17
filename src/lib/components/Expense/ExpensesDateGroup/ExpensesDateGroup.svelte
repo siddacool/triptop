@@ -89,6 +89,10 @@
   .ExpensesDateGroup {
     margin-top: 16px;
     height: calc(100vh - 75px);
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
 
     .listItem {
       margin-bottom: 4px;
