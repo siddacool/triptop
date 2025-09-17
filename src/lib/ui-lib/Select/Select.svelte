@@ -89,6 +89,7 @@
     {disabled}
     allowDeselect={false}
     inputValue={options.find((item) => item.value === value)?.label}
+    scrollAlignment="center"
   >
     <div
       class={['SelectInputHolder', theme].join(' ')}
@@ -121,6 +122,8 @@
     </div>
     <Combobox.Portal>
       <Combobox.Content class={['SelectContent', 'dodo-shadow-5', theme].join(' ')} sideOffset={10}>
+        <Combobox.ScrollUpButton class={['ScrollButton', 'ScrollButtonUp'].join(' ')}
+        ></Combobox.ScrollUpButton>
         <Combobox.Viewport class="SelectViewport">
           {#each filteredItems as item, i (i + item.value)}
             <Combobox.Item {...item} class={['SelectItem', theme].join(' ')}>
@@ -140,6 +143,8 @@
             <span class="SelectNotFound"> No results found </span>
           {/each}
         </Combobox.Viewport>
+        <Combobox.ScrollDownButton class={['ScrollButton', 'ScrollButtonDown'].join(' ')}
+        ></Combobox.ScrollDownButton>
       </Combobox.Content>
     </Combobox.Portal>
   </Combobox.Root>
