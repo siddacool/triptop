@@ -7,6 +7,7 @@
   import { simplifyText } from '$lib/helpers/text-manipulations/simplify-text';
   import TextButton from '$lib/ui-lib/TextButton';
   import Button from '$lib/ui-lib/Button';
+  import Icon from '@iconify/svelte';
 
   let loading = $state(false);
 
@@ -41,7 +42,9 @@
 </script>
 
 <div class="ExportCsv">
-  <Button disabled={loading} onclick={exportTrip} color="safe">Save as CSV</Button>
+  <Button disabled={loading} onclick={exportTrip}>
+    <Icon icon="material-symbols:save-rounded" width="24" height="24" />Save CSV
+  </Button>
 </div>
 
 <style lang="scss">

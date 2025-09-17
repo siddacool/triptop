@@ -5,6 +5,7 @@
   import { simplifyText } from '$lib/helpers/text-manipulations/simplify-text';
   import Button from '$lib/ui-lib/Button';
   import { useBackupTripStore } from '$lib/stores/trip/backup.svelte';
+  import Icon from '@iconify/svelte';
 
   let loading = $state(false);
 
@@ -29,7 +30,7 @@
       const simplifiedName = simplifyText(useTripStore.data?.name, true).toLocaleLowerCase();
 
       await downloadFile(
-        `${simplifiedName}.${getMoment(backupData.createdAt).format('DD-MM-YYYY_HH-mm-ss')}.backup.json`,
+        `${simplifiedName}.${getMoment(backupData.createdAt).format('DD-MM-YYYY_HH-mm-ss')}.backup.json.txt`,
         data,
       );
     } catch (e) {
@@ -41,12 +42,15 @@
 </script>
 
 <div class="ExportJson">
-  <Button disabled={loading} onclick={exportTrip}>Export Trip</Button>
+  <Button disabled={loading} onclick={exportTrip}>
+    <Icon icon="material-symbols:download-rounded" width="24" height="24" />
+    Export Trip
+  </Button>
 </div>
 
 <style lang="scss">
   .ExportJson {
     display: inline-flex;
-    margin-left: 8px;
+    margin-left: 12px;
   }
 </style>

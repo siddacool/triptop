@@ -1,6 +1,7 @@
 import { db } from '../db';
 import type { Trip } from './individual.svelte';
 import type { Expense } from '../expense/individual.svelte';
+import { nanoid } from 'nanoid';
 
 export interface BackupTripData {
   trip: Trip;
@@ -26,6 +27,49 @@ function createBackupTripStore() {
         };
 
         return Promise.resolve(exportData);
+      } catch (e) {
+        console.error(e);
+
+        return Promise.reject(e);
+      }
+    },
+    async import(data: BackupTripData) {
+      try {
+        if (!data?.trip?._id) {
+          throw 'Invalid data';
+        }
+
+        const newTripId = nanoid();
+
+        const filteredTripData = { ...data.trip };
+
+        delete filteredTripData.id;
+
+        // Import trip
+        await db.trips.add({
+          ...filteredTripData,
+          _id: newTripId,
+          createdAt: Date.now(),
+          updatedAt: Date.now(),
+        });
+
+        const expenses: Expense[] = [];
+
+        for (let index = 0; index < data.expenses.length; index++) {
+          const element = data.expenses[index];
+
+          delete element.id;
+
+          element._id = nanoid();
+          element.tripId = newTripId;
+
+          expenses.push(element);
+        }
+
+        // Import expenses
+        await db.expense.bulkPut(expenses);
+
+        return Promise.resolve(newTripId);
       } catch (e) {
         console.error(e);
 

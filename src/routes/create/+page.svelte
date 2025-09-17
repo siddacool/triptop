@@ -1,11 +1,13 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
+  import Divider from '$lib/components/Divider.svelte';
   import Header from '$lib/components/Header.svelte';
   import EditTrip from '$lib/components/Trip/EditTrip.svelte';
   import { processFirstError } from '$lib/helpers/process-errors';
   import { useCreateTripStore } from '$lib/stores/trip/create.svelte';
   import { editTripOnChange } from '../[tripId]/edit/+page.svelte';
+  import ImportJson from '$lib/components/Trip/ImportTrip/ImportJson';
 
   let errorMessage = $state('');
 
@@ -13,9 +15,9 @@
     try {
       e.preventDefault();
       errorMessage = '';
-      await useCreateTripStore.create();
+      const newTripId = await useCreateTripStore.create();
 
-      const resolved = resolve(`/`);
+      const resolved = resolve(`/${newTripId}`);
 
       goto(resolved);
     } catch (error) {
@@ -44,4 +46,25 @@
       <Header backTo="/" aria-label="Back to trips">Create a new trip</Header>
     {/snippet}
   </EditTrip>
+
+  <div class="importTrip">
+    <div class="or">
+      <Divider />
+    </div>
+    <ImportJson />
+  </div>
 </div>
+
+<style lang="scss">
+  .importTrip {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .or {
+      margin-bottom: 32px;
+      width: 100%;
+    }
+  }
+</style>

@@ -2,7 +2,6 @@
   /* eslint-disable @typescript-eslint/no-explicit-any */
   import Card from '$lib/ui-lib/Card/Card.svelte';
   import { Column, Grid } from '@flightlesslabs/grid';
-  import FormControl from '$lib/ui-lib/FormControl/FormControl.svelte';
   import TextInput from '$lib/ui-lib/TextInput';
   import type { EventHandler } from 'svelte/elements';
   import type { Snippet } from 'svelte';
@@ -14,7 +13,6 @@
   import PaymentMode from './PaymentMode.svelte';
   import Category from './Category.svelte';
   import ExpenseDate from './ExpenseDate.svelte';
-  import HorizontalLine from '$lib/components/Divider.svelte';
   import FormCardDivider from '$lib/components/FormCardDivider.svelte';
   import SuperInput from '$lib/components/SuperInput.svelte';
 

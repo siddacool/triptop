@@ -30,8 +30,10 @@ function createCreateTripStore() {
           return;
         }
 
+        const newTripId = nanoid();
+
         await db.trips.add({
-          _id: nanoid(),
+          _id: newTripId,
           name: formData.name.trim(),
           createdAt: Date.now(),
           updatedAt: Date.now(),
@@ -39,7 +41,7 @@ function createCreateTripStore() {
 
         formData = {};
 
-        return Promise.resolve();
+        return Promise.resolve(newTripId);
       } catch (e) {
         console.error(e);
 
