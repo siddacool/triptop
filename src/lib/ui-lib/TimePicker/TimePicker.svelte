@@ -31,7 +31,7 @@
   );
 </script>
 
-<TimeField.Root bind:value onValueChange={onchange}>
+<TimeField.Root bind:value onValueChange={onchange} locale="de">
   <div class={['TimePicker', theme, className].join(' ')}>
     <TimeField.Input
       class={[
