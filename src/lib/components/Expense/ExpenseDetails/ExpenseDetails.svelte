@@ -58,7 +58,7 @@
           <Column>
             <div class="date">
               <Icon icon="tabler:clock-filled" width="20" height="20" />
-              {getMoment(data.date).format('h:m a')}
+              {getMoment(data.date).format('h:mm a')}
             </div>
           </Column>
         </Grid>
