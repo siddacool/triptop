@@ -10,21 +10,6 @@
     border-radius: 15px;
     padding: 0 16px;
 
-    &.theme {
-      &--dark {
-        background-color: rgba(0, 0, 0, 0.23);
-        border-color: var(--dodo-color-neutral-500);
-
-        &.focused {
-          background-color: rgba(0, 0, 0, 0.33);
-        }
-
-        &.open {
-          background-color: rgba(0, 0, 0, 0.33);
-        }
-      }
-    }
-
     &.focused {
       border-color: var(--dodo-color-primary-600);
     }
@@ -56,19 +41,44 @@
       top: 0;
       right: 0;
     }
-  }
 
-  .DatePickerInputSegmentHolder {
-    height: 100%;
-    display: inline-flex;
-    align-items: center;
-  }
+    .DatePickerInputSegmentHolder {
+      height: 100%;
+      display: inline-flex;
+      align-items: center;
+    }
 
-  .DatePickerInputSegment {
-    padding: 0 4px;
-    height: 100%;
-    display: inline-flex;
-    align-items: center;
+    .DatePickerInputSegment {
+      padding: 0 4px;
+      height: 100%;
+      display: inline-flex;
+      align-items: center;
+
+      &[aria-valuetext='Empty'] {
+        color: var(--dodo-color-secondary-400);
+      }
+    }
+
+    &.theme {
+      &--dark {
+        background-color: rgba(0, 0, 0, 0.23);
+        border-color: var(--dodo-color-neutral-500);
+
+        &.focused {
+          background-color: rgba(0, 0, 0, 0.33);
+        }
+
+        &.open {
+          background-color: rgba(0, 0, 0, 0.33);
+        }
+
+        .DatePickerInputSegment {
+          &[aria-valuetext='Empty'] {
+            color: var(--dodo-color-secondary-600);
+          }
+        }
+      }
+    }
   }
 
   .DatePickerContent {

@@ -7,17 +7,6 @@
   border: 1px solid var(--dodo-color-neutral-400);
   border-radius: 15px;
 
-  &.theme {
-    &--dark {
-      background-color: rgba(0, 0, 0, 0.23);
-      border-color: var(--dodo-color-neutral-500);
-
-      &.focused {
-        background-color: rgba(0, 0, 0, 0.33);
-      }
-    }
-  }
-
   &.focused {
     border-color: var(--dodo-color-primary-600);
   }
@@ -42,6 +31,11 @@
     background-color: transparent;
     color: inherit;
     border: 0;
+
+    &::placeholder {
+      color: var(--dodo-color-secondary-400);
+      opacity: 1;
+    }
   }
 
   .before,
@@ -67,5 +61,22 @@
 
   .after {
     margin-left: 8px;
+  }
+
+  &.theme {
+    &--dark {
+      background-color: rgba(0, 0, 0, 0.23);
+      border-color: var(--dodo-color-neutral-500);
+
+      &.focused {
+        background-color: rgba(0, 0, 0, 0.33);
+      }
+
+      input {
+        &::placeholder {
+          color: var(--dodo-color-secondary-600);
+        }
+      }
+    }
   }
 }
