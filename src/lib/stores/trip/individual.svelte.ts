@@ -5,6 +5,7 @@ export interface Trip {
   id?: number;
   _id: string;
   name: string;
+  expensesUpdatedAt?: number;
   createdAt: number;
   updatedAt: number;
 }

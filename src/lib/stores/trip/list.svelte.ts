@@ -20,8 +20,39 @@ function createTripsStore() {
       try {
         fetching = true;
 
-        const trips = await db.trips.toArray();
-        data = trips.sort((a, b) => b?.createdAt - a?.createdAt);
+        const expenses = await db.expense.toArray();
+
+        let trips = await db.trips.toArray();
+
+        trips.sort((a, b) => b?.createdAt - a?.createdAt);
+
+        let tripsWithUpdatedExpenses: Trip[] = [];
+        let tripsWithoutUpdatedExpenses: Trip[] = [];
+
+        for (let index = 0; index < trips.length; index++) {
+          const element = trips[index];
+          const targetExpenses = expenses
+            .filter((item) => item.tripId === element._id)
+            .sort((a, b) => b.updatedAt - a.updatedAt);
+          const expensesUpdatedAt = targetExpenses.length ? targetExpenses[0].updatedAt : undefined;
+
+          if (expensesUpdatedAt) {
+            tripsWithUpdatedExpenses.push({
+              ...element,
+              expensesUpdatedAt,
+            });
+          } else {
+            tripsWithoutUpdatedExpenses.push(element);
+          }
+        }
+
+        tripsWithUpdatedExpenses = tripsWithUpdatedExpenses.sort(
+          (a, b) => (b?.expensesUpdatedAt as number) - (a?.expensesUpdatedAt as number),
+        );
+
+        console.log(tripsWithUpdatedExpenses, tripsWithoutUpdatedExpenses);
+
+        data = [...tripsWithUpdatedExpenses, ...tripsWithoutUpdatedExpenses];
 
         mounted = true;
         fetching = false;
