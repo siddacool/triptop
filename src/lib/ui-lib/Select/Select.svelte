@@ -92,11 +92,12 @@
     inputValue={options.find((item) => item.value === value)?.label}
     scrollAlignment="center"
   >
-    <InputEnclosure
-      class={['SelectInputHolder', open ? 'open' : ''].join(' ')}
-      {error}
-      {disabled}
-      {focused}
+    <div
+      class={['SelectInputHolder', theme].join(' ')}
+      class:error
+      class:disabled
+      class:focused
+      class:open
     >
       <div class="before">
         {@render before?.()}
@@ -119,7 +120,7 @@
           <Icon icon="material-symbols:arrow-drop-down-rounded" width="28" height="28" />
         {/if}
       </Combobox.Trigger>
-    </InputEnclosure>
+    </div>
     <Combobox.Portal>
       <Combobox.Content class={['SelectContent', 'dodo-shadow-5', theme].join(' ')} sideOffset={10}>
         <Combobox.ScrollUpButton class={['ScrollButton', 'ScrollButtonUp'].join(' ')}>
