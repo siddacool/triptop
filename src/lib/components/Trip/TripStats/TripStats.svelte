@@ -4,24 +4,55 @@
   import TotalExpense from '$lib/components/Expense/TotalExpense';
   import type { Expense } from '$lib/stores/expense/individual.svelte';
   import LightAccordian from '$lib/ui-lib/LightAccordian';
+  import { getMoment } from '@flightlesslabs/utils';
 
   interface TripStatsProps {
     expenses?: Expense[];
   }
 
   const { expenses }: TripStatsProps = $props();
+
+  const firstExpense = $derived(
+    expenses?.length
+      ? getMoment(expenses[expenses.length - 1].date).format('MMM D, YYYY')
+      : undefined,
+  );
+
+  const lastExpense = $derived(
+    expenses?.length ? getMoment(expenses[0].date).format('MMM D, YYYY') : undefined,
+  );
+
+  let open = $state(false);
 </script>
 
 {#if expenses?.length}
   <div class="TripStats">
-    <LightAccordian>
+    <LightAccordian bind:open>
       {#snippet header()}
-        <div class="amount"><TotalExpense data={expenses} /></div>
+        {#if open}
+          <div class="details">Details</div>
+        {:else}
+          <div class="amount"><TotalExpense data={expenses} /></div>
+        {/if}
       {/snippet}
 
-      <div class="tools">
-        <ExportCsv />
-        <ExportJson />
+      <div class="content">
+        <div class="contentGroup totalExpense">
+          <p>Total Expenes:</p>
+          <article class="amount"><TotalExpense data={expenses} /></article>
+        </div>
+
+        <div class="contentGroup">
+          <p>Trip Period:</p>
+          <article>
+            <b>{firstExpense}</b> to <b>{lastExpense}</b>
+          </article>
+        </div>
+
+        <div class="contentGroup tools">
+          <ExportCsv />
+          <ExportJson />
+        </div>
       </div>
     </LightAccordian>
   </div>
@@ -36,6 +67,34 @@
     .amount {
       display: flex;
       align-items: center;
+    }
+
+    .content {
+      .contentGroup {
+        margin-bottom: 28px;
+      }
+
+      p {
+        font-size: 0.9rem;
+        margin-top: 3px;
+        margin-bottom: 6px;
+        color: var(--dodo-color-neutral-600);
+      }
+
+      article {
+        font-size: 1rem;
+        color: var(--dodo-color-neutral-700);
+      }
+
+      b {
+        font-weight: 500;
+      }
+    }
+
+    .totalExpense {
+      :global(.TotalExpense) {
+        font-size: 1.1rem;
+      }
     }
 
     .tools {
