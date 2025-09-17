@@ -70,7 +70,6 @@
 </script>
 
 <script lang="ts">
-  import { AppColorSchemes, useThemeStore } from '$lib/stores/theme.svelte';
   import type {
     FormEventHandler,
     ChangeEventHandler,
@@ -81,6 +80,7 @@
 
   import './TextInput.style.scss';
   import type { Snippet } from 'svelte';
+  import InputEnclosure from '../InputEnclosure';
 
   let {
     name,
@@ -127,17 +127,16 @@
       onblur(eTyped);
     }
   }
-
-  const theme = $derived(
-    useThemeStore.theme === AppColorSchemes.DARK ? 'theme--dark' : 'theme--light',
-  );
 </script>
 
-<div class={['TextInput', theme, className].join(' ')} class:error class:disabled class:focused>
-  <div class="before">
-    {@render before?.()}
-  </div>
-
+<InputEnclosure
+  class={['TextInput', className].join(' ')}
+  {error}
+  {disabled}
+  {focused}
+  {before}
+  {after}
+>
   <input
     type="text"
     {name}
@@ -158,8 +157,4 @@
     bind:value
     {readonly}
   />
-
-  <div class="after">
-    {@render after?.()}
-  </div>
-</div>
+</InputEnclosure>

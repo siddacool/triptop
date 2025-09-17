@@ -46,7 +46,6 @@
 </script>
 
 <script lang="ts">
-  import { AppColorSchemes, useThemeStore } from '$lib/stores/theme.svelte';
   import type {
     FormEventHandler,
     ChangeEventHandler,
@@ -62,6 +61,7 @@
     TextInputFocusEvent,
     TextInputKeyboardEvent,
   } from '../TextInput/TextInput.svelte';
+  import InputEnclosure from '../InputEnclosure';
 
   let {
     name,
@@ -108,17 +108,16 @@
       onblur(eTyped);
     }
   }
-
-  const theme = $derived(
-    useThemeStore.theme === AppColorSchemes.DARK ? 'theme--dark' : 'theme--light',
-  );
 </script>
 
-<div class={['NumericInput', theme, className].join(' ')} class:error class:disabled class:focused>
-  <div class="before">
-    {@render before?.()}
-  </div>
-
+<InputEnclosure
+  class={['NumericInput', className].join(' ')}
+  {error}
+  {disabled}
+  {focused}
+  {before}
+  {after}
+>
   <input
     type="number"
     {name}
@@ -140,8 +139,4 @@
     {readonly}
     step=".01"
   />
-
-  <div class="after">
-    {@render after?.()}
-  </div>
-</div>
+</InputEnclosure>

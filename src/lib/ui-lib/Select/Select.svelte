@@ -30,6 +30,7 @@
   import { Combobox } from 'bits-ui';
   import './Select.style.scss';
   import Icon from '@iconify/svelte';
+  import InputEnclosure from '../InputEnclosure/InputEnclosure.svelte';
 
   let {
     class: className = '',
@@ -91,12 +92,11 @@
     inputValue={options.find((item) => item.value === value)?.label}
     scrollAlignment="center"
   >
-    <div
-      class={['SelectInputHolder', theme].join(' ')}
-      class:error
-      class:disabled
-      class:focused
-      class:open
+    <InputEnclosure
+      class={['SelectInputHolder', open ? 'open' : ''].join(' ')}
+      {error}
+      {disabled}
+      {focused}
     >
       <div class="before">
         {@render before?.()}
@@ -119,7 +119,7 @@
           <Icon icon="material-symbols:arrow-drop-down-rounded" width="28" height="28" />
         {/if}
       </Combobox.Trigger>
-    </div>
+    </InputEnclosure>
     <Combobox.Portal>
       <Combobox.Content class={['SelectContent', 'dodo-shadow-5', theme].join(' ')} sideOffset={10}>
         <Combobox.ScrollUpButton class={['ScrollButton', 'ScrollButtonUp'].join(' ')}

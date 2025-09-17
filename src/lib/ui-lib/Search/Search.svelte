@@ -50,7 +50,6 @@
 </script>
 
 <script lang="ts">
-  import { AppColorSchemes, useThemeStore } from '$lib/stores/theme.svelte';
   import type {
     FormEventHandler,
     ChangeEventHandler,
@@ -68,6 +67,7 @@
     TextInputKeyboardEvent,
   } from '../TextInput/TextInput.svelte';
   import Icon from '@iconify/svelte';
+  import InputEnclosure from '../InputEnclosure';
 
   let {
     name,
@@ -138,17 +138,16 @@
       return;
     }
   }
-
-  const theme = $derived(
-    useThemeStore.theme === AppColorSchemes.DARK ? 'theme--dark' : 'theme--light',
-  );
 </script>
 
-<div class={['Search', theme, className].join(' ')} class:error class:disabled class:focused>
-  <div class="before">
-    {@render before?.()}
-  </div>
-
+<InputEnclosure
+  class={['Search', className].join(' ')}
+  {error}
+  {disabled}
+  {focused}
+  {before}
+  {after}
+>
   <div class="SearchIcon">
     <Icon icon="material-symbols:search-rounded" width="24" height="24" />
   </div>
@@ -179,8 +178,4 @@
       <Icon icon="material-symbols:close-small" width="28" height="28" />
     </button>
   {/if}
-
-  <div class="after">
-    {@render after?.()}
-  </div>
-</div>
+</InputEnclosure>
