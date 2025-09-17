@@ -5,7 +5,6 @@
   import validateJson from '$lib/helpers/validators/vaidate-json';
   import { readFileAsync } from '$lib/helpers/upload-file';
   import { processFirstError } from '$lib/helpers/process-errors';
-  import Message from '$lib/ui-lib/Message/Message.svelte';
   import FormControl from '$lib/ui-lib/FormControl/FormControl.svelte';
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';

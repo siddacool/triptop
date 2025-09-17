@@ -5,7 +5,6 @@
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import { useExpensesStore } from '$lib/stores/expense/list.svelte';
   import { simplifyText } from '$lib/helpers/text-manipulations/simplify-text';
-  import TextButton from '$lib/ui-lib/TextButton';
   import Button from '$lib/ui-lib/Button';
   import Icon from '@iconify/svelte';
 

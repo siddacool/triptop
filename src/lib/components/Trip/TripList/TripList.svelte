@@ -51,6 +51,8 @@
 
     .listItem {
       margin-bottom: 16px;
+      padding-left: 4px;
+      padding-right: 4px;
     }
 
     .create-button-holder {

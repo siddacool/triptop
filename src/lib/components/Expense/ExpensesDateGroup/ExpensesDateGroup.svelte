@@ -19,22 +19,16 @@
   const tripId = page.params.tripId;
 
   let searchTerm = $state('');
-  let filteredExpenses = $state<Expense[]>([]);
-  let dateWiseExpenses = $state<DateWiseExpense[]>([]);
+  let filteredExpenses = $derived<Expense[]>(
+    getFilteredExpenses(useExpensesStore.data || [], {
+      search: searchTerm,
+    }),
+  );
+  let dateWiseExpenses = $derived<DateWiseExpense[]>([...getDateWiseExpenses(filteredExpenses)]);
 
   function onsearchclear() {
     searchTerm = '';
   }
-
-  $effect(() => {
-    filteredExpenses = getFilteredExpenses(useExpensesStore.data || [], {
-      search: searchTerm,
-    });
-  });
-
-  $effect(() => {
-    dateWiseExpenses = [...getDateWiseExpenses(filteredExpenses)];
-  });
 
   let listRef = $state();
 
@@ -96,6 +90,8 @@
 
     .listItem {
       margin-bottom: 4px;
+      padding-left: 4px;
+      padding-right: 4px;
     }
 
     .create-button-holder {

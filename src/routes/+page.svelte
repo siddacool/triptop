@@ -1,5 +1,4 @@
 <script lang="ts">
-  import FixedHeader from '$lib/components/FixedHeader.svelte';
   import TripList from '$lib/components/Trip/TripList';
   import { useTripsStore } from '$lib/stores/trip/list.svelte';
   import { onMount } from 'svelte';

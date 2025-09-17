@@ -22,12 +22,12 @@ function createTripsStore() {
 
         const expenses = await db.expense.toArray();
 
-        let trips = await db.trips.toArray();
+        const trips = await db.trips.toArray();
 
         trips.sort((a, b) => b?.createdAt - a?.createdAt);
 
         let tripsWithUpdatedExpenses: Trip[] = [];
-        let tripsWithoutUpdatedExpenses: Trip[] = [];
+        const tripsWithoutUpdatedExpenses: Trip[] = [];
 
         for (let index = 0; index < trips.length; index++) {
           const element = trips[index];
@@ -49,8 +49,6 @@ function createTripsStore() {
         tripsWithUpdatedExpenses = tripsWithUpdatedExpenses.sort(
           (a, b) => (b?.expensesUpdatedAt as number) - (a?.expensesUpdatedAt as number),
         );
-
-        console.log(tripsWithUpdatedExpenses, tripsWithoutUpdatedExpenses);
 
         data = [...tripsWithUpdatedExpenses, ...tripsWithoutUpdatedExpenses];
 

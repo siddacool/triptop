@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { Expense } from '$lib/stores/expense/individual.svelte';
   import { getMoment } from '@flightlesslabs/utils';
 
   interface TimeProps {

@@ -46,7 +46,7 @@
     {href}
     {disabled}
     {ref}
-    class={['TextButton', , theme, className].join(' ')}
+    class={['TextButton', theme, className].join(' ')}
     {onclick}
     aria-label={ariaLabel}
     title={title || ariaLabel}

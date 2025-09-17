@@ -1,7 +1,6 @@
 <script lang="ts">
   import Card from '$lib/ui-lib/Card/Card.svelte';
   import { Column, Grid } from '@flightlesslabs/grid';
-  import FormControl from '$lib/ui-lib/FormControl/FormControl.svelte';
   import TextInput from '$lib/ui-lib/TextInput';
   import type { EventHandler } from 'svelte/elements';
   import type { Snippet } from 'svelte';
