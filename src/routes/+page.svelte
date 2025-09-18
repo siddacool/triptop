@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Divider from '$lib/components/Divider.svelte';
   import TripList from '$lib/components/Trip/TripList';
   import { useTripsStore } from '$lib/stores/trip/list.svelte';
   import { onMount } from 'svelte';

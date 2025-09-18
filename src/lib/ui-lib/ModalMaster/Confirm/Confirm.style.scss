@@ -1,0 +1,21 @@
+.ConfirmModal {
+  [data-dialog-title] {
+    padding-left: 34px;
+    .AlertIcon {
+      color: var(--dodo-color-warning-500);
+      position: absolute;
+      top: 0px;
+      left: 0;
+
+      @media (min-width: 1024px) {
+        top: 2px;
+      }
+    }
+  }
+
+  .ModalDescriptionControls {
+    .RejectButton {
+      margin-left: 12px;
+    }
+  }
+}

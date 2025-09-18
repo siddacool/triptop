@@ -1,0 +1,63 @@
+.BaseModal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background-color: color-mix(in oklab, #000 75%, transparent);
+  display: flex;
+  top: 0;
+  left: 0;
+}
+
+.BaseModalContent {
+  z-index: 100;
+  position: fixed;
+  width: calc(100% - 32px);
+  top: calc(50% - 100px);
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (min-width: 1024px) {
+    max-width: 490px;
+    top: calc(50% - 200px);
+  }
+
+  [data-dialog-title] {
+    font-size: 1.1rem;
+    font-weight: 500;
+    min-height: 2rem;
+    padding-bottom: 24px;
+    position: relative;
+    padding-right: calc(2rem + 4px);
+    display: flex;
+    align-items: center;
+
+    @media (min-width: 1024px) {
+      font-size: 1.2rem;
+    }
+
+    .CloseModal {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+    }
+  }
+
+  .ModalDescriptionBody {
+    &:empty {
+      display: none;
+    }
+
+    font-size: 1rem;
+    padding-bottom: 30px;
+  }
+
+  .ModalDescriptionControls {
+    &:empty {
+      display: none;
+    }
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

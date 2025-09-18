@@ -1,0 +1,16 @@
+.InformModal {
+  [data-dialog-title] {
+    padding-left: 34px;
+
+    .InfoIcon {
+      color: var(--dodo-color-secondary-600);
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      @media (min-width: 1024px) {
+        top: 2px;
+      }
+    }
+  }
+}

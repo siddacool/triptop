@@ -70,6 +70,7 @@
   import { useCreateExpenseStore } from '$lib/stores/expense/create.svelte';
   import { Category, PaymentModes, useExpenseStore } from '$lib/stores/expense/individual.svelte';
   import Loader from '$lib/ui-lib/Loader/Loader.svelte';
+  import Confirm from '$lib/ui-lib/ModalMaster/Confirm/Confirm.svelte';
   import { Column, Grid } from '@flightlesslabs/grid';
   import { getMoment } from '@flightlesslabs/utils';
   import type { DateValue } from '@internationalized/date';
@@ -80,6 +81,7 @@
   const expenseId = page.params.expenseId;
 
   let loading = $state<boolean>(false);
+  let openDeleteConfirm = $state<boolean>(false);
 
   onMount(async () => {
     if (!expenseId) {
@@ -138,7 +140,7 @@
     }
   }
 
-  async function ondelete() {
+  async function deleteConfirmed() {
     try {
       loading = true;
       await useExpenseStore.delete();
@@ -154,12 +156,24 @@
       loading = false;
     }
   }
+
+  function ondelete() {
+    openDeleteConfirm = true;
+  }
 </script>
 
 <svelte:head>
   <title>Edit Expense</title>
   <meta name="description" content="Triptop - Edit Expense" />
 </svelte:head>
+
+<Confirm onaccept={deleteConfirmed} bind:open={openDeleteConfirm}>
+  {#snippet title()}
+    Delete Expense
+  {/snippet}
+
+  Do you want to Delete {useExpenseStore.data?.name} ?
+</Confirm>
 
 <div class="EditExpense">
   {#if useExpenseStore.fetching}

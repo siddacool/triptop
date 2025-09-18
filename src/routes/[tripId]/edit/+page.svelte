@@ -23,12 +23,14 @@
   import { useCreateTripStore } from '$lib/stores/trip/create.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Loader from '$lib/ui-lib/Loader/Loader.svelte';
+  import Confirm from '$lib/ui-lib/ModalMaster/Confirm';
   import { Column, Grid } from '@flightlesslabs/grid';
   import { onMount } from 'svelte';
 
   const tripId = page.params.tripId;
 
   let loading = $state<boolean>(false);
+  let openDeleteConfirm = $state<boolean>(false);
 
   onMount(async () => {
     if (!tripId) {
@@ -83,7 +85,11 @@
     }
   }
 
-  async function ondelete() {
+  function ondelete() {
+    openDeleteConfirm = true;
+  }
+
+  async function deleteConfirmed() {
     try {
       loading = true;
       await useTripStore.delete();
@@ -105,6 +111,14 @@
   <title>Edit Trip: {useTripStore.data?.name}</title>
   <meta name="description" content="Triptop - Edit Trip" />
 </svelte:head>
+
+<Confirm onaccept={deleteConfirmed} bind:open={openDeleteConfirm}>
+  {#snippet title()}
+    Delete Trip
+  {/snippet}
+
+  Do you want to Delete {useTripStore.data?.name} ?
+</Confirm>
 
 <div class="EditTrip">
   {#if useTripStore.fetching}

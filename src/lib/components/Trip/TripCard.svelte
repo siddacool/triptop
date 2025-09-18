@@ -14,7 +14,7 @@
 
 <a class="TripListCard" href={resolved}>
   <Card interactive>
-    <p>
+    <p class="creativeFont">
       {data.name}
     </p>
   </Card>
@@ -27,7 +27,6 @@
     display: block;
 
     p {
-      font-family: 'Epunda Sans', sans-serif;
       margin: 0;
       font-size: 1.2rem;
       letter-spacing: 1.4px;

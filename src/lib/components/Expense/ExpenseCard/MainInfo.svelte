@@ -11,7 +11,7 @@
 </script>
 
 <div class="MainInfo">
-  <div class="name">
+  <div class="name creativeFont">
     <CategoryIcon category={data.category} />
     {data.name}
   </div>
@@ -32,8 +32,6 @@
     font-weight: 400;
 
     .name {
-      font-family: 'Epunda Sans', sans-serif;
-      letter-spacing: 1.1px;
       display: inline-block;
 
       :global(.CategoryIcon) {

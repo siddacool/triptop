@@ -30,7 +30,6 @@
   import { Combobox } from 'bits-ui';
   import './Select.style.scss';
   import Icon from '@iconify/svelte';
-  import InputEnclosure from '../InputEnclosure/InputEnclosure.svelte';
 
   let {
     class: className = '',

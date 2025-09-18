@@ -41,7 +41,10 @@
       <Column>
         <Grid spacing={3}>
           <Column>
-            <div class="name"><CategoryIcon category={data.category} /> {data.name}</div>
+            <div class="name creativeFont">
+              <CategoryIcon category={data.category} />
+              {data.name}
+            </div>
           </Column>
           <Column>
             <div class="currency">
@@ -71,8 +74,6 @@
   .ExpenseDetails {
     .name {
       font-size: 1.75rem;
-      font-family: 'Epunda Sans', sans-serif;
-      letter-spacing: 1.1px;
       font-weight: 400;
 
       :global(.CategoryIcon) {
