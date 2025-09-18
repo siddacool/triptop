@@ -59,8 +59,8 @@
       <Label.Root for={`${name}-${index}`}>
         <Icon
           icon="material-symbols:check-circle-rounded"
-          width="20"
-          height="20"
+          width="24"
+          height="24"
           class="checkIcon"
         />
         {#if labelTyped}
