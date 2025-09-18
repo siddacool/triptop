@@ -2,12 +2,15 @@
   width: 100%;
   .header {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
     width: 100%;
 
     .headerContent {
       padding-top: 8px;
+    }
+
+    .toggle {
+      margin-right: 12px;
     }
   }
 

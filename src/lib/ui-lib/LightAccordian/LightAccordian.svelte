@@ -42,10 +42,6 @@
 
 <div class={['LightAccordian', theme, className].join(' ')} bind:this={ref}>
   <div class="header">
-    <div class="headerContent">
-      {@render header?.()}
-    </div>
-
     <UtilityButton class="toggle" onclick={ontoggleMod} title="Accordian toggle">
       {#if open}
         <Icon icon="material-symbols:arrow-drop-up-rounded" width="28" height="28" />
@@ -53,6 +49,9 @@
         <Icon icon="material-symbols:arrow-drop-down-rounded" width="28" height="28" />
       {/if}
     </UtilityButton>
+    <div class="headerContent">
+      {@render header?.()}
+    </div>
   </div>
 
   {#if open}

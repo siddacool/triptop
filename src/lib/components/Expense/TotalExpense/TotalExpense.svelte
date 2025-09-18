@@ -26,7 +26,7 @@
 
 <style lang="scss">
   .TotalExpense {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--dodo-color-primary-700);
 
     ul {
