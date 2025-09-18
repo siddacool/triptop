@@ -21,3 +21,10 @@ body {
   background-color: var(--dodo-color-neutral-100);
   overflow-x: hidden;
 }
+
+button,
+a,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}

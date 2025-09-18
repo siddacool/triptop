@@ -3,8 +3,8 @@
   import ExportJson from '$lib/components/Trip/ExportTrip/ExportJson';
   import TotalExpense from '$lib/components/Expense/TotalExpense';
   import type { Expense } from '$lib/stores/expense/individual.svelte';
-  import LightAccordian from '$lib/ui-lib/LightAccordian';
   import { getMoment } from '@flightlesslabs/utils';
+  import Accordian from '$lib/ui-lib/Accordian';
 
   interface TripStatsProps {
     expenses?: Expense[];
@@ -27,7 +27,7 @@
 
 {#if expenses?.length}
   <div class="TripStats">
-    <LightAccordian bind:open>
+    <Accordian bind:open>
       {#snippet header()}
         {#if open}
           <div class="details">Details</div>
@@ -54,7 +54,7 @@
           <ExportJson />
         </div>
       </div>
-    </LightAccordian>
+    </Accordian>
   </div>
 {/if}
 

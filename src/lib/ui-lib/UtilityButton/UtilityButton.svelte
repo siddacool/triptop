@@ -11,6 +11,7 @@
     'aria-label'?: string;
     onclick?: MouseEventHandler<HTMLElement> | null | undefined;
     type?: 'button' | 'submit' | 'reset';
+    tabindex?: number;
   }
 </script>
 
@@ -34,6 +35,7 @@
     type = 'button',
     name,
     id,
+    tabindex,
   }: UtilityButtonProps = $props();
 
   const theme = $derived(
@@ -65,6 +67,7 @@
     title={title || ariaLabel}
     {name}
     {id}
+    {tabindex}
   >
     {@render children?.()}
   </Button.Root>

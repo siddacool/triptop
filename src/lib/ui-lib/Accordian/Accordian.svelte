@@ -2,7 +2,7 @@
   import Icon from '@iconify/svelte';
   import type { Snippet } from 'svelte';
 
-  export interface LightAccordianProps {
+  export interface AccordianProps {
     children?: Snippet;
     header?: Snippet;
     ref?: HTMLDivElement;
@@ -13,7 +13,7 @@
 </script>
 
 <script lang="ts">
-  import './LightAccordian.style.scss';
+  import './Accordian.style.scss';
   import { AppColorSchemes, useThemeStore } from '$lib/stores/theme.svelte';
   import Divider from '$lib/components/Divider.svelte';
   import UtilityButton from '../UtilityButton';
@@ -25,7 +25,7 @@
     open = $bindable(false),
     class: className = '',
     ontoggle,
-  }: LightAccordianProps = $props();
+  }: AccordianProps = $props();
 
   function ontoggleMod() {
     open = !open;
@@ -40,9 +40,9 @@
   );
 </script>
 
-<div class={['LightAccordian', theme, className].join(' ')} bind:this={ref}>
-  <div class="header">
-    <UtilityButton class="toggle" onclick={ontoggleMod} title="Accordian toggle">
+<div class={['Accordian', theme, className].join(' ')} bind:this={ref}>
+  <button class="header" onclick={ontoggleMod}>
+    <UtilityButton class="toggle" title="Accordian toggle" tabindex={-1}>
       {#if open}
         <Icon icon="material-symbols:arrow-drop-up-rounded" width="28" height="28" />
       {:else}
@@ -52,7 +52,7 @@
     <div class="headerContent">
       {@render header?.()}
     </div>
-  </div>
+  </button>
 
   {#if open}
     <div class="accordianBody">

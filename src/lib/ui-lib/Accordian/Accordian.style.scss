@@ -1,16 +1,23 @@
-.LightAccordian {
+.Accordian {
   width: 100%;
   .header {
     display: flex;
     align-items: flex-start;
     width: 100%;
+    cursor: default;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 1rem;
 
     .headerContent {
       padding-top: 8px;
     }
 
     .toggle {
-      margin-right: 12px;
+      margin-right: 10px;
     }
   }
 
