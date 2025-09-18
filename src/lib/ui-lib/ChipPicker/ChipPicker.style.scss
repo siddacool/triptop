@@ -1,0 +1,97 @@
+.ChipPicker {
+  display: flex;
+  flex-wrap: wrap;
+
+  .ChipPickerChip {
+    display: inline-flex;
+    margin: 5px;
+  }
+
+  [data-radio-group-item] {
+    position: absolute;
+    z-index: -100;
+  }
+
+  label {
+    background-color: var(--dodo-color-primary-50);
+    font-size: 0.87rem;
+    font-weight: 400;
+    padding: 0 20px;
+    height: 2.5rem;
+    border-radius: 15px;
+    color: var(--dodo-color-neutral-800);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.3px;
+    border: 1px solid var(--dodo-color-primary-200);
+    position: relative;
+
+    &:hover {
+      background-color: var(--dodo-color-primary-100);
+    }
+
+    .checkIcon {
+      display: none;
+      position: absolute;
+      left: 6px;
+    }
+  }
+
+  [data-state='checked'] {
+    & + label {
+      background-color: var(--dodo-color-primary-400);
+      color: var(--dodo-color-constant-white);
+      border-color: var(--dodo-color-primary-500);
+      padding-left: 32px;
+      padding-right: 8px;
+
+      &:hover {
+        background-color: var(--dodo-color-primary-500);
+      }
+
+      .checkIcon {
+        display: inline-block;
+      }
+    }
+  }
+
+  &.theme {
+    &--dark {
+      label {
+        border-color: var(--dodo-color-neutral-300);
+        background-color: var(--dodo-color-primary-50);
+
+        &:hover {
+          background-color: var(--dodo-color-primary-100);
+        }
+      }
+
+      [data-state='checked'] {
+        & + label {
+          border-color: var(--dodo-color-primary-600);
+          background-color: var(--dodo-color-primary-200);
+          color: var(--dodo-color-constant-white);
+
+          &:hover {
+            background-color: var(--dodo-color-primary-300);
+          }
+        }
+      }
+    }
+  }
+
+  &[disabled] {
+    cursor: default;
+    color: var(--dodo-color-neutral-500);
+    background-color: var(--dodo-color-neutral-300);
+
+    &:hover {
+      background-color: var(--dodo-color-neutral-300);
+    }
+
+    &:active {
+      background-color: var(--dodo-color-neutral-300);
+    }
+  }
+}
