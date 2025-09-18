@@ -1,4 +1,5 @@
 <script lang="ts">
+  import CategoryIcon from '$lib/components/CategoryIcon.svelte';
   import type { CreateExpenseFormData } from '$lib/stores/expense/create.svelte';
   import { Category } from '$lib/stores/expense/individual.svelte';
   import ChipPicker from '$lib/ui-lib/ChipPicker';
@@ -25,9 +26,24 @@
       {options}
       onchange={(val) => onchange('category', val)}
       value={formData?.category}
-    />
+    >
+      {#snippet label(option)}
+        <span class="option">
+          <CategoryIcon category={option.value as Category} />
+          {option.label}
+        </span>
+      {/snippet}
+    </ChipPicker>
   </FormControl>
 </Column>
 
 <style lang="scss">
+  .option {
+    display: inline-flex;
+    align-items: center;
+
+    :global(.CategoryIcon) {
+      margin-right: 4px;
+    }
+  }
 </style>
