@@ -4,6 +4,8 @@
   import SvelteVirtualList from '@humanspeak/svelte-virtual-list';
   import Icon from '@iconify/svelte';
   import TripCard from '../TripCard.svelte';
+  import VirtualListItem from '$lib/ui-lib/VirtualList/VirtualListItem';
+  import VirtualListHolder from '$lib/ui-lib/VirtualList/VirtualListHolder';
 
   interface TripListProps {
     data?: Trip[];
@@ -17,42 +19,35 @@
     },
   ] as unknown as Trip[];
 
-  let listRef = $state();
-
   const dataMod = $derived([...specialData, ...data]);
 </script>
 
 <div class="TripList">
-  <SvelteVirtualList items={dataMod} bind:this={listRef}>
-    {#snippet renderItem(item)}
-      <div class="listItem">
-        {#if item._id === 'add'}
-          <div class="create-button-holder">
-            <Button href="/create" aria-label="Create Trip" color="primary">
-              <Icon icon="material-symbols:add" /> Create Trip
-            </Button>
-          </div>
-        {:else}
-          <TripCard data={item} />
-        {/if}
-      </div>
-    {/snippet}
-  </SvelteVirtualList>
+  <VirtualListHolder height="calc(100vh - 76px)">
+    <SvelteVirtualList items={dataMod}>
+      {#snippet renderItem(item)}
+        <VirtualListItem>
+          {#if item._id === 'add'}
+            <div class="create-button-holder">
+              <Button href="/create" aria-label="Create Trip" color="primary">
+                <Icon icon="material-symbols:add" /> Create Trip
+              </Button>
+            </div>
+          {:else}
+            <TripCard data={item} />
+          {/if}
+        </VirtualListItem>
+      {/snippet}
+    </SvelteVirtualList>
+  </VirtualListHolder>
 </div>
 
 <style lang="scss">
   .TripList {
     margin-top: 16px;
-    height: calc(100vh - 76px);
-    margin-left: -16px;
-    margin-right: -16px;
-    padding-left: 16px;
-    padding-right: 16px;
 
-    .listItem {
+    :global(.VirtualListItem) {
       margin-bottom: 16px;
-      padding-left: 4px;
-      padding-right: 4px;
     }
 
     .create-button-holder {
