@@ -23,11 +23,11 @@
     bottom: 0;
 
     &.CARD {
-      background-color: var(--dodo-color-warning-300);
+      background-color: var(--triptop-color-payment-mode-card-bar);
     }
 
     &.CASH {
-      background-color: var(--dodo-color-safe-300);
+      background-color: var(--triptop-color-payment-mode-cash-bar);
     }
   }
 </style>

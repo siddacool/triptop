@@ -36,38 +36,38 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    color: #8170ff;
+    color: var(--triptop-color-category-other-icon);
 
     :global(.ENTERTAINMENT) {
-      color: #76a521;
+      color: var(--triptop-color-category-entertainment-icon);
     }
 
     :global(.FLIGHT) {
-      color: #d263ef;
+      color: var(--triptop-color-category-flight-icon);
     }
 
     :global(.FOOD) {
-      color: #ff9a40;
+      color: var(--triptop-color-category-food-icon);
     }
 
     :global(.MART) {
-      color: #40a6ff;
+      color: var(--triptop-color-category-mart-icon);
     }
 
     :global(.SHOPPING) {
-      color: #40a6ff;
+      color: var(--triptop-color-category-shopping-icon);
     }
 
     :global(.STAY) {
-      color: #3bc5a9;
+      color: var(--triptop-color-category-stay-icon);
     }
 
     :global(.TOUR) {
-      color: #40e6ff;
+      color: var(--triptop-color-category-tour-icon);
     }
 
     :global(.TRANSPORT) {
-      color: #d1d530;
+      color: var(--triptop-color-category-transport-icon);
     }
   }
 </style>

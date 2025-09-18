@@ -86,6 +86,26 @@
   --dodo-color-danger-800: var(--dodo-color-base-red-blush-800);
   --dodo-color-danger-900: var(--dodo-color-base-red-blush-900);
   --dodo-color-danger-950: var(--dodo-color-base-red-blush-950);
+
+  // Special colors
+
+  // Payment mode colors
+  --triptop-color-payment-mode-cash-icon: #00b257;
+  --triptop-color-payment-mode-card-icon: #ec9022;
+
+  --triptop-color-payment-mode-cash-bar: #00b257;
+  --triptop-color-payment-mode-card-bar: #ec9022;
+
+  // Category colors
+  --triptop-color-category-other-icon: #8175dc;
+  --triptop-color-category-entertainment-icon: #599b0d;
+  --triptop-color-category-flight-icon: #b12fd3;
+  --triptop-color-category-food-icon: #e66e17;
+  --triptop-color-category-mart-icon: #3295ec;
+  --triptop-color-category-shopping-icon: #ca4f73;
+  --triptop-color-category-stay-icon: #1dbc9e;
+  --triptop-color-category-tour-icon: #26b2c2;
+  --triptop-color-category-transport-icon: #d0b112;
 }
 
 .dodo-theme--dark {
@@ -142,4 +162,24 @@
   --dodo-color-danger-800: var(--dodo-color-base-red-blush-200);
   --dodo-color-danger-900: var(--dodo-color-base-red-blush-100);
   --dodo-color-danger-950: var(--dodo-color-base-red-blush-50);
+
+  // Special colors
+
+  // Payment mode colors
+  --triptop-color-payment-mode-cash-icon: #00b257;
+  --triptop-color-payment-mode-card-icon: #ecba22;
+
+  --triptop-color-payment-mode-cash-bar: #0c8346;
+  --triptop-color-payment-mode-card-bar: #c9a73f;
+
+  // Category colors
+  --triptop-color-category-other-icon: #9d93e6;
+  --triptop-color-category-entertainment-icon: #85d076;
+  --triptop-color-category-flight-icon: #d687ea;
+  --triptop-color-category-food-icon: #e9a365;
+  --triptop-color-category-mart-icon: #40a6ff;
+  --triptop-color-category-shopping-icon: #ec89b1;
+  --triptop-color-category-stay-icon: #61d2bb;
+  --triptop-color-category-tour-icon: #09bfda;
+  --triptop-color-category-transport-icon: #b3b550;
 }

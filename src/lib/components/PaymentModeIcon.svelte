@@ -24,11 +24,11 @@
     align-items: center;
 
     :global(.card) {
-      color: var(--dodo-color-warning-400);
+      color: var(--triptop-color-payment-mode-card-icon);
     }
 
     :global(.cash) {
-      color: var(--dodo-color-safe-400);
+      color: var(--triptop-color-payment-mode-cash-icon);
     }
   }
 </style>
