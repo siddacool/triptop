@@ -4,14 +4,7 @@
   overflow: hidden;
   height: 2.375rem;
   color: inherit;
-  background-color: rgba(0, 0, 0, 0.23);
   border: 1px solid var(--dodo-color-neutral-400);
-
-  &.theme {
-    &--dark {
-      border-color: var(--dodo-color-neutral-500);
-    }
-  }
 
   .ButtonToggleItem {
     display: inline-flex;
@@ -45,16 +38,40 @@
     }
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.33);
+      background-color: var(--dodo-color-primary-50);
     }
   }
 
   [data-state='checked'] {
     & + .ButtonToggleLabel {
-      background-color: var(--dodo-color-primary-200);
+      background-color: var(--dodo-color-primary-500);
+      color: var(--dodo-color-constant-white);
 
       &:hover {
-        background-color: var(--dodo-color-primary-300);
+        background-color: var(--dodo-color-primary-600);
+      }
+    }
+  }
+
+  &.theme {
+    &--dark {
+      background-color: rgba(0, 0, 0, 0.23);
+      border-color: var(--dodo-color-neutral-500);
+
+      .ButtonToggleLabel {
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.33);
+        }
+      }
+
+      [data-state='checked'] {
+        & + .ButtonToggleLabel {
+          background-color: var(--dodo-color-primary-200);
+
+          &:hover {
+            background-color: var(--dodo-color-primary-300);
+          }
+        }
       }
     }
   }

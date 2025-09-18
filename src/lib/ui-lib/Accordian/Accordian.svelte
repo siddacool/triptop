@@ -15,8 +15,8 @@
 <script lang="ts">
   import './Accordian.style.scss';
   import { AppColorSchemes, useThemeStore } from '$lib/stores/theme.svelte';
-  import Divider from '$lib/components/Divider.svelte';
   import UtilityButton from '../UtilityButton';
+  import Divider from '../Divider';
 
   let {
     header,

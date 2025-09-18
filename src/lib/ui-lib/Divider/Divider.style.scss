@@ -1,0 +1,12 @@
+.Divider {
+  margin: 0;
+  height: 1px;
+  background-color: var(--dodo-color-neutral-300);
+  border: none;
+
+  &.theme {
+    &--dark {
+      background-color: var(--dodo-color-neutral-400);
+    }
+  }
+}

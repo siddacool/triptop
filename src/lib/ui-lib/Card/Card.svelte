@@ -27,7 +27,7 @@
 <div
   bind:this={ref}
   class:interactive
-  class={['Card', 'dodo-shadow-2', theme, className].join(' ')}
+  class={['Card', 'dodo-shadow-1', theme, className].join(' ')}
 >
   {@render children?.()}
 </div>

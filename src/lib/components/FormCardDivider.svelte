@@ -1,6 +1,6 @@
 <script lang="ts">
+  import Divider from '$lib/ui-lib/Divider';
   import { Column } from '@flightlesslabs/grid';
-  import Divider from './Divider.svelte';
 </script>
 
 <Column>

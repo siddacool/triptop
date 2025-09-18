@@ -1,13 +1,13 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
-  import Divider from '$lib/components/Divider.svelte';
   import Header from '$lib/components/Header.svelte';
   import EditTrip from '$lib/components/Trip/EditTrip.svelte';
   import { processFirstError } from '$lib/helpers/process-errors';
   import { useCreateTripStore } from '$lib/stores/trip/create.svelte';
   import { editTripOnChange } from '../[tripId]/edit/+page.svelte';
   import ImportJson from '$lib/components/Trip/ImportTrip/ImportJson';
+  import Divider from '$lib/ui-lib/Divider';
 
   let errorMessage = $state('');
 
