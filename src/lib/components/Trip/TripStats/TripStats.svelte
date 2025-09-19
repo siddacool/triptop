@@ -71,7 +71,7 @@
 
     .content {
       .contentGroup {
-        margin-bottom: 28px;
+        margin-bottom: 16px;
       }
 
       p {
@@ -101,6 +101,7 @@
       display: flex;
       align-items: center;
       flex-wrap: wrap;
+      margin-top: 24px;
     }
   }
 </style>

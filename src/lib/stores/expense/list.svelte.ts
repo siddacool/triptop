@@ -92,8 +92,6 @@ export async function getLatestExpense(tripId: string) {
     let expenses = await db.expense.where({ tripId: tripId }).toArray();
     expenses = expenses.sort((a, b) => b?.date - a?.date);
 
-    console.log(expenses);
-
     const latestExpense = expenses.length ? expenses[0] : undefined;
 
     return Promise.resolve(latestExpense);
