@@ -1,6 +1,6 @@
 {
   "name": "triptop",
-  "version": "4.6.2",
+  "version": "4.6.3",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
