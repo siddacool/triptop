@@ -1,10 +1,19 @@
 .ChipPicker {
   display: flex;
   flex-wrap: wrap;
-  margin: -4px;
+  margin: -2px;
+
+  @media (min-width: 1024px) {
+    margin: -4px;
+  }
 
   .ChipPickerChip {
     display: inline-flex;
+    margin: 2px;
+
+    @media (min-width: 1024px) {
+      margin: 4px;
+    }
   }
 
   [data-radio-group-item] {
@@ -14,10 +23,10 @@
 
   label {
     background-color: var(--dodo-color-primary-50);
-    font-size: 0.87rem;
+    font-size: 0.85rem;
     font-weight: 400;
     padding: 0 18px;
-    height: 2.5rem;
+    height: 2.3rem;
     border-radius: 15px;
     color: var(--dodo-color-neutral-800);
     cursor: pointer;
@@ -26,7 +35,6 @@
     letter-spacing: 0.3px;
     border: 1px solid var(--dodo-color-primary-200);
     position: relative;
-    margin: 4px;
 
     &:hover {
       background-color: var(--dodo-color-primary-100);
@@ -42,7 +50,7 @@
 
   [data-state='checked'] {
     & + label {
-      background-color: var(--dodo-color-primary-400);
+      background-color: var(--dodo-color-primary-200);
       color: var(--dodo-color-constant-white);
       border-color: transparent;
       padding-left: 30px;
@@ -51,7 +59,7 @@
       color: var(--dodo-color-neutral-900);
 
       &:hover {
-        background-color: var(--dodo-color-neutral-700);
+        background-color: var(--dodo-color-primary-300);
       }
 
       .checkIcon {
