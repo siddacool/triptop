@@ -42,6 +42,9 @@
     onkeypress?: KeyboardEventHandler<HTMLInputElement>;
     /** onkeyup event handler */
     onkeyup?: KeyboardEventHandler<HTMLInputElement>;
+    min?: number;
+    max?: number;
+    step?: number;
   }
 </script>
 
@@ -85,6 +88,9 @@
     placeholder,
     ref = $bindable<HTMLInputElement>(),
     readonly = false,
+    min,
+    max,
+    step,
   }: NumericInputProps = $props();
 
   let focused: boolean = $state(false);
@@ -137,6 +143,8 @@
     {placeholder}
     bind:value
     {readonly}
-    step=".01"
+    {step}
+    {min}
+    {max}
   />
 </InputEnclosure>

@@ -75,6 +75,7 @@
                   value={formData?.amount}
                   oninput={(e) => onchange(e)}
                   class="Amount"
+                  step={0.01}
                 />
               </SuperInput>
             </Column>

@@ -21,6 +21,7 @@
   } from './timeGenerator';
   import Select from '../Select';
   import { Time } from '@internationalized/date';
+  import NumericInput from '../NumericInput/NumericInput.svelte';
 
   let {
     class: className = '',
@@ -35,9 +36,6 @@
     useThemeStore.theme === AppColorSchemes.DARK ? 'theme--dark' : 'theme--light',
   );
 
-  const hourOptions = generatePaddedNumberOptions(1, 12);
-  const minuteOptions = generatePaddedNumberOptions(1, 59);
-
   const periodOptions = [
     { value: 'AM', label: 'AM' },
     { value: 'PM', label: 'PM' },
@@ -47,10 +45,12 @@
   let minuteValue = $derived(`${value.minute}`);
   let periodValue = $derived(convert24To12HourObj(value.hour).period);
 
-  function onchangeHour(val: string) {
-    const hourValueMod = convert12To24Hour({ hour: val, period: periodValue });
+  function onchangeHour(e: Event) {
+    const target = e.target as HTMLInputElement;
 
-    hourValue = val;
+    const hourValueMod = convert12To24Hour({ hour: target.value, period: periodValue });
+
+    hourValue = target.value;
 
     const finalValue = new Time(hourValueMod, Number(minuteValue));
 
@@ -61,10 +61,11 @@
     }
   }
 
-  function onchangeMinute(val: string) {
-    const hourValueMod = convert12To24Hour({ hour: hourValue, period: periodValue });
+  function onchangeMinute(e: Event) {
+    const target = e.target as HTMLInputElement;
+    const hourValueMod = convert12To24Hour({ hour: target.value, period: periodValue });
 
-    minuteValue = val;
+    minuteValue = target.value;
     const finalValue = new Time(hourValueMod, Number(minuteValue));
 
     value = finalValue;
@@ -90,20 +91,23 @@
 </script>
 
 <div class={['TimeSelect', theme, className].join(' ')}>
-  <Select
-    options={hourOptions}
-    value={hourValue}
-    onchange={onchangeHour}
+  <NumericInput
+    value={Number(hourValue)}
+    oninput={onchangeHour}
     {name}
     {error}
     {disabled}
+    min={1}
+    max={12}
   />
-  <Select
-    options={minuteOptions}
-    value={minuteValue}
-    onchange={onchangeMinute}
+  <NumericInput
+    value={Number(minuteValue)}
+    oninput={onchangeMinute}
+    {name}
     {error}
     {disabled}
+    min={0}
+    max={59}
   />
   <Select
     options={periodOptions}
