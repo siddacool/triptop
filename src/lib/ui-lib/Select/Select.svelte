@@ -128,16 +128,8 @@
         <Combobox.Viewport class="SelectViewport">
           {#each filteredItems as item, i (i + item.value)}
             <Combobox.Item {...item} class={['SelectItem', theme].join(' ')}>
-              {#snippet children({ selected })}
+              {#snippet children()}
                 {item.label}
-                {#if selected}
-                  <Icon
-                    icon="material-symbols:check-circle"
-                    width="24"
-                    height="24"
-                    class="selected-icon"
-                  />
-                {/if}
               {/snippet}
             </Combobox.Item>
           {:else}

@@ -1,7 +1,8 @@
 <script lang="ts">
+  import PaymentModeIcon from '$lib/components/PaymentModeIcon.svelte';
   import type { CreateExpenseFormData } from '$lib/stores/expense/create.svelte';
-  import { PaymentModes } from '$lib/stores/expense/individual.svelte';
-  import ButtonToggle from '$lib/ui-lib/ButtonToggle';
+  import { PaymentModes, paymentModesOptions } from '$lib/stores/expense/individual.svelte';
+  import ChipPicker from '$lib/ui-lib/ChipPicker/ChipPicker.svelte';
   import FormControl from '$lib/ui-lib/FormControl';
   import { Column } from '@flightlesslabs/grid';
 
@@ -11,29 +12,33 @@
   }
 
   const { formData, onchange }: CurrencyProps = $props();
-
-  const options = [
-    {
-      value: PaymentModes.CASH,
-      label: 'Cash',
-    },
-    {
-      value: PaymentModes.CARD,
-      label: 'Card',
-    },
-  ];
 </script>
 
 <Column>
   <FormControl label="Payment Mode:" for="paymentMode">
-    <ButtonToggle
+    <ChipPicker
       name="paymentMode"
-      {options}
-      value={formData?.paymentMode || PaymentModes.CASH}
+      options={paymentModesOptions}
       onchange={(val) => onchange('paymentMode', val)}
-    />
+      value={formData?.paymentMode || PaymentModes.CASH}
+    >
+      {#snippet label(option)}
+        <span class="option">
+          <PaymentModeIcon paymentMode={option.value as PaymentModes} />
+          {option.label}
+        </span>
+      {/snippet}
+    </ChipPicker>
   </FormControl>
 </Column>
 
 <style lang="scss">
+  .option {
+    display: inline-flex;
+    align-items: center;
+
+    :global(.PaymentModeIcon) {
+      margin-right: 4px;
+    }
+  }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import CategoryIcon from '$lib/components/CategoryIcon.svelte';
   import type { CreateExpenseFormData } from '$lib/stores/expense/create.svelte';
-  import { Category } from '$lib/stores/expense/individual.svelte';
+  import { Category, categoryOptions } from '$lib/stores/expense/individual.svelte';
   import ChipPicker from '$lib/ui-lib/ChipPicker';
   import FormControl from '$lib/ui-lib/FormControl';
   import { Column } from '@flightlesslabs/grid';
@@ -12,18 +12,13 @@
   }
 
   const { formData, onchange }: CurrencyProps = $props();
-
-  export const options = Object.values(Category).map((value) => ({
-    value,
-    label: value.charAt(0) + value.slice(1).toLowerCase(),
-  }));
 </script>
 
 <Column>
   <FormControl label="Category:" for="category">
     <ChipPicker
       name="category"
-      {options}
+      options={categoryOptions}
       onchange={(val) => onchange('category', val)}
       value={formData?.category}
     >

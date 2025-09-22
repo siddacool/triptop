@@ -37,6 +37,7 @@
       background-color: transparent;
       color: inherit;
       border: 0;
+      width: 100%;
 
       &::placeholder {
         color: var(--dodo-color-secondary-600);
@@ -82,6 +83,7 @@
       position: absolute;
       top: 0;
       right: 0;
+      color: var(--dodo-color-neutral-600);
     }
 
     &.theme {
@@ -142,7 +144,11 @@
   align-items: center;
 
   .selected-icon {
-    margin-left: 16px;
+    margin-right: 8px;
+    width: 5px;
+    height: 5px;
+    background-color: var(--dodo-color-neutral-700);
+    border-radius: 50%;
   }
 
   &[data-highlighted] {
@@ -151,6 +157,26 @@
     &.theme {
       &--dark {
         background-color: color-mix(in oklab, var(--dodo-color-primary-50) 80%, #000);
+      }
+    }
+  }
+
+  &[data-selected] {
+    background-color: var(--dodo-color-primary-100);
+    font-weight: 500;
+    font-size: 1.1rem;
+
+    &:hover {
+      background-color: var(--dodo-color-primary-200);
+    }
+
+    &.theme {
+      &--dark {
+        background-color: color-mix(in oklab, var(--dodo-color-primary-200) 80%, #000);
+
+        &:hover {
+          background-color: color-mix(in oklab, var(--dodo-color-primary-300) 80%, #000);
+        }
       }
     }
   }
