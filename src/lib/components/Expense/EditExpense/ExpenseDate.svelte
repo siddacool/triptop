@@ -3,7 +3,6 @@
   import DatePicker from '$lib/ui-lib/DatePicker/DatePicker.svelte';
   import FormControl from '$lib/ui-lib/FormControl';
   import TimePicker from '$lib/ui-lib/TimePicker';
-  import TimeSelect from '$lib/ui-lib/TimeSelect/TimeSelect.svelte';
   import { Column, Grid } from '@flightlesslabs/grid';
   import { getMoment } from '@flightlesslabs/utils';
   import { parseDate, Time } from '@internationalized/date';
@@ -22,6 +21,10 @@
   const parsedDate = $derived(parseDate(isoStringData));
   const maxDate = $derived(parseDate(getMoment().format('YYYY-MM-DD')));
   const parsedTime = $derived(new Time(hours, minutes));
+
+  const formattedDate = $derived(
+    formData?.date ? `${getMoment(formData?.date).format('ddd, MMM D, YYYY. h:mm a')}` : '',
+  );
 </script>
 
 <Column>
@@ -37,12 +40,20 @@
         />
       </Column>
       <Column md={6}>
-        <TimeSelect
+        <TimePicker
           name="date-time"
+          placeholder="Select Time"
           value={parsedTime}
           onchange={(val) => onchange('time', val as unknown as string)}
         />
       </Column>
+      {#if formattedDate}
+        <Column sm={12}>
+          <div class="formattedDate">
+            {formattedDate}
+          </div>
+        </Column>
+      {/if}
     </Grid>
   </FormControl>
 </Column>
