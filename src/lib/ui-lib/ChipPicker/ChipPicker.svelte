@@ -57,12 +57,7 @@
         onclick={() => (onchange ? onchange(option.value) : undefined)}
       />
       <Label.Root for={`${name}-${index}`}>
-        <Icon
-          icon="material-symbols:check-circle-rounded"
-          width="24"
-          height="24"
-          class="checkIcon"
-        />
+        <Icon icon="material-symbols:check-rounded" width="24" height="24" class="checkIcon" />
         {#if labelTyped}
           {@render labelTyped(option)}
         {:else}

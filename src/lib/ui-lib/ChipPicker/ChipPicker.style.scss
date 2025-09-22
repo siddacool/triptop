@@ -1,7 +1,7 @@
 .ChipPicker {
   display: flex;
   flex-wrap: wrap;
-  margin: -2px;
+  margin: -3px;
 
   @media (min-width: 1024px) {
     margin: -4px;
@@ -9,7 +9,7 @@
 
   .ChipPickerChip {
     display: inline-flex;
-    margin: 2px;
+    margin: 3px;
 
     @media (min-width: 1024px) {
       margin: 4px;
@@ -22,44 +22,46 @@
   }
 
   label {
-    background-color: var(--dodo-color-primary-50);
+    background-color: transparent;
     font-size: 0.85rem;
     font-weight: 400;
-    padding: 0 18px;
+    padding: 0 20px;
     height: 2.3rem;
-    border-radius: 15px;
-    color: var(--dodo-color-neutral-800);
+    border-radius: 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
     letter-spacing: 0.3px;
-    border: 1px solid var(--dodo-color-primary-200);
+    border: 1px solid var(--dodo-color-neutral-300);
     position: relative;
+    transition: all 0.1s;
 
     &:hover {
-      background-color: var(--dodo-color-primary-100);
+      background-color: var(--dodo-color-primary-50);
     }
 
     .checkIcon {
       display: none;
       position: absolute;
       left: 3px;
-      color: var(--dodo-color-primary-800);
+      color: var(--dodo-color-neutral-600);
     }
   }
 
   [data-state='checked'] {
     & + label {
-      background-color: var(--dodo-color-primary-200);
-      color: var(--dodo-color-constant-white);
-      border-color: transparent;
+      background-color: var(--dodo-color-primary-100);
       padding-left: 30px;
-      padding-right: 6px;
-      outline: solid 1px var(--dodo-color-primary-500);
-      color: var(--dodo-color-neutral-900);
+      padding-right: 8px;
+      border-color: var(--dodo-color-primary-100);
+
+      svg {
+        filter: grayscale(20%) brightness(0.9);
+      }
 
       &:hover {
-        background-color: var(--dodo-color-primary-300);
+        background-color: var(--dodo-color-primary-200);
+        border-color: var(--dodo-color-primary-200);
       }
 
       .checkIcon {
@@ -71,26 +73,29 @@
   &.theme {
     &--dark {
       label {
-        border-color: var(--dodo-color-neutral-300);
-        background-color: var(--dodo-color-primary-50);
+        border-color: var(--dodo-color-neutral-400);
 
         &:hover {
-          background-color: var(--dodo-color-primary-100);
+          background-color: var(--dodo-color-primary-50);
         }
 
         .checkIcon {
-          color: var(--dodo-color-primary-900);
+          color: var(--dodo-color-neutral-700);
         }
       }
 
       [data-state='checked'] {
         & + label {
-          border-color: var(--dodo-color-primary-600);
-          background-color: var(--dodo-color-primary-100);
-          color: var(--dodo-color-constant-white);
+          border-color: var(--dodo-color-primary-300);
+          background-color: var(--dodo-color-primary-300);
+
+          svg {
+            filter: none;
+          }
 
           &:hover {
-            background-color: var(--dodo-color-primary-200);
+            border-color: var(--dodo-color-primary-400);
+            background-color: var(--dodo-color-primary-400);
           }
         }
       }
