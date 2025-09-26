@@ -45,6 +45,7 @@
   "dependencies": {
     "@flightlesslabs/colors": "^0.2.0",
     "@flightlesslabs/grid": "^0.2.0",
+    "@flightlesslabs/number-format": "^1.1.1",
     "@flightlesslabs/utils": "^0.3.0",
     "@humanspeak/svelte-virtual-list": "^0.3.2",
     "@iconify/svelte": "^5.0.2",

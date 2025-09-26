@@ -42,9 +42,24 @@
     onkeypress?: KeyboardEventHandler<HTMLInputElement>;
     /** onkeyup event handler */
     onkeyup?: KeyboardEventHandler<HTMLInputElement>;
+    /** Allow Negative */
+    allowNegative?: boolean;
+    /** Decimal Places */
+    decimalPlaces?: number;
+    /** prefix */
+    prefix?: string;
+    /** suffix */
+    suffix?: string;
+    /** Get comma separated Currency value */
+    formatCurrency?: boolean;
+    /** Lakh Separator (for Indian Currency) */
+    lakhSeparator?: boolean;
+    /** min, should not be less than -9999999999999.99 */
     min?: number;
+    /** max, should not exceed 9999999999999.99 */
     max?: number;
-    step?: number;
+    /** on Numeric Value Change */
+    onValueChange?: (value: number | undefined, formattedValue: string) => void;
   }
 </script>
 
@@ -65,6 +80,7 @@
     TextInputKeyboardEvent,
   } from '../TextInput/TextInput.svelte';
   import InputEnclosure from '../InputEnclosure';
+  import { NumericInput as FlightlesslabsNumericInput } from '@flightlesslabs/number-format';
 
   let {
     name,
@@ -88,9 +104,15 @@
     placeholder,
     ref = $bindable<HTMLInputElement>(),
     readonly = false,
+    allowNegative,
+    decimalPlaces = 0,
+    prefix,
+    suffix,
+    formatCurrency,
+    lakhSeparator,
     min,
     max,
-    step,
+    onValueChange,
   }: NumericInputProps = $props();
 
   let focused: boolean = $state(false);
@@ -124,12 +146,12 @@
   {before}
   {after}
 >
-  <input
-    type="number"
+  <FlightlesslabsNumericInput
+    bind:value
     {name}
     {id}
     {disabled}
-    bind:this={ref}
+    {ref}
     {oninput}
     {onchange}
     onfocus={onfocusMod}
@@ -141,10 +163,15 @@
     onkeypress={onkeypress ? (e) => onkeypress(e as TextInputKeyboardEvent) : undefined}
     onkeyup={onkeyup ? (e) => onkeyup(e as TextInputKeyboardEvent) : undefined}
     {placeholder}
-    bind:value
     {readonly}
-    {step}
     {min}
     {max}
+    {allowNegative}
+    {decimalPlaces}
+    {prefix}
+    {suffix}
+    {formatCurrency}
+    {lakhSeparator}
+    {onValueChange}
   />
 </InputEnclosure>

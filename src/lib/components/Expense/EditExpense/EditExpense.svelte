@@ -15,6 +15,7 @@
   import ExpenseDate from './ExpenseDate.svelte';
   import FormCardDivider from '$lib/components/FormCardDivider.svelte';
   import SuperInput from '$lib/components/SuperInput.svelte';
+  import { getCurrencySymbol } from '@flightlesslabs/number-format';
 
   interface EditExpenseProps {
     onsubmit: EventHandler<SubmitEvent, HTMLFormElement>;
@@ -73,9 +74,11 @@
                   id="amount"
                   placeholder="Amount"
                   value={formData?.amount}
-                  oninput={(e) => onchange(e)}
                   class="Amount"
-                  step={0.01}
+                  decimalPlaces={2}
+                  formatCurrency
+                  onValueChange={(value) => (onchange as any)('amount', value)}
+                  prefix={formData?.currency ? getCurrencySymbol(formData.currency) : ''}
                 />
               </SuperInput>
             </Column>

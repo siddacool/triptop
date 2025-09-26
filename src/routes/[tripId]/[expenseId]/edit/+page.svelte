@@ -17,7 +17,7 @@
 
   export function editExpenseOnChange(e: Event, value?: string) {
     const target = e.target as HTMLInputElement;
-    const name = value ? (e as unknown as string) : target.name;
+    const name = value ? (e as unknown as string) : target?.name;
     const cacheTime = getMoment(useCreateExpenseStore.formData.date).format('HH:mm');
     const cacheDate = getMoment(useCreateExpenseStore.formData.date).format('YYYY-MM-DD');
 
@@ -26,14 +26,12 @@
         useCreateExpenseStore.updateForm({ name: target.value });
         break;
       case 'amount':
-        useCreateExpenseStore.updateForm({ amount: Number(target.value) });
+        useCreateExpenseStore.updateForm({ amount: value as unknown as number });
         break;
       case 'currency':
         useCreateExpenseStore.updateForm({ currency: value });
         break;
       case 'paymentMode':
-        console.log(value);
-
         useCreateExpenseStore.updateForm({ paymentMode: value as PaymentModes });
         break;
       case 'category':
