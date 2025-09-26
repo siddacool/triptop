@@ -15,8 +15,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(svelte@5.39.2)
       '@flightlesslabs/number-format':
-        specifier: ^1.1.3
-        version: 1.1.3(svelte@5.39.2)
+        specifier: ^1.2.0
+        version: 1.2.0(svelte@5.39.2)
       '@flightlesslabs/utils':
         specifier: ^0.3.0
         version: 0.3.0
@@ -307,8 +307,8 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
-  '@flightlesslabs/number-format@1.1.3':
-    resolution: {integrity: sha512-2s1N+olidbe1xVsPI4eoSJKYxW5QfCqmGBqV0+hQpRaQ+eZBJY+KFox72McgmWmFx8A43IXkxQ3wE7mJqLLaXA==}
+  '@flightlesslabs/number-format@1.2.0':
+    resolution: {integrity: sha512-hWgVq/EUfgugLaDNv/40ebT9KyFgcq5qiXkbFU9zwCgMJKKVwcfMD+QRrZ4vfW+p1c2h8JnRo0pcaxuucFbNTw==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -1550,7 +1550,7 @@ snapshots:
     dependencies:
       svelte: 5.39.2
 
-  '@flightlesslabs/number-format@1.1.3(svelte@5.39.2)':
+  '@flightlesslabs/number-format@1.2.0(svelte@5.39.2)':
     dependencies:
       autonumeric: 4.10.9
       svelte: 5.39.2
