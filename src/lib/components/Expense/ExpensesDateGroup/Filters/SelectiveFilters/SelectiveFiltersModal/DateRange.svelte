@@ -71,7 +71,7 @@
 
 <Column>
   <Grid>
-    <Column md={5}>
+    <Column md={6}>
       <FormControl label="Start date:" for="startDate">
         <DatePicker
           name="startDate"
@@ -84,40 +84,47 @@
         />
       </FormControl>
     </Column>
-    <Column md={5}>
+    <Column md={6}>
       <FormControl label="End date:" for="endDate">
-        <DatePicker
-          name="endDate"
-          placeholder="Select Date"
-          value={endDateParsedDate}
-          onchange={(val) => onchange('endDate', val)}
-          maxValue={maxDate}
-          minValue={startDateParsedDate}
-          disabled={!startDateParsedDate}
-          initialDate={startDateParsedDate}
-        />
+        <div class="DatePickerHolder">
+          <DatePicker
+            name="endDate"
+            placeholder="Select Date"
+            value={endDateParsedDate}
+            onchange={(val) => onchange('endDate', val)}
+            maxValue={maxDate}
+            minValue={startDateParsedDate}
+            disabled={!startDateParsedDate}
+            initialDate={startDateParsedDate}
+          />
+
+          <Button
+            class="ClearAll"
+            onclick={() => useExpenseFiltersStore.updateSelectiveFilters({ date: undefined })}
+            aria-label="Clear Filter"
+            compact
+            disabled={!startDateParsedDate || !endDateParsedDate}
+          >
+            <Icon icon="material-symbols:close-small" width="28" height="28" class="checkIcon" />
+          </Button>
+        </div>
       </FormControl>
-    </Column>
-    <Column md="flex">
-      <div class="ClearAllHolder">
-        <Button
-          class="ClearAll"
-          onclick={() => useExpenseFiltersStore.updateSelectiveFilters({ date: undefined })}
-          aria-label="Clear Filter"
-          compact
-          disabled={!startDateParsedDate || !endDateParsedDate}
-        >
-          <Icon icon="material-symbols:close-small" width="28" height="28" class="checkIcon" />
-        </Button>
-      </div>
     </Column>
   </Grid>
 </Column>
 
 <style lang="scss">
-  .ClearAllHolder {
+  .DatePickerHolder {
     display: flex;
     align-items: flex-end;
     height: 100%;
+
+    :global(.DatePicker) {
+      flex: 1;
+    }
+
+    :global(.ClearAll) {
+      margin-left: 8px;
+    }
   }
 </style>
