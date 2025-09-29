@@ -38,7 +38,9 @@ function createExpensesStore() {
         fetching = true;
 
         const expenses = await db.expense.where({ tripId: tripId }).toArray();
-        data = expenses.sort((a, b) => b?.date - a?.date);
+        data = expenses
+          .sort((a, b) => b?.createdAt - a?.createdAt)
+          .sort((a, b) => b?.date - a?.date);
 
         mounted = true;
         fetching = false;

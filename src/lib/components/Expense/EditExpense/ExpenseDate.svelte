@@ -28,7 +28,7 @@
 </script>
 
 <Column>
-  <FormControl label="Date" for="date">
+  <FormControl label="Date:" for="date">
     <Grid>
       <Column md={6}>
         <DatePicker
