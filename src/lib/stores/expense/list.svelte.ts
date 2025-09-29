@@ -165,3 +165,22 @@ export function getCurrenciesUsed(data: Expense[]) {
 
   return currencies;
 }
+
+export function getExpenseDatesOnly(data: Expense[]) {
+  const dates: string[] = [];
+
+  for (let index = 0; index < data.length; index++) {
+    const element = data[index];
+    const dateString = getMoment(element.date).format('YYYY-MM-DD');
+
+    if (dates.some((item) => item === dateString)) {
+      continue;
+    }
+
+    dates.push(dateString);
+  }
+
+  console.log(dates);
+
+  return dates;
+}

@@ -1,5 +1,6 @@
 import type { Expense } from '../../individual.svelte';
-import type { ExpenseSelectiveFilters } from '../index.svelte';
+import { getIsAnySelectiveFilters, type ExpenseSelectiveFilters } from '../index.svelte';
+import { dateFilter } from './dateFilter';
 
 function baseFilter(
   data: Expense[],
@@ -40,7 +41,7 @@ export function getFilteredExpensesSelectiveFilters(
     return data;
   }
 
-  const isAnyFilter = Object.values(filters).some((v) => v !== null && v !== undefined);
+  const isAnyFilter = getIsAnySelectiveFilters(filters);
 
   if (!isAnyFilter) {
     return data;
@@ -51,6 +52,7 @@ export function getFilteredExpensesSelectiveFilters(
   expenses = baseFilter(expenses, filters, 'category');
   expenses = baseFilter(expenses, filters, 'paymentMode');
   expenses = baseFilter(expenses, filters, 'currency');
+  expenses = dateFilter(expenses, filters);
 
   return expenses;
 }

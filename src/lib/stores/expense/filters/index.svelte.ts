@@ -6,12 +6,40 @@ export type ExpenseSelectiveFilters = {
   category?: Category[];
   paymentMode?: PaymentModes[];
   currency?: string[];
+  date?: {
+    startDate?: string;
+    endDate?: string;
+  };
 };
 
 export type ExpenseFilters = {
   search?: string;
   selectiveFilters?: ExpenseSelectiveFilters;
 };
+
+export function getIsAnySelectiveFilters(selectiveFilters?: ExpenseSelectiveFilters | undefined) {
+  if (!selectiveFilters) {
+    return false;
+  }
+
+  if (selectiveFilters.category?.length) {
+    return true;
+  }
+
+  if (selectiveFilters.paymentMode?.length) {
+    return true;
+  }
+
+  if (selectiveFilters.currency?.length) {
+    return true;
+  }
+
+  if (selectiveFilters.date?.startDate && selectiveFilters.date?.endDate) {
+    return true;
+  }
+
+  return false;
+}
 
 function createExpenseFiltersStore() {
   let filters: ExpenseFilters = $state({});
@@ -24,7 +52,7 @@ function createExpenseFiltersStore() {
       return filters.selectiveFilters || {};
     },
     get isAnySelectiveFilters() {
-      return Object.values(this.selectiveFilters).some((v) => v !== null && v !== undefined);
+      return getIsAnySelectiveFilters(this.selectiveFilters);
     },
     updateFilters(newFilters: Partial<ExpenseFilters>) {
       filters = {

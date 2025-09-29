@@ -44,10 +44,6 @@
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let labelTyped = labelInternal as any;
-
-  $effect(() => {
-    console.log(value);
-  });
 </script>
 
 <div class={['TagPicker', theme, className].join(' ')} bind:this={ref}>
