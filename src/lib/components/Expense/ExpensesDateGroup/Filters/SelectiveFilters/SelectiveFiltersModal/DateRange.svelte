@@ -71,7 +71,7 @@
 
 <Column>
   <Grid>
-    <Column md={6}>
+    <Column>
       <FormControl label="Start date:" for="startDate">
         <DatePicker
           name="startDate"
@@ -84,7 +84,7 @@
         />
       </FormControl>
     </Column>
-    <Column md={6}>
+    <Column>
       <FormControl label="End date:" for="endDate">
         <div class="DatePickerHolder">
           <DatePicker
