@@ -5,6 +5,7 @@ import { getFilteredExpensesSelectiveFilters } from './selectiveFilters/selectiv
 export type ExpenseSelectiveFilters = {
   category?: Category[];
   paymentMode?: PaymentModes[];
+  currency?: string[];
 };
 
 export type ExpenseFilters = {

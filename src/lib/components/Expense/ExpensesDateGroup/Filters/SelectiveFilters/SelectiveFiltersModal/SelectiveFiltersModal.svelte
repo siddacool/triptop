@@ -5,6 +5,7 @@
   import CategoryPicker from './CategoryPicker.svelte';
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters/index.svelte';
   import PaymentModePicker from './PaymentModePicker.svelte';
+  import CurrencyPicker from './CurrencyPicker.svelte';
 
   interface SelectiveFiltersModalProps {
     open?: boolean;
@@ -28,6 +29,7 @@
     <Grid spacing={2}>
       <CategoryPicker />
       <PaymentModePicker />
+      <CurrencyPicker />
     </Grid>
   </div>
 

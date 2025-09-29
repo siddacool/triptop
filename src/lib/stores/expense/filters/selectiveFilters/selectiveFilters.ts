@@ -50,6 +50,7 @@ export function getFilteredExpensesSelectiveFilters(
 
   expenses = baseFilter(expenses, filters, 'category');
   expenses = baseFilter(expenses, filters, 'paymentMode');
+  expenses = baseFilter(expenses, filters, 'currency');
 
   return expenses;
 }

@@ -148,3 +148,20 @@ export function getDateWiseExpenses(data: Expense[]) {
 
   return dateWiseExpenses;
 }
+
+export function getCurrenciesUsed(data: Expense[]) {
+  const currencies: string[] = [];
+
+  for (let index = 0; index < data.length; index++) {
+    const element = data[index];
+    const currency = element.currency;
+
+    if (currencies.some((item) => item === currency)) {
+      continue;
+    }
+
+    currencies.push(currency);
+  }
+
+  return currencies;
+}
