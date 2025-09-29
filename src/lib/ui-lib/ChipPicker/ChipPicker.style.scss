@@ -51,8 +51,8 @@
   [data-state='checked'] {
     & + label {
       background-color: var(--dodo-color-primary-100);
-      padding-left: 6px;
-      padding-right: 6px;
+      padding-left: 4px;
+      padding-right: 8px;
       border-color: var(--dodo-color-primary-100);
 
       svg {

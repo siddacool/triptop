@@ -35,7 +35,7 @@
     background-color: transparent;
     font-size: 0.85rem;
     font-weight: 400;
-    padding: 0 20px;
+    padding: 0 18px;
     height: 2.3rem;
     border-radius: 14px;
     cursor: pointer;
@@ -54,15 +54,15 @@
     .checkIcon {
       display: none;
       color: var(--dodo-color-neutral-600);
-      margin-left: 2px;
+      margin-left: 1px;
     }
   }
 
   input:checked {
     & + label {
       background-color: var(--dodo-color-primary-100);
-      padding-left: 8px;
-      padding-right: 6px;
+      padding-left: 7px;
+      padding-right: 4px;
       border-color: var(--dodo-color-primary-100);
 
       svg {
