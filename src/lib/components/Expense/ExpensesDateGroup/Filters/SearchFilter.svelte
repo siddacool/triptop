@@ -19,4 +19,8 @@
 </div>
 
 <style lang="scss">
+  .SearchFilter {
+    flex: 1;
+    margin-right: 12px;
+  }
 </style>

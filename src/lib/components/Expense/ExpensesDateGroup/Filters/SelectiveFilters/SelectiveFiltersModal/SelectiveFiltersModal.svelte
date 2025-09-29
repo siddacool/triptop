@@ -1,0 +1,51 @@
+<script lang="ts">
+  import Button from '$lib/ui-lib/Button/Button.svelte';
+  import BaseModal from '$lib/ui-lib/ModalMaster/BaseModal';
+  import { Grid } from '@flightlesslabs/grid';
+  import CategoryPicker from './CategoryPicker.svelte';
+  import { useExpenseFiltersStore } from '$lib/stores/expense/filters/index.svelte';
+  import PaymentModePicker from './PaymentModePicker.svelte';
+
+  interface SelectiveFiltersModalProps {
+    open?: boolean;
+    onClose: () => void;
+  }
+
+  let { open = $bindable(false), onClose }: SelectiveFiltersModalProps = $props();
+
+  function onClear() {
+    useExpenseFiltersStore.updateFilters({ selectiveFilters: {} });
+    onClose();
+  }
+</script>
+
+<BaseModal bind:open>
+  {#snippet title()}
+    Selective Filters
+  {/snippet}
+
+  <div>
+    <Grid spacing={2}>
+      <CategoryPicker />
+      <PaymentModePicker />
+    </Grid>
+  </div>
+
+  {#snippet controls()}
+    <div class="ModalControls">
+      <Button name="ok" color="secondary" onclick={onClose}>OK</Button>
+
+      {#if useExpenseFiltersStore.isAnySelectiveFilters}
+        <Button name="ok" onclick={onClear}>Clear Filters</Button>
+      {/if}
+    </div>
+  {/snippet}
+</BaseModal>
+
+<style lang="scss">
+  .ModalControls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+</style>

@@ -63,7 +63,7 @@
     {type}
     {disabled}
     {ref}
-    class={['Button', `color--${color}`, theme, className].join(' ')}
+    class={['Button', `color--${color}`, `${compact ? 'compact' : ''}`, theme, className].join(' ')}
     {onclick}
     aria-label={ariaLabel}
     title={title || ariaLabel}

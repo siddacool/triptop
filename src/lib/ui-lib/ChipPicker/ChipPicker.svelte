@@ -4,8 +4,6 @@
     label: string;
   }
 
-  export type ChipPickerType = 'single' | 'multiple';
-
   export interface ChipPickerProps {
     disabled?: boolean | null | undefined;
     ref?: HTMLDivElement;
@@ -14,7 +12,6 @@
     value?: string;
     onchange?: (value: string) => void;
     options: ChipPickerOption[];
-    type?: ChipPickerType;
     label?: (val: ChipPickerOption) => Snippet;
   }
 </script>
@@ -35,7 +32,6 @@
     name,
     onchange,
     value,
-    type = 'single',
     label: labelInternal,
   }: ChipPickerProps = $props();
 
