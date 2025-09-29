@@ -63,10 +63,6 @@
       });
     };
   });
-
-  $effect(() => {
-    console.log(expenseDates);
-  });
 </script>
 
 <Column>
