@@ -7,6 +7,7 @@
   import ExpensesDateGroup from '$lib/components/Expense/ExpensesDateGroup';
   import { useExpensesStore } from '$lib/stores/expense/list.svelte';
   import { onMount } from 'svelte';
+  import { useExpenseFiltersStore } from '$lib/stores/expense/filters/index.svelte';
 
   const tripId = page.params.tripId;
 
@@ -23,6 +24,7 @@
     return () => {
       useTripStore.reset();
       useExpensesStore.reset();
+      useExpenseFiltersStore.reset();
     };
   });
 </script>

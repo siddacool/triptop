@@ -11,33 +11,30 @@
   import Button from '$lib/ui-lib/Button/Button.svelte';
   import Icon from '@iconify/svelte';
   import { page } from '$app/state';
-  import Search from '$lib/ui-lib/Search/Search.svelte';
-  import { getFilteredExpenses } from '$lib/stores/expense/filters';
+  import {
+    getFilteredExpenses,
+    useExpenseFiltersStore,
+  } from '$lib/stores/expense/filters/index.svelte';
   import type { Expense } from '$lib/stores/expense/individual.svelte';
   import TripStats from '$lib/components/Trip/TripStats';
   import VirtualListItem from '$lib/ui-lib/VirtualList/VirtualListItem';
   import VirtualListHolder from '$lib/ui-lib/VirtualList/VirtualListHolder';
+  import Filters from './Filters';
 
   const tripId = page.params.tripId;
 
-  let searchTerm = $state('');
   let filteredExpenses = $derived<Expense[]>(
-    getFilteredExpenses(useExpensesStore.data || [], {
-      search: searchTerm,
-    }),
+    getFilteredExpenses(useExpensesStore.data || [], useExpenseFiltersStore.filters),
   );
-  let dateWiseExpenses = $derived<DateWiseExpense[]>([...getDateWiseExpenses(filteredExpenses)]);
 
-  function onsearchclear() {
-    searchTerm = '';
-  }
+  let dateWiseExpenses = $derived<DateWiseExpense[]>([...getDateWiseExpenses(filteredExpenses)]);
 
   const specialData: DateWiseExpense[] = [
     {
       id: 'add',
     },
     {
-      id: 'search',
+      id: 'filters',
     },
     {
       id: 'total',
@@ -63,14 +60,8 @@
                   <Icon icon="material-symbols:add" /> Add Expense
                 </Button>
               </div>
-            {:else if item.id === 'search' && useExpensesStore.data?.length}
-              <div class="search-holder">
-                <Search
-                  placeholder="Search expenses"
-                  bind:value={searchTerm}
-                  onclear={onsearchclear}
-                />
-              </div>
+            {:else if item.id === 'filters' && useExpensesStore.data?.length}
+              <Filters />
             {:else if item.id === 'total'}
               <TripStats expenses={filteredExpenses} />
             {/if}
