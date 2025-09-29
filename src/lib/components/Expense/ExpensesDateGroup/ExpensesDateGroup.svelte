@@ -83,10 +83,6 @@
       margin-bottom: 24px;
     }
 
-    .search-holder {
-      margin-bottom: 18px;
-    }
-
     :global(.VirtualListItem) {
       margin-bottom: 4px;
     }

@@ -5,7 +5,6 @@
   }
 
   export interface SelectProps {
-    children?: Snippet;
     ref?: HTMLDivElement;
     class?: string;
     value?: string;
@@ -128,6 +127,7 @@
         <Combobox.Viewport class="SelectViewport">
           {#each filteredItems as item, i (i + item.value)}
             <Combobox.Item {...item} class={['SelectItem', theme].join(' ')}>
+              <!-- eslint-disable-next-line svelte/no-useless-children-snippet -->
               {#snippet children()}
                 {item.label}
               {/snippet}
