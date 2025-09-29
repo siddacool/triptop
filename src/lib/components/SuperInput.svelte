@@ -26,6 +26,7 @@
     :global(.TextInput input),
     :global(.NumericInput input) {
       font-size: 1.4rem;
+      padding: 0 16px;
     }
   }
 </style>

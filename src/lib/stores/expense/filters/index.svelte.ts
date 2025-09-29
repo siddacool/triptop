@@ -41,6 +41,14 @@ export function getIsAnySelectiveFilters(selectiveFilters?: ExpenseSelectiveFilt
   return false;
 }
 
+export function getIsAnyFilters(filters?: ExpenseFilters | undefined) {
+  if (filters?.search) {
+    return true;
+  }
+
+  return getIsAnySelectiveFilters(filters?.selectiveFilters);
+}
+
 function createExpenseFiltersStore() {
   let filters: ExpenseFilters = $state({});
 
@@ -50,6 +58,9 @@ function createExpenseFiltersStore() {
     },
     get selectiveFilters() {
       return filters.selectiveFilters || {};
+    },
+    get isAnyFilters() {
+      return getIsAnyFilters(this.filters);
     },
     get isAnySelectiveFilters() {
       return getIsAnySelectiveFilters(this.selectiveFilters);
@@ -80,7 +91,7 @@ export function getFilteredExpenses(data: Expense[], filters: ExpenseFilters) {
   let expenses: Expense[] = [];
 
   expenses = getFilteredExpensesSearchFilter(data, filters.search || '');
-  expenses = getFilteredExpensesSelectiveFilters(data, filters.selectiveFilters);
+  expenses = getFilteredExpensesSelectiveFilters(expenses, filters.selectiveFilters);
 
   return expenses;
 }

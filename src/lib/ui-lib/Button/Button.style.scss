@@ -1,5 +1,5 @@
 .Button {
-  min-width: 5rem;
+  min-width: 4.5rem;
   cursor: pointer;
   transition: all 0.1s;
   letter-spacing: 0.3px;
@@ -13,16 +13,16 @@
   margin: 0;
   border: 0;
   border-radius: 20px;
-  padding: 0 16px;
+  padding: 0 12px;
   font-weight: 500;
 
   svg.iconify {
     font-size: 1.55rem;
-    margin-right: 12px;
+    margin-right: 6px;
   }
 
   &.compact {
-    min-width: 3.75rem;
+    min-width: 3.3rem;
 
     svg.iconify {
       margin-right: 0;
