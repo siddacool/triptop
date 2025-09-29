@@ -78,7 +78,10 @@
                   decimalPlaces={2}
                   formatCurrency
                   onValueChange={(value) => (onchange as any)('amount', value)}
-                  prefix={formData?.currency ? getCurrencySymbol(formData.currency) : ''}
+                  prefix={formData?.currency && getCurrencySymbol(formData.currency)
+                    ? getCurrencySymbol(formData.currency)
+                    : ''}
+                  allowNegative
                 />
               </SuperInput>
             </Column>
