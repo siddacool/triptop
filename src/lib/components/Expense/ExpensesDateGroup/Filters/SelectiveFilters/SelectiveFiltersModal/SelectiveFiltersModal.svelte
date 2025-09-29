@@ -25,7 +25,7 @@
     Selective Filters
   {/snippet}
 
-  <div>
+  <div class="content">
     <Grid spacing={2}>
       <CategoryPicker />
       <PaymentModePicker />
