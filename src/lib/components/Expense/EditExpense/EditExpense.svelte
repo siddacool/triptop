@@ -16,6 +16,7 @@
   import FormCardDivider from '$lib/components/FormCardDivider.svelte';
   import SuperInput from '$lib/components/SuperInput.svelte';
   import { getCurrencySymbol } from '@flightlesslabs/number-format';
+  import Icon from '@iconify/svelte';
 
   interface EditExpenseProps {
     onsubmit: EventHandler<SubmitEvent, HTMLFormElement>;
@@ -109,8 +110,16 @@
                   <Button type="submit" {disabled} name="save" color="secondary">Add</Button>
                 {:else}
                   <Button type="submit" {disabled} name="save" color="secondary">Save</Button>
-                  <Button {disabled} name="save" color="danger" class="Delete" onclick={ondelete}>
-                    Delete Expense
+                  <Button
+                    {disabled}
+                    name="save"
+                    color="danger"
+                    class="Delete"
+                    onclick={ondelete}
+                    compact
+                    aria-label="Delete Expense"
+                  >
+                    <Icon icon="material-symbols:delete-outline" width="24" height="24" />
                   </Button>
                 {/if}
               </div>

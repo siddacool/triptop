@@ -8,6 +8,7 @@
   import Button from '$lib/ui-lib/Button';
   import Message from '$lib/ui-lib/Message/Message.svelte';
   import SuperInput from '../SuperInput.svelte';
+  import Icon from '@iconify/svelte';
 
   interface EditTripProps {
     onsubmit: EventHandler<SubmitEvent, HTMLFormElement>;
@@ -81,8 +82,10 @@
                     color="danger"
                     class="Delete"
                     onclick={ondelete}
+                    aria-label="Delete Trip"
+                    compact
                   >
-                    Delete Trip
+                    <Icon icon="material-symbols:delete-outline" width="24" height="24" />
                   </Button>
                 {/if}
               </div>
