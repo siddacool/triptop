@@ -80,6 +80,7 @@
           maxValue={maxDate}
           minValue={minDate}
           onchange={(val) => onchange('startDate', val)}
+          initialDate={minDate}
         />
       </FormControl>
     </Column>
@@ -93,10 +94,11 @@
           maxValue={maxDate}
           minValue={startDateParsedDate}
           disabled={!startDateParsedDate}
+          initialDate={startDateParsedDate}
         />
       </FormControl>
     </Column>
-    <Column md={2}>
+    <Column md="flex">
       <div class="ClearAllHolder">
         <Button
           class="ClearAll"

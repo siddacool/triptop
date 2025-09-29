@@ -6,6 +6,7 @@
     name: string;
     placeholder?: string;
     value?: DateValue;
+    initialDate?: DateValue;
     onchange?: (date: DateValue | undefined) => void;
     maxValue?: DateValue;
     minValue?: DateValue;
@@ -31,6 +32,7 @@
     error = false,
     maxValue,
     minValue,
+    initialDate,
   }: DatePickerProps = $props();
 
   const theme = $derived(
@@ -45,6 +47,7 @@
   onValueChange={onchange}
   {maxValue}
   {minValue}
+  placeholder={value || initialDate}
 >
   <div class={['DatePicker', theme, className].join(' ')}>
     <DatePicker.Input

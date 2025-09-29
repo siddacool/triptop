@@ -5,10 +5,7 @@
   import type { Expense } from '$lib/stores/expense/individual.svelte';
   import { getMoment } from '@flightlesslabs/utils';
   import Accordian from '$lib/ui-lib/Accordian';
-  import {
-    getIsAnyFilters,
-    useExpenseFiltersStore,
-  } from '$lib/stores/expense/filters/index.svelte';
+  import { useExpenseFiltersStore } from '$lib/stores/expense/filters/index.svelte';
   import FilterActiveDot from '$lib/components/FilterActiveDot.svelte';
 
   interface TripStatsProps {
