@@ -30,7 +30,7 @@
   >
     {#snippet tagLabel(option)}
       <span class="option">
-        <!-- <CategoryIcon category={option.value as Category} /> -->
+        <CategoryIcon category={option.value as Category} />
         {option.label}
       </span>
     {/snippet}
