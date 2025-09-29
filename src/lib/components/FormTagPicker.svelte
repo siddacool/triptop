@@ -1,5 +1,4 @@
 <script lang="ts">
-  import Label from '$lib/ui-lib/Label';
   import Message from '$lib/ui-lib/Message/Message.svelte';
   import type { TagPickerOption } from '$lib/ui-lib/TagPicker/TagPicker.svelte';
   import TagPicker from '$lib/ui-lib/TagPicker/TagPicker.svelte';
@@ -36,10 +35,8 @@
 <div class={['FormTagPicker', className].join(' ')}>
   {#if label}
     <div class="LabelSection">
-      <Label for={`${name}-0`}>
-        {label}
-        <FilterActiveDot show={value.length ? true : false} />
-      </Label>
+      {label}
+      <FilterActiveDot show={value.length ? true : false} />
     </div>
   {/if}
   <div class="content">
@@ -55,6 +52,11 @@
 <style lang="scss">
   .FormTagPicker {
     .LabelSection {
+      font-size: 0.9rem;
+      color: var(--dodo-color-neutral-800);
+      display: flex;
+      align-items: center;
+      font-family: inherit;
       margin-bottom: 8px;
       margin-top: 4px;
 

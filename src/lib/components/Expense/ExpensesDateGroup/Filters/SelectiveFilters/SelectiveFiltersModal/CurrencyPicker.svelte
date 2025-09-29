@@ -23,6 +23,16 @@
   const currencyOptions = $derived(
     currencies.map((item) => Object.assign({ label: item, value: item })),
   ) as TagPickerOption[];
+
+  function getCurruncyLabel(value: string) {
+    const label = getCurrencySymbol(value, true);
+
+    if (value.toLowerCase() === label.toLowerCase()) {
+      return label;
+    }
+
+    return `${value} ${label}`;
+  }
 </script>
 
 <Column>
@@ -36,10 +46,7 @@
   >
     {#snippet tagLabel(option)}
       <span class="option">
-        {option.label}
-        {#if option.label.toLowerCase() !== getCurrencySymbol(option.value, true).toLowerCase()}
-          ({getCurrencySymbol(option.value, true)})
-        {/if}
+        {getCurruncyLabel(option.value)}
       </span>
     {/snippet}
   </FormTagPicker>

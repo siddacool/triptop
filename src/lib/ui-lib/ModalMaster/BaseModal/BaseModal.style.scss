@@ -13,13 +13,13 @@
   z-index: 100;
   position: fixed;
   width: calc(100% - 32px);
-  top: calc(50% - 100px);
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
   @media (min-width: 1024px) {
     max-width: 490px;
-    top: calc(50% - 200px);
+    top: calc(50% - 100px);
   }
 
   [data-dialog-title] {
