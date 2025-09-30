@@ -2,8 +2,8 @@
   import PaymentModeIcon from '$lib/components/PaymentModeIcon.svelte';
   import type { CreateExpenseFormData } from '$lib/stores/expense/create.svelte';
   import { PaymentModes, paymentModesOptions } from '$lib/stores/expense/individual.svelte';
-  import ChipPicker from '$lib/ui-lib/ChipPicker/ChipPicker.svelte';
   import FormControl from '$lib/ui-lib/FormControl';
+  import OptionsPicker from '$lib/ui-lib/OptionsPicker';
   import { Column } from '@flightlesslabs/grid';
 
   interface CurrencyProps {
@@ -16,7 +16,8 @@
 
 <Column>
   <FormControl label="Payment Mode:" for="paymentMode">
-    <ChipPicker
+    <OptionsPicker
+      type="single"
       name="paymentMode"
       options={paymentModesOptions}
       onchange={(val) => onchange('paymentMode', val)}
@@ -28,7 +29,7 @@
           {option.label}
         </span>
       {/snippet}
-    </ChipPicker>
+    </OptionsPicker>
   </FormControl>
 </Column>
 

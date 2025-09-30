@@ -3,7 +3,7 @@
   import { PaymentModes, paymentModesOptions } from '$lib/stores/expense/individual.svelte';
   import { Column } from '@flightlesslabs/grid';
   import PaymentModeIcon from '$lib/components/PaymentModeIcon.svelte';
-  import FormTagPicker from '$lib/components/FormTagPicker.svelte';
+  import FormOptionsPicker from '$lib/components/FormOptionsPicker.svelte';
 
   function onchange(value: string) {
     const oldValue = useExpenseFiltersStore.selectiveFilters.paymentMode || [];
@@ -20,7 +20,7 @@
 </script>
 
 <Column>
-  <FormTagPicker
+  <FormOptionsPicker
     options={paymentModesOptions}
     name="paymentMode"
     value={useExpenseFiltersStore.selectiveFilters.paymentMode || []}
@@ -34,7 +34,7 @@
         {option.label}
       </span>
     {/snippet}
-  </FormTagPicker>
+  </FormOptionsPicker>
 </Column>
 
 <style lang="scss">

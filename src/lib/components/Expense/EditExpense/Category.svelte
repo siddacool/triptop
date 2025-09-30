@@ -2,8 +2,8 @@
   import CategoryIcon from '$lib/components/CategoryIcon.svelte';
   import type { CreateExpenseFormData } from '$lib/stores/expense/create.svelte';
   import { Category, categoryOptions } from '$lib/stores/expense/individual.svelte';
-  import ChipPicker from '$lib/ui-lib/ChipPicker';
   import FormControl from '$lib/ui-lib/FormControl';
+  import OptionsPicker from '$lib/ui-lib/OptionsPicker';
   import { Column } from '@flightlesslabs/grid';
 
   interface CurrencyProps {
@@ -16,7 +16,8 @@
 
 <Column>
   <FormControl label="Category:" for="category">
-    <ChipPicker
+    <OptionsPicker
+      type="single"
       name="category"
       options={categoryOptions}
       onchange={(val) => onchange('category', val)}
@@ -28,7 +29,7 @@
           {option.label}
         </span>
       {/snippet}
-    </ChipPicker>
+    </OptionsPicker>
   </FormControl>
 </Column>
 
