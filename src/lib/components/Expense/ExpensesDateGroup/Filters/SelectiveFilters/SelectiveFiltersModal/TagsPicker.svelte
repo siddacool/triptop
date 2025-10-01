@@ -24,13 +24,15 @@
   ) as OptionsPickerOption[];
 </script>
 
-<Column>
-  <FormOptionsPicker
-    options={tagsOptions}
-    name="tags"
-    value={useExpenseFiltersStore.selectiveFilters.tags || []}
-    {onchange}
-    onclear={() => useExpenseFiltersStore.updateSelectiveFilters({ tags: undefined })}
-    label="Tags:"
-  />
-</Column>
+{#if tagsOptions.length}
+  <Column>
+    <FormOptionsPicker
+      options={tagsOptions}
+      name="tags"
+      value={useExpenseFiltersStore.selectiveFilters.tags || []}
+      {onchange}
+      onclear={() => useExpenseFiltersStore.updateSelectiveFilters({ tags: undefined })}
+      label="Tags:"
+    />
+  </Column>
+{/if}

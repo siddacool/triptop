@@ -1,6 +1,7 @@
 import { getMoment } from '@flightlesslabs/utils';
 import { db } from '../db';
 import type { Expense } from './individual.svelte';
+import validateJson from '$lib/helpers/validators/vaidate-json';
 
 export interface CurrencyWiseTotal {
   currency: string;
@@ -190,7 +191,16 @@ export function getExpenseTags(data: Expense[]) {
 
   for (let index = 0; index < data.length; index++) {
     const element = data[index];
-    const tagsList = JSON.parse(element.tags || '[]') as string[];
+
+    if (!element.tags) {
+      continue;
+    }
+
+    if (!validateJson(element.tags)) {
+      continue;
+    }
+
+    const tagsList = JSON.parse(element.tags) as string[];
 
     for (let index2 = 0; index2 < tagsList.length; index2++) {
       const tag = tagsList[index2];

@@ -65,9 +65,7 @@
               {getMoment(data.date).format('h:mm a')}
             </div>
           </Column>
-          <Column>
-            <Tags {data} />
-          </Column>
+          <Tags {data} />
         </Grid>
       </Column>
     </Grid>
