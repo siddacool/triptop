@@ -1,0 +1,26 @@
+.Chip {
+  display: inline-flex;
+  margin: 3px;
+  background-color: var(--dodo-color-primary-100);
+  font-size: 0.85rem;
+  font-weight: 400;
+  padding: 0 8px;
+  height: 2rem;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.3px;
+  border: 1px solid var(--dodo-color-primary-100);
+  position: relative;
+
+  @media (min-width: 1024px) {
+    margin: 4px;
+  }
+
+  &.theme {
+    &--dark {
+      border-color: var(--dodo-color-primary-300);
+      background-color: var(--dodo-color-primary-300);
+    }
+  }
+}

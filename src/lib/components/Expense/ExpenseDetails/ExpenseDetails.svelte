@@ -10,6 +10,7 @@
   import { Column, Grid } from '@flightlesslabs/grid';
   import { getMoment } from '@flightlesslabs/utils';
   import Icon from '@iconify/svelte';
+  import Tags from './Tags.svelte';
 
   interface ExpenseDetailsProps {
     data: Expense;
@@ -63,6 +64,9 @@
               <Icon icon="tabler:clock-filled" width="20" height="20" />
               {getMoment(data.date).format('h:mm a')}
             </div>
+          </Column>
+          <Column>
+            <Tags {data} />
           </Column>
         </Grid>
       </Column>
