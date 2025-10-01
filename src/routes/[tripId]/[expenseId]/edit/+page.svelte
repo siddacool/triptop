@@ -52,6 +52,11 @@
           ).valueOf(),
         });
         break;
+      case 'tags':
+        useCreateExpenseStore.updateForm({
+          tags: value as unknown as string[],
+        });
+        break;
       default:
         break;
     }
@@ -65,8 +70,12 @@
   import EditExpense from '$lib/components/Expense/EditExpense';
   import Header from '$lib/components/Header.svelte';
   import { processFirstError } from '$lib/helpers/process-errors';
-  import { useCreateExpenseStore } from '$lib/stores/expense/create.svelte';
+  import {
+    useCreateExpenseStore,
+    type CreateExpenseFormData,
+  } from '$lib/stores/expense/create.svelte';
   import { Category, PaymentModes, useExpenseStore } from '$lib/stores/expense/individual.svelte';
+  import { useExpensesStore } from '$lib/stores/expense/list.svelte';
   import Loader from '$lib/ui-lib/Loader/Loader.svelte';
   import Confirm from '$lib/ui-lib/ModalMaster/Confirm/Confirm.svelte';
   import { Column, Grid } from '@flightlesslabs/grid';
@@ -86,15 +95,25 @@
       return;
     }
 
+    if (!tripId) {
+      return;
+    }
+
+    await useExpensesStore.fetch(tripId);
+
     await useExpenseStore.fetch(expenseId);
 
     const data = useExpenseStore.data;
 
-    if (!data) {
+    const newData = data as CreateExpenseFormData;
+
+    newData.tags = data?.tags ? JSON.parse(data.tags) : [];
+
+    if (!newData) {
       return;
     }
 
-    useCreateExpenseStore.updateForm(data);
+    useCreateExpenseStore.updateForm(newData);
   });
 
   onMount(() => {
@@ -123,6 +142,8 @@
       errorMessage = '';
 
       const formData = useCreateExpenseStore.formData;
+
+      console.log(formData);
 
       await useExpenseStore.update(formData);
 

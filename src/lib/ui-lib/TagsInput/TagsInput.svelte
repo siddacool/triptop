@@ -1,9 +1,15 @@
 <script lang="ts" module>
-  export interface NumericInputProps {
-    /** Input ref */
-    ref?: HTMLInputElement;
+  export interface TagsInputChangeData {
+    option?: string;
+    options?: string[];
+    type: `add` | `remove` | `removeAll`;
+  }
+
+  export interface TagsInputProps {
     /** Input value */
-    value?: number;
+    value?: string[];
+    /** options */
+    options: string[];
     /** How round should the border radius be? */
     placeholder?: string;
     /** disabled state */
@@ -24,8 +30,6 @@
     class?: string;
     /** oninput event handler */
     oninput?: FormEventHandler<HTMLInputElement>;
-    /** onchange event handler */
-    onchange?: ChangeEventHandler<HTMLInputElement>;
     /** onblur event handler */
     onblur?: FocusEventHandler<HTMLInputElement>;
     /** onfocus event handler */
@@ -42,37 +46,21 @@
     onkeypress?: KeyboardEventHandler<HTMLInputElement>;
     /** onkeyup event handler */
     onkeyup?: KeyboardEventHandler<HTMLInputElement>;
-    /** Allow Negative */
-    allowNegative?: boolean;
-    /** Decimal Places */
-    decimalPlaces?: number;
-    /** prefix */
-    prefix?: string;
-    /** suffix */
-    suffix?: string;
-    /** Get comma separated Currency value */
-    formatCurrency?: boolean;
-    /** Lakh Separator (for Indian Currency) */
-    lakhSeparator?: boolean;
-    /** min, should not be less than -9999999999999.99 */
-    min?: number;
-    /** max, should not exceed 9999999999999.99 */
-    max?: number;
-    /** on Numeric Value Change */
-    onValueChange?: (value: number | undefined, formattedValue: string) => void;
+    /** onchange event handler */
+    onchange?: (data: TagsInputChangeData) => void;
   }
 </script>
 
 <script lang="ts">
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   import type {
     FormEventHandler,
-    ChangeEventHandler,
     FocusEventHandler,
     ClipboardEventHandler,
     KeyboardEventHandler,
   } from 'svelte/elements';
 
-  import './NumericInput.style.scss';
+  import './TagsInput.style.scss';
   import type { Snippet } from 'svelte';
   import type {
     DynamicInputFocusEvent,
@@ -80,7 +68,7 @@
     TextInputKeyboardEvent,
   } from '../TextInput/TextInput.svelte';
   import InputEnclosure from '../InputEnclosure';
-  import { NumericInput as FlightlesslabsNumericInput } from '@flightlesslabs/number-format';
+  import MultiSelect from 'svelte-multiselect';
 
   let {
     name,
@@ -100,20 +88,11 @@
     before,
     after,
     error = false,
-    value = $bindable<number>(),
+    value = $bindable<string[]>([]),
     placeholder,
-    ref = $bindable<HTMLInputElement>(),
     readonly = false,
-    allowNegative,
-    decimalPlaces = 0,
-    prefix,
-    suffix,
-    formatCurrency,
-    lakhSeparator,
-    min,
-    max,
-    onValueChange,
-  }: NumericInputProps = $props();
+    options,
+  }: TagsInputProps = $props();
 
   let focused: boolean = $state(false);
 
@@ -139,40 +118,39 @@
 </script>
 
 <InputEnclosure
-  class={['NumericInput', className].join(' ')}
+  class={['TagsInput', className].join(' ')}
   {error}
   {disabled}
   {focused}
   {before}
   {after}
 >
-  <FlightlesslabsNumericInput
-    bind:value
-    {name}
-    {id}
-    {disabled}
-    {ref}
+  <MultiSelect
+    bind:selected={value}
+    {options}
     {oninput}
-    {onchange}
+    onchange={onchange
+      ? (onchange as (data: {
+          option?: any;
+          options?: any[];
+          type: `add` | `remove` | `removeAll`;
+        }) => unknown)
+      : undefined}
     onfocus={onfocusMod}
     onblur={onblurMod}
     {onpaste}
     {oncopy}
     {oncut}
     onkeydown={onkeydown ? (e) => onkeydown(e as TextInputKeyboardEvent) : undefined}
-    onkeypress={onkeypress ? (e) => onkeypress(e as TextInputKeyboardEvent) : undefined}
+    onkeypress={onkeypress
+      ? (e: TextInputKeyboardEvent) => onkeypress(e as TextInputKeyboardEvent)
+      : undefined}
     onkeyup={onkeyup ? (e) => onkeyup(e as TextInputKeyboardEvent) : undefined}
     {placeholder}
     {readonly}
-    {min}
-    {max}
-    {allowNegative}
-    {decimalPlaces}
-    {prefix}
-    {suffix}
-    {formatCurrency}
-    {lakhSeparator}
-    {onValueChange}
-    decimalPadding
+    {name}
+    {id}
+    {disabled}
+    allowUserOptions
   />
 </InputEnclosure>

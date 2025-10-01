@@ -8,6 +8,7 @@
   import { onMount } from 'svelte';
   import { editExpenseOnChange } from '../[expenseId]/edit/+page.svelte';
   import { resolve } from '$app/paths';
+  import { useExpensesStore } from '$lib/stores/expense/list.svelte';
 
   let errorMessage = $state('');
 
@@ -19,6 +20,7 @@
         return;
       }
 
+      await useExpensesStore.fetch(tripId);
       await useCreateExpenseStore.substituteFormData(tripId);
     } catch (e) {
       console.log(e);

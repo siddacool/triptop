@@ -41,6 +41,9 @@ importers:
       nanoid:
         specifier: ^5.1.5
         version: 5.1.5
+      svelte-multiselect:
+        specifier: ^11.2.3
+        version: 11.2.3(svelte@5.39.2)
     devDependencies:
       '@eslint/compat':
         specifier: ^1.3.2
@@ -1287,6 +1290,11 @@ packages:
       svelte:
         optional: true
 
+  svelte-multiselect@11.2.3:
+    resolution: {integrity: sha512-nm4ShKfRQPkrHZhH/jfWaW+21jSODLBwBF9UuKFE+2yV0RSaOuItsYUW32hk9VGD3QI9DZvmyFtIex/fi9Byng==}
+    peerDependencies:
+      svelte: ^5.35.6
+
   svelte-toolbelt@0.9.3:
     resolution: {integrity: sha512-HCSWxCtVmv+c6g1ACb8LTwHVbDqLKJvHpo6J8TaqwUme2hj9ATJCpjCPNISR1OCq2Q4U1KT41if9ON0isINQZw==}
     engines: {node: '>=18', pnpm: '>=8.7.0'}
@@ -2499,6 +2507,10 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.5.6)
       postcss-selector-parser: 7.1.0
     optionalDependencies:
+      svelte: 5.39.2
+
+  svelte-multiselect@11.2.3(svelte@5.39.2):
+    dependencies:
       svelte: 5.39.2
 
   svelte-toolbelt@0.9.3(svelte@5.39.2):
