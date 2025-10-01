@@ -17,6 +17,7 @@
   import SuperInput from '$lib/components/SuperInput.svelte';
   import { getCurrencySymbol } from '@flightlesslabs/number-format';
   import Icon from '@iconify/svelte';
+  import Tags from './Tags.svelte';
 
   interface EditExpenseProps {
     onsubmit: EventHandler<SubmitEvent, HTMLFormElement>;
@@ -83,6 +84,7 @@
                     ? getCurrencySymbol(formData.currency)
                     : ''}
                   allowNegative
+                  lakhSeparator={formData?.currency === 'INR' ? true : false}
                 />
               </SuperInput>
             </Column>
@@ -103,6 +105,12 @@
               {formData}
               onchange={(name: string, value: string) => (onchange as any)(name, value)}
             />
+            <Column>
+              <Tags
+                {formData}
+                onchange={(name: string, value: string[]) => (onchange as any)(name, value)}
+              />
+            </Column>
             <Column></Column>
             <Column>
               <div class="Control">

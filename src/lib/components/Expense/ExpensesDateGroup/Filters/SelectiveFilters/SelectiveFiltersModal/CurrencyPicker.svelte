@@ -1,10 +1,10 @@
 <script lang="ts">
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters/index.svelte';
   import { Column } from '@flightlesslabs/grid';
-  import FormTagPicker from '$lib/components/FormTagPicker.svelte';
   import { getCurrenciesUsed, useExpensesStore } from '$lib/stores/expense/list.svelte';
-  import type { TagPickerOption } from '$lib/ui-lib/TagPicker/TagPicker.svelte';
   import { getCurrencySymbol } from '@flightlesslabs/number-format';
+  import type { OptionsPickerOption } from '$lib/ui-lib/OptionsPicker/OptionsPicker.svelte';
+  import FormOptionsPicker from '$lib/components/FormOptionsPicker.svelte';
 
   function onchange(value: string) {
     const oldValue = useExpenseFiltersStore.selectiveFilters.currency || [];
@@ -22,7 +22,7 @@
   const currencies = $derived(getCurrenciesUsed(useExpensesStore.data || []));
   const currencyOptions = $derived(
     currencies.map((item) => Object.assign({ label: item, value: item })),
-  ) as TagPickerOption[];
+  ) as OptionsPickerOption[];
 
   function getCurruncyLabel(value: string) {
     const label = getCurrencySymbol(value, true);
@@ -36,7 +36,7 @@
 </script>
 
 <Column>
-  <FormTagPicker
+  <FormOptionsPicker
     options={currencyOptions}
     name="currency"
     value={useExpenseFiltersStore.selectiveFilters.currency || []}
@@ -49,7 +49,7 @@
         {getCurruncyLabel(option.value)}
       </span>
     {/snippet}
-  </FormTagPicker>
+  </FormOptionsPicker>
 </Column>
 
 <style lang="scss">

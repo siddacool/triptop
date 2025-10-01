@@ -11,6 +11,7 @@ export interface CreateExpenseFormData {
   date?: number;
   paymentMode?: PaymentModes;
   currency?: string;
+  tags?: string[];
 }
 
 function getDefaultFormData(): CreateExpenseFormData {
@@ -82,6 +83,7 @@ function createCreateExpenseStore() {
           category: formData.category || Category.OTHER,
           createdAt: Date.now(),
           updatedAt: Date.now(),
+          tags: formData.tags ? JSON.stringify(formData.tags) : undefined,
         });
 
         await this.substituteFormData(tripId);

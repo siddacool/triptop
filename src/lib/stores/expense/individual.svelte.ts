@@ -47,6 +47,7 @@ export interface Expense {
   date: number;
   paymentMode?: PaymentModes;
   currency: string;
+  tags?: string;
 }
 
 function createExpenseStore() {
@@ -94,6 +95,7 @@ function createExpenseStore() {
         date: formData.date,
         paymentMode: formData.paymentMode,
         currency: formData.currency,
+        tags: formData.tags ? JSON.stringify(formData.tags) : undefined,
         updatedAt: Date.now(),
       });
     },

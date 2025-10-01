@@ -1,0 +1,170 @@
+.TagsInput {
+  .multiselect[role='searchbox'] {
+    flex: 1;
+    outline: 0;
+    border: 0;
+    height: 100%;
+    padding-left: 4px;
+    padding-right: 8px;
+
+    &.open {
+      border: 0;
+    }
+
+    & > svg {
+      display: none;
+    }
+
+    ul.selected {
+      height: 100%;
+      align-items: center;
+
+      li {
+        font-size: 0.85rem;
+        font-weight: 400;
+        font-family: inherit;
+        height: 1.8rem;
+        border-radius: 11px;
+        background-color: var(--dodo-color-primary-100);
+        border-color: var(--dodo-color-primary-100);
+        padding-right: 0;
+      }
+    }
+
+    ul.options {
+      background-color: var(--dodo-color-white);
+      margin-top: 8px;
+
+      li {
+        padding: 16px;
+      }
+    }
+
+    input {
+      outline: 0;
+      padding: 0 8px;
+      font-family: inherit;
+      font-weight: 400;
+      font-size: 1rem;
+      height: 100%;
+      background-color: transparent;
+      color: inherit;
+      border: 0;
+      width: 100%;
+
+      &::placeholder {
+        color: var(--dodo-color-secondary-600);
+        opacity: 1;
+        padding: 0;
+      }
+    }
+
+    button.remove {
+      cursor: pointer;
+      transition: all 0.1s;
+      letter-spacing: 0.3px;
+      height: 100%;
+      width: 2rem;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+      font-family: inherit;
+      text-decoration: none;
+      margin: 0;
+      border: 0;
+      border-radius: 12px;
+      background-color: transparent;
+      color: var(--dodo-color-neutral-700);
+      padding: 0;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      &:active {
+        background-color: transparent;
+      }
+
+      &[disabled] {
+        cursor: default;
+        color: var(--dodo-color-neutral-500);
+        background-color: var(--dodo-color-neutral-300);
+
+        &:hover {
+          background-color: var(--dodo-color-neutral-300);
+        }
+
+        &:active {
+          background-color: var(--dodo-color-neutral-300);
+        }
+      }
+    }
+
+    button.remove-all {
+      cursor: pointer;
+      transition: all 0.1s;
+      letter-spacing: 0.3px;
+      height: 2rem;
+      width: 2rem;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+      font-family: inherit;
+      text-decoration: none;
+      margin: 0;
+      border: 0;
+      border-radius: 12px;
+      background-color: transparent;
+      color: var(--dodo-color-neutral-700);
+      padding: 0;
+      margin-right: -4px;
+
+      &:hover {
+        background-color: var(--dodo-color-secondary-100);
+      }
+
+      &:active {
+        background-color: var(--dodo-color-secondary-200);
+      }
+
+      &[disabled] {
+        cursor: default;
+        color: var(--dodo-color-neutral-500);
+        background-color: var(--dodo-color-neutral-300);
+
+        &:hover {
+          background-color: var(--dodo-color-neutral-300);
+        }
+
+        &:active {
+          background-color: var(--dodo-color-neutral-300);
+        }
+      }
+    }
+  }
+
+  &.theme {
+    &--dark {
+      .multiselect[role='searchbox'] {
+        ul.selected {
+          li {
+            border-color: var(--dodo-color-primary-300);
+            background-color: var(--dodo-color-primary-300);
+          }
+        }
+
+        ul.options {
+          background-color: color-mix(in oklab, var(--dodo-color-primary-50) 95%, #000);
+        }
+
+        input {
+          &::placeholder {
+            color: var(--dodo-color-secondary-600);
+          }
+        }
+      }
+    }
+  }
+}

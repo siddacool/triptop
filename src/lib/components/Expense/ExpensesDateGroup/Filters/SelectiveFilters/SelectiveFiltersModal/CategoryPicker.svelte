@@ -3,7 +3,7 @@
   import { Category, categoryOptions } from '$lib/stores/expense/individual.svelte';
   import { Column } from '@flightlesslabs/grid';
   import CategoryIcon from '$lib/components/CategoryIcon.svelte';
-  import FormTagPicker from '$lib/components/FormTagPicker.svelte';
+  import FormOptionsPicker from '$lib/components/FormOptionsPicker.svelte';
 
   function onchange(value: string) {
     const oldValue = useExpenseFiltersStore.selectiveFilters.category || [];
@@ -20,7 +20,7 @@
 </script>
 
 <Column>
-  <FormTagPicker
+  <FormOptionsPicker
     options={categoryOptions}
     name="category"
     value={useExpenseFiltersStore.selectiveFilters.category || []}
@@ -34,7 +34,7 @@
         {option.label}
       </span>
     {/snippet}
-  </FormTagPicker>
+  </FormOptionsPicker>
 </Column>
 
 <style lang="scss">

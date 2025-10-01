@@ -1,11 +1,11 @@
 <script lang="ts">
   import Message from '$lib/ui-lib/Message/Message.svelte';
-  import type { TagPickerOption } from '$lib/ui-lib/TagPicker/TagPicker.svelte';
-  import TagPicker from '$lib/ui-lib/TagPicker/TagPicker.svelte';
   import type { Snippet } from 'svelte';
   import FilterActiveDot from './FilterActiveDot.svelte';
+  import OptionsPicker from '$lib/ui-lib/OptionsPicker';
+  import type { OptionsPickerOption } from '$lib/ui-lib/OptionsPicker/OptionsPicker.svelte';
 
-  interface FormTagPickerProps {
+  interface FormOptionsPickerProps {
     class?: string;
     label?: string;
     errorMessage?: string;
@@ -15,8 +15,8 @@
     value?: string[];
     onchange?: (value: string) => void;
     onclear?: () => void;
-    options: TagPickerOption[];
-    tagLabel?: (val: TagPickerOption) => Snippet;
+    options: OptionsPickerOption[];
+    tagLabel?: (val: OptionsPickerOption) => Snippet;
   }
 
   const {
@@ -29,10 +29,10 @@
     onchange,
     onclear,
     tagLabel,
-  }: FormTagPickerProps = $props();
+  }: FormOptionsPickerProps = $props();
 </script>
 
-<div class={['FormTagPicker', className].join(' ')}>
+<div class={['FormOptionsPicker', className].join(' ')}>
   {#if label}
     <div class="LabelSection">
       {label}
@@ -40,7 +40,7 @@
     </div>
   {/if}
   <div class="content">
-    <TagPicker {options} {value} {onchange} {onclear} {name} label={tagLabel} />
+    <OptionsPicker type="multiple" {options} {value} {onchange} {onclear} {name} label={tagLabel} />
   </div>
   {#if errorMessage}
     <div class="errorMessage">
@@ -50,7 +50,7 @@
 </div>
 
 <style lang="scss">
-  .FormTagPicker {
+  .FormOptionsPicker {
     .LabelSection {
       font-size: 0.9rem;
       color: var(--dodo-color-neutral-800);

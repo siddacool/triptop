@@ -1,19 +1,9 @@
-.TagPicker {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -3px;
+.ChipLabel {
+  display: inline-flex;
+  margin: 3px;
 
   @media (min-width: 1024px) {
-    margin: -4px;
-  }
-
-  .TagPickerChip {
-    display: inline-flex;
-    margin: 3px;
-
-    @media (min-width: 1024px) {
-      margin: 4px;
-    }
+    margin: 4px;
   }
 
   input {
@@ -21,21 +11,11 @@
     z-index: -100;
   }
 
-  .ClearAll {
-    display: inline-flex;
-    margin: 3px;
-    height: 2.3rem;
-
-    @media (min-width: 1024px) {
-      margin: 4px;
-    }
-  }
-
   label {
     background-color: transparent;
     font-size: 0.85rem;
     font-weight: 400;
-    padding: 0 18px;
+    padding: 0 20px;
     height: 2.3rem;
     border-radius: 14px;
     cursor: pointer;
@@ -54,15 +34,15 @@
     .checkIcon {
       display: none;
       color: var(--dodo-color-neutral-600);
-      margin-left: 1px;
+      margin-right: 3px;
     }
   }
 
   input:checked {
     & + label {
       background-color: var(--dodo-color-primary-100);
-      padding-left: 7px;
-      padding-right: 4px;
+      padding-left: 6px;
+      padding-right: 7px;
       border-color: var(--dodo-color-primary-100);
 
       svg {
@@ -108,6 +88,22 @@
             background-color: var(--dodo-color-primary-400);
           }
         }
+      }
+    }
+  }
+
+  &.ChipLabelMultiple {
+    label {
+      .checkIcon {
+        margin-left: 3px;
+        margin-right: 0;
+      }
+    }
+
+    input:checked {
+      & + label {
+        padding-left: 7px;
+        padding-right: 6px;
       }
     }
   }

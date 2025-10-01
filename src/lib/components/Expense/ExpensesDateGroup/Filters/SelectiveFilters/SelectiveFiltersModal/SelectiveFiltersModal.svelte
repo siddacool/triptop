@@ -7,6 +7,7 @@
   import PaymentModePicker from './PaymentModePicker.svelte';
   import CurrencyPicker from './CurrencyPicker.svelte';
   import DateRange from './DateRange.svelte';
+  import TagsPicker from './TagsPicker.svelte';
 
   interface SelectiveFiltersModalProps {
     open?: boolean;
@@ -31,6 +32,7 @@
       <CategoryPicker />
       <PaymentModePicker />
       <CurrencyPicker />
+      <TagsPicker />
       <DateRange />
     </Grid>
   </div>

@@ -182,7 +182,26 @@ export function getExpenseDatesOnly(data: Expense[]) {
     dates.push(dateString);
   }
 
-  console.log(dates);
-
   return dates;
+}
+
+export function getExpenseTags(data: Expense[]) {
+  const tags: string[] = [];
+
+  for (let index = 0; index < data.length; index++) {
+    const element = data[index];
+    const tagsList = JSON.parse(element.tags || '[]') as string[];
+
+    for (let index2 = 0; index2 < tagsList.length; index2++) {
+      const tag = tagsList[index2];
+
+      if (tags.some((t) => t === tag)) {
+        continue;
+      }
+
+      tags.push(tag);
+    }
+  }
+
+  return tags;
 }
