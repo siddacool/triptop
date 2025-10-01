@@ -6,6 +6,7 @@ export type ExpenseSelectiveFilters = {
   category?: Category[];
   paymentMode?: PaymentModes[];
   currency?: string[];
+  tags?: string[];
   date?: {
     startDate?: string;
     endDate?: string;
@@ -31,6 +32,10 @@ export function getIsAnySelectiveFilters(selectiveFilters?: ExpenseSelectiveFilt
   }
 
   if (selectiveFilters.currency?.length) {
+    return true;
+  }
+
+  if (selectiveFilters.tags?.length) {
     return true;
   }
 
