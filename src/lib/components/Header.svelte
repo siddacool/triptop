@@ -38,6 +38,7 @@
   header {
     display: flex;
     align-items: center;
+    view-transition-name: header;
   }
 
   h1 {
