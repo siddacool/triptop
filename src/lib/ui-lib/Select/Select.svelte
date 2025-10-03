@@ -120,7 +120,7 @@
       </Combobox.Trigger>
     </div>
     <Combobox.Portal>
-      <Combobox.Content class={['SelectContent', 'dodo-shadow-5', theme].join(' ')} sideOffset={10}>
+      <Combobox.Content class={['SelectContent', 'dodo-shadow-3', theme].join(' ')} sideOffset={10}>
         <Combobox.ScrollUpButton class={['ScrollButton', 'ScrollButtonUp'].join(' ')}>
           <Icon icon="material-symbols:arrow-drop-up-rounded" width="28" height="28" />
         </Combobox.ScrollUpButton>

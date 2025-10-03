@@ -59,4 +59,8 @@
 </Column>
 
 <style lang="scss">
+  .formattedDate {
+    font-size: 0.85rem;
+    color: var(--dodo-color-neutral-700);
+  }
 </style>

@@ -69,7 +69,7 @@
     </DatePicker.Input>
     <DatePicker.Content
       sideOffset={6}
-      class={['DatePickerContent', 'dodo-shadow-5', theme].join(' ')}
+      class={['DatePickerContent', 'dodo-shadow-3', theme].join(' ')}
     >
       <DatePicker.Calendar class="DatePickerCalendar">
         {#snippet children({ months, weekdays })}

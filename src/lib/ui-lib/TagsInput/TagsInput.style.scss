@@ -20,7 +20,7 @@
       align-items: center;
 
       li {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         font-weight: 400;
         font-family: inherit;
         height: 1.8rem;
@@ -37,6 +37,10 @@
 
       li {
         padding: 16px;
+
+        &.active {
+          background-color: var(--dodo-color-primary-50);
+        }
       }
     }
 
@@ -53,7 +57,6 @@
       width: 100%;
 
       &::placeholder {
-        color: var(--dodo-color-secondary-600);
         opacity: 1;
         padding: 0;
       }
@@ -146,6 +149,15 @@
   }
 
   &.theme {
+    &--light {
+      .multiselect[role='searchbox'] {
+        input {
+          &::placeholder {
+            color: var(--dodo-color-secondary-600);
+          }
+        }
+      }
+    }
     &--dark {
       .multiselect[role='searchbox'] {
         ul.selected {
@@ -157,6 +169,12 @@
 
         ul.options {
           background-color: color-mix(in oklab, var(--dodo-color-primary-50) 95%, #000);
+
+          li {
+            &.active {
+              background-color: color-mix(in oklab, var(--dodo-color-primary-50) 80%, #000);
+            }
+          }
         }
 
         input {

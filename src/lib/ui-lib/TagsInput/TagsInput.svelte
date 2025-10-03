@@ -152,5 +152,6 @@
     {id}
     {disabled}
     allowUserOptions
+    selectedOptionsDraggable={false}
   />
 </InputEnclosure>

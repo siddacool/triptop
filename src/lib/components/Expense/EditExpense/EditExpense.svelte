@@ -101,16 +101,16 @@
               {formData}
               onchange={(name: string, value: string) => (onchange as any)(name, value)}
             />
-            <ExpenseDate
-              {formData}
-              onchange={(name: string, value: string) => (onchange as any)(name, value)}
-            />
             <Column>
               <Tags
                 {formData}
                 onchange={(name: string, value: string[]) => (onchange as any)(name, value)}
               />
             </Column>
+            <ExpenseDate
+              {formData}
+              onchange={(name: string, value: string) => (onchange as any)(name, value)}
+            />
             <Column></Column>
             <Column>
               <div class="Control">
