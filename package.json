@@ -12,8 +12,7 @@
     "svelte-check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check": "pnpm run svelte-check && eslint . && pnpm run lint",
     "check:fix": "pnpm run svelte-check && eslint . && pnpm run format",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "storybook dev -p 6006"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.1",
