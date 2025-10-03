@@ -48,6 +48,7 @@
   {maxValue}
   {minValue}
   placeholder={value || initialDate}
+  disabled={disabled as boolean}
 >
   <div class={['DatePicker', theme, className].join(' ')}>
     <DatePicker.Input

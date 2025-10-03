@@ -6,6 +6,8 @@
 
   export type OptionsPickerType = 'single' | 'multiple';
 
+  export const optionsPickerTypeArray: OptionsPickerType[] = ['single', 'multiple'];
+
   export interface OptionsPickerProps {
     disabled?: boolean | null | undefined;
     ref?: HTMLDivElement;

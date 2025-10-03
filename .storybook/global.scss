@@ -45,27 +45,29 @@ p {
     }
   }
 
-  thead {
-    th {
-      color: #c9cdcf !important;
+  .docblock-argstable {
+    thead {
+      th {
+        color: #c9cdcf !important;
+      }
     }
-  }
 
-  tbody > tr > * {
-    background-color: #212324 !important;
-  }
-
-  tr:hover {
-    td {
+    tbody > tr > * {
       background-color: #212324 !important;
     }
-  }
 
-  td {
-    color: #c9cdcf !important;
+    tr:hover {
+      td {
+        background-color: #212324 !important;
+      }
+    }
 
-    span {
-      opacity: 0.8;
+    td {
+      color: #c9cdcf !important;
+
+      span {
+        opacity: 0.8;
+      }
     }
   }
 }
