@@ -4,7 +4,6 @@
   import { Column, Grid } from '@flightlesslabs/grid';
   import TextInput from '$lib/ui-lib/TextInput';
   import type { EventHandler } from 'svelte/elements';
-  import type { Snippet } from 'svelte';
   import Button from '$lib/ui-lib/Button';
   import Message from '$lib/ui-lib/Message/Message.svelte';
   import type { CreateExpenseFormData } from '$lib/stores/expense/create.svelte';
@@ -21,7 +20,6 @@
 
   interface EditExpenseProps {
     onsubmit: EventHandler<SubmitEvent, HTMLFormElement>;
-    header?: Snippet;
     formData?: CreateExpenseFormData;
     errorMessage?: string;
     loading?: boolean;
@@ -32,7 +30,6 @@
 
   const {
     onsubmit,
-    header,
     formData,
     errorMessage,
     loading = false,
@@ -49,96 +46,87 @@
 <div class="EditExpense">
   <Card>
     <form {onsubmit}>
-      <Grid spacing={2}>
-        {#if header}
-          <Column>
-            {@render header?.()}
-          </Column>
-        {/if}
+      <Grid spacing={1}>
         <Column>
-          <Grid spacing={1}>
-            <Column>
-              <SuperInput>
-                <TextInput
-                  name="name"
-                  id="name"
-                  placeholder="Expense Name"
-                  value={formData?.name}
-                  oninput={(e) => onchange(e)}
-                  class="ExpenseName"
-                />
-              </SuperInput>
-            </Column>
-            <Column>
-              <SuperInput>
-                <NumericInput
-                  name="amount"
-                  id="amount"
-                  placeholder="Amount"
-                  value={formData?.amount}
-                  class="Amount"
-                  decimalPlaces={2}
-                  formatCurrency
-                  onValueChange={(value) => (onchange as any)('amount', value)}
-                  prefix={formData?.currency && getCurrencySymbol(formData.currency)
-                    ? getCurrencySymbol(formData.currency)
-                    : ''}
-                  allowNegative
-                  lakhSeparator={formData?.currency === 'INR' ? true : false}
-                />
-              </SuperInput>
-            </Column>
-            <FormCardDivider />
-            <Currency
-              {formData}
-              onchange={(name: string, value: string) => (onchange as any)(name, value)}
+          <SuperInput>
+            <TextInput
+              name="name"
+              id="name"
+              placeholder="Expense Name"
+              value={formData?.name}
+              oninput={(e) => onchange(e)}
+              class="ExpenseName"
             />
-            <PaymentMode
-              {formData}
-              onchange={(name: string, value: string) => (onchange as any)(name, value)}
-            />
-            <Category
-              {formData}
-              onchange={(name: string, value: string) => (onchange as any)(name, value)}
-            />
-            <Column>
-              <Tags
-                {formData}
-                onchange={(name: string, value: string[]) => (onchange as any)(name, value)}
-              />
-            </Column>
-            <ExpenseDate
-              {formData}
-              onchange={(name: string, value: string) => (onchange as any)(name, value)}
-            />
-            <Column></Column>
-            <Column>
-              <div class="Control">
-                {#if createNew}
-                  <Button type="submit" {disabled} name="save" color="secondary">Add</Button>
-                {:else}
-                  <Button type="submit" {disabled} name="save" color="secondary">Save</Button>
-                  <Button
-                    {disabled}
-                    name="save"
-                    color="danger"
-                    class="Delete"
-                    onclick={ondelete}
-                    compact
-                    aria-label="Delete Expense"
-                  >
-                    <Icon icon="material-symbols:delete-outline" width="24" height="24" />
-                  </Button>
-                {/if}
-              </div>
-            </Column>
-            {#if errorMessage}
-              <Message color="danger">
-                {errorMessage}
-              </Message>
-            {/if}
-          </Grid>
+          </SuperInput>
         </Column>
+        <Column>
+          <SuperInput>
+            <NumericInput
+              name="amount"
+              id="amount"
+              placeholder="Amount"
+              value={formData?.amount}
+              class="Amount"
+              decimalPlaces={2}
+              formatCurrency
+              onValueChange={(value) => (onchange as any)('amount', value)}
+              prefix={formData?.currency && getCurrencySymbol(formData.currency)
+                ? getCurrencySymbol(formData.currency)
+                : ''}
+              allowNegative
+              lakhSeparator={formData?.currency === 'INR' ? true : false}
+            />
+          </SuperInput>
+        </Column>
+        <FormCardDivider />
+        <Currency
+          {formData}
+          onchange={(name: string, value: string) => (onchange as any)(name, value)}
+        />
+        <PaymentMode
+          {formData}
+          onchange={(name: string, value: string) => (onchange as any)(name, value)}
+        />
+        <Category
+          {formData}
+          onchange={(name: string, value: string) => (onchange as any)(name, value)}
+        />
+        <Column>
+          <Tags
+            {formData}
+            onchange={(name: string, value: string[]) => (onchange as any)(name, value)}
+          />
+        </Column>
+        <ExpenseDate
+          {formData}
+          onchange={(name: string, value: string) => (onchange as any)(name, value)}
+        />
+        <Column></Column>
+        <Column>
+          <div class="Control">
+            {#if createNew}
+              <Button type="submit" {disabled} name="save" color="secondary">Add</Button>
+            {:else}
+              <Button type="submit" {disabled} name="save" color="secondary">Save</Button>
+              <Button
+                {disabled}
+                name="save"
+                color="danger"
+                class="Delete"
+                onclick={ondelete}
+                compact
+                aria-label="Delete Expense"
+              >
+                <Icon icon="material-symbols:delete-outline" width="24" height="24" />
+              </Button>
+            {/if}
+          </div>
+        </Column>
+        {#if errorMessage}
+          <Message color="danger">
+            {errorMessage}
+          </Message>
+        {/if}
       </Grid>
     </form>
   </Card>
@@ -146,6 +134,8 @@
 
 <style lang="scss">
   .EditExpense {
+    margin-top: 24px;
+
     form {
       display: block;
     }

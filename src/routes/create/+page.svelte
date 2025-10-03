@@ -34,6 +34,7 @@
 </svelte:head>
 
 <div class="CreateTrip">
+  <Header backTo="/" aria-label="Back to trips">Create a new trip</Header>
   <EditTrip
     {onsubmit}
     onchange={editTripOnChange}
@@ -41,11 +42,7 @@
     loading={useCreateTripStore.loading}
     formData={useCreateTripStore.formData}
     createNew
-  >
-    {#snippet header()}
-      <Header backTo="/" aria-label="Back to trips">Create a new trip</Header>
-    {/snippet}
-  </EditTrip>
+  />
 
   <div class="importTrip">
     <div class="or">

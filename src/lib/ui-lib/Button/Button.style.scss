@@ -96,14 +96,14 @@
 
     &--danger {
       color: var(--dodo-color-constant-white);
-      background-color: var(--dodo-color-danger-400);
+      background-color: var(--dodo-color-danger-600);
 
       &:hover {
-        background-color: var(--dodo-color-danger-500);
+        background-color: var(--dodo-color-danger-700);
       }
 
       &:active {
-        background-color: var(--dodo-color-danger-600);
+        background-color: var(--dodo-color-danger-800);
       }
     }
   }
@@ -119,6 +119,24 @@
 
     &:active {
       background-color: var(--dodo-color-neutral-300);
+    }
+  }
+
+  &.theme {
+    &--dark {
+      &.color {
+        &--danger {
+          background-color: var(--dodo-color-danger-400);
+
+          &:hover {
+            background-color: var(--dodo-color-danger-500);
+          }
+
+          &:active {
+            background-color: var(--dodo-color-danger-600);
+          }
+        }
+      }
     }
   }
 }

@@ -1,26 +1,86 @@
 .Chip {
   display: inline-flex;
   margin: 3px;
-  background-color: var(--dodo-color-primary-100);
+
   font-size: 0.85rem;
   font-weight: 400;
   padding: 0 8px;
   height: 2rem;
   border-radius: 14px;
-  display: flex;
   align-items: center;
   letter-spacing: 0.3px;
-  border: 1px solid var(--dodo-color-primary-100);
+  border: 1px solid;
   position: relative;
 
   @media (min-width: 1024px) {
     margin: 4px;
   }
 
+  &.color {
+    &--primary {
+      background-color: var(--dodo-color-primary-100);
+      border-color: var(--dodo-color-primary-100);
+    }
+
+    &--secondary {
+      background-color: var(--dodo-color-secondary-100);
+      border-color: var(--dodo-color-secondary-100);
+    }
+
+    &--neutral {
+      background-color: var(--dodo-color-neutral-100);
+      border-color: var(--dodo-color-neutral-100);
+    }
+
+    &--safe {
+      background-color: var(--dodo-color-safe-100);
+      border-color: var(--dodo-color-safe-100);
+    }
+
+    &--warning {
+      background-color: var(--dodo-color-warning-100);
+      border-color: var(--dodo-color-warning-100);
+    }
+
+    &--danger {
+      background-color: var(--dodo-color-danger-100);
+      border-color: var(--dodo-color-danger-100);
+    }
+  }
+
   &.theme {
     &--dark {
-      border-color: var(--dodo-color-primary-300);
-      background-color: var(--dodo-color-primary-300);
+      &.color {
+        &--primary {
+          background-color: var(--dodo-color-primary-300);
+          border-color: var(--dodo-color-primary-300);
+        }
+
+        &--secondary {
+          background-color: var(--dodo-color-secondary-300);
+          border-color: var(--dodo-color-secondary-300);
+        }
+
+        &--neutral {
+          background-color: var(--dodo-color-neutral-300);
+          border-color: var(--dodo-color-neutral-300);
+        }
+
+        &--safe {
+          background-color: var(--dodo-color-safe-300);
+          border-color: var(--dodo-color-safe-300);
+        }
+
+        &--warning {
+          background-color: var(--dodo-color-warning-300);
+          border-color: var(--dodo-color-warning-300);
+        }
+
+        &--danger {
+          background-color: var(--dodo-color-danger-300);
+          border-color: var(--dodo-color-danger-300);
+        }
+      }
     }
   }
 }

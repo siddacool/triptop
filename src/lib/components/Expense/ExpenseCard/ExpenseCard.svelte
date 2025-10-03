@@ -5,23 +5,36 @@
   import MainInfo from './MainInfo.svelte';
   import Time from './Time.svelte';
   import PaymentModeBar from './PaymentModeBar.svelte';
+  import Tags from './Tags.svelte';
 
   interface ExpenseCardProps {
     data: Expense;
+    details?: boolean;
   }
 
-  const { data }: ExpenseCardProps = $props();
+  const { data, details = false }: ExpenseCardProps = $props();
 
   const resolved = resolve(`/${data.tripId}/${data._id}`);
 </script>
 
-<a class="ExpenseCard" href={resolved}>
-  <Card interactive>
-    <MainInfo {data} />
-    <Time date={data.date} />
+{#snippet card()}
+  <Card interactive={!details}>
+    <MainInfo {data} {details} />
+    <Time {data} {details} />
+    <Tags {data} {details} />
     <PaymentModeBar paymentMode={data.paymentMode} />
   </Card>
-</a>
+{/snippet}
+
+{#if details}
+  <div class="ExpenseCard">
+    {@render card()}
+  </div>
+{:else}
+  <a class="ExpenseCard" href={resolved}>
+    {@render card()}
+  </a>
+{/if}
 
 <style lang="scss">
   .ExpenseCard {

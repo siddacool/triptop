@@ -202,6 +202,7 @@
       </Column>
     </Grid>
   {:else if useExpenseStore.data?._id}
+    <Header backTo={`/${tripId}/${expenseId}`} aria-label="Back to expense">Edit Expense</Header>
     <EditExpense
       {onsubmit}
       onchange={editExpenseOnChange}
@@ -209,12 +210,6 @@
       loading={useCreateExpenseStore.loading || loading}
       formData={useCreateExpenseStore.formData}
       {ondelete}
-    >
-      {#snippet header()}
-        <Header backTo={`/${tripId}/${expenseId}`} aria-label="Back to expense">
-          Edit Expense
-        </Header>
-      {/snippet}
-    </EditExpense>
+    />
   {/if}
 </div>

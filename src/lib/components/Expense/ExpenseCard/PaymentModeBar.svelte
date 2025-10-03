@@ -19,7 +19,7 @@
     opacity: 0.8;
     position: absolute;
     right: 0;
-    width: 100px;
+    width: 130px;
     bottom: 0;
 
     &.CARD {

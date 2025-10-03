@@ -3,7 +3,6 @@
   import { Column, Grid } from '@flightlesslabs/grid';
   import TextInput from '$lib/ui-lib/TextInput';
   import type { EventHandler } from 'svelte/elements';
-  import type { Snippet } from 'svelte';
   import type { CreateTripFormData } from '$lib/stores/trip/create.svelte';
   import Button from '$lib/ui-lib/Button';
   import Message from '$lib/ui-lib/Message/Message.svelte';
@@ -12,7 +11,6 @@
 
   interface EditTripProps {
     onsubmit: EventHandler<SubmitEvent, HTMLFormElement>;
-    header?: Snippet;
     formData?: CreateTripFormData;
     errorMessage?: string;
     loading?: boolean;
@@ -23,7 +21,6 @@
 
   const {
     onsubmit,
-    header,
     formData,
     errorMessage,
     loading = false,
@@ -36,67 +33,58 @@
 <div class="EditTrip">
   <Card>
     <form {onsubmit}>
-      <Grid spacing={2}>
-        {#if header}
-          <Column>
-            {@render header?.()}
-          </Column>
-        {/if}
+      <Grid spacing={1}>
         <Column>
-          <Grid spacing={1}>
-            <Column>
-              <SuperInput>
-                <TextInput
-                  name="name"
-                  id="name"
-                  placeholder="Trip Name"
-                  value={formData?.name}
-                  oninput={(e) => onchange(e)}
-                />
-              </SuperInput>
-            </Column>
-            <Column></Column>
-            <Column>
-              <div class="Control">
-                {#if createNew}
-                  <Button
-                    type="submit"
-                    disabled={loading || !formData?.name?.trim() ? true : false}
-                    name="save"
-                    color="secondary"
-                  >
-                    Create
-                  </Button>
-                {:else}
-                  <Button
-                    type="submit"
-                    disabled={loading || !formData?.name?.trim() ? true : false}
-                    name="save"
-                    color="secondary"
-                  >
-                    Save
-                  </Button>
-                  <Button
-                    disabled={loading || !formData?.name?.trim() ? true : false}
-                    name="save"
-                    color="danger"
-                    class="Delete"
-                    onclick={ondelete}
-                    aria-label="Delete Trip"
-                    compact
-                  >
-                    <Icon icon="material-symbols:delete-outline" width="24" height="24" />
-                  </Button>
-                {/if}
-              </div>
-            </Column>
-            {#if errorMessage}
-              <Message color="danger">
-                {errorMessage}
-              </Message>
-            {/if}
-          </Grid>
+          <SuperInput>
+            <TextInput
+              name="name"
+              id="name"
+              placeholder="Trip Name"
+              value={formData?.name}
+              oninput={(e) => onchange(e)}
+            />
+          </SuperInput>
         </Column>
+        <Column></Column>
+        <Column>
+          <div class="Control">
+            {#if createNew}
+              <Button
+                type="submit"
+                disabled={loading || !formData?.name?.trim() ? true : false}
+                name="save"
+                color="secondary"
+              >
+                Create
+              </Button>
+            {:else}
+              <Button
+                type="submit"
+                disabled={loading || !formData?.name?.trim() ? true : false}
+                name="save"
+                color="secondary"
+              >
+                Save
+              </Button>
+              <Button
+                disabled={loading || !formData?.name?.trim() ? true : false}
+                name="save"
+                color="danger"
+                class="Delete"
+                onclick={ondelete}
+                aria-label="Delete Trip"
+                compact
+              >
+                <Icon icon="material-symbols:delete-outline" width="24" height="24" />
+              </Button>
+            {/if}
+          </div>
+        </Column>
+        {#if errorMessage}
+          <Message color="danger">
+            {errorMessage}
+          </Message>
+        {/if}
       </Grid>
     </form>
   </Card>
@@ -104,6 +92,8 @@
 
 <style lang="scss">
   .EditTrip {
+    margin-top: 24px;
+
     form {
       display: block;
     }

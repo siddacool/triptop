@@ -3,7 +3,7 @@
   import Button from '$lib/ui-lib/Button';
   import SvelteVirtualList from '@humanspeak/svelte-virtual-list';
   import Icon from '@iconify/svelte';
-  import TripCard from '../TripCard.svelte';
+  import TripCard from '../TripCard/TripCard.svelte';
   import VirtualListItem from '$lib/ui-lib/VirtualList/VirtualListItem';
   import VirtualListHolder from '$lib/ui-lib/VirtualList/VirtualListHolder';
 

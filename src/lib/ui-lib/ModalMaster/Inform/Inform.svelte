@@ -14,6 +14,7 @@
   import './Inform.style.scss';
   import Button from '$lib/ui-lib/Button';
   import Icon from '@iconify/svelte';
+  import SpecialText from '$lib/ui-lib/SpecialText/SpecialText.svelte';
 
   let {
     open = $bindable(false),
@@ -36,11 +37,13 @@
   {#snippet title()}
     <Icon icon="ic:baseline-info" width="24" height="24" class="InfoIcon" />
 
-    {#if titleInternal}
-      {@render titleInternal()}
-    {:else}
-      Inform
-    {/if}
+    <SpecialText fontWeight={500} width={80}>
+      {#if titleInternal}
+        {@render titleInternal()}
+      {:else}
+        Inform
+      {/if}
+    </SpecialText>
   {/snippet}
 
   {@render children?.()}

@@ -10,7 +10,7 @@
     id?: string;
     'aria-label'?: string;
     onclick?: MouseEventHandler<HTMLElement> | null | undefined;
-    type?: 'button' | 'submit' | 'reset';
+    type?: ButtonType;
   }
 </script>
 
@@ -21,6 +21,7 @@
   import { Button } from 'bits-ui';
   import type { Snippet } from 'svelte';
   import type { MouseEventHandler } from 'svelte/elements';
+  import type { ButtonType } from '../Button/Button.svelte';
 
   const {
     children,

@@ -15,6 +15,7 @@
   import './Confirm.style.scss';
   import Button from '$lib/ui-lib/Button';
   import Icon from '@iconify/svelte';
+  import SpecialText from '$lib/ui-lib/SpecialText/SpecialText.svelte';
 
   let {
     open = $bindable(false),
@@ -45,11 +46,14 @@
 <BaseModal bind:open class={['ConfirmModal', className].join(' ')}>
   {#snippet title()}
     <Icon icon="foundation:alert" width="24" height="24" class="AlertIcon" />
-    {#if titleInternal}
-      {@render titleInternal()}
-    {:else}
-      Confirm
-    {/if}
+
+    <SpecialText fontWeight={500} width={80}>
+      {#if titleInternal}
+        {@render titleInternal()}
+      {:else}
+        Confirm
+      {/if}
+    </SpecialText>
   {/snippet}
 
   {@render children?.()}
