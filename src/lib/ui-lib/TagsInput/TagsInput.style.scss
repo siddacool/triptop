@@ -34,6 +34,8 @@
     ul.options {
       background-color: var(--dodo-color-white);
       margin-top: 8px;
+      --dodo-shadow: 0 6px 10px var(--dodo-shadow-color), 0 5px 17px var(--dodo-shadow-color);
+      box-shadow: var(--dodo-shadow);
 
       li {
         padding: 16px;
