@@ -1,4 +1,17 @@
 <script lang="ts" module>
+  export type ButtonType = 'button' | 'submit' | 'reset';
+  export const buttonTypeArray: ButtonType[] = ['button', 'submit', 'reset'];
+
+  export type ButtonColor = 'primary' | 'secondary' | 'default' | 'safe' | 'danger';
+
+  export const buttonColorArray: ButtonColor[] = [
+    'primary',
+    'secondary',
+    'default',
+    'safe',
+    'danger',
+  ];
+
   export interface ButtonProps {
     children?: Snippet;
     href?: string | null | undefined;
@@ -10,8 +23,8 @@
     id?: string;
     'aria-label'?: string;
     onclick?: MouseEventHandler<HTMLElement> | null | undefined;
-    type?: 'button' | 'submit' | 'reset';
-    color?: 'primary' | 'secondary' | 'default' | 'safe' | 'danger';
+    type?: ButtonType;
+    color?: ButtonColor;
     compact?: boolean;
   }
 </script>
