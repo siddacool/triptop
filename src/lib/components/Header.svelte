@@ -1,5 +1,6 @@
 <script lang="ts">
   import Button from '$lib/ui-lib/Button/Button.svelte';
+  import SpecialText from '$lib/ui-lib/SpecialText/SpecialText.svelte';
   import Icon from '@iconify/svelte';
   import type { Snippet } from 'svelte';
 
@@ -23,7 +24,9 @@
   </div>
 
   <h1>
-    {@render children?.()}
+    <SpecialText fontWeight={500} width={80}>
+      {@render children?.()}
+    </SpecialText>
   </h1>
 
   <div class="after">
@@ -48,6 +51,7 @@
     unicode-bidi: isolate;
     margin-right: auto;
     margin: 0;
+    letter-spacing: 1.2px;
   }
 
   .after {

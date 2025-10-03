@@ -1,0 +1,11 @@
+.SpecialText {
+  font-family: 'Zalando Sans', sans-serif;
+  font-size: inherit;
+  color: inherit;
+  font-optical-sizing: auto;
+  font-style: var(--SpecialText-italic);
+  font-variation-settings:
+    'wght' var(--SpecialText-font-weight),
+    'wdth' var(--SpecialText-width);
+  letter-spacing: inherit;
+}

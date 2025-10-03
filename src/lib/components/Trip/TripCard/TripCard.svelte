@@ -2,6 +2,7 @@
   import { resolve } from '$app/paths';
   import type { Trip } from '$lib/stores/trip/individual.svelte';
   import Card from '$lib/ui-lib/Card/Card.svelte';
+  import SpecialText from '$lib/ui-lib/SpecialText/SpecialText.svelte';
 
   interface TripCardProps {
     data: Trip;
@@ -14,8 +15,10 @@
 
 <a class="TripListCard" href={resolved}>
   <Card interactive>
-    <p class="creativeFont">
-      {data.name}
+    <p>
+      <SpecialText italic fontWeight={500} width={110}>
+        {data.name}
+      </SpecialText>
     </p>
   </Card>
 </a>
@@ -30,8 +33,6 @@
       margin: 0;
       font-size: 1.2rem;
       letter-spacing: 1.4px;
-      font-weight: 500;
-      font-style: italic;
     }
 
     :global(.Card) {

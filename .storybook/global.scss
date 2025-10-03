@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&display=swap');
 @import '@flightlesslabs/colors/global.css';
 @import '../src/lib/components/GlobalStyles/styles/index.scss';
 
@@ -82,7 +83,7 @@ pre.prismjs {
 }
 
 li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li) {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Zalando Sans', sans-serif;
   font-size: 15px;
   font-weight: 500;
 }

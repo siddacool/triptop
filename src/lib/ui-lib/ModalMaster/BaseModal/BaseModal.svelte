@@ -35,7 +35,7 @@
     <Dialog.Overlay class={['BaseModal', theme, className].join(' ')} />
     <Dialog.Content class={['BaseModalContent', theme, className].join(' ')}>
       <Card class="ModalCard dodo-shadow-3">
-        <Dialog.Title class="creativeFont">
+        <Dialog.Title>
           {@render title?.()}
           <UtilityButton class="CloseModal" title="Close Modal" onclick={() => (open = false)}>
             <Icon icon="material-symbols:close-small" width="28" height="28" />

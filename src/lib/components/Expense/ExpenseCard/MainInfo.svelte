@@ -3,6 +3,7 @@
   import FormattedCurrency from '$lib/components/FormattedCurrency.svelte';
   import PaymentModeIcon from '$lib/components/PaymentModeIcon.svelte';
   import type { Expense } from '$lib/stores/expense/individual.svelte';
+  import SpecialText from '$lib/ui-lib/SpecialText/SpecialText.svelte';
 
   interface MainInfoProps {
     data: Expense;
@@ -13,9 +14,18 @@
 </script>
 
 <div class="MainInfo" class:details>
-  <div class="name creativeFont">
+  <div class="name">
     <CategoryIcon category={data.category} />
-    {data.name}
+
+    {#if details}
+      <SpecialText fontWeight={500} width={118}>
+        {data.name}
+      </SpecialText>
+    {:else}
+      <SpecialText width={109}>
+        {data.name}
+      </SpecialText>
+    {/if}
   </div>
 
   <div class="amount">
