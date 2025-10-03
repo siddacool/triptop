@@ -128,6 +128,7 @@
       </Column>
     </Grid>
   {:else if useTripStore.data?._id}
+    <Header backTo={`/${tripId}`} aria-label="Back to trips">Edit trip</Header>
     <EditTrip
       {onsubmit}
       onchange={editTripOnChange}
@@ -135,10 +136,6 @@
       loading={useCreateTripStore.loading || loading}
       formData={useCreateTripStore.formData}
       {ondelete}
-    >
-      {#snippet header()}
-        <Header backTo={`/${tripId}`} aria-label="Back to trips">Edit trip</Header>
-      {/snippet}
-    </EditTrip>
+    />
   {/if}
 </div>

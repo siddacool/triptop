@@ -55,6 +55,7 @@
 </svelte:head>
 
 <div class="AddExpense">
+  <Header backTo={`/${tripId}`} aria-label="Back to trips">Add Expense</Header>
   <EditExpense
     {onsubmit}
     onchange={editExpenseOnChange}
@@ -62,9 +63,5 @@
     loading={useCreateExpenseStore.loading}
     formData={useCreateExpenseStore.formData}
     createNew
-  >
-    {#snippet header()}
-      <Header backTo={`/${tripId}`} aria-label="Back to trips">Add Expense</Header>
-    {/snippet}
-  </EditExpense>
+  />
 </div>
