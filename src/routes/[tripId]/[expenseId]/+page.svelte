@@ -3,7 +3,6 @@
   import ExpenseDetails from '$lib/components/Expense/ExpenseDetails';
   import Header from '$lib/components/Header.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Button from '$lib/ui-lib/Button/Button.svelte';
   import Icon from '@iconify/svelte';
   import { onMount } from 'svelte';
