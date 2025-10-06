@@ -2,13 +2,10 @@
   import type { Expense } from '$lib/stores/expense/individual.svelte';
   import { getMoment } from '@flightlesslabs/utils';
   import Icon from '@iconify/svelte';
+  import { getContext } from 'svelte';
 
-  interface TimeProps {
-    data: Expense;
-    details?: boolean;
-  }
-
-  const { data, details = false }: TimeProps = $props();
+  const data = getContext<Expense>('ExpenseData');
+  const details = getContext<boolean | undefined>('details') || false;
 </script>
 
 <div class="Time" class:details>

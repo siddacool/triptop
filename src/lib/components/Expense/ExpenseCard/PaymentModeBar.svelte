@@ -1,15 +1,14 @@
 <script lang="ts">
-  import { PaymentModes } from '$lib/stores/expense/individual.svelte';
+  import { PaymentModes, type Expense } from '$lib/stores/expense/individual.svelte';
+  import { getContext } from 'svelte';
 
-  interface PaymentModeBarProps {
-    paymentMode?: PaymentModes;
-  }
-
-  const { paymentMode }: PaymentModeBarProps = $props();
+  const data = getContext<Expense>('ExpenseData');
+  const details = getContext<boolean | undefined>('details') || false;
 </script>
 
 <div
-  class={['PaymentModeBar', paymentMode === PaymentModes.CARD ? 'CARD' : 'CASH'].join(' ')}
+  class={['PaymentModeBar', data.paymentMode === PaymentModes.CARD ? 'CARD' : 'CASH'].join(' ')}
+  class:details
 ></div>
 
 <style lang="scss">
@@ -21,6 +20,12 @@
     right: 0;
     width: 130px;
     bottom: 0;
+
+    &.details {
+      width: 100%;
+      right: initial;
+      left: 0;
+    }
 
     &.CARD {
       background-color: var(--triptop-color-payment-mode-card-bar);

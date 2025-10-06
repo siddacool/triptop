@@ -48,7 +48,7 @@
 />
 
 <Story
-  name="CARD"
+  name="Payment Mode Card"
   args={{
     data: {
       id: 1,
@@ -71,5 +71,26 @@
   name="details"
   args={{
     details: true,
+  }}
+/>
+
+<Story
+  name="details Payment Mode Card"
+  args={{
+    details: true,
+    data: {
+      id: 1,
+      _id: 'exp_001',
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+      name: 'Dinner at Italian Restaurant',
+      amount: 45.5,
+      tripId: 'trip_123',
+      category: Category.FOOD,
+      date: new Date('2025-09-25').getTime(),
+      paymentMode: PaymentModes.CARD,
+      currency: 'USD',
+      tags: JSON.stringify(['dinner', 'restaurant', 'italian']),
+    },
   }}
 />

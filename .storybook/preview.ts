@@ -1,5 +1,7 @@
 import type { Preview } from '@storybook/sveltekit';
 import { themes } from 'storybook/theming';
+import '@flightlesslabs/colors/global.css';
+import '../src/lib/components/GlobalStyles/styles/index.scss';
 import './global.scss';
 import { addons } from 'storybook/internal/preview-api';
 import { DARK_MODE_EVENT_NAME } from '@vueless/storybook-dark-mode';

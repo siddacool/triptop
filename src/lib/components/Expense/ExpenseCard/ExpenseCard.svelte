@@ -6,6 +6,7 @@
   import Time from './Time.svelte';
   import PaymentModeBar from './PaymentModeBar.svelte';
   import Tags from './Tags.svelte';
+  import { setContext } from 'svelte';
 
   interface ExpenseCardProps {
     data: Expense;
@@ -15,14 +16,17 @@
   const { data, details = false }: ExpenseCardProps = $props();
 
   const resolved = resolve(`/${data.tripId}/${data._id}`);
+
+  setContext('ExpenseData', data);
+  setContext('details', details);
 </script>
 
 {#snippet card()}
   <Card interactive={!details}>
-    <MainInfo {data} {details} />
-    <Time {data} {details} />
-    <Tags {data} {details} />
-    <PaymentModeBar paymentMode={data.paymentMode} />
+    <MainInfo />
+    <Time />
+    <Tags />
+    <PaymentModeBar />
   </Card>
 {/snippet}
 

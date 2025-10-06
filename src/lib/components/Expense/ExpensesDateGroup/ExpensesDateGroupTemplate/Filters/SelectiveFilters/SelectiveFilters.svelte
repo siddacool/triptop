@@ -3,7 +3,7 @@
   import Button from '$lib/ui-lib/Button/Button.svelte';
   import Icon from '@iconify/svelte';
   import SelectiveFiltersModal from './SelectiveFiltersModal/SelectiveFiltersModal.svelte';
-  import FilterActiveDot from '../../../../FilterActiveDot.svelte';
+  import FilterActiveDot from '$lib/components/FilterActiveDot.svelte';
 
   let openSelectiveFiltersModal = $state(false);
 

@@ -4,28 +4,19 @@
   import PaymentModeIcon from '$lib/components/PaymentModeIcon.svelte';
   import type { Expense } from '$lib/stores/expense/individual.svelte';
   import SpecialText from '$lib/ui-lib/SpecialText/SpecialText.svelte';
+  import { getContext } from 'svelte';
 
-  interface MainInfoProps {
-    data: Expense;
-    details?: boolean;
-  }
-
-  const { data, details = false }: MainInfoProps = $props();
+  const data = getContext<Expense>('ExpenseData');
+  const details = getContext<boolean | undefined>('details') || false;
 </script>
 
 <div class="MainInfo" class:details>
   <div class="name">
     <CategoryIcon category={data.category} />
 
-    {#if details}
-      <SpecialText fontWeight={500} width={118}>
-        {data.name}
-      </SpecialText>
-    {:else}
-      <SpecialText width={109}>
-        {data.name}
-      </SpecialText>
-    {/if}
+    <SpecialText width={107}>
+      {data.name}
+    </SpecialText>
   </div>
 
   <div class="amount">

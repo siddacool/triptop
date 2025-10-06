@@ -2,13 +2,10 @@
   import validateJson from '$lib/helpers/validators/vaidate-json';
   import type { Expense } from '$lib/stores/expense/individual.svelte';
   import Chip from '$lib/ui-lib/Chip';
+  import { getContext } from 'svelte';
 
-  interface TagsProps {
-    data: Expense;
-    details?: boolean;
-  }
-
-  const { data, details = false }: TagsProps = $props();
+  const data = getContext<Expense>('ExpenseData');
+  const details = getContext<boolean | undefined>('details') || false;
 
   const tags = $derived(
     data.tags && validateJson(data.tags) ? JSON.parse(data.tags) : [],
