@@ -35,7 +35,6 @@
       width: 100%;
       padding-bottom: 0;
       height: 38px;
-      view-transition-name: header;
 
       @media (min-width: 1024px) {
         height: 42.75px;
