@@ -1,0 +1,21 @@
+@forward '@flightlesslabs/dodo-ui/styles/global.css';
+@forward '@flightlesslabs/dodo-ui/styles/components.css';
+// Addon (dodo-ui-bits)
+@forward '@flightlesslabs/dodo-ui-bits/styles/main.css';
+// Addon (dodo-ui-date)
+@forward '@flightlesslabs/dodo-ui-date/styles/main.css';
+
+html {
+  font-family: 'Zalando Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-size: 16px;
+}
+
+:where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)),
+:where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
+  font-size: max(1em, 16px) !important;
+}
+
+pre.prismjs {
+  font-size: max(1em, 16px) !important;
+}
