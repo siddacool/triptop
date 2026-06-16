@@ -1,7 +1,7 @@
 <script lang="ts">
   import { resolve } from '$app/paths';
   import type { Trip } from '$lib/stores/trip/types';
-  import { Card, type CardColor, type ComponentShadow } from '@flightlesslabs/dodo-ui';
+  import { Card, type CardColor } from '@flightlesslabs/dodo-ui';
   import Title from './Title.svelte';
   import Date from './Date.svelte';
 
