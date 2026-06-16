@@ -14,8 +14,7 @@
     "check:fix": "npm run svelte-check && eslint . && npm run format",
     "test:unit": "vitest",
     "test": "npm run test:unit -- --run",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "storybook dev -p 6006"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

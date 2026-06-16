@@ -7,22 +7,45 @@
   import '@flightlesslabs/dodo-ui-date/styles/main.css';
   import { ModalManager, ToastManager } from '@flightlesslabs/dodo-ui-bits';
   import { Theme } from '@flightlesslabs/dodo-ui';
+  import TheHeader from '$lib/components/TheHeader/TheHeader.svelte';
+  import Main from '$lib/components/Main/Main.svelte';
 
   let { children } = $props();
 </script>
 
-<main>
-  {@render children()}
-</main>
+<div class="App">
+  <TheHeader />
+
+  <Main>
+    {@render children()}
+  </Main>
+</div>
 
 <Theme global type="auto" />
 <ToastManager />
 <ModalManager />
 
 <style lang="scss">
+  :global(*) {
+    box-sizing: border-box;
+  }
+
   :global(html) {
     font-family: 'Zalando Sans', sans-serif;
     font-optical-sizing: auto;
     font-size: 16px;
+  }
+
+  :global(body) {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .App {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
   }
 </style>

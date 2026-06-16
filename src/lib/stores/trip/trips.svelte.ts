@@ -9,8 +9,14 @@ function createTripsStore() {
   let mounted: boolean = $state(false);
 
   return {
-    get trips() {
+    get tripsAll() {
       return trips;
+    },
+    get tripsActive() {
+      return trips.filter((item) => !item.archived);
+    },
+    get tripsArchived() {
+      return trips.filter((item) => item.archived);
     },
     get fetching() {
       return fetching;
@@ -93,6 +99,22 @@ function createTripsStore() {
       }
 
       await db.trips.delete(target.id);
+
+      await this.syncData();
+    },
+    async toggleArchivedTripById(tripId: string) {
+      const target = trips.find((item) => item._id === tripId);
+
+      if (!target?.id) {
+        return;
+      }
+
+      const isArchived = target.archived ? true : false;
+
+      await db.trips.update(target.id, {
+        archived: !isArchived,
+        updatedAt: Date.now(),
+      });
 
       await this.syncData();
     },

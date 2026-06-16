@@ -7,4 +7,5 @@ export interface Trip {
   createdAt: number;
   updatedAt: number;
   currency: CurrencyCode;
+  archived?: boolean;
 }
