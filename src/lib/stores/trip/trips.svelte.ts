@@ -49,7 +49,7 @@ function createTripsStore() {
         return Promise.reject(e);
       }
     },
-    async _createNewTrip(formData: CreateTripFormData) {
+    async createNewTrip(formData: CreateTripFormData) {
       if (!formData?.name?.trim()) {
         return;
       }

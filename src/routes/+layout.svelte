@@ -24,7 +24,7 @@
     </Main>
   </div>
 
-  <ToastManager />
+  <ToastManager clearAfterDuration={5000} />
   <ModalManager />
 </Theme>
 
@@ -59,12 +59,12 @@
 
   .box {
     width: 100%;
-    max-width: 1000px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: var(--dodo-ui-space) calc(var(--dodo-ui-space) * 2);
+    padding: calc(var(--dodo-ui-space) * 2);
 
     @media (min-width: 600px) {
-      padding: calc(var(--dodo-ui-space) * 2) calc(var(--dodo-ui-space) * 3);
+      padding: calc(var(--dodo-ui-space) * 3);
     }
   }
 </style>

@@ -9,3 +9,8 @@ export interface Trip {
   currency: CurrencyCode;
   archived?: boolean;
 }
+
+export interface EditTripFormData {
+  name: string;
+  currency: CurrencyCode;
+}
