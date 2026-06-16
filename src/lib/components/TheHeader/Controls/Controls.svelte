@@ -13,7 +13,7 @@
     margin: 0 -4px;
     display: flex;
 
-    :global(button) {
+    :global(.dodo-ui-Button) {
       margin: 0 4px;
     }
   }

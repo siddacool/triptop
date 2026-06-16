@@ -18,7 +18,9 @@
     <TheHeader />
 
     <Main>
-      {@render children()}
+      <div class="box">
+        {@render children()}
+      </div>
     </Main>
   </div>
 
@@ -53,5 +55,16 @@
     height: 100%;
     width: 100%;
     flex-direction: column;
+  }
+
+  .box {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: var(--dodo-ui-space) calc(var(--dodo-ui-space) * 2);
+
+    @media (min-width: 600px) {
+      padding: calc(var(--dodo-ui-space) * 2) calc(var(--dodo-ui-space) * 3);
+    }
   }
 </style>
