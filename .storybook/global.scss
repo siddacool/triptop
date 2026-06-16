@@ -11,6 +11,14 @@ html {
   font-size: 16px;
 }
 
+body {
+  color: var(--dodo-color-neutral-800);
+}
+
+.docs-story {
+  color: var(--dodo-color-neutral-800);
+}
+
 :where(p:not(.sb-anchor, .sb-unstyled, .sb-unstyled p)),
 :where(li:not(.sb-anchor, .sb-unstyled, .sb-unstyled li)) {
   font-size: max(1em, 16px) !important;

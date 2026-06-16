@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid/non-secure';
 import { db } from '../db';
-import type { CreateTripFormData } from './createTrip.svelte';
-import type { Trip } from './types';
+import type { EditTripFormData, Trip } from './types';
 
 function createTripsStore() {
   let trips: Trip[] = $state([]);
@@ -49,7 +48,7 @@ function createTripsStore() {
         return Promise.reject(e);
       }
     },
-    async createNewTrip(formData: CreateTripFormData) {
+    async createNewTrip(formData: EditTripFormData) {
       if (!formData?.name?.trim()) {
         return;
       }
@@ -72,7 +71,7 @@ function createTripsStore() {
 
       return Promise.resolve(newTripId);
     },
-    async updateTripById(tripId: string, formData: CreateTripFormData) {
+    async updateTripById(tripId: string, formData: EditTripFormData) {
       const target = trips.find((item) => item._id === tripId);
 
       if (!target?.id) {

@@ -28,7 +28,6 @@
       text-decoration: none;
       color: var(--dodo-color-neutral-700);
       height: 100%;
-      padding: 0 6px;
     }
 
     img {

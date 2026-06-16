@@ -1,0 +1,95 @@
+<script module lang="ts">
+  import { defineMeta } from '@storybook/addon-svelte-csf';
+  import TripListItems from './TripListItems.svelte';
+  import type { Trip } from '$lib/stores/trip/types';
+  import { Theme } from '@flightlesslabs/dodo-ui';
+
+  export const mockDataTrips: Trip[] = [
+    {
+      _id: 'trip_001',
+      id: 1,
+      name: 'Arizona Adventure',
+      currency: 'USD',
+      createdAt: Date.now() - 1000 * 60 * 60 * 24 * 30,
+      updatedAt: Date.now() - 1000 * 60 * 60 * 24 * 2,
+    },
+    {
+      _id: 'trip_002',
+      id: 2,
+      name: 'Tokyo Getaway',
+      currency: 'JPY',
+      createdAt: Date.now() - 1000 * 60 * 60 * 24 * 60,
+      updatedAt: Date.now() - 1000 * 60 * 60 * 24 * 5,
+    },
+    {
+      _id: 'trip_003',
+      id: 3,
+      name: 'Paris Weekend',
+      currency: 'EUR',
+      createdAt: Date.now() - 1000 * 60 * 60 * 24 * 45,
+      updatedAt: Date.now() - 1000 * 60 * 60 * 12,
+    },
+    {
+      _id: 'trip_004',
+      id: 4,
+      name: 'London Business Trip',
+      currency: 'GBP',
+      createdAt: Date.now() - 1000 * 60 * 60 * 24 * 20,
+      updatedAt: Date.now() - 1000 * 60 * 60 * 24,
+    },
+    {
+      _id: 'trip_005',
+      id: 5,
+      name: 'Sydney Holiday',
+      currency: 'AUD',
+      createdAt: Date.now() - 1000 * 60 * 60 * 24 * 90,
+      updatedAt: Date.now() - 1000 * 60 * 60 * 24 * 7,
+    },
+    {
+      _id: 'trip_006',
+      id: 6,
+      name: 'Dubai Shopping',
+      currency: 'AED',
+      createdAt: Date.now() - 1000 * 60 * 60 * 24 * 15,
+      updatedAt: Date.now() - 1000 * 60 * 60 * 3,
+    },
+    {
+      _id: 'trip_007',
+      id: 7,
+      name: 'Singapore Food Tour',
+      currency: 'SGD',
+      createdAt: Date.now() - 1000 * 60 * 60 * 24 * 75,
+      updatedAt: Date.now() - 1000 * 60 * 60 * 24 * 10,
+    },
+    {
+      _id: 'trip_008',
+      id: 8,
+      name: 'Mumbai Staycation',
+      currency: 'INR',
+      createdAt: Date.now() - 1000 * 60 * 60 * 24 * 5,
+      updatedAt: Date.now(),
+      archived: true,
+    },
+  ];
+
+  // ------------------------------
+  // Storybook Meta
+  // ------------------------------
+  const { Story } = defineMeta({
+    component: TripListItems,
+    tags: ['autodocs'],
+    args: { trips: mockDataTrips },
+  });
+</script>
+
+<!-- ------------------------------ -->
+<!-- Stories -->
+<!-- ------------------------------ -->
+
+<Story name="Default" />
+
+<Story name="Dark mode" asChild>
+  <Theme type="dark">
+    <TripListItems trips={mockDataTrips} />
+  </Theme>
+</Story>

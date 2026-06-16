@@ -21,6 +21,11 @@
     min-height: 100px;
     color: var(--dodo-color-neutral-800);
     background-color: var(--dodo-color-neutral-100);
+    z-index: 0;
+
+    @media (min-width: 600px) {
+      margin-top: calc(var(--dodo-ui-space) * -2);
+    }
   }
 
   :global(.dodo-theme--dark .Main) {

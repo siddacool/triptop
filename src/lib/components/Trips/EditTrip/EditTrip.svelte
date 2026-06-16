@@ -53,7 +53,7 @@
 
 <div class="EditTrip">
   <form onsubmit={submit}>
-    <Card variant="solid" outline shadow={0} class="EditTripCard">
+    <Card outline shadow={0} class="EditTripCard">
       <Grid gap={2}>
         <Column>
           <FormField label="Trip name:" for="name">
@@ -77,6 +77,8 @@
 
 <style>
   .EditTrip {
+    color: var(--dodo-color-neutral-800);
+
     :global(.EditTripCard) {
       padding: calc(var(--dodo-ui-space) * 2);
     }

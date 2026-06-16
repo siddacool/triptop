@@ -13,7 +13,7 @@
 
 <div class="Controls">
   {#if mode === 'edit'}
-    <Button color="safe" type="submit" disabled={disabled || !isDataValid}>Save trip</Button>
+    <Button color="primary" type="submit" disabled={disabled || !isDataValid}>Save trip</Button>
     <Button color="primary" variant="text" onclick={onreset} {disabled}>Reset</Button>
   {:else}
     <Button color="primary" type="submit" disabled={disabled || !isDataValid}>Create trip</Button>
@@ -21,4 +21,12 @@
 </div>
 
 <style lang="scss">
+  .Controls {
+    display: flex;
+    margin: 0 -8px;
+
+    :global(.dodo-ui-Button) {
+      margin: 0 8px;
+    }
+  }
 </style>
