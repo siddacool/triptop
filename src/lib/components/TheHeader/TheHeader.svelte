@@ -12,7 +12,7 @@
 
 <style lang="scss">
   .TheHeader {
-    height: 50px;
+    height: 55px;
     background-color: var(--dodo-color-white);
     border-bottom: 1px solid var(--dodo-color-neutral-300);
     padding: 0 calc(var(--dodo-ui-space) * 2);

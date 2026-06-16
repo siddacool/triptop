@@ -13,17 +13,18 @@
   let { children } = $props();
 </script>
 
-<div class="App">
-  <TheHeader />
+<Theme global class="Theme" type="auto">
+  <div class="App">
+    <TheHeader />
 
-  <Main>
-    {@render children()}
-  </Main>
-</div>
+    <Main>
+      {@render children()}
+    </Main>
+  </div>
 
-<Theme global type="auto" />
-<ToastManager />
-<ModalManager />
+  <ToastManager />
+  <ModalManager />
+</Theme>
 
 <style lang="scss">
   :global(*) {
@@ -38,6 +39,11 @@
 
   :global(body) {
     margin: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  :global(.Theme) {
     height: 100vh;
     overflow: hidden;
   }

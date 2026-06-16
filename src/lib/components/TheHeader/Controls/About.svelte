@@ -5,12 +5,10 @@
 </script>
 
 <Button
-  compact
   aria-label="About"
   class="About"
   variant="text"
-  roundness="full"
-  outline
+  roundness="pill"
   title="About"
   onclick={() =>
     modals.add('inform', {
