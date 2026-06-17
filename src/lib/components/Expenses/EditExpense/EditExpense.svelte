@@ -26,11 +26,11 @@
 </script>
 
 <script lang="ts">
-  import { Card, Column, FormField, Grid, TextInput } from '@flightlesslabs/dodo-ui';
+  import { Card, Column, FormField, Grid, Row, TextArea } from '@flightlesslabs/dodo-ui';
   import Controls from './Controls.svelte';
   import { NumericInput } from '@flightlesslabs/dodo-ui-numeric';
   import { NumberFormatStyle } from 'svelte-number-format';
-  import { Select } from '@flightlesslabs/dodo-ui-bits';
+  import { Select, ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
   import { parseDate, type DateValue } from '@internationalized/date';
   import { createDate } from '@flightlesslabs/time-utils';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
@@ -55,7 +55,7 @@
 
     const data = {
       name,
-      amount: amount || 0,
+      amount,
       paymentMode: paymentMode || PaymentModes.CASH,
       category: category || Category.OTHER,
       date: date.toString(),
@@ -78,12 +78,6 @@
     <Card outline shadow={0} class="EditExpenseCard">
       <Grid gap={2}>
         <Column>
-          <FormField label="Title:" for="name">
-            <TextInput bind:value={name} name="name" {disabled} />
-          </FormField>
-        </Column>
-
-        <Column>
           <FormField label="Amount:" for="amount">
             <NumericInput
               bind:value={amount}
@@ -94,27 +88,47 @@
                 currency,
                 precision: 2,
               }}
+              size="large"
+              placeholder="0.00"
             />
           </FormField>
         </Column>
 
         <Column>
-          <FormField label="Payment mode:" for="paymentMode">
-            <Select options={paymentModesOptions} bind:value={paymentMode} name="paymentMode" />
+          <FormField label="Description:" for="name">
+            <TextArea bind:value={name} name="name" {disabled} placeholder="e.g. Dinner at Koko" />
           </FormField>
         </Column>
 
-        <Column>
-          <FormField label="Category:" for="category">
-            <Select options={categoryOptions} bind:value={category} name="category" searchable />
-          </FormField>
-        </Column>
+        <Row>
+          <Column lg="flex">
+            <FormField label="Date:">
+              <DatePicker bind:value={date} />
+            </FormField>
+          </Column>
 
-        <Column>
-          <FormField label="Date:">
-            <DatePicker bind:value={date} />
-          </FormField>
-        </Column>
+          <Column lg="flex">
+            <FormField label="Category:" for="category">
+              <Select options={categoryOptions} bind:value={category} name="category" searchable />
+            </FormField>
+          </Column>
+
+          <Column lg={3}>
+            <FormField label="Payment mode:" for="paymentMode">
+              <ToggleGroup
+                options={paymentModesOptions}
+                type="single"
+                bind:value={paymentMode}
+                attached
+                fullWidth
+                flex
+                buttonProps={{
+                  outline: true,
+                }}
+              />
+            </FormField>
+          </Column>
+        </Row>
 
         <Column>
           <Controls {mode} {disabled} onreset={reset} {isDataValid} />

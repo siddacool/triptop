@@ -2,7 +2,7 @@
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import TripListItem from './TripListItem.svelte';
   import { Theme } from '@flightlesslabs/dodo-ui';
-  import { mockDataTrips } from '../TripListItems.stories.svelte';
+  import { mockDataTrips } from '$lib/components/Trips/data/mock-data-trips';
 
   // ------------------------------
   // Storybook Meta

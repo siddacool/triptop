@@ -1,5 +1,4 @@
 <script>
-  import { resolve } from '$app/paths';
   import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import { Card } from '@flightlesslabs/dodo-ui';
   import { createDate } from '@flightlesslabs/time-utils';
@@ -15,15 +14,13 @@
 
 <div>
   {#each useTripListStore.tripsAll as trip (trip._id)}
-    <a href={resolve(`/debug/${trip._id}`)}>
-      <Card outline class="TripCard">
-        <h4>{trip.name}</h4>
-        <p>Currency: {trip.currency}</p>
-        <p>Archived: {trip.archived ? 'Yes' : 'No'}</p>
-        <p>Created at: {createDate(trip.createdAt).format('DD-MM-YYYY HH:mm:ss')}</p>
-        <p>Updated at: {createDate(trip.updatedAt).format('DD-MM-YYYY HH:mm:ss')}</p>
-      </Card>
-    </a>
+    <Card outline class="TripCard" shadow={0}>
+      <h4>{trip.name}</h4>
+      <p>Currency: {trip.currency}</p>
+      <p>Archived: {trip.archived ? 'Yes' : 'No'}</p>
+      <p>Created at: {createDate(trip.createdAt).format('DD-MM-YYYY HH:mm:ss')}</p>
+      <p>Updated at: {createDate(trip.updatedAt).format('DD-MM-YYYY HH:mm:ss')}</p>
+    </Card>
   {/each}
 </div>
 
@@ -42,6 +39,7 @@
   div {
     :global(.TripCard) {
       padding: var(--dodo-ui-space);
+      margin-bottom: var(--dodo-ui-space);
     }
   }
 </style>

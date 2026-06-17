@@ -57,13 +57,19 @@
       <Grid gap={2}>
         <Column>
           <FormField label="Trip name:" for="name">
-            <TextInput bind:value={name} name="name" {disabled} />
+            <TextInput bind:value={name} name="name" {disabled} placeholder="e.g. Trip to bali" />
           </FormField>
         </Column>
 
         <Column>
           <FormField label="Currency:" for="currency">
-            <Select options={currencyOptions} bind:value={currency} name="currency" searchable />
+            <Select
+              options={currencyOptions}
+              bind:value={currency}
+              name="currency"
+              searchable
+              placeholder="Pick Currency"
+            />
           </FormField>
         </Column>
 

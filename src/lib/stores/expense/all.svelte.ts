@@ -1,7 +1,7 @@
 import { db } from '../db';
 import { type Expense } from './types';
 
-function createExpenseListStore() {
+function createAllExpenseListStore() {
   let expenses: Expense[] = $state([]);
   let fetching: boolean = $state(false);
   let mounted: boolean = $state(false);
@@ -16,11 +16,11 @@ function createExpenseListStore() {
     get mounted() {
       return mounted;
     },
-    async fetch(tripId: string) {
+    async fetch() {
       try {
         fetching = true;
 
-        const expensesData = await db.expense.where({ tripId: tripId }).toArray();
+        const expensesData = await db.expense.toArray();
 
         expensesData.sort((a, b) => (b?.date || '').localeCompare(a?.date || ''));
 
@@ -46,4 +46,4 @@ function createExpenseListStore() {
   };
 }
 
-export const useExpenseListStore = createExpenseListStore();
+export const useAllExpenseListStore = createAllExpenseListStore();
