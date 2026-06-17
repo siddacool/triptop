@@ -7,7 +7,7 @@
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import type { EditTripFormData } from '$lib/stores/trip/types';
   import { Button } from '@flightlesslabs/dodo-ui';
-  import { toasts } from '@flightlesslabs/dodo-ui-bits';
+  import { modals, toasts } from '@flightlesslabs/dodo-ui-bits';
 
   let fetching: boolean = $state(false);
 
@@ -74,6 +74,14 @@
       fetching = false;
     }
   }
+
+  function deleteConfirmation() {
+    modals.add('confirm', {
+      title: 'Delete Trip',
+      description: 'Are you sure you want to delete this trip?',
+      onaccept: deleteTrip,
+    });
+  }
 </script>
 
 <svelte:head>
@@ -86,7 +94,7 @@
   </div>
 
   <div class="controls">
-    <Button color="danger" onclick={deleteTrip}>Delete trip</Button>
+    <Button color="danger" onclick={deleteConfirmation}>Delete trip</Button>
   </div>
 {:else}
   ---
@@ -98,5 +106,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+
+    @media (min-width: 600px) {
+      flex-direction: row;
+    }
+
+    :global(.dodo-ui-Button) {
+      width: 100%;
+      margin-bottom: calc(var(--dodo-ui-space) * 2);
+
+      @media (min-width: 600px) {
+        width: initial;
+        margin: 0 var(--dodo-ui-space);
+        margin-bottom: 0;
+      }
+    }
   }
 </style>

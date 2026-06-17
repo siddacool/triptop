@@ -12,7 +12,14 @@
 </script>
 
 <div class="BackButton">
-  <Button {href} roundness="pill" class="BackButtonButton" variant="text" aria-label="Back button">
+  <Button
+    {href}
+    roundness="pill"
+    class="BackButtonButton"
+    variant="text"
+    aria-label="Back button"
+    outline
+  >
     <Icon icon="lets-icons:back" />
   </Button>
 </div>

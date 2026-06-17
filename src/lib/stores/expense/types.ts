@@ -41,6 +41,14 @@ export interface Expense {
   amount: number;
   tripId: string;
   category?: Category;
-  date: number;
+  date: string;
+  paymentMode?: PaymentModes;
+}
+
+export interface EditExpenseFormData {
+  name?: string;
+  amount?: number;
+  category?: Category;
+  date?: string;
   paymentMode?: PaymentModes;
 }

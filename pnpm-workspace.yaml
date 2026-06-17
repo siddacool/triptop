@@ -1,2 +1,4 @@
 allowBuilds:
   esbuild: true
+minimumReleaseAgeExclude:
+  - '@flightlesslabs/dodo-ui-bits@0.10.11'

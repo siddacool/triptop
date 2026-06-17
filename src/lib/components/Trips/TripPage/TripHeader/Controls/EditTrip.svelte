@@ -14,6 +14,7 @@
   roundness="pill"
   title="Trip settings"
   href={resolve(`/trips/${tripId}/edit`)}
+  outline
 >
   <Icon icon="material-symbols:settings-outline-rounded" />
 </Button>

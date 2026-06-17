@@ -3,7 +3,7 @@ import { db } from '../db';
 import { Category, PaymentModes, type Expense } from './types';
 import type { CreateExpenseFormData } from './createExpense.svelte';
 
-function createExpensesStore() {
+function createExpenseListStore() {
   let expenses: Expense[] = $state([]);
   let fetching: boolean = $state(false);
   let mounted: boolean = $state(false);
@@ -107,4 +107,4 @@ function createExpensesStore() {
   };
 }
 
-export const useExpensesStore = createExpensesStore();
+export const useExpenseListStore = createExpenseListStore();
