@@ -3,6 +3,7 @@
   import { Theme } from '@flightlesslabs/dodo-ui';
   import TheHeader from '$lib/components/TheHeader/TheHeader.svelte';
   import Main from '$lib/components/Main/Main.svelte';
+  import TheNav from '$lib/components/TheNav/TheNav.svelte';
 
   let { children } = $props();
 </script>
@@ -10,7 +11,7 @@
 <Theme global class="Theme" type="auto">
   <div class="App">
     <TheHeader />
-
+    <TheNav />
     <Main>
       <div class="box">
         {@render children()}
