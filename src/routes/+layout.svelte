@@ -24,7 +24,7 @@
     </Main>
   </div>
 
-  <ToastManager clearAfterDuration={5000} />
+  <ToastManager clearAfterDuration={3000} alignmentY="bottom" alignmentX="center" limit={3} />
   <ModalManager />
 </Theme>
 

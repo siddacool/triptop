@@ -1,10 +1,10 @@
 <script>
   import TripList from '$lib/components/Trips/TripList/TripList.svelte';
-  import { useTripsStore } from '$lib/stores/trip/trips.svelte';
+  import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import { onMount } from 'svelte';
 
   onMount(() => {
-    useTripsStore.fetch();
+    useTripListStore.fetch();
   });
 </script>
 

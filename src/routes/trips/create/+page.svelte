@@ -2,7 +2,7 @@
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import EditTrip from '$lib/components/Trips/EditTrip/EditTrip.svelte';
-  import { useTripsStore } from '$lib/stores/trip/trips.svelte';
+  import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
   import type { EditTripFormData } from '$lib/stores/trip/types';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
 
@@ -11,7 +11,7 @@
   async function createTrip(data: EditTripFormData) {
     try {
       fetching = true;
-      await useTripsStore.createNewTrip(data);
+      await useEditTripStore.add(data);
 
       await goto(resolve('/trips'));
     } catch (e) {

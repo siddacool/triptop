@@ -1,11 +1,11 @@
 <script>
-  import { useTripsStore } from '$lib/stores/trip/trips.svelte';
+  import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import Controls from './Controls/Controls.svelte';
   import TripListItems from './TripListItems/TripListItems.svelte';
 </script>
 
 <div class="TripList">
-  <TripListItems trips={useTripsStore.tripsActive} />
+  <TripListItems trips={useTripListStore.tripsActive} />
   <Controls />
 </div>
 
