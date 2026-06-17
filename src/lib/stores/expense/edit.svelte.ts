@@ -25,7 +25,7 @@ function createEditExpenseStore() {
 
       return Promise.resolve(newExpenseId);
     },
-    async updated(expenseId: string, formData: EditExpenseFormData) {
+    async update(expenseId: string, formData: EditExpenseFormData) {
       const expensesData = await db.expense.where({ _id: expenseId }).toArray();
       const target = expensesData[0];
 
