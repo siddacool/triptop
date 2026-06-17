@@ -1,11 +1,15 @@
 <script>
-  import ExpenseCard from '$lib/components/Expenses/ExpenseCard/ExpenseCard.svelte';
+  import ExpenseDateGroup from '$lib/components/Expenses/ExpenseDateGroup/ExpenseDateGroup.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+
+  $effect(() => {
+    console.log('debug:', useExpenseListStore.groupExpenses);
+  });
 </script>
 
 <ul class="ExpensList">
-  {#each useExpenseListStore.expenses as expense (expense._id)}
-    <ExpenseCard {expense} />
+  {#each useExpenseListStore.groupExpenses as group (group.date)}
+    <ExpenseDateGroup data={group} />
   {/each}
 </ul>
 

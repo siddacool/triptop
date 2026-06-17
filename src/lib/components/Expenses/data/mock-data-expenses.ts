@@ -176,9 +176,9 @@ export const mockDataExpenses: Expense[] = [
     updatedAt: 1775577600000,
     name: 'Groceries & Toiletries',
     amount: 1150,
-    tripId: 'trip_malaysia_2026',
+    tripId: 'trip_malaysia_2024',
     category: Category.MART,
-    date: '2026-06-23',
+    date: '2024-06-23',
     paymentMode: PaymentModes.CARD,
   },
 ];

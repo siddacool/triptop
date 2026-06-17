@@ -1,14 +1,18 @@
+import { getGroupExpenses } from '$lib/helpers/group-expenses';
 import { db } from '../db';
 import { type Expense } from './types';
 
 function createExpenseListStore() {
-  let expenses: Expense[] = $state([]);
+  let expenses: Expense[] = $derived([]);
   let fetching: boolean = $state(false);
   let mounted: boolean = $state(false);
 
   return {
     get expenses() {
       return expenses;
+    },
+    get groupExpenses() {
+      return getGroupExpenses(expenses);
     },
     get fetching() {
       return fetching;
@@ -20,11 +24,7 @@ function createExpenseListStore() {
       try {
         fetching = true;
 
-        const expensesData = await db.expense.where({ tripId: tripId }).toArray();
-
-        expensesData.sort((a, b) => (b?.date || '').localeCompare(a?.date || ''));
-
-        expenses = expensesData;
+        expenses = await db.expense.where({ tripId: tripId }).toArray();
 
         mounted = true;
         fetching = false;

@@ -1,9 +1,3 @@
-<script lang="ts" module>
-  export type ExpenseCardProps = {
-    expense: Expense;
-  };
-</script>
-
 <script lang="ts">
   import type { Expense } from '$lib/stores/expense/types';
   import { Card, type CardColor } from '@flightlesslabs/dodo-ui';
@@ -11,7 +5,11 @@
   import Amount from './Amount.svelte';
   import { resolve } from '$app/paths';
 
-  let { expense }: ExpenseCardProps = $props();
+  type Props = {
+    expense: Expense;
+  };
+
+  let { expense }: Props = $props();
 
   let cardColor = $state<CardColor>('default');
 
