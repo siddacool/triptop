@@ -1,17 +1,19 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf';
-  import ExpenseCard from './ExpenseCard.svelte';
-  import { Theme } from '@flightlesslabs/dodo-ui';
+  import ExpenseGroup from './ExpenseGroup.svelte';
   import { mockDataExpenses } from '$lib/stores/expense/data/mock-data-expenses';
+  import { getGroupExpenses } from '$lib/stores/expense/getters/group-expenses';
+
+  const data = getGroupExpenses(mockDataExpenses);
 
   // ------------------------------
   // Storybook Meta
   // ------------------------------
   const { Story } = defineMeta({
-    component: ExpenseCard,
+    component: ExpenseGroup,
     tags: ['autodocs'],
     args: {
-      expense: mockDataExpenses[0],
+      data: data,
     },
   });
 </script>
@@ -21,9 +23,3 @@
 <!-- ------------------------------ -->
 
 <Story name="Default" />
-
-<Story name="Dark mode" asChild>
-  <Theme type="dark">
-    <ExpenseCard expense={mockDataExpenses[0]} />
-  </Theme>
-</Story>

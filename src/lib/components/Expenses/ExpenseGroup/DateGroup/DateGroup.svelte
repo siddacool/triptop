@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { ExpensesDateGroup } from '$lib/helpers/group-expenses';
+  import type { ExpensesDateGroup } from '$lib/stores/expense/getters/group-expenses';
   import { type Expense } from '$lib/stores/expense/types';
-  import ExpenseCard from '../ExpenseCard/ExpenseCard.svelte';
+  import ExpenseCard from '../../ExpenseCard/ExpenseCard.svelte';
   import Date from './Date.svelte';
 
   type Props = {

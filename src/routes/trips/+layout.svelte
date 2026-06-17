@@ -1,14 +1,10 @@
 <script lang="ts">
-  import { InformDialogCard, ModalManager, ToastManager } from '@flightlesslabs/dodo-ui-bits';
+  import { ModalManager, ToastManager } from '@flightlesslabs/dodo-ui-bits';
   import { Theme } from '@flightlesslabs/dodo-ui';
   import TheHeader from '$lib/components/TheHeader/TheHeader.svelte';
   import Main from '$lib/components/Main/Main.svelte';
-  import { parseDate } from '@internationalized/date';
-  import { createDate } from '@flightlesslabs/time-utils';
 
   let { children } = $props();
-
-  console.log('debug:', parseDate(createDate().format('YYYY-MM-DD')).toString());
 </script>
 
 <Theme global class="Theme" type="auto">

@@ -39,7 +39,7 @@
   const { mode, data, onsubmit, disabled = false, currency }: EditExpenseProps = $props();
 
   let name = $derived(data?.name);
-  let amount = $derived(data?.amount || 0);
+  let amount = $derived(data?.amount || null);
   let paymentMode: PaymentModes = $derived(data?.paymentMode || PaymentModes.CASH);
   let category: Category = $derived(data?.category || Category.OTHER);
   let date = $derived<DateValue>(parseDate(createDate(data?.date).format('YYYY-MM-DD')));
@@ -66,7 +66,7 @@
 
   function reset() {
     name = data?.name;
-    amount = data?.amount || 0;
+    amount = data?.amount || null;
     paymentMode = data?.paymentMode || PaymentModes.CASH;
     category = data?.category || Category.OTHER;
     date = parseDate(createDate(data?.date).format('YYYY-MM-DD'));

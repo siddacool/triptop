@@ -1,11 +1,15 @@
 <script lang="ts">
-  import ExpensList from './ExpensList.svelte';
+  import ExpenseGroup from '$lib/components/Expenses/ExpenseGroup/ExpenseGroup.svelte';
+  import { getGroupExpenses } from '$lib/stores/expense/getters/group-expenses';
+  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import TopControls from './TopControls/TopControls.svelte';
+
+  const groupExpenses = $derived(getGroupExpenses(useExpenseListStore.expenses));
 </script>
 
 <div class="TripExpensesSection">
   <TopControls />
-  <ExpensList />
+  <ExpenseGroup data={groupExpenses} />
 </div>
 
 <style lang="scss">
