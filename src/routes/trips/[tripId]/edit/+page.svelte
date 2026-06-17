@@ -6,6 +6,7 @@
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import type { EditTripFormData } from '$lib/stores/trip/types';
+  import { Button } from '@flightlesslabs/dodo-ui';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
 
   let fetching: boolean = $state(false);
@@ -42,6 +43,37 @@
       fetching = false;
     }
   }
+
+  async function deleteTrip() {
+    try {
+      if (!tripId) {
+        return;
+      }
+
+      fetching = true;
+      await useEditTripStore.delete(tripId);
+
+      toasts.add({
+        title: 'Successs',
+        description: 'Trip deleted',
+        color: 'primary',
+      });
+
+      await useTripStore.fetch(tripId);
+
+      await goto(resolve('/trips'));
+    } catch (e) {
+      const message = e instanceof Error ? e.message : String(e);
+
+      toasts.add({
+        title: 'Failed to delete trip',
+        description: message,
+        color: 'danger',
+      });
+
+      fetching = false;
+    }
+  }
 </script>
 
 <svelte:head>
@@ -52,6 +84,19 @@
   <div>
     <EditTrip data={useTripStore.trip} mode="edit" onsubmit={updateTrip} disabled={fetching} />
   </div>
+
+  <div class="controls">
+    <Button color="danger" onclick={deleteTrip}>Delete trip</Button>
+  </div>
 {:else}
   ---
 {/if}
+
+<style lang="scss">
+  .controls {
+    margin-top: calc(var(--dodo-ui-space) * 3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
