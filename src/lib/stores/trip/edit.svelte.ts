@@ -57,6 +57,13 @@ function createEditTripStore() {
 
       await db.trips.delete(target.id);
 
+      const expenses = await db.expense.where({ tripId: tripId }).toArray();
+      const relatedExpenseKeys = expenses.map((item) => item.id);
+
+      if (relatedExpenseKeys.length) {
+        await db.expense.bulkDelete(relatedExpenseKeys);
+      }
+
       return Promise.resolve(tripId);
     },
     async toggleArchived(tripId: string) {
