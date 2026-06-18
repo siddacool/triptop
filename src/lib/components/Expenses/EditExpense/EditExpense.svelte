@@ -34,7 +34,7 @@
   import { parseDate, type DateValue } from '@internationalized/date';
   import { createDate } from '@flightlesslabs/time-utils';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
-  import type { Trip } from '$lib/stores/trip/types';
+  import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
@@ -83,7 +83,7 @@
               bind:value={amount}
               name="amount"
               {disabled}
-              locale={trip.locale}
+              locale={trip.locale || DEFAULT_LOCALE}
               options={{
                 formatStyle: NumberFormatStyle.Currency,
                 currency: trip.currency,

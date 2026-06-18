@@ -1,13 +1,20 @@
 import type { CurrencyCode } from '@flightlesslabs/currency';
 
-export const DEFAULT_LOCALE = 'en-US';
+export const DEFAULT_LOCALE = navigator.languages.includes('en-IN') ? 'en-IN' : 'en-US';
 
 const locales = navigator.languages || [DEFAULT_LOCALE];
 
-export const localeOptions = locales.map((locale) => ({
+export const localeOptionAuto = {
+  value: 'auto',
+  label: 'Auto',
+};
+
+const localeOptionsBrowser = locales.map((locale) => ({
   value: locale,
   label: locale,
 }));
+
+export const localeOptions = [localeOptionAuto, ...localeOptionsBrowser];
 
 export interface Trip {
   id?: number;
@@ -23,5 +30,5 @@ export interface Trip {
 export interface EditTripFormData {
   name: string;
   currency: CurrencyCode;
-  locale: string;
+  locale?: string;
 }
