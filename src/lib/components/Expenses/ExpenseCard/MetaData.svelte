@@ -20,7 +20,11 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-top: var(--dodo-ui-space);
+    margin-top: 4px;
+
+    @media (min-width: 600px) {
+      margin-top: var(--dodo-ui-space);
+    }
 
     :global(.MetaDataIcon) {
       font-size: 1.2rem;
