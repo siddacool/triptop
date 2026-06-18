@@ -1,5 +1,15 @@
 # triptop
 
+## 5.1.0
+
+### Minor Changes
+
+- cf4a2ce: Import Export added
+
+### Patch Changes
+
+- 3dafd3a: CSV export added
+
 ## 5.0.2
 
 ### Patch Changes
