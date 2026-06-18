@@ -1,11 +1,19 @@
-/// <reference types="@sveltejs/kit" />
+// Disables access to DOM typings like `HTMLElement` which are not available
+// inside a service worker and instantiates the correct globals
 /// <reference no-default-lib="true"/>
 /// <reference lib="esnext" />
 /// <reference lib="webworker" />
 
-const sw = self as unknown as ServiceWorkerGlobalScope;
+// Ensures that the `$service-worker` import has proper type definitions
+/// <reference types="@sveltejs/kit" />
+
+// Only necessary if you have an import from `$env/static/public`
+/// <reference types="../.svelte-kit/ambient.d.ts" />
 
 import { build, files, version } from '$service-worker';
+
+// This gives `self` the correct types
+const self = globalThis.self as unknown as ServiceWorkerGlobalScope;
 
 // Create a unique cache name for this deployment
 const CACHE = `cache-${version}`;
@@ -15,7 +23,7 @@ const ASSETS = [
   ...files, // everything in `static`
 ];
 
-sw.addEventListener('install', (event) => {
+self.addEventListener('install', (event) => {
   // Create a new cache and add all files to it
   async function addFilesToCache() {
     const cache = await caches.open(CACHE);
@@ -25,7 +33,7 @@ sw.addEventListener('install', (event) => {
   event.waitUntil(addFilesToCache());
 });
 
-sw.addEventListener('activate', (event) => {
+self.addEventListener('activate', (event) => {
   // Remove previous cached data from disk
   async function deleteOldCaches() {
     for (const key of await caches.keys()) {
@@ -36,7 +44,7 @@ sw.addEventListener('activate', (event) => {
   event.waitUntil(deleteOldCaches());
 });
 
-sw.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', (event) => {
   // ignore POST requests etc
   if (event.request.method !== 'GET') return;
 
@@ -64,7 +72,7 @@ sw.addEventListener('fetch', (event) => {
         throw new Error('invalid response from fetch');
       }
 
-      if (response.status === 200) {
+      if (response.status === 200 && !response.headers.get('cache-control')?.includes('no-store')) {
         cache.put(event.request, response.clone());
       }
 
