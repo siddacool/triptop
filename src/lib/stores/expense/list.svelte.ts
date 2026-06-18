@@ -1,15 +1,21 @@
 import { db } from '../db';
 import { addSearchFields } from './decorators/add-search-filelds';
+import { useExpenseFiltersStore } from './filters.svelte';
+import { getFilteredExpenses } from './getters/filtered-expenses';
 import { type Expense } from './types';
 
 function createExpenseListStore() {
   let expenses: Expense[] = $state([]);
   let fetching: boolean = $state(false);
   let mounted: boolean = $state(false);
+  const filtredExpenses = $derived(getFilteredExpenses(useExpenseFiltersStore.filters, expenses));
 
   return {
     get expenses() {
       return expenses;
+    },
+    get filtredExpenses() {
+      return filtredExpenses;
     },
     get fetching() {
       return fetching;

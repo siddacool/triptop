@@ -5,6 +5,10 @@
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
 </script>
 
+<svelte:head>
+  <title>{useExpenseStore.expense?.name || ''}</title>
+</svelte:head>
+
 {#if useExpenseStore.expense && useTripStore.trip}
   <ExpenseHeader />
   <ExpenseCardDetailed

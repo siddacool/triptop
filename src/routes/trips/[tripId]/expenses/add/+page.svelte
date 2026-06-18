@@ -37,7 +37,7 @@
 </script>
 
 <svelte:head>
-  <title>Create trips</title>
+  <title>Add expense</title>
 </svelte:head>
 
 {#if useTripStore.trip}
