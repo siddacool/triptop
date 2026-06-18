@@ -1,5 +1,5 @@
 import { db } from '../db';
-import type { Trip } from './types';
+import { type Trip } from './types';
 
 function createTripListStore() {
   let trips: Trip[] = $state([]);

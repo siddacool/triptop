@@ -10,7 +10,9 @@
   const classes = $derived(['Title', expense.archived ? 'archived' : ''].filter(Boolean));
 </script>
 
-<p class={classes.join(' ')}>{expense.name}</p>
+<p class={classes.join(' ')}>
+  {expense.name}
+</p>
 
 <style lang="scss">
   .Title {
@@ -19,6 +21,8 @@
     font-size: 0.95rem;
     margin-right: var(--dodo-ui-space);
     flex: 1;
+    display: flex;
+    align-items: flex-start;
 
     @media (min-width: 600px) {
       font-size: 1rem;

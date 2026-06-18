@@ -1,9 +1,7 @@
 <script lang="ts" module>
   import {
     Category,
-    categoryOptions,
     PaymentModes,
-    paymentModesOptions,
     type EditExpenseFormData,
     type Expense,
   } from '$lib/stores/expense/types';
@@ -30,11 +28,12 @@
   import Controls from './Controls.svelte';
   import { NumericInput } from '@flightlesslabs/dodo-ui-numeric';
   import { NumberFormatStyle } from 'svelte-number-format';
-  import { Select, ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
   import { parseDate, type DateValue } from '@internationalized/date';
   import { createDate } from '@flightlesslabs/time-utils';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
-  import type { Trip } from '$lib/stores/trip/types';
+  import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
+  import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
+  import PaymentModeSelect from '$lib/components/ui/PaymentMode/PaymentModeSelect/PaymentModeSelect.svelte';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
@@ -83,7 +82,7 @@
               bind:value={amount}
               name="amount"
               {disabled}
-              locale={trip.locale}
+              locale={trip.locale || DEFAULT_LOCALE}
               options={{
                 formatStyle: NumberFormatStyle.Currency,
                 currency: trip.currency,
@@ -102,32 +101,21 @@
         </Column>
 
         <Row>
-          <Column lg="flex">
-            <FormField label="Date:">
-              <DatePicker bind:value={date} />
-            </FormField>
-          </Column>
-
           <Column lg="flex" size="flex">
             <FormField label="Category:" for="category">
-              <Select options={categoryOptions} bind:value={category} name="category" searchable />
+              <CategorySelect name="category" bind:value={category} />
             </FormField>
           </Column>
 
           <Column lg={3} size={5}>
             <FormField label="Mode:" for="paymentMode">
-              <ToggleGroup
-                options={paymentModesOptions}
-                type="single"
-                bind:value={paymentMode}
-                attached
-                fullWidth
-                flex
-                buttonProps={{
-                  outline: true,
-                  compact: true,
-                }}
-              />
+              <PaymentModeSelect name="paymentMode" bind:value={paymentMode} />
+            </FormField>
+          </Column>
+
+          <Column lg="flex">
+            <FormField label="Date:">
+              <DatePicker bind:value={date} />
             </FormField>
           </Column>
         </Row>

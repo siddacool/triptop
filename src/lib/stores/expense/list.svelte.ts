@@ -14,6 +14,9 @@ function createExpenseListStore() {
     get expenses() {
       return expenses;
     },
+    get expensesActive() {
+      return expenses.filter((item) => !item.archived);
+    },
     get filtredExpenses() {
       return filtredExpenses;
     },

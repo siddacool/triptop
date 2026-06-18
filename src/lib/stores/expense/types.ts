@@ -10,16 +10,98 @@ export enum Category {
   OTHER = 'OTHER',
 }
 
-export const categoryOptions = [
-  { value: Category.FOOD, label: 'Food' },
-  { value: Category.SHOPPING, label: 'Shopping' },
-  { value: Category.TOUR, label: 'Tour' },
-  { value: Category.TRANSPORT, label: 'Transport' },
-  { value: Category.STAY, label: 'Stay' },
-  { value: Category.FLIGHT, label: 'Flight' },
-  { value: Category.ENTERTAINMENT, label: 'Entertainment' },
-  { value: Category.MART, label: 'Mart' },
-  { value: Category.OTHER, label: 'Misc' },
+export type CategoryOption = {
+  value: Category;
+  label: string;
+  meta?: {
+    icon?: {
+      name: string;
+    };
+  };
+};
+
+export const categoryOptions: CategoryOption[] = [
+  {
+    value: Category.FOOD,
+    label: 'Food',
+    meta: {
+      icon: {
+        name: 'proicons:food',
+      },
+    },
+  },
+  {
+    value: Category.SHOPPING,
+    label: 'Shopping',
+    meta: {
+      icon: {
+        name: 'proicons:diamond',
+      },
+    },
+  },
+  {
+    value: Category.TOUR,
+    label: 'Tour',
+    meta: {
+      icon: {
+        name: 'carbon:sailboat-coastal',
+      },
+    },
+  },
+  {
+    value: Category.TRANSPORT,
+    label: 'Transport',
+    meta: {
+      icon: {
+        name: 'proicons:vehicle-car',
+      },
+    },
+  },
+  {
+    value: Category.STAY,
+    label: 'Stay',
+    meta: {
+      icon: {
+        name: 'carbon:stay-inside',
+      },
+    },
+  },
+  {
+    value: Category.FLIGHT,
+    label: 'Flight',
+    meta: {
+      icon: {
+        name: 'cil:flight-takeoff',
+      },
+    },
+  },
+  {
+    value: Category.ENTERTAINMENT,
+    label: 'Entertainment',
+    meta: {
+      icon: {
+        name: 'streamline-plump:theater-mask',
+      },
+    },
+  },
+  {
+    value: Category.MART,
+    label: 'Mart',
+    meta: {
+      icon: {
+        name: 'carbon:shopping-bag',
+      },
+    },
+  },
+  {
+    value: Category.OTHER,
+    label: 'Misc',
+    meta: {
+      icon: {
+        name: 'carbon:assembly-cluster',
+      },
+    },
+  },
 ];
 
 export const enum PaymentModes {
@@ -27,9 +109,35 @@ export const enum PaymentModes {
   CARD = 'CARD',
 }
 
-export const paymentModesOptions = [
-  { value: PaymentModes.CASH, label: 'Cash' },
-  { value: PaymentModes.CARD, label: 'Card' },
+export type PaymentModesOption = {
+  value: PaymentModes;
+  label: string;
+  meta?: {
+    icon?: {
+      name: string;
+    };
+  };
+};
+
+export const paymentModesOptions: PaymentModesOption[] = [
+  {
+    value: PaymentModes.CASH,
+    label: 'Cash',
+    meta: {
+      icon: {
+        name: 'boxicons:coin',
+      },
+    },
+  },
+  {
+    value: PaymentModes.CARD,
+    label: 'Card',
+    meta: {
+      icon: {
+        name: 'famicons:card-outline',
+      },
+    },
+  },
 ];
 
 export interface Expense {

@@ -1,5 +1,5 @@
 import type { Expense } from '$lib/stores/expense/types';
-import type { Trip } from '$lib/stores/trip/types';
+import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
 import type { ExportTripValue } from '../types';
 
 export type ExportTripCsvValue = string;
@@ -27,8 +27,8 @@ export function exportTripAsCsv(
   const rows = expenses.map((expense) => [
     expense.name,
     expense.amount,
+    new Date(expense.date).toLocaleDateString(trip.locale || DEFAULT_LOCALE),
     expense.category ?? '',
-    expense.date,
     expense.paymentMode ?? '',
   ]);
 

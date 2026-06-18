@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import {
-    DEFAULT_LOCALE,
+    localeOptionAuto,
     localeOptions,
     type EditTripFormData,
     type Trip,
@@ -32,7 +32,7 @@
 
   let name = $derived(data?.name);
   let currency = $derived(data?.currency);
-  let locale = $derived(data?.locale || DEFAULT_LOCALE);
+  let locale = $derived(data?.locale || localeOptionAuto.value);
 
   const isDataValid = $derived(name && currency && locale ? true : false);
 
@@ -46,7 +46,7 @@
     const data: EditTripFormData = {
       name: name || '',
       currency: currency || 'USD',
-      locale,
+      locale: locale === localeOptionAuto.value ? undefined : locale,
     };
 
     onsubmit?.(data);
@@ -55,7 +55,7 @@
   function reset() {
     name = data?.name;
     currency = data?.currency;
-    locale = data?.locale || DEFAULT_LOCALE;
+    locale = data?.locale || localeOptionAuto.value;
   }
 </script>
 
@@ -88,7 +88,6 @@
                 options={localeOptions}
                 bind:value={locale}
                 name="locale"
-                searchable
                 placeholder="Select locale"
               />
             </FormField>
