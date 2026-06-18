@@ -3,6 +3,7 @@
   import ExpenseCard from './ExpenseCard.svelte';
   import { Theme } from '@flightlesslabs/dodo-ui';
   import { mockDataExpenses } from '$lib/stores/expense/data/mock-data-expenses';
+  import { mockDataTrips } from '$lib/stores/trip/data/mock-data-trips';
 
   // ------------------------------
   // Storybook Meta
@@ -12,6 +13,7 @@
     tags: ['autodocs'],
     args: {
       expense: mockDataExpenses[0],
+      trip: mockDataTrips[0],
     },
   });
 </script>
@@ -24,6 +26,6 @@
 
 <Story name="Dark mode" asChild>
   <Theme type="dark">
-    <ExpenseCard expense={mockDataExpenses[0]} />
+    <ExpenseCard expense={mockDataExpenses[0]} trip={mockDataTrips[0]} />
   </Theme>
 </Story>

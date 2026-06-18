@@ -3,6 +3,7 @@
   import DateGroup from './DateGroup.svelte';
   import { mockDataExpenses } from '$lib/stores/expense/data/mock-data-expenses';
   import { getGroupExpenses } from '$lib/stores/expense/getters/group-expenses';
+  import { mockDataTrips } from '$lib/stores/trip/data/mock-data-trips';
 
   const data = getGroupExpenses(mockDataExpenses);
 
@@ -14,6 +15,7 @@
     tags: ['autodocs'],
     args: {
       data: data[0],
+      trip: mockDataTrips[0],
     },
   });
 </script>

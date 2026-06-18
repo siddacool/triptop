@@ -11,7 +11,7 @@
   type EditExpenseBaseProps = {
     onsubmit?: (data: EditExpenseFormData) => void;
     disabled?: boolean;
-    currency: CurrencyCode;
+    trip: Trip;
   };
 
   export type EditExpenseProps =
@@ -34,9 +34,9 @@
   import { parseDate, type DateValue } from '@internationalized/date';
   import { createDate } from '@flightlesslabs/time-utils';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
-  import type { CurrencyCode } from '@flightlesslabs/currency';
+  import type { Trip } from '$lib/stores/trip/types';
 
-  const { mode, data, onsubmit, disabled = false, currency }: EditExpenseProps = $props();
+  const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
   let name = $derived(data?.name);
   let amount = $derived(data?.amount || null);
@@ -83,9 +83,10 @@
               bind:value={amount}
               name="amount"
               {disabled}
+              locale={trip.locale}
               options={{
                 formatStyle: NumberFormatStyle.Currency,
-                currency,
+                currency: trip.currency,
                 precision: 2,
               }}
               size="large"
@@ -107,14 +108,14 @@
             </FormField>
           </Column>
 
-          <Column lg="flex">
+          <Column lg="flex" size="flex">
             <FormField label="Category:" for="category">
               <Select options={categoryOptions} bind:value={category} name="category" searchable />
             </FormField>
           </Column>
 
-          <Column lg={3}>
-            <FormField label="Payment mode:" for="paymentMode">
+          <Column lg={3} size={5}>
+            <FormField label="Mode:" for="paymentMode">
               <ToggleGroup
                 options={paymentModesOptions}
                 type="single"
@@ -124,6 +125,7 @@
                 flex
                 buttonProps={{
                   outline: true,
+                  compact: true,
                 }}
               />
             </FormField>

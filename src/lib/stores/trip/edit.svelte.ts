@@ -15,10 +15,12 @@ function createEditTripStore() {
 
       const newTripId = nanoid();
 
+      const { name, ...restData } = formData;
+
       await db.trips.add({
         _id: newTripId,
-        name: formData.name.trim(),
-        currency: formData.currency,
+        name: name.trim(),
+        ...restData,
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -36,9 +38,11 @@ function createEditTripStore() {
         return;
       }
 
+      const { name, ...restData } = formData;
+
       await db.trips.update(target.id, {
-        name: formData.name.trim(),
-        currency: formData.currency,
+        name: name.trim(),
+        ...restData,
         updatedAt: Date.now(),
       });
 

@@ -1,19 +1,21 @@
 <script lang="ts">
   import type { ExpensesDateGroup } from '$lib/stores/expense/getters/group-expenses';
   import { type Expense } from '$lib/stores/expense/types';
+  import type { Trip } from '$lib/stores/trip/types';
   import ExpenseCard from '../../ExpenseCard/ExpenseCard.svelte';
   import Date from './Date.svelte';
 
   type Props = {
     data: ExpensesDateGroup;
+    trip: Trip;
   };
 
-  let { data }: Props = $props();
+  let { data, trip }: Props = $props();
 </script>
 
 {#snippet expenses(data: Expense[])}
   {#each data as expense (expense._id)}
-    <ExpenseCard {expense} />
+    <ExpenseCard {expense} {trip} />
   {/each}
 {/snippet}
 

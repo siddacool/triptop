@@ -3,6 +3,7 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import EditExpense from '$lib/components/Expenses/EditExpense/EditExpense.svelte';
+  import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
   import type { EditExpenseFormData } from '$lib/stores/expense/types';
@@ -110,7 +111,7 @@
 {#if useExpenseStore.expense && useTripStore.trip}
   <div>
     <EditExpense
-      currency={useTripStore.trip.currency}
+      trip={useTripStore.trip}
       mode="edit"
       data={useExpenseStore.expense}
       onsubmit={updateExpense}
@@ -118,38 +119,19 @@
     />
   </div>
 
-  <div class="controls">
+  <ControlSection controlsAlignment="center" class="ExpenseEditControls">
     {#if isArchived}
       <Button onclick={restoreConfirmation}>Restore expense</Button>
     {:else}
       <Button color="danger" onclick={deleteConfirmation}>Delete expense</Button>
     {/if}
-  </div>
+  </ControlSection>
 {:else}
   ---
 {/if}
 
 <style lang="scss">
-  .controls {
+  :global(.ExpenseEditControls) {
     margin-top: calc(var(--dodo-ui-space) * 3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    @media (min-width: 600px) {
-      flex-direction: row;
-    }
-
-    :global(.dodo-ui-Button) {
-      width: 100%;
-      margin-bottom: calc(var(--dodo-ui-space) * 2);
-
-      @media (min-width: 600px) {
-        width: initial;
-        margin: 0 var(--dodo-ui-space);
-        margin-bottom: 0;
-      }
-    }
   }
 </style>

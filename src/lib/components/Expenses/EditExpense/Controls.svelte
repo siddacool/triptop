@@ -1,4 +1,5 @@
 <script lang="ts">
+  import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import { Button } from '@flightlesslabs/dodo-ui';
 
   type Props = {
@@ -11,14 +12,14 @@
   let { mode, onreset, disabled, isDataValid }: Props = $props();
 </script>
 
-<div class="Controls">
+<ControlSection>
   {#if mode === 'edit'}
     <Button color="primary" type="submit" disabled={disabled || !isDataValid}>Save expense</Button>
     <Button color="primary" variant="text" onclick={onreset} {disabled}>Reset</Button>
   {:else}
     <Button color="primary" type="submit" disabled={disabled || !isDataValid}>Add expense</Button>
   {/if}
-</div>
+</ControlSection>
 
 <style lang="scss">
   .Controls {

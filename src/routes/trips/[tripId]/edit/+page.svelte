@@ -3,6 +3,7 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import EditTrip from '$lib/components/Trips/EditTrip/EditTrip.svelte';
+  import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import type { EditTripFormData } from '$lib/stores/trip/types';
@@ -93,34 +94,15 @@
     <EditTrip data={useTripStore.trip} mode="edit" onsubmit={updateTrip} disabled={fetching} />
   </div>
 
-  <div class="controls">
+  <ControlSection controlsAlignment="center" class="TripEditControls">
     <Button color="danger" onclick={deleteConfirmation}>Delete trip</Button>
-  </div>
+  </ControlSection>
 {:else}
   ---
 {/if}
 
 <style lang="scss">
-  .controls {
+  :global(.TripEditControls) {
     margin-top: calc(var(--dodo-ui-space) * 3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    @media (min-width: 600px) {
-      flex-direction: row;
-    }
-
-    :global(.dodo-ui-Button) {
-      width: 100%;
-      margin-bottom: calc(var(--dodo-ui-space) * 2);
-
-      @media (min-width: 600px) {
-        width: initial;
-        margin: 0 var(--dodo-ui-space);
-        margin-bottom: 0;
-      }
-    }
   }
 </style>

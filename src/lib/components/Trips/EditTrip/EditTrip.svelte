@@ -1,5 +1,10 @@
 <script lang="ts" module>
-  import type { EditTripFormData, Trip } from '$lib/stores/trip/types';
+  import {
+    DEFAULT_LOCALE,
+    localeOptions,
+    type EditTripFormData,
+    type Trip,
+  } from '$lib/stores/trip/types';
 
   type EditTripBaseProps = {
     onsubmit?: (data: EditTripFormData) => void;
@@ -18,7 +23,7 @@
 </script>
 
 <script lang="ts">
-  import { Card, Column, FormField, Grid, TextInput } from '@flightlesslabs/dodo-ui';
+  import { Card, Column, FormField, Grid, Row, TextInput } from '@flightlesslabs/dodo-ui';
   import Controls from './Controls.svelte';
   import { Select } from '@flightlesslabs/dodo-ui-bits';
   import { currencyOptions } from '$lib/stores/currency/types';
@@ -27,8 +32,9 @@
 
   let name = $derived(data?.name);
   let currency = $derived(data?.currency);
+  let locale = $derived(data?.locale || DEFAULT_LOCALE);
 
-  const isDataValid = $derived(name && currency ? true : false);
+  const isDataValid = $derived(name && currency && locale ? true : false);
 
   function submit(event: SubmitEvent) {
     event.preventDefault();
@@ -37,10 +43,11 @@
       return;
     }
 
-    const data = {
-      name,
-      currency,
-    } as EditTripFormData;
+    const data: EditTripFormData = {
+      name: name || '',
+      currency: currency || 'USD',
+      locale,
+    };
 
     onsubmit?.(data);
   }
@@ -48,6 +55,7 @@
   function reset() {
     name = data?.name;
     currency = data?.currency;
+    locale = data?.locale || DEFAULT_LOCALE;
   }
 </script>
 
@@ -61,17 +69,31 @@
           </FormField>
         </Column>
 
-        <Column>
-          <FormField label="Currency:" for="currency">
-            <Select
-              options={currencyOptions}
-              bind:value={currency}
-              name="currency"
-              searchable
-              placeholder="Pick Currency"
-            />
-          </FormField>
-        </Column>
+        <Row>
+          <Column lg="flex">
+            <FormField label="Currency:" for="currency">
+              <Select
+                options={currencyOptions}
+                bind:value={currency}
+                name="currency"
+                searchable
+                placeholder="Select currency"
+              />
+            </FormField>
+          </Column>
+
+          <Column lg={4}>
+            <FormField label="Locale:" for="locale">
+              <Select
+                options={localeOptions}
+                bind:value={locale}
+                name="locale"
+                searchable
+                placeholder="Select locale"
+              />
+            </FormField>
+          </Column>
+        </Row>
 
         <Column>
           <Controls {mode} {disabled} onreset={reset} {isDataValid} />

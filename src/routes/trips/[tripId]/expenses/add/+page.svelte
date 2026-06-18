@@ -42,12 +42,7 @@
 
 {#if useTripStore.trip}
   <div>
-    <EditExpense
-      currency={useTripStore.trip.currency}
-      mode="create"
-      onsubmit={createTrip}
-      disabled={fetching}
-    />
+    <EditExpense trip={useTripStore.trip} mode="create" onsubmit={createTrip} disabled={fetching} />
   </div>
 {:else}
   ---

@@ -4,12 +4,14 @@
   import Title from './Title.svelte';
   import Amount from './Amount.svelte';
   import { resolve } from '$app/paths';
+  import type { Trip } from '$lib/stores/trip/types';
 
   type Props = {
     expense: Expense;
+    trip: Trip;
   };
 
-  let { expense }: Props = $props();
+  let { expense, trip }: Props = $props();
 
   let cardColor = $state<CardColor>('default');
 
@@ -35,7 +37,7 @@
         <Title>
           {expense.name}
         </Title>
-        <Amount value={expense.amount} />
+        <Amount value={expense.amount} {trip} />
       </div>
     </Card>
   </a>

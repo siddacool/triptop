@@ -3,6 +3,7 @@
   import EditExpense from './EditExpense.svelte';
   import { Category, PaymentModes, type Expense } from '$lib/stores/expense/types';
   import { Theme } from '@flightlesslabs/dodo-ui';
+  import { mockDataTrips } from '$lib/stores/trip/data/mock-data-trips';
 
   // ------------------------------
   // Storybook Meta
@@ -11,7 +12,7 @@
     component: EditExpense,
     tags: ['autodocs'],
     args: {
-      currency: 'USD',
+      trip: mockDataTrips[0],
     },
   });
 </script>
@@ -38,6 +39,6 @@
 
 <Story name="Dark mode" asChild>
   <Theme type="dark">
-    <EditExpense mode="create" currency="USD" />
+    <EditExpense mode="create" trip={mockDataTrips[0]} />
   </Theme>
 </Story>
