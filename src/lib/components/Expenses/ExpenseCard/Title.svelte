@@ -11,7 +11,6 @@
 </script>
 
 <p class={classes.join(' ')}>
- 
   {expense.name}
 </p>
 
@@ -32,18 +31,6 @@
 
     &.archived {
       text-decoration: line-through;
-    }
-
-    :global(.ExpenseCardCategoryIcon) {
-      font-size: 1rem;
-      margin-right: 4px;
-      color: var(--dodo-color-neutral-700);
-
-      @media (min-width: 600px) {
-        font-size: 1.15rem;
-        margin-right: 4px;
-        color: var(--dodo-color-neutral-600);
-      }
     }
   }
 </style>
