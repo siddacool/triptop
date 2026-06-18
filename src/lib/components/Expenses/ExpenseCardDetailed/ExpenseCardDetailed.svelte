@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { categoryOptions, paymentModesOptions, type Expense } from '$lib/stores/expense/types';
+  import { paymentModesOptions, type Expense } from '$lib/stores/expense/types';
   import { Card, Column, Grid, Money, Row, Threshold } from '@flightlesslabs/dodo-ui';
   import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
   import { createDate } from '@flightlesslabs/time-utils';
   import DeletedPill from './DeletedPill.svelte';
+  import CategoryShowCase from '$lib/components/ui/Category/CategoryShowCase/CategoryShowCase.svelte';
 
   type Props = {
     expense: Expense;
@@ -48,17 +49,17 @@
         </FieldValue>
       </Column>
       <Row>
-        <Column size="flex">
+        <Column>
           <FieldValue label="Category:">
-            {categoryOptions.find((item) => item.value === expense.category)?.label}
+            <CategoryShowCase value={expense.category} />
           </FieldValue>
         </Column>
-        <Column sm={3} size={5}>
+        <Column>
           <FieldValue label="Mode:">
             {paymentModesOptions.find((item) => item.value === expense.paymentMode)?.label}
           </FieldValue>
         </Column>
-        <Column sm="flex">
+        <Column>
           <FieldValue label="Date:">
             {createDate(expense.date).format('ddd, MMM D, YYYY')}
           </FieldValue>

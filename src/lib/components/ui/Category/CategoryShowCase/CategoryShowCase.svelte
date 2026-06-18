@@ -1,9 +1,9 @@
 <script lang="ts">
   import { categoryOptions, type Category } from '$lib/stores/expense/types';
-  import Icon from '@iconify/svelte';
+  import CategoryIcon from '../CategoryIcon/CategoryIcon.svelte';
 
   type Props = {
-    value: Category;
+    value?: Category;
     class?: string;
   };
 
@@ -15,11 +15,7 @@
 
 {#if category}
   <div class={classes.join(' ')}>
-    {#if category.meta?.icon?.name}
-      <span class="icon">
-        <Icon icon={category.meta?.icon?.name} />
-      </span>
-    {/if}
+    <CategoryIcon {value} />
 
     {category.label}
   </div>
@@ -29,11 +25,7 @@
   .CategoryShowCase {
     color: inherit;
     font-size: inherit;
-
-    .icon {
-      margin-right: 8px;
-      display: inline-flex;
-      font-size: 1.25rem;
-    }
+    display: flex;
+    align-items: center;
   }
 </style>

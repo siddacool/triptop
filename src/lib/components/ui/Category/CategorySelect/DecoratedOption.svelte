@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { CategoryOption } from '$lib/stores/expense/types';
-  import Icon from '@iconify/svelte';
+  import CategoryIcon from '../CategoryIcon/CategoryIcon.svelte';
 
   type Props = {
     option?: CategoryOption;
@@ -11,12 +11,7 @@
 
 {#if option}
   <div class="DecoratedOption">
-    {#if option.meta?.icon?.name}
-      <span class="icon">
-        <Icon icon={option.meta?.icon?.name} />
-      </span>
-    {/if}
-
+    <CategoryIcon value={option.value} class="DecoratedOptionCategoryIcon" />
     {option.label}
   </div>
 {/if}
@@ -25,9 +20,9 @@
   .DecoratedOption {
     display: flex;
     align-items: center;
-    .icon {
+
+    :global(.DecoratedOptionCategoryIcon) {
       margin-right: 8px;
-      display: inline-flex;
       font-size: 1.25rem;
     }
   }

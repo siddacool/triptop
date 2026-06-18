@@ -34,7 +34,7 @@
   import { createDate } from '@flightlesslabs/time-utils';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
   import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
-  import CategorySelect from '$lib/components/ui/CategorySelect/CategorySelect.svelte';
+  import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
