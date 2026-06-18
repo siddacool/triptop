@@ -17,7 +17,15 @@
   function applyTheme(mode: ThemeMode) {
     themeMode = mode;
 
-    useThemeStore.updateSystemTheme(mode === 'auto' ? getSystemTheme() : mode);
+    const newTheme = mode === 'auto' ? getSystemTheme() : mode;
+
+    useThemeStore.updateSystemTheme(newTheme);
+
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+
+    if (themeColorMeta) {
+      themeColorMeta?.setAttribute('content', newTheme === 'light' ? '#f0f8ff' : '#101828');
+    }
   }
 
   function handleThemeSwitch() {
