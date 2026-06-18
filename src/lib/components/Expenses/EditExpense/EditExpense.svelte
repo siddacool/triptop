@@ -2,7 +2,6 @@
   import {
     Category,
     PaymentModes,
-    paymentModesOptions,
     type EditExpenseFormData,
     type Expense,
   } from '$lib/stores/expense/types';
@@ -29,12 +28,12 @@
   import Controls from './Controls.svelte';
   import { NumericInput } from '@flightlesslabs/dodo-ui-numeric';
   import { NumberFormatStyle } from 'svelte-number-format';
-  import { ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
   import { parseDate, type DateValue } from '@internationalized/date';
   import { createDate } from '@flightlesslabs/time-utils';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
   import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
   import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
+  import PaymentModeSelect from '$lib/components/ui/PaymentMode/PaymentModeSelect/PaymentModeSelect.svelte';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
@@ -110,18 +109,7 @@
 
           <Column lg={3} size={5}>
             <FormField label="Mode:" for="paymentMode">
-              <ToggleGroup
-                options={paymentModesOptions}
-                type="single"
-                bind:value={paymentMode}
-                attached
-                fullWidth
-                flex
-                buttonProps={{
-                  outline: true,
-                  compact: true,
-                }}
-              />
+              <PaymentModeSelect name="paymentMode" bind:value={paymentMode} />
             </FormField>
           </Column>
 

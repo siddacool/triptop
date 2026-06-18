@@ -109,9 +109,35 @@ export const enum PaymentModes {
   CARD = 'CARD',
 }
 
-export const paymentModesOptions = [
-  { value: PaymentModes.CASH, label: 'Cash' },
-  { value: PaymentModes.CARD, label: 'Card' },
+export type PaymentModesOption = {
+  value: PaymentModes;
+  label: string;
+  meta?: {
+    icon?: {
+      name: string;
+    };
+  };
+};
+
+export const paymentModesOptions: PaymentModesOption[] = [
+  {
+    value: PaymentModes.CASH,
+    label: 'Cash',
+    meta: {
+      icon: {
+        name: 'boxicons:coin',
+      },
+    },
+  },
+  {
+    value: PaymentModes.CARD,
+    label: 'Card',
+    meta: {
+      icon: {
+        name: 'famicons:card-outline',
+      },
+    },
+  },
 ];
 
 export interface Expense {

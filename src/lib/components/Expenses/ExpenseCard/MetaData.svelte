@@ -1,5 +1,6 @@
 <script lang="ts">
   import CategoryIcon from '$lib/components/ui/Category/CategoryIcon/CategoryIcon.svelte';
+  import PaymentModeIcon from '$lib/components/ui/PaymentMode/PaymentModeIcon/PaymentModeIcon.svelte';
   import type { Expense } from '$lib/stores/expense/types';
 
   type Props = {
@@ -13,6 +14,7 @@
 
 <div class={classes.join(' ')}>
   <CategoryIcon value={expense.category} class="MetaDataIcon" />
+  <PaymentModeIcon value={expense.paymentMode} class="MetaDataIcon" />
 </div>
 
 <style lang="scss">
