@@ -1,5 +1,12 @@
 # triptop
 
+## 5.0.2
+
+### Patch Changes
+
+- b526c72: Expense primary sort changed to created at
+- 2eb69b7: Fix Search retention
+
 ## 5.0.1
 
 ### Patch Changes
