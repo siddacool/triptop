@@ -1,14 +1,16 @@
 <script lang="ts">
-  import type { Snippet } from 'svelte';
+  import type { Expense } from '$lib/stores/expense/types';
 
   type Props = {
-    children?: Snippet;
+    expense: Expense;
   };
 
-  let { children }: Props = $props();
+  let { expense }: Props = $props();
+
+  const classes = $derived(['Title', expense.archived ? 'archived' : ''].filter(Boolean));
 </script>
 
-<p class="Title">{@render children?.()}</p>
+<p class={classes.join(' ')}>{expense.name}</p>
 
 <style lang="scss">
   .Title {
@@ -21,6 +23,10 @@
     @media (min-width: 600px) {
       font-size: 1rem;
       margin-right: calc(var(--dodo-ui-space) * 2);
+    }
+
+    &.archived {
+      text-decoration: line-through;
     }
   }
 </style>

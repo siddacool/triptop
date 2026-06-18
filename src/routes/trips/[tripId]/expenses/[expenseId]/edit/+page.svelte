@@ -53,6 +53,8 @@
   }
 
   async function toggleArchivedExpense() {
+    const isExpenseArchived = isArchived;
+
     try {
       if (!tripId) {
         return;
@@ -67,18 +69,22 @@
 
       toasts.add({
         title: 'Successs',
-        description: isArchived ? 'Expense restored' : 'Expense deleted',
+        description: isExpenseArchived ? 'Expense restored' : 'Expense deleted',
         color: 'primary',
       });
 
-      await useExpenseStore.fetch(tripId);
-
-      await goto(resolve(`/trips/${tripId}`));
+      if (isExpenseArchived) {
+        await useExpenseStore.fetch(expenseId);
+        await goto(resolve(`/trips/${tripId}/expenses/${expenseId}`));
+      } else {
+        await useExpenseStore.fetch(tripId);
+        await goto(resolve(`/trips/${tripId}`));
+      }
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 
       toasts.add({
-        title: isArchived ? 'Failed to restore expense' : 'Failed to delete expense',
+        title: isExpenseArchived ? 'Failed to restore expense' : 'Failed to delete expense',
         description: message,
         color: 'danger',
       });

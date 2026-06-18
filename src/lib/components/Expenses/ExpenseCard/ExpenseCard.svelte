@@ -9,9 +9,10 @@
   type Props = {
     expense: Expense;
     trip: Trip;
+    class?: string;
   };
 
-  let { expense, trip }: Props = $props();
+  let { expense, trip, class: className = '' }: Props = $props();
 
   let cardColor = $state<CardColor>('default');
 
@@ -22,10 +23,14 @@
   function handleOnBlur() {
     cardColor = 'default';
   }
+
+  const classes = $derived(
+    ['ExpenseCard', expense.archived ? 'archived' : '', className].filter(Boolean),
+  );
 </script>
 
 <li
-  class="ExpenseCard"
+  class={classes.join(' ')}
   onmouseover={handleOnHover}
   onfocus={handleOnHover}
   onmouseout={handleOnBlur}
@@ -34,10 +39,8 @@
   <a href={resolve(`/trips/${expense.tripId}/expenses/${expense._id}`)}>
     <Card class="ExpenseCardCard" roundness={1} active color={cardColor}>
       <div class="base-info">
-        <Title>
-          {expense.name}
-        </Title>
-        <Amount value={expense.amount} {trip} />
+        <Title {expense} />
+        <Amount {expense} {trip} />
       </div>
     </Card>
   </a>
@@ -64,6 +67,10 @@
 
     :global(.ExpenseCardCard) {
       padding: calc(var(--dodo-ui-space) * 2) var(--dodo-ui-space);
+    }
+
+    &.archived {
+      opacity: 0.6;
     }
   }
 </style>
