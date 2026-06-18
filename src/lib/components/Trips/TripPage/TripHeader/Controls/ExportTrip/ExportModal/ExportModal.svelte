@@ -18,21 +18,20 @@
   let exportType = $state(exportTripTypeOptions[0].value);
 
   function handleExport() {
-    if (!useTripStore.trip) {
-      return;
-    }
+    const trip = useTripStore.trip;
 
-    if (exportType === ExportTripType.JSON) {
-      const data = exportTripAsJson(useTripStore.trip, useExpenseListStore.expenses);
+    if (!trip) return;
 
-      downloadFile(data.filename, data.dataString, data.type);
-    }
+    const exporters = {
+      [ExportTripType.JSON]: () => exportTripAsJson(trip, useExpenseListStore.expenses),
+      [ExportTripType.CSV]: () => exportTripAsCsv(trip, useExpenseListStore.expensesActive),
+    };
 
-    if (exportType === ExportTripType.CSV) {
-      const data = exportTripAsCsv(useTripStore.trip, useExpenseListStore.expenses);
+    const exportData = exporters[exportType]?.();
 
-      downloadFile(data.filename, data.dataString, data.type);
-    }
+    if (!exportData) return;
+
+    downloadFile(exportData.filename, exportData.dataString, exportData.type);
   }
 </script>
 
