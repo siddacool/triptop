@@ -1,5 +1,15 @@
 # triptop
 
+## 5.2.0
+
+### Minor Changes
+
+- 37a1798: Payment mode section added
+- 20376a0: Select and flaoting ui hack added
+- f24c7fe: Category section added
+- fa1ed19: Csv export fixed
+- 1165c84: Local auto added
+
 ## 5.1.0
 
 ### Minor Changes
