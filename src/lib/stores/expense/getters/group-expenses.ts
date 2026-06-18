@@ -44,7 +44,7 @@ export function getGroupExpenses(expenses: Expense[]): ExpensesDateGroup[] {
   const groupedExpenses = new Map<string, Expense[]>();
 
   const sortedExpenses = [...expenses]
-    .sort((a, b) => b?.updatedAt - a?.updatedAt)
+    .sort((a, b) => b?.createdAt - a?.createdAt)
     .sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''));
 
   for (const expense of sortedExpenses) {
