@@ -1,7 +1,6 @@
 <script lang="ts" module>
   import {
     Category,
-    categoryOptions,
     PaymentModes,
     paymentModesOptions,
     type EditExpenseFormData,
@@ -30,11 +29,12 @@
   import Controls from './Controls.svelte';
   import { NumericInput } from '@flightlesslabs/dodo-ui-numeric';
   import { NumberFormatStyle } from 'svelte-number-format';
-  import { Select, ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
+  import { ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
   import { parseDate, type DateValue } from '@internationalized/date';
   import { createDate } from '@flightlesslabs/time-utils';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
   import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
+  import CategorySelect from '$lib/components/ui/CategorySelect/CategorySelect.svelte';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
@@ -102,15 +102,9 @@
         </Column>
 
         <Row>
-          <Column lg="flex">
-            <FormField label="Date:">
-              <DatePicker bind:value={date} />
-            </FormField>
-          </Column>
-
           <Column lg="flex" size="flex">
             <FormField label="Category:" for="category">
-              <Select options={categoryOptions} bind:value={category} name="category" />
+              <CategorySelect name="category" bind:value={category} />
             </FormField>
           </Column>
 
@@ -128,6 +122,12 @@
                   compact: true,
                 }}
               />
+            </FormField>
+          </Column>
+
+          <Column lg="flex">
+            <FormField label="Date:">
+              <DatePicker bind:value={date} />
             </FormField>
           </Column>
         </Row>

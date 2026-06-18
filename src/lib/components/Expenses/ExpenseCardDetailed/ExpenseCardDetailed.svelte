@@ -48,11 +48,6 @@
         </FieldValue>
       </Column>
       <Row>
-        <Column sm="flex">
-          <FieldValue label="Date:">
-            {createDate(expense.date).format('ddd, MMM D, YYYY')}
-          </FieldValue>
-        </Column>
         <Column size="flex">
           <FieldValue label="Category:">
             {categoryOptions.find((item) => item.value === expense.category)?.label}
@@ -61,6 +56,11 @@
         <Column sm={3} size={5}>
           <FieldValue label="Mode:">
             {paymentModesOptions.find((item) => item.value === expense.paymentMode)?.label}
+          </FieldValue>
+        </Column>
+        <Column sm="flex">
+          <FieldValue label="Date:">
+            {createDate(expense.date).format('ddd, MMM D, YYYY')}
           </FieldValue>
         </Column>
       </Row>
