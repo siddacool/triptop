@@ -14,6 +14,7 @@
 
   const tripId = page.params.tripId;
   const expenseId = page.params.expenseId;
+  const isArchived = $derived(useExpenseStore.expense?.archived || false);
 
   async function updateExpense(data: EditExpenseFormData) {
     try {
@@ -50,7 +51,7 @@
     }
   }
 
-  async function deleteExpense() {
+  async function toggleArchivedExpense() {
     try {
       if (!tripId) {
         return;
@@ -61,11 +62,11 @@
       }
 
       fetching = true;
-      await useEditExpenseStore.delete(expenseId);
+      await useEditExpenseStore.toggleArchived(expenseId);
 
       toasts.add({
         title: 'Successs',
-        description: 'Expense deleted',
+        description: isArchived ? 'Expense restored' : 'Expense deleted',
         color: 'primary',
       });
 
@@ -76,7 +77,7 @@
       const message = e instanceof Error ? e.message : String(e);
 
       toasts.add({
-        title: 'Failed to delete expense',
+        title: isArchived ? 'Failed to restore expense' : 'Failed to delete expense',
         description: message,
         color: 'danger',
       });
@@ -89,7 +90,15 @@
     modals.add('confirm', {
       title: 'Delete Expense',
       description: 'Are you sure you want to delete this expense?',
-      onaccept: deleteExpense,
+      onaccept: toggleArchivedExpense,
+    });
+  }
+
+  function restoreConfirmation() {
+    modals.add('confirm', {
+      title: 'Restore expense',
+      description: 'Are you sure you want to restore this expense?',
+      onaccept: toggleArchivedExpense,
     });
   }
 </script>
@@ -110,7 +119,11 @@
   </div>
 
   <div class="controls">
-    <Button color="danger" onclick={deleteConfirmation}>Delete expense</Button>
+    {#if isArchived}
+      <Button onclick={restoreConfirmation}>Restore expense</Button>
+    {:else}
+      <Button color="danger" onclick={deleteConfirmation}>Delete expense</Button>
+    {/if}
   </div>
 {:else}
   ---

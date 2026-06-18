@@ -44,15 +44,19 @@ function createEditExpenseStore() {
 
       return Promise.resolve(expenseId);
     },
-    async delete(expenseId: string) {
-      const expensesData = await db.expense.where({ _id: expenseId }).toArray();
-      const target = expensesData[0];
+    async toggleArchived(expenseId: string) {
+      const target = await db.expense.where({ _id: expenseId }).first();
 
       if (!target?.id) {
         return;
       }
 
-      await db.expense.delete(target.id);
+      const isArchived = target.archived ? true : false;
+
+      await db.expense.update(target.id, {
+        archived: !isArchived,
+        updatedAt: Date.now(),
+      });
 
       return Promise.resolve(expenseId);
     },

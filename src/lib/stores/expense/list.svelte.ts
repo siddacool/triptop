@@ -7,8 +7,11 @@ function createExpenseListStore() {
   let mounted: boolean = $state(false);
 
   return {
-    get expenses() {
+    get expensesAll() {
       return expenses;
+    },
+    get expenses() {
+      return expenses.filter((item) => !item.archived);
     },
     get fetching() {
       return fetching;

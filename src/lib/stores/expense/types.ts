@@ -43,6 +43,7 @@ export interface Expense {
   category?: Category;
   date: string;
   paymentMode?: PaymentModes;
+  archived?: boolean;
 }
 
 export interface EditExpenseFormData {
