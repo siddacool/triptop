@@ -110,7 +110,7 @@
 
           <Column lg="flex" size="flex">
             <FormField label="Category:" for="category">
-              <Select options={categoryOptions} bind:value={category} name="category" searchable />
+              <Select options={categoryOptions} bind:value={category} name="category" />
             </FormField>
           </Column>
 

@@ -21,4 +21,8 @@
     font-optical-sizing: auto;
     font-size: 16px;
   }
+
+  :global([data-bits-floating-content-wrapper]) {
+    z-index: 2000 !important;
+  }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import { Button, Column, FormField, Grid } from '@flightlesslabs/dodo-ui';
-  import { Modal, ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
+  import { Modal, Select } from '@flightlesslabs/dodo-ui-bits';
   import { ExportTripType, exportTripTypeOptions } from './export/types';
   import { downloadFile } from '$lib/helpers/downloadFile';
   import { exportTripAsJson } from './export/export-json';
@@ -32,6 +32,8 @@
     if (!exportData) return;
 
     downloadFile(exportData.filename, exportData.dataString, exportData.type);
+
+    open = false;
   }
 </script>
 
@@ -39,14 +41,8 @@
   <div class="container">
     <Grid gap={3}>
       <Column>
-        <FormField label="Export type:">
-          <ToggleGroup
-            type="single"
-            id="export-type"
-            options={exportTripTypeOptions}
-            bind:value={exportType}
-            gap={2}
-          />
+        <FormField label="Export type:" for="export-type">
+          <Select options={exportTripTypeOptions} bind:value={exportType} name="export-type" />
         </FormField>
       </Column>
       <Column>

@@ -1,18 +1,7 @@
 <script lang="ts">
-  // import { downloadFile } from '$lib/helpers/downloadFile';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
   import ExportModal from './ExportModal/ExportModal.svelte';
-
-  // function exportTrip() {
-  //   const trip = {
-  //     id: '123',
-  //     name: 'Japan Trip',
-  //     createdAt: new Date().toISOString(),
-  //   };
-
-  //   downloadFile('trip.json', JSON.stringify(trip, null, 2), 'application/json');
-  // }
 
   let openModal = $state(false);
 </script>
