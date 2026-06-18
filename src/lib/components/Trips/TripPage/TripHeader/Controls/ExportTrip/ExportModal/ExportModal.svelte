@@ -1,12 +1,13 @@
 <script lang="ts">
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import { Button, Column, FormField, Grid } from '@flightlesslabs/dodo-ui';
-  import { Modal, Select } from '@flightlesslabs/dodo-ui-bits';
+  import { Modal, ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
   import { ExportTripType, exportTripTypeOptions } from './export/types';
   import { downloadFile } from '$lib/helpers/downloadFile';
   import { exportTripAsJson } from './export/export-json';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+  import { exportTripAsCsv } from './export/export-csv';
 
   type Props = {
     open: boolean;
@@ -26,6 +27,12 @@
 
       downloadFile(data.filename, data.dataString, data.type);
     }
+
+    if (exportType === ExportTripType.CSV) {
+      const data = exportTripAsCsv(useTripStore.trip, useExpenseListStore.expenses);
+
+      downloadFile(data.filename, data.dataString, data.type);
+    }
   }
 </script>
 
@@ -33,12 +40,13 @@
   <div class="container">
     <Grid gap={3}>
       <Column>
-        <FormField label="Export type:" for="export-type">
-          <Select
+        <FormField label="Export type:">
+          <ToggleGroup
+            type="single"
+            id="export-type"
             options={exportTripTypeOptions}
             bind:value={exportType}
-            name="export-type"
-            placeholder="Select export type"
+            gap={2}
           />
         </FormField>
       </Column>

@@ -7,6 +7,7 @@ export type ExportTripValue<T> = {
 
 export const enum ExportTripType {
   JSON = 'JSON',
+  CSV = 'CSV',
 }
 
 export type ExportTripTypeOption = {
@@ -15,6 +16,10 @@ export type ExportTripTypeOption = {
 };
 
 export const exportTripTypeOptions: ExportTripTypeOption[] = [
+  {
+    value: ExportTripType.CSV,
+    label: 'CSV',
+  },
   {
     value: ExportTripType.JSON,
     label: 'JSON',
