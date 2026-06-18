@@ -1,4 +1,5 @@
 import { db } from '../db';
+import { addSearchFields } from './decorators/add-search-filelds';
 import { type Expense } from './types';
 
 function createExpenseListStore() {
@@ -22,7 +23,7 @@ function createExpenseListStore() {
 
         const expensesData = await db.expense.where({ tripId: tripId }).toArray();
 
-        expenses = expensesData;
+        expenses = addSearchFields(expensesData);
 
         mounted = true;
         fetching = false;

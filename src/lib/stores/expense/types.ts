@@ -44,6 +44,9 @@ export interface Expense {
   date: string;
   paymentMode?: PaymentModes;
   archived?: boolean;
+  searchFields?: {
+    name: string;
+  };
 }
 
 export interface EditExpenseFormData {
