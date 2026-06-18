@@ -1,8 +1,10 @@
 <script>
   import EditTrip from './EditTrip.svelte';
+  import ExportTrip from './ExportTrip/ExportTrip.svelte';
 </script>
 
 <div class="Controls">
+  <ExportTrip />
   <EditTrip />
 </div>
 

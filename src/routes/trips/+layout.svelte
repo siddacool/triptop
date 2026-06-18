@@ -1,12 +1,16 @@
 <script lang="ts">
   import { ModalManager, ToastManager } from '@flightlesslabs/dodo-ui-bits';
-  import { Theme } from '@flightlesslabs/dodo-ui';
+  import { Theme, useThemeStore } from '@flightlesslabs/dodo-ui';
   import TheHeader from '$lib/components/TheHeader/TheHeader.svelte';
   import Main from '$lib/components/Main/Main.svelte';
   import TheNav from '$lib/components/TheNav/TheNav.svelte';
 
   let { children } = $props();
 </script>
+
+<svelte:head>
+  <meta name="theme-color" content={useThemeStore.theme === 'light' ? '#f0f8ff' : '#101828'} />
+</svelte:head>
 
 <Theme global class="Theme" type="auto">
   <div class="App">

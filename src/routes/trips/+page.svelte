@@ -10,6 +10,7 @@
 
 <svelte:head>
   <title>Trips</title>
+  <meta name="theme-color" content="#f0f8ff" />
 </svelte:head>
 
 <TripList />
