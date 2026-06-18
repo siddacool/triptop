@@ -1,11 +1,11 @@
 <script>
   import CreateTrip from './CreateTrip.svelte';
-  import ImportTrip from './ImportTrip.svelte';
+  // import ImportTrip from './ImportTrip.svelte';
 </script>
 
 <div class="Controls">
   <CreateTrip />
-  <ImportTrip />
+  <!-- <ImportTrip /> -->
 </div>
 
 <style lang="scss">
