@@ -1,31 +1,24 @@
 <script lang="ts">
-  import GlobalStyles from '$lib/components/GlobalStyles';
-  import ThemeSetter from '$lib/components/ThemeSetter';
+  import '@flightlesslabs/dodo-ui/styles/global/index.scss';
+  import '@flightlesslabs/dodo-ui/styles/components.scss';
+  // Addon (dodo-ui-bits)
+  import '@flightlesslabs/dodo-ui-bits/styles/main.scss';
+  // Addon (dodo-ui-date)
+  import '@flightlesslabs/dodo-ui-date/styles/main.css';
 
   let { children } = $props();
 </script>
 
-<GlobalStyles />
-<ThemeSetter />
-<main>
-  <div class="box">
-    {@render children?.()}
-  </div>
-</main>
+{@render children()}
 
 <style lang="scss">
-  main {
-    height: 100vh;
-    width: 100vw;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 16px;
-    padding-bottom: 0;
+  :global(*) {
+    box-sizing: border-box;
   }
 
-  .box {
-    width: 100%;
-    max-width: 550px;
-    margin: 0 auto;
+  :global(html) {
+    font-family: 'Zalando Sans', sans-serif;
+    font-optical-sizing: auto;
+    font-size: 16px;
   }
 </style>

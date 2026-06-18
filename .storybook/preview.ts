@@ -1,21 +1,5 @@
 import type { Preview } from '@storybook/sveltekit';
-import { themes } from 'storybook/theming';
-import '@flightlesslabs/colors/global.css';
-import '../src/lib/components/GlobalStyles/styles/index.scss';
 import './global.scss';
-import { addons } from 'storybook/internal/preview-api';
-import { DARK_MODE_EVENT_NAME } from '@vueless/storybook-dark-mode';
-import { useThemeStore, AppColorSchemes } from '../src/lib/stores/theme.svelte';
-
-const channel = addons.getChannel();
-
-channel.on(DARK_MODE_EVENT_NAME, (condition) => {
-  if (condition) {
-    useThemeStore.update(AppColorSchemes.DARK);
-  } else {
-    useThemeStore.update(AppColorSchemes.LIGHT);
-  }
-});
 
 const preview: Preview = {
   parameters: {
@@ -25,16 +9,12 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-    darkMode: {
-      // Set the initial theme
-      current: 'light',
-      // Override the default dark theme
-      dark: themes.dark,
-      // Override the default light theme
-      light: themes.light,
-      stylePreview: true,
-      darkClass: ['dodo-theme--dark'],
-      lightClass: ['dodo-theme--light'],
+
+    a11y: {
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
+      test: 'todo',
     },
   },
 };

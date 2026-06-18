@@ -1,23 +1,14 @@
 import { db } from '../db';
-import type { CreateTripFormData } from './create.svelte';
-
-export interface Trip {
-  id?: number;
-  _id: string;
-  name: string;
-  expensesUpdatedAt?: number;
-  createdAt: number;
-  updatedAt: number;
-}
+import type { Trip } from './types';
 
 function createTripStore() {
-  let data: Trip | undefined = $state(undefined);
+  let trip: Trip | undefined = $state();
   let fetching: boolean = $state(false);
   let mounted: boolean = $state(false);
 
   return {
-    get data() {
-      return data;
+    get trip() {
+      return trip;
     },
     get fetching() {
       return fetching;
@@ -29,7 +20,7 @@ function createTripStore() {
       try {
         fetching = true;
 
-        data = await db.trips.where({ _id: tripId }).first();
+        trip = await db.trips.where({ _id: tripId }).first();
 
         mounted = true;
         fetching = false;
@@ -43,28 +34,8 @@ function createTripStore() {
         return Promise.reject(e);
       }
     },
-    async update(formData: CreateTripFormData) {
-      if (!formData?.name?.trim()) {
-        return;
-      }
-
-      await db.trips.update(data?.id, {
-        name: formData.name.trim(),
-        updatedAt: Date.now(),
-      });
-    },
-    async delete() {
-      const expenses = await db.expense.where({ tripId: data?._id }).toArray();
-      const relatedExpenseKeys = expenses.map((item) => item.id);
-
-      if (relatedExpenseKeys.length) {
-        await db.expense.bulkDelete(relatedExpenseKeys);
-      }
-
-      await db.trips.delete(data?.id);
-    },
     reset() {
-      data = undefined;
+      trip = undefined;
       mounted = false;
       fetching = false;
     },

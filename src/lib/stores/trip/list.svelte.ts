@@ -1,14 +1,20 @@
 import { db } from '../db';
-import type { Trip } from './individual.svelte';
+import type { Trip } from './types';
 
-function createTripsStore() {
-  let data: Trip[] | undefined = $state(undefined);
+function createTripListStore() {
+  let trips: Trip[] = $state([]);
   let fetching: boolean = $state(false);
   let mounted: boolean = $state(false);
 
   return {
-    get data() {
-      return data;
+    get tripsAll() {
+      return trips;
+    },
+    get tripsActive() {
+      return trips.filter((item) => !item.archived);
+    },
+    get tripsArchived() {
+      return trips.filter((item) => item.archived);
     },
     get fetching() {
       return fetching;
@@ -16,41 +22,18 @@ function createTripsStore() {
     get mounted() {
       return mounted;
     },
+    async syncData() {
+      const tripsData = await db.trips.toArray();
+
+      tripsData.sort((a, b) => b?.updatedAt - a?.updatedAt);
+
+      trips = tripsData;
+    },
     async fetch() {
       try {
         fetching = true;
 
-        const expenses = await db.expense.toArray();
-
-        const trips = await db.trips.toArray();
-
-        trips.sort((a, b) => b?.createdAt - a?.createdAt);
-
-        let tripsWithUpdatedExpenses: Trip[] = [];
-        const tripsWithoutUpdatedExpenses: Trip[] = [];
-
-        for (let index = 0; index < trips.length; index++) {
-          const element = trips[index];
-          const targetExpenses = expenses
-            .filter((item) => item.tripId === element._id)
-            .sort((a, b) => b.updatedAt - a.updatedAt);
-          const expensesUpdatedAt = targetExpenses.length ? targetExpenses[0].updatedAt : undefined;
-
-          if (expensesUpdatedAt) {
-            tripsWithUpdatedExpenses.push({
-              ...element,
-              expensesUpdatedAt,
-            });
-          } else {
-            tripsWithoutUpdatedExpenses.push(element);
-          }
-        }
-
-        tripsWithUpdatedExpenses = tripsWithUpdatedExpenses.sort(
-          (a, b) => (b?.expensesUpdatedAt as number) - (a?.expensesUpdatedAt as number),
-        );
-
-        data = [...tripsWithUpdatedExpenses, ...tripsWithoutUpdatedExpenses];
+        await this.syncData();
 
         mounted = true;
         fetching = false;
@@ -65,11 +48,11 @@ function createTripsStore() {
       }
     },
     reset() {
-      data = undefined;
+      trips = [];
       mounted = false;
       fetching = false;
     },
   };
 }
 
-export const useTripsStore = createTripsStore();
+export const useTripListStore = createTripListStore();
