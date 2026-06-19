@@ -11,9 +11,12 @@ export function exportTripAsJson(
   trip: Trip,
   expenses: Expense[],
 ): ExportTripValue<ExportTripJsonValue> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const sanitizedExpenses = expenses.map(({ searchFields, ...expense }) => expense);
+
   const data: ExportTripJsonValue = {
     trip,
-    expenses,
+    expenses: sanitizedExpenses,
   };
 
   return {
