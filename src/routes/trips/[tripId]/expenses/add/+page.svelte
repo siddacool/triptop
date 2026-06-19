@@ -3,6 +3,7 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import EditExpense from '$lib/components/Expenses/EditExpense/EditExpense.svelte';
+  import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import type { EditExpenseFormData } from '$lib/stores/expense/types';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
@@ -42,6 +43,7 @@
 
 {#if useTripStore.trip}
   <div>
+    <PageHeadingNav class="TripHeader" href={`/trips/${tripId}`}>Add expense</PageHeadingNav>
     <EditExpense trip={useTripStore.trip} mode="create" onsubmit={createTrip} disabled={fetching} />
   </div>
 {:else}

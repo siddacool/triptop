@@ -1,21 +1,16 @@
 <script>
   import { page } from '$app/state';
-  import BackButton from '$lib/components/ui/BackButton/BackButton.svelte';
+  import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
+  import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
   import Controls from './Controls/Controls.svelte';
-  import ExpenseName from './ExpenseName.svelte';
 
   const tripId = page.params.tripId;
 </script>
 
-<div class="ExpenseHeader">
-  <BackButton href={`/trips/${tripId}/`} />
-  <ExpenseName />
-  <Controls />
-</div>
+<PageHeadingNav class="TripHeader" href={`/trips/${tripId}/`}>
+  {useExpenseStore?.expense?.name || ''}
 
-<style lang="scss">
-  .ExpenseHeader {
-    display: flex;
-    align-items: center;
-  }
-</style>
+  {#snippet controls()}
+    <Controls />
+  {/snippet}
+</PageHeadingNav>

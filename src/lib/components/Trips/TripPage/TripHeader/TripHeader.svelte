@@ -1,18 +1,13 @@
 <script>
-  import BackButton from '$lib/components/ui/BackButton/BackButton.svelte';
+  import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
+  import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Controls from './Controls/Controls.svelte';
-  import TripName from './TripName.svelte';
 </script>
 
-<div class="TripHeader">
-  <BackButton href="/trips" />
-  <TripName />
-  <Controls />
-</div>
+<PageHeadingNav class="TripHeader" href="/trips">
+  {useTripStore?.trip?.name || ''}
 
-<style lang="scss">
-  .TripHeader {
-    display: flex;
-    align-items: center;
-  }
-</style>
+  {#snippet controls()}
+    <Controls />
+  {/snippet}
+</PageHeadingNav>

@@ -2,6 +2,7 @@
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import EditTrip from '$lib/components/Trips/EditTrip/EditTrip.svelte';
+  import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
   import type { EditTripFormData } from '$lib/stores/trip/types';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
@@ -29,9 +30,10 @@
 </script>
 
 <svelte:head>
-  <title>Create trips</title>
+  <title>Create trip</title>
 </svelte:head>
 
 <div>
+  <PageHeadingNav class="TripHeader" href="/trips">Create trip</PageHeadingNav>
   <EditTrip mode="create" onsubmit={createTrip} disabled={fetching} />
 </div>

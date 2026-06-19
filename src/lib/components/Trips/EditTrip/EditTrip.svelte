@@ -110,6 +110,7 @@
 
 <style>
   .EditTrip {
+    margin-top: calc(var(--dodo-ui-space) * 2);
     color: var(--dodo-color-neutral-800);
 
     :global(.EditTripCard) {

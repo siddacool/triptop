@@ -4,6 +4,7 @@
   import { page } from '$app/state';
   import EditExpense from '$lib/components/Expenses/EditExpense/EditExpense.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
+  import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
   import type { EditExpenseFormData } from '$lib/stores/expense/types';
@@ -116,6 +117,9 @@
 
 {#if useExpenseStore.expense && useTripStore.trip}
   <div>
+    <PageHeadingNav class="TripHeader" href={`/trips/${tripId}/expenses/${expenseId}`}>
+      Edit expense
+    </PageHeadingNav>
     <EditExpense
       trip={useTripStore.trip}
       mode="edit"

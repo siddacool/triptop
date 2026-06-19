@@ -123,6 +123,7 @@
 <style>
   .EditExpense {
     color: var(--dodo-color-neutral-800);
+    margin-top: calc(var(--dodo-ui-space) * 2);
 
     :global(.EditExpenseCard) {
       padding: calc(var(--dodo-ui-space) * 2);

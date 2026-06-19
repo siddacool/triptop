@@ -4,6 +4,7 @@
   import { page } from '$app/state';
   import EditTrip from '$lib/components/Trips/EditTrip/EditTrip.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
+  import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import type { EditTripFormData } from '$lib/stores/trip/types';
@@ -91,6 +92,7 @@
 
 {#if useTripStore.trip}
   <div>
+    <PageHeadingNav class="TripHeader" href={`/trips/${tripId}`}>Edit trip</PageHeadingNav>
     <EditTrip data={useTripStore.trip} mode="edit" onsubmit={updateTrip} disabled={fetching} />
   </div>
 
