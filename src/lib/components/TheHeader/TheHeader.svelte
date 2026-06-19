@@ -1,9 +1,14 @@
 <script>
+  import { page } from '$app/state';
   import Controls from './Controls/Controls.svelte';
   import Logo from './Logo.svelte';
+
+  const pageName = $derived(page.route.id === '/trips' ? 'home' : 'default');
+
+  const classes = $derived(['TheHeader', `pageName--${pageName}`].filter(Boolean));
 </script>
 
-<header class="TheHeader">
+<header class={classes.join(' ')}>
   <div class="box">
     <Logo />
     <Controls />
@@ -16,6 +21,14 @@
     background-color: var(--dodo-color-white);
     border-bottom: 1px solid var(--dodo-color-neutral-300);
     padding: 0 var(--dodo-ui-space);
+
+    &.pageName--default {
+      display: none;
+
+      @media (min-width: 800px) {
+        display: block;
+      }
+    }
 
     @media (min-width: 600px) {
       height: 60px;
