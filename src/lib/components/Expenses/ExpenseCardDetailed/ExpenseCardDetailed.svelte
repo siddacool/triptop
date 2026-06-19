@@ -1,11 +1,12 @@
 <script lang="ts">
   import { type Expense } from '$lib/stores/expense/types';
-  import { Card, Column, Grid, Money, Row, Threshold } from '@flightlesslabs/dodo-ui';
+  import { Card, Column, Grid, Money, Threshold } from '@flightlesslabs/dodo-ui';
   import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
   import { createDate } from '@flightlesslabs/time-utils';
   import DeletedPill from './DeletedPill.svelte';
   import CategoryShowCase from '$lib/components/ui/Category/CategoryShowCase/CategoryShowCase.svelte';
+  import { useTripStore } from '$lib/stores/trip/individual.svelte';
 
   type Props = {
     expense: Expense;
@@ -27,7 +28,7 @@
     {/if}
     <Grid gap={2}>
       <Column>
-        <FieldValue label="Amount:" size="large">
+        <FieldValue size="large">
           <Threshold
             value={expense.amount}
             threshold={0}
@@ -44,22 +45,25 @@
         </FieldValue>
       </Column>
       <Column>
-        <FieldValue label="Description:">
+        <FieldValue>
           {expense.name}
         </FieldValue>
       </Column>
-      <Row>
-        <Column>
-          <FieldValue label="Category:">
+      <Column>
+        <div class="details">
+          <FieldValue size="small">
             <CategoryShowCase value={expense.category} />
           </FieldValue>
-        </Column>
-        <Column>
-          <FieldValue label="Date:">
+          <FieldValue size="small">
             {createDate(expense.date).format('ddd, MMM D, YYYY')}
           </FieldValue>
-        </Column>
-      </Row>
+        </div>
+      </Column>
+      <Column>
+        <FieldValue label="Trip:">
+          {useTripStore.trip?.name || ''}
+        </FieldValue>
+      </Column>
     </Grid>
   </Card>
 </div>
@@ -68,6 +72,22 @@
   .ExpenseCardDetailed {
     display: flex;
     flex-direction: column;
+
+    .details {
+      display: flex;
+
+      :global(.FieldValue) {
+        margin-right: calc(var(--dodo-ui-space) * 3);
+
+        &:last-child {
+          margin: 0;
+        }
+      }
+
+      :global(.CategoryShowCase .CategoryIcon) {
+        font-size: 1.1rem;
+      }
+    }
 
     :global(.ExpenseCardDetailedCard) {
       padding: calc(var(--dodo-ui-space) * 2);

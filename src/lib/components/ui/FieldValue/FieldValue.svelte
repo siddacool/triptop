@@ -3,7 +3,7 @@
   import type { Snippet } from 'svelte';
 
   type Props = {
-    label: string;
+    label?: string;
     children?: Snippet;
     class?: string;
     size?: ComponentSize;
@@ -15,9 +15,11 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <div class="label">
-    {label}
-  </div>
+  {#if label}
+    <div class="label">
+      {label}
+    </div>
+  {/if}
 
   <div class="content">
     {@render children?.()}
