@@ -40,9 +40,8 @@
       align-items: center;
       height: 100%;
       width: 100%;
-      max-width: 1100px;
+      max-width: 752px;
       margin: 0 auto;
-      justify-content: space-between;
     }
   }
 

@@ -1,5 +1,11 @@
 # triptop
 
+## 5.3.1
+
+### Patch Changes
+
+- Logo updated
+
 ## 5.3.0
 
 ### Minor Changes

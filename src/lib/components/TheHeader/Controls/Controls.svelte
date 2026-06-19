@@ -1,10 +1,8 @@
 <script>
-  import About from './About.svelte';
   import ThemeSwitch from './ThemeSwitch.svelte';
 </script>
 
 <div class="Controls">
-  <About />
   <ThemeSwitch />
 </div>
 
@@ -12,6 +10,7 @@
   .Controls {
     margin: 0 -4px;
     display: flex;
+    margin-left: -56px;
 
     :global(.dodo-ui-Button) {
       margin: 0 4px;

@@ -4,7 +4,7 @@
 
 <div class="Logo">
   <a href={resolve('/trips')}>
-    <img src="/favicon-96x96.png" alt="Triptop logo" />
+    <img src="/favicon-96x96.png" alt="Triptop logo" class="LogoImageTriptop" />
     <span class="text">Triptop</span>
   </a>
 </div>
@@ -12,6 +12,8 @@
 <style lang="scss">
   .Logo {
     height: 100%;
+    margin-left: auto;
+    margin-right: auto;
 
     .text {
       font-size: 1.3rem;
@@ -37,5 +39,9 @@
       margin-right: var(--dodo-ui-space);
       border-radius: 4px;
     }
+  }
+
+  :global(.dodo-theme--dark .LogoImageTriptop) {
+    filter: brightness(95%);
   }
 </style>

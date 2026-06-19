@@ -70,6 +70,9 @@
   roundness="pill"
   title={`Theme: ${themeMode}`}
   onclick={handleThemeSwitch}
+  compact
+  color="neutral"
+  background="none"
 >
   {#if themeMode === 'dark'}
     <Icon icon="akar-icons:moon" />
@@ -82,6 +85,6 @@
 
 <style lang="scss">
   :global(.dodo-ui-Button.size--normal.ThemeSwitch) {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
 </style>
