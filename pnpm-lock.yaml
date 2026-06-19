@@ -12,17 +12,17 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1
       '@flightlesslabs/dodo-ui':
-        specifier: ^0.36.8
-        version: 0.36.8(svelte@5.56.3(@typescript-eslint/types@8.61.1))
+        specifier: ^0.36.9
+        version: 0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       '@flightlesslabs/dodo-ui-bits':
-        specifier: ^0.10.11
-        version: 0.10.11(@flightlesslabs/dodo-ui@0.36.8(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(bits-ui@2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.65.2(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))
+        specifier: ^0.10.12
+        version: 0.10.12(@flightlesslabs/dodo-ui@0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(bits-ui@2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.65.2(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       '@flightlesslabs/dodo-ui-date':
-        specifier: ^0.4.31
-        version: 0.4.31(@flightlesslabs/dodo-ui@0.36.8(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(@internationalized/date@3.12.2)(bits-ui@2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.65.2(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))
+        specifier: ^0.4.32
+        version: 0.4.32(@flightlesslabs/dodo-ui@0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(@internationalized/date@3.12.2)(bits-ui@2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.65.2(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       '@flightlesslabs/dodo-ui-numeric':
-        specifier: ^0.2.30
-        version: 0.2.30(@flightlesslabs/dodo-ui@0.36.8(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte-number-format@2.0.0(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))
+        specifier: ^0.2.31
+        version: 0.2.31(@flightlesslabs/dodo-ui@0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte-number-format@2.0.0(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       '@flightlesslabs/time-utils':
         specifier: ^0.2.2
         version: 0.2.2
@@ -577,30 +577,30 @@ packages:
   '@flightlesslabs/dodo-core-attributes@0.4.1':
     resolution: {integrity: sha512-6QuYzImIMV44o12AMdJvI87vp37SM5IsfWzSYd9J32YF1cyFa+GHadSGk6ucfeJB70oif+tJfSUDxGIvnaHyig==}
 
-  '@flightlesslabs/dodo-ui-bits@0.10.11':
-    resolution: {integrity: sha512-DC7oxC1EO8Wfm6H/FzMoiFtFpfnCuBXBS/BI0opGDxvfE2wPSfHeptLMrulQ85RS4zXBY+ENRGhA+FPzG+PKMA==}
+  '@flightlesslabs/dodo-ui-bits@0.10.12':
+    resolution: {integrity: sha512-SawmpqO4nOl6wg7Dkb52z7/I+ZD2hXrhk9MHQpNhp2WzGCIsR9YFCXc0DAcJykdxGhLiPRAc+NalkiA9IvxkTA==}
     peerDependencies:
-      '@flightlesslabs/dodo-ui': ^0.36.8
+      '@flightlesslabs/dodo-ui': ^0.36.9
       bits-ui: ^2.0.0
       svelte: ^5.0.0
 
-  '@flightlesslabs/dodo-ui-date@0.4.31':
-    resolution: {integrity: sha512-pDBh5x02RTdXLFDm7TeW+bGdCFRUgWe/XsxCnjbT2Nj8mBKX0DMlWzkrKfWvLhnoNRuhV8Jfc52VEyCca7KFSA==}
+  '@flightlesslabs/dodo-ui-date@0.4.32':
+    resolution: {integrity: sha512-3yWtQ4kg1Tbn5lfLYv4rNZGnwlVdFfLHYU/tRYt8FMtN0XQr1FzjcK1IZXTKCjFJBK9laMbJi76dJ2ZnA83+Yw==}
     peerDependencies:
-      '@flightlesslabs/dodo-ui': ^0.36.8
+      '@flightlesslabs/dodo-ui': ^0.36.9
       '@internationalized/date': ^3.0.0
       bits-ui: ^2.0.0
       svelte: ^5.0.0
 
-  '@flightlesslabs/dodo-ui-numeric@0.2.30':
-    resolution: {integrity: sha512-TZtJUgMgSdOe4UNSZojBgwffGKw7uzYX1JQVcQCKIHnTFCoq7OuVp4rHZwsJ2sF2v/fBJ369ZwRjaRXpAUCS3A==}
+  '@flightlesslabs/dodo-ui-numeric@0.2.31':
+    resolution: {integrity: sha512-7fw39ToP3Ota55KZ5tkakSrKBT3HqjzquY/n7rACzixFpot4UgA6vQ6Nn/dqrYDKrlw/pgcPNz3LJQPkwbjWtg==}
     peerDependencies:
-      '@flightlesslabs/dodo-ui': ^0.36.8
+      '@flightlesslabs/dodo-ui': ^0.36.9
       svelte: ^5.0.0
       svelte-number-format: ^2.0.0
 
-  '@flightlesslabs/dodo-ui@0.36.8':
-    resolution: {integrity: sha512-tCjN9nJoV7hPETVSZbQekIZ7sCsAXjJiuf4ROgWtIQa4i+HfYzq+u2qMcXs7kKmgGtJ9EsPnN4K3KkLl5GahVA==}
+  '@flightlesslabs/dodo-ui@0.36.9':
+    resolution: {integrity: sha512-377E81/YP/WDGuTdmXJPni/ICOZCuy2sTa/ThGgiZeIrMkZyB6uAWkUZx633XoJHsJf8fu6yuav8wJzLJuikMg==}
     peerDependencies:
       svelte: ^5.0.0
 
@@ -3251,30 +3251,30 @@ snapshots:
 
   '@flightlesslabs/dodo-core-attributes@0.4.1': {}
 
-  '@flightlesslabs/dodo-ui-bits@0.10.11(@flightlesslabs/dodo-ui@0.36.8(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(bits-ui@2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.65.2(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))':
+  '@flightlesslabs/dodo-ui-bits@0.10.12(@flightlesslabs/dodo-ui@0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(bits-ui@2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.65.2(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))':
     dependencies:
       '@flightlesslabs/dodo-core-attributes': 0.4.1
-      '@flightlesslabs/dodo-ui': 0.36.8(svelte@5.56.3(@typescript-eslint/types@8.61.1))
+      '@flightlesslabs/dodo-ui': 0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       '@iconify/svelte': 5.2.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       bits-ui: 2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.65.2(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       nanoid: 5.1.11
       svelte: 5.56.3(@typescript-eslint/types@8.61.1)
 
-  '@flightlesslabs/dodo-ui-date@0.4.31(@flightlesslabs/dodo-ui@0.36.8(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(@internationalized/date@3.12.2)(bits-ui@2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.65.2(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))':
+  '@flightlesslabs/dodo-ui-date@0.4.32(@flightlesslabs/dodo-ui@0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(@internationalized/date@3.12.2)(bits-ui@2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.65.2(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))':
     dependencies:
-      '@flightlesslabs/dodo-ui': 0.36.8(svelte@5.56.3(@typescript-eslint/types@8.61.1))
+      '@flightlesslabs/dodo-ui': 0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       '@iconify/svelte': 5.2.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       '@internationalized/date': 3.12.2
       bits-ui: 2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.65.2(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       svelte: 5.56.3(@typescript-eslint/types@8.61.1)
 
-  '@flightlesslabs/dodo-ui-numeric@0.2.30(@flightlesslabs/dodo-ui@0.36.8(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte-number-format@2.0.0(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))':
+  '@flightlesslabs/dodo-ui-numeric@0.2.31(@flightlesslabs/dodo-ui@0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte-number-format@2.0.0(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))':
     dependencies:
-      '@flightlesslabs/dodo-ui': 0.36.8(svelte@5.56.3(@typescript-eslint/types@8.61.1))
+      '@flightlesslabs/dodo-ui': 0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       svelte: 5.56.3(@typescript-eslint/types@8.61.1)
       svelte-number-format: 2.0.0(svelte@5.56.3(@typescript-eslint/types@8.61.1))
 
-  '@flightlesslabs/dodo-ui@0.36.8(svelte@5.56.3(@typescript-eslint/types@8.61.1))':
+  '@flightlesslabs/dodo-ui@0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1))':
     dependencies:
       '@flightlesslabs/currency': 0.2.1
       '@flightlesslabs/dodo-core-attributes': 0.4.1

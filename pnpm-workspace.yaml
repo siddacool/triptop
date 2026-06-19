@@ -3,3 +3,7 @@ allowBuilds:
   esbuild: true
 minimumReleaseAgeExclude:
   - '@flightlesslabs/dodo-ui-bits@0.10.11'
+  - '@flightlesslabs/dodo-ui-bits@0.10.12'
+  - '@flightlesslabs/dodo-ui-date@0.4.32'
+  - '@flightlesslabs/dodo-ui-numeric@0.2.31'
+  - '@flightlesslabs/dodo-ui@0.36.9'

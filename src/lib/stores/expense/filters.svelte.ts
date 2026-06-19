@@ -1,11 +1,23 @@
 import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
+import type { Category } from '../category/types';
 
-export type ExpenseFilters = {
+export type ExpenseFiltersBase = {
   search?: string;
+};
+
+export type ExpenseFiltersSpecial = {
+  category?: Category;
+};
+
+export type ExpenseFilters = ExpenseFiltersBase & ExpenseFiltersSpecial;
+
+const defaultStorageDataSpecailFilters: ExpenseFiltersSpecial = {
+  category: undefined,
 };
 
 const defaultStorageData: ExpenseFilters = {
   search: '',
+  ...defaultStorageDataSpecailFilters,
 };
 
 const dataFromStorage = getLocalStoreData<ExpenseFilters>('session', 'ExpenseFilters');
@@ -19,6 +31,9 @@ function createExpenseFiltersStore() {
     },
     get searchFilter() {
       return filters?.search;
+    },
+    get isSpecialFiltersActive() {
+      return filters?.category ? true : false;
     },
     updateFilter(value: Partial<ExpenseFilters>) {
       const newFilters = {
@@ -34,6 +49,12 @@ function createExpenseFiltersStore() {
       this.updateFilter({
         search: value,
       });
+    },
+    clearSpecialFilters() {
+      filters = {
+        ...filters,
+        ...defaultStorageDataSpecailFilters,
+      };
     },
     reset() {
       filters = defaultStorageData;

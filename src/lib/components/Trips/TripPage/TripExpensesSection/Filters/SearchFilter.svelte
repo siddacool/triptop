@@ -10,7 +10,7 @@
   }
 </script>
 
-<div>
+<div class="SearchFilter">
   <Search
     placeholder="Search expenses"
     value={useExpenseFiltersStore.searchFilter}
@@ -22,4 +22,8 @@
 </div>
 
 <style lang="scss">
+  .SearchFilter {
+    flex: 1;
+    margin-right: calc(var(--dodo-ui-space) * 1);
+  }
 </style>
