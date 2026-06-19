@@ -68,7 +68,7 @@
     }
 
     :global(.ExpenseCardCard) {
-      padding: calc(var(--dodo-ui-space) * 2);
+      padding: calc(var(--dodo-ui-space) * 1);
     }
 
     &.archived {
