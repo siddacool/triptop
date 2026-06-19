@@ -7,12 +7,16 @@ export type ExpenseFiltersBase = {
 
 export type ExpenseFiltersSpecial = {
   category?: Category;
+  minDate?: string;
+  maxDate?: string;
 };
 
 export type ExpenseFilters = ExpenseFiltersBase & ExpenseFiltersSpecial;
 
 const defaultStorageDataSpecailFilters: ExpenseFiltersSpecial = {
   category: undefined,
+  minDate: undefined,
+  maxDate: undefined,
 };
 
 const defaultStorageData: ExpenseFilters = {
@@ -33,7 +37,7 @@ function createExpenseFiltersStore() {
       return filters?.search;
     },
     get isSpecialFiltersActive() {
-      return filters?.category ? true : false;
+      return filters?.category || filters.maxDate || filters.maxDate ? true : false;
     },
     updateFilter(value: Partial<ExpenseFilters>) {
       const newFilters = {

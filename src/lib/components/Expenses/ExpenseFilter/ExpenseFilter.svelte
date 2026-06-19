@@ -3,7 +3,10 @@
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import type { Category } from '$lib/stores/category/types';
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
-  import { Button, Column, FormField, Grid, Indicator } from '@flightlesslabs/dodo-ui';
+  import { Button, Column, FormField, Grid, Indicator, Row } from '@flightlesslabs/dodo-ui';
+  import { DatePicker } from '@flightlesslabs/dodo-ui-date';
+  import { createDate } from '@flightlesslabs/time-utils';
+  import { parseDate, type DateValue } from '@internationalized/date';
 
   type Props = {
     onconfirm?: () => void;
@@ -13,10 +16,25 @@
   let { onconfirm, onclear }: Props = $props();
 
   let category: Category | undefined = $derived(useExpenseFiltersStore.filters.category);
-  let isAnyActive = $derived(category ? true : false);
+  let minDate = $derived<DateValue | undefined>(
+    useExpenseFiltersStore.filters.minDate
+      ? parseDate(createDate(useExpenseFiltersStore.filters.minDate).format('YYYY-MM-DD'))
+      : undefined,
+  );
+  let maxDate = $derived<DateValue | undefined>(
+    useExpenseFiltersStore.filters.maxDate
+      ? parseDate(createDate(useExpenseFiltersStore.filters.maxDate).format('YYYY-MM-DD'))
+      : undefined,
+  );
+
+  let isAnyActive = $derived(category || minDate || maxDate ? true : false);
 
   function handleOnConfirm() {
-    useExpenseFiltersStore.updateFilter({ category });
+    useExpenseFiltersStore.updateFilter({
+      category,
+      minDate: minDate ? minDate.toString() : undefined,
+      maxDate: maxDate ? maxDate.toString() : undefined,
+    });
 
     if (onconfirm) {
       onconfirm();
@@ -39,6 +57,18 @@
         <CategorySelect name="category" bind:value={category} clearable />
       </FormField>
     </Column>
+    <Row>
+      <Column lg={6}>
+        <FormField label="Min Date:">
+          <DatePicker bind:value={minDate} clearable maxValue={maxDate} />
+        </FormField>
+      </Column>
+      <Column lg={6}>
+        <FormField label="Max Date:">
+          <DatePicker bind:value={maxDate} clearable minValue={minDate} />
+        </FormField>
+      </Column>
+    </Row>
     <Column>
       <ControlSection>
         <Button color="primary" onclick={handleOnConfirm} class="ApplyFiltersButton">

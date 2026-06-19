@@ -24,8 +24,8 @@ importers:
         specifier: ^0.2.31
         version: 0.2.31(@flightlesslabs/dodo-ui@0.36.9(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte-number-format@2.0.0(svelte@5.56.3(@typescript-eslint/types@8.61.1)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))
       '@flightlesslabs/time-utils':
-        specifier: ^0.2.2
-        version: 0.2.2
+        specifier: ^0.2.3
+        version: 0.2.3
       '@iconify/svelte':
         specifier: ^5.2.2
         version: 5.2.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))
@@ -35,6 +35,9 @@ importers:
       bits-ui:
         specifier: ^2.18.1
         version: 2.18.1(@internationalized/date@3.12.2)(@sveltejs/kit@2.65.2(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.3(@typescript-eslint/types@8.61.1))(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))(typescript@6.0.3)(vite@8.0.16(@types/node@24.13.2)(esbuild@0.27.7)(sass-embedded@1.100.0)(sass@1.100.0)))(svelte@5.56.3(@typescript-eslint/types@8.61.1))
+      dayjs:
+        specifier: ^1.11.21
+        version: 1.11.21
       dexie:
         specifier: ^4.4.4
         version: 4.4.4
@@ -604,8 +607,8 @@ packages:
     peerDependencies:
       svelte: ^5.0.0
 
-  '@flightlesslabs/time-utils@0.2.2':
-    resolution: {integrity: sha512-z8y4THw8RTvKWTCAI1nr1vfuakqa3dIg/89RztE4Oa195aXXMcxfowSCQyAjyEoB26VIoLt7oARL6xspE5hErw==}
+  '@flightlesslabs/time-utils@0.2.3':
+    resolution: {integrity: sha512-auL1x/WEnO76soHf6Nu9aIErz/LWVozbpnLaN//IWmKMMDv11CuzRO2oBkeCUUSY8EbHJdyi+iYt+vbko01YiQ==}
 
   '@floating-ui/core@1.7.5':
     resolution: {integrity: sha512-1Ih4WTWyw0+lKyFMcBHGbb5U5FtuHJuujoyyr5zTaWS5EYMeT6Jb2AuDeftsCsEuchO+mM2ij5+q9crhydzLhQ==}
@@ -3282,7 +3285,7 @@ snapshots:
       esm-env: 1.2.2
       svelte: 5.56.3(@typescript-eslint/types@8.61.1)
 
-  '@flightlesslabs/time-utils@0.2.2':
+  '@flightlesslabs/time-utils@0.2.3':
     dependencies:
       dayjs: 1.11.21
 

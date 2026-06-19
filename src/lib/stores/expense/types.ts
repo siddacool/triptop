@@ -1,3 +1,4 @@
+import { type Dayjs } from 'dayjs';
 import type { Category } from '../category/types';
 
 export interface Expense {
@@ -13,6 +14,7 @@ export interface Expense {
   archived?: boolean;
   searchFields?: {
     name: string;
+    date: Dayjs;
   };
 }
 

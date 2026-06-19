@@ -1,3 +1,4 @@
+import { createDate } from '@flightlesslabs/time-utils';
 import type { Expense } from '../types';
 
 export function addSearchFields(expenses: Expense[]): Expense[] {
@@ -8,6 +9,7 @@ export function addSearchFields(expenses: Expense[]): Expense[] {
       ...expense,
       searchFields: {
         name: expense.name.trim().toLowerCase(),
+        date: createDate(expense.date),
       },
     });
   }

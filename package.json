@@ -49,10 +49,11 @@
     "@flightlesslabs/dodo-ui-bits": "^0.10.12",
     "@flightlesslabs/dodo-ui-date": "^0.4.32",
     "@flightlesslabs/dodo-ui-numeric": "^0.2.31",
-    "@flightlesslabs/time-utils": "^0.2.2",
+    "@flightlesslabs/time-utils": "^0.2.3",
     "@iconify/svelte": "^5.2.2",
     "@internationalized/date": "^3.12.2",
     "bits-ui": "^2.18.1",
+    "dayjs": "^1.11.21",
     "dexie": "^4.4.4",
     "nanoid": "^5.1.11",
     "svelte-number-format": "^2.0.0"
