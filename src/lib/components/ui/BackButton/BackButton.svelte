@@ -14,13 +14,15 @@
 <div class="BackButton">
   <Button
     {href}
-    roundness="pill"
     class="BackButtonButton"
     variant="text"
     aria-label="Back button"
-    outline
+    background="none"
+    compact
+    roundness="full"
+    color="neutral"
   >
-    <Icon icon="lets-icons:back" />
+    <Icon icon="ic:twotone-arrow-back" />
   </Button>
 </div>
 

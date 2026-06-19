@@ -10,8 +10,10 @@
 
 <style lang="scss">
   .Controls {
+    display: flex;
+    margin: 0 -2px;
     :global(.dodo-ui-Button) {
-      margin: 0 4px;
+      margin: 0 2px;
     }
   }
 </style>

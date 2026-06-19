@@ -11,10 +11,12 @@
   aria-label="Trip settings"
   class="TripPageEditTrip"
   variant="text"
-  roundness="pill"
+  roundness="full"
   title="Trip settings"
   href={resolve(`/trips/${tripId}/edit`)}
-  outline
+  compact
+  color="neutral"
+  background="none"
 >
   <Icon icon="material-symbols:settings-outline-rounded" />
 </Button>

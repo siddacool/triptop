@@ -10,7 +10,7 @@
 <Button
   href={resolve(`/trips/${tripId}/expenses/add`)}
   roundness="full"
-  class="TripPageAddExpense"
+  class="TripPageAddExpense dodo-shadow-2"
   aria-label="Add expense"
   title="Add expense"
   compact

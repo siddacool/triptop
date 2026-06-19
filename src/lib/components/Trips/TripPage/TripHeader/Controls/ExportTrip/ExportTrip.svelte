@@ -10,10 +10,12 @@
   aria-label="Export trip"
   class="TripPageExportTrip"
   variant="text"
-  roundness="pill"
+  roundness="full"
   title="Export trip"
-  outline
   onclick={() => (openModal = true)}
+  compact
+  color="neutral"
+  background="none"
 >
   <Icon icon="material-symbols:download" />
 </Button>

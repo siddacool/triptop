@@ -12,10 +12,12 @@
   aria-label="Edit expense"
   class="ExpensePageEditExpense"
   variant="text"
-  roundness="pill"
+  roundness="full"
   title="Edit expense"
   href={resolve(`/trips/${tripId}/expenses/${expenseId}/edit`)}
-  outline
+  compact
+  color="neutral"
+  background="none"
 >
   <Icon icon="material-symbols:edit-note-outline-rounded" />
 </Button>

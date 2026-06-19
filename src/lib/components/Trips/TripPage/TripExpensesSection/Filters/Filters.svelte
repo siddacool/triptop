@@ -8,7 +8,7 @@
 
 <style lang="scss">
   .Filters {
-    margin-top: calc(var(--dodo-ui-space) * 3);
+    margin-top: 0;
     margin-bottom: calc(var(--dodo-ui-space) * 3);
   }
 </style>
