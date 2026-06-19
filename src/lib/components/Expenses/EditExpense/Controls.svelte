@@ -14,10 +14,20 @@
 
 <ControlSection>
   {#if mode === 'edit'}
-    <Button color="primary" type="submit" disabled={disabled || !isDataValid}>Save expense</Button>
+    <Button
+      color="primary"
+      type="submit"
+      disabled={disabled || !isDataValid}
+      class="event-submitter">Save expense</Button
+    >
     <Button color="primary" variant="text" onclick={onreset} {disabled}>Reset</Button>
   {:else}
-    <Button color="primary" type="submit" disabled={disabled || !isDataValid}>Add expense</Button>
+    <Button
+      color="primary"
+      type="submit"
+      disabled={disabled || !isDataValid}
+      class="event-submitter">Add expense</Button
+    >
   {/if}
 </ControlSection>
 

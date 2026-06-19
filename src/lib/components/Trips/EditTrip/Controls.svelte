@@ -14,10 +14,20 @@
 
 <ControlSection>
   {#if mode === 'edit'}
-    <Button color="primary" type="submit" disabled={disabled || !isDataValid}>Save trip</Button>
+    <Button
+      color="primary"
+      type="submit"
+      disabled={disabled || !isDataValid}
+      class="event-submitter">Save trip</Button
+    >
     <Button color="primary" variant="text" onclick={onreset} {disabled}>Reset</Button>
   {:else}
-    <Button color="primary" type="submit" disabled={disabled || !isDataValid}>Create trip</Button>
+    <Button
+      color="primary"
+      type="submit"
+      disabled={disabled || !isDataValid}
+      class="event-submitter">Create trip</Button
+    >
   {/if}
 </ControlSection>
 

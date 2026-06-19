@@ -43,6 +43,12 @@
       return;
     }
 
+    const eventSubmitter = event.submitter;
+
+    if (!eventSubmitter?.classList.contains('event-submitter')) {
+      return;
+    }
+
     const data: EditTripFormData = {
       name: name || '',
       currency: currency || 'USD',
