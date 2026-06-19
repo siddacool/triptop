@@ -27,11 +27,13 @@
 <style lang="scss">
   .Amount {
     margin: 0;
-    font-weight: 500;
-    color: var(--dodo-color-neutral-800);
 
     &.archived {
       text-decoration: line-through;
+    }
+
+    :global(.dodo-ui-Text) {
+      color: var(--dodo-color-neutral-800);
     }
   }
 </style>

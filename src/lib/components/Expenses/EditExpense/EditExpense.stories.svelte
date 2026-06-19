@@ -5,7 +5,6 @@
   import { Theme } from '@flightlesslabs/dodo-ui';
   import { mockDataTrips } from '$lib/stores/trip/data/mock-data-trips';
   import { Category } from '$lib/stores/category/types';
-  import { PaymentModes } from '$lib/stores/payment-modes/types';
 
   // ------------------------------
   // Storybook Meta
@@ -33,7 +32,6 @@
       name: 'Dinner at Koko',
       amount: 500,
       category: Category.TRANSPORT,
-      paymentMode: PaymentModes.CASH,
       date: '2025-05-12',
     } as Expense,
   }}

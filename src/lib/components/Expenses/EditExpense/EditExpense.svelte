@@ -28,19 +28,16 @@
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
   import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
   import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
-  import PaymentModeSelect from '$lib/components/ui/PaymentMode/PaymentModeSelect/PaymentModeSelect.svelte';
   import { Category } from '$lib/stores/category/types';
-  import { PaymentModes } from '$lib/stores/payment-modes/types';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
   let name = $derived(data?.name);
   let amount = $derived(data?.amount || null);
-  let paymentMode: PaymentModes = $derived(data?.paymentMode || PaymentModes.CASH);
   let category: Category = $derived(data?.category || Category.OTHER);
   let date = $derived<DateValue>(parseDate(createDate(data?.date).format('YYYY-MM-DD')));
 
-  const isDataValid = $derived(name && category && paymentMode && date ? true : false);
+  const isDataValid = $derived(name && category && date ? true : false);
 
   function submit(event: SubmitEvent) {
     event.preventDefault();
@@ -58,7 +55,6 @@
     const data = {
       name,
       amount,
-      paymentMode: paymentMode || PaymentModes.CASH,
       category: category || Category.OTHER,
       date: date.toString(),
     } as EditExpenseFormData;
@@ -69,7 +65,6 @@
   function reset() {
     name = data?.name;
     amount = data?.amount || null;
-    paymentMode = data?.paymentMode || PaymentModes.CASH;
     category = data?.category || Category.OTHER;
     date = parseDate(createDate(data?.date).format('YYYY-MM-DD'));
   }
@@ -104,15 +99,9 @@
         </Column>
 
         <Row>
-          <Column lg="flex" size="flex">
+          <Column lg="flex">
             <FormField label="Category:" for="category">
               <CategorySelect name="category" bind:value={category} />
-            </FormField>
-          </Column>
-
-          <Column lg={3} size={5}>
-            <FormField label="Mode:" for="paymentMode">
-              <PaymentModeSelect name="paymentMode" bind:value={paymentMode} />
             </FormField>
           </Column>
 

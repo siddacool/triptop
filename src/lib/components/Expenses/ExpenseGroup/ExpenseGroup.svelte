@@ -23,9 +23,6 @@
     flex-direction: column;
     margin: 0;
     padding: 0;
-
-    @media (min-width: 600px) {
-      margin-top: calc(var(--dodo-ui-space) * 2);
-    }
+    margin-top: var(--dodo-ui-space);
   }
 </style>

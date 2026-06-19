@@ -1,6 +1,5 @@
 import { Category } from '$lib/stores/category/types';
 import { type Expense } from '$lib/stores/expense/types';
-import { PaymentModes } from '$lib/stores/payment-modes/types';
 
 export const mockDataExpenses: Expense[] = [
   {
@@ -13,7 +12,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.FLIGHT,
     date: '2026-06-15',
-    paymentMode: PaymentModes.CARD,
   },
   {
     id: 2,
@@ -25,7 +23,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.STAY,
     date: '2026-06-16',
-    paymentMode: PaymentModes.CARD,
   },
   {
     id: 3,
@@ -37,7 +34,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.TRANSPORT,
     date: '2026-06-17',
-    paymentMode: PaymentModes.CASH,
   },
   {
     id: 4,
@@ -49,7 +45,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.OTHER,
     date: '2026-06-17',
-    paymentMode: PaymentModes.CASH,
   },
   {
     id: 5,
@@ -61,7 +56,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.FOOD,
     date: '2026-06-17',
-    paymentMode: PaymentModes.CARD,
   },
   {
     id: 6,
@@ -73,7 +67,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.TOUR,
     date: '2026-06-18',
-    paymentMode: PaymentModes.CARD,
   },
   {
     id: 7,
@@ -85,7 +78,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.FOOD,
     date: '2026-06-18',
-    paymentMode: PaymentModes.CASH,
   },
   {
     id: 8,
@@ -97,7 +89,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.SHOPPING,
     date: '2026-06-18',
-    paymentMode: PaymentModes.CASH,
   },
   {
     id: 9,
@@ -109,7 +100,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.TRANSPORT,
     date: '2026-06-19',
-    paymentMode: PaymentModes.CASH,
   },
   {
     id: 10,
@@ -121,7 +111,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.ENTERTAINMENT,
     date: '2026-06-19',
-    paymentMode: PaymentModes.CARD,
   },
   {
     id: 11,
@@ -133,7 +122,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.MART,
     date: '2026-06-19',
-    paymentMode: PaymentModes.CASH,
   },
   {
     id: 12,
@@ -145,7 +133,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.FOOD,
     date: '2026-06-20',
-    paymentMode: PaymentModes.CASH,
   },
   {
     id: 13,
@@ -157,7 +144,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.TRANSPORT,
     date: '2026-06-21',
-    paymentMode: PaymentModes.CARD,
   },
   {
     id: 14,
@@ -169,7 +155,6 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2026',
     category: Category.TOUR,
     date: '2026-06-22',
-    paymentMode: PaymentModes.CASH,
   },
   {
     id: 15,
@@ -181,6 +166,5 @@ export const mockDataExpenses: Expense[] = [
     tripId: 'trip_malaysia_2024',
     category: Category.MART,
     date: '2024-06-23',
-    paymentMode: PaymentModes.CARD,
   },
 ];

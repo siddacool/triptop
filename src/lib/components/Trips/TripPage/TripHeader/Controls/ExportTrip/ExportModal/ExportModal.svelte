@@ -24,7 +24,7 @@
 
     const exporters = {
       [ExportTripType.JSON]: () => exportTripAsJson(trip, useExpenseListStore.expenses),
-      [ExportTripType.CSV]: () => exportTripAsCsv(trip, useExpenseListStore.expensesActive),
+      [ExportTripType.CSV]: () => exportTripAsCsv(trip, useExpenseListStore.expenses),
     };
 
     const exportData = exporters[exportType]?.();

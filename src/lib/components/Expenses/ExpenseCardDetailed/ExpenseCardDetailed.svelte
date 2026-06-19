@@ -6,7 +6,6 @@
   import { createDate } from '@flightlesslabs/time-utils';
   import DeletedPill from './DeletedPill.svelte';
   import CategoryShowCase from '$lib/components/ui/Category/CategoryShowCase/CategoryShowCase.svelte';
-  import PaymentModeShowCase from '$lib/components/ui/PaymentMode/PaymentModeShowCase/PaymentModeShowCase.svelte';
 
   type Props = {
     expense: Expense;
@@ -53,11 +52,6 @@
         <Column>
           <FieldValue label="Category:">
             <CategoryShowCase value={expense.category} />
-          </FieldValue>
-        </Column>
-        <Column>
-          <FieldValue label="Mode:">
-            <PaymentModeShowCase value={expense.paymentMode} />
           </FieldValue>
         </Column>
         <Column>

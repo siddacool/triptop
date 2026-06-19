@@ -15,7 +15,7 @@ export const categoryOptions: CategoryOption[] = [
     label: 'Shopping',
     meta: {
       icon: {
-        name: 'proicons:diamond',
+        name: 'proicons:cart',
       },
     },
   },

@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid/non-secure';
 import { db } from '../db';
 import { Category } from '../category/types';
-import { PaymentModes } from '../payment-modes/types';
 import type { EditExpenseFormData } from './types';
 
 function createEditExpenseStore() {
@@ -19,7 +18,6 @@ function createEditExpenseStore() {
         name: formData.name.trim(),
         amount: formData.amount,
         date: formData.date,
-        paymentMode: formData.paymentMode || PaymentModes.CASH,
         category: formData.category || Category.OTHER,
         createdAt: Date.now(),
         updatedAt: Date.now(),

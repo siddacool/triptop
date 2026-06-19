@@ -24,13 +24,14 @@ export function exportTripAsCsv(
     return stringValue;
   };
 
-  const rows = expenses.map((expense) => [
-    expense.name,
-    expense.amount,
-    new Date(expense.date).toLocaleDateString(trip.locale || DEFAULT_LOCALE),
-    expense.category ?? '',
-    expense.paymentMode ?? '',
-  ]);
+  const rows = expenses
+    .filter((item) => !item.archived)
+    .map((expense) => [
+      expense.name,
+      expense.amount,
+      new Date(expense.date).toLocaleDateString(trip.locale || DEFAULT_LOCALE),
+      expense.category ?? '',
+    ]);
 
   const csv = [headers.join(','), ...rows.map((row) => row.map(escapeCsvValue).join(','))].join(
     '\n',
