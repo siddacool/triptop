@@ -78,7 +78,7 @@ export const categoryOptions: CategoryOption[] = [
     label: 'Misc',
     meta: {
       icon: {
-        name: 'carbon:assembly-cluster',
+        name: 'proicons:apps',
       },
     },
   },
