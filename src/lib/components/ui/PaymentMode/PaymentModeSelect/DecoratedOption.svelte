@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { PaymentModesOption } from '$lib/stores/expense/types';
+  import { type PaymentModesOption } from '$lib/stores/payment-modes/types';
   import PaymentModeIcon from '../PaymentModeIcon/PaymentModeIcon.svelte';
 
   type Props = {

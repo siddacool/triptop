@@ -1,10 +1,5 @@
 <script lang="ts" module>
-  import {
-    Category,
-    PaymentModes,
-    type EditExpenseFormData,
-    type Expense,
-  } from '$lib/stores/expense/types';
+  import { type EditExpenseFormData, type Expense } from '$lib/stores/expense/types';
 
   type EditExpenseBaseProps = {
     onsubmit?: (data: EditExpenseFormData) => void;
@@ -34,6 +29,8 @@
   import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
   import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
   import PaymentModeSelect from '$lib/components/ui/PaymentMode/PaymentModeSelect/PaymentModeSelect.svelte';
+  import { Category } from '$lib/stores/category/types';
+  import { PaymentModes } from '$lib/stores/payment-modes/types';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 

@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import PaymentModeIcon from './PaymentModeIcon.svelte';
-  import { paymentModesOptions } from '$lib/stores/expense/types';
+  import { paymentModesOptions } from '$lib/stores/payment-modes/data';
 
   // ------------------------------
   // Storybook Meta

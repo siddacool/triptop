@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { paymentModesOptions, type PaymentModesOption } from '$lib/stores/expense/types';
   import { Select, type SelectProps } from '@flightlesslabs/dodo-ui-bits';
   import DecoratedOption from './DecoratedOption.svelte';
+  import { paymentModesOptions } from '$lib/stores/payment-modes/data';
+  import { type PaymentModesOption } from '$lib/stores/payment-modes/types';
 
   type Props = Partial<SelectProps>;
 

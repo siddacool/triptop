@@ -1,6 +1,8 @@
 import { nanoid } from 'nanoid/non-secure';
 import { db } from '../db';
-import { Category, PaymentModes, type EditExpenseFormData } from './types';
+import { Category } from '../category/types';
+import { PaymentModes } from '../payment-modes/types';
+import type { EditExpenseFormData } from './types';
 
 function createEditExpenseStore() {
   return {
