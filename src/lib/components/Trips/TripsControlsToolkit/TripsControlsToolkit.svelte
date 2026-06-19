@@ -4,13 +4,13 @@
   import ImportTrip from './ImportTrip.svelte';
 </script>
 
-<ControlSection class="TripListControls" controlsAlignment="center">
+<ControlSection class="TripsControlsToolkit" controlsAlignment="center">
   <CreateTrip />
   <ImportTrip />
 </ControlSection>
 
 <style lang="scss">
-  :global(.TripListControls) {
+  :global(.TripsControlsToolkit) {
     margin-top: calc(var(--dodo-ui-space) * 2);
   }
 </style>

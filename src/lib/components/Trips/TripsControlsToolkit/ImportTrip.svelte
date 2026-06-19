@@ -1,9 +1,9 @@
 <script lang="ts">
   import { Button } from '@flightlesslabs/dodo-ui';
-  import type { ExportTripJsonValue } from '../../TripPage/TripHeader/Controls/ExportTrip/ExportModal/export/export-json';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
   import { useTripImportStore } from '$lib/stores/trip/import.svelte';
   import { useTripListStore } from '$lib/stores/trip/list.svelte';
+  import type { ExportTripJsonValue } from '../TripPage/TripHeader/Controls/ExportTrip/ExportModal/export/export-json';
 
   let fileInput = $state<HTMLInputElement>();
 

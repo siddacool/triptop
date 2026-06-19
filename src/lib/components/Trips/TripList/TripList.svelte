@@ -1,12 +1,16 @@
-<script>
-  import { useTripListStore } from '$lib/stores/trip/list.svelte';
-  import Controls from './Controls/Controls.svelte';
+<script lang="ts">
+  import type { Trip } from '$lib/stores/trip/types';
   import TripListItems from './TripListItems/TripListItems.svelte';
+
+  type Props = {
+    trips: Trip[];
+  };
+
+  let { trips }: Props = $props();
 </script>
 
 <div class="TripList">
-  <TripListItems trips={useTripListStore.tripsActive} />
-  <Controls />
+  <TripListItems {trips} />
 </div>
 
 <style lang="scss">

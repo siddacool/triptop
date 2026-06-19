@@ -1,7 +1,10 @@
 <script>
   import MainPageHeader from '$lib/components/MainPage/MainPageHeader/MainPageHeader.svelte';
+  import TripAchivedLink from '$lib/components/Trips/TripAchivedLink.svelte';
   import TripList from '$lib/components/Trips/TripList/TripList.svelte';
+  import TripsControlsToolkit from '$lib/components/Trips/TripsControlsToolkit/TripsControlsToolkit.svelte';
   import { useTripListStore } from '$lib/stores/trip/list.svelte';
+
   import { onMount } from 'svelte';
 
   onMount(() => {
@@ -11,11 +14,12 @@
 
 <svelte:head>
   <title>Trips</title>
-  <meta name="theme-color" content="#f0f8ff" />
 </svelte:head>
 
 <MainPageHeader />
-<TripList />
+<TripAchivedLink />
+<TripList trips={useTripListStore.tripsActive} />
+<TripsControlsToolkit />
 
 <style lang="scss">
 </style>

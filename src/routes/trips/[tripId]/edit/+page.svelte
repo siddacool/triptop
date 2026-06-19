@@ -77,6 +77,39 @@
     }
   }
 
+  async function toggleArchive() {
+    const isArchived = useTripStore.trip?.archived || false;
+
+    try {
+      if (!tripId) {
+        return;
+      }
+
+      fetching = true;
+      await useEditTripStore.toggleArchived(tripId);
+
+      toasts.add({
+        title: 'Successs',
+        description: isArchived ? 'Trip unarchived' : 'Trip archived',
+        color: 'primary',
+      });
+
+      await useTripStore.fetch(tripId);
+
+      await goto(resolve('/trips'));
+    } catch (e) {
+      const message = e instanceof Error ? e.message : String(e);
+
+      toasts.add({
+        title: isArchived ? 'Failed to unarchived trip' : 'Failed to archived trip',
+        description: message,
+        color: 'danger',
+      });
+
+      fetching = false;
+    }
+  }
+
   function deleteConfirmation() {
     modals.add('confirm', {
       title: 'Delete Trip',
@@ -98,6 +131,12 @@
 
   <ControlSection controlsAlignment="center" class="TripEditControls">
     <Button color="danger" onclick={deleteConfirmation}>Delete trip</Button>
+
+    {#if useTripStore.trip.archived}
+      <Button onclick={toggleArchive}>Unarchive trip</Button>
+    {:else}
+      <Button color="neutral" onclick={toggleArchive}>Archive trip</Button>
+    {/if}
   </ControlSection>
 {:else}
   ---
