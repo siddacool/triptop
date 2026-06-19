@@ -1,5 +1,23 @@
 # triptop
 
+## 5.3.0
+
+### Minor Changes
+
+- f67f5fc: Special filters added
+- 0ef08a2: Removed payment mode
+
+### Patch Changes
+
+- e39bd38: Add Expense Floating button added
+- 036ba5c: Packages updated
+- abb8f31: Types shifted
+- b435598: Expense Card detailed styles updated
+- c06b214: Page nav header fixed
+- 0348173: Header hidden on default pages
+- 7943ba1: Fix: Form submit reacting to Select
+- 02156a9: PageHeadingNav added
+
 ## 5.2.0
 
 ### Minor Changes
