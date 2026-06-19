@@ -8,7 +8,6 @@
 
   import { ModalManager, ToastManager } from '@flightlesslabs/dodo-ui-bits';
   import { Theme } from '@flightlesslabs/dodo-ui';
-  import TheHeader from '$lib/components/TheHeader/TheHeader.svelte';
   import Main from '$lib/components/Main/Main.svelte';
 
   let { children } = $props();
@@ -16,7 +15,6 @@
 
 <Theme global class="Theme" type="auto">
   <div class="App">
-    <TheHeader />
     <Main>
       <div class="box">
         {@render children()}

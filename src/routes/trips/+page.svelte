@@ -1,4 +1,5 @@
 <script>
+  import MainPageHeader from '$lib/components/MainPage/MainPageHeader/MainPageHeader.svelte';
   import TripList from '$lib/components/Trips/TripList/TripList.svelte';
   import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import { onMount } from 'svelte';
@@ -13,6 +14,7 @@
   <meta name="theme-color" content="#f0f8ff" />
 </svelte:head>
 
+<MainPageHeader />
 <TripList />
 
 <style lang="scss">

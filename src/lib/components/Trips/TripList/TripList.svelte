@@ -10,4 +10,7 @@
 </div>
 
 <style lang="scss">
+  .TripList {
+    margin-top: calc(var(--dodo-ui-space) * 2);
+  }
 </style>
