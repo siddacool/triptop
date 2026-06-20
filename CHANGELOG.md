@@ -1,5 +1,11 @@
 # triptop
 
+## 5.4.1
+
+### Patch Changes
+
+- Restore category select style
+
 ## 5.4.0
 
 ### Minor Changes

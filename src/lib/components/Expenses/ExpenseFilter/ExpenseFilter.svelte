@@ -1,10 +1,9 @@
 <script lang="ts">
+  import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
-  import { categoryOptions } from '$lib/stores/category/data';
   import type { Category } from '$lib/stores/category/types';
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
   import { Button, Column, FormField, Grid, Indicator, Row } from '@flightlesslabs/dodo-ui';
-  import { Select } from '@flightlesslabs/dodo-ui-bits';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
   import { createDate } from '@flightlesslabs/time-utils';
   import { parseDate, type DateValue } from '@internationalized/date';
@@ -55,8 +54,7 @@
   <Grid gap={3}>
     <Column>
       <FormField label="Category:" for="category">
-        <Select
-          options={categoryOptions}
+        <CategorySelect
           name="category"
           bind:value={category}
           clearable

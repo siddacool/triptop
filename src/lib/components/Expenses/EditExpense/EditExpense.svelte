@@ -28,8 +28,7 @@
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
   import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
   import { Category } from '$lib/stores/category/types';
-  import { Select } from '@flightlesslabs/dodo-ui-bits';
-  import { categoryOptions } from '$lib/stores/category/data';
+  import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
@@ -102,7 +101,7 @@
         <Row>
           <Column lg="flex">
             <FormField label="Category:" for="category">
-              <Select name="category" bind:value={category} options={categoryOptions} />
+              <CategorySelect name="category" bind:value={category} />
             </FormField>
           </Column>
 
