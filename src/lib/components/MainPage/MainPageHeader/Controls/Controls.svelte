@@ -1,8 +1,8 @@
 <script>
   import PageHeadingNavControls from '$lib/components/ui/PageHeadingNavControls/PageHeadingNavControls.svelte';
-  import ThemeSwitch from './ThemeSwitch.svelte';
+  import Settings from './Settings.svelte';
 </script>
 
 <PageHeadingNavControls>
-  <ThemeSwitch />
+  <Settings />
 </PageHeadingNavControls>

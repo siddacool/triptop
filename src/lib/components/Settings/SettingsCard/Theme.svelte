@@ -1,7 +1,9 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import type { ComponentThemeColors } from '@flightlesslabs/dodo-ui';
-  import { Button, useThemeStore } from '@flightlesslabs/dodo-ui';
+  import { Column, useThemeStore } from '@flightlesslabs/dodo-ui';
+  import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
+  import { ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
 
   type ThemeMode = 'light' | 'dark' | 'auto';
@@ -9,6 +11,26 @@
   const TRIPTOP_THEME = 'TRIPTOP_THEME';
 
   let themeMode = $state<ThemeMode>('auto');
+
+  type ThemeOption = {
+    value: ThemeMode;
+    label: string;
+  };
+
+  const themeOptions: ThemeOption[] = [
+    {
+      value: 'auto',
+      label: 'Auto',
+    },
+    {
+      value: 'light',
+      label: 'Light',
+    },
+    {
+      value: 'dark',
+      label: 'Dark',
+    },
+  ];
 
   function getSystemTheme(): ComponentThemeColors {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -26,16 +48,6 @@
     if (themeColorMeta) {
       themeColorMeta?.setAttribute('content', newTheme === 'light' ? '#f0f8ff' : '#101828');
     }
-  }
-
-  function handleThemeSwitch() {
-    const themes: ThemeMode[] = ['light', 'dark', 'auto'];
-
-    const nextIndex = (themes.indexOf(themeMode) + 1) % themes.length;
-    const nextTheme = themes[nextIndex];
-
-    applyTheme(nextTheme);
-    localStorage.setItem(TRIPTOP_THEME, nextTheme);
   }
 
   onMount(() => {
@@ -63,28 +75,40 @@
   });
 </script>
 
-<Button
-  aria-label="Theme Switch"
-  class="ThemeSwitch"
-  variant="text"
-  roundness="pill"
-  title={`Theme: ${themeMode}`}
-  onclick={handleThemeSwitch}
-  compact
-  color="neutral"
-  background="none"
->
-  {#if themeMode === 'dark'}
-    <Icon icon="akar-icons:moon" />
-  {:else if themeMode === 'light'}
-    <Icon icon="akar-icons:sun" />
-  {:else}
-    <Icon icon="proicons:dark-theme" />
-  {/if}
-</Button>
+{#snippet contentIcon(value: ThemeMode)}
+  <span class="Icon">
+    {#if value === 'light'}
+      <Icon icon="tdesign:sunny" />
+    {:else if value === 'dark'}
+      <Icon icon="tdesign:moon" />
+    {:else}
+      <Icon icon="proicons:dark-theme" />
+    {/if}
+  </span>
+{/snippet}
+
+<Column>
+  <FieldValue label="Theme">
+    <ToggleGroup
+      type="single"
+      options={themeOptions as ThemeOption[]}
+      value={themeMode}
+      onValueChange={(val) => applyTheme(val as ThemeMode)}
+      attached
+      inactiveButtonProps={{ outline: true }}
+    >
+      {#snippet customContent({ value, label })}
+        {@render contentIcon(value as ThemeMode)}
+        {label}
+      {/snippet}
+    </ToggleGroup>
+  </FieldValue>
+</Column>
 
 <style lang="scss">
-  :global(.dodo-ui-Button.size--normal.ThemeSwitch) {
-    font-size: 1.4rem;
+  .Icon {
+    font-size: 1.3rem;
+    display: inline-flex;
+    margin-right: 6px;
   }
 </style>
