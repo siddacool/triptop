@@ -5,6 +5,15 @@ import type { EditExpenseFormData } from './types';
 
 function createEditExpenseStore() {
   return {
+    async _syncTrip(tripId: string) {
+      const targetTrip = await db.trips.where({ _id: tripId }).first();
+
+      if (targetTrip) {
+        await db.trips.update(targetTrip.id, {
+          updatedAt: Date.now(),
+        });
+      }
+    },
     async add(tripId: string, formData: EditExpenseFormData) {
       if (!formData?.name?.trim() || !formData.amount || !formData.date) {
         return;
@@ -22,6 +31,8 @@ function createEditExpenseStore() {
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
+
+      await this._syncTrip(tripId);
 
       return Promise.resolve(newExpenseId);
     },
@@ -42,6 +53,8 @@ function createEditExpenseStore() {
         updatedAt: Date.now(),
       });
 
+      await this._syncTrip(target.tripId);
+
       return Promise.resolve(expenseId);
     },
     async toggleArchived(expenseId: string) {
@@ -57,6 +70,8 @@ function createEditExpenseStore() {
         archived: !isArchived,
         updatedAt: Date.now(),
       });
+
+      await this._syncTrip(target.tripId);
 
       return Promise.resolve(expenseId);
     },

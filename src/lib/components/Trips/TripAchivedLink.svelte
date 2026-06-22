@@ -21,7 +21,7 @@
     display: inline-flex;
     align-items: center;
     border-radius: var(--dodo-ui-element-roundness-1);
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     text-decoration: none;
     transition:
@@ -29,8 +29,12 @@
       color 70ms,
       border-color 70ms;
 
+    @media (min-width: 600px) {
+      font-size: 1.1rem;
+    }
+
     .Icon {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: var(--dodo-color-neutral-600);
       display: inline-flex;
       margin-right: 4px;
@@ -38,6 +42,10 @@
         background-color 70ms,
         color 70ms,
         border-color 70ms;
+
+      @media (min-width: 600px) {
+        font-size: 1.5rem;
+      }
     }
 
     &:hover {
