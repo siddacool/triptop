@@ -4,7 +4,7 @@
 </script>
 
 <div class="SettingsCard">
-  <Card class="SettingsCardCard">
+  <Card class="SettingsCardCard" shadow={0} outline>
     <Grid gap={2}>
       <Theme />
     </Grid>
