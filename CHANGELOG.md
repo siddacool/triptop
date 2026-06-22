@@ -1,5 +1,15 @@
 # triptop
 
+## 5.7.0
+
+### Minor Changes
+
+- 527c042: Settings/Theme added
+
+### Patch Changes
+
+- c38ee98: Min max date renamed to start and end date
+
 ## 5.6.0
 
 ### Minor Changes

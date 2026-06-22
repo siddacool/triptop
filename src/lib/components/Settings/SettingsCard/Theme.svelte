@@ -1,43 +1,19 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   import type { ComponentThemeColors } from '@flightlesslabs/dodo-ui';
   import { Column, useThemeStore } from '@flightlesslabs/dodo-ui';
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
   import { ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
-
-  type ThemeMode = 'light' | 'dark' | 'auto';
-
-  const TRIPTOP_THEME = 'TRIPTOP_THEME';
-
-  let themeMode = $state<ThemeMode>('auto');
-
-  type ThemeOption = {
-    value: ThemeMode;
-    label: string;
-  };
-
-  const themeOptions: ThemeOption[] = [
-    {
-      value: 'auto',
-      label: 'Auto',
-    },
-    {
-      value: 'light',
-      label: 'Light',
-    },
-    {
-      value: 'dark',
-      label: 'Dark',
-    },
-  ];
+  import { useSettingsThemeStore } from '$lib/stores/settings/theme/theme.svelte';
+  import { themeOptions } from '$lib/stores/settings/theme/types';
+  import type { ThemeMode } from '$lib/stores/settings/theme/types';
 
   function getSystemTheme(): ComponentThemeColors {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
   function applyTheme(mode: ThemeMode) {
-    themeMode = mode;
+    useSettingsThemeStore.updateTheme(mode);
 
     const newTheme = mode === 'auto' ? getSystemTheme() : mode;
 
@@ -49,30 +25,6 @@
       themeColorMeta?.setAttribute('content', newTheme === 'light' ? '#f0f8ff' : '#101828');
     }
   }
-
-  onMount(() => {
-    const storedTheme = localStorage.getItem(TRIPTOP_THEME);
-
-    if (storedTheme === 'light' || storedTheme === 'dark' || storedTheme === 'auto') {
-      applyTheme(storedTheme);
-    } else {
-      applyTheme('auto');
-    }
-
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-    const handleSystemThemeChange = () => {
-      if (themeMode === 'auto') {
-        applyTheme('auto');
-      }
-    };
-
-    mediaQuery.addEventListener('change', handleSystemThemeChange);
-
-    return () => {
-      mediaQuery.removeEventListener('change', handleSystemThemeChange);
-    };
-  });
 </script>
 
 {#snippet contentIcon(value: ThemeMode)}
@@ -91,8 +43,8 @@
   <FieldValue label="Theme">
     <ToggleGroup
       type="single"
-      options={themeOptions as ThemeOption[]}
-      value={themeMode}
+      options={themeOptions}
+      value={useSettingsThemeStore.theme}
       onValueChange={(val) => applyTheme(val as ThemeMode)}
       attached
       inactiveButtonProps={{ outline: true }}

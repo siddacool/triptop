@@ -9,10 +9,12 @@
   import { ModalManager, ToastManager } from '@flightlesslabs/dodo-ui-bits';
   import { Theme } from '@flightlesslabs/dodo-ui';
   import Main from '$lib/components/Main/Main.svelte';
+  import ThemeSetter from '$lib/components/Settings/ThemeSetter.svelte';
 
   let { children } = $props();
 </script>
 
+<ThemeSetter />
 <Theme global class="Theme" type="auto">
   <div class="App">
     <Main>
