@@ -1,5 +1,11 @@
 # triptop
 
+## 5.4.2
+
+### Patch Changes
+
+- Fix category select breaking on smaller screens
+
 ## 5.4.1
 
 ### Patch Changes

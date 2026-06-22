@@ -5,13 +5,14 @@
 
   type Props = {
     option?: CategoryOption;
+    isListItem?: boolean;
   };
 
-  let { option }: Props = $props();
+  let { option, isListItem = false }: Props = $props();
 </script>
 
 {#if option}
-  <div class="DecoratedOption">
+  <div class="DecoratedOption" class:isListItem>
     <CategoryIcon value={option.value} class="DecoratedOptionCategoryIcon" />
     {option.label}
   </div>
@@ -25,6 +26,21 @@
     :global(.DecoratedOptionCategoryIcon) {
       margin-right: 8px;
       font-size: 1.25rem;
+    }
+
+    &.isListItem {
+      font-size: 0.8rem;
+      @media (min-width: 400px) {
+        font-size: 1rem;
+      }
+
+      :global(.DecoratedOptionCategoryIcon) {
+        font-size: 1rem;
+
+        @media (min-width: 400px) {
+          font-size: 1.25rem;
+        }
+      }
     }
   }
 </style>

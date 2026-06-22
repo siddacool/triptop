@@ -20,7 +20,7 @@
     {/snippet}
 
     {#snippet customListItemContent({ option })}
-      <DecoratedOption option={option as CategoryOption} />
+      <DecoratedOption option={option as CategoryOption} isListItem />
     {/snippet}
   </Select>
 </div>
