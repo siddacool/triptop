@@ -4,6 +4,7 @@
   import { page } from '$app/state';
   import EditExpense from '$lib/components/Expenses/EditExpense/EditExpense.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
+  import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
@@ -115,29 +116,35 @@
   <title>Edit expense</title>
 </svelte:head>
 
-{#if useExpenseStore.expense && useTripStore.trip}
-  <div>
-    <PageHeadingNav class="TripHeader" href={`/trips/${tripId}/expenses/${expenseId}`}>
-      Edit expense
-    </PageHeadingNav>
-    <EditExpense
-      trip={useTripStore.trip}
-      mode="edit"
-      data={useExpenseStore.expense}
-      onsubmit={updateExpense}
-      disabled={fetching}
-    />
-  </div>
+{#snippet content()}
+  {#if useExpenseStore.expense && useTripStore.trip}
+    <div>
+      <PageHeadingNav class="TripHeader" href={`/trips/${tripId}/expenses/${expenseId}`}>
+        Edit expense
+      </PageHeadingNav>
+      <EditExpense
+        trip={useTripStore.trip}
+        mode="edit"
+        data={useExpenseStore.expense}
+        onsubmit={updateExpense}
+        disabled={fetching}
+      />
+    </div>
 
-  <ControlSection class="ExpenseEditControls">
-    {#if isArchived}
-      <Button onclick={restoreConfirmation}>Restore expense</Button>
-    {:else}
-      <Button color="danger" onclick={deleteConfirmation}>Delete expense</Button>
-    {/if}
-  </ControlSection>
+    <ControlSection class="ExpenseEditControls">
+      {#if isArchived}
+        <Button onclick={restoreConfirmation}>Restore expense</Button>
+      {:else}
+        <Button color="danger" onclick={deleteConfirmation}>Delete expense</Button>
+      {/if}
+    </ControlSection>
+  {/if}
+{/snippet}
+
+{#if useExpenseStore.fetching || useTripStore.fetching}
+  <Loading />
 {:else}
-  ---
+  {@render content()}
 {/if}
 
 <style lang="scss">

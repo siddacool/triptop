@@ -6,7 +6,7 @@
   {#if useExpenseStore.expense?.name}
     {useExpenseStore.expense.name}
   {:else}
-    ---
+    ''
   {/if}
 </div>
 

@@ -6,7 +6,7 @@
   {#if useTripStore.trip?.name}
     {useTripStore.trip.name}
   {:else}
-    ---
+    ''
   {/if}
 </div>
 

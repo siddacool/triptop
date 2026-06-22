@@ -8,21 +8,21 @@
 </script>
 
 <Button
-  aria-label="Trip settings"
+  aria-label="Edit trip"
   class="TripPageEditTrip"
   variant="text"
   roundness="full"
-  title="Trip settings"
+  title="Edit trip"
   href={resolve(`/trips/${tripId}/edit`)}
   compact
   color="neutral"
   background="none"
 >
-  <Icon icon="material-symbols:settings-outline-rounded" />
+  <Icon icon="material-symbols:edit-note-outline-rounded" />
 </Button>
 
 <style lang="scss">
   :global(.dodo-ui-Button.size--normal.TripPageEditTrip) {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 </style>

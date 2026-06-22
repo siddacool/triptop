@@ -1,5 +1,18 @@
 # triptop
 
+## 5.6.0
+
+### Minor Changes
+
+- 40c4e1b: Loading added
+
+### Patch Changes
+
+- 40c4e1b: Trip creation workflow improved
+- User experiance changes added
+- a42ce21: Edit trip page fixed
+- 5e406d3: Expenses page fixed
+
 ## 5.5.0
 
 ### Minor Changes

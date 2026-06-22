@@ -24,11 +24,11 @@
     color: var(--dodo-color-neutral-900);
     padding: 5px 7px;
     border: 1px solid var(--dodo-color-neutral-900);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     border-radius: var(--dodo-ui-element-roundness-2);
 
     @media (min-width: 600px) {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     &.color--primary {

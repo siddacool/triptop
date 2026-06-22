@@ -1,13 +1,13 @@
 <script>
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
-  import { Button } from '@flightlesslabs/dodo-ui';
+  import PrimaryButton from '$lib/components/ui/Buttons/PrimaryButton/PrimaryButton.svelte';
   import Icon from '@iconify/svelte';
 
   const tripId = page.params.tripId;
 </script>
 
-<Button
+<PrimaryButton
   href={resolve(`/trips/${tripId}/expenses/add`)}
   roundness="full"
   class="TripPageAddExpense dodo-shadow-2"
@@ -17,7 +17,7 @@
   size="large"
 >
   <Icon icon="material-symbols:add-rounded" />
-</Button>
+</PrimaryButton>
 
 <style lang="scss">
   :global(.dodo-ui-Button.size--large.TripPageAddExpense) {

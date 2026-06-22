@@ -3,11 +3,11 @@
 </script>
 
 <p class="DeletedPill">
-  <Chip color="danger">Expense deleted</Chip>
+  <Chip color="danger">Deleted</Chip>
 </p>
 
 <style lang="scss">
   p {
-    margin-top: 0;
+    margin: 0;
   }
 </style>

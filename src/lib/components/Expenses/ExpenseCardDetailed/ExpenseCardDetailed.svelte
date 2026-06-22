@@ -108,8 +108,6 @@
     }
 
     &.archived {
-      opacity: 0.7;
-
       :global(.Amount) {
         text-decoration: line-through;
       }
