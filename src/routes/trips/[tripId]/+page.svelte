@@ -1,12 +1,17 @@
 <script lang="ts">
   import { beforeNavigate } from '$app/navigation';
+  import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import TripExpensesSection from '$lib/components/Trips/TripPage/TripExpensesSection/TripExpensesSection.svelte';
   import TripHeader from '$lib/components/Trips/TripPage/TripHeader/TripHeader.svelte';
+  import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
+  import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
+  import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { useTripPageStore } from '$lib/stores/app/pages/trip-page.svelte';
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { Button } from '@flightlesslabs/dodo-ui';
   import { onMount } from 'svelte';
 
   const tripId = page.params.tripId;
@@ -29,11 +34,28 @@
 </script>
 
 <svelte:head>
-  <title>{useTripStore.trip?.name || ''}</title>
+  <title>{useTripStore.trip?.name || '...'}</title>
 </svelte:head>
 
-<TripHeader />
-<TripExpensesSection />
+{#snippet content()}
+  <TripHeader />
+  {#if useExpenseListStore.mounted && useTripStore.mounted && !useExpenseListStore.expenses.length}
+    <Instructions>
+      You don't have any expenses.<br /> use "Add expense" button to add an expense
+    </Instructions>
+    <ControlSection controlsAlignment="center">
+      <Button href={resolve(`/trips/${tripId}/expenses/add`)}>Add expense</Button>
+    </ControlSection>
+  {:else if useExpenseListStore.mounted && useTripStore.mounted && useExpenseListStore.expenses.length}
+    <TripExpensesSection />
+  {/if}
+{/snippet}
+
+{#if useExpenseListStore.fetching || useTripStore.fetching}
+  <Loading />
+{:else}
+  {@render content()}
+{/if}
 
 <style lang="scss">
 </style>

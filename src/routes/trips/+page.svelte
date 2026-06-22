@@ -19,7 +19,7 @@
 </svelte:head>
 
 <MainPageHeader />
-{#if useTripListStore.fetching && !useTripListStore.mounted}
+{#if useTripListStore.fetching}
   <Loading />
 {:else if useTripListStore.mounted && !useTripListStore.tripsAll.length}
   <Instructions>

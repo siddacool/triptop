@@ -19,8 +19,6 @@
     <ExpenseGroup data={groupExpenses} trip={useTripStore.trip} />
     <FloatingControls />
   </div>
-{:else}
-  ---
 {/if}
 
 <style lang="scss">

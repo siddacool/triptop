@@ -2,23 +2,26 @@
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
   import ExportModal from './ExportModal/ExportModal.svelte';
+  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
 
   let openModal = $state(false);
 </script>
 
-<Button
-  aria-label="Export trip"
-  class="TripPageExportTrip"
-  variant="text"
-  roundness="full"
-  title="Export trip"
-  onclick={() => (openModal = true)}
-  compact
-  color="neutral"
-  background="none"
->
-  <Icon icon="material-symbols:download" />
-</Button>
+{#if useExpenseListStore.expenses.length}
+  <Button
+    aria-label="Export trip"
+    class="TripPageExportTrip"
+    variant="text"
+    roundness="full"
+    title="Export trip"
+    onclick={() => (openModal = true)}
+    compact
+    color="neutral"
+    background="none"
+  >
+    <Icon icon="material-symbols:download" />
+  </Button>
+{/if}
 
 <ExportModal bind:open={openModal} />
 
