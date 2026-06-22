@@ -1,19 +1,10 @@
 <script>
+  import PageHeadingNavControls from '$lib/components/ui/PageHeadingNavControls/PageHeadingNavControls.svelte';
   import EditTrip from './EditTrip.svelte';
   import ExportTrip from './ExportTrip/ExportTrip.svelte';
 </script>
 
-<div class="Controls">
+<PageHeadingNavControls>
   <ExportTrip />
   <EditTrip />
-</div>
-
-<style lang="scss">
-  .Controls {
-    display: flex;
-    margin: 0 -2px;
-    :global(.dodo-ui-Button) {
-      margin: 0 2px;
-    }
-  }
-</style>
+</PageHeadingNavControls>

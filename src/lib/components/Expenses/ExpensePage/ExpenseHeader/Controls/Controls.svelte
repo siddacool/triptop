@@ -1,15 +1,8 @@
 <script>
+  import PageHeadingNavControls from '$lib/components/ui/PageHeadingNavControls/PageHeadingNavControls.svelte';
   import EditExpense from './EditExpense.svelte';
 </script>
 
-<div class="Controls">
+<PageHeadingNavControls>
   <EditExpense />
-</div>
-
-<style lang="scss">
-  .Controls {
-    :global(.dodo-ui-Button) {
-      margin: 0 4px;
-    }
-  }
-</style>
+</PageHeadingNavControls>
