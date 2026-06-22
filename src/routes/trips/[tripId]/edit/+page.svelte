@@ -4,6 +4,7 @@
   import { page } from '$app/state';
   import EditTrip from '$lib/components/Trips/EditTrip/EditTrip.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
+  import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
@@ -117,13 +118,23 @@
       onaccept: deleteTrip,
     });
   }
+
+  function archiveConfirmation() {
+    modals.add('confirm', {
+      title: 'Archive Trip',
+      description: 'Are you sure you want to archive this trip?',
+      onaccept: toggleArchive,
+    });
+  }
 </script>
 
 <svelte:head>
   <title>Edit trip</title>
 </svelte:head>
 
-{#if useTripStore.trip}
+{#if useTripStore.fetching}
+  <Loading />
+{:else if useTripStore.trip}
   <div>
     <PageHeadingNav class="TripHeader" href={`/trips/${tripId}`}>Edit trip</PageHeadingNav>
     <EditTrip data={useTripStore.trip} mode="edit" onsubmit={updateTrip} disabled={fetching} />
@@ -135,11 +146,9 @@
     {#if useTripStore.trip.archived}
       <Button onclick={toggleArchive}>Unarchive trip</Button>
     {:else}
-      <Button color="neutral" onclick={toggleArchive}>Archive trip</Button>
+      <Button color="neutral" onclick={archiveConfirmation}>Archive trip</Button>
     {/if}
   </ControlSection>
-{:else}
-  ---
 {/if}
 
 <style lang="scss">
