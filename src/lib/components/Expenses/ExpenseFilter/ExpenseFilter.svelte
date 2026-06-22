@@ -91,12 +91,12 @@
       </Column>
       <Row>
         <Column lg={6}>
-          <FormField label="Min Date:">
+          <FormField label="Start Date:">
             <DatePicker bind:value={minDate} clearable maxValue={maxDate} size="small" />
           </FormField>
         </Column>
         <Column lg={6}>
-          <FormField label="Max Date:">
+          <FormField label="End Date:">
             <DatePicker bind:value={maxDate} clearable minValue={minDate} size="small" />
           </FormField>
         </Column>
