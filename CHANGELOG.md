@@ -1,5 +1,11 @@
 # triptop
 
+## 5.4.3
+
+### Patch Changes
+
+- cc95377: Button layouts fixed
+
 ## 5.4.2
 
 ### Patch Changes
