@@ -1,9 +1,9 @@
 <script>
-  import { Text } from '@flightlesslabs/dodo-ui';
+  import Chip from '$lib/components/ui/Chip/Chip.svelte';
 </script>
 
-<p>
-  <Text color="danger">Expense deleted</Text>
+<p class="DeletedPill">
+  <Chip color="danger">Expense deleted</Chip>
 </p>
 
 <style lang="scss">

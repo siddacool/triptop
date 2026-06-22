@@ -1,0 +1,5 @@
+---
+'triptop': minor
+---
+
+Chip added

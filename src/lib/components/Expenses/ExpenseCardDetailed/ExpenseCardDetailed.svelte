@@ -23,26 +23,29 @@
 
 <div class={classes.join(' ')}>
   <Card class="ExpenseCardDetailedCard" roundness={1} outline shadow={0}>
-    {#if expense.archived}
-      <DeletedPill />
-    {/if}
     <Grid gap={2}>
       <Column>
-        <FieldValue size="large">
-          <Threshold
-            value={expense.amount}
-            threshold={0}
-            colorMap={{ above: 'default' }}
-            class="Amount"
-          >
-            <Money
+        <div class="HeadingSection">
+          <FieldValue size="large">
+            <Threshold
               value={expense.amount}
-              currency={trip.currency}
-              locale={trip.locale || DEFAULT_LOCALE}
-              options={{ maximumFractionDigits: 2 }}
-            />
-          </Threshold>
-        </FieldValue>
+              threshold={0}
+              colorMap={{ above: 'default' }}
+              class="Amount"
+            >
+              <Money
+                value={expense.amount}
+                currency={trip.currency}
+                locale={trip.locale || DEFAULT_LOCALE}
+                options={{ maximumFractionDigits: 2 }}
+              />
+            </Threshold>
+          </FieldValue>
+
+          {#if expense.archived}
+            <DeletedPill />
+          {/if}
+        </div>
       </Column>
       <Column>
         <FieldValue>
@@ -72,6 +75,13 @@
   .ExpenseCardDetailed {
     display: flex;
     flex-direction: column;
+
+    .HeadingSection {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
 
     .details {
       display: flex;
