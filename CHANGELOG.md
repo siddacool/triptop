@@ -1,5 +1,16 @@
 # triptop
 
+## 5.5.0
+
+### Minor Changes
+
+- 9f6478c: Chip added
+
+### Patch Changes
+
+- d906c60: Trip updated on expense update
+- f6bcf52: Filters made inline
+
 ## 5.4.3
 
 ### Patch Changes
