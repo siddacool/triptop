@@ -12,9 +12,9 @@
   async function createTrip(data: EditTripFormData) {
     try {
       fetching = true;
-      await useEditTripStore.add(data);
+      const newTripId = await useEditTripStore.add(data);
 
-      await goto(resolve('/trips'));
+      await goto(resolve(`/trips/${newTripId}`));
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 
@@ -30,10 +30,10 @@
 </script>
 
 <svelte:head>
-  <title>Create trip</title>
+  <title>Create new trip</title>
 </svelte:head>
 
 <div>
-  <PageHeadingNav class="TripHeader" href="/trips">Create trip</PageHeadingNav>
+  <PageHeadingNav class="TripHeader" href="/trips">Create new trip</PageHeadingNav>
   <EditTrip mode="create" onsubmit={createTrip} disabled={fetching} />
 </div>

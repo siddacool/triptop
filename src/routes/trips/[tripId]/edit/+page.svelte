@@ -129,7 +129,7 @@
     <EditTrip data={useTripStore.trip} mode="edit" onsubmit={updateTrip} disabled={fetching} />
   </div>
 
-  <ControlSection class="TripEditControls">
+  <ControlSection class="TripEditControls" controlsAlignment="center">
     <Button color="danger" onclick={deleteConfirmation}>Delete trip</Button>
 
     {#if useTripStore.trip.archived}
