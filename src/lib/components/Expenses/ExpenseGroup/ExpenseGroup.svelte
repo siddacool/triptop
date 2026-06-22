@@ -24,5 +24,6 @@
     margin: 0;
     padding: 0;
     margin-top: var(--dodo-ui-space);
+    padding-bottom: 70px;
   }
 </style>

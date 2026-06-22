@@ -1,16 +1,9 @@
-<script>
-  import ExpenseFilter from '$lib/components/Expenses/ExpenseFilter/ExpenseFilter.svelte';
+<script lang="ts">
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
   import { Button, Indicator } from '@flightlesslabs/dodo-ui';
-  import { Modal } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
-
-  let openModal = $state(false);
+  import { useTripPageStore } from '$lib/stores/app/pages/trip-page.svelte';
 </script>
-
-<Modal bind:open={openModal} title="Expense filters" min-width="500px" max-width="500px">
-  <ExpenseFilter onclear={() => (openModal = false)} onconfirm={() => (openModal = false)} />
-</Modal>
 
 <div class="SpecialFilters">
   {#if useExpenseFiltersStore.isSpecialFiltersActive}
@@ -23,7 +16,7 @@
     outline
     variant="text"
     color="neutral"
-    onclick={() => (openModal = true)}
+    onclick={useTripPageStore.toggleShowSpecailFiltersSelector}
   >
     <Icon icon="mdi:filter-outline" />
   </Button>

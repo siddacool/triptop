@@ -4,6 +4,7 @@
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Filters from './Filters/Filters.svelte';
+  import SpecialFiltersSelector from './Filters/SpecialFilters/SpecialFiltersSelector.svelte';
   import FloatingControls from './FloatingControls/FloatingControls.svelte';
   import Stats from './Stats/Stats.svelte';
 
@@ -13,6 +14,7 @@
 {#if useTripStore.trip}
   <div class="TripExpensesSection">
     <Filters />
+    <SpecialFiltersSelector />
     <Stats />
     <ExpenseGroup data={groupExpenses} trip={useTripStore.trip} />
     <FloatingControls />

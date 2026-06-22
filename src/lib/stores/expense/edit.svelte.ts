@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid/non-secure';
+import { nanoid } from 'nanoid';
 import { db } from '../db';
 import { Category } from '../category/types';
 import type { EditExpenseFormData } from './types';
