@@ -3,6 +3,7 @@
   import { getGroupExpenses } from '$lib/stores/expense/getters/group-expenses';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import Callouts from './Callouts/Callouts.svelte';
   import Filters from './Filters/Filters.svelte';
   import SpecialFiltersSelector from './Filters/SpecialFilters/SpecialFiltersSelector.svelte';
   import FloatingControls from './FloatingControls/FloatingControls.svelte';
@@ -13,6 +14,7 @@
 
 {#if useTripStore.trip}
   <div class="TripExpensesSection">
+    <Callouts />
     <Filters />
     <SpecialFiltersSelector />
     <Stats />

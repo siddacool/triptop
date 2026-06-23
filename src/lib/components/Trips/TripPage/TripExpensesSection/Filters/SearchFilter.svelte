@@ -24,6 +24,6 @@
 <style lang="scss">
   .SearchFilter {
     flex: 1;
-    margin-right: calc(var(--dodo-ui-space) * 1);
+    margin-right: var(--dodo-ui-space);
   }
 </style>

@@ -1,5 +1,11 @@
 # triptop
 
+## 5.9.0
+
+### Minor Changes
+
+- Curruency Conversion support added
+
 ## 5.8.1
 
 ### Patch Changes

@@ -23,7 +23,6 @@ function createExpenseStore() {
         expense = await db.expense.where({ _id: expenseId }).first();
 
         mounted = true;
-        fetching = false;
 
         return Promise.resolve();
       } catch (e) {
@@ -32,6 +31,8 @@ function createExpenseStore() {
         this.reset();
 
         return Promise.reject(e);
+      } finally {
+        fetching = false;
       }
     },
     reset() {
