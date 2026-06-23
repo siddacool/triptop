@@ -1,5 +1,0 @@
----
-'triptop': minor
----
-
-Filters reiterated

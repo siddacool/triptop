@@ -1,5 +1,17 @@
 # triptop
 
+## 5.8.0
+
+### Minor Changes
+
+- 1514158: Filters reiterated
+- 954c605: Gobal Local added
+- 6fdf53b: Date format localization added
+
+### Patch Changes
+
+- 6cdced5: User interface section added
+
 ## 5.7.0
 
 ### Minor Changes
