@@ -29,6 +29,8 @@
   import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
   import { Category } from '$lib/stores/category/types';
   import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { dateFormatOptions } from '$lib/stores/settings/date-format/types';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
@@ -36,6 +38,10 @@
   let amount = $derived(data?.amount || null);
   let category: Category = $derived(data?.category || Category.OTHER);
   let date = $derived<DateValue>(parseDate(createDate(data?.date).format('YYYY-MM-DD')));
+  const dateFormat = $derived(
+    dateFormatOptions.find((item) => item.value === useSettingsStore.settings.dateFormat)
+      ?.valueDatePickerFormat,
+  );
 
   const isDataValid = $derived(name && category && date ? true : false);
 
@@ -107,7 +113,7 @@
 
           <Column lg="flex">
             <FormField label="Date:">
-              <DatePicker bind:value={date} />
+              <DatePicker bind:value={date} {dateFormat} />
             </FormField>
           </Column>
         </Row>

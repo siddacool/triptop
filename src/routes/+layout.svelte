@@ -10,8 +10,14 @@
   import { Theme } from '@flightlesslabs/dodo-ui';
   import Main from '$lib/components/Main/Main.svelte';
   import ThemeSetter from '$lib/components/Settings/ThemeSetter.svelte';
+  import { onMount } from 'svelte';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
 
   let { children } = $props();
+
+  onMount(() => {
+    useSettingsStore.fetchSettings();
+  });
 </script>
 
 <ThemeSetter />

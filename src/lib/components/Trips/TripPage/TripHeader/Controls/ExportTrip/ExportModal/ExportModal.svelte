@@ -8,6 +8,7 @@
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { exportTripAsCsv } from './export/export-csv';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
 
   type Props = {
     open: boolean;
@@ -24,7 +25,8 @@
 
     const exporters = {
       [ExportTripType.JSON]: () => exportTripAsJson(trip, useExpenseListStore.expenses),
-      [ExportTripType.CSV]: () => exportTripAsCsv(trip, useExpenseListStore.expenses),
+      [ExportTripType.CSV]: () =>
+        exportTripAsCsv(trip, useExpenseListStore.expenses, useSettingsStore.settings.dateFormat),
     };
 
     const exportData = exporters[exportType]?.();

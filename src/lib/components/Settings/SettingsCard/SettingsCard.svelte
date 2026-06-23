@@ -2,14 +2,16 @@
   import { Card } from '@flightlesslabs/dodo-ui';
   import { Accordion } from '@flightlesslabs/dodo-ui-bits';
   import UserInterface from './UserInterface/UserInterface.svelte';
+  import Localization from './Localization/Localization.svelte';
 
-  let accordianValue: string[] = $state(['user-interface']);
+  let accordianValue: string[] = $state(['user-interface', 'localization']);
 </script>
 
 <div class="SettingsCard">
   <Card class="SettingsCardCard" shadow={0} outline>
     <Accordion type="multiple" bind:value={accordianValue}>
       <UserInterface />
+      <Localization />
     </Accordion>
   </Card>
 </div>

@@ -1,11 +1,17 @@
 import { categoryOptions } from '$lib/stores/category/data';
 import type { Expense } from '$lib/stores/expense/types';
-import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
+import type { DateFormatMode } from '$lib/stores/settings/date-format/types';
+import { type Trip } from '$lib/stores/trip/types';
+import { createDate } from '@flightlesslabs/time-utils';
 import type { ExportTripValue } from '../types';
 
 export type ExportTripCsvValue = string;
 
-export function exportTripAsCsv(trip: Trip, expenses: Expense[]): ExportTripValue<string> {
+export function exportTripAsCsv(
+  trip: Trip,
+  expenses: Expense[],
+  dateFormat: DateFormatMode,
+): ExportTripValue<string> {
   const escapeCsvValue = (value: unknown) => {
     const str = value == null ? '' : String(value);
 
@@ -21,7 +27,7 @@ export function exportTripAsCsv(trip: Trip, expenses: Expense[]): ExportTripValu
           expense.name,
           expense.amount,
           categoryOptions.find((option) => option.value === expense.category)?.label ?? '',
-          new Date(expense.date).toLocaleDateString(trip.locale || DEFAULT_LOCALE),
+          createDate(expense.date).format(dateFormat),
         ]
           .map(escapeCsvValue)
           .join(','),

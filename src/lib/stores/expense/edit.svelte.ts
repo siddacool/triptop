@@ -35,8 +35,6 @@ function createEditExpenseStore() {
 
       const filterFields = updateFilterFields(data);
 
-      console.log('debug:', filterFields);
-
       await db.expense.add({
         ...data,
         filterFields,
@@ -67,8 +65,6 @@ function createEditExpenseStore() {
       };
 
       const filterFields = updateFilterFields(data);
-
-      console.log('debug:', filterFields);
 
       await db.expense.update(target.id, {
         ...formData,

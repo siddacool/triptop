@@ -3,6 +3,8 @@
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import type { Category } from '$lib/stores/category/types';
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
+  import { dateFormatOptions } from '$lib/stores/settings/date-format/types';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import {
     Button,
     Card,
@@ -36,6 +38,11 @@
     useExpenseFiltersStore.filters.maxDate
       ? parseDate(createDate(useExpenseFiltersStore.filters.maxDate).format('YYYY-MM-DD'))
       : undefined,
+  );
+
+  const dateFormat = $derived(
+    dateFormatOptions.find((item) => item.value === useSettingsStore.settings.dateFormat)
+      ?.valueDatePickerFormat,
   );
 
   let isAnyActive = $derived(category || minDate || maxDate ? true : false);
@@ -92,12 +99,24 @@
       <Row>
         <Column lg={6}>
           <FormField label="Start Date:">
-            <DatePicker bind:value={minDate} clearable maxValue={maxDate} size="small" />
+            <DatePicker
+              bind:value={minDate}
+              clearable
+              maxValue={maxDate}
+              size="small"
+              {dateFormat}
+            />
           </FormField>
         </Column>
         <Column lg={6}>
           <FormField label="End Date:">
-            <DatePicker bind:value={maxDate} clearable minValue={minDate} size="small" />
+            <DatePicker
+              bind:value={maxDate}
+              clearable
+              minValue={minDate}
+              size="small"
+              {dateFormat}
+            />
           </FormField>
         </Column>
       </Row>

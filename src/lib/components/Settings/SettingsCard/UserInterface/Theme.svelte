@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { ComponentThemeColors } from '@flightlesslabs/dodo-ui';
-  import { Column, useThemeStore } from '@flightlesslabs/dodo-ui';
-  import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
+  import { Column, FormField, useThemeStore } from '@flightlesslabs/dodo-ui';
   import { ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
   import { themeOptions } from '$lib/stores/settings/theme/types';
@@ -40,7 +39,7 @@
 {/snippet}
 
 <Column>
-  <FieldValue label="Theme">
+  <FormField label="Theme">
     <ToggleGroup
       type="single"
       options={themeOptions}
@@ -54,7 +53,7 @@
         {label}
       {/snippet}
     </ToggleGroup>
-  </FieldValue>
+  </FormField>
 </Column>
 
 <style lang="scss">

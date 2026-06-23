@@ -19,7 +19,9 @@
         <div class="Icon">
           <Icon icon="ri:arrow-drop-down-line" />
         </div>
-        {title}
+        <b>
+          {title}
+        </b>
       </div>
     </AccordionTrigger>
   {/snippet}
@@ -34,10 +36,15 @@
     display: flex;
     align-items: center;
   }
+
   .Icon {
     display: inline-flex;
     font-size: 1.6rem;
     cursor: pointer;
     color: inherit;
+  }
+
+  b {
+    font-weight: 500;
   }
 </style>

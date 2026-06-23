@@ -1,23 +1,15 @@
 import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
-import type { Category } from '../category/types';
+import type { DateFormatMode } from './date-format/types';
 import type { ThemeMode } from './theme/types';
-
-export type SettingsBase = {
-  search?: string;
-};
-
-export type SettingsSpecial = {
-  category?: Category;
-  minDate?: string;
-  maxDate?: string;
-};
 
 export type SettingsConfig = {
   theme: ThemeMode;
+  dateFormat: DateFormatMode;
 };
 
 const defaultStorageData: SettingsConfig = {
   theme: 'auto',
+  dateFormat: 'DD/MM/YYYY',
 };
 
 const dataFromStorage = getLocalStoreData<SettingsConfig>('local', 'SettingsConfig');
@@ -28,6 +20,9 @@ function createSettingsStore() {
   return {
     get settings() {
       return settings;
+    },
+    fetchSettings() {
+      settings = { ...defaultStorageData, ...dataFromStorage };
     },
     updateSettings(value: Partial<SettingsConfig>) {
       const newConfig = {
