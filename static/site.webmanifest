@@ -10,6 +10,8 @@
   "theme_color": "#ddd6ff",
   "background_color": "#ddd6ff",
   "categories": ["travel", "finance", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
   "shortcuts": [
     {
       "name": "Create new trip",

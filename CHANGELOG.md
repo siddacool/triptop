@@ -1,5 +1,12 @@
 # triptop
 
+## 5.9.2
+
+### Patch Changes
+
+- a034dba: Screenshot size fixed
+- More stuff added to manifest
+
 ## 5.9.1
 
 ### Patch Changes
