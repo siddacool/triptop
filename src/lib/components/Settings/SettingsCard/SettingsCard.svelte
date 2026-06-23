@@ -1,13 +1,16 @@
 <script lang="ts">
-  import { Card, Grid } from '@flightlesslabs/dodo-ui';
-  import Theme from './Theme.svelte';
+  import { Card } from '@flightlesslabs/dodo-ui';
+  import { Accordion } from '@flightlesslabs/dodo-ui-bits';
+  import UserInterface from './UserInterface/UserInterface.svelte';
+
+  let accordianValue: string[] = $state(['user-interface']);
 </script>
 
 <div class="SettingsCard">
   <Card class="SettingsCardCard" shadow={0} outline>
-    <Grid gap={2}>
-      <Theme />
-    </Grid>
+    <Accordion type="multiple" bind:value={accordianValue}>
+      <UserInterface />
+    </Accordion>
   </Card>
 </div>
 
