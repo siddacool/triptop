@@ -39,28 +39,28 @@
   "screenshots": [
     {
       "src": "/screenshot_trip_list_mobile_dark.png",
-      "sizes": "1140x3120",
+      "sizes": "1440x3120",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Trip list screen (Dark theme)"
     },
     {
       "src": "/screenshot_trip_list_mobile_light.png",
-      "sizes": "1140x3120",
+      "sizes": "1440x3120",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Trip list screen (Light theme)"
     },
     {
       "src": "/screenshot_trip_expenses_mobile_dark.png",
-      "sizes": "1140x3120",
+      "sizes": "1440x3120",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Trip expenses screen (Dark theme)"
     },
     {
       "src": "/screenshot_trip_expenses_mobile_light.png",
-      "sizes": "1140x3120",
+      "sizes": "1440x3120",
       "type": "image/png",
       "form_factor": "narrow",
       "label": "Trip expenses screen (Light theme)"
