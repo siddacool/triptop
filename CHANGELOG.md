@@ -1,5 +1,11 @@
 # triptop
 
+## 5.8.1
+
+### Patch Changes
+
+- f5615e1: filterFields db save removed
+
 ## 5.8.0
 
 ### Minor Changes

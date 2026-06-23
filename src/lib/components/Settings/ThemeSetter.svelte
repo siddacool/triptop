@@ -20,7 +20,7 @@
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
     if (themeColorMeta) {
-      themeColorMeta?.setAttribute('content', newTheme === 'light' ? '#ddd6ff' : '#2f0d68');
+      themeColorMeta?.setAttribute('content', newTheme === 'light' ? '#ddd6ff' : '#0f0324');
     }
   }
 
