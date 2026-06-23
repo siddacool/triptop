@@ -1,11 +1,12 @@
 <script lang="ts">
   import { getExpensesTotal } from '$lib/stores/expense/getters/total-expenses';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
-  import { DEFAULT_LOCALE } from '$lib/stores/trip/types';
   import { Money, Threshold } from '@flightlesslabs/dodo-ui';
 
   const total = $derived(getExpensesTotal(useExpenseListStore.filtredExpenses));
+  const locale = $derived(useTripStore?.trip?.locale || useSettingsStore.settings.locale);
 </script>
 
 {#if useTripStore.trip}
@@ -14,7 +15,7 @@
       <Money
         value={total}
         currency={useTripStore.trip.currency}
-        locale={useTripStore.trip.locale || DEFAULT_LOCALE}
+        {locale}
         options={{ maximumFractionDigits: 2 }}
       />
     </Threshold>

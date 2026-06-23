@@ -1,12 +1,13 @@
 <script lang="ts">
   import { type Expense } from '$lib/stores/expense/types';
   import { Card, Column, Grid, Money, Threshold } from '@flightlesslabs/dodo-ui';
-  import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
+  import { type Trip } from '$lib/stores/trip/types';
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
   import { createDate } from '@flightlesslabs/time-utils';
   import DeletedPill from './DeletedPill.svelte';
   import CategoryShowCase from '$lib/components/ui/Category/CategoryShowCase/CategoryShowCase.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
 
   type Props = {
     expense: Expense;
@@ -15,6 +16,8 @@
   };
 
   let { expense, trip, class: className = '' }: Props = $props();
+
+  const locale = $derived(trip.locale || useSettingsStore.settings.locale);
 
   const classes = $derived(
     ['ExpenseCardDetailed', expense.archived ? 'archived' : '', className].filter(Boolean),
@@ -36,7 +39,7 @@
               <Money
                 value={expense.amount}
                 currency={trip.currency}
-                locale={trip.locale || DEFAULT_LOCALE}
+                {locale}
                 options={{ maximumFractionDigits: 2 }}
               />
             </Threshold>

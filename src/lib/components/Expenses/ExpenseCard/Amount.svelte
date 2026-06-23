@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Expense } from '$lib/stores/expense/types';
-  import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { type Trip } from '$lib/stores/trip/types';
   import { Money, Threshold } from '@flightlesslabs/dodo-ui';
 
   type Props = {
@@ -10,6 +11,8 @@
 
   let { trip, expense }: Props = $props();
 
+  const locale = $derived(trip.locale || useSettingsStore.settings.locale);
+
   const classes = $derived(['Amount', expense.archived ? 'archived' : ''].filter(Boolean));
 </script>
 
@@ -18,7 +21,7 @@
     <Money
       value={expense.amount}
       currency={trip.currency}
-      locale={trip.locale || DEFAULT_LOCALE}
+      {locale}
       options={{ maximumFractionDigits: 2 }}
     />
   </Threshold>

@@ -1,15 +1,18 @@
 import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
+import { DEFAULT_LOCALE } from '../trip/types';
 import type { DateFormatMode } from './date-format/types';
 import type { ThemeMode } from './theme/types';
 
 export type SettingsConfig = {
   theme: ThemeMode;
   dateFormat: DateFormatMode;
+  locale: string;
 };
 
 const defaultStorageData: SettingsConfig = {
   theme: 'auto',
   dateFormat: 'DD/MM/YYYY',
+  locale: DEFAULT_LOCALE,
 };
 
 const dataFromStorage = getLocalStoreData<SettingsConfig>('local', 'SettingsConfig');

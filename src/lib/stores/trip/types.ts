@@ -9,7 +9,7 @@ export const localeOptionAuto = {
   label: 'Auto',
 };
 
-const localeOptionsBrowser = locales.map((locale) => ({
+export const localeOptionsBrowser = locales.map((locale) => ({
   value: locale,
   label: locale,
 }));

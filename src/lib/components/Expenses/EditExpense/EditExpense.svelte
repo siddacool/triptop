@@ -26,7 +26,7 @@
   import { parseDate, type DateValue } from '@internationalized/date';
   import { createDate } from '@flightlesslabs/time-utils';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
-  import { DEFAULT_LOCALE, type Trip } from '$lib/stores/trip/types';
+  import { type Trip } from '$lib/stores/trip/types';
   import { Category } from '$lib/stores/category/types';
   import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
@@ -42,6 +42,7 @@
     dateFormatOptions.find((item) => item.value === useSettingsStore.settings.dateFormat)
       ?.valueDatePickerFormat,
   );
+  const locale = $derived(trip.locale || useSettingsStore.settings.locale);
 
   const isDataValid = $derived(name && category && date ? true : false);
 
@@ -86,7 +87,7 @@
               bind:value={amount}
               name="amount"
               {disabled}
-              locale={trip.locale || DEFAULT_LOCALE}
+              {locale}
               options={{
                 formatStyle: NumberFormatStyle.Currency,
                 currency: trip.currency,
