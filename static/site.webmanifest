@@ -1,13 +1,27 @@
 {
   "name": "Triptop - Travel budgeting app",
   "short_name": "Triptop",
-  "start_url": "https://triptop.siddheshmangela.com",
+  "start_url": "/",
+  "scope": "/",
   "id": "com.siddheshmangela.triptop",
   "description": "A simple, offline travel budget app",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#ddd6ff",
   "background_color": "#ddd6ff",
+  "categories": ["travel", "finance", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Create new trip",
+      "short_name": "New Trip",
+      "url": "/trips/create"
+    },
+    {
+      "name": "Settings",
+      "short_name": "Settings",
+      "url": "/settings"
+    }
+  ],
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -19,7 +33,37 @@
       "src": "/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot_trip_list_mobile_dark.png",
+      "sizes": "1140x3120",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Trip list screen (Dark theme)"
+    },
+    {
+      "src": "/screenshot_trip_list_mobile_light.png",
+      "sizes": "1140x3120",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Trip list screen (Light theme)"
+    },
+    {
+      "src": "/screenshot_trip_expenses_mobile_dark.png",
+      "sizes": "1140x3120",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Trip expenses screen (Dark theme)"
+    },
+    {
+      "src": "/screenshot_trip_expenses_mobile_light.png",
+      "sizes": "1140x3120",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Trip expenses screen (Light theme)"
     }
   ]
 }
