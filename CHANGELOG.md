@@ -1,5 +1,13 @@
 # triptop
 
+## 5.9.1
+
+### Patch Changes
+
+- d97a786: Add screenshots
+- 54ef37f: Manifest fixed
+- 1a4a4ce: Packages updated
+
 ## 5.9.0
 
 ### Minor Changes
