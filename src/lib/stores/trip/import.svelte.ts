@@ -31,7 +31,7 @@ function createTripImportStore() {
 
         for (let i = 0; i < data.expenses.length; i++) {
           /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-          const { id, searchFields, ...expense } = data.expenses[i];
+          const { id, ...expense } = data.expenses[i];
 
           newExpenses.push({
             ...expense,

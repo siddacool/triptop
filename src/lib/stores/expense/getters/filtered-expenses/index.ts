@@ -1,8 +1,7 @@
 import type { ExpenseFilters } from '../../filters.svelte';
 import type { Expense } from '../../types';
 import { categoryFilter } from './categoryFilter';
-import { maxDateFilter } from './maxDateFilter';
-import { minDateFilter } from './minDateFilter';
+import { dateFilter } from './dateFilter';
 import { searchFilter } from './searchFilter';
 
 export function getFilteredExpenses(filters: ExpenseFilters, data: Expense[]) {
@@ -16,12 +15,8 @@ export function getFilteredExpenses(filters: ExpenseFilters, data: Expense[]) {
     result = categoryFilter(filters.category, data);
   }
 
-  if (filters.minDate) {
-    result = minDateFilter(filters.minDate, data);
-  }
-
-  if (filters.maxDate) {
-    result = maxDateFilter(filters.maxDate, data);
+  if (filters.minDate || filters.maxDate) {
+    result = dateFilter(filters.minDate, filters.maxDate, data);
   }
 
   return result;

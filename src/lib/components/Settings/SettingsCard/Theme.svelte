@@ -4,16 +4,16 @@
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
   import { ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
-  import { useSettingsThemeStore } from '$lib/stores/settings/theme/theme.svelte';
   import { themeOptions } from '$lib/stores/settings/theme/types';
   import type { ThemeMode } from '$lib/stores/settings/theme/types';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
 
   function getSystemTheme(): ComponentThemeColors {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
   function applyTheme(mode: ThemeMode) {
-    useSettingsThemeStore.updateTheme(mode);
+    useSettingsStore.updateSettings({ theme: mode });
 
     const newTheme = mode === 'auto' ? getSystemTheme() : mode;
 
@@ -22,7 +22,7 @@
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
     if (themeColorMeta) {
-      themeColorMeta?.setAttribute('content', newTheme === 'light' ? '#f0f8ff' : '#101828');
+      themeColorMeta?.setAttribute('content', newTheme === 'light' ? '#ddd6ff' : '#2f0d68');
     }
   }
 </script>
@@ -44,7 +44,7 @@
     <ToggleGroup
       type="single"
       options={themeOptions}
-      value={useSettingsThemeStore.theme}
+      value={useSettingsStore.settings.theme}
       onValueChange={(val) => applyTheme(val as ThemeMode)}
       attached
       inactiveButtonProps={{ outline: true }}

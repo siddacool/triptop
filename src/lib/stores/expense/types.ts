@@ -1,5 +1,9 @@
-import { type Dayjs } from 'dayjs';
 import type { Category } from '../category/types';
+
+export interface ExpenseFilterFields {
+  name: string;
+  date: number;
+}
 
 export interface Expense {
   id?: number;
@@ -12,10 +16,7 @@ export interface Expense {
   category?: Category;
   date: string;
   archived?: boolean;
-  searchFields?: {
-    name: string;
-    date: Dayjs;
-  };
+  filterFields?: ExpenseFilterFields;
 }
 
 export interface EditExpenseFormData {

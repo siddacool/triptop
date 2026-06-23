@@ -1,5 +1,4 @@
 import { db } from '../db';
-import { addSearchFields } from './decorators/add-search-filelds';
 import { useExpenseFiltersStore } from './filters.svelte';
 import { getFilteredExpenses } from './getters/filtered-expenses';
 import { type Expense } from './types';
@@ -29,7 +28,7 @@ function createExpenseListStore() {
 
         const expensesData = await db.expense.where({ tripId: tripId }).toArray();
 
-        expenses = addSearchFields(expensesData);
+        expenses = expensesData;
 
         mounted = true;
         fetching = false;

@@ -1,28 +1,37 @@
 import { createDate } from '@flightlesslabs/time-utils';
 import type { Expense } from '../../types';
 
-export function dateFilter(minDate: string, maxDate: string, expenses: Expense[]): Expense[] {
-  const results: Expense[] = [];
-  const minDateMoment = createDate(minDate);
-  const maxDateMoment = createDate(maxDate);
-
-  if (!minDateMoment.isValid() || !maxDateMoment.isValid()) {
+export function dateFilter(
+  minDate: string | undefined,
+  maxDate: string | undefined,
+  expenses: Expense[],
+): Expense[] {
+  if (!minDate && !maxDate) {
     return expenses;
   }
 
-  for (const expense of expenses) {
-    const date = expense.searchFields?.date;
+  const minDateKey = minDate ? Number(createDate(minDate).format('YYYYMMDD')) : undefined;
+  const maxDateKey = maxDate ? Number(createDate(maxDate).format('YYYYMMDD')) : undefined;
 
-    if (!date) {
+  const results: Expense[] = [];
+
+  for (let i = 0; i < expenses.length; i++) {
+    const expense = expenses[i];
+    const expenseDate = expense.filterFields?.date;
+
+    if (expenseDate === undefined) {
       continue;
     }
 
-    const minDateMatch = date.isAfter(minDateMoment) || date.isSame(minDate);
-    const maxDateMatch = date.isBefore(maxDateMoment) || date.isSame(maxDateMoment);
-
-    if (minDateMatch && maxDateMatch) {
-      results.push(expense);
+    if (minDateKey !== undefined && expenseDate < minDateKey) {
+      continue;
     }
+
+    if (maxDateKey !== undefined && expenseDate > maxDateKey) {
+      continue;
+    }
+
+    results.push(expense);
   }
 
   return results;

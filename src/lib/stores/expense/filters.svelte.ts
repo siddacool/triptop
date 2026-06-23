@@ -37,9 +37,11 @@ function createExpenseFiltersStore() {
       return filters?.search;
     },
     get isSpecialFiltersActive() {
-      return filters?.category || filters.maxDate || filters.maxDate ? true : false;
+      return filters?.category || filters?.minDate || filters?.maxDate ? true : false;
     },
     updateFilter(value: Partial<ExpenseFilters>) {
+      console.log('debug:', value);
+
       const newFilters = {
         ...filters,
         ...value,
@@ -55,13 +57,19 @@ function createExpenseFiltersStore() {
       });
     },
     clearSpecialFilters() {
-      filters = {
+      const newFilters = {
         ...filters,
         ...defaultStorageDataSpecailFilters,
       };
+
+      filters = {
+        ...newFilters,
+      };
+
+      setLocalStoreData<ExpenseFilters>('session', 'ExpenseFilters', newFilters);
     },
     reset() {
-      filters = defaultStorageData;
+      filters = { ...defaultStorageData };
 
       setLocalStoreData<ExpenseFilters>('session', 'ExpenseFilters', defaultStorageData);
     },
