@@ -11,9 +11,18 @@ export function exportTripAsJson(
   trip: Trip,
   expenses: Expense[],
 ): ExportTripValue<ExportTripJsonValue> {
+  const expensesCleaned: Expense[] = [];
+
+  for (let i = 0; i < expenses.length; i++) {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+    const { id, filterFields, ...restProps } = expenses[i];
+
+    expensesCleaned.push({ ...restProps });
+  }
+
   const data: ExportTripJsonValue = {
     trip,
-    expenses,
+    expenses: expensesCleaned,
   };
 
   return {

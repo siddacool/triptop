@@ -1,4 +1,5 @@
 import { db } from '../db';
+import { expensesUpdateFilterFields } from './decorators/expenses-update-filter-fields';
 import { useExpenseFiltersStore } from './filters.svelte';
 import { getFilteredExpenses } from './getters/filtered-expenses';
 import { type Expense } from './types';
@@ -26,7 +27,9 @@ function createExpenseListStore() {
       try {
         fetching = true;
 
-        const expensesData = await db.expense.where({ tripId: tripId }).toArray();
+        let expensesData = await db.expense.where({ tripId: tripId }).toArray();
+
+        expensesData = expensesUpdateFilterFields(expensesData);
 
         expenses = expensesData;
 

@@ -2,7 +2,6 @@ import type { ExportTripJsonValue } from '$lib/components/Trips/TripPage/TripHea
 import { nanoid } from 'nanoid';
 import { db } from '../db';
 import type { Expense } from '../expense/types';
-import { updateFilterFields } from '../expense/decorators/update-filter-fields';
 
 function createTripImportStore() {
   let fetching: boolean = $state(false);
@@ -32,21 +31,14 @@ function createTripImportStore() {
 
         for (let i = 0; i < data.expenses.length; i++) {
           /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-          const { id, ...expense } = data.expenses[i];
+          const { id, filterFields, ...expense } = data.expenses[i];
 
-          const dataToPush: Expense = {
+          newExpenses.push({
             ...expense,
             _id: nanoid(),
             tripId: newTripId,
             createdAt: now,
             updatedAt: now,
-          };
-
-          const filterFields = updateFilterFields(dataToPush);
-
-          newExpenses.push({
-            ...dataToPush,
-            filterFields,
           });
         }
 

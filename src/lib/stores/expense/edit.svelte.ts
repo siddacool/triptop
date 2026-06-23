@@ -1,8 +1,7 @@
 import { nanoid } from 'nanoid';
 import { db } from '../db';
 import { Category } from '../category/types';
-import type { EditExpenseFormData, Expense } from './types';
-import { updateFilterFields } from './decorators/update-filter-fields';
+import type { EditExpenseFormData } from './types';
 
 function createEditExpenseStore() {
   return {
@@ -22,7 +21,7 @@ function createEditExpenseStore() {
 
       const newExpenseId = nanoid();
 
-      const data: Expense = {
+      await db.expense.add({
         _id: newExpenseId,
         tripId,
         name: formData.name.trim(),
@@ -31,13 +30,6 @@ function createEditExpenseStore() {
         category: formData.category || Category.OTHER,
         createdAt: Date.now(),
         updatedAt: Date.now(),
-      };
-
-      const filterFields = updateFilterFields(data);
-
-      await db.expense.add({
-        ...data,
-        filterFields,
       });
 
       await this._syncTrip(tripId);
@@ -58,17 +50,8 @@ function createEditExpenseStore() {
 
       const updatedAt = Date.now();
 
-      const data: Expense = {
-        ...target,
-        ...formData,
-        updatedAt,
-      };
-
-      const filterFields = updateFilterFields(data);
-
       await db.expense.update(target.id, {
         ...formData,
-        filterFields,
         updatedAt,
       });
 
@@ -87,17 +70,9 @@ function createEditExpenseStore() {
 
       const updatedAt = Date.now();
 
-      const data: Expense = {
-        ...target,
-        updatedAt,
-      };
-
-      const filterFields = updateFilterFields(data);
-
       await db.expense.update(target.id, {
         archived: !isArchived,
         updatedAt,
-        filterFields,
       });
 
       await this._syncTrip(target.tripId);
