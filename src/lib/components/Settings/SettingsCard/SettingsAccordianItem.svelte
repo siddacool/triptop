@@ -9,10 +9,10 @@
 
   type Props = AccordionItemProps;
 
-  let { children, title, ...restProps }: Props = $props();
+  let { children, title, value, ...restProps }: Props = $props();
 </script>
 
-<AccordionItem {...restProps}>
+<AccordionItem {value} {...restProps} id={`settings_${value}`}>
   {#snippet customHeaderContent()}
     <AccordionTrigger>
       <div class="Container">

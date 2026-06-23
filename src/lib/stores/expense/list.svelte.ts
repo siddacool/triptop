@@ -34,7 +34,6 @@ function createExpenseListStore() {
         expenses = expensesData;
 
         mounted = true;
-        fetching = false;
 
         return Promise.resolve();
       } catch (e) {
@@ -43,6 +42,8 @@ function createExpenseListStore() {
         this.reset();
 
         return Promise.reject(e);
+      } finally {
+        fetching = false;
       }
     },
     reset() {

@@ -44,13 +44,13 @@ function createTripImportStore() {
 
         await db.expense.bulkAdd(newExpenses);
 
-        fetching = false;
-
         return Promise.resolve();
       } catch (e) {
         console.error(e);
 
         return Promise.reject(e);
+      } finally {
+        fetching = false;
       }
     },
   };

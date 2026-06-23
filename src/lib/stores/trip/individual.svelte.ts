@@ -23,7 +23,6 @@ function createTripStore() {
         trip = await db.trips.where({ _id: tripId }).first();
 
         mounted = true;
-        fetching = false;
 
         return Promise.resolve();
       } catch (e) {
@@ -32,6 +31,8 @@ function createTripStore() {
         this.reset();
 
         return Promise.reject(e);
+      } finally {
+        fetching = false;
       }
     },
     reset() {

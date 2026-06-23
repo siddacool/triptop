@@ -1,13 +1,14 @@
 <script lang="ts">
   import { type Expense } from '$lib/stores/expense/types';
-  import { Card, Column, Grid, Money, Threshold } from '@flightlesslabs/dodo-ui';
+  import { Card, Column, Grid } from '@flightlesslabs/dodo-ui';
   import { type Trip } from '$lib/stores/trip/types';
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
   import { createDate } from '@flightlesslabs/time-utils';
   import DeletedPill from './DeletedPill.svelte';
   import CategoryShowCase from '$lib/components/ui/Category/CategoryShowCase/CategoryShowCase.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import Amount from './Amount.svelte';
+  import Callouts from './Callouts.svelte';
 
   type Props = {
     expense: Expense;
@@ -17,34 +18,18 @@
 
   let { expense, trip, class: className = '' }: Props = $props();
 
-  const locale = $derived(trip.locale || useSettingsStore.settings.locale);
-
   const classes = $derived(
     ['ExpenseCardDetailed', expense.archived ? 'archived' : '', className].filter(Boolean),
   );
 </script>
 
+<Callouts />
 <div class={classes.join(' ')}>
   <Card class="ExpenseCardDetailedCard" roundness={1} outline shadow={0}>
     <Grid gap={2}>
       <Column>
         <div class="HeadingSection">
-          <FieldValue size="large">
-            <Threshold
-              value={expense.amount}
-              threshold={0}
-              colorMap={{ above: 'default' }}
-              class="Amount"
-            >
-              <Money
-                value={expense.amount}
-                currency={trip.currency}
-                {locale}
-                options={{ maximumFractionDigits: 2 }}
-              />
-            </Threshold>
-          </FieldValue>
-
+          <Amount {trip} {expense} />
           {#if expense.archived}
             <DeletedPill />
           {/if}
@@ -104,16 +89,6 @@
 
     :global(.ExpenseCardDetailedCard) {
       padding: calc(var(--dodo-ui-space) * 2);
-    }
-
-    :global(.Amount) {
-      color: var(--dodo-color-neutral-800);
-    }
-
-    &.archived {
-      :global(.Amount) {
-        text-decoration: line-through;
-      }
     }
   }
 </style>

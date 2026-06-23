@@ -3,8 +3,9 @@
   import { Accordion } from '@flightlesslabs/dodo-ui-bits';
   import UserInterface from './UserInterface/UserInterface.svelte';
   import Localization from './Localization/Localization.svelte';
+  import CurrencyConversion from './CurrencyConversion/CurrencyConversion.svelte';
 
-  let accordianValue: string[] = $state(['user-interface', 'localization']);
+  let accordianValue: string[] = $state(['user-interface', 'localization', 'currency-conversion']);
 </script>
 
 <div class="SettingsCard">
@@ -12,6 +13,7 @@
     <Accordion type="multiple" bind:value={accordianValue}>
       <UserInterface />
       <Localization />
+      <CurrencyConversion />
     </Accordion>
   </Card>
 </div>

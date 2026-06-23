@@ -8,11 +8,5 @@ export function updateFilterFields(expense: Expense): ExpenseFilterFields {
     date: Number(createDate(expense.date, 'YYYY-MM-DD').format('YYYYMMDD')),
   };
 
-  console.log(
-    'debug:',
-    expense.date,
-    Number(createDate(expense.date, 'YYYY-MM-DD').format('YYYYMMDD')),
-  );
-
   return result;
 }

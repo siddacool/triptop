@@ -21,8 +21,6 @@
 <script lang="ts">
   import { Card, Column, FormField, Grid, Row, TextArea } from '@flightlesslabs/dodo-ui';
   import Controls from './Controls.svelte';
-  import { NumericInput } from '@flightlesslabs/dodo-ui-numeric';
-  import { NumberFormatStyle } from 'svelte-number-format';
   import { parseDate, type DateValue } from '@internationalized/date';
   import { createDate } from '@flightlesslabs/time-utils';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
@@ -31,6 +29,7 @@
   import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { dateFormatOptions } from '$lib/stores/settings/date-format/types';
+  import Amount from './Amount.svelte';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
@@ -42,7 +41,6 @@
     dateFormatOptions.find((item) => item.value === useSettingsStore.settings.dateFormat)
       ?.valueDatePickerFormat,
   );
-  const locale = $derived(trip.locale || useSettingsStore.settings.locale);
 
   const isDataValid = $derived(name && category && date ? true : false);
 
@@ -81,24 +79,7 @@
   <form onsubmit={submit}>
     <Card outline shadow={0} class="EditExpenseCard">
       <Grid gap={2}>
-        <Column>
-          <FormField label="Amount:" for="amount">
-            <NumericInput
-              bind:value={amount}
-              name="amount"
-              {disabled}
-              {locale}
-              options={{
-                formatStyle: NumberFormatStyle.Currency,
-                currency: trip.currency,
-                precision: 2,
-              }}
-              size="large"
-              placeholder="0.00"
-            />
-          </FormField>
-        </Column>
-
+        <Amount bind:amount {disabled} {trip} />
         <Column>
           <FormField label="Description:" for="name">
             <TextArea bind:value={name} name="name" {disabled} placeholder="e.g. Dinner at Koko" />
