@@ -40,4 +40,8 @@
   :global(.FieldMessage.size--small) {
     font-size: 0.85rem;
   }
+
+  :global(.FieldMessage.dodo-ui-Text.color--neutral) {
+    color: var(--dodo-color-neutral-600);
+  }
 </style>
