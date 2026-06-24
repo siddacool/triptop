@@ -131,7 +131,7 @@
       />
     </div>
 
-    <ControlSection class="ExpenseEditControls">
+    <ControlSection class="ExpenseEditControls" controlsAlignment="center">
       {#if isArchived}
         <Button onclick={restoreConfirmation}>Restore expense</Button>
       {:else}
