@@ -5,12 +5,14 @@
   import TripsControlsToolkit from '$lib/components/Trips/TripsControlsToolkit/TripsControlsToolkit.svelte';
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
+  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { useTripListStore } from '$lib/stores/trip/list.svelte';
 
   import { onMount } from 'svelte';
 
   onMount(() => {
     useTripListStore.fetch();
+    useTripActivePageStore.reset();
   });
 </script>
 

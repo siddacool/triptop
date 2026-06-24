@@ -3,6 +3,7 @@
   import { page } from '$app/state';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
+  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { useCurrencyExchangeStore } from '$lib/stores/currency/exchange.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
@@ -27,8 +28,11 @@
       try {
         await useTripStore.fetch(tripId);
         pass = true;
+
+        useTripActivePageStore.updateActiveTrip(tripId);
       } catch (error) {
         console.error('Failed to fetch trip:', error);
+        useTripActivePageStore.reset();
       } finally {
         loading = false;
       }
@@ -58,7 +62,7 @@
       return;
     }
 
-    console.log('debug:', 'Navigate out');
+    useTripActivePageStore.reset();
   });
 </script>
 
