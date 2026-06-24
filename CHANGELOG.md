@@ -1,5 +1,11 @@
 # triptop
 
+## 5.10.3
+
+### Patch Changes
+
+- 9a84857: Removed base path
+
 ## 5.10.2
 
 ### Patch Changes
