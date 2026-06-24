@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ddd6ff" />
+    <meta name="text-scale" content="scale" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link href="/_app/immutable/entry/start.3EThtxcW.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/CgaWh9gC.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/BuFlayix.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/DK2I6QdJ.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/QTnfLwEv.js" rel="modulepreload">
+		<link href="/_app/immutable/entry/app.DpPvd8EW.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/kNaey6uv.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
+		<link href="/_app/immutable/nodes/0.B67R-45S.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/BUo7v_22.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/DMMgcXgd.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/BjA6SBxF.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/CMGmDKrq.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/DxNqwpdE.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/CkBzO0XZ.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/svVE73Lv.js" rel="modulepreload">
+		<link href="/_app/immutable/chunks/BoKkEwHL.js" rel="modulepreload">
+		
+		<link href="/_app/immutable/assets/0.BMQ8AUlv.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zalando+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="description" content="Simple, offline travel budgeting app" />
+    <meta property="og:title" content="Triptop" />
+    <meta property="og:site_name" content="Triptop" />
+    <meta property="og:url" content="https://triptop.siddheshmangela.com/" />
+    <meta property="og:description" content="Simple, offline travel budgeting app" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://triptop.siddheshmangela.com/og_image.png" />
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">
+			<script>
+				{
+					__sveltekit_8pq1f4 = {
+						base: ""
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/_app/immutable/entry/start.3EThtxcW.js"),
+						import("/_app/immutable/entry/app.DpPvd8EW.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+
+					if ('serviceWorker' in navigator) {
+						const script_url = '/service-worker.js';
+						const policy = globalThis?.window?.trustedTypes?.createPolicy(
+							'sveltekit-trusted-url',
+							{ createScriptURL(url) { return url; } }
+						);
+						const sanitised = policy?.createScriptURL(script_url) ?? script_url;
+						addEventListener('load', function () {
+							navigator.serviceWorker.register(sanitised);
+						});
+					}
+				}
+			</script>
+		</div>
+  </body>
+</html>

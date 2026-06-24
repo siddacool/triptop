@@ -1,0 +1,96 @@
+{
+  "name": "Triptop",
+  "short_name": "Triptop",
+  "start_url": "/",
+  "scope": "/",
+  "id": "com.siddheshmangela.triptop",
+  "description": "Simple, offline travel budgeting app",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ],
+  "orientation": "portrait",
+  "theme_color": "#ddd6ff",
+  "background_color": "#ddd6ff",
+  "categories": ["travel", "finance", "productivity"],
+  "lang": "en",
+  "dir": "ltr",
+  "shortcuts": [
+    {
+      "name": "Create trip",
+      "short_name": "Create trip",
+      "url": "/trips/create",
+      "icons": [
+         {
+           "src": "/shortcut-icon-plus.png",
+           "sizes": "96x96",
+           "type": "image/png"
+         }
+       ]
+    },
+    {
+      "name": "Settings",
+      "short_name": "Settings",
+      "url": "/settings",
+      "icons": [
+         {
+           "src": "/shortcut-icon-outline-settings.png",
+           "sizes": "96x96",
+           "type": "image/png"
+         }
+       ]
+    }
+  ],
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot_trip_list_mobile_dark.png",
+      "sizes": "1440x3120",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Trip list screen (Dark theme)"
+    },
+    {
+      "src": "/screenshot_trip_list_mobile_light.png",
+      "sizes": "1440x3120",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Trip list screen (Light theme)"
+    },
+    {
+      "src": "/screenshot_trip_expenses_mobile_dark.png",
+      "sizes": "1440x3120",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Trip expenses screen (Dark theme)"
+    },
+    {
+      "src": "/screenshot_trip_expenses_mobile_light.png",
+      "sizes": "1440x3120",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Trip expenses screen (Light theme)"
+    },
+    {
+      "src": "/screenshot_trip_expenses_desktop_light.png",
+      "sizes": "1063x908",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Trip expenses screen (Light theme)"
+    }
+  ]
+}
