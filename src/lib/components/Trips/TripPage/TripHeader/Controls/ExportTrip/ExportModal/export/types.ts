@@ -22,6 +22,6 @@ export const exportTripTypeOptions: ExportTripTypeOption[] = [
   },
   {
     value: ExportTripType.JSON,
-    label: 'JSON',
+    label: 'Backup trip (JSON)',
   },
 ];

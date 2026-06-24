@@ -1,5 +1,12 @@
 # triptop
 
+## 5.9.4
+
+### Patch Changes
+
+- .triptop file export added
+- bd068eb: Fix exchange fetch to 12 hours
+
 ## 5.9.3
 
 ### Patch Changes

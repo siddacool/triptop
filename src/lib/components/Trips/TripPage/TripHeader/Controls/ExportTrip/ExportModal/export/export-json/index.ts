@@ -1,5 +1,7 @@
+import { toSafeFilename } from '$lib/helpers/file-name';
 import type { Expense } from '$lib/stores/expense/types';
 import type { Trip } from '$lib/stores/trip/types';
+import { createDate } from '@flightlesslabs/time-utils';
 import type { ExportTripValue } from '../types';
 
 export type ExportTripJsonValue = {
@@ -11,6 +13,7 @@ export function exportTripAsJson(
   trip: Trip,
   expenses: Expense[],
 ): ExportTripValue<ExportTripJsonValue> {
+  const now = createDate();
   const expensesCleaned: Expense[] = [];
 
   for (let i = 0; i < expenses.length; i++) {
@@ -25,10 +28,13 @@ export function exportTripAsJson(
     expenses: expensesCleaned,
   };
 
+  const nameFormmated = toSafeFilename(trip.name, 20);
+  const filename = `${nameFormmated}.${now.format('YYYY-MM-DD_HH-mm-ss')}.json.triptop`;
+
   return {
     data,
     dataString: JSON.stringify(data, null, 2),
-    filename: `triptop-export.${trip.name}.json`,
+    filename,
     type: 'application/json',
   };
 }

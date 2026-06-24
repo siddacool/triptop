@@ -53,10 +53,4 @@
   Import trip
 </Button>
 
-<input
-  bind:this={fileInput}
-  type="file"
-  accept="application/json,.json"
-  hidden
-  onchange={handleImport}
-/>
+<input bind:this={fileInput} type="file" accept=".json,.triptop" hidden onchange={handleImport} />

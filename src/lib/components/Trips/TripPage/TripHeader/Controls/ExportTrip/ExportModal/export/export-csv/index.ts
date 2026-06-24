@@ -7,6 +7,7 @@ import type { Trip } from '$lib/stores/trip/types';
 import { convertCurrency } from '$lib/helpers/convert-currency';
 import { createDate } from '@flightlesslabs/time-utils';
 import type { ExportTripValue } from '../types';
+import { toSafeFilename } from '$lib/helpers/file-name';
 
 export type ExportTripCsvValue = string;
 
@@ -24,7 +25,8 @@ export function exportTripAsCsv(
   dateFormat: DateFormatMode,
   exchangeRate?: CurrencyExchangeRate,
 ): ExportTripValue<string> {
-  const exportedAt = createDate().format(dateFormat);
+  const now = createDate();
+  const exportedAt = now.format(dateFormat);
 
   const buildRow = (expense: Expense, includeExportedAt = false) => [
     expense.name,
@@ -53,10 +55,13 @@ export function exportTripAsCsv(
 
   const csv = rows.map((row) => row.map(escapeCsvValue).join(',')).join('\n');
 
+  const nameFormmated = toSafeFilename(trip.name, 20);
+  const filename = `triptop-export.${nameFormmated}.${now.format('YYYY-MM-DD_HH-mm-ss')}.csv`;
+
   return {
     data: csv,
     dataString: csv,
-    filename: `triptop-export.${trip.name}.${createDate().format('YYYY-MM-DD_HH-mm-ss')}.csv`,
+    filename,
     type: 'text/csv',
   };
 }
