@@ -1,7 +1,7 @@
 {
   "name": "Triptop",
   "short_name": "Triptop",
-  "start_url": "/",
+  "start_url": "/trips",
   "scope": "/",
   "id": "com.siddheshmangela.triptop",
   "description": "Simple, offline travel budgeting app",
@@ -16,6 +16,10 @@
   "categories": ["travel", "finance", "productivity"],
   "lang": "en",
   "dir": "ltr",
+  "prefer_related_applications": false,
+  "launch_handler": {
+    "client_mode": ["navigate-existing"]
+  },
   "shortcuts": [
     {
       "name": "Create trip",

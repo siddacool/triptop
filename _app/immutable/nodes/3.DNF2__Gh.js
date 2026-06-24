@@ -1,1 +1,0 @@
-import{D as e,O as t,Q as n,mt as r,pt as i,r as a,y as o}from"../chunks/DK2I6QdJ.js";import"../chunks/xihTtKlq.js";import{t as s}from"../chunks/CqmSa7UV.js";import{t as c}from"../chunks/BW46OtCg2.js";function l(l,u){r(u,!0);let d=s.params.expenseId;a(()=>{d&&c.fetch(d)});var f=t();o(n(f),()=>u.children),e(l,f),i()}export{l as component};
