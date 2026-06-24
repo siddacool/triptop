@@ -1,5 +1,11 @@
 # triptop
 
+## 5.11.3
+
+### Patch Changes
+
+- Fix dark theme color again
+
 ## 5.11.2
 
 ### Patch Changes

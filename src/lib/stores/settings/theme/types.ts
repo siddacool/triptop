@@ -7,7 +7,7 @@ type ThemeOption = {
 
 export const enum ThemeAppBarColors {
   LIGHT = '#ddd6ff',
-  DARK = '#3f2977', // #0f0324
+  DARK = '#1a162f', // #0f0324
 }
 
 export const themeOptions: ThemeOption[] = [
