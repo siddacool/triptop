@@ -1,0 +1,1 @@
+import{n as e}from"../chunks/QTnfLwEv.js";import{r as t}from"../chunks/BuFlayix.js";function n(e,n){throw new t(e,n.toString())}var r=e({load:()=>i}),i=e=>{let t=e.params.tripId;throw n(307,`/trips/${t}`)};export{r as universal};

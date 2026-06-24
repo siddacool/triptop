@@ -1,1 +1,0 @@
-import{n as e}from"../chunks/QTnfLwEv.js";import{t}from"../chunks/gaw8GWTo2.js";var n=e({load:()=>r}),r=()=>{throw t(307,`/trips`)};export{n as universal};
