@@ -1,9 +1,9 @@
 <script lang="ts">
-  import CurruncyExchangeOutdated from '$lib/components/Trips/CurruncyExchangeOutdated.svelte';
+  import CurrencyExchangeOutdated from '$lib/components/Trips/CurrencyExchangeOutdated.svelte';
 </script>
 
 <div class="Callouts">
-  <CurruncyExchangeOutdated />
+  <CurrencyExchangeOutdated />
 </div>
 
 <style lang="scss">

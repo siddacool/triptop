@@ -5,18 +5,17 @@
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import { createDate } from '@flightlesslabs/time-utils';
 
-  const today = $derived(createDate().format('YYYY-MM-DD'));
-  const isOutdated = $derived(useCurrencyExchangeStore.exchangeRate?.date !== today);
-  const lastSynced = $derived(
-    useCurrencyExchangeStore.exchangeRate?.date
-      ? createDate(useCurrencyExchangeStore.exchangeRate?.date)?.format(
-          useSettingsStore.settings.dateFormat,
-        )
+  const requestedAt = $derived(
+    useCurrencyExchangeStore.exchangeRate?.requestedAt
+      ? createDate(useCurrencyExchangeStore.exchangeRate?.requestedAt)
       : undefined,
+  );
+  const lastSynced = $derived(
+    requestedAt ? requestedAt.format(useSettingsStore.settings.dateFormat) : undefined,
   );
 </script>
 
-{#if useCurrencyExchangeStore.exchangeRate && lastSynced && isOutdated}
+{#if useCurrencyExchangeStore.isRateOutdated}
   <Callout color="warning" size="small">
     Currency exchange rate ({useTripStore.trip?.currency} to {useSettingsStore.settings
       .homeCurrency}) last synced at {lastSynced}

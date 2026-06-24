@@ -1,6 +1,10 @@
 import type { CurrencyCode } from '@flightlesslabs/currency';
 import { db } from '../db';
-import type { CurrencyExchangeRate, CurrencyExchangeRateResponseFrankfurter } from './types';
+import {
+  CurrencyExchangeRequestDiffrence,
+  type CurrencyExchangeRate,
+  type CurrencyExchangeRateResponseFrankfurter,
+} from './types';
 import { createDate } from '@flightlesslabs/time-utils';
 
 function createCurrencyExchangeStore() {
@@ -11,6 +15,15 @@ function createCurrencyExchangeStore() {
   return {
     get exchangeRate() {
       return exchangeRate;
+    },
+    get isRateOutdated() {
+      if (!exchangeRate?.requestedAt) {
+        return false;
+      }
+
+      const requestedAtMoment = createDate(exchangeRate.requestedAt);
+
+      return createDate().diff(requestedAtMoment, 'hour') >= CurrencyExchangeRequestDiffrence;
     },
     get fetching() {
       return fetching;
@@ -29,7 +42,7 @@ function createCurrencyExchangeStore() {
           return;
         }
 
-        const now = createDate().format('YYYY-MM-DD');
+        const now = createDate();
         const target = await db.currencyExchangeRates.where({ homeCurrency, tripCurrency }).first();
 
         if (target) {
@@ -38,8 +51,17 @@ function createCurrencyExchangeStore() {
           exchangeRate = undefined;
         }
 
+        const targetRequestedAtMoment = target?.requestedAt
+          ? createDate(target?.requestedAt)
+          : undefined;
+
         // no need to further update
-        if (target?.date && now === target?.date) {
+        if (
+          targetRequestedAtMoment &&
+          now.diff(targetRequestedAtMoment, 'hour') < CurrencyExchangeRequestDiffrence
+        ) {
+          console.log('debug: no update', target);
+
           return;
         }
 
@@ -58,7 +80,10 @@ function createCurrencyExchangeStore() {
           tripCurrency: data.base,
           exchangeRate: data.rate || 0,
           date: data.date,
+          requestedAt: Date.now(),
         };
+
+        console.log('debug: fetch', newExchangeRate);
 
         if (target) {
           await db.currencyExchangeRates.update(target.id, newExchangeRate);
