@@ -1,5 +1,7 @@
 import type { DatePickerFormat } from '@flightlesslabs/dodo-ui-date';
 
+export const DEFAULT_DATE_FORMAT = 'DD/MM/YYYY';
+
 export type DateFormatMode = 'DD/MM/YYYY' | 'MM/DD/YYYY';
 
 export type DateFormatOption = {

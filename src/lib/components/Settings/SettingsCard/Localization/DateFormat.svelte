@@ -14,7 +14,7 @@
 <Column>
   <FormField label="Date format" for="dateFormat">
     <Grid>
-      <Column md={6}>
+      <Column md={5}>
         <Select
           options={dateFormatOptions}
           value={useSettingsStore.settings.dateFormat}
