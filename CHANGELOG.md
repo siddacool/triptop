@@ -1,5 +1,13 @@
 # triptop
 
+## 5.9.5
+
+### Patch Changes
+
+- 2d7381f: FieldMessage color fixed
+- 22dac07: Shortcut icons added
+- 4f7ca8a: Default home curruncy added
+
 ## 5.9.4
 
 ### Patch Changes
