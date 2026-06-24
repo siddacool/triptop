@@ -1,10 +1,10 @@
 {
-  "name": "Triptop - Travel budgeting app",
+  "name": "Triptop",
   "short_name": "Triptop",
   "start_url": "/",
   "scope": "/",
   "id": "com.siddheshmangela.triptop",
-  "description": "A simple, offline travel budget app",
+  "description": "Simple, offline travel budgeting app",
   "display": "standalone",
   "display_override": [
     "window-controls-overlay",

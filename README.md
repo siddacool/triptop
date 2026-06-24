@@ -1,3 +1,3 @@
 # Triptop
 
-Triptop - Travel budgeting app
+Simple, offline travel budgeting app
