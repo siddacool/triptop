@@ -1,5 +1,12 @@
 # triptop
 
+## 5.11.4
+
+### Patch Changes
+
+- Icons redistributed
+- Monochrome icon added
+
 ## 5.11.3
 
 ### Patch Changes
