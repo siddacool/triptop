@@ -11,9 +11,6 @@ const config = {
       fallback: '404.html',
       strict: false,
     }),
-    paths: {
-      base: '',
-    },
   },
 };
 
