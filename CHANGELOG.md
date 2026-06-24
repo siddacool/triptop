@@ -1,5 +1,11 @@
 # triptop
 
+## 5.10.4
+
+### Patch Changes
+
+- page prerender added
+
 ## 5.10.3
 
 ### Patch Changes
