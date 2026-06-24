@@ -1,5 +1,11 @@
 # triptop
 
+## 5.10.0
+
+### Minor Changes
+
+- a1e2b02: Github pages setup added
+
 ## 5.9.6
 
 ### Patch Changes
