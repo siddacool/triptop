@@ -43,7 +43,10 @@ function createCurrencyExchangeStore() {
         }
 
         const now = createDate();
-        const target = await db.currencyExchangeRates.where({ homeCurrency, tripCurrency }).first();
+        const target = await db.currencyExchangeRates
+          .where('[homeCurrency+tripCurrency]')
+          .equals([homeCurrency, tripCurrency])
+          .first();
 
         if (target) {
           exchangeRate = target;
