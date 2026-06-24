@@ -6,6 +6,10 @@
   "id": "com.siddheshmangela.triptop",
   "description": "A simple, offline travel budget app",
   "display": "standalone",
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ],
   "orientation": "portrait",
   "theme_color": "#ddd6ff",
   "background_color": "#ddd6ff",
@@ -14,8 +18,8 @@
   "dir": "ltr",
   "shortcuts": [
     {
-      "name": "Create new trip",
-      "short_name": "New Trip",
+      "name": "Create trip",
+      "short_name": "Create trip",
       "url": "/trips/create"
     },
     {
@@ -65,6 +69,13 @@
       "sizes": "1440x3120",
       "type": "image/png",
       "form_factor": "narrow",
+      "label": "Trip expenses screen (Light theme)"
+    },
+    {
+      "src": "/screenshot_trip_expenses_desktop_light.png",
+      "sizes": "1063x908",
+      "type": "image/png",
+      "form_factor": "wide",
       "label": "Trip expenses screen (Light theme)"
     }
   ]

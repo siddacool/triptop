@@ -1,5 +1,13 @@
 # triptop
 
+## 5.9.3
+
+### Patch Changes
+
+- pnpm fixed
+- web manifest improved
+- Og image added
+
 ## 5.9.2
 
 ### Patch Changes
