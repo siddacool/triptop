@@ -1,5 +1,11 @@
 # triptop
 
+## 5.11.6
+
+### Patch Changes
+
+- assetlinks added
+
 ## 5.11.5
 
 ### Patch Changes
