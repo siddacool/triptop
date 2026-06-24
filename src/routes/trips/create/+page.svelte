@@ -3,11 +3,17 @@
   import { resolve } from '$app/paths';
   import EditTrip from '$lib/components/Trips/EditTrip/EditTrip.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
+  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
   import type { EditTripFormData } from '$lib/stores/trip/types';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
+  import { onMount } from 'svelte';
 
   let fetching: boolean = $state(false);
+
+  onMount(() => {
+    useTripActivePageStore.reset();
+  });
 
   async function createTrip(data: EditTripFormData) {
     try {

@@ -1,7 +1,7 @@
 {
   "name": "Triptop",
   "short_name": "Triptop",
-  "start_url": "/trips",
+  "start_url": "/",
   "scope": "/",
   "id": "com.siddheshmangela.triptop",
   "description": "Simple, offline travel budgeting app",

@@ -20,11 +20,17 @@ function createTripStore() {
       try {
         fetching = true;
 
-        trip = await db.trips.where({ _id: tripId }).first();
+        const data = await db.trips.where({ _id: tripId }).first();
+
+        if (!data?._id) {
+          throw new Error('Trip not found');
+        }
+
+        trip = data;
 
         mounted = true;
 
-        return Promise.resolve();
+        return Promise.resolve(tripId);
       } catch (e) {
         console.error(e);
 

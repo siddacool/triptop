@@ -20,7 +20,13 @@ function createExpenseStore() {
       try {
         fetching = true;
 
-        expense = await db.expense.where({ _id: expenseId }).first();
+        const data = await db.expense.where({ _id: expenseId }).first();
+
+        if (!data?._id) {
+          throw new Error('Expense not found');
+        }
+
+        expense = data;
 
         mounted = true;
 
