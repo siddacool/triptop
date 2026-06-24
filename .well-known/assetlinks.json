@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.siddheshmangela.triptop.twa",
+      "sha256_cert_fingerprints": [
+        "F4:F1:A7:AB:57:D0:B5:6B:70:C7:24:57:2A:4F:98:B6:6C:FC:25:E2:45:27:F0:3D:10:45:D9:BA:11:FE:B6:50"
+      ]
+    }
+  }
+]
