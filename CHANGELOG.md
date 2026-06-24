@@ -1,5 +1,12 @@
 # triptop
 
+## 5.9.6
+
+### Patch Changes
+
+- af7a403: Description fixed
+- b7b53b6: Settings page fixed
+
 ## 5.9.5
 
 ### Patch Changes

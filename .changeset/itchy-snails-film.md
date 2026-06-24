@@ -1,5 +1,0 @@
----
-'triptop': patch
----
-
-Description fixed
