@@ -3,7 +3,7 @@
   import type { ComponentThemeColors } from '@flightlesslabs/dodo-ui';
   import { useThemeStore } from '@flightlesslabs/dodo-ui';
 
-  import type { ThemeMode } from '$lib/stores/settings/theme/types';
+  import { ThemeAppBarColors, type ThemeMode } from '$lib/stores/settings/theme/types';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
 
   function getSystemTheme(): ComponentThemeColors {
@@ -20,7 +20,10 @@
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
     if (themeColorMeta) {
-      themeColorMeta?.setAttribute('content', newTheme === 'light' ? '#ddd6ff' : '#0f0324');
+      themeColorMeta?.setAttribute(
+        'content',
+        newTheme === 'light' ? ThemeAppBarColors.LIGHT : ThemeAppBarColors.DARK,
+      );
     }
   }
 

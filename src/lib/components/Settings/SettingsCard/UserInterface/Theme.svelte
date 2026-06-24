@@ -3,7 +3,7 @@
   import { Column, FormField, useThemeStore } from '@flightlesslabs/dodo-ui';
   import { ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
-  import { themeOptions } from '$lib/stores/settings/theme/types';
+  import { ThemeAppBarColors, themeOptions } from '$lib/stores/settings/theme/types';
   import type { ThemeMode } from '$lib/stores/settings/theme/types';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
 
@@ -21,7 +21,10 @@
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 
     if (themeColorMeta) {
-      themeColorMeta?.setAttribute('content', newTheme === 'light' ? '#ddd6ff' : '#0f0324');
+      themeColorMeta?.setAttribute(
+        'content',
+        newTheme === 'light' ? ThemeAppBarColors.LIGHT : ThemeAppBarColors.DARK,
+      );
     }
   }
 </script>

@@ -1,5 +1,11 @@
 # triptop
 
+## 5.11.1
+
+### Patch Changes
+
+- Dark theme app bar colors added
+
 ## 5.11.0
 
 ### Minor Changes
