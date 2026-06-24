@@ -1,5 +1,11 @@
 # triptop
 
+## 5.10.1
+
+### Patch Changes
+
+- Fallback page set to index.html
+
 ## 5.10.0
 
 ### Minor Changes
