@@ -1,5 +1,11 @@
 # triptop
 
+## 5.10.2
+
+### Patch Changes
+
+- 8b02b45: Restore 404 page
+
 ## 5.10.1
 
 ### Patch Changes
