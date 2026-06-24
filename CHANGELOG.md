@@ -1,5 +1,11 @@
 # triptop
 
+## 5.11.5
+
+### Patch Changes
+
+- Monochrome full sized logo added
+
 ## 5.11.4
 
 ### Patch Changes
