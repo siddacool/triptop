@@ -1,5 +1,15 @@
 # triptop
 
+## 5.11.0
+
+### Minor Changes
+
+- d7d9763: Navigate to active trip function added
+
+### Patch Changes
+
+- a9448b4: Invalid trip and expense fixed
+
 ## 5.10.4
 
 ### Patch Changes
