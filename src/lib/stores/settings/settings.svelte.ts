@@ -5,6 +5,8 @@ import { DEFAULT_DATE_FORMAT, type DateFormatMode } from './date-format/types';
 import type { ThemeMode } from './theme/types';
 import { DEFAULT_HOME_CURRENCY } from './home-currency/types';
 
+const LOCAL_STORE_SETTINGS_CONFIG = 'SettingsConfig';
+
 export type SettingsConfig = {
   theme: ThemeMode;
   dateFormat: DateFormatMode;
@@ -21,7 +23,7 @@ const defaultStorageData: SettingsConfig = {
   homeCurrency: DEFAULT_HOME_CURRENCY,
 };
 
-const dataFromStorage = getLocalStoreData<SettingsConfig>('local', 'SettingsConfig');
+const dataFromStorage = getLocalStoreData<SettingsConfig>('local', LOCAL_STORE_SETTINGS_CONFIG);
 
 function createSettingsStore() {
   let settings: SettingsConfig = $state({ ...defaultStorageData, ...dataFromStorage });
@@ -41,7 +43,7 @@ function createSettingsStore() {
 
       settings = newConfig;
 
-      setLocalStoreData<SettingsConfig>('local', 'SettingsConfig', settings);
+      setLocalStoreData<SettingsConfig>('local', LOCAL_STORE_SETTINGS_CONFIG, settings);
     },
   };
 }

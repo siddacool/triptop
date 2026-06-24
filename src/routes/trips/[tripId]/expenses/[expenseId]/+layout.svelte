@@ -1,19 +1,41 @@
 <script lang="ts">
   import { page } from '$app/state';
+  import Loading from '$lib/components/ui/Loading/Loading.svelte';
+  import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
   import { onMount } from 'svelte';
 
   let { children } = $props();
 
+  const tripId = page.params.tripId;
   const expenseId = page.params.expenseId;
+  let pass = $state(false);
+  let loading = $state(true);
 
   onMount(() => {
     if (!expenseId) {
       return;
     }
 
-    useExpenseStore.fetch(expenseId);
+    const loadTrip = async () => {
+      try {
+        await useExpenseStore.fetch(expenseId);
+        pass = true;
+      } catch (error) {
+        console.error('Failed to fetch expsense:', error);
+      } finally {
+        loading = false;
+      }
+    };
+
+    loadTrip();
   });
 </script>
 
-{@render children()}
+{#if loading}
+  <Loading />
+{:else if pass}
+  {@render children()}
+{:else}
+  <RedirectHomePage backTo={`/trips/${tripId}`}>Expense does not exists</RedirectHomePage>
+{/if}
