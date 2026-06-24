@@ -1,0 +1,1 @@
+var e=function(e){return e.LIGHT=`#ddd6ff`,e.DARK=`#1a162f`,e}({}),t=[{value:`auto`,label:`Auto`},{value:`light`,label:`Light`},{value:`dark`,label:`Dark`}];export{t as n,e as t};
