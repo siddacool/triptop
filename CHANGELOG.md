@@ -1,5 +1,16 @@
 # triptop
 
+## 5.12.0
+
+### Minor Changes
+
+- e4850ae: db v2 added
+
+### Patch Changes
+
+- fcde2b5: Packages updated
+- 058fa35: currencyExchangeRates query made more efficient
+
 ## 5.11.6
 
 ### Patch Changes
