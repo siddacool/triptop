@@ -30,14 +30,3 @@
     >
   {/if}
 </ControlSection>
-
-<style lang="scss">
-  .Controls {
-    display: flex;
-    margin: 0 -8px;
-
-    :global(.dodo-ui-Button) {
-      margin: 0 8px;
-    }
-  }
-</style>

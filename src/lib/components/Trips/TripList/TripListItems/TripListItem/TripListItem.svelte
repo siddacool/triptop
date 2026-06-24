@@ -57,9 +57,5 @@
       display: flex;
       flex-direction: column;
     }
-
-    p {
-      margin: 0;
-    }
   }
 </style>
