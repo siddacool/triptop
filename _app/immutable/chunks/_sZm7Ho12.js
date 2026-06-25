@@ -1,1 +1,0 @@
-import"./sojtIDec.js";
