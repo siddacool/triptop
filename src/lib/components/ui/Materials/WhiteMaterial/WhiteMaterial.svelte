@@ -25,4 +25,8 @@
     overflow-y: auto;
     overflow-x: hidden;
   }
+
+  :global(.dodo-theme--dark .WhiteMaterial) {
+    background-color: oklch(0.19 0.05 295.62);
+  }
 </style>

@@ -12,7 +12,6 @@
     FormField,
     Grid,
     Indicator,
-    Row,
     UtilityButton,
   } from '@flightlesslabs/dodo-ui';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
@@ -85,7 +84,7 @@
           </UtilityButton>
         </p>
       </Column>
-      <Column>
+      <Column lg={4}>
         <FormField label="Category:" for="category">
           <CategorySelect
             name="category"
@@ -96,30 +95,33 @@
           />
         </FormField>
       </Column>
-      <Row>
-        <Column lg={6}>
-          <FormField label="Start Date:">
-            <DatePicker
-              bind:value={minDate}
-              clearable
-              maxValue={maxDate}
-              size="small"
-              {dateFormat}
-            />
-          </FormField>
-        </Column>
-        <Column lg={6}>
-          <FormField label="End Date:">
-            <DatePicker
-              bind:value={maxDate}
-              clearable
-              minValue={minDate}
-              size="small"
-              {dateFormat}
-            />
-          </FormField>
-        </Column>
-      </Row>
+      <Column lg={8}>
+        <Grid gap={2}>
+          <Column lg={6}>
+            <FormField label="Start Date:">
+              <DatePicker
+                bind:value={minDate}
+                clearable
+                maxValue={maxDate}
+                size="small"
+                {dateFormat}
+              />
+            </FormField>
+          </Column>
+          <Column lg={6}>
+            <FormField label="End Date:">
+              <DatePicker
+                bind:value={maxDate}
+                clearable
+                minValue={minDate}
+                size="small"
+                {dateFormat}
+              />
+            </FormField>
+          </Column>
+        </Grid>
+      </Column>
+
       <Column>
         <ControlSection>
           <Button color="primary" onclick={handleOnConfirm} class="ApplyFiltersButton" size="small">
@@ -152,6 +154,7 @@
 
     :global(.ExpenseFilterCard) {
       padding: calc(var(--dodo-ui-space) * 2);
+      border-color: var(--dodo-color-primary-200);
     }
 
     :global(.ApplyFiltersButton) {
@@ -172,5 +175,10 @@
         margin-left: 0;
       }
     }
+  }
+
+  :global(.dodo-theme--dark .ExpenseFilter .ExpenseFilterCard) {
+    background-color: oklch(0.19 0.05 295.62);
+    border-color: var(--dodo-color-primary-50);
   }
 </style>

@@ -60,4 +60,8 @@
     width: 100%;
     flex-direction: column;
   }
+
+  :global(.dodo-theme--dark) {
+    --dodo-ui-InputEnclosure-border-color: var(--dodo-color-neutral-500);
+  }
 </style>

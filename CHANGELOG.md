@@ -1,5 +1,11 @@
 # triptop
 
+## 5.12.4
+
+### Patch Changes
+
+- Form cards colors adjusted
+
 ## 5.12.3
 
 ### Patch Changes
