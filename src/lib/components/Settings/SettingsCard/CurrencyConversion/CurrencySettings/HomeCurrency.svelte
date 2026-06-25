@@ -6,7 +6,7 @@
   import { type CurrencyCode } from '@flightlesslabs/currency';
 </script>
 
-<Column md={5}>
+<Column md={6}>
   <FormField label="Home Currency" for="homeCurrency">
     <Select
       options={currencyOptions}

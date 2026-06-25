@@ -1,10 +1,18 @@
 <script>
-  import SettingsAccordianItem from '../SettingsAccordianItem.svelte';
   import EnableCurrencyConversion from './EnableCurrencyConversion.svelte';
   import CurrencySettings from './CurrencySettings/CurrencySettings.svelte';
+  import { Column, Grid } from '@flightlesslabs/dodo-ui';
+  import FieldHeader from '$lib/components/ui/FieldHeader/FieldHeader.svelte';
+  import Example from './Example.svelte';
 </script>
 
-<SettingsAccordianItem title="Currency conversion" value="currency-conversion">
-  <EnableCurrencyConversion />
-  <CurrencySettings />
-</SettingsAccordianItem>
+<Column>
+  <Grid gap={2}>
+    <Column>
+      <FieldHeader>Currency conversion</FieldHeader>
+    </Column>
+    <EnableCurrencyConversion />
+    <CurrencySettings />
+    <Example />
+  </Grid>
+</Column>

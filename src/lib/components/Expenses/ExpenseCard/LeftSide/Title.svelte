@@ -20,7 +20,7 @@
     font-weight: 400;
     font-size: 0.95rem;
     margin-right: var(--dodo-ui-space);
-    flex: 1;
+
     display: flex;
     align-items: flex-start;
 

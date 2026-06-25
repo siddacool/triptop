@@ -2,22 +2,29 @@
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
   import { Search } from '@flightlesslabs/dodo-ui';
 
-  function handleValueChange(e: Event) {
-    const target = e.currentTarget as HTMLInputElement;
-    const value = target.value;
+  let search = $state(useExpenseFiltersStore.searchFilter);
 
-    useExpenseFiltersStore.updateSearchFilter(value);
-  }
+  $effect(() => {
+    const value = search;
+
+    const timeout = setTimeout(() => {
+      useExpenseFiltersStore.updateSearchFilter(value || '');
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  });
 </script>
 
 <div class="SearchFilter">
   <Search
     placeholder="Search expenses"
-    value={useExpenseFiltersStore.searchFilter}
-    oninput={handleValueChange}
+    bind:value={search}
     roundness={2}
     clearable
-    onclear={() => useExpenseFiltersStore.updateSearchFilter('')}
+    onclear={() => {
+      search = '';
+      useExpenseFiltersStore.updateSearchFilter('');
+    }}
   />
 </div>
 
