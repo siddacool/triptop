@@ -13,7 +13,7 @@
 </script>
 
 {#if useTripStore.trip}
-  <div class="TripExpensesSection">
+  <div class="TripExpensesSection" id="TripExpensesSection">
     <Callouts />
     <Filters />
     <SpecialFiltersSelector />
