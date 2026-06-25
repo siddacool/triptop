@@ -14,7 +14,7 @@
 <Column>
   <FormField label="Date format" for="dateFormat">
     <Grid>
-      <Column md={5}>
+      <Column lg={3}>
         <Select
           options={dateFormatOptions}
           value={useSettingsStore.settings.dateFormat}
@@ -25,8 +25,8 @@
       </Column>
     </Grid>
 
-    <FieldMessage size="small">
-      Default formatting for the date. e.g.
+    <FieldMessage>
+      e.g.
       <b>{dateExample}</b>
     </FieldMessage>
   </FormField>
