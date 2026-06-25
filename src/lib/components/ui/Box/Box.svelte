@@ -8,7 +8,7 @@
 
   const { class: className = '', children }: Props = $props();
 
-  const classes = $derived(['WhiteMaterial', className].filter(Boolean));
+  const classes = $derived(['Box', className].filter(Boolean));
 </script>
 
 <div class={classes.join(' ')}>
@@ -16,13 +16,14 @@
 </div>
 
 <style lang="scss">
-  .WhiteMaterial {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--dodo-ui-Card-default-bg);
-    overflow-y: auto;
-    overflow-x: hidden;
+  .Box {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: calc(var(--dodo-ui-space) * 2);
+
+    @media (min-width: 600px) {
+      padding: calc(var(--dodo-ui-space) * 3);
+    }
   }
 </style>

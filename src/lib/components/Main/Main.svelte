@@ -25,6 +25,7 @@
 
     :global(.GreyMaterial) {
       overflow-y: auto;
+      overflow-x: hidden;
     }
   }
 </style>

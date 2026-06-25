@@ -15,8 +15,6 @@
 
 <style lang="scss">
   .TripAchivedLink {
-    margin-top: calc(var(--dodo-ui-space) * 2);
-    margin-bottom: calc(var(--dodo-ui-space) * 1);
     color: var(--dodo-color-neutral-700);
     display: inline-flex;
     align-items: center;

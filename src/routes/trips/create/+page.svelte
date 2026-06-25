@@ -2,6 +2,7 @@
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import EditTrip from '$lib/components/Trips/EditTrip/EditTrip.svelte';
+  import Box from '$lib/components/ui/Box/Box.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
@@ -39,7 +40,7 @@
   <title>Create new trip</title>
 </svelte:head>
 
-<div>
+<Box>
   <PageHeadingNav class="TripHeader" href="/trips">Create new trip</PageHeadingNav>
   <EditTrip mode="create" onsubmit={createTrip} disabled={fetching} />
-</div>
+</Box>

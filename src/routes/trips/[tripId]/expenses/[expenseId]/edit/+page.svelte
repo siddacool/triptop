@@ -3,6 +3,7 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import EditExpense from '$lib/components/Expenses/EditExpense/EditExpense.svelte';
+  import Box from '$lib/components/ui/Box/Box.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
@@ -141,11 +142,13 @@
   {/if}
 {/snippet}
 
-{#if useExpenseStore.fetching || useTripStore.fetching}
-  <Loading />
-{:else}
-  {@render content()}
-{/if}
+<Box>
+  {#if useExpenseStore.fetching || useTripStore.fetching}
+    <Loading />
+  {:else}
+    {@render content()}
+  {/if}
+</Box>
 
 <style lang="scss">
   :global(.ExpenseEditControls) {

@@ -3,6 +3,7 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import EditTrip from '$lib/components/Trips/EditTrip/EditTrip.svelte';
+  import Box from '$lib/components/ui/Box/Box.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
@@ -132,24 +133,26 @@
   <title>Edit trip</title>
 </svelte:head>
 
-{#if useTripStore.fetching}
-  <Loading />
-{:else if useTripStore.trip}
-  <div>
-    <PageHeadingNav class="TripHeader" href={`/trips/${tripId}`}>Edit trip</PageHeadingNav>
-    <EditTrip data={useTripStore.trip} mode="edit" onsubmit={updateTrip} disabled={fetching} />
-  </div>
+<Box>
+  {#if useTripStore.fetching}
+    <Loading />
+  {:else if useTripStore.trip}
+    <div>
+      <PageHeadingNav class="TripHeader" href={`/trips/${tripId}`}>Edit trip</PageHeadingNav>
+      <EditTrip data={useTripStore.trip} mode="edit" onsubmit={updateTrip} disabled={fetching} />
+    </div>
 
-  <ControlSection class="TripEditControls" controlsAlignment="center">
-    <Button color="danger" onclick={deleteConfirmation}>Delete trip</Button>
+    <ControlSection class="TripEditControls" controlsAlignment="center">
+      <Button color="danger" onclick={deleteConfirmation}>Delete trip</Button>
 
-    {#if useTripStore.trip.archived}
-      <Button onclick={toggleArchive}>Unarchive trip</Button>
-    {:else}
-      <Button color="neutral" onclick={archiveConfirmation}>Archive trip</Button>
-    {/if}
-  </ControlSection>
-{/if}
+      {#if useTripStore.trip.archived}
+        <Button onclick={toggleArchive}>Unarchive trip</Button>
+      {:else}
+        <Button color="neutral" onclick={archiveConfirmation}>Archive trip</Button>
+      {/if}
+    </ControlSection>
+  {/if}
+</Box>
 
 <style lang="scss">
   :global(.TripEditControls) {
