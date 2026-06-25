@@ -19,7 +19,7 @@
   .Category {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 3px;
+    margin-right: 2px;
 
     :global(.ExpenseCardCategoryIcon.CategoryIcon) {
       font-size: 1.2rem;
