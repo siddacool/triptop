@@ -3,7 +3,9 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import EditExpense from '$lib/components/Expenses/EditExpense/EditExpense.svelte';
+  import Box from '$lib/components/ui/Box/Box.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
+  import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
@@ -43,11 +45,20 @@
   <title>Add expense</title>
 </svelte:head>
 
-{#if useExpenseStore.fetching || useTripStore.fetching}
-  <Loading />
-{:else if useTripStore.trip}
-  <div>
-    <PageHeadingNav class="TripHeader" href={`/trips/${tripId}`}>Add expense</PageHeadingNav>
-    <EditExpense trip={useTripStore.trip} mode="create" onsubmit={createTrip} disabled={fetching} />
-  </div>
-{/if}
+<WhiteMaterial>
+  <Box>
+    {#if useExpenseStore.fetching || useTripStore.fetching}
+      <Loading />
+    {:else if useTripStore.trip}
+      <div>
+        <PageHeadingNav class="TripHeader" href={`/trips/${tripId}`}>Add expense</PageHeadingNav>
+        <EditExpense
+          trip={useTripStore.trip}
+          mode="create"
+          onsubmit={createTrip}
+          disabled={fetching}
+        />
+      </div>
+    {/if}
+  </Box>
+</WhiteMaterial>

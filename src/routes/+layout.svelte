@@ -24,9 +24,7 @@
 <Theme global class="Theme" type="auto">
   <div class="App">
     <Main>
-      <div class="box">
-        {@render children()}
-      </div>
+      {@render children()}
     </Main>
   </div>
 
@@ -61,16 +59,5 @@
     height: 100%;
     width: 100%;
     flex-direction: column;
-  }
-
-  .box {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: calc(var(--dodo-ui-space) * 2);
-
-    @media (min-width: 600px) {
-      padding: calc(var(--dodo-ui-space) * 3);
-    }
   }
 </style>

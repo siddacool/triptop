@@ -1,20 +1,18 @@
 <script lang="ts">
-  import { Card, Column, Grid } from '@flightlesslabs/dodo-ui';
+  import { Column, Grid } from '@flightlesslabs/dodo-ui';
   import UserInterface from './UserInterface/UserInterface.svelte';
-  import Localization from './Localization/Localization.svelte';
   import CurrencyConversion from './CurrencyConversion/CurrencyConversion.svelte';
+  import Divider from '$lib/components/ui/Divider/Divider.svelte';
 </script>
 
 <div class="SettingsCard">
-  <Card class="SettingsCardCard" shadow={0} outline>
-    <Grid gap={2}>
-      <UserInterface />
-      <Column></Column>
-      <Localization />
-      <Column></Column>
-      <CurrencyConversion />
-    </Grid>
-  </Card>
+  <Grid gap={2}>
+    <UserInterface />
+    <Column>
+      <Divider />
+    </Column>
+    <CurrencyConversion />
+  </Grid>
 </div>
 
 <style lang="scss">

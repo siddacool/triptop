@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import type { Snippet } from 'svelte';
+  import GreyMaterial from '../ui/Materials/GreyMaterial/GreyMaterial.svelte';
 
   export type MainProps = {
     children?: Snippet;
@@ -11,19 +12,20 @@
 </script>
 
 <main class="Main">
-  {@render children?.()}
+  <GreyMaterial>
+    {@render children?.()}
+  </GreyMaterial>
 </main>
 
 <style lang="scss">
   .Main {
     flex: 1;
-    overflow-y: auto;
-    min-height: 100px;
+    min-height: 100vh;
     color: var(--dodo-color-neutral-800);
-    background-color: var(--dodo-color-neutral-100);
-  }
 
-  :global(.dodo-theme--dark .Main) {
-    background-color: var(--dodo-color-neutral-50);
+    :global(.GreyMaterial) {
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
   }
 </style>

@@ -7,8 +7,8 @@
   const value = $derived(useSettingsStore.settings.locale);
 </script>
 
-<Column md={6}>
-  <FormField label="Locale" for="local">
+<Column md={2}>
+  <FormField label="Locale:" for="local">
     <Select
       {value}
       options={localeOptionsBrowser}

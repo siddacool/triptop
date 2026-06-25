@@ -1,7 +1,7 @@
-import type { ExportTripJsonValue } from '$lib/components/Trips/TripPage/TripHeader/Controls/ExportTrip/ExportModal/export/export-json';
 import { nanoid } from 'nanoid';
 import { db } from '../db';
 import type { Expense } from '../expense/types';
+import type { ExportTripJsonValue } from '$lib/components/Trips/TripPage/TripExpensesSection/TripDetails/Controls/ExportTrip/ExportModal/export/export-json';
 
 function createTripImportStore() {
   let fetching: boolean = $state(false);

@@ -19,7 +19,7 @@
 </script>
 
 <script lang="ts">
-  import { Card, Column, FormField, Grid, Row, TextArea } from '@flightlesslabs/dodo-ui';
+  import { Column, FormField, Grid, Row, TextArea } from '@flightlesslabs/dodo-ui';
   import Controls from './Controls.svelte';
   import { parseDate, type DateValue } from '@internationalized/date';
   import { createDate } from '@flightlesslabs/time-utils';
@@ -77,34 +77,32 @@
 
 <div class="EditExpense">
   <form onsubmit={submit}>
-    <Card outline shadow={0} class="EditExpenseCard">
-      <Grid gap={2}>
-        <Amount bind:amount {disabled} {trip} />
-        <Column>
-          <FormField label="Description:" for="name">
-            <TextArea bind:value={name} name="name" {disabled} placeholder="e.g. Dinner at Koko" />
+    <Grid gap={2}>
+      <Amount bind:amount {disabled} {trip} />
+      <Column>
+        <FormField label="Description:" for="name">
+          <TextArea bind:value={name} name="name" {disabled} placeholder="e.g. Dinner at Koko" />
+        </FormField>
+      </Column>
+
+      <Row>
+        <Column lg="flex">
+          <FormField label="Category:" for="category">
+            <CategorySelect name="category" bind:value={category} />
           </FormField>
         </Column>
 
-        <Row>
-          <Column lg="flex">
-            <FormField label="Category:" for="category">
-              <CategorySelect name="category" bind:value={category} />
-            </FormField>
-          </Column>
-
-          <Column lg="flex">
-            <FormField label="Date:">
-              <DatePicker bind:value={date} {dateFormat} />
-            </FormField>
-          </Column>
-        </Row>
-
-        <Column>
-          <Controls {mode} {disabled} onreset={reset} {isDataValid} />
+        <Column lg="flex">
+          <FormField label="Date:">
+            <DatePicker bind:value={date} {dateFormat} />
+          </FormField>
         </Column>
-      </Grid>
-    </Card>
+      </Row>
+
+      <Column>
+        <Controls {mode} {disabled} onreset={reset} {isDataValid} />
+      </Column>
+    </Grid>
   </form>
 </div>
 
@@ -112,9 +110,5 @@
   .EditExpense {
     color: var(--dodo-color-neutral-800);
     margin-top: calc(var(--dodo-ui-space) * 2);
-
-    :global(.EditExpenseCard) {
-      padding: calc(var(--dodo-ui-space) * 2);
-    }
   }
 </style>

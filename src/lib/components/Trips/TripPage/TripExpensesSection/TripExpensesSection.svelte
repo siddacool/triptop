@@ -8,12 +8,14 @@
   import SpecialFiltersSelector from './Filters/SpecialFilters/SpecialFiltersSelector.svelte';
   import FloatingControls from './FloatingControls/FloatingControls.svelte';
   import Stats from './Stats/Stats.svelte';
+  import TripDetails from './TripDetails/TripDetails.svelte';
 
   const groupExpenses = $derived(getGroupExpenses(useExpenseListStore.filtredExpenses));
 </script>
 
 {#if useTripStore.trip}
-  <div class="TripExpensesSection">
+  <div class="TripExpensesSection" id="TripExpensesSection">
+    <TripDetails />
     <Callouts />
     <Filters />
     <SpecialFiltersSelector />
@@ -22,9 +24,3 @@
     <FloatingControls />
   </div>
 {/if}
-
-<style lang="scss">
-  .TripExpensesSection {
-    margin-top: calc(var(--dodo-ui-space) * 2);
-  }
-</style>

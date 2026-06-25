@@ -3,6 +3,21 @@
   import { Button, Indicator } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
   import { useTripPageStore } from '$lib/stores/app/pages/trip-page.svelte';
+
+  async function handleClick() {
+    const filterSelectorCondition = !useTripPageStore.showSpecailFiltersSelector;
+
+    useTripPageStore.toggleShowSpecailFiltersSelector();
+
+    const element = document.getElementById('TripExpensesSection');
+
+    if (element && filterSelectorCondition) {
+      element.scrollIntoView({
+        behavior: 'smooth', // optional
+        block: 'start', // top of element aligns with top of viewport
+      });
+    }
+  }
 </script>
 
 <div class="SpecialFilters">
@@ -16,7 +31,7 @@
     outline
     variant="text"
     color="neutral"
-    onclick={useTripPageStore.toggleShowSpecailFiltersSelector}
+    onclick={handleClick}
   >
     <Icon icon="mdi:filter-outline" />
   </Button>

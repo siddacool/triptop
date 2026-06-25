@@ -1,12 +1,11 @@
 <script>
   import { Column, Money } from '@flightlesslabs/dodo-ui';
-  import FieldMessage from '$lib/components/ui/FieldMessage/FieldMessage.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
 </script>
 
 <Column>
-  <FieldMessage size="small" class="CurrencySettingsExample">
-    Home currency format. e.g.
+  <div class="CurrencySettingsExample">
+    e.g.
     <b>
       <Money
         value={500000}
@@ -14,16 +13,16 @@
         locale={useSettingsStore.settings.locale}
       />
     </b>
-  </FieldMessage>
+  </div>
 </Column>
 
 <style lang="scss">
-  b {
-    font-weight: 500;
-  }
+  .CurrencySettingsExample {
+    color: var(--dodo-color-neutral-600);
+    font-size: 1rem;
 
-  :global(.CurrencySettingsExample) {
-    padding-top: 0;
-    margin-top: calc(var(--dodo-ui-space) * -1);
+    b {
+      font-weight: 500;
+    }
   }
 </style>

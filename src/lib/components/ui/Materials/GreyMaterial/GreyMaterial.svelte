@@ -8,7 +8,7 @@
 
   const { class: className = '', children }: Props = $props();
 
-  const classes = $derived(['FieldHeader', className].filter(Boolean));
+  const classes = $derived(['GreyMaterial', className].filter(Boolean));
 </script>
 
 <div class={classes.join(' ')}>
@@ -16,10 +16,15 @@
 </div>
 
 <style lang="scss">
-  .FieldHeader {
+  .GreyMaterial {
     display: flex;
-    color: var(--dodo-color-neutral-800);
-    font-size: 1.2rem;
-    font-weight: 500;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dodo-color-neutral-100);
+  }
+
+  :global(.dodo-theme--dark .GreyMaterial) {
+    background-color: var(--dodo-color-neutral-50);
   }
 </style>

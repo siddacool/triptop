@@ -4,6 +4,7 @@
   import { page } from '$app/state';
   import TripExpensesSection from '$lib/components/Trips/TripPage/TripExpensesSection/TripExpensesSection.svelte';
   import TripHeader from '$lib/components/Trips/TripPage/TripHeader/TripHeader.svelte';
+  import Box from '$lib/components/ui/Box/Box.svelte';
   import PrimaryButton from '$lib/components/ui/Buttons/PrimaryButton/PrimaryButton.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
@@ -60,11 +61,13 @@
   {/if}
 {/snippet}
 
-{#if useExpenseListStore.fetching || useTripStore.fetching}
-  <Loading />
-{:else}
-  {@render content()}
-{/if}
+<Box>
+  {#if useExpenseListStore.fetching || useTripStore.fetching}
+    <Loading />
+  {:else}
+    {@render content()}
+  {/if}
+</Box>
 
 <style lang="scss">
   :global(.TripPageAddExpenseButton .Icon) {

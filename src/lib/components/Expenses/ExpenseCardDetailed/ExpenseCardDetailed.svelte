@@ -9,6 +9,7 @@
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Amount from './Amount.svelte';
   import Callouts from './Callouts.svelte';
+  import Divider from '$lib/components/ui/Divider/Divider.svelte';
 
   type Props = {
     expense: Expense;
@@ -25,38 +26,43 @@
 
 <Callouts />
 <div class={classes.join(' ')}>
-  <Card class="ExpenseCardDetailedCard" roundness={1} outline shadow={0}>
-    <Grid gap={2}>
-      <Column>
-        <div class="HeadingSection">
-          <Amount {trip} {expense} />
-          {#if expense.archived}
-            <DeletedPill />
-          {/if}
-        </div>
-      </Column>
-      <Column>
-        <FieldValue>
-          {expense.name}
-        </FieldValue>
-      </Column>
-      <Column>
-        <div class="details">
-          <FieldValue size="small">
-            <CategoryShowCase value={expense.category} />
-          </FieldValue>
-          <FieldValue size="small">
-            {createDate(expense.date).format('ddd, MMM D, YYYY')}
-          </FieldValue>
-        </div>
-      </Column>
-      <Column>
-        <FieldValue label="Trip:">
-          {useTripStore.trip?.name || ''}
-        </FieldValue>
-      </Column>
-    </Grid>
-  </Card>
+  <Grid gap={2}>
+    <Column>
+      <div class="HeadingSection">
+        <Amount {trip} {expense} />
+        {#if expense.archived}
+          <DeletedPill />
+        {/if}
+      </div>
+    </Column>
+
+    <Column>
+      <FieldValue>
+        {expense.name}
+      </FieldValue>
+    </Column>
+    <Column>
+      <Divider />
+    </Column>
+    <Column>
+      <FieldValue size="small">
+        <CategoryShowCase value={expense.category} />
+      </FieldValue>
+    </Column>
+    <Column>
+      <FieldValue size="small">
+        {createDate(expense.date).format('ddd, MMM D, YYYY')}
+      </FieldValue>
+    </Column>
+    <Column>
+      <Divider />
+    </Column>
+    <Column>
+      <FieldValue label="Trip:">
+        {useTripStore.trip?.name || ''}
+      </FieldValue>
+    </Column>
+  </Grid>
 </div>
 
 <style lang="scss">

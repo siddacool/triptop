@@ -1,5 +1,7 @@
 <script>
   import SettingsCard from '$lib/components/Settings/SettingsCard/SettingsCard.svelte';
+  import Box from '$lib/components/ui/Box/Box.svelte';
+  import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { onMount } from 'svelte';
@@ -13,5 +15,9 @@
   <title>Settings</title>
 </svelte:head>
 
-<PageHeadingNav href="/trips">Settings</PageHeadingNav>
-<SettingsCard />
+<WhiteMaterial>
+  <Box>
+    <PageHeadingNav href="/trips">Settings</PageHeadingNav>
+    <SettingsCard />
+  </Box>
+</WhiteMaterial>

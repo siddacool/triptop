@@ -8,31 +8,26 @@
 
   let { expense }: Props = $props();
 
-  const classes = $derived(['MetaData', expense.archived ? 'archived' : ''].filter(Boolean));
+  const classes = $derived(['Category', expense.archived ? 'archived' : ''].filter(Boolean));
 </script>
 
 <div class={classes.join(' ')}>
-  <CategoryIcon value={expense.category} class="MetaDataIcon" />
+  <CategoryIcon value={expense.category} class="ExpenseCardCategoryIcon" />
 </div>
 
 <style lang="scss">
-  .MetaData {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-top: var(--dodo-ui-space);
+  .Category {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 2px;
 
-    :global(.MetaDataIcon) {
+    :global(.ExpenseCardCategoryIcon.CategoryIcon) {
       font-size: 1.2rem;
-      margin-right: 4px;
       color: var(--dodo-color-neutral-600);
+      margin-right: 0;
 
       @media (min-width: 600px) {
         font-size: 1.25rem;
-      }
-
-      &:last-child {
-        margin-right: 0;
       }
     }
   }

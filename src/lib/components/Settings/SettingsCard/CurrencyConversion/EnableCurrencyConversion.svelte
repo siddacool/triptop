@@ -7,8 +7,8 @@
 <Column>
   <Switch
     checked={useSettingsStore.settings.enableCurrencyConversion}
-    name="homeCurrency"
-    id="homeCurrency"
+    name="enableCurrencyConversion"
+    id="enableCurrencyConversion"
     onCheckedChange={(val) =>
       useSettingsStore.updateSettings({
         enableCurrencyConversion: val,

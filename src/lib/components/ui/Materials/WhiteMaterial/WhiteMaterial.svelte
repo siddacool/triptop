@@ -8,7 +8,7 @@
 
   const { class: className = '', children }: Props = $props();
 
-  const classes = $derived(['FieldHeader', className].filter(Boolean));
+  const classes = $derived(['WhiteMaterial', className].filter(Boolean));
 </script>
 
 <div class={classes.join(' ')}>
@@ -16,10 +16,13 @@
 </div>
 
 <style lang="scss">
-  .FieldHeader {
+  .WhiteMaterial {
     display: flex;
-    color: var(--dodo-color-neutral-800);
-    font-size: 1.2rem;
-    font-weight: 500;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--dodo-ui-Card-default-bg);
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 </style>
