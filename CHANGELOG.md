@@ -1,5 +1,11 @@
 # triptop
 
+## 5.12.1
+
+### Patch Changes
+
+- 565b704: Privacy policy added
+
 ## 5.12.0
 
 ### Minor Changes
