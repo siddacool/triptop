@@ -14,9 +14,3 @@
 <div class={classes.join(' ')}>
   {@render children?.()}
 </div>
-
-<style lang="scss">
-  .WhiteMaterial {
-    
-  }
-</style>
