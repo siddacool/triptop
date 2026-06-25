@@ -1,11 +1,10 @@
 <script lang="ts">
   import type { Expense } from '$lib/stores/expense/types';
   import { Card, type CardColor } from '@flightlesslabs/dodo-ui';
-  import Title from './Title.svelte';
-  import Amount from './Amount.svelte';
   import { resolve } from '$app/paths';
   import type { Trip } from '$lib/stores/trip/types';
-  import MetaData from './MetaData.svelte';
+  import LeftSide from './LeftSide/LeftSide.svelte';
+  import RightSide from './RightSide/RightSide.svelte';
 
   type Props = {
     expense: Expense;
@@ -39,11 +38,10 @@
 >
   <a href={resolve(`/trips/${expense.tripId}/expenses/${expense._id}`)}>
     <Card class="ExpenseCardCard" roundness={1} active color={cardColor}>
-      <div class="base-info">
-        <Title {expense} />
-        <Amount {expense} {trip} />
+      <div class="container">
+        <LeftSide {expense} />
+        <RightSide {expense} {trip} />
       </div>
-      <MetaData {expense} />
     </Card>
   </a>
 </li>
@@ -63,12 +61,12 @@
       flex-direction: column;
     }
 
-    .base-info {
-      display: flex;
-    }
-
     :global(.ExpenseCardCard) {
       padding: calc(var(--dodo-ui-space) * 1);
+    }
+
+    .container {
+      display: flex;
     }
 
     &.archived {
