@@ -18,15 +18,11 @@
   .Title {
     margin: 0;
     font-weight: 400;
-    font-size: 0.95rem;
-    margin-right: var(--dodo-ui-space);
-
-    display: flex;
-    align-items: flex-start;
+    font-size: 1rem;
+    display: inline;
 
     @media (min-width: 600px) {
       font-size: 1rem;
-      margin-right: calc(var(--dodo-ui-space) * 2);
     }
 
     &.archived {

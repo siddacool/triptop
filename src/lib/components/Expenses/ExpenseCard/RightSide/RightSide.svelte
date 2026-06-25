@@ -11,13 +11,11 @@
 
   import Amount from './Amount.svelte';
   import ExchangeRate from './ExchangeRate.svelte';
-  import MetaData from './MetaData.svelte';
 </script>
 
 <div class="RightSide">
   <Amount {expense} {trip} />
   <ExchangeRate {expense} />
-  <MetaData {expense} />
 </div>
 
 <style lang="scss">
