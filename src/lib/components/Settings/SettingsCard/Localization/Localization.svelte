@@ -1,8 +1,14 @@
 <script>
-  import SettingsAccordianItem from '../SettingsAccordianItem.svelte';
+  import { Column, Grid } from '@flightlesslabs/dodo-ui';
   import DateFormat from './DateFormat.svelte';
+  import FieldHeader from '$lib/components/ui/FieldHeader/FieldHeader.svelte';
 </script>
 
-<SettingsAccordianItem title="Localization" value="localization">
-  <DateFormat />
-</SettingsAccordianItem>
+<Column>
+  <Grid gap={2}>
+    <Column>
+      <FieldHeader>Localization</FieldHeader>
+    </Column>
+    <DateFormat />
+  </Grid>
+</Column>

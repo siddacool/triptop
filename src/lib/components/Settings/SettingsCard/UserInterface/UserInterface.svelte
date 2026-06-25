@@ -1,8 +1,14 @@
 <script>
-  import SettingsAccordianItem from '../SettingsAccordianItem.svelte';
+  import { Column, Grid } from '@flightlesslabs/dodo-ui';
   import Theme from './Theme.svelte';
+  import FieldHeader from '$lib/components/ui/FieldHeader/FieldHeader.svelte';
 </script>
 
-<SettingsAccordianItem title="User interface" value="user-interface">
-  <Theme />
-</SettingsAccordianItem>
+<Column>
+  <Grid gap={2}>
+    <Column>
+      <FieldHeader>User interface</FieldHeader>
+    </Column>
+    <Theme />
+  </Grid>
+</Column>
