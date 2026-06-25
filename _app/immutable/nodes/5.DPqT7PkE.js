@@ -1,0 +1,2 @@
+import{D as e,k as t}from"../chunks/nQlos8yJ.js";import"../chunks/xihTtKlq.js";var n=t(`<div><h2>Privacy Policy for Triptop</h2> <p>This application is Free and Open Source software distributed under the <b>MIT License</b>.
+    Copyright (c) 2026 Siddhesh Mangela.</p> <p>The complete source code is fully transparent and publicly accessible at <a href="https://github.com/siddacool/triptop">triptop grithub</a></p></div>`);function r(t){e(t,n())}export{r as component};
