@@ -1,5 +1,13 @@
 # triptop
 
+## 5.12.2
+
+### Patch Changes
+
+- 454052c: Search debounce added
+- 5ee2153: Settings page Accordian removed
+- a8ce278: Expense card structure improved
+
 ## 5.12.1
 
 ### Patch Changes
