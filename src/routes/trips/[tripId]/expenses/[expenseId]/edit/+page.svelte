@@ -5,13 +5,15 @@
   import EditExpense from '$lib/components/Expenses/EditExpense/EditExpense.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
+  import Divider from '$lib/components/ui/Divider/Divider.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
+  import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
   import type { EditExpenseFormData } from '$lib/stores/expense/types';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
-  import { Button } from '@flightlesslabs/dodo-ui';
+  import { Button, Column, Grid } from '@flightlesslabs/dodo-ui';
   import { modals, toasts } from '@flightlesslabs/dodo-ui-bits';
 
   let fetching: boolean = $state(false);
@@ -119,39 +121,43 @@
 
 {#snippet content()}
   {#if useExpenseStore.expense && useTripStore.trip}
-    <div>
-      <PageHeadingNav class="TripHeader" href={`/trips/${tripId}/expenses/${expenseId}`}>
-        Edit expense
-      </PageHeadingNav>
-      <EditExpense
-        trip={useTripStore.trip}
-        mode="edit"
-        data={useExpenseStore.expense}
-        onsubmit={updateExpense}
-        disabled={fetching}
-      />
-    </div>
-
-    <ControlSection class="ExpenseEditControls" controlsAlignment="center">
-      {#if isArchived}
-        <Button onclick={restoreConfirmation}>Restore expense</Button>
-      {:else}
-        <Button color="danger" onclick={deleteConfirmation}>Delete expense</Button>
-      {/if}
-    </ControlSection>
+    <Grid gap={2}>
+      <Column>
+        <div>
+          <PageHeadingNav class="TripHeader" href={`/trips/${tripId}/expenses/${expenseId}`}>
+            Edit expense
+          </PageHeadingNav>
+          <EditExpense
+            trip={useTripStore.trip}
+            mode="edit"
+            data={useExpenseStore.expense}
+            onsubmit={updateExpense}
+            disabled={fetching}
+          />
+        </div>
+      </Column>
+      <Column>
+        <Divider />
+      </Column>
+      <Column>
+        <ControlSection class="ExpenseEditControls" controlsAlignment="center">
+          {#if isArchived}
+            <Button onclick={restoreConfirmation}>Restore expense</Button>
+          {:else}
+            <Button color="danger" onclick={deleteConfirmation}>Delete expense</Button>
+          {/if}
+        </ControlSection>
+      </Column>
+    </Grid>
   {/if}
 {/snippet}
 
-<Box>
-  {#if useExpenseStore.fetching || useTripStore.fetching}
-    <Loading />
-  {:else}
-    {@render content()}
-  {/if}
-</Box>
-
-<style lang="scss">
-  :global(.ExpenseEditControls) {
-    margin-top: calc(var(--dodo-ui-space) * 3);
-  }
-</style>
+<WhiteMaterial>
+  <Box>
+    {#if useExpenseStore.fetching || useTripStore.fetching}
+      <Loading />
+    {:else}
+      {@render content()}
+    {/if}
+  </Box>
+</WhiteMaterial>

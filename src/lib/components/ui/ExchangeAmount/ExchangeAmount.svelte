@@ -25,6 +25,10 @@
   .ExchangeAmount {
     display: inline-flex;
     font-size: inherit;
-    color: var(--dodo-color-neutral-600);
+    color: var(--dodo-color-secondary-500);
+  }
+
+  :global(.dodo-theme--dark .ExchangeAmount) {
+    color: var(--dodo-color-secondary-600);
   }
 </style>

@@ -67,44 +67,48 @@
 
 <div class="EditTrip">
   <form onsubmit={submit}>
-    <Card outline shadow={0} class="EditTripCard">
-      <Grid gap={2}>
-        <Column>
-          <FormField label="Trip name:" for="name">
-            <TextInput bind:value={name} name="name" {disabled} placeholder="e.g. Trip to bali" />
+    <Grid gap={2}>
+      <Column>
+        <FormField label="Trip name:" for="name">
+          <TextInput
+            bind:value={name}
+            name="name"
+            {disabled}
+            placeholder="e.g. Trip to bali"
+            size="large"
+          />
+        </FormField>
+      </Column>
+
+      <Row>
+        <Column lg={5}>
+          <FormField label="Currency:" for="currency">
+            <Select
+              options={currencyOptions}
+              bind:value={currency}
+              name="currency"
+              searchable
+              placeholder="Select currency"
+            />
           </FormField>
         </Column>
 
-        <Row>
-          <Column lg="flex">
-            <FormField label="Currency:" for="currency">
-              <Select
-                options={currencyOptions}
-                bind:value={currency}
-                name="currency"
-                searchable
-                placeholder="Select currency"
-              />
-            </FormField>
-          </Column>
-
-          <Column lg={4}>
-            <FormField label="Locale:" for="locale">
-              <Select
-                options={localeOptions}
-                bind:value={locale}
-                name="locale"
-                placeholder="Select locale"
-              />
-            </FormField>
-          </Column>
-        </Row>
-
-        <Column>
-          <Controls {mode} {disabled} onreset={reset} {isDataValid} />
+        <Column lg={3}>
+          <FormField label="Locale:" for="locale">
+            <Select
+              options={localeOptions}
+              bind:value={locale}
+              name="locale"
+              placeholder="Select locale"
+            />
+          </FormField>
         </Column>
-      </Grid>
-    </Card>
+      </Row>
+
+      <Column>
+        <Controls {mode} {disabled} onreset={reset} {isDataValid} />
+      </Column>
+    </Grid>
   </form>
 </div>
 
@@ -112,9 +116,5 @@
   .EditTrip {
     margin-top: calc(var(--dodo-ui-space) * 2);
     color: var(--dodo-color-neutral-800);
-
-    :global(.EditTripCard) {
-      padding: calc(var(--dodo-ui-space) * 2);
-    }
   }
 </style>

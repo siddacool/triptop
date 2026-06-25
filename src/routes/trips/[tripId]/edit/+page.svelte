@@ -5,12 +5,14 @@
   import EditTrip from '$lib/components/Trips/EditTrip/EditTrip.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
+  import Divider from '$lib/components/ui/Divider/Divider.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
+  import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import type { EditTripFormData } from '$lib/stores/trip/types';
-  import { Button } from '@flightlesslabs/dodo-ui';
+  import { Button, Column, Grid } from '@flightlesslabs/dodo-ui';
   import { modals, toasts } from '@flightlesslabs/dodo-ui-bits';
 
   let fetching: boolean = $state(false);
@@ -133,29 +135,38 @@
   <title>Edit trip</title>
 </svelte:head>
 
-<Box>
-  {#if useTripStore.fetching}
-    <Loading />
-  {:else if useTripStore.trip}
-    <div>
-      <PageHeadingNav class="TripHeader" href={`/trips/${tripId}`}>Edit trip</PageHeadingNav>
-      <EditTrip data={useTripStore.trip} mode="edit" onsubmit={updateTrip} disabled={fetching} />
-    </div>
+<WhiteMaterial>
+  <Box>
+    {#if useTripStore.fetching}
+      <Loading />
+    {:else if useTripStore.trip}
+      <Grid gap={2}>
+        <Column>
+          <div>
+            <PageHeadingNav class="TripHeader" href={`/trips/${tripId}`}>Edit trip</PageHeadingNav>
+            <EditTrip
+              data={useTripStore.trip}
+              mode="edit"
+              onsubmit={updateTrip}
+              disabled={fetching}
+            />
+          </div>
+        </Column>
+        <Column>
+          <Divider />
+        </Column>
+        <Column>
+          <ControlSection class="TripEditControls" controlsAlignment="center">
+            <Button color="danger" onclick={deleteConfirmation}>Delete trip</Button>
 
-    <ControlSection class="TripEditControls" controlsAlignment="center">
-      <Button color="danger" onclick={deleteConfirmation}>Delete trip</Button>
-
-      {#if useTripStore.trip.archived}
-        <Button onclick={toggleArchive}>Unarchive trip</Button>
-      {:else}
-        <Button color="neutral" onclick={archiveConfirmation}>Archive trip</Button>
-      {/if}
-    </ControlSection>
-  {/if}
-</Box>
-
-<style lang="scss">
-  :global(.TripEditControls) {
-    margin-top: calc(var(--dodo-ui-space) * 3);
-  }
-</style>
+            {#if useTripStore.trip.archived}
+              <Button onclick={toggleArchive}>Unarchive trip</Button>
+            {:else}
+              <Button color="neutral" onclick={archiveConfirmation}>Archive trip</Button>
+            {/if}
+          </ControlSection>
+        </Column>
+      </Grid>
+    {/if}
+  </Box>
+</WhiteMaterial>
