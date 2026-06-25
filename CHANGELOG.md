@@ -1,5 +1,16 @@
 # triptop
 
+## 5.12.3
+
+### Patch Changes
+
+- a1dacd5: Header layout fro trips updated
+- bf547dc: Filters sticky added
+- ead91a0: Header added back
+- af8f549: White material added to forms
+- b18552b: Expanse card category added beside title
+- b6f413a: New setup page
+
 ## 5.12.2
 
 ### Patch Changes
