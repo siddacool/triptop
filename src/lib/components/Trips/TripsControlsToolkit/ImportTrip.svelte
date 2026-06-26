@@ -3,7 +3,7 @@
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
   import { useTripImportStore } from '$lib/stores/trip/import.svelte';
   import { useTripListStore } from '$lib/stores/trip/list.svelte';
-  import type { ExportTripJsonValue } from '../TripPage/TripExpensesSection/TripDetails/Controls/ExportTrip/ExportModal/export/export-json';
+  import type { ExportTripJsonValue } from '../TripPage/TripHeader/TripDetails/Controls/ExportTrip/ExportModal/export/export-json';
 
   let fileInput = $state<HTMLInputElement>();
 
