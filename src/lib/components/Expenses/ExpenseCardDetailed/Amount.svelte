@@ -3,9 +3,7 @@
   import { Money, Threshold } from '@flightlesslabs/dodo-ui';
   import { type Trip } from '$lib/stores/trip/types';
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
-  import SecondaryCurrency from '$lib/components/ui/SecondaryCurrency/SecondaryCurrency.svelte';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+  import ExpenseAmountExchangeValue from '$lib/components/ui/MoneyExchangeValue/ExpenseAmountExchangeValue.svelte';
 
   type Props = {
     expense: Expense;
@@ -16,10 +14,6 @@
   let { expense, trip, class: className = '' }: Props = $props();
 
   const locale = $derived(trip.locale);
-  const amountHomeCurrency = $derived(
-    useExpenseListStore.expenses.find((item) => item._id === expense._id)?.virtualData
-      ?.amountHomeCurrency,
-  );
 
   const classes = $derived(
     ['Amount', expense.archived ? 'archived' : '', className].filter(Boolean),
@@ -42,13 +36,7 @@
       />
     </Threshold>
   </FieldValue>
-  {#if useSettingsStore.settings.enableCurrencyConversion}
-    <SecondaryCurrency
-      value={amountHomeCurrency}
-      currency={useSettingsStore.settings.homeCurrency}
-      locale={useSettingsStore.settings.locale}
-    />
-  {/if}
+  <ExpenseAmountExchangeValue amount={expense.amount} />
 </div>
 
 <style lang="scss">
@@ -62,12 +50,12 @@
         text-decoration: line-through;
       }
 
-      :global(.SecondaryCurrency) {
+      :global(.ExpenseAmountExchangeValue) {
         text-decoration: line-through;
       }
     }
 
-    :global(.SecondaryCurrency) {
+    :global(.ExpenseAmountExchangeValue) {
       margin-top: var(--dodo-ui-space);
       font-size: 1rem;
     }

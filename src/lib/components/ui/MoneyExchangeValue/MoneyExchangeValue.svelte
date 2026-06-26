@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { CurrencyCode } from '@flightlesslabs/currency';
-  import { Money } from '@flightlesslabs/dodo-ui';
+  import BaseMoneyExchangeValue from './BaseMoneyExchangeValue.svelte';
 
   type Props = {
     class?: string;
@@ -11,23 +11,23 @@
 
   const { class: className = '', value, currency, locale }: Props = $props();
 
-  const classes = $derived(['SecondaryCurrency', className].filter(Boolean));
+  const classes = $derived(['MoneyExchangeValue', className].filter(Boolean));
 </script>
 
 {#if value || value === 0}
   <div class={classes.join(' ')}>
-    <Money {value} {currency} {locale} />
+    <BaseMoneyExchangeValue {value} {currency} {locale} />
   </div>
 {/if}
 
 <style lang="scss">
-  .SecondaryCurrency {
+  .MoneyExchangeValue {
     display: inline-flex;
     font-size: inherit;
     color: var(--dodo-color-secondary-500);
   }
 
-  :global(.dodo-theme--dark .SecondaryCurrency) {
+  :global(.dodo-theme--dark .MoneyExchangeValue) {
     color: var(--dodo-color-secondary-600);
   }
 </style>

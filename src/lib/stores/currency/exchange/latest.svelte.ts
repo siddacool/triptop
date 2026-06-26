@@ -6,8 +6,6 @@ import {
   type CurrencyExchangeRateResponseFrankfurter,
 } from '../types';
 import { createDate } from '$lib/helpers/date-time/createDate';
-import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
-import { useTripStore } from '$lib/stores/trip/individual.svelte';
 
 function createLatestCurrencyExchangeStore() {
   let exchangeRate: CurrencyExchangeRate | undefined = $state(undefined);
@@ -36,8 +34,6 @@ function createLatestCurrencyExchangeStore() {
     async fetch(tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
       try {
         fetching = true;
-
-        const tripId = useTripStore.trip?._id;
 
         // No need to request stuff
         if (tripCurrency === homeCurrency) {
@@ -68,10 +64,6 @@ function createLatestCurrencyExchangeStore() {
           now.diff(targetRequestedAtMoment, 'hour') < CurrencyExchangeRequestDiffrence
         ) {
           console.log('debug: no update', target);
-
-          if (tripId) {
-            await useExpenseListStore.fetch(tripId, exchangeRate);
-          }
 
           return;
         }
@@ -107,10 +99,6 @@ function createLatestCurrencyExchangeStore() {
           ...newExchangeRate,
         };
 
-        if (tripId) {
-          await useExpenseListStore.fetch(tripId, exchangeRate);
-        }
-
         mounted = true;
 
         return Promise.resolve();
@@ -121,6 +109,15 @@ function createLatestCurrencyExchangeStore() {
       } finally {
         fetching = false;
       }
+    },
+    async fetchSilent(tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
+      try {
+        await this.fetch(tripCurrency, homeCurrency);
+      } catch (e) {
+        console.error(e);
+      }
+
+      return exchangeRate;
     },
     clear() {
       exchangeRate = undefined;

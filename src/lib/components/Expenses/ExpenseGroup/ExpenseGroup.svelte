@@ -29,7 +29,7 @@
     margin: 0;
     padding: 0;
     margin-top: var(--dodo-ui-space);
-    padding-bottom: 70px;
+    padding-bottom: 100px;
     color: var(--dodo-color-neutral-700);
   }
 </style>
