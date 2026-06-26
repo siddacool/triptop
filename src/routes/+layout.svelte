@@ -62,6 +62,7 @@
   }
 
   :global(.dodo-theme--dark) {
+    color-scheme: dark;
     --dodo-ui-InputEnclosure-border-color: var(--dodo-color-neutral-500);
   }
 </style>
