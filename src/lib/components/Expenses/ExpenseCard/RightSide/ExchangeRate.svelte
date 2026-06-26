@@ -8,22 +8,20 @@
 
   let { expense }: Props = $props();
 
-  const classes = $derived(['ExchangeRate', expense.archived ? 'archived' : ''].filter(Boolean));
+  const classes = $derived(
+    ['ExpenseCardExchangeRate', expense.archived ? 'archived' : ''].filter(Boolean),
+  );
 </script>
 
-<div class={classes.join(' ')}>
-  <HomeCurrencyExchange amount={expense.amount} />
-</div>
+<HomeCurrencyExchange class={classes.join(' ')} amount={expense.amount} />
 
 <style lang="scss">
-  .ExchangeRate {
+  :global(.ExpenseCardExchangeRate.HomeCurrencyExchange) {
     &.archived {
       text-decoration: line-through;
     }
 
-    :global(.HomeCurrencyExchange) {
-      margin-top: var(--dodo-ui-space);
-      font-size: 0.85rem;
-    }
+    margin-top: var(--dodo-ui-space);
+    font-size: 0.85rem;
   }
 </style>

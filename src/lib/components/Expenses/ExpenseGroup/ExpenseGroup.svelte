@@ -12,7 +12,7 @@
   let { data, trip }: Props = $props();
 </script>
 
-<ul class="ExpenseGroup">
+<div class="ExpenseGroup">
   {#each data as item (item.id)}
     {#if item.type === 'group'}
       <Header data={item} />
@@ -20,7 +20,7 @@
       <Expense data={item} {trip} />
     {/if}
   {/each}
-</ul>
+</div>
 
 <style lang="scss">
   .ExpenseGroup {
@@ -30,5 +30,6 @@
     padding: 0;
     margin-top: var(--dodo-ui-space);
     padding-bottom: 70px;
+    color: var(--dodo-color-neutral-700);
   }
 </style>

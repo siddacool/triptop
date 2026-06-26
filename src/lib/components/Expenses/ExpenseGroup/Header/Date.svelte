@@ -20,10 +20,4 @@
   let formattedDate = $derived(getFormattedDate(date));
 </script>
 
-<div class="Date">{formattedDate}</div>
-
-<style lang="scss">
-  .Date {
-    color: var(--dodo-color-neutral-700);
-  }
-</style>
+{formattedDate}

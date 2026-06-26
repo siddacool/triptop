@@ -9,9 +9,9 @@
   let { data }: Props = $props();
 </script>
 
-<li class="Header">
+<div class="Header">
   <Date date={data.date} />
-</li>
+</div>
 
 <style lang="scss">
   .Header {

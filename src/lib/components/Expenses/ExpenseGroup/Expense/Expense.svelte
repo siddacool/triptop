@@ -11,16 +11,4 @@
   let { data, trip }: Props = $props();
 </script>
 
-<li class="Expense">
-  <ExpenseCard expense={data.expense} {trip} />
-</li>
-
-<style lang="scss">
-  .Expense {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: var(--dodo-ui-space);
-  }
-</style>
+<ExpenseCard expense={data.expense} {trip} />

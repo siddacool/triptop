@@ -12,28 +12,33 @@
 
   const locale = $derived(trip.locale);
 
-  const classes = $derived(['Amount', expense.archived ? 'archived' : ''].filter(Boolean));
+  const classes = $derived(
+    ['ExpenseCardAmount', expense.archived ? 'archived' : ''].filter(Boolean),
+  );
 </script>
 
-<div class={classes.join(' ')}>
-  <Threshold value={expense.amount} threshold={0} colorMap={{ above: 'default' }}>
-    <Money
-      value={expense.amount}
-      currency={trip.currency}
-      {locale}
-      options={{ maximumFractionDigits: 2 }}
-    />
-  </Threshold>
-</div>
+<Threshold
+  class={classes.join(' ')}
+  value={expense.amount}
+  threshold={0}
+  colorMap={{ above: 'default' }}
+>
+  <Money
+    value={expense.amount}
+    currency={trip.currency}
+    {locale}
+    options={{ maximumFractionDigits: 2 }}
+  />
+</Threshold>
 
 <style lang="scss">
-  .Amount {
+  :global(.ExpenseCardAmount) {
     &.archived {
       text-decoration: line-through;
     }
+  }
 
-    :global(.dodo-ui-Text) {
-      color: var(--dodo-color-neutral-800);
-    }
+  :global(.ExpenseCardAmount.dodo-ui-Text) {
+    color: var(--dodo-color-neutral-800);
   }
 </style>
