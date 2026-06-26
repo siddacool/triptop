@@ -1,5 +1,11 @@
 # triptop
 
+## 5.12.9
+
+### Patch Changes
+
+- 2f090cb: Total expenses for home currency fixed when no value
+
 ## 5.12.8
 
 ### Patch Changes
