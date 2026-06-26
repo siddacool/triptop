@@ -1,5 +1,12 @@
 # triptop
 
+## 5.12.5
+
+### Patch Changes
+
+- 666a08c: Trip header added
+- fa47f4c: daysjs added
+
 ## 5.12.4
 
 ### Patch Changes
