@@ -1,7 +1,7 @@
 import { toSafeFilename } from '$lib/helpers/file-name';
 import type { Expense } from '$lib/stores/expense/types';
 import type { Trip } from '$lib/stores/trip/types';
-import { createDate } from '@flightlesslabs/time-utils';
+import { createDate } from '$lib/helpers/date-time/createDate';
 import type { ExportTripValue } from '../types';
 
 export type ExportTripJsonValue = {

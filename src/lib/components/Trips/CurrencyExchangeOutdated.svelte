@@ -3,7 +3,7 @@
   import { useCurrencyExchangeStore } from '$lib/stores/currency/exchange.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
-  import { createDate } from '@flightlesslabs/time-utils';
+  import { createDate } from '$lib/helpers/date-time/createDate';
 
   const requestedAt = $derived(
     useCurrencyExchangeStore.exchangeRate?.requestedAt

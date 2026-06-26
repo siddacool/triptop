@@ -23,7 +23,7 @@
 </script>
 
 <script lang="ts">
-  import { Card, Column, FormField, Grid, Row, TextInput } from '@flightlesslabs/dodo-ui';
+  import { Column, FormField, Grid, Row, TextInput } from '@flightlesslabs/dodo-ui';
   import Controls from './Controls.svelte';
   import { Select } from '@flightlesslabs/dodo-ui-bits';
   import { currencyOptions } from '$lib/stores/currency/types';

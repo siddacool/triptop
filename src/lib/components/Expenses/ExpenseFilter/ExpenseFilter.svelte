@@ -1,6 +1,7 @@
 <script lang="ts">
   import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
+  import { createDate } from '$lib/helpers/date-time/createDate';
   import type { Category } from '$lib/stores/category/types';
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
   import { dateFormatOptions } from '$lib/stores/settings/date-format/types';
@@ -15,7 +16,6 @@
     UtilityButton,
   } from '@flightlesslabs/dodo-ui';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
-  import { createDate } from '@flightlesslabs/time-utils';
   import Icon from '@iconify/svelte';
   import { parseDate, type DateValue } from '@internationalized/date';
 

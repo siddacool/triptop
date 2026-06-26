@@ -5,7 +5,7 @@ import type { Expense } from '$lib/stores/expense/types';
 import type { DateFormatMode } from '$lib/stores/settings/date-format/types';
 import type { Trip } from '$lib/stores/trip/types';
 import { convertCurrency } from '$lib/helpers/convert-currency';
-import { createDate } from '@flightlesslabs/time-utils';
+import { createDate } from '$lib/helpers/date-time/createDate';
 import type { ExportTripValue } from '../types';
 import { toSafeFilename } from '$lib/helpers/file-name';
 

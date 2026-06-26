@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createDate } from '@flightlesslabs/time-utils';
+  import { createDate } from '$lib/helpers/date-time/createDate';
 
   type Props = {
     date: number;

@@ -5,7 +5,7 @@ import {
   type CurrencyExchangeRate,
   type CurrencyExchangeRateResponseFrankfurter,
 } from './types';
-import { createDate } from '@flightlesslabs/time-utils';
+import { createDate } from '$lib/helpers/date-time/createDate';
 
 function createCurrencyExchangeStore() {
   let exchangeRate: CurrencyExchangeRate | undefined = $state(undefined);

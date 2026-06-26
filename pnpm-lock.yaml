@@ -23,9 +23,6 @@ importers:
       '@flightlesslabs/dodo-ui-numeric':
         specifier: ^0.2.31
         version: 0.2.31(@flightlesslabs/dodo-ui@0.36.9(svelte@5.56.3(@typescript-eslint/types@8.62.0)))(svelte-number-format@2.0.0(svelte@5.56.3(@typescript-eslint/types@8.62.0)))(svelte@5.56.3(@typescript-eslint/types@8.62.0))
-      '@flightlesslabs/time-utils':
-        specifier: ^0.2.3
-        version: 0.2.3
       '@iconify/svelte':
         specifier: ^5.2.2
         version: 5.2.2(svelte@5.56.3(@typescript-eslint/types@8.62.0))
@@ -450,9 +447,6 @@ packages:
     resolution: {integrity: sha512-377E81/YP/WDGuTdmXJPni/ICOZCuy2sTa/ThGgiZeIrMkZyB6uAWkUZx633XoJHsJf8fu6yuav8wJzLJuikMg==}
     peerDependencies:
       svelte: ^5.0.0
-
-  '@flightlesslabs/time-utils@0.2.3':
-    resolution: {integrity: sha512-auL1x/WEnO76soHf6Nu9aIErz/LWVozbpnLaN//IWmKMMDv11CuzRO2oBkeCUUSY8EbHJdyi+iYt+vbko01YiQ==}
 
   '@floating-ui/core@1.7.5':
     resolution: {integrity: sha512-1Ih4WTWyw0+lKyFMcBHGbb5U5FtuHJuujoyyr5zTaWS5EYMeT6Jb2AuDeftsCsEuchO+mM2ij5+q9crhydzLhQ==}
@@ -3042,10 +3036,6 @@ snapshots:
       '@iconify/svelte': 5.2.2(svelte@5.56.3(@typescript-eslint/types@8.62.0))
       esm-env: 1.2.2
       svelte: 5.56.3(@typescript-eslint/types@8.62.0)
-
-  '@flightlesslabs/time-utils@0.2.3':
-    dependencies:
-      dayjs: 1.11.21
 
   '@floating-ui/core@1.7.5':
     dependencies:
