@@ -29,22 +29,19 @@
   );
 </script>
 
-<li
+<a
   class={classes.join(' ')}
+  href={resolve(`/trips/${expense.tripId}/expenses/${expense._id}`)}
   onmouseover={handleOnHover}
   onfocus={handleOnHover}
   onmouseout={handleOnBlur}
   onblur={handleOnBlur}
 >
-  <a href={resolve(`/trips/${expense.tripId}/expenses/${expense._id}`)}>
-    <Card class="ExpenseCardCard" roundness={1} active color={cardColor}>
-      <div class="container">
-        <LeftSide {expense} />
-        <RightSide {expense} {trip} />
-      </div>
-    </Card>
-  </a>
-</li>
+  <Card class="ExpenseCardCard" roundness={1} active color={cardColor}>
+    <LeftSide {expense} />
+    <RightSide {expense} {trip} />
+  </Card>
+</a>
 
 <style lang="scss">
   .ExpenseCard {
@@ -53,19 +50,13 @@
     margin: 0;
     padding: 0;
     margin-bottom: var(--dodo-ui-space);
-
-    a {
-      color: var(--dodo-color-neutral-800);
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-    }
+    color: var(--dodo-color-neutral-800);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
 
     :global(.ExpenseCardCard) {
       padding: var(--dodo-ui-space);
-    }
-
-    .container {
       display: flex;
     }
 

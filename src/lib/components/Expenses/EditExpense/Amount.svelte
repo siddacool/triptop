@@ -6,7 +6,7 @@
   import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
   import FieldMessage from '$lib/components/ui/FieldMessage/FieldMessage.svelte';
   import { parseNumeric } from '$lib/helpers/parse-numeric';
-  import { useCurrencyExchangeStore } from '$lib/stores/currency/exchange.svelte';
+  import { useLatestCurrencyExchangeStore } from '$lib/stores/currency/exchange/latest.svelte';
 
   type Props = {
     amount?: number | null;
@@ -20,7 +20,9 @@
   let amountInputValue: number | null = $derived(amount);
 
   const isShowCurrencyExchange = $derived(
-    useCurrencyExchangeStore.exchangeRate && !useCurrencyExchangeStore.fetching ? true : false,
+    useLatestCurrencyExchangeStore.exchangeRate && !useLatestCurrencyExchangeStore.fetching
+      ? true
+      : false,
   );
 
   function oninput(e: Event) {

@@ -7,7 +7,7 @@
 <style lang="scss">
   h2 {
     margin: 0;
-    margin-left: 4px;
+    margin-right: 4px;
     flex: 1;
     white-space: nowrap;
     overflow: hidden;

@@ -23,6 +23,7 @@
       return;
     }
 
+    useTripStore.fetch(tripId);
     useExpenseListStore.fetch(tripId);
   });
 
@@ -41,20 +42,22 @@
 
 {#snippet content()}
   {#if useExpenseListStore.mounted && useTripStore.mounted && !useExpenseListStore.expenses.length}
-    <Instructions>
-      You don't have any expenses.<br /> use "Add expense" button to add an expense
-    </Instructions>
-    <ControlSection controlsAlignment="center">
-      <PrimaryButton
-        href={resolve(`/trips/${tripId}/expenses/add`)}
-        class="TripPageAddExpenseButton"
-      >
-        <span class="Icon">
-          <Icon icon="material-symbols:add-rounded" />
-        </span>
-        Add expense
-      </PrimaryButton>
-    </ControlSection>
+    <Box>
+      <Instructions>
+        You don't have any expenses.<br /> use "Add expense" button to add an expense
+      </Instructions>
+      <ControlSection controlsAlignment="center">
+        <PrimaryButton
+          href={resolve(`/trips/${tripId}/expenses/add`)}
+          class="TripPageAddExpenseButton"
+        >
+          <span class="Icon">
+            <Icon icon="material-symbols:add-rounded" />
+          </span>
+          Add expense
+        </PrimaryButton>
+      </ControlSection>
+    </Box>
   {:else if useExpenseListStore.mounted && useTripStore.mounted && useExpenseListStore.expenses.length}
     <TripExpensesSection />
   {/if}
@@ -62,13 +65,11 @@
 
 <TripHeader />
 
-<Box>
-  {#if useExpenseListStore.fetching || useTripStore.fetching}
-    <Loading />
-  {:else}
-    {@render content()}
-  {/if}
-</Box>
+{#if useExpenseListStore.fetching || useTripStore.fetching}
+  <Loading />
+{:else}
+  {@render content()}
+{/if}
 
 <style lang="scss">
   :global(.TripPageAddExpenseButton .Icon) {

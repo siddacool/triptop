@@ -40,8 +40,6 @@ function createExpenseFiltersStore() {
       return filters?.category || filters?.minDate || filters?.maxDate ? true : false;
     },
     updateFilter(value: Partial<ExpenseFilters>) {
-      console.log('debug:', value);
-
       const newFilters = {
         ...filters,
         ...value,

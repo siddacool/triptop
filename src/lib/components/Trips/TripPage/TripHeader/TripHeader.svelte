@@ -1,5 +1,5 @@
 <script>
-  import Nav from './Nav.svelte';
+  import Nav from './Nav/Nav.svelte';
   import TripDetails from './TripDetails/TripDetails.svelte';
   import ExpandedHeader from '$lib/components/ui/ExpandedHeader/ExpandedHeader.svelte';
   import { Grid } from '@flightlesslabs/dodo-ui';
@@ -18,9 +18,5 @@
     padding-bottom: calc(var(--dodo-ui-space) * 2);
     border-bottom-left-radius: var(--dodo-ui-element-roundness-2);
     border-bottom-right-radius: var(--dodo-ui-element-roundness-2);
-  }
-
-  :global(.TripHeader) {
-    margin-bottom: var(--dodo-ui-space);
   }
 </style>

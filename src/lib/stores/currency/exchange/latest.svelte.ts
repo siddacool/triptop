@@ -1,13 +1,15 @@
 import type { CurrencyCode } from '@flightlesslabs/currency';
-import { db } from '../db';
+import { db } from '../../db';
 import {
   CurrencyExchangeRequestDiffrence,
   type CurrencyExchangeRate,
   type CurrencyExchangeRateResponseFrankfurter,
-} from './types';
+} from '../types';
 import { createDate } from '$lib/helpers/date-time/createDate';
+import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+import { useTripStore } from '$lib/stores/trip/individual.svelte';
 
-function createCurrencyExchangeStore() {
+function createLatestCurrencyExchangeStore() {
   let exchangeRate: CurrencyExchangeRate | undefined = $state(undefined);
   let fetching: boolean = $state(false);
   let mounted: boolean = $state(false);
@@ -34,6 +36,8 @@ function createCurrencyExchangeStore() {
     async fetch(tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
       try {
         fetching = true;
+
+        const tripId = useTripStore.trip?._id;
 
         // No need to request stuff
         if (tripCurrency === homeCurrency) {
@@ -64,6 +68,10 @@ function createCurrencyExchangeStore() {
           now.diff(targetRequestedAtMoment, 'hour') < CurrencyExchangeRequestDiffrence
         ) {
           console.log('debug: no update', target);
+
+          if (tripId) {
+            await useExpenseListStore.fetch(tripId, exchangeRate);
+          }
 
           return;
         }
@@ -99,6 +107,10 @@ function createCurrencyExchangeStore() {
           ...newExchangeRate,
         };
 
+        if (tripId) {
+          await useExpenseListStore.fetch(tripId, exchangeRate);
+        }
+
         mounted = true;
 
         return Promise.resolve();
@@ -116,4 +128,4 @@ function createCurrencyExchangeStore() {
   };
 }
 
-export const useCurrencyExchangeStore = createCurrencyExchangeStore();
+export const useLatestCurrencyExchangeStore = createLatestCurrencyExchangeStore();

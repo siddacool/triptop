@@ -57,9 +57,7 @@
     }
   }
 
-  async function toggleArchivedExpense() {
-    const isExpenseArchived = isArchived;
-
+  async function toggleArchivedExpense(archiveCondition: boolean) {
     try {
       if (!tripId) {
         return;
@@ -70,26 +68,24 @@
       }
 
       fetching = true;
-      await useEditExpenseStore.toggleArchived(expenseId);
+
+      const id = await useEditExpenseStore.toggleArchived(expenseId, archiveCondition);
+
+      console.log('debug:', id);
 
       toasts.add({
         title: 'Successs',
-        description: isExpenseArchived ? 'Expense restored' : 'Expense deleted',
+        description: archiveCondition ? 'Expense deleted' : 'Expense restored',
         color: 'primary',
       });
 
-      if (isExpenseArchived) {
-        await useExpenseStore.fetch(expenseId);
-        await goto(resolve(`/trips/${tripId}/expenses/${expenseId}`));
-      } else {
-        await useExpenseStore.fetch(tripId);
-        await goto(resolve(`/trips/${tripId}`));
-      }
+      await useTripStore.fetch(tripId);
+      await goto(resolve(`/trips/${tripId}`));
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 
       toasts.add({
-        title: isExpenseArchived ? 'Failed to restore expense' : 'Failed to delete expense',
+        title: archiveCondition ? 'Failed to delete expense' : 'Failed to restore expense',
         description: message,
         color: 'danger',
       });
@@ -102,7 +98,7 @@
     modals.add('confirm', {
       title: 'Delete Expense',
       description: 'Are you sure you want to delete this expense?',
-      onaccept: toggleArchivedExpense,
+      onaccept: () => toggleArchivedExpense(true),
     });
   }
 
@@ -110,7 +106,7 @@
     modals.add('confirm', {
       title: 'Restore expense',
       description: 'Are you sure you want to restore this expense?',
-      onaccept: toggleArchivedExpense,
+      onaccept: () => toggleArchivedExpense(false),
     });
   }
 </script>

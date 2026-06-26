@@ -7,7 +7,6 @@
   import CategoryShowCase from '$lib/components/ui/Category/CategoryShowCase/CategoryShowCase.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Amount from './Amount.svelte';
-  import Callouts from './Callouts.svelte';
   import Divider from '$lib/components/ui/Divider/Divider.svelte';
   import { createDate } from '$lib/helpers/date-time/createDate';
 
@@ -24,7 +23,6 @@
   );
 </script>
 
-<Callouts />
 <div class={classes.join(' ')}>
   <Grid gap={2}>
     <Column>

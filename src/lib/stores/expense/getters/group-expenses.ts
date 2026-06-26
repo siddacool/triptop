@@ -1,64 +1,93 @@
 import type { Expense } from '$lib/stores/expense/types';
 
-export type ExpensesDateGroup = {
+/**
+ * A date group header displayed before the expenses for a given day.
+ */
+export type ExpenseGroupHeader = {
+  /**
+   * Unique identifier for the group.
+   * Uses the group's date (`YYYY-MM-DD`).
+   */
+  id: string;
+  type: 'group';
   date: string;
-  expenses: Expense[];
 };
 
 /**
- * Groups expenses by their date and sorts them in descending date order.
- *
- * The returned array contains one entry per unique date, with all expenses
- * belonging to that date grouped together.
- *
- * @param expenses - List of expenses to group.
- * @returns An array of date groups sorted by date (newest first).
- *
- * @example
- * const expenses = [
- *   { id: '1', date: '2025-06-15', amount: 100 },
- *   { id: '2', date: '2025-06-14', amount: 50 },
- *   { id: '3', date: '2025-06-15', amount: 25 },
- * ];
- *
- * getGroupExpenses(expenses);
- *
- * // Result:
- * // [
- * //   {
- * //     date: '2025-06-15',
- * //     expenses: [
- * //       { id: '1', date: '2025-06-15', amount: 100 },
- * //       { id: '3', date: '2025-06-15', amount: 25 }
- * //     ]
- * //   },
- * //   {
- * //     date: '2025-06-14',
- * //     expenses: [
- * //       { id: '2', date: '2025-06-14', amount: 50 }
- * //     ]
- * //   }
- * // ]
+ * An expense entry belonging to a date group.
  */
-export function getGroupExpenses(expenses: Expense[]): ExpensesDateGroup[] {
-  const groupedExpenses = new Map<string, Expense[]>();
+export type ExpenseGroupExpense = {
+  /**
+   * Unique identifier for the expense.
+   * Uses the expense's `_id`.
+   */
+  id: string;
+  type: 'expense';
+  expense: Expense;
+};
 
-  const sortedExpenses = [...expenses]
-    .sort((a, b) => b?.createdAt - a?.createdAt)
-    .sort((a, b) => (b.date ?? '').localeCompare(a.date ?? ''));
+/**
+ * A single item in the grouped expense list.
+ *
+ * Each date group is followed by all expenses for that date.
+ */
+export type ExpenseGroup = ExpenseGroupHeader | ExpenseGroupExpense;
 
-  for (const expense of sortedExpenses) {
-    const date = expense.date;
+/**
+ * Creates a flat, grouped list of expenses.
+ *
+ * Expenses are sorted by:
+ * 1. Date (newest first)
+ * 2. Creation time within each date (newest first)
+ *
+ * The returned array is intended for rendering in a single list:
+ *
+ * Group Header
+ * ├── Expense
+ * ├── Expense
+ * Group Header
+ * ├── Expense
+ * └── Expense
+ *
+ * @param expenses - The expenses to group.
+ * @returns A flat list of group headers and expense items.
+ */
+export function getExpenseGroupList(expenses: Expense[]): ExpenseGroup[] {
+  // Create a sorted copy so the original array isn't modified.
+  const sortedExpenses = [...expenses].sort((a, b) => {
+    // Primary sort: date (descending).
+    const dateComparison = (b.date ?? '').localeCompare(a.date ?? '');
 
-    if (!groupedExpenses.has(date)) {
-      groupedExpenses.set(date, []);
+    if (dateComparison !== 0) {
+      return dateComparison;
     }
 
-    groupedExpenses.get(date)!.push(expense);
+    // Secondary sort: newest expense first within the same date.
+    return b.createdAt - a.createdAt;
+  });
+
+  const result: ExpenseGroup[] = [];
+  let previousDate: string | undefined;
+
+  for (const expense of sortedExpenses) {
+    // Insert a group header when we encounter a new date.
+    if (expense.date !== previousDate) {
+      previousDate = expense.date;
+
+      result.push({
+        id: previousDate,
+        type: 'group',
+        date: previousDate,
+      });
+    }
+
+    // Add the expense immediately after its group header.
+    result.push({
+      id: expense._id,
+      type: 'expense',
+      expense,
+    });
   }
 
-  return Array.from(groupedExpenses.entries(), ([date, expenses]) => ({
-    date,
-    expenses,
-  }));
+  return result;
 }

@@ -1,13 +1,12 @@
 import { categoryOptions } from '$lib/stores/category/data';
 import { Category } from '$lib/stores/category/types';
-import type { CurrencyExchangeRate } from '$lib/stores/currency/types';
 import type { Expense } from '$lib/stores/expense/types';
 import type { DateFormatMode } from '$lib/stores/settings/date-format/types';
 import type { Trip } from '$lib/stores/trip/types';
-import { convertCurrency } from '$lib/helpers/convert-currency';
 import { createDate } from '$lib/helpers/date-time/createDate';
 import type { ExportTripValue } from '../types';
 import { toSafeFilename } from '$lib/helpers/file-name';
+import type { CurrencyCode } from '@flightlesslabs/currency';
 
 export type ExportTripCsvValue = string;
 
@@ -23,7 +22,8 @@ export function exportTripAsCsv(
   trip: Trip,
   expenses: Expense[],
   dateFormat: DateFormatMode,
-  exchangeRate?: CurrencyExchangeRate,
+  enableCurrencyConversion: boolean,
+  homeCurrency: CurrencyCode,
 ): ExportTripValue<string> {
   const now = createDate();
   const exportedAt = now.format(dateFormat);
@@ -31,7 +31,9 @@ export function exportTripAsCsv(
   const buildRow = (expense: Expense, includeExportedAt = false) => [
     expense.name,
     expense.amount,
-    ...(exchangeRate ? [convertCurrency(expense.amount, exchangeRate.exchangeRate)] : []),
+    ...(enableCurrencyConversion && expense?.virtualData?.amountHomeCurrency
+      ? [expense?.virtualData?.amountHomeCurrency]
+      : []),
     categoryMap.get(expense.category || Category.OTHER) ?? '',
     createDate(expense.date).format(dateFormat),
     '',
@@ -42,7 +44,7 @@ export function exportTripAsCsv(
     [
       'Name',
       'Amount',
-      ...(exchangeRate ? [`Amount (${exchangeRate.homeCurrency})`] : []),
+      ...(enableCurrencyConversion ? [`Amount (${homeCurrency})`] : []),
       'Category',
       'Date',
       '',

@@ -16,8 +16,6 @@
     title="Export trip"
     onclick={() => (openModal = true)}
     compact
-    color="neutral"
-    background="none"
   >
     <Icon icon="material-symbols:download" />
   </Button>

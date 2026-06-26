@@ -18,7 +18,7 @@ export function exportTripAsJson(
 
   for (let i = 0; i < expenses.length; i++) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    const { id, filterFields, ...restProps } = expenses[i];
+    const { id, virtualData, ...restProps } = expenses[i];
 
     expensesCleaned.push({ ...restProps });
   }
