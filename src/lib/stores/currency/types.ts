@@ -11,6 +11,20 @@ export type CurrencyExchangeRate = {
   requestedAt: number;
 };
 
+export type HistoricalCurrencyExchangeRateEntry = {
+  date: string;
+  exchangeRate: number;
+};
+
+export type HistoricalCurrencyExchangeRate = {
+  id?: number;
+  homeCurrency: CurrencyCode;
+  tripCurrency: CurrencyCode;
+  startDate: string;
+  endDate: string;
+  data: HistoricalCurrencyExchangeRateEntry[];
+};
+
 export type CurrencyExchangeRateResponseFrankfurter = {
   date: string;
   base: CurrencyCode;
