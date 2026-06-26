@@ -1,11 +1,18 @@
 <script lang="ts">
-  import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
-  import { getExpensesTotal } from '$lib/stores/expense/getters/total-expenses';
+  import SecondaryCurrency from '$lib/components/ui/SecondaryCurrency/SecondaryCurrency.svelte';
+  import {
+    getExpensesTotal,
+    getExpensesTotalAmountHomeCurrency,
+  } from '$lib/stores/expense/getters/total-expenses';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import { Money, Threshold } from '@flightlesslabs/dodo-ui';
 
   const total = $derived(getExpensesTotal(useExpenseListStore.filtredExpenses));
+  const amountHomeCurrencyTotal = $derived(
+    getExpensesTotalAmountHomeCurrency(useExpenseListStore.filtredExpenses),
+  );
   const locale = $derived(useTripStore?.trip?.locale);
 </script>
 
@@ -20,7 +27,13 @@
       />
     </Threshold>
 
-    <HomeCurrencyExchange amount={total} />
+    {#if useSettingsStore.settings.enableCurrencyConversion}
+      <SecondaryCurrency
+        value={amountHomeCurrencyTotal}
+        currency={useSettingsStore.settings.homeCurrency}
+        locale={useSettingsStore.settings.locale}
+      />
+    {/if}
   </div>
 {/if}
 
@@ -36,7 +49,7 @@
       color: var(--dodo-color-neutral-800);
     }
 
-    :global(.HomeCurrencyExchange) {
+    :global(.SecondaryCurrency) {
       margin-top: var(--dodo-ui-space);
       font-size: 0.9rem;
     }

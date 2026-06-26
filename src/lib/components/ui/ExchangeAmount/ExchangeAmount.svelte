@@ -1,7 +1,7 @@
 <script lang="ts">
   import { convertCurrency } from '$lib/helpers/convert-currency';
   import type { CurrencyCode } from '@flightlesslabs/currency';
-  import { Money } from '@flightlesslabs/dodo-ui';
+  import SecondaryCurrency from '../SecondaryCurrency/SecondaryCurrency.svelte';
 
   type Props = {
     class?: string;
@@ -17,18 +17,4 @@
   const value = $derived(convertCurrency(amount, exchangeRate));
 </script>
 
-<div class={classes.join(' ')}>
-  <Money {value} {currency} {locale} />
-</div>
-
-<style lang="scss">
-  .ExchangeAmount {
-    display: inline-flex;
-    font-size: inherit;
-    color: var(--dodo-color-secondary-500);
-  }
-
-  :global(.dodo-theme--dark .ExchangeAmount) {
-    color: var(--dodo-color-secondary-600);
-  }
-</style>
+<SecondaryCurrency {value} {currency} {locale} class={classes.join(' ')} />

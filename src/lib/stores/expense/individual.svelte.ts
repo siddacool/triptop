@@ -1,4 +1,6 @@
+import type { CurrencyExchangeRate } from '../currency/types';
 import { db } from '../db';
+import { expenseDecorator } from './decorators/individual-decorator';
 import { type Expense } from './types';
 
 function createExpenseStore() {
@@ -16,7 +18,7 @@ function createExpenseStore() {
     get mounted() {
       return mounted;
     },
-    async fetch(expenseId: string) {
+    async fetch(expenseId: string, exchangeRate?: CurrencyExchangeRate | undefined) {
       try {
         fetching = true;
 
@@ -26,7 +28,11 @@ function createExpenseStore() {
           throw new Error('Expense not found');
         }
 
-        expense = data;
+        const expensData = expenseDecorator(data, {
+          exchangeRate,
+        });
+
+        expense = expensData;
 
         mounted = true;
 

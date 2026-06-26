@@ -1,5 +1,6 @@
+import type { CurrencyExchangeRate } from '../currency/types';
 import { db } from '../db';
-import { expensesUpdateFilterFields } from './decorators/expenses-update-filter-fields';
+import { expensesListDecorator } from './decorators/list-decorator';
 import { useExpenseFiltersStore } from './filters.svelte';
 import { getFilteredExpenses } from './getters/filtered-expenses';
 import { type Expense } from './types';
@@ -23,13 +24,15 @@ function createExpenseListStore() {
     get mounted() {
       return mounted;
     },
-    async fetch(tripId: string) {
+    async fetch(tripId: string, exchangeRate?: CurrencyExchangeRate | undefined) {
       try {
         fetching = true;
 
         let expensesData = await db.expense.where({ tripId: tripId }).toArray();
 
-        expensesData = expensesUpdateFilterFields(expensesData);
+        expensesData = expensesListDecorator(expensesData, {
+          exchangeRate,
+        });
 
         expenses = expensesData;
 

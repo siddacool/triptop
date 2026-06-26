@@ -8,6 +8,7 @@ export interface ExpenseFilterFields {
 // data that does not need to be stored in db
 export interface ExpenseVirtualData {
   filterFields?: ExpenseFilterFields;
+  amountHomeCurrency?: number;
 }
 
 export interface Expense {
