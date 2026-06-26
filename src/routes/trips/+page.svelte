@@ -1,5 +1,5 @@
 <script>
-  import MainPageHeader from '$lib/components/MainPage/MainPageHeader/MainPageHeader.svelte';
+  import TheHeader from '$lib/components/TheHeader/TheHeader.svelte';
   import TripAchivedLink from '$lib/components/Trips/TripAchivedLink.svelte';
   import TripList from '$lib/components/Trips/TripList/TripList.svelte';
   import TripsControlsToolkit from '$lib/components/Trips/TripsControlsToolkit/TripsControlsToolkit.svelte';
@@ -21,7 +21,7 @@
   <title>Trips</title>
 </svelte:head>
 
-<MainPageHeader />
+<TheHeader />
 
 <Box>
   {#if useTripListStore.fetching}

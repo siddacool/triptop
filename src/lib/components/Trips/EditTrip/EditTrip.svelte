@@ -81,7 +81,7 @@
       </Column>
 
       <Row>
-        <Column lg={5}>
+        <Column lg={8}>
           <FormField label="Currency:" for="currency">
             <Select
               options={currencyOptions}
@@ -93,7 +93,7 @@
           </FormField>
         </Column>
 
-        <Column lg={3}>
+        <Column lg={4}>
           <FormField label="Locale:" for="locale">
             <Select
               options={localeOptions}

@@ -23,17 +23,9 @@
 <style lang="scss">
   .ExpandedHeader {
     width: 100vw;
-    height: 50px;
-    position: sticky;
-    top: 0;
-    left: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    @media (min-width: 600px) {
-      height: 60px;
-    }
 
     :global(.ExpandedHeaderCard) {
       height: 100%;

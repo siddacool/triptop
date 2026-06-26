@@ -40,7 +40,6 @@
 </svelte:head>
 
 {#snippet content()}
-  <TripHeader />
   {#if useExpenseListStore.mounted && useTripStore.mounted && !useExpenseListStore.expenses.length}
     <Instructions>
       You don't have any expenses.<br /> use "Add expense" button to add an expense
@@ -60,6 +59,8 @@
     <TripExpensesSection />
   {/if}
 {/snippet}
+
+<TripHeader />
 
 <Box>
   {#if useExpenseListStore.fetching || useTripStore.fetching}
