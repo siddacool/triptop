@@ -1,6 +1,6 @@
 <script>
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
-  import TotalExpenses from './TotalExpenses.svelte';
+  import TotalExpenses from './TotalExpenses/TotalExpenses.svelte';
 </script>
 
 {#if useExpenseListStore.filtredExpenses.length}
