@@ -1,5 +1,11 @@
 # triptop
 
+## 5.12.8
+
+### Patch Changes
+
+- 573e06f: Minor UI fixed
+
 ## 5.12.7
 
 ### Patch Changes
