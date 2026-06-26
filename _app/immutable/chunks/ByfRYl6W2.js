@@ -1,1 +1,0 @@
-import{t as e}from"./BQKOjOFH2.js";function t(t){return{name:t.name.trim().toLowerCase(),date:Number(e(t.date,`YYYY-MM-DD`).format(`YYYYMMDD`))}}function n(e,t){return e*t}function r(e,t){if(!(!t||t.exchangeRate===void 0))return n(e.amount,t?.exchangeRate)}export{n,t as r,r as t};
