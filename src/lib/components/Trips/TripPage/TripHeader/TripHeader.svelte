@@ -1,5 +1,5 @@
 <script>
-  import Nav from './Nav.svelte';
+  import Nav from './Nav/Nav.svelte';
   import TripDetails from './TripDetails/TripDetails.svelte';
   import ExpandedHeader from '$lib/components/ui/ExpandedHeader/ExpandedHeader.svelte';
   import { Grid } from '@flightlesslabs/dodo-ui';
