@@ -19,8 +19,4 @@
     border-bottom-left-radius: var(--dodo-ui-element-roundness-2);
     border-bottom-right-radius: var(--dodo-ui-element-roundness-2);
   }
-
-  :global(.TripHeader) {
-    margin-bottom: var(--dodo-ui-space);
-  }
 </style>
