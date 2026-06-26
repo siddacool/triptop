@@ -26,6 +26,7 @@
       background-color 70ms,
       color 70ms,
       border-color 70ms;
+    margin-bottom: calc(var(--dodo-ui-space) * 1);
 
     @media (min-width: 600px) {
       font-size: 1.1rem;

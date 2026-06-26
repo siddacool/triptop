@@ -15,6 +15,10 @@
 
 <style lang="scss">
   .TripList {
-    margin-top: calc(var(--dodo-ui-space) * 2);
+    margin-top: calc(var(--dodo-ui-space) * 1);
+
+    @media (min-width: 600px) {
+      margin-top: calc(var(--dodo-ui-space) * 2);
+    }
   }
 </style>

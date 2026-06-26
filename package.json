@@ -48,7 +48,6 @@
     "@flightlesslabs/dodo-ui-bits": "^0.10.12",
     "@flightlesslabs/dodo-ui-date": "^0.4.33",
     "@flightlesslabs/dodo-ui-numeric": "^0.2.31",
-    "@flightlesslabs/time-utils": "^0.2.3",
     "@iconify/svelte": "^5.2.2",
     "@internationalized/date": "^3.12.2",
     "@sveltejs/adapter-static": "^3.0.10",

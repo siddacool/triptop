@@ -5,16 +5,15 @@
   import Icon from '@iconify/svelte';
 
   const tripId = page.params.tripId || '';
-  const expenseId = page.params.expenseId || '';
 </script>
 
 <Button
-  aria-label="Edit expense"
-  class="ExpensePageEditExpense"
+  aria-label="Edit trip"
+  class="TripPageEditTrip"
   variant="text"
   roundness="full"
-  title="Edit expense"
-  href={resolve(`/trips/${tripId}/expenses/${expenseId}/edit`)}
+  title="Edit trip"
+  href={resolve(`/trips/${tripId}/edit`)}
   compact
   color="neutral"
   background="none"
@@ -23,7 +22,7 @@
 </Button>
 
 <style lang="scss">
-  :global(.dodo-ui-Button.size--normal.ExpensePageEditExpense) {
+  :global(.dodo-ui-Button.size--normal.TripPageEditTrip) {
     font-size: 1.4rem;
   }
 </style>

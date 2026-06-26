@@ -22,7 +22,6 @@
   import { Column, FormField, Grid, Row, TextArea } from '@flightlesslabs/dodo-ui';
   import Controls from './Controls.svelte';
   import { parseDate, type DateValue } from '@internationalized/date';
-  import { createDate } from '@flightlesslabs/time-utils';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
   import { type Trip } from '$lib/stores/trip/types';
   import { Category } from '$lib/stores/category/types';
@@ -30,6 +29,7 @@
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { dateFormatOptions } from '$lib/stores/settings/date-format/types';
   import Amount from './Amount.svelte';
+  import { createDate } from '$lib/helpers/date-time/createDate';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
