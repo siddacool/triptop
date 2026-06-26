@@ -17,13 +17,9 @@
 
 <style lang="scss">
   :global(.TheHeader) {
-    height: 50px;
+    height: 60px;
     position: sticky;
     top: 0;
     left: 0;
-
-    @media (min-width: 600px) {
-      height: 60px;
-    }
   }
 </style>
