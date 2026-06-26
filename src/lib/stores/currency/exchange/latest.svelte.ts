@@ -1,13 +1,13 @@
 import type { CurrencyCode } from '@flightlesslabs/currency';
-import { db } from '../db';
+import { db } from '../../db';
 import {
   CurrencyExchangeRequestDiffrence,
   type CurrencyExchangeRate,
   type CurrencyExchangeRateResponseFrankfurter,
-} from './types';
+} from '../types';
 import { createDate } from '$lib/helpers/date-time/createDate';
 
-function createCurrencyExchangeStore() {
+function createLatestCurrencyExchangeStore() {
   let exchangeRate: CurrencyExchangeRate | undefined = $state(undefined);
   let fetching: boolean = $state(false);
   let mounted: boolean = $state(false);
@@ -116,4 +116,4 @@ function createCurrencyExchangeStore() {
   };
 }
 
-export const useCurrencyExchangeStore = createCurrencyExchangeStore();
+export const useLatestCurrencyExchangeStore = createLatestCurrencyExchangeStore();

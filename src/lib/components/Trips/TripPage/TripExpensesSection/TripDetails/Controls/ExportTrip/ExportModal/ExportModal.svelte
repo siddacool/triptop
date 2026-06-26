@@ -9,7 +9,7 @@
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { exportTripAsCsv } from './export/export-csv';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import { useCurrencyExchangeStore } from '$lib/stores/currency/exchange.svelte';
+  import { useLatestCurrencyExchangeStore } from '$lib/stores/currency/exchange/latest.svelte';
 
   type Props = {
     open: boolean;
@@ -31,7 +31,7 @@
           trip,
           useExpenseListStore.expenses,
           useSettingsStore.settings.dateFormat,
-          useCurrencyExchangeStore.exchangeRate,
+          useLatestCurrencyExchangeStore.exchangeRate,
         ),
     };
 

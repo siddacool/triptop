@@ -4,7 +4,7 @@
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
   import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
-  import { useCurrencyExchangeStore } from '$lib/stores/currency/exchange.svelte';
+  import { useLatestCurrencyExchangeStore } from '$lib/stores/currency/exchange/latest.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import { onMount } from 'svelte';
@@ -43,12 +43,12 @@
 
   $effect(() => {
     if (!tripCurrency || !homeCurrency || !enableCurrencyConversion) {
-      useCurrencyExchangeStore.clear();
+      useLatestCurrencyExchangeStore.clear();
 
       return;
     }
 
-    useCurrencyExchangeStore.fetch(tripCurrency, homeCurrency);
+    useLatestCurrencyExchangeStore.fetch(tripCurrency, homeCurrency);
   });
 
   beforeNavigate((navigation) => {
