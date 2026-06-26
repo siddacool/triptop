@@ -1,5 +1,20 @@
 # triptop
 
+## 5.12.6
+
+### Patch Changes
+
+- fd59d9e: filterFields added to virtualData
+- 362e7bf: Headers controls adjusted
+- 91299e2: Edit operations fixed
+- 52429c1: Expense cards stucture lightended
+- 109d158: Filters sticky fixed
+- 8582a0f: TheHeader mobile height fixed
+- d023260: upgrade deps
+- e157232: exchange extended further
+- 4076686: Date groups for expenses simplified
+- 348e5a7: Exchange calculation updated\
+
 ## 5.12.5
 
 ### Patch Changes
