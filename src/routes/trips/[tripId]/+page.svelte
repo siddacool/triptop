@@ -23,6 +23,7 @@
       return;
     }
 
+    useTripStore.fetch(tripId);
     useExpenseListStore.fetch(tripId);
   });
 

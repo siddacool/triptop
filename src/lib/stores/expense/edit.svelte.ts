@@ -59,19 +59,17 @@ function createEditExpenseStore() {
 
       return Promise.resolve(expenseId);
     },
-    async toggleArchived(expenseId: string) {
+    async toggleArchived(expenseId: string, archiveCondition: boolean) {
       const target = await db.expense.where({ _id: expenseId }).first();
 
       if (!target?.id) {
         return;
       }
 
-      const isArchived = target.archived ? true : false;
-
       const updatedAt = Date.now();
 
       await db.expense.update(target.id, {
-        archived: !isArchived,
+        archived: archiveCondition,
         updatedAt,
       });
 

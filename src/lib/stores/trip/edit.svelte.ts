@@ -66,17 +66,15 @@ function createEditTripStore() {
 
       return Promise.resolve(tripId);
     },
-    async toggleArchived(tripId: string) {
+    async toggleArchived(tripId: string, archiveCondition: boolean) {
       const target = await db.trips.where({ _id: tripId }).first();
 
       if (!target?.id) {
         return;
       }
 
-      const isArchived = target.archived ? true : false;
-
       await db.trips.update(target.id, {
-        archived: !isArchived,
+        archived: archiveCondition,
         updatedAt: Date.now(),
       });
 

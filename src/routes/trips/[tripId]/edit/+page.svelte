@@ -11,6 +11,7 @@
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import type { EditTripFormData } from '$lib/stores/trip/types';
   import { Button, Column, Grid } from '@flightlesslabs/dodo-ui';
   import { modals, toasts } from '@flightlesslabs/dodo-ui-bits';
@@ -65,7 +66,7 @@
         color: 'primary',
       });
 
-      await useTripStore.fetch(tripId);
+      await useTripListStore.fetch();
 
       await goto(resolve('/trips'));
     } catch (e) {
@@ -81,31 +82,29 @@
     }
   }
 
-  async function toggleArchive() {
-    const isArchived = useTripStore.trip?.archived || false;
-
+  async function toggleArchive(archiveCondition: boolean) {
     try {
       if (!tripId) {
         return;
       }
 
       fetching = true;
-      await useEditTripStore.toggleArchived(tripId);
+      await useEditTripStore.toggleArchived(tripId, archiveCondition);
 
       toasts.add({
         title: 'Successs',
-        description: isArchived ? 'Trip unarchived' : 'Trip archived',
+        description: archiveCondition ? 'Trip archived' : 'Trip unarchived',
         color: 'primary',
       });
 
-      await useTripStore.fetch(tripId);
+      await useTripListStore.fetch();
 
       await goto(resolve('/trips'));
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 
       toasts.add({
-        title: isArchived ? 'Failed to unarchived trip' : 'Failed to archived trip',
+        title: archiveCondition ? 'Failed to archived trip' : 'Failed to unarchived trip',
         description: message,
         color: 'danger',
       });
@@ -126,7 +125,7 @@
     modals.add('confirm', {
       title: 'Archive Trip',
       description: 'Are you sure you want to archive this trip?',
-      onaccept: toggleArchive,
+      onaccept: () => toggleArchive(true),
     });
   }
 </script>
@@ -160,7 +159,7 @@
             <Button color="danger" onclick={deleteConfirmation}>Delete trip</Button>
 
             {#if useTripStore.trip.archived}
-              <Button onclick={toggleArchive}>Unarchive trip</Button>
+              <Button onclick={() => toggleArchive(false)}>Unarchive trip</Button>
             {:else}
               <Button color="neutral" onclick={archiveConfirmation}>Archive trip</Button>
             {/if}
