@@ -1,5 +1,11 @@
 # triptop
 
+## 5.12.7
+
+### Patch Changes
+
+- d66e13a: Expense and exchange bug fix
+
 ## 5.12.6
 
 ### Patch Changes
