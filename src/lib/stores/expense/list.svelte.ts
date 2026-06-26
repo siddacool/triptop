@@ -1,4 +1,4 @@
-import type { CurrencyExchangeRate } from '../currency/types';
+import { useLatestCurrencyExchangeStore } from '../currency/exchange/latest.svelte';
 import { db } from '../db';
 import { expensesListDecorator } from './decorators/list-decorator';
 import { useExpenseFiltersStore } from './filters.svelte';
@@ -24,11 +24,13 @@ function createExpenseListStore() {
     get mounted() {
       return mounted;
     },
-    async fetch(tripId: string, exchangeRate?: CurrencyExchangeRate | undefined) {
+    async fetch(tripId: string) {
       try {
         fetching = true;
 
         let expensesData = await db.expense.where({ tripId: tripId }).toArray();
+
+        const exchangeRate = useLatestCurrencyExchangeStore.exchangeRate;
 
         expensesData = expensesListDecorator(expensesData, {
           exchangeRate,

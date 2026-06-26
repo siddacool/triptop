@@ -1,7 +1,6 @@
 <script lang="ts">
-  import SecondaryCurrency from '$lib/components/ui/SecondaryCurrency/SecondaryCurrency.svelte';
+  import ExpenseAmountExchangeValue from '$lib/components/ui/MoneyExchangeValue/ExpenseAmountExchangeValue.svelte';
   import type { Expense } from '$lib/stores/expense/types';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
 
   type Props = {
     expense: Expense;
@@ -14,17 +13,13 @@
   );
 </script>
 
-{#if useSettingsStore.settings.enableCurrencyConversion}
-  <SecondaryCurrency
-    class={classes.join(' ')}
-    value={expense.virtualData?.amountHomeCurrency}
-    currency={useSettingsStore.settings.homeCurrency}
-    locale={useSettingsStore.settings.locale}
-  />
-{/if}
+<ExpenseAmountExchangeValue
+  class={classes.join(' ')}
+  amount={expense.virtualData?.amountHomeCurrency}
+/>
 
 <style lang="scss">
-  :global(.ExpenseCardExchangeRate.SecondaryCurrency) {
+  :global(.ExpenseCardExchangeRate.ExpenseAmountExchangeValue) {
     &.archived {
       text-decoration: line-through;
     }

@@ -1,11 +1,10 @@
 <script lang="ts">
-  import SecondaryCurrency from '$lib/components/ui/SecondaryCurrency/SecondaryCurrency.svelte';
+  import ExpenseAmountExchangeValue from '$lib/components/ui/MoneyExchangeValue/ExpenseAmountExchangeValue.svelte';
   import {
     getExpensesTotal,
     getExpensesTotalAmountHomeCurrency,
   } from '$lib/stores/expense/getters/total-expenses';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import { Money, Threshold } from '@flightlesslabs/dodo-ui';
 
@@ -27,13 +26,7 @@
       />
     </Threshold>
 
-    {#if useSettingsStore.settings.enableCurrencyConversion}
-      <SecondaryCurrency
-        value={amountHomeCurrencyTotal}
-        currency={useSettingsStore.settings.homeCurrency}
-        locale={useSettingsStore.settings.locale}
-      />
-    {/if}
+    <ExpenseAmountExchangeValue amount={amountHomeCurrencyTotal} />
   </div>
 {/if}
 
@@ -49,7 +42,7 @@
       color: var(--dodo-color-neutral-800);
     }
 
-    :global(.SecondaryCurrency) {
+    :global(.ExpenseAmountExchangeValue) {
       margin-top: var(--dodo-ui-space);
       font-size: 0.9rem;
     }

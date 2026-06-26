@@ -3,10 +3,11 @@
   import { NumericInput } from '@flightlesslabs/dodo-ui-numeric';
   import { NumberFormatStyle } from 'svelte-number-format';
   import { type Trip } from '$lib/stores/trip/types';
-  import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
   import FieldMessage from '$lib/components/ui/FieldMessage/FieldMessage.svelte';
   import { parseNumeric } from '$lib/helpers/parse-numeric';
   import { useLatestCurrencyExchangeStore } from '$lib/stores/currency/exchange/latest.svelte';
+  import AutoCalcRateAmountExchangeValue from '$lib/components/ui/MoneyExchangeValue/CalcRate/AutoCalcRateAmountExchangeValue.svelte';
+  import ExpenseAmountExchangeValue from '$lib/components/ui/MoneyExchangeValue/ExpenseAmountExchangeValue.svelte';
 
   type Props = {
     amount?: number | null;
@@ -34,7 +35,7 @@
 </script>
 
 {#snippet basicExchangeRate()}
-  <Money value={1} currency={trip.currency} /> = <HomeCurrencyExchange amount={1} />
+  <Money value={1} currency={trip.currency} /> = <AutoCalcRateAmountExchangeValue amount={1} />
 {/snippet}
 
 <Column>
@@ -57,7 +58,8 @@
     {#if isShowCurrencyExchange}
       <FieldMessage size="small">
         {#if amountInputValue}
-          <b><HomeCurrencyExchange amount={amountInputValue} /></b> ({@render basicExchangeRate()})
+          <b><ExpenseAmountExchangeValue amount={amountInputValue} /></b>
+          ({@render basicExchangeRate()})
         {:else}
           {@render basicExchangeRate()}
         {/if}

@@ -5,17 +5,15 @@
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
   import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { useLatestCurrencyExchangeStore } from '$lib/stores/currency/exchange/latest.svelte';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
+  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
-  import { onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
 
   let { children } = $props();
 
   const tripId = page.params.tripId;
 
-  const tripCurrency = $derived(useTripStore.trip?.currency);
-  const homeCurrency = $derived(useSettingsStore.settings.homeCurrency);
-  const enableCurrencyConversion = $derived(useSettingsStore.settings.enableCurrencyConversion);
   let pass = $state(false);
   let loading = $state(true);
 
@@ -41,14 +39,11 @@
     loadTrip();
   });
 
-  $effect(() => {
-    if (!tripCurrency || !homeCurrency || !enableCurrencyConversion) {
-      useLatestCurrencyExchangeStore.clear();
-
-      return;
-    }
-
-    useLatestCurrencyExchangeStore.fetch(tripCurrency, homeCurrency);
+  onDestroy(() => {
+    useTripStore.reset();
+    useExpenseListStore.reset();
+    useExpenseStore.reset();
+    useLatestCurrencyExchangeStore.clear();
   });
 
   beforeNavigate((navigation) => {

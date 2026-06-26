@@ -10,8 +10,10 @@
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { useTripPageStore } from '$lib/stores/app/pages/trip-page.svelte';
+  import { useLatestCurrencyExchangeStore } from '$lib/stores/currency/exchange/latest.svelte';
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Icon from '@iconify/svelte';
   import { onMount } from 'svelte';
@@ -23,8 +25,26 @@
       return;
     }
 
-    useTripStore.fetch(tripId);
-    useExpenseListStore.fetch(tripId);
+    const loadTrip = async () => {
+      try {
+        useLatestCurrencyExchangeStore.clear();
+        useExpenseListStore.reset();
+
+        const tripCurrency = useTripStore.trip?.currency;
+        const homeCurrency = useSettingsStore.settings.homeCurrency;
+        const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
+
+        if (tripCurrency && homeCurrency && enableCurrencyConversion) {
+          await useLatestCurrencyExchangeStore.fetchSilent(tripCurrency, homeCurrency);
+        }
+
+        useExpenseListStore.fetch(tripId);
+      } catch (error) {
+        console.error('Failed to fetch trip:', error);
+      }
+    };
+
+    loadTrip();
   });
 
   beforeNavigate((navigation) => {
@@ -41,7 +61,7 @@
 </svelte:head>
 
 {#snippet content()}
-  {#if useExpenseListStore.mounted && useTripStore.mounted && !useExpenseListStore.expenses.length}
+  {#if useExpenseListStore.mounted && !useExpenseListStore.expenses.length}
     <Box>
       <Instructions>
         You don't have any expenses.<br /> use "Add expense" button to add an expense
@@ -58,17 +78,20 @@
         </PrimaryButton>
       </ControlSection>
     </Box>
-  {:else if useExpenseListStore.mounted && useTripStore.mounted && useExpenseListStore.expenses.length}
+  {:else if useExpenseListStore.mounted && useExpenseListStore.expenses.length}
     <TripExpensesSection />
   {/if}
 {/snippet}
 
-<TripHeader />
-
-{#if useExpenseListStore.fetching || useTripStore.fetching}
+{#if useTripStore.fetching}
   <Loading />
-{:else}
-  {@render content()}
+{:else if !useTripStore.fetching && useTripStore.mounted}
+  <TripHeader />
+  {#if useExpenseListStore.fetching}
+    <Loading />
+  {:else}
+    {@render content()}
+  {/if}
 {/if}
 
 <style lang="scss">
