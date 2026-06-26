@@ -7,9 +7,15 @@ export function expensesUpdateFilterFields(expenses: Expense[]): Expense[] {
 
   for (let i = 0; i < expenses.length; i++) {
     const expense = expenses[i];
+    let virtualData = expense.virtualData || {};
     const filterFields = updateFilterFields(expense);
 
-    result.push({ ...expense, filterFields });
+    virtualData = {
+      ...virtualData,
+      filterFields,
+    };
+
+    result.push({ ...expense, virtualData });
   }
 
   return result;

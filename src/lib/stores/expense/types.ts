@@ -5,6 +5,11 @@ export interface ExpenseFilterFields {
   date: number;
 }
 
+// data that does not need to be stored in db
+export interface ExpenseVirtualData {
+  filterFields?: ExpenseFilterFields;
+}
+
 export interface Expense {
   id?: number;
   _id: string;
@@ -16,7 +21,7 @@ export interface Expense {
   category?: Category;
   date: string;
   archived?: boolean;
-  filterFields?: ExpenseFilterFields;
+  virtualData?: ExpenseVirtualData;
 }
 
 export interface EditExpenseFormData {

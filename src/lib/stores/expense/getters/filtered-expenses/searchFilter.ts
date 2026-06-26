@@ -6,7 +6,7 @@ export function searchFilter(query: string, expenses: Expense[]): Expense[] {
   const results: Expense[] = [];
 
   for (const expense of expenses) {
-    if (expense.filterFields?.name.includes(search)) {
+    if (expense?.virtualData?.filterFields?.name.includes(search)) {
       results.push(expense);
     }
   }

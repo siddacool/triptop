@@ -17,7 +17,7 @@ export function dateFilter(
 
   for (let i = 0; i < expenses.length; i++) {
     const expense = expenses[i];
-    const expenseDate = expense.filterFields?.date;
+    const expenseDate = expense.virtualData?.filterFields?.date;
 
     if (expenseDate === undefined) {
       continue;
