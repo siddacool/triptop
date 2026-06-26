@@ -1,10 +1,11 @@
 <script lang="ts">
-  import type { ExpensesDateGroup } from '$lib/stores/expense/getters/group-expenses';
+  import type { ExpenseGroup } from '$lib/stores/expense/getters/group-expenses';
   import type { Trip } from '$lib/stores/trip/types';
-  import DateGroup from './DateGroup/DateGroup.svelte';
+  import Expense from './Expense/Expense.svelte';
+  import Header from './Header/Header.svelte';
 
   type Props = {
-    data: ExpensesDateGroup[];
+    data: ExpenseGroup[];
     trip: Trip;
   };
 
@@ -12,8 +13,12 @@
 </script>
 
 <ul class="ExpenseGroup">
-  {#each data as group (group.date)}
-    <DateGroup data={group} {trip} />
+  {#each data as item (item.id)}
+    {#if item.type === 'group'}
+      <Header data={item} />
+    {:else}
+      <Expense data={item} {trip} />
+    {/if}
   {/each}
 </ul>
 

@@ -25,6 +25,5 @@
 <style lang="scss">
   .Date {
     color: var(--dodo-color-neutral-700);
-    margin-bottom: var(--dodo-ui-space);
   }
 </style>

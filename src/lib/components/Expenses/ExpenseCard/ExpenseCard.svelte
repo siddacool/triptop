@@ -52,7 +52,6 @@
     flex-direction: column;
     margin: 0;
     padding: 0;
-    margin-bottom: var(--dodo-ui-space);
 
     a {
       color: var(--dodo-color-neutral-800);

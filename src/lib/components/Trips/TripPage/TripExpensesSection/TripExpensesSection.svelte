@@ -1,7 +1,7 @@
 <script lang="ts">
   import ExpenseGroup from '$lib/components/Expenses/ExpenseGroup/ExpenseGroup.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
-  import { getGroupExpenses } from '$lib/stores/expense/getters/group-expenses';
+  import { getExpenseGroupList } from '$lib/stores/expense/getters/group-expenses';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   // import Callouts from './Callouts/Callouts.svelte';
@@ -10,7 +10,7 @@
   import FloatingControls from './FloatingControls/FloatingControls.svelte';
   import Stats from './Stats/Stats.svelte';
 
-  const groupExpenses = $derived(getGroupExpenses(useExpenseListStore.filtredExpenses));
+  const groupExpenses = $derived(getExpenseGroupList(useExpenseListStore.filtredExpenses));
 </script>
 
 {#if useTripStore.trip}
