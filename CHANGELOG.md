@@ -1,5 +1,11 @@
 # triptop
 
+## 5.12.10
+
+### Patch Changes
+
+- 7c0a06b: Exchange update logic improved
+
 ## 5.12.9
 
 ### Patch Changes
