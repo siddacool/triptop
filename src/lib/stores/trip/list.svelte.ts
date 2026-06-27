@@ -22,18 +22,19 @@ function createTripListStore() {
     get mounted() {
       return mounted;
     },
-    async syncData() {
-      const tripsData = await db.trips.toArray();
-
-      tripsData.sort((a, b) => b?.updatedAt - a?.updatedAt);
-
-      trips = tripsData;
-    },
     async fetch() {
       try {
+        if (fetching) {
+          return;
+        }
+
         fetching = true;
 
-        await this.syncData();
+        const tripsData = await db.trips.toArray();
+
+        tripsData.sort((a, b) => b?.updatedAt - a?.updatedAt);
+
+        trips = tripsData;
 
         mounted = true;
 

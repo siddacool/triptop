@@ -20,6 +20,10 @@ function createExpenseStore() {
     },
     async fetch(expenseId: string) {
       try {
+        if (fetching) {
+          return;
+        }
+
         fetching = true;
 
         const data = await db.expense.where({ _id: expenseId }).first();

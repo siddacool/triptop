@@ -27,6 +27,10 @@ function createExpenseListStore() {
     },
     async fetch(tripId: string) {
       try {
+        if (fetching) {
+          return;
+        }
+
         fetching = true;
 
         let expensesData = await db.expense.where({ tripId: tripId }).toArray();
