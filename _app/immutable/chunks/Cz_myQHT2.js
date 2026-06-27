@@ -1,1 +1,0 @@
-function e(e,t){return e*t}function t(t,n){if(!(!n||n.exchangeRate===void 0))return e(t.amount,n?.exchangeRate)}export{t};
