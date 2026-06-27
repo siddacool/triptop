@@ -1,4 +1,4 @@
-import { useLatestCurrencyExchangeStore } from '../currency/exchange/latest.svelte';
+import { useHistoricalCurrencyExchangeStore } from '../currency/exchange/historical.svelte';
 import { db } from '../db';
 import { updateExchangeDetails } from './decorators/update-exchange-details';
 import { type Expense } from './types';
@@ -20,6 +20,10 @@ function createExpenseStore() {
     },
     async fetch(expenseId: string) {
       try {
+        if (fetching) {
+          return;
+        }
+
         fetching = true;
 
         const data = await db.expense.where({ _id: expenseId }).first();
@@ -48,7 +52,7 @@ function createExpenseStore() {
         return;
       }
 
-      const exchangeRate = useLatestCurrencyExchangeStore.exchangeRate;
+      const exchangeRate = useHistoricalCurrencyExchangeStore.exchangeRate;
 
       if (!exchangeRate) {
         return;

@@ -10,7 +10,7 @@
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { useTripPageStore } from '$lib/stores/app/pages/trip-page.svelte';
-  import { useLatestCurrencyExchangeStore } from '$lib/stores/currency/exchange/latest.svelte';
+  import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
@@ -27,17 +27,17 @@
 
     const loadTrip = async () => {
       try {
-        useLatestCurrencyExchangeStore.clear();
+        useHistoricalCurrencyExchangeStore.clear();
         useExpenseListStore.reset();
 
-        useExpenseListStore.fetch(tripId);
+        await useExpenseListStore.fetch(tripId);
 
         const tripCurrency = useTripStore.trip?.currency;
         const homeCurrency = useSettingsStore.settings.homeCurrency;
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-          await useLatestCurrencyExchangeStore.fetchSilent(tripCurrency, homeCurrency);
+          await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
         }
 
         useExpenseListStore.updateExchangeData();

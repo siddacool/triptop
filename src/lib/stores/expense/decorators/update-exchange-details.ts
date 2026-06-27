@@ -1,17 +1,24 @@
 import { convertCurrency } from '$lib/helpers/convert-currency';
-import type { CurrencyExchangeRate } from '$lib/stores/currency/types';
+import { findNearestExchangeRate } from '$lib/helpers/find-nearest-exchange-rate';
+import type { HistoricalCurrencyExchangeRate } from '$lib/stores/currency/types';
 import type { Expense } from '../types';
 
 //  fields added to simplify search and other expense filters
 export function updateExchangeDetails(
   expense: Expense,
-  exchangeRate: CurrencyExchangeRate | undefined,
+  exchangeRate: HistoricalCurrencyExchangeRate | undefined,
 ): number | undefined {
-  if (!exchangeRate || exchangeRate.exchangeRate === undefined) {
+  if (!exchangeRate) {
     return undefined;
   }
 
-  const amountHomeCurrency = convertCurrency(expense.amount, exchangeRate?.exchangeRate);
+  const bestRate = findNearestExchangeRate(expense.date, exchangeRate);
+
+  if (!bestRate?.exchangeRate) {
+    return undefined;
+  }
+
+  const amountHomeCurrency = convertCurrency(expense.amount, bestRate?.exchangeRate);
 
   return amountHomeCurrency;
 }

@@ -1,4 +1,4 @@
-import { useLatestCurrencyExchangeStore } from '../currency/exchange/latest.svelte';
+import { useHistoricalCurrencyExchangeStore } from '../currency/exchange/historical.svelte';
 import { db } from '../db';
 import { expensesListDecorator } from './decorators/list-decorator';
 import { updateExchangeDetails } from './decorators/update-exchange-details';
@@ -27,6 +27,10 @@ function createExpenseListStore() {
     },
     async fetch(tripId: string) {
       try {
+        if (fetching) {
+          return;
+        }
+
         fetching = true;
 
         let expensesData = await db.expense.where({ tripId: tripId }).toArray();
@@ -53,7 +57,7 @@ function createExpenseListStore() {
         return;
       }
 
-      const exchangeRate = useLatestCurrencyExchangeStore.exchangeRate;
+      const exchangeRate = useHistoricalCurrencyExchangeStore.exchangeRate;
 
       if (!exchangeRate) {
         return;

@@ -18,6 +18,10 @@ function createTripStore() {
     },
     async fetch(tripId: string) {
       try {
+        if (fetching) {
+          return;
+        }
+
         fetching = true;
 
         const data = await db.trips.where({ _id: tripId }).first();
