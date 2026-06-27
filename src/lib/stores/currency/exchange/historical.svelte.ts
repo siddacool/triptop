@@ -4,6 +4,29 @@ import {
   type CurrencyExchangeRateResponseFrankfurter,
   type HistoricalCurrencyExchangeRate,
 } from '../types';
+import type { Expense } from '$lib/stores/expense/types';
+
+function checkIfUpdateNeeded(
+  expenses: Expense[],
+  oldExchangeRate: HistoricalCurrencyExchangeRate | undefined,
+) {
+  if (!oldExchangeRate) {
+    return true;
+  }
+
+  if (!oldExchangeRate.startDate || !oldExchangeRate.endDate) {
+    return true;
+  }
+
+  const startDate = expenses[0].date;
+  const endDate = expenses[expenses.length - 1].date;
+
+  if (oldExchangeRate.startDate <= startDate && oldExchangeRate.endDate >= endDate) {
+    return false;
+  }
+
+  return true;
+}
 
 function createHistoricalCurrencyExchangeStore() {
   let exchangeRate: HistoricalCurrencyExchangeRate | undefined = $state(undefined);
@@ -42,7 +65,7 @@ function createHistoricalCurrencyExchangeStore() {
         expensesData = expensesData.sort((a, b) => a.date.localeCompare(b.date));
 
         const startDate = expensesData[0].date;
-        const endDate = expensesData[expensesData.length].date;
+        const endDate = expensesData[expensesData.length - 1].date;
 
         const target = await db.historicalCurrencyExchangeRates
           .where('[homeCurrency+tripCurrency]')
@@ -55,12 +78,15 @@ function createHistoricalCurrencyExchangeStore() {
           exchangeRate = undefined;
         }
 
-        if (target?.startDate === startDate && target.endDate === endDate) {
+        const isUpdateNeeded = checkIfUpdateNeeded(expensesData, target);
+
+        if (!isUpdateNeeded) {
+          console.log('debug: range already present, no update needed', target);
           return;
         }
 
         const response = await fetch(
-          `https://api.frankfurter.dev/v2/rate/${tripCurrency}/${homeCurrency}`,
+          `https://api.frankfurter.dev/v2/rates/?from=${startDate}&to=${endDate}&base=${tripCurrency}&quotes=${homeCurrency}&group=month`,
         );
 
         if (!response.ok) {
@@ -76,6 +102,8 @@ function createHistoricalCurrencyExchangeStore() {
           endDate,
           data: data.map((item) => Object.assign({ date: item.date, exchangeRate: item.rate })),
         };
+
+        console.log('debug: fetch', newExchangeRate);
 
         if (target) {
           await db.historicalCurrencyExchangeRates.update(target.id, newExchangeRate);
