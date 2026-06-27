@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ExpenseAmountExchangeValue from '$lib/components/ui/MoneyExchangeValue/ExpenseAmountExchangeValue.svelte';
+  import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
   import { getExpensesTotalAmountHomeCurrency } from '$lib/stores/expense/getters/total-expenses';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   const amountHomeCurrencyTotal = $derived(
@@ -13,14 +13,11 @@
 </script>
 
 {#if isShow}
-  <ExpenseAmountExchangeValue
-    amount={amountHomeCurrencyTotal}
-    class="TotalExpensesTotalHomeCurrency"
-  />
+  <HomeCurrencyExchange amount={amountHomeCurrencyTotal} class="TotalExpensesTotalHomeCurrency" />
 {/if}
 
 <style lang="scss">
-  :global(.TotalExpensesTotalHomeCurrency.ExpenseAmountExchangeValue) {
+  :global(.TotalExpensesTotalHomeCurrency.HomeCurrencyExchange) {
     margin-top: var(--dodo-ui-space);
     font-size: 0.9rem;
   }

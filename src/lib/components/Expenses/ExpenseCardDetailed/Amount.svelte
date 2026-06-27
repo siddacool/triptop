@@ -3,7 +3,7 @@
   import { Money, Threshold } from '@flightlesslabs/dodo-ui';
   import { type Trip } from '$lib/stores/trip/types';
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
-  import ExpenseAmountExchangeValue from '$lib/components/ui/MoneyExchangeValue/ExpenseAmountExchangeValue.svelte';
+  import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
 
   type Props = {
     expense: Expense;
@@ -36,7 +36,7 @@
       />
     </Threshold>
   </FieldValue>
-  <ExpenseAmountExchangeValue amount={expense.amount} />
+  <HomeCurrencyExchange amount={expense.virtualData?.amountHomeCurrency} />
 </div>
 
 <style lang="scss">
@@ -50,12 +50,12 @@
         text-decoration: line-through;
       }
 
-      :global(.ExpenseAmountExchangeValue) {
+      :global(.HomeCurrencyExchange) {
         text-decoration: line-through;
       }
     }
 
-    :global(.ExpenseAmountExchangeValue) {
+    :global(.HomeCurrencyExchange) {
       margin-top: var(--dodo-ui-space);
       font-size: 1rem;
     }

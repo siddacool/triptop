@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ExpenseAmountExchangeValue from '$lib/components/ui/MoneyExchangeValue/ExpenseAmountExchangeValue.svelte';
+  import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
   import type { Expense } from '$lib/stores/expense/types';
 
   type Props = {
@@ -13,13 +13,10 @@
   );
 </script>
 
-<ExpenseAmountExchangeValue
-  class={classes.join(' ')}
-  amount={expense.virtualData?.amountHomeCurrency}
-/>
+<HomeCurrencyExchange class={classes.join(' ')} amount={expense.virtualData?.amountHomeCurrency} />
 
 <style lang="scss">
-  :global(.ExpenseCardExchangeRate.ExpenseAmountExchangeValue) {
+  :global(.ExpenseCardExchangeRate.HomeCurrencyExchange) {
     &.archived {
       text-decoration: line-through;
     }

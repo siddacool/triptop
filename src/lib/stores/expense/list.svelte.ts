@@ -1,6 +1,7 @@
 import { useLatestCurrencyExchangeStore } from '../currency/exchange/latest.svelte';
 import { db } from '../db';
 import { expensesListDecorator } from './decorators/list-decorator';
+import { updateExchangeDetails } from './decorators/update-exchange-details';
 import { useExpenseFiltersStore } from './filters.svelte';
 import { getFilteredExpenses } from './getters/filtered-expenses';
 import { type Expense } from './types';
@@ -30,11 +31,7 @@ function createExpenseListStore() {
 
         let expensesData = await db.expense.where({ tripId: tripId }).toArray();
 
-        const exchangeRate = useLatestCurrencyExchangeStore.exchangeRate;
-
-        expensesData = expensesListDecorator(expensesData, {
-          exchangeRate,
-        });
+        expensesData = expensesListDecorator(expensesData);
 
         expenses = expensesData;
 
@@ -50,6 +47,37 @@ function createExpenseListStore() {
       } finally {
         fetching = false;
       }
+    },
+    updateExchangeData() {
+      if (!expenses.length) {
+        return;
+      }
+
+      const exchangeRate = useLatestCurrencyExchangeStore.exchangeRate;
+
+      if (!exchangeRate) {
+        return;
+      }
+
+      const newExpenses: Expense[] = [];
+
+      for (let i = 0; i < expenses.length; i++) {
+        const expense = expenses[i];
+        let virtualData = expense.virtualData || {};
+        const filterFields = virtualData.filterFields;
+
+        const amountHomeCurrency = updateExchangeDetails(expense, exchangeRate);
+
+        virtualData = {
+          ...virtualData,
+          filterFields,
+          amountHomeCurrency,
+        };
+
+        newExpenses.push({ ...expense, virtualData });
+      }
+
+      expenses = [...newExpenses];
     },
     reset() {
       expenses = [];

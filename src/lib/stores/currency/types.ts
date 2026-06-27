@@ -1,6 +1,6 @@
 import { currencies, type CurrencyCode } from '@flightlesslabs/currency';
 
-export const CurrencyExchangeRequestDiffrence = 12;
+export const CurrencyExchangeRequestDiffrence = 24;
 
 export type CurrencyExchangeRate = {
   id?: number;
@@ -9,6 +9,20 @@ export type CurrencyExchangeRate = {
   date: string;
   exchangeRate: number;
   requestedAt: number;
+};
+
+export type HistoricalCurrencyExchangeRateEntry = {
+  date: string;
+  exchangeRate: number;
+};
+
+export type HistoricalCurrencyExchangeRate = {
+  id?: number;
+  homeCurrency: CurrencyCode;
+  tripCurrency: CurrencyCode;
+  startDate: string;
+  endDate: string;
+  data: HistoricalCurrencyExchangeRateEntry[];
 };
 
 export type CurrencyExchangeRateResponseFrankfurter = {

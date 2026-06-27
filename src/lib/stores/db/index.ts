@@ -2,7 +2,7 @@
 import { Dexie, type EntityTable } from 'dexie';
 import type { Trip } from '../trip/types';
 import type { Expense } from '../expense/types';
-import type { CurrencyExchangeRate } from '../currency/types';
+import type { CurrencyExchangeRate, HistoricalCurrencyExchangeRate } from '../currency/types';
 
 const db = new Dexie('triptop-v5') as Dexie & {
   trips: EntityTable<
@@ -17,6 +17,10 @@ const db = new Dexie('triptop-v5') as Dexie & {
     CurrencyExchangeRate,
     'id' // primary key "id" (for the typings only)
   >;
+  historicalCurrencyExchangeRates: EntityTable<
+    HistoricalCurrencyExchangeRate,
+    'id' // primary key "id" (for the typings only)
+  >;
 };
 
 // Schema declaration:
@@ -24,6 +28,7 @@ db.version(2).stores({
   trips: '++id, _id', // primary key "id" (for the runtime!)
   expense: '++id, _id, tripId', // primary key "id" (for the runtime!)
   currencyExchangeRates: '++id, homeCurrency, tripCurrency, [homeCurrency+tripCurrency]', // primary key "id" (for the runtime!)
+  historicalCurrencyExchangeRates: '++id, homeCurrency, tripCurrency, [homeCurrency+tripCurrency]', // primary key "id" (for the runtime!)
 });
 
 export { db };
