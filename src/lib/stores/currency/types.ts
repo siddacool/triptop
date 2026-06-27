@@ -1,6 +1,6 @@
 import { currencies, type CurrencyCode } from '@flightlesslabs/currency';
 
-export const CurrencyExchangeRequestDiffrence = 12;
+export const CurrencyExchangeRequestDiffrence = 24;
 
 export type CurrencyExchangeRate = {
   id?: number;

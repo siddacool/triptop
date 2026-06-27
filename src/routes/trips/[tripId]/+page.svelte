@@ -30,6 +30,8 @@
         useLatestCurrencyExchangeStore.clear();
         useExpenseListStore.reset();
 
+        useExpenseListStore.fetch(tripId);
+
         const tripCurrency = useTripStore.trip?.currency;
         const homeCurrency = useSettingsStore.settings.homeCurrency;
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
@@ -38,7 +40,7 @@
           await useLatestCurrencyExchangeStore.fetchSilent(tripCurrency, homeCurrency);
         }
 
-        useExpenseListStore.fetch(tripId);
+        useExpenseListStore.updateExchangeData();
       } catch (error) {
         console.error('Failed to fetch trip:', error);
       }

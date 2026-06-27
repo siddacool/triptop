@@ -1,4 +1,6 @@
+import { useLatestCurrencyExchangeStore } from '../currency/exchange/latest.svelte';
 import { db } from '../db';
+import { updateExchangeDetails } from './decorators/update-exchange-details';
 import { type Expense } from './types';
 
 function createExpenseStore() {
@@ -40,6 +42,33 @@ function createExpenseStore() {
       } finally {
         fetching = false;
       }
+    },
+    updateExchangeData() {
+      if (!expense) {
+        return;
+      }
+
+      const exchangeRate = useLatestCurrencyExchangeStore.exchangeRate;
+
+      if (!exchangeRate) {
+        return;
+      }
+
+      let virtualData = expense.virtualData || {};
+      const filterFields = virtualData.filterFields;
+
+      const amountHomeCurrency = updateExchangeDetails(expense, exchangeRate);
+
+      virtualData = {
+        ...virtualData,
+        filterFields,
+        amountHomeCurrency,
+      };
+
+      expense = {
+        ...expense,
+        virtualData,
+      };
     },
     reset() {
       expense = undefined;
