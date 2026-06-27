@@ -1,5 +1,15 @@
 # triptop
 
+## 5.13.0
+
+### Minor Changes
+
+- 3b9c8de: Historical exchange values added (Monthly gap) instead of live
+
+### Patch Changes
+
+- 941b794: Data fetching improved
+
 ## 5.12.10
 
 ### Patch Changes
