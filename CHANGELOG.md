@@ -1,5 +1,11 @@
 # triptop
 
+## 5.13.2
+
+### Patch Changes
+
+- a57fa94: Historical data optimizations
+
 ## 5.13.1
 
 ### Patch Changes
