@@ -1,5 +1,12 @@
 # triptop
 
+## 5.13.1
+
+### Patch Changes
+
+- 1ab6e06: Search filter name added
+- 68138b7: Historical data week group added
+
 ## 5.13.0
 
 ### Minor Changes
