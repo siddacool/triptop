@@ -3,12 +3,15 @@ import { db } from '../../db';
 import {
   type CurrencyExchangeRateResponseFrankfurter,
   type HistoricalCurrencyExchangeRate,
+  type HistoricalCurrencyExchangeRateEntry,
 } from '../types';
-import type { Expense } from '$lib/stores/expense/types';
 import { createDate } from '$lib/helpers/date-time/createDate';
+import Dexie from 'dexie';
+import type { Dayjs } from 'dayjs';
 
 function checkIfUpdateNeeded(
-  expenses: Expense[],
+  firstExpense: Dayjs,
+  lastExpense: Dayjs,
   oldExchangeRate: HistoricalCurrencyExchangeRate | undefined,
 ) {
   if (!oldExchangeRate) {
@@ -19,10 +22,8 @@ function checkIfUpdateNeeded(
     return true;
   }
 
-  const startDate = createDate(expenses[0].date).subtract(14, 'day').format('YYYY-MM-DD');
-  const endDate = createDate(expenses[expenses.length - 1].date)
-    .subtract(14, 'day')
-    .format('YYYY-MM-DD');
+  const startDate = firstExpense.subtract(14, 'day').format('YYYY-MM-DD');
+  const endDate = lastExpense.subtract(14, 'day').format('YYYY-MM-DD');
 
   const oldExchangeRateStartDate = oldExchangeRate.data[0].date;
   const oldExchangeRateEndDate = oldExchangeRate.data[oldExchangeRate.data.length - 1].date;
@@ -55,34 +56,26 @@ function createHistoricalCurrencyExchangeStore() {
     },
     async fetch(tripId: string, tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
       try {
-        fetching = true;
-
-        // No need to request stuff
         if (tripCurrency === homeCurrency) {
           exchangeRate = undefined;
 
           return;
         }
 
-        let expensesData = await db.expense.where({ tripId: tripId }).toArray();
+        fetching = true;
+
+        // No need to request stuff
+
+        const expensesData = await db.expense
+          .where('[tripId+date]')
+          .between([tripId, Dexie.minKey], [tripId, Dexie.maxKey])
+          .toArray();
 
         if (!expensesData.length) {
           exchangeRate = undefined;
 
           return;
         }
-
-        expensesData = expensesData.sort((a, b) => a.date.localeCompare(b.date));
-
-        // Considering the data for the whole month
-        const startDate = createDate(expensesData[0].date)
-          .subtract(1, 'day')
-          .startOf('month')
-          .format('YYYY-MM-DD');
-        const endDate = createDate(expensesData[expensesData.length - 1].date)
-          .subtract(1, 'day')
-          .endOf('month')
-          .format('YYYY-MM-DD');
 
         const target = await db.historicalCurrencyExchangeRates
           .where('[homeCurrency+tripCurrency]')
@@ -95,12 +88,19 @@ function createHistoricalCurrencyExchangeStore() {
           exchangeRate = undefined;
         }
 
-        const isUpdateNeeded = checkIfUpdateNeeded(expensesData, target);
+        const firstExpense = createDate(expensesData[0].date);
+        const lastExpense = createDate(expensesData.at(-1)!.date);
+
+        const isUpdateNeeded = checkIfUpdateNeeded(firstExpense, lastExpense, target);
 
         if (!isUpdateNeeded) {
           console.log('debug: range already present, no update needed', target);
           return;
         }
+
+        // Considering the data for the whole month
+        const startDate = firstExpense.subtract(1, 'day').startOf('month').format('YYYY-MM-DD');
+        const endDate = lastExpense.subtract(1, 'day').endOf('month').format('YYYY-MM-DD');
 
         const group = 'week';
 
@@ -117,7 +117,10 @@ function createHistoricalCurrencyExchangeStore() {
         const newExchangeRate: HistoricalCurrencyExchangeRate = {
           homeCurrency,
           tripCurrency,
-          data: data.map((item) => Object.assign({ date: item.date, exchangeRate: item.rate })),
+          data: data.map<HistoricalCurrencyExchangeRateEntry>((item) => ({
+            date: item.date,
+            exchangeRate: item.rate || 0,
+          })),
           requestedAt: Date.now(),
         };
 
@@ -129,11 +132,7 @@ function createHistoricalCurrencyExchangeStore() {
           await db.historicalCurrencyExchangeRates.add(newExchangeRate);
         }
 
-        exchangeRate = {
-          ...exchangeRate,
-          ...newExchangeRate,
-          data: [...newExchangeRate.data],
-        };
+        exchangeRate = newExchangeRate;
 
         mounted = true;
 

@@ -26,7 +26,7 @@ const db = new Dexie('triptop-v5') as Dexie & {
 // Schema declaration:
 db.version(2).stores({
   trips: '++id, _id', // primary key "id" (for the runtime!)
-  expense: '++id, _id, tripId', // primary key "id" (for the runtime!)
+  expense: '++id, _id, tripId, [tripId+date]', // primary key "id" (for the runtime!)
   currencyExchangeRates: '++id, homeCurrency, tripCurrency, [homeCurrency+tripCurrency]', // primary key "id" (for the runtime!)
   historicalCurrencyExchangeRates: '++id, homeCurrency, tripCurrency, [homeCurrency+tripCurrency]', // primary key "id" (for the runtime!)
 });
