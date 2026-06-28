@@ -21,6 +21,7 @@
     bind:value={search}
     roundness={2}
     clearable
+    name="search-expense"
     onclear={() => {
       search = '';
       useExpenseFiltersStore.updateSearchFilter('');
