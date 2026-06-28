@@ -5,6 +5,7 @@ import {
   type HistoricalCurrencyExchangeRate,
 } from '../types';
 import type { Expense } from '$lib/stores/expense/types';
+import { createDate } from '$lib/helpers/date-time/createDate';
 
 function checkIfUpdateNeeded(
   expenses: Expense[],
@@ -14,18 +15,27 @@ function checkIfUpdateNeeded(
     return true;
   }
 
-  if (!oldExchangeRate.startDate || !oldExchangeRate.endDate) {
+  if (!oldExchangeRate.data.length) {
     return true;
   }
 
-  const startDate = expenses[0].date;
-  const endDate = expenses[expenses.length - 1].date;
+  const startDate = createDate(expenses[0].date).subtract(14, 'day').format('YYYY-MM-DD');
+  const endDate = createDate(expenses[expenses.length - 1].date)
+    .subtract(14, 'day')
+    .format('YYYY-MM-DD');
 
-  if (oldExchangeRate.startDate <= startDate && oldExchangeRate.endDate >= endDate) {
-    return false;
+  const oldExchangeRateStartDate = oldExchangeRate.data[0].date;
+  const oldExchangeRateEndDate = oldExchangeRate.data[oldExchangeRate.data.length - 1].date;
+
+  if (oldExchangeRateStartDate > startDate) {
+    return true;
   }
 
-  return true;
+  if (oldExchangeRateEndDate < endDate) {
+    return true;
+  }
+
+  return false;
 }
 
 function createHistoricalCurrencyExchangeStore() {
@@ -64,8 +74,15 @@ function createHistoricalCurrencyExchangeStore() {
 
         expensesData = expensesData.sort((a, b) => a.date.localeCompare(b.date));
 
-        const startDate = expensesData[0].date;
-        const endDate = expensesData[expensesData.length - 1].date;
+        // Considering the data for the whole month
+        const startDate = createDate(expensesData[0].date)
+          .subtract(1, 'day')
+          .startOf('month')
+          .format('YYYY-MM-DD');
+        const endDate = createDate(expensesData[expensesData.length - 1].date)
+          .subtract(1, 'day')
+          .endOf('month')
+          .format('YYYY-MM-DD');
 
         const target = await db.historicalCurrencyExchangeRates
           .where('[homeCurrency+tripCurrency]')
@@ -85,8 +102,10 @@ function createHistoricalCurrencyExchangeStore() {
           return;
         }
 
+        const group = 'week';
+
         const response = await fetch(
-          `https://api.frankfurter.dev/v2/rates/?from=${startDate}&to=${endDate}&base=${tripCurrency}&quotes=${homeCurrency}&group=month`,
+          `https://api.frankfurter.dev/v2/rates/?from=${startDate}&to=${endDate}&base=${tripCurrency}&quotes=${homeCurrency}&group=${group}`,
         );
 
         if (!response.ok) {
@@ -98,9 +117,8 @@ function createHistoricalCurrencyExchangeStore() {
         const newExchangeRate: HistoricalCurrencyExchangeRate = {
           homeCurrency,
           tripCurrency,
-          startDate,
-          endDate,
           data: data.map((item) => Object.assign({ date: item.date, exchangeRate: item.rate })),
+          requestedAt: Date.now(),
         };
 
         console.log('debug: fetch', newExchangeRate);
