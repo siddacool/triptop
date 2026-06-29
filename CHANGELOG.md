@@ -1,5 +1,13 @@
 # triptop
 
+## 5.13.4
+
+### Patch Changes
+
+- ba74d6b: Fix date fetching logic
+- 6b1fed0: Fetch data functions optimized
+- 73cd095: Functions simplified
+
 ## 5.13.3
 
 ### Patch Changes
