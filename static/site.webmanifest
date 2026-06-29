@@ -17,9 +17,14 @@
   "lang": "en-US",
   "dir": "ltr",
   "prefer_related_applications": false,
-  "launch_handler": {
-    "client_mode": ["navigate-existing"]
-  },
+  "file_handlers": [
+     {
+       "action": "/actions/import",
+       "accept": {
+         "application/vnd.triptop": [".triptop"]
+       }
+     }
+   ],
   "shortcuts": [
     {
       "name": "Create trip",
