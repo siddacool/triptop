@@ -1,5 +1,12 @@
 # triptop
 
+## 5.13.3
+
+### Patch Changes
+
+- b5a2d99: TheHeader added at some places
+- b5a2d99: Logo updated
+
 ## 5.13.2
 
 ### Patch Changes
