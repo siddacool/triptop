@@ -8,6 +8,36 @@ import {
 import { createDate } from '$lib/helpers/date-time/createDate';
 import { findNearestExchangeRate } from '$lib/helpers/find-nearest-exchange-rate';
 import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+import type { Dayjs } from 'dayjs';
+
+async function fetchExchangeRates(
+  startDate: string,
+  endDate: string,
+  tripCurrency: CurrencyCode,
+  homeCurrency: CurrencyCode,
+) {
+  const group = 'week';
+
+  const response = await fetch(
+    `https://api.frankfurter.dev/v2/rates/?from=${startDate}&to=${endDate}&base=${tripCurrency}&quotes=${homeCurrency}&group=${group}`,
+  );
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch exchange rate: ${response.status}`);
+  }
+
+  const data: CurrencyExchangeRateResponseFrankfurter[] = await response.json();
+
+  return data;
+}
+
+function isCovered(expenseDate: Dayjs, nearest?: HistoricalCurrencyExchangeRateEntry) {
+  if (!nearest) return false;
+
+  const diff = expenseDate.diff(nearest.date, 'day');
+
+  return diff >= 0 && diff <= 12;
+}
 
 function createHistoricalCurrencyExchangeStore() {
   let exchangeRate: HistoricalCurrencyExchangeRate | undefined = $state(undefined);
@@ -34,9 +64,9 @@ function createHistoricalCurrencyExchangeStore() {
 
         fetching = true;
 
-        let expensesData = useExpenseListStore.expenses;
-
-        expensesData = expensesData.sort((a, b) => a.date.localeCompare(b.date));
+        const expensesData = [...useExpenseListStore.expenses].sort((a, b) =>
+          a.date.localeCompare(b.date),
+        );
 
         if (!expensesData.length) {
           exchangeRate = undefined;
@@ -44,66 +74,44 @@ function createHistoricalCurrencyExchangeStore() {
           return;
         }
 
-        const target = exchangeRate
-          ? exchangeRate
-          : await db.historicalCurrencyExchangeRates
-              .where('[homeCurrency+tripCurrency]')
-              .equals([homeCurrency, tripCurrency])
-              .first();
+        const target =
+          exchangeRate ??
+          (await db.historicalCurrencyExchangeRates
+            .where('[homeCurrency+tripCurrency]')
+            .equals([homeCurrency, tripCurrency])
+            .first());
 
-        if (target) {
-          exchangeRate = target;
-        } else {
-          exchangeRate = undefined;
-        }
+        exchangeRate = target;
 
         const firstExpenseEntry = expensesData[0];
         const lastExpenseEntry = expensesData[expensesData.length - 1];
         const expenseStartDate = createDate(firstExpenseEntry.date);
         const expenseEndDate = createDate(lastExpenseEntry.date);
 
-        const targetStartDate = target
-          ? findNearestExchangeRate(expenseStartDate.format('YYYY-MM-DD'), target)
-          : undefined;
+        if (target) {
+          const nearestStart = findNearestExchangeRate(
+            expenseStartDate.format('YYYY-MM-DD'),
+            target,
+          );
 
-        const targetEndDate = target
-          ? findNearestExchangeRate(expenseEndDate.format('YYYY-MM-DD'), target)
-          : undefined;
+          const nearestEnd = findNearestExchangeRate(expenseEndDate.format('YYYY-MM-DD'), target);
 
-        const startDateDiffrence =
-          targetStartDate && expenseStartDate
-            ? expenseStartDate.diff(targetStartDate.date, 'day')
-            : null;
-
-        const endDateDiffrence =
-          targetEndDate && expenseEndDate ? expenseEndDate.diff(targetEndDate.date, 'day') : null;
-
-        const startDateDiffrencePass =
-          startDateDiffrence !== null && startDateDiffrence >= 0 && startDateDiffrence <= 12;
-
-        const endDateDiffrencePass =
-          endDateDiffrence !== null && endDateDiffrence >= 0 && endDateDiffrence <= 12;
-
-        if (startDateDiffrencePass && endDateDiffrencePass) {
-          console.log('debug: range already present, no update needed', target);
-          return;
+          if (isCovered(expenseStartDate, nearestStart) && isCovered(expenseEndDate, nearestEnd)) {
+            console.log('debug: range already present, no update needed', target);
+            return;
+          }
         }
 
         // Considering the data for the whole month
         const startDate = expenseStartDate.subtract(2, 'day').startOf('month').format('YYYY-MM-DD');
         const endDate = expenseEndDate.add(2, 'day').endOf('month').format('YYYY-MM-DD');
 
-        const group = 'week';
-
-        const response = await fetch(
-          `https://api.frankfurter.dev/v2/rates/?from=${startDate}&to=${endDate}&base=${tripCurrency}&quotes=${homeCurrency}&group=${group}`,
+        const data: CurrencyExchangeRateResponseFrankfurter[] = await fetchExchangeRates(
+          startDate,
+          endDate,
+          tripCurrency,
+          homeCurrency,
         );
-
-        if (!response.ok) {
-          throw new Error(`Failed to fetch exchange rate: ${response.status}`);
-        }
-
-        const data: CurrencyExchangeRateResponseFrankfurter[] = await response.json();
 
         const newExchangeRate: HistoricalCurrencyExchangeRate = {
           homeCurrency,
