@@ -32,12 +32,12 @@ export function exportTripAsJson(
   };
 
   const nameFormmated = toSafeFilename(trip.name, 20);
-  const filename = `${nameFormmated}.${now.format('YYYY-MM-DD_HH-mm-ss')}.json.triptop`;
+  const filename = `${nameFormmated}.${now.format('YYYY-MM-DD_HH-mm-ss')}.triptop`;
 
   return {
     data,
     dataString: JSON.stringify(data, null, 2),
     filename,
-    type: 'application/json',
+    type: 'application/vnd.triptop',
   };
 }
