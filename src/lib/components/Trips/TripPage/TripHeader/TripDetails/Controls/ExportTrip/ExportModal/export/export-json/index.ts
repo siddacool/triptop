@@ -16,6 +16,9 @@ export function exportTripAsJson(
   const now = createDate();
   const expensesCleaned: Expense[] = [];
 
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  const { deviceOnlyData, ...restTripProps } = trip;
+
   for (let i = 0; i < expenses.length; i++) {
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const { id, virtualData, ...restProps } = expenses[i];
@@ -24,7 +27,7 @@ export function exportTripAsJson(
   }
 
   const data: ExportTripJsonValue = {
-    trip,
+    trip: { ...restTripProps },
     expenses: expensesCleaned,
   };
 

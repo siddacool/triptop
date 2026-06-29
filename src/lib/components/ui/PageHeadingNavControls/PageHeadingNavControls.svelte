@@ -18,10 +18,10 @@
 <style lang="scss">
   .PageHeadingNavControls {
     display: flex;
-    margin: 0 -2px;
+    margin: 0 -6px;
 
     :global(.dodo-ui-Button) {
-      margin: 0 2px;
+      margin: 0 6px;
     }
   }
 </style>

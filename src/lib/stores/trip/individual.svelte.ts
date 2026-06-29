@@ -1,5 +1,5 @@
 import { db } from '../db';
-import type { Trip } from './types';
+import type { Trip, TripDeviceOnlyData } from './types';
 
 function createTripStore() {
   let trip: Trip | undefined = $state();
@@ -43,6 +43,42 @@ function createTripStore() {
         return Promise.reject(e);
       } finally {
         fetching = false;
+      }
+    },
+    async updateEnableCurrencyConversion(enableCondition: boolean) {
+      try {
+        if (!trip) {
+          return;
+        }
+
+        if (!trip.id) {
+          return;
+        }
+
+        let deviceOnlyData: TripDeviceOnlyData = trip.deviceOnlyData || {};
+
+        deviceOnlyData = {
+          ...deviceOnlyData,
+          enableCurrencyConversion: enableCondition,
+        };
+
+        const newTrip: Trip = {
+          ...trip,
+          deviceOnlyData,
+        };
+
+        trip = newTrip;
+
+        await db.trips.update(trip.id, {
+          ...newTrip,
+          updatedAt: Date.now(),
+        });
+      } catch (e) {
+        console.error(e);
+
+        this.reset();
+
+        return Promise.reject(e);
       }
     },
     reset() {

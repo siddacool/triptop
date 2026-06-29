@@ -16,6 +16,10 @@ export const localeOptionsBrowser = locales.map((locale) => ({
 
 export const localeOptions = [localeOptionAuto, ...localeOptionsBrowser];
 
+export interface TripDeviceOnlyData {
+  enableCurrencyConversion?: boolean;
+}
+
 export interface Trip {
   id?: number;
   _id: string;
@@ -25,6 +29,7 @@ export interface Trip {
   currency: CurrencyCode;
   archived?: boolean;
   locale?: string;
+  deviceOnlyData?: TripDeviceOnlyData;
 }
 
 export interface EditTripFormData {

@@ -15,7 +15,7 @@ function createTripImportStore() {
         fetching = true;
 
         /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-        const { _id, id, ...restProps } = data.trip;
+        const { _id, id, deviceOnlyData, ...restProps } = data.trip;
 
         const newTripId = nanoid();
         const now = Date.now();
