@@ -4,6 +4,7 @@
   import { useTripImportStore } from '$lib/stores/trip/import.svelte';
   import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import type { ExportTripJsonValue } from '../TripPage/TripHeader/TripDetails/Controls/ExportTrip/ExportModal/export/export-json';
+  import Icon from '@iconify/svelte';
 
   let fileInput = $state<HTMLInputElement>();
 
@@ -50,7 +51,20 @@
   onclick={() => fileInput?.showPicker()}
   disabled={useTripImportStore.fetching}
 >
+  <span class="Icon">
+    <Icon icon="material-symbols:upload" />
+  </span>
+
   Import trip
 </Button>
 
 <input bind:this={fileInput} type="file" accept=".json,.triptop" hidden onchange={handleImport} />
+
+<style lang="scss">
+  .Icon {
+    font-size: 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 4px;
+  }
+</style>

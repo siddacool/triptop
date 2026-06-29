@@ -17,16 +17,23 @@
 
   const tripId = page.params.tripId;
 
-  async function createTrip(data: EditExpenseFormData) {
+  async function createTrip(data: EditExpenseFormData, eventSubmitter?: HTMLElement | null) {
     try {
       if (!tripId) {
         return;
       }
 
       fetching = true;
+
       await useEditExpenseStore.add(tripId, data);
 
-      await goto(resolve(`/trips/${tripId}/`));
+      const eventSubmitterRaw = eventSubmitter as HTMLInputElement | null;
+
+      if (eventSubmitterRaw?.name === 'save-and-add-new') {
+        return;
+      }
+
+      goto(resolve(`/trips/${tripId}/`));
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 
@@ -35,7 +42,7 @@
         description: message,
         color: 'danger',
       });
-
+    } finally {
       fetching = false;
     }
   }

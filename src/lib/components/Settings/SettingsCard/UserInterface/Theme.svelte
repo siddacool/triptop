@@ -2,7 +2,6 @@
   import type { ComponentThemeColors } from '@flightlesslabs/dodo-ui';
   import { Column, FormField, useThemeStore } from '@flightlesslabs/dodo-ui';
   import { ToggleGroup } from '@flightlesslabs/dodo-ui-bits';
-  import Icon from '@iconify/svelte';
   import { ThemeAppBarColors, themeOptions } from '$lib/stores/settings/theme/types';
   import type { ThemeMode } from '$lib/stores/settings/theme/types';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
@@ -29,18 +28,6 @@
   }
 </script>
 
-{#snippet contentIcon(value: ThemeMode)}
-  <span class="Icon">
-    {#if value === 'light'}
-      <Icon icon="tdesign:sunny" />
-    {:else if value === 'dark'}
-      <Icon icon="tdesign:moon" />
-    {:else}
-      <Icon icon="proicons:dark-theme" />
-    {/if}
-  </span>
-{/snippet}
-
 <Column>
   <FormField label="Theme">
     <ToggleGroup
@@ -50,12 +37,7 @@
       onValueChange={(val) => applyTheme(val as ThemeMode)}
       attached
       inactiveButtonProps={{ outline: true }}
-    >
-      {#snippet customContent({ value, label })}
-        {@render contentIcon(value as ThemeMode)}
-        {label}
-      {/snippet}
-    </ToggleGroup>
+    />
   </FormField>
 </Column>
 

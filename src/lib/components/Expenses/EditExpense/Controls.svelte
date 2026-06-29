@@ -26,7 +26,16 @@
       color="primary"
       type="submit"
       disabled={disabled || !isDataValid}
-      class="event-submitter">Add expense</Button
+      class="event-submitter">Save expense</Button
+    >
+    <Button
+      color="primary"
+      type="submit"
+      disabled={disabled || !isDataValid}
+      class="event-submitter"
+      name="save-and-add-new"
+    >
+      Save and add new</Button
     >
   {/if}
 </ControlSection>

@@ -2,7 +2,7 @@
   import { type EditExpenseFormData, type Expense } from '$lib/stores/expense/types';
 
   type EditExpenseBaseProps = {
-    onsubmit?: (data: EditExpenseFormData) => void;
+    onsubmit?: (data: EditExpenseFormData, eventSubmitter?: HTMLElement | null) => void;
     disabled?: boolean;
     trip: Trip;
   };
@@ -44,6 +44,13 @@
 
   const isDataValid = $derived(name && category && date ? true : false);
 
+  function reset() {
+    name = data?.name;
+    amount = data?.amount || null;
+    category = data?.category || Category.OTHER;
+    date = parseDate(createDate(data?.date).format('YYYY-MM-DD'));
+  }
+
   function submit(event: SubmitEvent) {
     event.preventDefault();
 
@@ -64,14 +71,9 @@
       date: date.toString(),
     } as EditExpenseFormData;
 
-    onsubmit?.(data);
-  }
+    onsubmit?.(data, eventSubmitter);
 
-  function reset() {
-    name = data?.name;
-    amount = data?.amount || null;
-    category = data?.category || Category.OTHER;
-    date = parseDate(createDate(data?.date).format('YYYY-MM-DD'));
+    reset();
   }
 </script>
 
