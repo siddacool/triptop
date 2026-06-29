@@ -12,5 +12,6 @@
 <style lang="scss">
   :global(.TripsControlsToolkit) {
     margin-top: calc(var(--dodo-ui-space) * 2);
+    margin-bottom: 100px;
   }
 </style>
