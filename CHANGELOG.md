@@ -1,5 +1,11 @@
 # triptop
 
+## 5.15.3
+
+### Patch Changes
+
+- 691c685: Fix after import actions redirect
+
 ## 5.15.2
 
 ### Patch Changes
