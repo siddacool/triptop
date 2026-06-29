@@ -1,5 +1,16 @@
 # triptop
 
+## 5.15.0
+
+### Minor Changes
+
+- 5a3422b: actions import file handler added
+
+### Patch Changes
+
+- 7ab4895: hide Currency conversion toggle button when no expenses exists
+- 828cdde: Expense Save and add new feature added
+
 ## 5.14.1
 
 ### Patch Changes
