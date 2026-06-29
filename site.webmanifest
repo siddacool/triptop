@@ -1,5 +1,5 @@
 {
-  "name": "Triptop",
+  "name": "Triptop - travel budget app",
   "short_name": "Triptop",
   "start_url": "/",
   "scope": "/",
@@ -12,7 +12,7 @@
   ],
   "orientation": "portrait-primary",
   "theme_color": "#ddd6ff",
-  "background_color": "#ddd6ff",
+  "background_color": "#8e51ff",
   "categories": ["travel", "finance", "productivity"],
   "lang": "en-US",
   "dir": "ltr",

@@ -1,0 +1,1 @@
+import{R as e,it as t,nt as n}from"./nQlos8yJ.js";function r(){let r=t(`light`);return{get theme(){return e(r)},updateSystemTheme(e){n(r,e,!0)}}}var i=r();export{i as t};
