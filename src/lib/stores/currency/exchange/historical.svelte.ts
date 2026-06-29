@@ -6,38 +6,7 @@ import {
   type HistoricalCurrencyExchangeRateEntry,
 } from '../types';
 import { createDate } from '$lib/helpers/date-time/createDate';
-import Dexie from 'dexie';
-import type { Dayjs } from 'dayjs';
-
-function checkIfUpdateNeeded(
-  firstExpense: Dayjs,
-  lastExpense: Dayjs,
-  oldExchangeRate: HistoricalCurrencyExchangeRate | undefined,
-) {
-  if (!oldExchangeRate) {
-    return true;
-  }
-
-  if (!oldExchangeRate.data.length) {
-    return true;
-  }
-
-  const startDate = firstExpense.subtract(14, 'day').format('YYYY-MM-DD');
-  const endDate = lastExpense.subtract(14, 'day').format('YYYY-MM-DD');
-
-  const oldExchangeRateStartDate = oldExchangeRate.data[0].date;
-  const oldExchangeRateEndDate = oldExchangeRate.data[oldExchangeRate.data.length - 1].date;
-
-  if (oldExchangeRateStartDate > startDate) {
-    return true;
-  }
-
-  if (oldExchangeRateEndDate < endDate) {
-    return true;
-  }
-
-  return false;
-}
+import { findNearestExchangeRate } from '$lib/helpers/find-nearest-exchange-rate';
 
 function createHistoricalCurrencyExchangeStore() {
   let exchangeRate: HistoricalCurrencyExchangeRate | undefined = $state(undefined);
@@ -64,12 +33,9 @@ function createHistoricalCurrencyExchangeStore() {
 
         fetching = true;
 
-        // No need to request stuff
+        let expensesData = await db.expense.where({ tripId: tripId }).toArray();
 
-        const expensesData = await db.expense
-          .where('[tripId+date]')
-          .between([tripId, Dexie.minKey], [tripId, Dexie.maxKey])
-          .toArray();
+        expensesData = expensesData.sort((a, b) => a.date.localeCompare(b.date));
 
         if (!expensesData.length) {
           exchangeRate = undefined;
@@ -88,19 +54,41 @@ function createHistoricalCurrencyExchangeStore() {
           exchangeRate = undefined;
         }
 
-        const firstExpense = createDate(expensesData[0].date);
-        const lastExpense = createDate(expensesData.at(-1)!.date);
+        const firstExpenseEntry = expensesData[0];
+        const lastExpenseEntry = expensesData[expensesData.length - 1];
+        const expenseStartDate = createDate(firstExpenseEntry.date);
+        const expenseEndDate = createDate(lastExpenseEntry.date);
 
-        const isUpdateNeeded = checkIfUpdateNeeded(firstExpense, lastExpense, target);
+        const targetStartDate = target
+          ? findNearestExchangeRate(expenseStartDate.format('YYYY-MM-DD'), target)
+          : undefined;
 
-        if (!isUpdateNeeded) {
+        const targetEndDate = target
+          ? findNearestExchangeRate(expenseEndDate.format('YYYY-MM-DD'), target)
+          : undefined;
+
+        const startDateDiffrence =
+          targetStartDate && expenseStartDate
+            ? expenseStartDate.diff(targetStartDate.date, 'day')
+            : null;
+
+        const endDateDiffrence =
+          targetEndDate && expenseEndDate ? expenseEndDate.diff(targetEndDate.date, 'day') : null;
+
+        const startDateDiffrencePass =
+          startDateDiffrence !== null && startDateDiffrence >= 0 && startDateDiffrence <= 12;
+
+        const endDateDiffrencePass =
+          endDateDiffrence !== null && endDateDiffrence >= 0 && endDateDiffrence <= 12;
+
+        if (startDateDiffrencePass && endDateDiffrencePass) {
           console.log('debug: range already present, no update needed', target);
           return;
         }
 
         // Considering the data for the whole month
-        const startDate = firstExpense.subtract(1, 'day').startOf('month').format('YYYY-MM-DD');
-        const endDate = lastExpense.subtract(1, 'day').endOf('month').format('YYYY-MM-DD');
+        const startDate = expenseStartDate.subtract(2, 'day').startOf('month').format('YYYY-MM-DD');
+        const endDate = expenseEndDate.add(2, 'day').endOf('month').format('YYYY-MM-DD');
 
         const group = 'week';
 
