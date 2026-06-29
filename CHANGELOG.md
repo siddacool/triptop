@@ -1,5 +1,11 @@
 # triptop
 
+## 5.14.1
+
+### Patch Changes
+
+- 1bc51c8: Index page scroll margin added
+
 ## 5.14.0
 
 ### Minor Changes
