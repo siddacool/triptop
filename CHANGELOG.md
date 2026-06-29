@@ -1,5 +1,11 @@
 # triptop
 
+## 5.15.4
+
+### Patch Changes
+
+- 3adf621: Triptop extension fixed
+
 ## 5.15.3
 
 ### Patch Changes
