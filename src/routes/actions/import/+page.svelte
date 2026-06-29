@@ -27,7 +27,7 @@
       });
 
       // Navigate wherever makes sense after importing
-      await goto(resolve('/'));
+      await goto(resolve('/trips'));
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 
