@@ -7,6 +7,7 @@
   import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
+  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import { onMount } from 'svelte';
@@ -25,7 +26,6 @@
 
     const loadTrip = async () => {
       try {
-        useHistoricalCurrencyExchangeStore.clear();
         await useExpenseStore.fetch(expenseId);
 
         const tripCurrency = useTripStore.trip?.currency;
@@ -33,6 +33,7 @@
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
+          await useExpenseListStore.fetch(tripId);
           await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
         }
 

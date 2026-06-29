@@ -7,6 +7,7 @@ import {
 } from '../types';
 import { createDate } from '$lib/helpers/date-time/createDate';
 import { findNearestExchangeRate } from '$lib/helpers/find-nearest-exchange-rate';
+import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
 
 function createHistoricalCurrencyExchangeStore() {
   let exchangeRate: HistoricalCurrencyExchangeRate | undefined = $state(undefined);
@@ -33,7 +34,7 @@ function createHistoricalCurrencyExchangeStore() {
 
         fetching = true;
 
-        let expensesData = await db.expense.where({ tripId: tripId }).toArray();
+        let expensesData = useExpenseListStore.expenses;
 
         expensesData = expensesData.sort((a, b) => a.date.localeCompare(b.date));
 
@@ -43,10 +44,12 @@ function createHistoricalCurrencyExchangeStore() {
           return;
         }
 
-        const target = await db.historicalCurrencyExchangeRates
-          .where('[homeCurrency+tripCurrency]')
-          .equals([homeCurrency, tripCurrency])
-          .first();
+        const target = exchangeRate
+          ? exchangeRate
+          : await db.historicalCurrencyExchangeRates
+              .where('[homeCurrency+tripCurrency]')
+              .equals([homeCurrency, tripCurrency])
+              .first();
 
         if (target) {
           exchangeRate = target;
@@ -115,7 +118,10 @@ function createHistoricalCurrencyExchangeStore() {
         console.log('debug: fetch', newExchangeRate);
 
         if (target) {
-          await db.historicalCurrencyExchangeRates.update(target.id, newExchangeRate);
+          await db.historicalCurrencyExchangeRates
+            .where('[homeCurrency+tripCurrency]')
+            .equals([homeCurrency, tripCurrency])
+            .modify(newExchangeRate);
         } else {
           await db.historicalCurrencyExchangeRates.add(newExchangeRate);
         }
