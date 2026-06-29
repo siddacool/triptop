@@ -18,6 +18,8 @@
 <style lang="scss">
   :global(.TheHeader) {
     height: 60px;
+    min-height: 60px;
+    max-height: 60px;
     position: sticky;
     top: 0;
     left: 0;
