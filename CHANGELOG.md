@@ -1,5 +1,11 @@
 # triptop
 
+## 5.15.2
+
+### Patch Changes
+
+- 8d4fe91: Expense Card optimized
+
 ## 5.15.1
 
 ### Patch Changes
