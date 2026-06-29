@@ -1,4 +1,5 @@
 <script>
+  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import { Button } from '@flightlesslabs/dodo-ui';
@@ -7,7 +8,11 @@
   const homeCurrency = $derived(useSettingsStore.settings.homeCurrency);
   const tripCurrency = $derived(useTripStore.trip?.currency);
   const isCurrencySame = $derived(homeCurrency === tripCurrency);
-  const isShow = $derived(useSettingsStore.settings.enableCurrencyConversion && !isCurrencySame);
+  const isShow = $derived(
+    useSettingsStore.settings.enableCurrencyConversion &&
+      !isCurrencySame &&
+      useExpenseListStore.expenses.length,
+  );
   const isEnabled = $derived(
     useTripStore.trip?.deviceOnlyData?.enableCurrencyConversion === false ? false : true,
   );
