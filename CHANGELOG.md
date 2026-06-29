@@ -1,5 +1,17 @@
 # triptop
 
+## 5.14.0
+
+### Minor Changes
+
+- 877da65: Currency exchange toggle added in trip details
+
+### Patch Changes
+
+- 24d6afe: Create new trip button added in header
+- 8ee6894: Icons updated
+- b8a0d81: The Header height fixed
+
 ## 5.13.4
 
 ### Patch Changes
