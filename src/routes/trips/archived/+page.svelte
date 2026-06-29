@@ -1,4 +1,5 @@
 <script>
+  import TheHeader from '$lib/components/TheHeader/TheHeader.svelte';
   import TripList from '$lib/components/Trips/TripList/TripList.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
@@ -18,6 +19,8 @@
 <svelte:head>
   <title>Archived trips</title>
 </svelte:head>
+
+<TheHeader />
 
 <Box>
   <PageHeadingNav href="/trips">Archived trips</PageHeadingNav>

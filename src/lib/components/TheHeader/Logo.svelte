@@ -1,10 +1,16 @@
 <script>
   import { resolve } from '$app/paths';
+  import { useThemeStore } from '@flightlesslabs/dodo-ui';
 </script>
 
 <div class="Logo">
   <a href={resolve('/trips')}>
-    <img src="/favicon-96x96.png" alt="Triptop logo" class="LogoImageTriptop" />
+    {#if useThemeStore.theme === 'dark'}
+      <img src="/assets/social/logo-dark.svg" alt="Triptop logo dark" />
+    {:else}
+      <img src="/assets/social/logo.svg" alt="Triptop logo" />
+    {/if}
+
     <span class="text">Triptop</span>
   </a>
 </div>
@@ -30,19 +36,10 @@
 
     img {
       display: inline-flex;
-      width: 27px;
+      width: 33px;
       height: auto;
-      margin-right: 6px;
-      border-radius: 4px;
-
-      @media (min-width: 600px) {
-        width: 33px;
-        margin-right: 8px;
-      }
+      margin-right: 8px;
+      border-radius: 12px;
     }
-  }
-
-  :global(.dodo-theme--dark .LogoImageTriptop) {
-    filter: brightness(95%);
   }
 </style>
