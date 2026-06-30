@@ -1,30 +1,69 @@
 <script lang="ts">
-  import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
-  import ExportModal from './ExportModal/ExportModal.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+  import { Dropdown, type DropdownMenuOption } from '@flightlesslabs/dodo-ui-bits';
+  import {
+    ExportTripType,
+    exportTripTypeOptions,
+    type ExportTripTypeOption,
+  } from './ExportModal/export/types';
+  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { exportTripAsJson } from './ExportModal/export/export-json';
+  import { exportTripAsCsv } from './ExportModal/export/export-csv';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { downloadFile } from '$lib/helpers/downloadFile';
 
-  let openModal = $state(false);
+  function handleSelect(valueRaw: DropdownMenuOption) {
+    const value = valueRaw as ExportTripTypeOption;
+
+    const trip = useTripStore.trip;
+
+    if (!trip) return;
+
+    const exporters = {
+      [ExportTripType.JSON]: () => exportTripAsJson(trip, useExpenseListStore.expenses),
+      [ExportTripType.CSV]: () =>
+        exportTripAsCsv(
+          trip,
+          useExpenseListStore.expenses,
+          useSettingsStore.settings.dateFormat,
+          useSettingsStore.settings.enableCurrencyConversion,
+          useSettingsStore.settings.homeCurrency,
+        ),
+    };
+
+    const exportData = exporters[value.value]?.();
+
+    if (!exportData) return;
+
+    downloadFile(exportData.filename, exportData.dataString, exportData.type);
+  }
 </script>
 
 {#if useExpenseListStore.expenses.length}
-  <Button
+  <Dropdown
     aria-label="Export trip"
     class="TripPageExportTrip"
-    variant="text"
-    roundness="full"
-    title="Export trip"
-    onclick={() => (openModal = true)}
-    compact
+    triggerProps={{
+      title: 'Export trip',
+      variant: 'text',
+      roundness: 'full',
+      compact: true,
+      class: 'TripPageExportTripButton',
+    }}
+    menuProps={{
+      align: 'end',
+      color: 'primary',
+    }}
+    options={exportTripTypeOptions}
+    onselect={handleSelect}
   >
     <Icon icon="material-symbols:download" />
-  </Button>
+  </Dropdown>
 {/if}
 
-<ExportModal bind:open={openModal} />
-
 <style lang="scss">
-  :global(.dodo-ui-Button.size--normal.TripPageExportTrip) {
+  :global(.dodo-ui-Button.size--normal.TripPageExportTripButton) {
     font-size: 1.5rem;
   }
 </style>

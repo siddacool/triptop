@@ -1,5 +1,12 @@
 # triptop
 
+## 5.15.5
+
+### Patch Changes
+
+- Export dropdown added
+- 5fe95d6: Dependencies updated
+
 ## 5.15.4
 
 ### Patch Changes
