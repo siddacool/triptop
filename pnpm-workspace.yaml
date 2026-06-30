@@ -9,3 +9,7 @@ minimumReleaseAgeExclude:
   - '@flightlesslabs/dodo-ui@0.36.9'
   - '@flightlesslabs/time-utils@0.2.3'
   - '@flightlesslabs/dodo-ui-date@0.4.33'
+  - '@flightlesslabs/dodo-ui-bits@0.11.0'
+  - '@flightlesslabs/dodo-ui-date@0.4.34'
+  - '@flightlesslabs/dodo-ui-numeric@0.2.32'
+  - '@flightlesslabs/dodo-ui@0.36.10'

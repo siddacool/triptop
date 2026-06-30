@@ -1,0 +1,5 @@
+---
+'triptop': patch
+---
+
+Dependencies updated
