@@ -1,5 +1,14 @@
 # triptop
 
+## 5.15.6
+
+### Patch Changes
+
+- 26ef3f8: Export functionality improved
+- 8e887f8: Edit menu added
+- c2bacb1: Expense delete added
+- c9303e8: Simplify exchange function
+
 ## 5.15.5
 
 ### Patch Changes
