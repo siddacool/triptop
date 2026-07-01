@@ -6,7 +6,7 @@
 </script>
 
 <ExpandedHeader class="TripHeader">
-  <Grid>
+  <Grid gap={2}>
     <Nav />
     <TripDetails />
   </Grid>

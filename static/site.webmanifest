@@ -37,18 +37,6 @@
            "type": "image/png"
          }
        ]
-    },
-    {
-      "name": "Settings",
-      "short_name": "Settings",
-      "url": "/settings",
-      "icons": [
-         {
-           "src": "/assets/icons/shortcut-icon-outline-settings.png",
-           "sizes": "96x96",
-           "type": "image/png"
-         }
-       ]
     }
   ],
   "icons": [

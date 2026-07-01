@@ -1,8 +1,8 @@
 <script>
   import PageHeadingNavControls from '$lib/components/ui/PageHeadingNavControls/PageHeadingNavControls.svelte';
-  import EditTrip from './EditTrip.svelte';
+  import TripOptions from './TripOptions/TripOptions.svelte';
 </script>
 
 <PageHeadingNavControls>
-  <EditTrip />
+  <TripOptions />
 </PageHeadingNavControls>
