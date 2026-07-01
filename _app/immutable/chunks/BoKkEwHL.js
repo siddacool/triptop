@@ -1,1 +1,0 @@
-var e=navigator.languages.includes(`en-IN`)?`en-IN`:`en-US`,t=navigator.languages||[e],n={value:`auto`,label:`Auto`},r=t.map(e=>({value:e,label:e})),i=[n,...r];export{r as i,n,i as r,e as t};
