@@ -59,6 +59,17 @@ function createEditExpenseStore() {
 
       return Promise.resolve(expenseId);
     },
+    async delete(expenseId: string) {
+      const target = await db.expense.where({ _id: expenseId }).first();
+
+      if (!target?.id) {
+        return;
+      }
+
+      await db.expense.delete(target.id);
+
+      return Promise.resolve(expenseId);
+    },
     async toggleArchived(expenseId: string, archiveCondition: boolean) {
       const target = await db.expense.where({ _id: expenseId }).first();
 

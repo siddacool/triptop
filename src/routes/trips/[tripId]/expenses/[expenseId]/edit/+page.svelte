@@ -22,6 +22,40 @@
   const expenseId = page.params.expenseId;
   const isArchived = $derived(useExpenseStore.expense?.archived || false);
 
+  async function deleteExpense() {
+    try {
+      if (!tripId) {
+        return;
+      }
+
+      if (!expenseId) {
+        return;
+      }
+
+      fetching = true;
+
+      await useEditExpenseStore.delete(expenseId);
+
+      toasts.add({
+        title: 'Successs',
+        description: 'Expense deleted',
+        color: 'primary',
+      });
+
+      await goto(resolve(`/trips/${tripId}`));
+    } catch (e) {
+      const message = e instanceof Error ? e.message : String(e);
+
+      toasts.add({
+        title: 'Failed to delete expense',
+        description: message,
+        color: 'danger',
+      });
+
+      fetching = false;
+    }
+  }
+
   async function updateExpense(data: EditExpenseFormData) {
     try {
       if (!tripId) {
@@ -57,7 +91,7 @@
     }
   }
 
-  async function toggleArchivedExpense(archiveCondition: boolean) {
+  async function toggleArchive(archiveCondition: boolean) {
     try {
       if (!tripId) {
         return;
@@ -79,7 +113,6 @@
         color: 'primary',
       });
 
-      await useTripStore.fetch(tripId);
       await goto(resolve(`/trips/${tripId}`));
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
@@ -98,15 +131,15 @@
     modals.add('confirm', {
       title: 'Delete Expense',
       description: 'Are you sure you want to delete this expense?',
-      onaccept: () => toggleArchivedExpense(true),
+      onaccept: () => deleteExpense(),
     });
   }
 
-  function restoreConfirmation() {
+  function archiveConfirmation() {
     modals.add('confirm', {
-      title: 'Restore expense',
-      description: 'Are you sure you want to restore this expense?',
-      onaccept: () => toggleArchivedExpense(false),
+      title: 'Archive expense',
+      description: 'Are you sure you want to archive this expense?',
+      onaccept: () => toggleArchive(true),
     });
   }
 </script>
@@ -137,10 +170,12 @@
       </Column>
       <Column>
         <ControlSection class="ExpenseEditControls" controlsAlignment="center">
+          <Button color="danger" onclick={deleteConfirmation}>Delete expense</Button>
+
           {#if isArchived}
-            <Button onclick={restoreConfirmation}>Restore expense</Button>
+            <Button onclick={() => toggleArchive(false)}>Unarchive expense</Button>
           {:else}
-            <Button color="danger" onclick={deleteConfirmation}>Delete expense</Button>
+            <Button color="neutral" onclick={archiveConfirmation}>Archive expense</Button>
           {/if}
         </ControlSection>
       </Column>

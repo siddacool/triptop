@@ -36,7 +36,10 @@
       />
     </Threshold>
   </FieldValue>
-  <HomeCurrencyExchange amount={expense.virtualData?.amountHomeCurrency} />
+
+  {#if trip.deviceOnlyData?.enableCurrencyConversion !== false}
+    <HomeCurrencyExchange amount={expense.virtualData?.amountHomeCurrency} />
+  {/if}
 </div>
 
 <style lang="scss">

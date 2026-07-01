@@ -3,7 +3,7 @@
   import { Column, Grid } from '@flightlesslabs/dodo-ui';
   import { type Trip } from '$lib/stores/trip/types';
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
-  import DeletedPill from './DeletedPill.svelte';
+  import ArchivedPill from './ArchivedPill.svelte';
   import CategoryShowCase from '$lib/components/ui/Category/CategoryShowCase/CategoryShowCase.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Amount from './Amount.svelte';
@@ -27,18 +27,19 @@
   <Grid gap={2}>
     <Column>
       <div class="HeadingSection">
-        <Amount {trip} {expense} />
+        <FieldValue size="large">
+          {expense.name}
+        </FieldValue>
         {#if expense.archived}
-          <DeletedPill />
+          <ArchivedPill />
         {/if}
       </div>
     </Column>
 
     <Column>
-      <FieldValue>
-        {expense.name}
-      </FieldValue>
+      <Amount {trip} {expense} />
     </Column>
+
     <Column>
       <Divider />
     </Column>

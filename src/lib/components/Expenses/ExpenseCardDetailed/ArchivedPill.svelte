@@ -2,8 +2,8 @@
   import Chip from '$lib/components/ui/Chip/Chip.svelte';
 </script>
 
-<p class="DeletedPill">
-  <Chip color="danger">Deleted</Chip>
+<p class="ArchivedPill">
+  <Chip color="neutral">Archived</Chip>
 </p>
 
 <style lang="scss">

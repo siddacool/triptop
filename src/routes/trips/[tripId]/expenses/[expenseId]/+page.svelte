@@ -1,10 +1,9 @@
 <script lang="ts">
   import { page } from '$app/state';
   import ExpenseCardDetailed from '$lib/components/Expenses/ExpenseCardDetailed/ExpenseCardDetailed.svelte';
-  import ExpenseHeader from '$lib/components/Expenses/ExpensePage/ExpenseHeader/ExpenseHeader.svelte';
+  import ExpenseDetailsHeader from '$lib/components/Expenses/ExpenseDetailsPage/ExpenseDetailsHeader/ExpenseDetailsHeader.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
-  import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
@@ -51,20 +50,18 @@
   <title>{useExpenseStore.expense?.name || ''}</title>
 </svelte:head>
 
-<WhiteMaterial>
+{#if useExpenseStore.fetching || useTripStore.fetching}
+  <Loading />
+{:else if useExpenseStore.expense && useTripStore.trip}
+  <ExpenseDetailsHeader />
   <Box>
-    {#if useExpenseStore.fetching || useTripStore.fetching}
-      <Loading />
-    {:else if useExpenseStore.expense && useTripStore.trip}
-      <ExpenseHeader />
-      <ExpenseCardDetailed
-        expense={useExpenseStore.expense}
-        trip={useTripStore.trip}
-        class="ExpensesDetailsCard"
-      />
-    {/if}
+    <ExpenseCardDetailed
+      expense={useExpenseStore.expense}
+      trip={useTripStore.trip}
+      class="ExpensesDetailsCard"
+    />
   </Box>
-</WhiteMaterial>
+{/if}
 
 <style lang="scss">
   :global(.ExpensesDetailsCard) {
