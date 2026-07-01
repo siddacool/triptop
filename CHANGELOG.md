@@ -1,5 +1,11 @@
 # triptop
 
+## 5.15.7
+
+### Patch Changes
+
+- 2d57468: Expense Detailed card head fixed
+
 ## 5.15.6
 
 ### Patch Changes
