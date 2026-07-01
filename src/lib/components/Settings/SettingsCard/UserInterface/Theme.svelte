@@ -40,11 +40,3 @@
     />
   </FormField>
 </Column>
-
-<style lang="scss">
-  .Icon {
-    font-size: 1.3rem;
-    display: inline-flex;
-    margin-right: 6px;
-  }
-</style>

@@ -76,22 +76,6 @@
       justify-content: space-between;
     }
 
-    .details {
-      display: flex;
-
-      :global(.FieldValue) {
-        margin-right: calc(var(--dodo-ui-space) * 3);
-
-        &:last-child {
-          margin: 0;
-        }
-      }
-
-      :global(.CategoryShowCase .CategoryIcon) {
-        font-size: 1.1rem;
-      }
-    }
-
     :global(.ExpenseCardDetailedCard) {
       padding: calc(var(--dodo-ui-space) * 2);
     }
