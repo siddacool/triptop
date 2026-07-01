@@ -18,10 +18,10 @@ export type ExportTripTypeOption = {
 export const exportTripTypeOptions: ExportTripTypeOption[] = [
   {
     value: ExportTripType.CSV,
-    label: 'CSV',
+    label: 'Download as CSV',
   },
   {
     value: ExportTripType.JSON,
-    label: 'Backup trip (JSON)',
+    label: 'Export trip',
   },
 ];

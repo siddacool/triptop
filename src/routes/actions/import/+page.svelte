@@ -6,8 +6,8 @@
 
   import { useTripImportStore } from '$lib/stores/trip/import.svelte';
   import { useTripListStore } from '$lib/stores/trip/list.svelte';
-  import type { ExportTripJsonValue } from '$lib/components/Trips/TripPage/TripHeader/TripDetails/Controls/ExportTrip/ExportModal/export/export-json';
   import { resolve } from '$app/paths';
+  import type { ExportTripJsonValue } from '$lib/stores/trip/export/export-json';
 
   async function importTrip(file: File) {
     try {

@@ -8,8 +8,6 @@ import type { ExportTripValue } from '../types';
 import { toSafeFilename } from '$lib/helpers/file-name';
 import type { CurrencyCode } from '@flightlesslabs/currency';
 
-export type ExportTripCsvValue = string;
-
 const escapeCsvValue = (value: unknown): string => {
   const str = String(value ?? '');
 
