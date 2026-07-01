@@ -34,7 +34,7 @@
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-          await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
+          await useHistoricalCurrencyExchangeStore.fetchSilent(tripCurrency, homeCurrency);
         }
 
         useExpenseListStore.updateExchangeData();

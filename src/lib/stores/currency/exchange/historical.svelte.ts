@@ -1,43 +1,13 @@
 import type { CurrencyCode } from '@flightlesslabs/currency';
 import { db } from '../../db';
-import {
-  type CurrencyExchangeRateResponseFrankfurter,
-  type HistoricalCurrencyExchangeRate,
-  type HistoricalCurrencyExchangeRateEntry,
-} from '../types';
+import { type HistoricalCurrencyExchangeRate } from '../types';
 import { createDate } from '$lib/helpers/date-time/createDate';
-import { findNearestExchangeRate } from '$lib/helpers/find-nearest-exchange-rate';
 import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
-import type { Dayjs } from 'dayjs';
-
-async function fetchExchangeRates(
-  startDate: string,
-  endDate: string,
-  tripCurrency: CurrencyCode,
-  homeCurrency: CurrencyCode,
-) {
-  const group = 'week';
-
-  const response = await fetch(
-    `https://api.frankfurter.dev/v2/rates/?from=${startDate}&to=${endDate}&base=${tripCurrency}&quotes=${homeCurrency}&group=${group}`,
-  );
-
-  if (!response.ok) {
-    throw new Error(`Failed to fetch exchange rate: ${response.status}`);
-  }
-
-  const data: CurrencyExchangeRateResponseFrankfurter[] = await response.json();
-
-  return data;
-}
-
-function isCovered(expenseDate: Dayjs, nearest?: HistoricalCurrencyExchangeRateEntry) {
-  if (!nearest) return false;
-
-  const diff = expenseDate.diff(nearest.date, 'day');
-
-  return diff >= 0 && diff <= 12;
-}
+import { validateFetchConditions } from './utils/validateFetchConditions';
+import { needsExchangeRateUpdate } from './utils/needsExchangeRateUpdate';
+import { fetchExchangeRates } from './utils/fetchExchangeRates';
+import { createFetchDateRange } from './utils/createFetchDateRange';
+import { convertResponseDataToExchangeRate } from './utils/convertResponseDataToExchangeRate';
 
 function createHistoricalCurrencyExchangeStore() {
   let exchangeRate: HistoricalCurrencyExchangeRate | undefined = $state(undefined);
@@ -54,26 +24,22 @@ function createHistoricalCurrencyExchangeStore() {
     get mounted() {
       return mounted;
     },
-    async fetch(tripId: string, tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
+    async fetch(tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
       try {
-        if (tripCurrency === homeCurrency) {
-          exchangeRate = undefined;
-
-          return;
-        }
-
         fetching = true;
 
         const expensesData = [...useExpenseListStore.expenses].sort((a, b) =>
           a.date.localeCompare(b.date),
         );
 
-        if (!expensesData.length) {
+        // Conditions check before going further
+        if (!validateFetchConditions(tripCurrency, homeCurrency, expensesData)) {
           exchangeRate = undefined;
 
           return;
         }
 
+        // Load cached from store or fresh data from dexie
         const target =
           exchangeRate ??
           (await db.historicalCurrencyExchangeRates
@@ -83,49 +49,44 @@ function createHistoricalCurrencyExchangeStore() {
 
         exchangeRate = target;
 
-        const firstExpenseEntry = expensesData[0];
-        const lastExpenseEntry = expensesData[expensesData.length - 1];
-        const expenseStartDate = createDate(firstExpenseEntry.date);
-        const expenseEndDate = createDate(lastExpenseEntry.date);
+        // Create reusable expene dates
+        const expenseStartDate = createDate(expensesData[0].date);
+        const expenseEndDate = createDate(expensesData[expensesData.length - 1].date);
 
-        if (target) {
-          const nearestStart = findNearestExchangeRate(
-            expenseStartDate.format('YYYY-MM-DD'),
-            target,
-          );
+        // Match date range with cache and see if update from api is needed
+        const isUpdateNeeded = needsExchangeRateUpdate(
+          exchangeRate,
+          expenseStartDate,
+          expenseEndDate,
+        );
 
-          const nearestEnd = findNearestExchangeRate(expenseEndDate.format('YYYY-MM-DD'), target);
-
-          if (isCovered(expenseStartDate, nearestStart) && isCovered(expenseEndDate, nearestEnd)) {
-            console.log('debug: range already present, no update needed', target);
-            return;
-          }
+        if (!isUpdateNeeded) {
+          console.log('debug: range already present, no update needed', exchangeRate);
+          return;
         }
 
         // Considering the data for the whole month
-        const startDate = expenseStartDate.subtract(2, 'day').startOf('month').format('YYYY-MM-DD');
-        const endDate = expenseEndDate.add(2, 'day').endOf('month').format('YYYY-MM-DD');
+        const { startDate, endDate } = createFetchDateRange(expenseStartDate, expenseEndDate);
 
-        const data: CurrencyExchangeRateResponseFrankfurter[] = await fetchExchangeRates(
+        // Fetch the weekly data
+        const responseData = await fetchExchangeRates(
+          tripCurrency,
+          homeCurrency,
           startDate,
           endDate,
-          tripCurrency,
-          homeCurrency,
         );
 
-        const newExchangeRate: HistoricalCurrencyExchangeRate = {
-          homeCurrency,
+        // Get formatted exchange rate
+        const newExchangeRate = convertResponseDataToExchangeRate(
           tripCurrency,
-          data: data.map<HistoricalCurrencyExchangeRateEntry>((item) => ({
-            date: item.date,
-            exchangeRate: item.rate || 0,
-          })),
-          requestedAt: Date.now(),
-        };
+          homeCurrency,
+          responseData,
+        );
 
         console.log('debug: fetch', newExchangeRate);
 
-        if (target) {
+        // Commit to DB
+        if (exchangeRate) {
           await db.historicalCurrencyExchangeRates
             .where('[homeCurrency+tripCurrency]')
             .equals([homeCurrency, tripCurrency])
@@ -134,6 +95,7 @@ function createHistoricalCurrencyExchangeStore() {
           await db.historicalCurrencyExchangeRates.add(newExchangeRate);
         }
 
+        // Update store
         exchangeRate = newExchangeRate;
 
         mounted = true;
@@ -147,9 +109,9 @@ function createHistoricalCurrencyExchangeStore() {
         fetching = false;
       }
     },
-    async fetchSilent(tripId: string, tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
+    async fetchSilent(tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
       try {
-        await this.fetch(tripId, tripCurrency, homeCurrency);
+        await this.fetch(tripCurrency, homeCurrency);
       } catch (e) {
         console.error(e);
       }

@@ -34,7 +34,7 @@
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
           await useExpenseListStore.fetch(tripId);
-          await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
+          await useHistoricalCurrencyExchangeStore.fetchSilent(tripCurrency, homeCurrency);
         }
 
         useExpenseStore.updateExchangeData();
