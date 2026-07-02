@@ -1,7 +1,9 @@
 <script lang="ts">
   import { page } from '$app/state';
   import StatsHeader from '$lib/components/Stats/StatsHeader/StatsHeader.svelte';
+  import StatsList from '$lib/components/Stats/StatsList/StatsList.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
+  import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
@@ -50,9 +52,21 @@
   <title>Trip statistics</title>
 </svelte:head>
 
+{#snippet content()}
+  {#if mounted && !useExpenseListStore.expenses.length}
+    <Box>
+      <Instructions>No stats for you</Instructions>
+    </Box>
+  {:else if useExpenseListStore.mounted && useExpenseListStore.expenses.length}
+    <Box>
+      <StatsList />
+    </Box>
+  {/if}
+{/snippet}
+
 <StatsHeader />
 {#if fetching}
   <Loading />
-{:else if mounted}
-  <Box>yo</Box>
+{:else}
+  {@render content()}
 {/if}

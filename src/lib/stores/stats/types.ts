@@ -9,6 +9,11 @@ export type ExpenseSummary = {
   largest: MoneyValue;
 };
 
+export type DateSummary = {
+  startDate: string;
+  endDate: string;
+};
+
 export type CategoryStats = {
   name: Category;
   stats: ExpenseSummary;
