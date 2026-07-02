@@ -55,11 +55,12 @@ function createTripStore() {
           return;
         }
 
+        trip.enableCurrencyConversion = enableCondition;
+
         let deviceOnlyData: TripDeviceOnlyData = trip.deviceOnlyData || {};
 
         deviceOnlyData = {
           ...deviceOnlyData,
-          enableCurrencyConversion: enableCondition,
         };
 
         const newTrip: Trip = {
@@ -69,9 +70,8 @@ function createTripStore() {
 
         trip = newTrip;
 
-        await db.trips.update(trip.id, {
+        db.trips.update(trip.id, {
           ...newTrip,
-          updatedAt: Date.now(),
         });
       } catch (e) {
         console.error(e);

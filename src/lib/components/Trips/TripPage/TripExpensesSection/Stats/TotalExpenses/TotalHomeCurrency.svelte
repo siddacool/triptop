@@ -7,7 +7,7 @@
     getExpensesTotalAmountHomeCurrency(useExpenseListStore.filtredExpenses),
   );
   const tripEnableCurrencyConversion = $derived(
-    useTripStore.trip?.deviceOnlyData?.enableCurrencyConversion === false ? false : true,
+    useTripStore.trip?.enableCurrencyConversion === false ? false : true,
   );
   const allExpensesOk = $derived(
     useExpenseListStore.filtredExpenses.every(

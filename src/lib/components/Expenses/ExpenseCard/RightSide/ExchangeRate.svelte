@@ -14,7 +14,7 @@
   );
 
   const tripEnableCurrencyConversion = $derived(
-    useTripStore.trip?.deviceOnlyData?.enableCurrencyConversion === false ? false : true,
+    useTripStore.trip?.enableCurrencyConversion === false ? false : true,
   );
 </script>
 

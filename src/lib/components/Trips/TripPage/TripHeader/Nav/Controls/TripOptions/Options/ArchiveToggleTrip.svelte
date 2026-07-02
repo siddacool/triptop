@@ -1,11 +1,8 @@
 <script lang="ts">
   import { DropdownMenuItem, modals, toasts } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
-  import { goto } from '$app/navigation';
-  import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
-  import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
 
   const tripId = page.params.tripId || '';
@@ -24,9 +21,7 @@
         color: 'primary',
       });
 
-      await useTripListStore.fetch();
-
-      await goto(resolve('/trips'));
+      await useTripStore.fetch(tripId);
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 

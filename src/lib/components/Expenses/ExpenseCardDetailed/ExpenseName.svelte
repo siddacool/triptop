@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ArchivedTag from '$lib/components/ui/ArchivedTag/ArchivedTag.svelte';
+  import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
   import type { Expense } from '$lib/stores/expense/types';
   import { Column } from '@flightlesslabs/dodo-ui';
 
@@ -10,8 +10,8 @@
   let { expense }: Props = $props();
 </script>
 
-{#if expense.archived}
-  <Column>
-    <ArchivedTag />
-  </Column>
-{/if}
+<Column>
+  <FieldValue size="large">
+    {expense.name}
+  </FieldValue>
+</Column>

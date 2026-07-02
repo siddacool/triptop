@@ -1,6 +1,6 @@
 <script lang="ts">
   import { type Expense } from '$lib/stores/expense/types';
-  import { Money, Threshold } from '@flightlesslabs/dodo-ui';
+  import { Column, Money, Threshold } from '@flightlesslabs/dodo-ui';
   import { type Trip } from '$lib/stores/trip/types';
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
   import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
@@ -20,27 +20,29 @@
   );
 </script>
 
-<div class={classes.join(' ')}>
-  <FieldValue size="large">
-    <Threshold
-      value={expense.amount}
-      threshold={0}
-      colorMap={{ above: 'default' }}
-      class="ExpenseAmount"
-    >
-      <Money
+<Column>
+  <div class={classes.join(' ')}>
+    <FieldValue size="large">
+      <Threshold
         value={expense.amount}
-        currency={trip.currency}
-        {locale}
-        options={{ maximumFractionDigits: 2 }}
-      />
-    </Threshold>
-  </FieldValue>
+        threshold={0}
+        colorMap={{ above: 'default' }}
+        class="ExpenseAmount"
+      >
+        <Money
+          value={expense.amount}
+          currency={trip.currency}
+          {locale}
+          options={{ maximumFractionDigits: 2 }}
+        />
+      </Threshold>
+    </FieldValue>
 
-  {#if trip.deviceOnlyData?.enableCurrencyConversion !== false}
-    <HomeCurrencyExchange amount={expense.virtualData?.amountHomeCurrency} />
-  {/if}
-</div>
+    {#if trip.enableCurrencyConversion !== false}
+      <HomeCurrencyExchange amount={expense.virtualData?.amountHomeCurrency} />
+    {/if}
+  </div>
+</Column>
 
 <style lang="scss">
   .Amount {

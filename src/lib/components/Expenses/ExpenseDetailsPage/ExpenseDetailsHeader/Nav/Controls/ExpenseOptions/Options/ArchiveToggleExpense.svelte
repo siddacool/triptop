@@ -1,8 +1,6 @@
 <script lang="ts">
   import { DropdownMenuItem, modals, toasts } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
-  import { goto } from '$app/navigation';
-  import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
@@ -28,7 +26,7 @@
         color: 'primary',
       });
 
-      await goto(resolve(`/trips/${tripId}`));
+      await useExpenseStore.fetch(expenseId);
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 

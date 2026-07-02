@@ -13,9 +13,7 @@
       !isCurrencySame &&
       useExpenseListStore.expenses.length,
   );
-  const isEnabled = $derived(
-    useTripStore.trip?.deviceOnlyData?.enableCurrencyConversion === false ? false : true,
-  );
+  const isEnabled = $derived(useTripStore.trip?.enableCurrencyConversion === false ? false : true);
 
   let loading = $state(false);
 

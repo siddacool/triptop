@@ -17,6 +17,6 @@
 
 <TheHeader />
 <Box>
-  <PageHeadingNav href="/trips">Settings</PageHeadingNav>
+  <PageHeadingNav>Settings</PageHeadingNav>
   <SettingsCard />
 </Box>

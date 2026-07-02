@@ -27,6 +27,7 @@
 
     const loadTrip = async () => {
       try {
+        await useTripStore.fetch(tripId);
         await useExpenseListStore.fetch(tripId);
 
         const tripCurrency = useTripStore.trip?.currency;

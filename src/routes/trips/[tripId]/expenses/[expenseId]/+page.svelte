@@ -65,6 +65,6 @@
 
 <style lang="scss">
   :global(.ExpensesDetailsCard) {
-    margin-top: calc(var(--dodo-ui-space) * 3);
+    margin-top: calc(var(--dodo-ui-space) * 1);
   }
 </style>

@@ -2,13 +2,13 @@
   import { type Expense } from '$lib/stores/expense/types';
   import { Column, Grid } from '@flightlesslabs/dodo-ui';
   import { type Trip } from '$lib/stores/trip/types';
-  import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
   import ArchivedPill from './ArchivedPill.svelte';
-  import CategoryShowCase from '$lib/components/ui/Category/CategoryShowCase/CategoryShowCase.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Amount from './Amount.svelte';
   import Divider from '$lib/components/ui/Divider/Divider.svelte';
-  import { createDate } from '$lib/helpers/date-time/createDate';
+  import Category from './Category.svelte';
+  import ExpenseDate from './ExpenseDate.svelte';
+  import TripName from './TripName.svelte';
+  import ExpenseName from './ExpenseName.svelte';
 
   type Props = {
     expense: Expense;
@@ -25,42 +25,18 @@
 
 <div class={classes.join(' ')}>
   <Grid gap={2}>
-    <Column>
-      <div class="HeadingSection">
-        <FieldValue size="large">
-          {expense.name}
-        </FieldValue>
-        {#if expense.archived}
-          <ArchivedPill />
-        {/if}
-      </div>
-    </Column>
-
-    <Column>
-      <Amount {trip} {expense} />
-    </Column>
-
+    <ArchivedPill {expense} />
+    <ExpenseName {expense} />
+    <Amount {trip} {expense} />
     <Column>
       <Divider />
     </Column>
-    <Column>
-      <FieldValue size="small">
-        <CategoryShowCase value={expense.category} />
-      </FieldValue>
-    </Column>
-    <Column>
-      <FieldValue size="small">
-        {createDate(expense.date).format('ddd, MMM D, YYYY')}
-      </FieldValue>
-    </Column>
+    <Category {expense} />
+    <ExpenseDate {expense} />
     <Column>
       <Divider />
     </Column>
-    <Column>
-      <FieldValue label="Trip:">
-        {useTripStore.trip?.name || ''}
-      </FieldValue>
-    </Column>
+    <TripName {trip} />
   </Grid>
 </div>
 
@@ -68,13 +44,6 @@
   .ExpenseCardDetailed {
     display: flex;
     flex-direction: column;
-
-    .HeadingSection {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
 
     :global(.ExpenseCardDetailedCard) {
       padding: calc(var(--dodo-ui-space) * 2);

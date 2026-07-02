@@ -1,7 +1,7 @@
 <script>
   import { Column } from '@flightlesslabs/dodo-ui';
   import Controls from './Controls/Controls.svelte';
-  import Title from './Title.svelte';
+  import Title from './Title/Title.svelte';
 </script>
 
 <Column>

@@ -12,7 +12,6 @@
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
-  import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import type { EditTripFormData } from '$lib/stores/trip/types';
   import { Button, Column, Grid } from '@flightlesslabs/dodo-ui';
   import { modals, toasts } from '@flightlesslabs/dodo-ui-bits';
@@ -38,9 +37,7 @@
 
       useHistoricalCurrencyExchangeStore.clear();
 
-      await useTripStore.fetch(tripId);
-
-      await goto(resolve(`/trips/${tripId}`));
+      goto(resolve(`/trips/${tripId}`));
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 
@@ -68,8 +65,6 @@
         description: 'Trip deleted',
         color: 'primary',
       });
-
-      await useTripListStore.fetch();
 
       await goto(resolve('/trips'));
     } catch (e) {
@@ -100,9 +95,7 @@
         color: 'primary',
       });
 
-      await useTripListStore.fetch();
-
-      await goto(resolve('/trips'));
+      goto(resolve(`/trips/${tripId}`));
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 
