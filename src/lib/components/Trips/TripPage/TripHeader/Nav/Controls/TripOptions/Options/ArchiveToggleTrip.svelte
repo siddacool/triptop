@@ -55,13 +55,15 @@
 </script>
 
 <DropdownMenuItem onSelect={onselect} outline>
-  <span class="Icon">
-    <Icon icon="material-symbols:archive-outline" />
-  </span>
-
   {#if useTripStore.trip?.archived}
+    <span class="Icon">
+      <Icon icon="material-symbols:unarchive-outline" />
+    </span>
     Unarchive trip
   {:else}
+    <span class="Icon">
+      <Icon icon="material-symbols:archive-outline" />
+    </span>
     Archive trip
   {/if}
 </DropdownMenuItem>

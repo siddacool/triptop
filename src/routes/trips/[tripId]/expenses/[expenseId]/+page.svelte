@@ -23,7 +23,7 @@
       return;
     }
 
-    const loadTrip = async () => {
+    const loadContents = async () => {
       try {
         await useExpenseStore.fetch(expenseId);
 
@@ -42,7 +42,7 @@
       }
     };
 
-    loadTrip();
+    loadContents();
   });
 </script>
 

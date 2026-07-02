@@ -4,9 +4,32 @@
   import { page } from '$app/state';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
+  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+  import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
 
   const tripId = page.params.tripId || '';
   const expenseId = page.params.expenseId || '';
+
+  const loadContents = async () => {
+    try {
+      await useExpenseStore.fetch(expenseId);
+
+      const tripCurrency = useTripStore.trip?.currency;
+      const homeCurrency = useSettingsStore.settings.homeCurrency;
+      const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
+
+      if (tripCurrency && homeCurrency && enableCurrencyConversion) {
+        await useExpenseListStore.fetch(tripId);
+        await useHistoricalCurrencyExchangeStore.fetchSilent(tripCurrency, homeCurrency);
+      }
+
+      useExpenseStore.updateExchangeData();
+    } catch (error) {
+      console.error('Failed to fetch expsense:', error);
+    }
+  };
 
   async function toggleArchive(archiveCondition: boolean) {
     try {
@@ -26,7 +49,7 @@
         color: 'primary',
       });
 
-      await useExpenseStore.fetch(expenseId);
+      loadContents();
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 
@@ -60,13 +83,15 @@
 </script>
 
 <DropdownMenuItem onSelect={onselect} outline>
-  <span class="Icon">
-    <Icon icon="material-symbols:archive-outline" />
-  </span>
-
   {#if useExpenseStore.expense?.archived}
+    <span class="Icon">
+      <Icon icon="material-symbols:unarchive-outline" />
+    </span>
     Unarchive expense
   {:else}
+    <span class="Icon">
+      <Icon icon="material-symbols:archive-outline" />
+    </span>
     Archive expense
   {/if}
 </DropdownMenuItem>
