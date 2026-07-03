@@ -14,6 +14,7 @@
     trip: Trip;
     groupStats: GroupStats[];
     customTopicTitle?: Snippet<[StatsTopicTitleContext]>;
+    showBasicStats: boolean;
   };
 
   let {
@@ -23,6 +24,7 @@
     groupStats,
     trip,
     customTopicTitle,
+    showBasicStats,
   }: Props = $props();
 
   function sortGroupStats(groups: GroupStats[]) {
@@ -44,6 +46,7 @@
         {customTopicTitle}
         topicTitle={groupStat.id}
         expenseSummary={groupStat.stats}
+        {showBasicStats}
       />
     </div>
   {/each}

@@ -47,3 +47,13 @@
     level: 'expert',
   }}
 />
+
+<Story
+  name="Hide basic"
+  args={{
+    groupStats: mockStatsData.categoryStats,
+    title: 'Categories',
+    level: 'expert',
+    showBasicStats: false,
+  }}
+/>

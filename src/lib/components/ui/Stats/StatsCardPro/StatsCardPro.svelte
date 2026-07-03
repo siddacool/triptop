@@ -19,6 +19,7 @@
     trip: Trip;
     groupStats: GroupStats[];
     customTopicTitle?: Snippet<[StatsTopicTitleContext]>;
+    showBasicStats?: boolean;
   };
 </script>
 
@@ -33,6 +34,7 @@
     groupStats,
     trip,
     customTopicTitle,
+    showBasicStats = true,
   }: StatsCardProProps = $props();
 
   function sortGroupStats(groups: GroupStats[]) {
@@ -48,7 +50,14 @@
 <div class={classes.join(' ')}>
   <Card class="StatsCardProCard">
     <StatsHeader {showLevel} {showSort} {title} bind:level bind:sort />
-    <Summaries groupStats={sortedGroupStats} {trip} {customTopicTitle} {level} {sort} />
+    <Summaries
+      groupStats={sortedGroupStats}
+      {trip}
+      {customTopicTitle}
+      {level}
+      {sort}
+      {showBasicStats}
+    />
   </Card>
 </div>
 
