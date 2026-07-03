@@ -1,0 +1,54 @@
+<script lang="ts" module>
+  export type StatsTopicTitleContext = {
+    topicTitle: string;
+    expenseSummary: ExpenseSummary;
+    level: LevelStage;
+  };
+</script>
+
+<script lang="ts">
+  import type { ExpenseSummary } from '$lib/stores/stats/types';
+  import type { Snippet } from 'svelte';
+  import type { LevelStage } from '../../Controls/Levels/Levels.svelte';
+
+  type Props = {
+    class?: string;
+    topicTitle: string;
+    level: LevelStage;
+    expenseSummary: ExpenseSummary;
+    customTopicTitle?: Snippet<[StatsTopicTitleContext]>;
+  };
+
+  let {
+    class: className = '',
+    level,
+    customTopicTitle,
+    topicTitle,
+    expenseSummary,
+  }: Props = $props();
+
+  const classes = $derived(['cell', 'Title', className].filter(Boolean));
+</script>
+
+<div class={classes.join(' ')}>
+  <div class="box">
+    {#if customTopicTitle}
+      {@render customTopicTitle({ topicTitle, expenseSummary, level })}
+    {:else}
+      {topicTitle}
+    {/if}
+  </div>
+</div>
+
+<style lang="scss">
+  .Title {
+    white-space: nowrap;
+    font-weight: 500;
+    padding-left: 0;
+  }
+
+  .box {
+    display: flex;
+    align-items: center;
+  }
+</style>
