@@ -6,6 +6,9 @@
   import BasicStats from './BasicStats/BasicStats.svelte';
   import type { StatsTopicTitleContext } from './BasicStats/Title.svelte';
   import Total from './Total/Total.svelte';
+  import Amount from './Amount.svelte';
+  import type { MoneyValue } from '$lib/stores/currency/types';
+  import LabelGroup from './LabelGroup.svelte';
 
   export type MultiLevelSummaryProps = {
     class?: string;
@@ -39,9 +42,20 @@
     </div>
   {/if}
 
-  <div class="cell">
+  <div class="cell amateur-only">
     <Total {trip} {expenseSummary} />
   </div>
+
+  {#if level === 'expert'}
+    <div class="cell">
+      <div class="Amounts">
+        <Amount value={expenseSummary.total} label="Total" />
+        <Amount value={expenseSummary.average} label="Average" />
+        <Amount value={expenseSummary.largest as MoneyValue} label="Largest" />
+        <LabelGroup label="Expenses">{expenseSummary.expenseCount}</LabelGroup>
+      </div>
+    </div>
+  {/if}
 </div>
 
 <style lang="scss">
@@ -54,6 +68,10 @@
       }
 
       :global(.amateur) {
+        display: none;
+      }
+
+      :global(.amateur-only) {
         display: none;
       }
 
@@ -72,8 +90,14 @@
         vertical-align: middle;
       }
     }
-
     &.level--amateur {
+      :global(.amateur-only) {
+        display: flex;
+      }
+    }
+
+    &.level--amateur,
+    &.level--expert {
       display: flex;
       flex-direction: column;
 
@@ -92,6 +116,22 @@
       :global(.Title) {
         font-size: 1.2rem;
       }
+    }
+
+    &.level--expert {
+      :global(.expert) {
+        display: flex;
+      }
+
+      :global(.amateur-only) {
+        display: none;
+      }
+    }
+
+    .Amounts {
+      width: 100%;
+      flex-direction: column;
+      margin-top: calc(var(--dodo-ui-space) * -1);
     }
   }
 </style>

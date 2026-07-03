@@ -12,7 +12,7 @@
 
   let { class: className = '', trip, expenseSummary }: Props = $props();
 
-  const classes = $derived(['amateur', 'MultiLevelSummaryTotal', className].filter(Boolean));
+  const classes = $derived(['MultiLevelSummaryTotal', className].filter(Boolean));
   const amount = $derived(expenseSummary.total.amount);
   const amountHomeCurrency = $derived(expenseSummary.total.amountHomeCurrency);
 </script>
