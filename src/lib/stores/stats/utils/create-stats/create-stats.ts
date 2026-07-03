@@ -1,3 +1,4 @@
+import { Category } from '$lib/stores/category/types';
 import type { Expense } from '$lib/stores/expense/types';
 import type { GroupStats, ExpenseSummary } from '../../types';
 import { defaultExpenseSummary } from './defaultExpenseSummary';
@@ -15,7 +16,21 @@ function getOrCreate<K, V>(map: Map<K, V>, key: K, create: () => V): V {
   return value;
 }
 
-export function createStats(expenses: Expense[]) {
+const categoryOrder = Object.values(Category).reduce(
+  (order, category, index) => {
+    order[category] = index;
+    return order;
+  },
+  {} as Record<Category, number>,
+);
+
+export type CreateStatsReturnValue = {
+  tripSummary: ExpenseSummary;
+  categoryStats: GroupStats[];
+  dateStats: GroupStats[];
+};
+
+export function createStats(expenses: Expense[]): CreateStatsReturnValue {
   const categoryMap = new Map<string, GroupStats>();
   const dateMap = new Map<string, GroupStats>();
   const tripSummary: ExpenseSummary = defaultExpenseSummary();
@@ -56,6 +71,9 @@ export function createStats(expenses: Expense[]) {
   finalizeExpenseSummary(tripSummary, tripTotal);
 
   const categoryStats = [...categoryMap.values()];
+
+  categoryStats.sort((a, b) => categoryOrder[a.id as Category] - categoryOrder[b.id as Category]);
+
   const dateStats = [...dateMap.values()];
 
   for (let i = 0; i < categoryStats.length; i++) {
