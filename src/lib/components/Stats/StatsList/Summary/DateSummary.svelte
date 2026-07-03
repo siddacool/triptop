@@ -4,12 +4,9 @@
   import { Column } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
 
-  const startDate = $derived(
-    createDate(useTripStatsStore.dateSummary?.startDate).format('MMM D, YYYY'),
-  );
-  const endDate = $derived(
-    createDate(useTripStatsStore.dateSummary?.endDate).format('MMM D, YYYY'),
-  );
+  const dateStats = $derived(useTripStatsStore.dateStats);
+  const startDate = $derived(createDate(dateStats[0].date).format('MMM D, YYYY'));
+  const endDate = $derived(createDate(dateStats[dateStats.length - 1].date).format('MMM D, YYYY'));
 </script>
 
 <Column>

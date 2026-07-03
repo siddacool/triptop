@@ -6,7 +6,7 @@
   import Icon from '@iconify/svelte';
 </script>
 
-{#if useTripStore.trip}
+{#if useTripStore.trip && useTripStatsStore?.tripSummary}
   <Column>
     <div class="Total">
       <spn class="Icon">
@@ -14,13 +14,13 @@
       </spn>
 
       <Threshold
-        value={useTripStatsStore.total.amount}
+        value={useTripStatsStore.tripSummary.total.amount}
         threshold={0}
         colorMap={{ above: 'default' }}
         class="ExpenseAmount"
       >
         <Money
-          value={useTripStatsStore.total.amount}
+          value={useTripStatsStore.tripSummary.total.amount}
           currency={useTripStore.trip.currency}
           locale={useTripStore.trip?.locale}
           options={{ maximumFractionDigits: 2 }}
@@ -28,7 +28,7 @@
       </Threshold>
 
       {#if useTripStore.trip.enableCurrencyConversion !== false}
-        <HomeCurrencyExchange amount={useTripStatsStore.total.amountHomeCurrency} />
+        <HomeCurrencyExchange amount={useTripStatsStore.tripSummary.total.amountHomeCurrency} />
       {/if}
     </div>
   </Column>

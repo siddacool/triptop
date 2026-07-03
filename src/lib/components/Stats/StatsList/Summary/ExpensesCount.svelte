@@ -5,7 +5,7 @@
 
 <Column>
   <div class="ExpensesCount">
-    Total expenses: <b>{useTripStatsStore.expenseCount}</b>
+    Total expenses: <b>{useTripStatsStore.tripSummary?.expenseCount}</b>
   </div>
 </Column>
 

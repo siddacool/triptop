@@ -1,40 +1,23 @@
-import type { MoneyValue } from '../currency/types';
-import {
-  getExpensesTotal,
-  getExpensesTotalAmountHomeCurrency,
-} from '../expense/getters/total-expenses';
 import { useExpenseListStore } from '../expense/list.svelte';
-import { type CategoryStats, type DateStats, type DateSummary } from './types';
-import { createCategoryStats } from './utils/create-category-stats';
-import { createDateStats } from './utils/create-date-stats';
+import { type CategoryStats, type DateStats, type ExpenseSummary } from './types';
+import { createStats } from './utils/create-stats/create-stats';
 
 function createTripStatsStore() {
   let categoryStats: CategoryStats[] = $state([]);
   let dateStats: DateStats[] = $state([]);
-  let total: MoneyValue = $state({
-    amount: 0,
-    amountHomeCurrency: 0,
-  });
-  let expenseCount: number = $state(0);
-  let dateSummary: DateSummary | undefined = $state(undefined);
+  let tripSummary: ExpenseSummary | undefined = $state(undefined);
   let fetching: boolean = $state(false);
   let mounted: boolean = $state(false);
 
   return {
+    get tripSummary() {
+      return tripSummary;
+    },
     get categoryStats() {
       return categoryStats;
     },
     get dateStats() {
       return dateStats;
-    },
-    get expenseCount() {
-      return expenseCount;
-    },
-    get dateSummary() {
-      return dateSummary;
-    },
-    get total() {
-      return total;
     },
     get fetching() {
       return fetching;
@@ -57,24 +40,17 @@ function createTripStatsStore() {
         if (!expensesData.length) {
           categoryStats = [];
           dateStats = [];
+          tripSummary = undefined;
           return;
         }
 
-        total = {
-          amount: getExpensesTotal(expensesData),
-          amountHomeCurrency: getExpensesTotalAmountHomeCurrency(expensesData),
-        };
+        const stats = createStats(expensesData);
 
-        categoryStats = createCategoryStats(expensesData, total.amount);
-        dateStats = createDateStats(expensesData, total.amount);
-        expenseCount = expensesData.length;
+        tripSummary = stats.tripSummary;
+        categoryStats = stats.categoryStats;
+        dateStats = stats.dateStats;
 
-        dateSummary = {
-          startDate: expensesData[0].date,
-          endDate: expensesData[expensesData.length - 1].date,
-        };
-
-        console.log('debug:', categoryStats, dateStats);
+        console.log('debug:stats', stats);
 
         mounted = true;
 
@@ -92,8 +68,7 @@ function createTripStatsStore() {
     reset() {
       categoryStats = [];
       dateStats = [];
-      expenseCount = 0;
-      dateSummary = undefined;
+      tripSummary = undefined;
       mounted = false;
       fetching = false;
     },
