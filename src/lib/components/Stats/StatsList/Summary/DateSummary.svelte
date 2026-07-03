@@ -4,24 +4,33 @@
   import { Column } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
 
-  const dateStats = $derived(useTripStatsStore.dateStats);
-  const startDate = $derived(createDate(dateStats[0].date).format('MMM D, YYYY'));
-  const endDate = $derived(createDate(dateStats[dateStats.length - 1].date).format('MMM D, YYYY'));
+  const startDate = $derived(
+    useTripStatsStore.tripSummary?.startDate
+      ? createDate(useTripStatsStore.tripSummary?.startDate).format('MMM D, YYYY')
+      : undefined,
+  );
+  const endDate = $derived(
+    useTripStatsStore.tripSummary?.endDate
+      ? createDate(useTripStatsStore.tripSummary?.endDate).format('MMM D, YYYY')
+      : undefined,
+  );
 </script>
 
-<Column>
-  <div class="DateSummary">
-    <spn class="Icon">
-      <Icon icon="hugeicons:date-time" />
-    </spn>
+{#if startDate && endDate}
+  <Column>
+    <div class="DateSummary">
+      <spn class="Icon">
+        <Icon icon="hugeicons:date-time" />
+      </spn>
 
-    {#if startDate === endDate}
-      {startDate}
-    {:else}
-      {startDate} - {endDate}
-    {/if}
-  </div>
-</Column>
+      {#if startDate === endDate}
+        {startDate}
+      {:else}
+        {startDate} - {endDate}
+      {/if}
+    </div>
+  </Column>
+{/if}
 
 <style lang="scss">
   .DateSummary {

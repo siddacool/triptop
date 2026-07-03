@@ -1,5 +1,5 @@
 import type { Expense } from '$lib/stores/expense/types';
-import type { CategoryStats, DateStats, ExpenseSummary } from '../../types';
+import type { CategoryStats, DateStats, TripExpenseSummary } from '../../types';
 import { defaultExpenseSummary } from './defaultExpenseSummary';
 import { finalizeExpenseSummary } from './finalizeExpenseSummary';
 import { updateExpenseSummary } from './updateExpenseSummary';
@@ -7,12 +7,20 @@ import { updateExpenseSummary } from './updateExpenseSummary';
 export function createStats(expenses: Expense[]) {
   const categoryMap = new Map<string, CategoryStats>();
   const dateMap = new Map<string, DateStats>();
-  const tripSummary: ExpenseSummary = defaultExpenseSummary();
+  const tripSummary: TripExpenseSummary = defaultExpenseSummary();
 
-  for (const expense of expenses) {
+  for (let i = 0; i < expenses.length; i++) {
+    const expense = expenses[i];
+
     if (!expense.category) {
       continue;
     }
+
+    if (!tripSummary.startDate) {
+      tripSummary.startDate = expense.date;
+    }
+
+    tripSummary.endDate = expense.date;
 
     updateExpenseSummary(tripSummary, expense);
 
@@ -50,11 +58,15 @@ export function createStats(expenses: Expense[]) {
   const categoryStats = [...categoryMap.values()];
   const dateStats = [...dateMap.values()];
 
-  for (const category of categoryStats) {
+  for (let i = 0; i < categoryStats.length; i++) {
+    const category = categoryStats[i];
+
     finalizeExpenseSummary(category.stats, tripTotal);
   }
 
-  for (const date of dateStats) {
+  for (let i = 0; i < dateStats.length; i++) {
+    const date = dateStats[i];
+
     finalizeExpenseSummary(date.stats, tripTotal);
   }
 

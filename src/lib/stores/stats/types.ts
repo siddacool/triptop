@@ -6,7 +6,16 @@ export type ExpenseSummary = {
   share: number;
   total: MoneyValue;
   average: MoneyValue;
-  largest: MoneyValue;
+  largest: {
+    amount?: number;
+    amountHomeCurrency?: number;
+    expenseId?: string;
+  };
+};
+
+export type TripExpenseSummary = ExpenseSummary & {
+  startDate?: string;
+  endDate?: string;
 };
 
 export type DateSummary = {

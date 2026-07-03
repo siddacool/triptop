@@ -1,11 +1,11 @@
 import { useExpenseListStore } from '../expense/list.svelte';
-import { type CategoryStats, type DateStats, type ExpenseSummary } from './types';
+import { type CategoryStats, type DateStats, type TripExpenseSummary } from './types';
 import { createStats } from './utils/create-stats/create-stats';
 
 function createTripStatsStore() {
   let categoryStats: CategoryStats[] = $state([]);
   let dateStats: DateStats[] = $state([]);
-  let tripSummary: ExpenseSummary | undefined = $state(undefined);
+  let tripSummary: TripExpenseSummary | undefined = $state(undefined);
   let fetching: boolean = $state(false);
   let mounted: boolean = $state(false);
 
