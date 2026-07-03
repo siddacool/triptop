@@ -1,5 +1,5 @@
 import type { Expense } from '$lib/stores/expense/types';
-import type { CategoryStats, DateStats, TripExpenseSummary } from '../../types';
+import type { GroupStats, ExpenseSummary } from '../../types';
 import { defaultExpenseSummary } from './defaultExpenseSummary';
 import { finalizeExpenseSummary } from './finalizeExpenseSummary';
 import { updateExpenseSummary } from './updateExpenseSummary';
@@ -16,9 +16,9 @@ function getOrCreate<K, V>(map: Map<K, V>, key: K, create: () => V): V {
 }
 
 export function createStats(expenses: Expense[]) {
-  const categoryMap = new Map<string, CategoryStats>();
-  const dateMap = new Map<string, DateStats>();
-  const tripSummary: TripExpenseSummary = defaultExpenseSummary();
+  const categoryMap = new Map<string, GroupStats>();
+  const dateMap = new Map<string, GroupStats>();
+  const tripSummary: ExpenseSummary = defaultExpenseSummary();
 
   for (let i = 0; i < expenses.length; i++) {
     const expense = expenses[i];
@@ -37,14 +37,14 @@ export function createStats(expenses: Expense[]) {
     updateExpenseSummary(tripSummary, expense);
 
     const category = getOrCreate(categoryMap, expenseCategory, () => ({
-      name: expenseCategory,
+      id: expenseCategory,
       stats: defaultExpenseSummary(),
     }));
 
     updateExpenseSummary(category.stats, expense);
 
     const date = getOrCreate(dateMap, expenseDate, () => ({
-      date: expenseDate,
+      id: expenseDate,
       stats: defaultExpenseSummary(),
     }));
 
