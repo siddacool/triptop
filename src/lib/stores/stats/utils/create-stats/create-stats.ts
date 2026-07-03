@@ -4,6 +4,17 @@ import { defaultExpenseSummary } from './defaultExpenseSummary';
 import { finalizeExpenseSummary } from './finalizeExpenseSummary';
 import { updateExpenseSummary } from './updateExpenseSummary';
 
+function getOrCreate<K, V>(map: Map<K, V>, key: K, create: () => V): V {
+  let value = map.get(key);
+
+  if (value === undefined) {
+    value = create();
+    map.set(key, value);
+  }
+
+  return value;
+}
+
 export function createStats(expenses: Expense[]) {
   const categoryMap = new Map<string, CategoryStats>();
   const dateMap = new Map<string, DateStats>();
@@ -11,42 +22,31 @@ export function createStats(expenses: Expense[]) {
 
   for (let i = 0; i < expenses.length; i++) {
     const expense = expenses[i];
+    const { date: expenseDate, category: expenseCategory } = expense;
 
-    if (!expense.category) {
+    if (!expenseCategory) {
       continue;
     }
 
     if (!tripSummary.startDate) {
-      tripSummary.startDate = expense.date;
+      tripSummary.startDate = expenseDate;
     }
 
-    tripSummary.endDate = expense.date;
+    tripSummary.endDate = expenseDate;
 
     updateExpenseSummary(tripSummary, expense);
 
-    let category = categoryMap.get(expense.category);
-
-    if (!category) {
-      category = {
-        name: expense.category,
-        stats: defaultExpenseSummary(),
-      };
-
-      categoryMap.set(expense.category, category);
-    }
+    const category = getOrCreate(categoryMap, expenseCategory, () => ({
+      name: expenseCategory,
+      stats: defaultExpenseSummary(),
+    }));
 
     updateExpenseSummary(category.stats, expense);
 
-    let date = dateMap.get(expense.date);
-
-    if (!date) {
-      date = {
-        date: expense.date,
-        stats: defaultExpenseSummary(),
-      };
-
-      dateMap.set(expense.date, date);
-    }
+    const date = getOrCreate(dateMap, expenseDate, () => ({
+      date: expenseDate,
+      stats: defaultExpenseSummary(),
+    }));
 
     updateExpenseSummary(date.stats, expense);
   }
