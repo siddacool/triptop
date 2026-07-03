@@ -6,9 +6,8 @@
   import BasicStats from './BasicStats/BasicStats.svelte';
   import type { StatsTopicTitleContext } from './BasicStats/Title.svelte';
   import Total from './Total/Total.svelte';
-  import Amount from './Amount.svelte';
-  import type { MoneyValue } from '$lib/stores/currency/types';
-  import LabelGroup from './LabelGroup.svelte';
+  import DetailedStats from './DetailedStats/DetailedStats.svelte';
+  import { Column, Grid } from '@flightlesslabs/dodo-ui';
 
   export type MultiLevelSummaryProps = {
     class?: string;
@@ -36,26 +35,31 @@
 </script>
 
 <div class={classes.join(' ')}>
-  {#if showBasicStats}
-    <div class="table">
-      <BasicStats {trip} {topicTitle} {customTopicTitle} {expenseSummary} {level} />
-    </div>
-  {/if}
+  <Grid gap={2}>
+    {#if showBasicStats}
+      <Column>
+        <BasicStats
+          {topicTitle}
+          {customTopicTitle}
+          {expenseSummary}
+          {level}
+          detailed={level === 'normal' ? false : true}
+        />
+      </Column>
+    {/if}
 
-  <div class="cell amateur-only">
-    <Total {trip} {expenseSummary} />
-  </div>
+    {#if level === 'amateur'}
+      <Column>
+        <Total {trip} {expenseSummary} />
+      </Column>
+    {/if}
 
-  {#if level === 'expert'}
-    <div class="cell">
-      <div class="Amounts">
-        <Amount value={expenseSummary.total} label="Total" />
-        <Amount value={expenseSummary.average} label="Average" />
-        <Amount value={expenseSummary.largest as MoneyValue} label="Largest" />
-        <LabelGroup label="Expenses">{expenseSummary.expenseCount}</LabelGroup>
-      </div>
-    </div>
-  {/if}
+    {#if level === 'expert'}
+      <Column>
+        <DetailedStats {trip} {expenseSummary} />
+      </Column>
+    {/if}
+  </Grid>
 </div>
 
 <style lang="scss">
@@ -63,18 +67,6 @@
     width: 100%;
 
     &.level--normal {
-      :global(.expert) {
-        display: none;
-      }
-
-      :global(.amateur) {
-        display: none;
-      }
-
-      :global(.amateur-only) {
-        display: none;
-      }
-
       :global(.table) {
         display: table;
         width: 100%;
@@ -90,48 +82,15 @@
         vertical-align: middle;
       }
     }
-    &.level--amateur {
-      :global(.amateur-only) {
-        display: flex;
-      }
-    }
 
     &.level--amateur,
     &.level--expert {
       display: flex;
       flex-direction: column;
 
-      :global(.amateur) {
-        display: flex;
-      }
-
-      :global(.expert) {
-        display: none;
-      }
-
       :global(.cell) {
-        padding: var(--dodo-ui-space) 0;
+        padding: 0;
       }
-
-      :global(.Title) {
-        font-size: 1.2rem;
-      }
-    }
-
-    &.level--expert {
-      :global(.expert) {
-        display: flex;
-      }
-
-      :global(.amateur-only) {
-        display: none;
-      }
-    }
-
-    .Amounts {
-      width: 100%;
-      flex-direction: column;
-      margin-top: calc(var(--dodo-ui-space) * -1);
     }
   }
 </style>

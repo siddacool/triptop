@@ -17,6 +17,7 @@
     level: LevelStage;
     expenseSummary: ExpenseSummary;
     customTopicTitle?: Snippet<[StatsTopicTitleContext]>;
+    detailed?: boolean;
   };
 
   let {
@@ -25,9 +26,12 @@
     customTopicTitle,
     topicTitle,
     expenseSummary,
+    detailed,
   }: Props = $props();
 
-  const classes = $derived(['cell', 'Title', className].filter(Boolean));
+  const classes = $derived(
+    ['cell', 'Title', `${detailed ? 'detailed' : ''}`, className].filter(Boolean),
+  );
 </script>
 
 <div class={classes.join(' ')}>
@@ -45,6 +49,13 @@
     white-space: nowrap;
     font-weight: 500;
     padding-left: 0;
+    min-width: 120px;
+
+    &.detailed {
+      font-size: 1.2rem;
+      margin-bottom: calc(var(--dodo-ui-space) * 2);
+      min-width: initial;
+    }
   }
 
   .box {

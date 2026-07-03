@@ -6,16 +6,21 @@
   type Props = {
     class?: string;
     expenseSummary: ExpenseSummary;
+    detailed?: boolean;
   };
 
-  let { class: className = '', expenseSummary }: Props = $props();
+  let { class: className = '', expenseSummary, detailed }: Props = $props();
 
-  const classes = $derived(['cell', 'Share', className].filter(Boolean));
+  const classes = $derived(
+    ['cell', 'Share', `${detailed ? 'detailed' : ''}`, className].filter(Boolean),
+  );
   const share = $derived(expenseSummary.share);
 </script>
 
 <div class={classes.join(' ')}>
-  <PercentValue value={share} />
+  {#if detailed}
+    <PercentValue value={share} />
+  {/if}
   <ProgressFill value={share} />
 </div>
 
@@ -25,5 +30,9 @@
     padding-right: 0;
     display: flex;
     align-items: center;
+
+    &.detailed {
+      margin-bottom: calc(var(--dodo-ui-space) * 0.5);
+    }
   }
 </style>

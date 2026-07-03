@@ -2,22 +2,23 @@
   import type { GroupStats } from '$lib/stores/stats/types';
   import { Card } from '@flightlesslabs/dodo-ui';
   import type { Snippet } from 'svelte';
-  import Topics, { type TopicsCustomTopicTitleContext } from './Topics.svelte';
   import StatsHeader from './StatsHeader/StatsHeader.svelte';
   import type { Trip } from '$lib/stores/trip/types';
-  import type { StatsCardProLevel } from './StatsHeader/Levels.svelte';
-  import type { StatsCardProSort } from './StatsHeader/Sort.svelte';
+  import type { StatsTopicTitleContext } from '../MultiLevelSummary/BasicStats/Title.svelte';
+  import type { SortStage } from '../Controls/Sort/Sort.svelte';
+  import type { LevelStage } from '../Controls/Levels/Levels.svelte';
+  import Summaries from './Summaries.svelte';
 
   export type StatsCardProProps = {
     class?: string;
     title?: string;
-    level?: StatsCardProLevel;
-    sort?: StatsCardProSort;
+    level?: LevelStage;
+    sort?: SortStage;
     showLevel?: boolean;
     showSort?: boolean;
     trip: Trip;
     groupStats: GroupStats[];
-    customTopicTitle?: Snippet<[TopicsCustomTopicTitleContext]>;
+    customTopicTitle?: Snippet<[StatsTopicTitleContext]>;
   };
 </script>
 
@@ -30,7 +31,8 @@
     showSort = false,
     sort = $bindable('default'),
     groupStats,
-    ...restProps
+    trip,
+    customTopicTitle,
   }: StatsCardProProps = $props();
 
   function sortGroupStats(groups: GroupStats[]) {
@@ -39,19 +41,14 @@
     return sortedGroupStats;
   }
 
-  $effect(() => {
-    console.log('debug:', sort);
-    console.log('debug:', level);
-  });
-
-  const classes = $derived(['StatsCardPro', `level--${level}`, className].filter(Boolean));
+  const classes = $derived(['StatsCardPro', className].filter(Boolean));
   const sortedGroupStats = $derived(sort === 'high' ? sortGroupStats(groupStats) : groupStats);
 </script>
 
 <div class={classes.join(' ')}>
   <Card class="StatsCardProCard">
     <StatsHeader {showLevel} {showSort} {title} bind:level bind:sort />
-    <Topics {...restProps} {level} groupStats={sortedGroupStats} />
+    <Summaries groupStats={sortedGroupStats} {trip} {customTopicTitle} {level} {sort} />
   </Card>
 </div>
 

@@ -1,15 +1,15 @@
 <script lang="ts">
-  import Levels, { type StatsCardProLevel } from './Levels.svelte';
-  import type { StatsCardProSort } from './Sort.svelte';
-  import Sort from './Sort.svelte';
+  import type { LevelStage } from '../../Controls/Levels/Levels.svelte';
+  import Levels from '../../Controls/Levels/Levels.svelte';
+  import Sort, { type SortStage } from '../../Controls/Sort/Sort.svelte';
 
   type Props = {
     class?: string;
     title?: string;
     showLevel: boolean;
     showSort: boolean;
-    sort: StatsCardProSort;
-    level: StatsCardProLevel;
+    sort: SortStage;
+    level: LevelStage;
   };
 
   let {
@@ -21,7 +21,7 @@
     sort = $bindable(),
   }: Props = $props();
 
-  const classes = $derived(['StatsHeader', `level--${level}`, className].filter(Boolean));
+  const classes = $derived(['StatsHeader', className].filter(Boolean));
 </script>
 
 <div class={classes.join(' ')}>
@@ -31,10 +31,10 @@
 
   <div class="control">
     {#if showSort}
-      <Sort bind:sort />
+      <Sort bind:value={sort} />
     {/if}
     {#if showLevel}
-      <Levels bind:level />
+      <Levels bind:value={level} />
     {/if}
   </div>
 </div>

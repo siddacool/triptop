@@ -8,7 +8,7 @@
 
   let { class: className = '', value }: Props = $props();
 
-  const classes = $derived(['amateur', 'PercentValue', className].filter(Boolean));
+  const classes = $derived(['PercentValue', className].filter(Boolean));
 </script>
 
 <div class={classes.join(' ')}>

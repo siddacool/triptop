@@ -29,3 +29,21 @@
     title: 'Categories',
   }}
 />
+
+<Story
+  name="Amateur"
+  args={{
+    groupStats: mockStatsData.categoryStats,
+    title: 'Categories',
+    level: 'amateur',
+  }}
+/>
+
+<Story
+  name="Expert"
+  args={{
+    groupStats: mockStatsData.categoryStats,
+    title: 'Categories',
+    level: 'expert',
+  }}
+/>
