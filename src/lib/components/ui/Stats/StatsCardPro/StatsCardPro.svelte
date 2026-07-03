@@ -29,16 +29,29 @@
     showLevel = false,
     showSort = false,
     sort = $bindable('default'),
+    groupStats,
     ...restProps
   }: StatsCardProProps = $props();
 
+  function sortGroupStats(groups: GroupStats[]) {
+    const sortedGroupStats = [...groups].sort((a, b) => b.stats.share - a.stats.share);
+
+    return sortedGroupStats;
+  }
+
+  $effect(() => {
+    console.log('debug:', sort);
+    console.log('debug:', level);
+  });
+
   const classes = $derived(['StatsCardPro', `level--${level}`, className].filter(Boolean));
+  const sortedGroupStats = $derived(sort === 'high' ? sortGroupStats(groupStats) : groupStats);
 </script>
 
 <div class={classes.join(' ')}>
   <Card class="StatsCardProCard">
     <StatsHeader {showLevel} {showSort} {title} bind:level bind:sort />
-    <Topics {...restProps} {level} />
+    <Topics {...restProps} {level} groupStats={sortedGroupStats} />
   </Card>
 </div>
 
