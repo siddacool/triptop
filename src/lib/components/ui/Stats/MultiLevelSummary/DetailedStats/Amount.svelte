@@ -38,11 +38,11 @@
 <style lang="scss">
   :global(.MultiStatsGroupAmount .AmountMoney) {
     margin-right: var(--dodo-ui-space);
-    color: var(--dodo-color-neutral-600);
-    font-weight: 600;
+    color: var(--dodo-color-neutral-800);
+    font-weight: 500;
   }
 
   :global(.MultiStatsGroupAmount .HomeCurrencyExchange) {
-    font-weight: 600;
+    font-weight: 500;
   }
 </style>

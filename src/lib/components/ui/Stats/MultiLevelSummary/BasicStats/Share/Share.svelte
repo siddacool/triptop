@@ -11,9 +11,7 @@
 
   let { class: className = '', expenseSummary, detailed }: Props = $props();
 
-  const classes = $derived(
-    ['cell', 'Share', `${detailed ? 'detailed' : ''}`, className].filter(Boolean),
-  );
+  const classes = $derived(['Share', `${detailed ? 'detailed' : ''}`, className].filter(Boolean));
   const share = $derived(expenseSummary.share);
 </script>
 
@@ -26,13 +24,13 @@
 
 <style lang="scss">
   .Share {
-    width: 100%;
-    padding-right: 0;
     display: flex;
     align-items: center;
+    flex: 1;
 
     &.detailed {
-      margin-bottom: calc(var(--dodo-ui-space) * 0.5);
+      flex: initial;
+      width: 100%;
     }
   }
 </style>

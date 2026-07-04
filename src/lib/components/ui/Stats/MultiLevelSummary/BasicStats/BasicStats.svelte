@@ -23,10 +23,23 @@
     detailed,
   }: Props = $props();
 
-  const classes = $derived(['tr', 'BasicStats', className].filter(Boolean));
+  const classes = $derived(
+    ['BasicStats', `${detailed ? 'detailed' : ''}`, className].filter(Boolean),
+  );
 </script>
 
 <div class={classes.join(' ')}>
   <Title {expenseSummary} {level} {topicTitle} {customTopicTitle} {detailed} />
   <Share {expenseSummary} {detailed} />
 </div>
+
+<style lang="scss">
+  .BasicStats {
+    display: flex;
+    flex-wrap: wrap;
+
+    &.detailed {
+      margin-bottom: calc(var(--dodo-ui-space) * 1);
+    }
+  }
+</style>

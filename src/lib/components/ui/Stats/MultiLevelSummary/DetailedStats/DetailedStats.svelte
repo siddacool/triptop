@@ -29,6 +29,6 @@
   .DetailedStats {
     width: 100%;
     flex-direction: column;
-    margin-top: calc(var(--dodo-ui-space) * -1);
+    margin-top: calc(var(--dodo-ui-space) * 1);
   }
 </style>

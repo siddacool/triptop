@@ -53,8 +53,9 @@
 
     &.detailed {
       font-size: 1.2rem;
-      margin-bottom: calc(var(--dodo-ui-space) * 2);
+      margin-bottom: calc(var(--dodo-ui-space) * 1);
       min-width: initial;
+      width: 100%;
     }
   }
 

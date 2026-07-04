@@ -56,21 +56,19 @@
   .Summaries {
     &.level--normal {
       .Summary {
-        margin-top: calc(var(--dodo-ui-space) * -2.5);
-        margin-left: calc(var(--dodo-ui-space) * -1);
-        margin-right: calc(var(--dodo-ui-space) * -1);
+        margin-top: calc(var(--dodo-ui-space) * 1);
       }
     }
 
     &.level--amateur {
       .Summary {
-        margin-bottom: calc(var(--dodo-ui-space) * 5);
+        margin-bottom: calc(var(--dodo-ui-space) * 3);
       }
     }
 
     &.level--expert {
       .Summary {
-        margin-bottom: calc(var(--dodo-ui-space) * 4);
+        margin-bottom: calc(var(--dodo-ui-space) * 3);
       }
     }
   }

@@ -7,7 +7,6 @@
   import type { StatsTopicTitleContext } from './BasicStats/Title.svelte';
   import Total from './Total/Total.svelte';
   import DetailedStats from './DetailedStats/DetailedStats.svelte';
-  import { Column, Grid } from '@flightlesslabs/dodo-ui';
 
   export type MultiLevelSummaryProps = {
     class?: string;
@@ -35,62 +34,27 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <Grid gap={2}>
-    {#if showBasicStats}
-      <Column>
-        <BasicStats
-          {topicTitle}
-          {customTopicTitle}
-          {expenseSummary}
-          {level}
-          detailed={level === 'normal' ? false : true}
-        />
-      </Column>
-    {/if}
+  {#if showBasicStats}
+    <BasicStats
+      {topicTitle}
+      {customTopicTitle}
+      {expenseSummary}
+      {level}
+      detailed={level === 'normal' ? false : true}
+    />
+  {/if}
 
-    {#if level === 'amateur'}
-      <Column>
-        <Total {trip} {expenseSummary} />
-      </Column>
-    {/if}
+  {#if level === 'amateur'}
+    <Total {trip} {expenseSummary} />
+  {/if}
 
-    {#if level === 'expert'}
-      <Column>
-        <DetailedStats {trip} {expenseSummary} />
-      </Column>
-    {/if}
-  </Grid>
+  {#if level === 'expert'}
+    <DetailedStats {trip} {expenseSummary} />
+  {/if}
 </div>
 
 <style lang="scss">
   .MultiLevelSummary {
     width: 100%;
-
-    &.level--normal {
-      :global(.table) {
-        display: table;
-        width: 100%;
-      }
-
-      :global(.tr) {
-        display: table-row;
-      }
-
-      :global(.cell) {
-        display: table-cell;
-        padding: var(--dodo-ui-space);
-        vertical-align: middle;
-      }
-    }
-
-    &.level--amateur,
-    &.level--expert {
-      display: flex;
-      flex-direction: column;
-
-      :global(.cell) {
-        padding: 0;
-      }
-    }
   }
 </style>

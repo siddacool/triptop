@@ -25,7 +25,7 @@
     font-size: 0.95rem;
     display: flex;
     align-items: center;
-    padding: calc(var(--dodo-ui-space) * 1) 0;
+    padding: calc(var(--dodo-ui-space) * 0.7) 0;
 
     .label {
       font-weight: 500;
@@ -35,8 +35,8 @@
     }
 
     .content {
-      color: var(--dodo-color-neutral-600);
-      font-weight: 600;
+      color: var(--dodo-color-neutral-800);
+      font-weight: 500;
     }
   }
 </style>

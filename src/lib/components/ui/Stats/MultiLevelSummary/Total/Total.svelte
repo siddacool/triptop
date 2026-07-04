@@ -34,16 +34,18 @@
 
 <style lang="scss">
   .MultiLevelSummaryTotal {
-    font-size: 1rem;
+    margin-top: calc(var(--dodo-ui-space) * 1);
   }
 
   :global(.MultiLevelSummaryTotal .AmountMoney) {
     margin-right: calc(var(--dodo-ui-space) * 1);
-    color: var(--dodo-color-neutral-700);
+    color: var(--dodo-color-neutral-600);
     font-weight: 600;
+    font-size: 0.9rem;
   }
 
   :global(.MultiLevelSummaryTotal .HomeCurrencyExchange) {
     font-weight: 600;
+    font-size: 0.9rem;
   }
 </style>
