@@ -29,9 +29,7 @@
     detailed,
   }: Props = $props();
 
-  const classes = $derived(
-    ['cell', 'Title', `${detailed ? 'detailed' : ''}`, className].filter(Boolean),
-  );
+  const classes = $derived(['Title', `${detailed ? 'detailed' : ''}`, className].filter(Boolean));
 </script>
 
 <div class={classes.join(' ')}>
@@ -47,12 +45,12 @@
 <style lang="scss">
   .Title {
     white-space: nowrap;
-    font-weight: 500;
+    font-weight: 400;
     padding-left: 0;
-    min-width: 120px;
+    min-width: 60px;
 
     &.detailed {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: calc(var(--dodo-ui-space) * 1);
       min-width: initial;
       width: 100%;

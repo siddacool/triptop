@@ -60,15 +60,14 @@
       }
     }
 
-    &.level--amateur {
-      .Summary {
-        margin-bottom: calc(var(--dodo-ui-space) * 3);
-      }
-    }
-
+    &.level--amateur,
     &.level--expert {
       .Summary {
-        margin-bottom: calc(var(--dodo-ui-space) * 3);
+        margin-bottom: calc(var(--dodo-ui-space) * 4);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }

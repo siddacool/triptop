@@ -39,10 +39,10 @@
   :global(.MultiStatsGroupAmount .AmountMoney) {
     margin-right: var(--dodo-ui-space);
     color: var(--dodo-color-neutral-800);
-    font-weight: 500;
+    font-weight: 400;
   }
 
   :global(.MultiStatsGroupAmount .HomeCurrencyExchange) {
-    font-weight: 500;
+    font-weight: 400;
   }
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  export type LevelStage = 'normal' | 'amateur' | 'expert';
+  export type LevelStage = 'normal' | 'expert';
 
   export type LevelStageOption = {
     label: string;
@@ -10,10 +10,6 @@
     {
       label: 'Normal',
       value: 'normal',
-    },
-    {
-      label: 'Amateur',
-      value: 'amateur',
     },
     {
       label: 'Expert',
@@ -40,10 +36,8 @@
   <span class="Icon">
     {#if value === 'normal'}
       <Icon icon="ix:prio-low" />
-    {:else if value === 'amateur'}
-      <Icon icon="ix:prio-middle" />
     {:else}
-      <Icon icon="ix:prio-high" />
+      <Icon icon="ix:prio-middle" />
     {/if}
   </span>
 {/snippet}

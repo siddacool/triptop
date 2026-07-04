@@ -18,7 +18,7 @@
 <style lang="scss">
   .PercentValue {
     font-size: 0.9rem;
-    font-weight: 600;
+    font-weight: 400;
     width: 45px;
   }
 </style>

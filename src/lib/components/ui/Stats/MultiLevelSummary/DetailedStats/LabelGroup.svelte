@@ -22,21 +22,20 @@
 
 <style lang="scss">
   .LabelGroup {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
     padding: calc(var(--dodo-ui-space) * 0.7) 0;
 
     .label {
-      font-weight: 500;
+      font-weight: 400;
       white-space: nowrap;
-      font-weight: 500;
       width: 90px;
     }
 
     .content {
       color: var(--dodo-color-neutral-800);
-      font-weight: 500;
+      font-weight: 400;
     }
   }
 </style>
