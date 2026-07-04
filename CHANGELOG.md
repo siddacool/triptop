@@ -1,5 +1,11 @@
 # triptop
 
+## 5.16.2
+
+### Patch Changes
+
+- 3a56315: Minor bug fixes
+
 ## 5.16.1
 
 ### Patch Changes
