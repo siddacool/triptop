@@ -1,22 +1,24 @@
 <script lang="ts">
-  import { Grid } from '@flightlesslabs/dodo-ui';
-  import StatsCard from '../../StatsCard/StatsCard.svelte';
+  import { Card, Grid } from '@flightlesslabs/dodo-ui';
   import DateSummary from './DateSummary.svelte';
   import TripName from './TripName.svelte';
-  import ExpensesCount from './ExpensesCount.svelte';
   import Details from './Details.svelte';
 </script>
 
 <div class="SummaryCard">
-  <StatsCard title="Trip summary">
+  <Card class="SummaryCardCard">
     <TripName />
     <Grid gap={2}>
-      <ExpensesCount />
       <DateSummary />
       <Details />
     </Grid>
-  </StatsCard>
+  </Card>
 </div>
 
 <style lang="scss">
+  .SummaryCard {
+    :global(.SummaryCardCard) {
+      padding: calc(var(--dodo-ui-space) * 2);
+    }
+  }
 </style>

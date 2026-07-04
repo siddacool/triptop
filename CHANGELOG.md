@@ -1,5 +1,11 @@
 # triptop
 
+## 5.16.1
+
+### Patch Changes
+
+- Fix styles
+
 ## 5.16.0
 
 ### Minor Changes
