@@ -1,0 +1,1 @@
+import{mt as e,pt as t,r as n}from"../chunks/nQlos8yJ.js";import{l as r,n as i}from"../chunks/DfXKvn9u.js";import"../chunks/xihTtKlq.js";import"../chunks/Bam7twrH2.js";function a(a,o){e(o,!0),n(()=>{i(r(`/trips`))}),t()}export{a as component};
