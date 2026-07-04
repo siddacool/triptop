@@ -5,7 +5,6 @@
   import type { Trip } from '$lib/stores/trip/types';
   import BasicStats from './BasicStats/BasicStats.svelte';
   import type { StatsTopicTitleContext } from './BasicStats/Title.svelte';
-  import Total from './Total/Total.svelte';
   import DetailedStats from './DetailedStats/DetailedStats.svelte';
 
   export type MultiLevelSummaryProps = {
@@ -42,10 +41,6 @@
       {level}
       detailed={level === 'normal' ? false : true}
     />
-  {/if}
-
-  {#if level === 'amateur'}
-    <Total {trip} {expenseSummary} />
   {/if}
 
   {#if level === 'expert'}

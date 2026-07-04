@@ -2,9 +2,9 @@
   import { Grid } from '@flightlesslabs/dodo-ui';
   import StatsCard from '../../StatsCard/StatsCard.svelte';
   import DateSummary from './DateSummary.svelte';
-  import Total from './Total.svelte';
   import TripName from './TripName.svelte';
   import ExpensesCount from './ExpensesCount.svelte';
+  import Details from './Details.svelte';
 </script>
 
 <div class="SummaryCard">
@@ -13,7 +13,7 @@
     <Grid gap={2}>
       <ExpensesCount />
       <DateSummary />
-      <Total />
+      <Details />
     </Grid>
   </StatsCard>
 </div>
