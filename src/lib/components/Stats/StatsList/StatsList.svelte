@@ -12,8 +12,6 @@
 
 <style lang="scss">
   .StatsList {
-    margin-top: calc(var(--dodo-ui-space) * -1);
-
     :global(.StatsCard) {
       margin-top: calc(var(--dodo-ui-space) * 3);
     }

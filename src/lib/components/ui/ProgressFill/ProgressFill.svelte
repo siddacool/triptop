@@ -31,7 +31,7 @@
 
     .Bar {
       width: 0%;
-      background-color: var(--dodo-color-primary-800);
+      background-color: var(--dodo-color-primary-600);
       height: var(--dodo-ui-track-element-height-small);
       border-radius: 2px;
       transition: width 200ms;

@@ -19,6 +19,7 @@
   .SummaryCard {
     :global(.SummaryCardCard) {
       padding: calc(var(--dodo-ui-space) * 2);
+      margin-top: calc(var(--dodo-ui-space) * 1);
     }
   }
 </style>

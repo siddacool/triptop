@@ -22,6 +22,6 @@
   .PercentValue {
     font-size: 0.9rem;
     font-weight: 400;
-    width: 70px;
+    width: 80px;
   }
 </style>
