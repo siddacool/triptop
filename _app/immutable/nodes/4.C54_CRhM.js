@@ -1,0 +1,1 @@
+import{mt as e,pt as t,r as n}from"../chunks/nQlos8yJ.js";import{l as r,n as i}from"../chunks/DhxOCi8V.js";import"../chunks/xihTtKlq.js";import"../chunks/DyiRV5my2.js";import{t as a}from"../chunks/DEbVKAu62.js";function o(o,s){e(s,!0),n(()=>{let e=a.activeTrip;if(e){i(r(`/trips/${e}`));return}i(r(`/trips`))}),t()}export{o as component};
