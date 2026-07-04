@@ -4,7 +4,7 @@
   import ImportTrip from './ImportTrip.svelte';
 </script>
 
-<ControlSection class="TripsControlsToolkit" controlsAlignment="center">
+<ControlSection class="TripsControlsToolkit" controlsAlignment="center" columnLayout>
   <CreateTrip />
   <ImportTrip />
 </ControlSection>

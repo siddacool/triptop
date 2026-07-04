@@ -20,8 +20,10 @@ export function getExpensesTotalAmountHomeCurrency(expenses: Expense[]): number 
   for (let i = 0; i < expenses.length; i++) {
     const expense = expenses[i];
 
-    if (expense.virtualData?.amountHomeCurrency && !expense.archived) {
-      total += expense.virtualData?.amountHomeCurrency;
+    const amountHome = expense.virtualData?.amountHomeCurrency;
+
+    if (amountHome !== undefined) {
+      total += amountHome;
     }
   }
 

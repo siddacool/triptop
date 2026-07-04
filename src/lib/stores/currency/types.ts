@@ -1,5 +1,10 @@
 import { currencies, type CurrencyCode } from '@flightlesslabs/currency';
 
+export type MoneyValue = {
+  amount: number;
+  amountHomeCurrency: number;
+};
+
 export type HistoricalCurrencyExchangeRateEntry = {
   date: string;
   exchangeRate: number;
