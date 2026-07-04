@@ -1,5 +1,11 @@
 # triptop
 
+## 5.16.0
+
+### Minor Changes
+
+- Trips statistics added
+
 ## 5.15.9
 
 ### Patch Changes
