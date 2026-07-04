@@ -12,13 +12,16 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <FormattedNumber {value} options={{ style: 'percent' }} />
+  <FormattedNumber
+    {value}
+    options={{ style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2 }}
+  />
 </div>
 
 <style lang="scss">
   .PercentValue {
     font-size: 0.9rem;
     font-weight: 400;
-    width: 45px;
+    width: 70px;
   }
 </style>
