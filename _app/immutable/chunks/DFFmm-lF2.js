@@ -1,0 +1,1 @@
+import{R as e,et as t,it as n,nt as r}from"./Bkn5x8jl.js";import{n as i,t as a}from"./CyAIFNcj.js";var o=`TripActive`,s=a(`local`,o);function c(){let a=n(t(s));return{get activeTrip(){return e(a)},updateActiveTrip(e){r(a,e,!0),i(`local`,o,e)},reset(){r(a,void 0),i(`local`,o,void 0)}}}var l=c();export{l as t};
