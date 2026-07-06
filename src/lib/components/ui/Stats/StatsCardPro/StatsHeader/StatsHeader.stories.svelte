@@ -8,9 +8,6 @@
   const { Story } = defineMeta({
     component: StatsHeader,
     tags: ['autodocs'],
-    args: {
-      showSort: true,
-    },
   });
 </script>
 

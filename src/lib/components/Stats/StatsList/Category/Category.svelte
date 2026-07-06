@@ -1,7 +1,6 @@
 <script lang="ts">
   import CategoryIcon from '$lib/components/ui/Category/CategoryIcon/CategoryIcon.svelte';
   import type { LevelStage } from '$lib/components/ui/Stats/Controls/DetailsExpander/DetailsExpander.svelte';
-  import type { SortStage } from '$lib/components/ui/Stats/Controls/Sort/Sort.svelte';
   import StatsCardPro from '$lib/components/ui/Stats/StatsCardPro/StatsCardPro.svelte';
   import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
   import { categoryOptions } from '$lib/stores/category/data';
@@ -10,19 +9,13 @@
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
 
   const CATEGORY_LEVEL = 'STATS_CATEGORY_LEVEL';
-  const CATEGORY_SORT = 'STATS_CATEGORY_SORT';
 
   let level: LevelStage = $state(
     getLocalStoreData<LevelStage | undefined>('session', CATEGORY_LEVEL) || 'normal',
   );
 
-  let sort: SortStage = $state(
-    getLocalStoreData<SortStage | undefined>('session', CATEGORY_SORT) || 'default',
-  );
-
   $effect(() => {
     setLocalStoreData<LevelStage>('session', CATEGORY_LEVEL, level);
-    setLocalStoreData<SortStage>('session', CATEGORY_SORT, sort);
   });
 </script>
 
@@ -32,9 +25,7 @@
       class="Category"
       title="Category"
       bind:level
-      bind:sort
       showLevel
-      showSort
       trip={useTripStore.trip}
       groupStats={useTripStatsStore.categoryStats}
     >

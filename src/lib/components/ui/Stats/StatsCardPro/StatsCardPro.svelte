@@ -5,7 +5,6 @@
   import StatsHeader from './StatsHeader/StatsHeader.svelte';
   import type { Trip } from '$lib/stores/trip/types';
   import type { StatsTopicTitleContext } from '../MultiLevelSummary/BasicStats/Title.svelte';
-  import type { SortStage } from '../Controls/Sort/Sort.svelte';
   import Summaries from './Summaries.svelte';
   import DetailsExpander, {
     type LevelStage,
@@ -15,9 +14,7 @@
     class?: string;
     title?: string;
     level?: LevelStage;
-    sort?: SortStage;
     showLevel?: boolean;
-    showSort?: boolean;
     trip: Trip;
     groupStats: GroupStats[];
     customTopicTitle?: Snippet<[StatsTopicTitleContext]>;
@@ -31,35 +28,19 @@
     title,
     level = $bindable('normal'),
     showLevel = false,
-    showSort = false,
-    sort = $bindable('default'),
     groupStats,
     trip,
     customTopicTitle,
     showBasicStats = true,
   }: StatsCardProProps = $props();
 
-  function sortGroupStats(groups: GroupStats[]) {
-    const sortedGroupStats = [...groups].sort((a, b) => b.stats.share - a.stats.share);
-
-    return sortedGroupStats;
-  }
-
   const classes = $derived(['StatsCardPro', className].filter(Boolean));
-  const sortedGroupStats = $derived(sort === 'high' ? sortGroupStats(groupStats) : groupStats);
 </script>
 
 <div class={classes.join(' ')}>
   <Card class="StatsCardProCard">
-    <StatsHeader {showSort} {title} bind:sort />
-    <Summaries
-      groupStats={sortedGroupStats}
-      {trip}
-      {customTopicTitle}
-      {level}
-      {sort}
-      {showBasicStats}
-    />
+    <StatsHeader {title} />
+    <Summaries {groupStats} {trip} {customTopicTitle} {level} {showBasicStats} />
 
     {#if showLevel}
       <DetailsExpander bind:value={level} />

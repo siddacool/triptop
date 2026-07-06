@@ -14,7 +14,6 @@
     args: {
       trip: mockDataTrips[0],
       showLevel: true,
-      showSort: true,
     },
   });
 </script>
@@ -57,7 +56,6 @@
       title="Categories"
       trip={mockDataTrips[0]}
       showLevel
-      showSort
     />
   </Theme>
 </Story>

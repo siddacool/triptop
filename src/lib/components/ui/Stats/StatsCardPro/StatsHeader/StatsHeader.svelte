@@ -1,14 +1,10 @@
 <script lang="ts">
-  import Sort, { type SortStage } from '../../Controls/Sort/Sort.svelte';
-
   type Props = {
     class?: string;
     title?: string;
-    showSort: boolean;
-    sort: SortStage;
   };
 
-  let { class: className = '', title, showSort, sort = $bindable() }: Props = $props();
+  let { class: className = '', title }: Props = $props();
 
   const classes = $derived(['StatsHeader', className].filter(Boolean));
 </script>
@@ -17,12 +13,6 @@
   {#if title}
     <h2>{title}</h2>
   {/if}
-
-  <div class="control">
-    {#if showSort}
-      <Sort bind:value={sort} />
-    {/if}
-  </div>
 </div>
 
 <style lang="scss">

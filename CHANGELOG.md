@@ -1,5 +1,11 @@
 # triptop
 
+## 5.17.1
+
+### Patch Changes
+
+- Remove sort
+
 ## 5.17.0
 
 ### Minor Changes
