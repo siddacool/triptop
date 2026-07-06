@@ -1,5 +1,11 @@
 # triptop
 
+## 5.17.0
+
+### Minor Changes
+
+- Details expander added for stats
+
 ## 5.16.2
 
 ### Patch Changes

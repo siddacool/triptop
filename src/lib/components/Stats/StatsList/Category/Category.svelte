@@ -1,6 +1,6 @@
 <script lang="ts">
   import CategoryIcon from '$lib/components/ui/Category/CategoryIcon/CategoryIcon.svelte';
-  import type { LevelStage } from '$lib/components/ui/Stats/Controls/Levels/Levels.svelte';
+  import type { LevelStage } from '$lib/components/ui/Stats/Controls/DetailsExpander/DetailsExpander.svelte';
   import type { SortStage } from '$lib/components/ui/Stats/Controls/Sort/Sort.svelte';
   import StatsCardPro from '$lib/components/ui/Stats/StatsCardPro/StatsCardPro.svelte';
   import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';

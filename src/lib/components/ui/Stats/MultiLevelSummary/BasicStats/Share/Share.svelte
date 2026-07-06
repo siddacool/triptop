@@ -27,6 +27,7 @@
     display: flex;
     align-items: center;
     flex: 1;
+    color: var(--dodo-color-neutral-800);
 
     &.detailed {
       flex: initial;

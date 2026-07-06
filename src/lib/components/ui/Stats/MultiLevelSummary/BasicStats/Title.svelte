@@ -9,7 +9,7 @@
 <script lang="ts">
   import type { ExpenseSummary } from '$lib/stores/stats/types';
   import type { Snippet } from 'svelte';
-  import type { LevelStage } from '../../Controls/Levels/Levels.svelte';
+  import type { LevelStage } from '../../Controls/DetailsExpander/DetailsExpander.svelte';
 
   type Props = {
     class?: string;
@@ -46,8 +46,9 @@
   .Title {
     white-space: nowrap;
     font-weight: 400;
-    padding-left: 0;
+    padding-right: var(--dodo-ui-space);
     min-width: 60px;
+    color: var(--dodo-color-neutral-800);
 
     &.detailed {
       font-size: 1.1rem;

@@ -23,5 +23,6 @@
     font-size: 0.9rem;
     font-weight: 400;
     width: 80px;
+    padding-right: var(--dodo-ui-space);
   }
 </style>

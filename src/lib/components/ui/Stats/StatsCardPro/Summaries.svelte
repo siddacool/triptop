@@ -2,10 +2,10 @@
   import type { GroupStats } from '$lib/stores/stats/types';
   import type { Trip } from '$lib/stores/trip/types';
   import type { Snippet } from 'svelte';
-  import type { LevelStage } from '../Controls/Levels/Levels.svelte';
   import type { SortStage } from '../Controls/Sort/Sort.svelte';
   import type { StatsTopicTitleContext } from '../MultiLevelSummary/BasicStats/Title.svelte';
   import MultiLevelSummary from '../MultiLevelSummary/MultiLevelSummary.svelte';
+  import type { LevelStage } from '../Controls/DetailsExpander/DetailsExpander.svelte';
 
   type Props = {
     class?: string;

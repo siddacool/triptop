@@ -1,12 +1,13 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf';
-  import Levels from './Levels.svelte';
+  import DetailsExpander from './DetailsExpander.svelte';
+  import { Theme } from '@flightlesslabs/dodo-ui';
 
   // ------------------------------
   // Storybook Meta
   // ------------------------------
   const { Story } = defineMeta({
-    component: Levels,
+    component: DetailsExpander,
     tags: ['autodocs'],
   });
 </script>
@@ -16,3 +17,9 @@
 <!-- ------------------------------ -->
 
 <Story name="Default" args={{ value: 'normal' }} />
+
+<Story name="Dark mode" asChild>
+  <Theme type="dark">
+    <DetailsExpander value="normal" />
+  </Theme>
+</Story>

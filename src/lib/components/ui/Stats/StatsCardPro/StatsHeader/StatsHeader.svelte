@@ -1,25 +1,14 @@
 <script lang="ts">
-  import type { LevelStage } from '../../Controls/Levels/Levels.svelte';
-  import Levels from '../../Controls/Levels/Levels.svelte';
   import Sort, { type SortStage } from '../../Controls/Sort/Sort.svelte';
 
   type Props = {
     class?: string;
     title?: string;
-    showLevel: boolean;
     showSort: boolean;
     sort: SortStage;
-    level: LevelStage;
   };
 
-  let {
-    class: className = '',
-    title,
-    level = $bindable(),
-    showLevel,
-    showSort,
-    sort = $bindable(),
-  }: Props = $props();
+  let { class: className = '', title, showSort, sort = $bindable() }: Props = $props();
 
   const classes = $derived(['StatsHeader', className].filter(Boolean));
 </script>
@@ -32,9 +21,6 @@
   <div class="control">
     {#if showSort}
       <Sort bind:value={sort} />
-    {/if}
-    {#if showLevel}
-      <Levels bind:value={level} />
     {/if}
   </div>
 </div>

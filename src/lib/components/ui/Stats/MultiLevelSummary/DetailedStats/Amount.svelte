@@ -38,7 +38,7 @@
 <style lang="scss">
   :global(.MultiStatsGroupAmount .AmountMoney) {
     margin-right: var(--dodo-ui-space);
-    color: var(--dodo-color-neutral-800);
+    color: inherit;
     font-weight: 400;
   }
 

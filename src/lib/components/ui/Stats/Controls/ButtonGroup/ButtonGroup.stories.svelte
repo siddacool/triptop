@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import ButtonGroup from './ButtonGroup.svelte';
-  import { levelStageOptions } from '../Levels/Levels.svelte';
+  import { sortStageOptions } from '../Sort/Sort.svelte';
 
   // ------------------------------
   // Storybook Meta
@@ -16,4 +16,4 @@
 <!-- Stories -->
 <!-- ------------------------------ -->
 
-<Story name="Default" args={{ options: levelStageOptions, value: 'normal' }} />
+<Story name="Default" args={{ options: sortStageOptions, value: 'normal' }} />

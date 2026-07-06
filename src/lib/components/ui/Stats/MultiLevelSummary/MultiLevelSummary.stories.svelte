@@ -24,8 +24,6 @@
 
 <Story name="Normal" args={{ level: 'normal' }} />
 
-<Story name="Amateur" args={{ level: 'amateur' }} />
-
-<Story name="No Basic Stats" args={{ level: 'amateur', showBasicStats: false }} />
+<Story name="No Basic Stats" args={{ level: 'expert', showBasicStats: false }} />
 
 <Story name="Expert" args={{ level: 'expert' }} />

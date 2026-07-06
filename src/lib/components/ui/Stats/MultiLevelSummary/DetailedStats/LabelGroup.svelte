@@ -25,7 +25,8 @@
     font-size: 0.9rem;
     display: flex;
     align-items: center;
-    padding: calc(var(--dodo-ui-space) * 0.7) 0;
+    padding-right: var(--dodo-ui-space);
+    margin-bottom: var(--dodo-ui-space);
 
     .label {
       font-weight: 400;
@@ -34,7 +35,7 @@
     }
 
     .content {
-      color: var(--dodo-color-neutral-800);
+      color: inherit;
       font-weight: 400;
     }
   }

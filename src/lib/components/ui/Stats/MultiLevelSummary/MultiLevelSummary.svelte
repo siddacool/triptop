@@ -1,11 +1,11 @@
 <script lang="ts" module>
   import type { ExpenseSummary } from '$lib/stores/stats/types';
   import type { Snippet } from 'svelte';
-  import type { LevelStage } from '../Controls/Levels/Levels.svelte';
   import type { Trip } from '$lib/stores/trip/types';
   import BasicStats from './BasicStats/BasicStats.svelte';
   import type { StatsTopicTitleContext } from './BasicStats/Title.svelte';
   import DetailedStats from './DetailedStats/DetailedStats.svelte';
+  import type { LevelStage } from '../Controls/DetailsExpander/DetailsExpander.svelte';
 
   export type MultiLevelSummaryProps = {
     class?: string;

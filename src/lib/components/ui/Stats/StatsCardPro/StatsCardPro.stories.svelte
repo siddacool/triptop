@@ -3,6 +3,7 @@
   import StatsCardPro from './StatsCardPro.svelte';
   import { mockStatsData } from '$lib/stores/stats/data/mock-stats-data';
   import { mockDataTrips } from '$lib/stores/trip/data/mock-data-trips';
+  import { Theme } from '@flightlesslabs/dodo-ui';
 
   // ------------------------------
   // Storybook Meta
@@ -31,15 +32,6 @@
 />
 
 <Story
-  name="Amateur"
-  args={{
-    groupStats: mockStatsData.categoryStats,
-    title: 'Categories',
-    level: 'amateur',
-  }}
-/>
-
-<Story
   name="Expert"
   args={{
     groupStats: mockStatsData.categoryStats,
@@ -57,3 +49,15 @@
     showBasicStats: false,
   }}
 />
+
+<Story name="Dark mode" asChild>
+  <Theme type="dark">
+    <StatsCardPro
+      groupStats={mockStatsData.categoryStats}
+      title="Categories"
+      trip={mockDataTrips[0]}
+      showLevel
+      showSort
+    />
+  </Theme>
+</Story>

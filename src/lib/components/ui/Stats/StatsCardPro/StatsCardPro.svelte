@@ -6,8 +6,10 @@
   import type { Trip } from '$lib/stores/trip/types';
   import type { StatsTopicTitleContext } from '../MultiLevelSummary/BasicStats/Title.svelte';
   import type { SortStage } from '../Controls/Sort/Sort.svelte';
-  import type { LevelStage } from '../Controls/Levels/Levels.svelte';
   import Summaries from './Summaries.svelte';
+  import DetailsExpander, {
+    type LevelStage,
+  } from '../Controls/DetailsExpander/DetailsExpander.svelte';
 
   export type StatsCardProProps = {
     class?: string;
@@ -49,7 +51,7 @@
 
 <div class={classes.join(' ')}>
   <Card class="StatsCardProCard">
-    <StatsHeader {showLevel} {showSort} {title} bind:level bind:sort />
+    <StatsHeader {showSort} {title} bind:sort />
     <Summaries
       groupStats={sortedGroupStats}
       {trip}
@@ -58,6 +60,10 @@
       {sort}
       {showBasicStats}
     />
+
+    {#if showLevel}
+      <DetailsExpander bind:value={level} />
+    {/if}
   </Card>
 </div>
 
@@ -67,6 +73,10 @@
 
     :global(.StatsCardProCard) {
       padding: calc(var(--dodo-ui-space) * 2);
+    }
+
+    :global(.DetailsExpander) {
+      margin-top: calc(var(--dodo-ui-space) * 2);
     }
   }
 </style>

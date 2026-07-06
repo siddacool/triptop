@@ -2,8 +2,8 @@
   import type { ExpenseSummary } from '$lib/stores/stats/types';
   import Title, { type StatsTopicTitleContext } from './Title.svelte';
   import Share from './Share/Share.svelte';
-  import type { LevelStage } from '../../Controls/Levels/Levels.svelte';
   import type { Snippet } from 'svelte';
+  import type { LevelStage } from '../../Controls/DetailsExpander/DetailsExpander.svelte';
 
   type Props = {
     class?: string;
@@ -37,9 +37,5 @@
   .BasicStats {
     display: flex;
     flex-wrap: wrap;
-
-    &.detailed {
-      margin-bottom: calc(var(--dodo-ui-space) * 1);
-    }
   }
 </style>

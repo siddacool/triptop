@@ -9,7 +9,6 @@
     component: StatsHeader,
     tags: ['autodocs'],
     args: {
-      showLevel: true,
       showSort: true,
     },
   });
@@ -19,6 +18,4 @@
 <!-- Stories -->
 <!-- ------------------------------ -->
 
-<Story name="Default" args={{ level: 'normal', title: 'Title' }} />
-
-<Story name="Expert" args={{ level: 'expert', title: 'Title' }} />
+<Story name="Default" args={{ title: 'Title' }} />

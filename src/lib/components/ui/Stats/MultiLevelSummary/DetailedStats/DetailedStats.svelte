@@ -30,5 +30,6 @@
     width: 100%;
     flex-direction: column;
     margin-top: calc(var(--dodo-ui-space) * 1);
+    color: var(--dodo-color-neutral-700);
   }
 </style>
