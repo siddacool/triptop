@@ -1,12 +1,16 @@
 <script lang="ts">
   import type { LevelStage } from '$lib/components/ui/Stats/Controls/DetailsExpander/DetailsExpander.svelte';
   import StatsCardPro from '$lib/components/ui/Stats/StatsCardPro/StatsCardPro.svelte';
+  import { createDate } from '$lib/helpers/date-time/createDate';
   import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
-  import DateFormatted from './DateFormatted.svelte';
+  import { transformDates } from './utils';
 
   const DATE_LEVEL = 'STATS_DATE_LEVEL';
+
+  const today = $derived(createDate());
+  const dates = $derived(transformDates(today, useTripStatsStore.dateStats));
 
   let level: LevelStage = $state(
     getLocalStoreData<LevelStage | undefined>('session', DATE_LEVEL) || 'normal',
@@ -25,12 +29,8 @@
       bind:level
       showLevel
       trip={useTripStore.trip}
-      groupStats={useTripStatsStore.dateStats}
-    >
-      {#snippet customTopicTitle({ topicTitle })}
-        <DateFormatted date={topicTitle} />
-      {/snippet}
-    </StatsCardPro>
+      groupStats={dates}
+    />
   {/if}
 </div>
 
