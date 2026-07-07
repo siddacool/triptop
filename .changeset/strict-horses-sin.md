@@ -1,0 +1,5 @@
+---
+'triptop': patch
+---
+
+css fix

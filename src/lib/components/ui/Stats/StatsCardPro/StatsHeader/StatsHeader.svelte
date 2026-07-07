@@ -28,11 +28,5 @@
       font-weight: 600;
       margin: 0;
     }
-
-    .control {
-      margin-left: auto;
-      margin-right: calc(var(--dodo-ui-space) * -1);
-      display: flex;
-    }
   }
 </style>
