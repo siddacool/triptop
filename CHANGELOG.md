@@ -1,5 +1,12 @@
 # triptop
 
+## 5.17.2
+
+### Patch Changes
+
+- a1eeec3: transformDates added to date stats
+- a6b6610: Table based stats added
+
 ## 5.17.1
 
 ### Patch Changes
