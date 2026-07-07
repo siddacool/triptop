@@ -1,37 +1,29 @@
 <script lang="ts">
   import ProgressFill from '$lib/components/ui/ProgressFill/ProgressFill.svelte';
   import type { ExpenseSummary } from '$lib/stores/stats/types';
-  import PercentValue from './PercentValue.svelte';
 
   type Props = {
     class?: string;
     expenseSummary: ExpenseSummary;
-    detailed?: boolean;
   };
 
-  let { class: className = '', expenseSummary, detailed }: Props = $props();
+  let { class: className = '', expenseSummary }: Props = $props();
 
-  const classes = $derived(['Share', `${detailed ? 'detailed' : ''}`, className].filter(Boolean));
+  const classes = $derived(['Share', className].filter(Boolean));
   const share = $derived(expenseSummary.share);
 </script>
 
 <div class={classes.join(' ')}>
-  {#if detailed}
-    <PercentValue value={share} />
-  {/if}
   <ProgressFill value={share} />
 </div>
 
 <style lang="scss">
   .Share {
-    display: flex;
-    align-items: center;
-    flex: 1;
+    display: table-cell;
     color: var(--dodo-color-neutral-800);
-
-    &.detailed {
-      flex: initial;
-      width: 100%;
-    }
+    padding: var(--dodo-ui-space);
+    width: auto;
+    padding-right: 0;
+    vertical-align: middle;
   }
 </style>

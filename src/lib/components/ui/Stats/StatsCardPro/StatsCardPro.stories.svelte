@@ -39,16 +39,6 @@
   }}
 />
 
-<Story
-  name="Hide basic"
-  args={{
-    groupStats: mockStatsData.categoryStats,
-    title: 'Categories',
-    level: 'expert',
-    showBasicStats: false,
-  }}
-/>
-
 <Story name="Dark mode" asChild>
   <Theme type="dark">
     <StatsCardPro

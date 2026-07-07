@@ -15,7 +15,6 @@
       {trip}
       level="expert"
       topicTitle=""
-      showBasicStats={false}
       class="SummaryMultiLevelSummary"
     />
   </Column>
@@ -23,6 +22,14 @@
 
 <style lang="scss">
   :global(.SummaryMultiLevelSummary .DetailedStats) {
-    margin-top: 0;
+    margin-top: calc(var(--dodo-ui-space) * -1);
+  }
+
+  :global(.SummaryMultiLevelSummary .BasicInfo) {
+    display: none;
+  }
+
+  :global(.SummaryMultiLevelSummary .Share) {
+    display: none;
   }
 </style>

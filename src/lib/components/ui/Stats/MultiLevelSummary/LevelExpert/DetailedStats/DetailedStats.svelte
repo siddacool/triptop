@@ -4,6 +4,7 @@
   import Amount from './Amount.svelte';
   import type { MoneyValue } from '$lib/stores/currency/types';
   import LabelGroup from './LabelGroup.svelte';
+  import Share from './Share/Share.svelte';
 
   export type MultiLevelSummaryProps = {
     class?: string;
@@ -19,6 +20,7 @@
 </script>
 
 <div class={classes.join(' ')}>
+  <Share {expenseSummary} />
   <Amount {trip} value={expenseSummary.total} label="Total" />
   <Amount {trip} value={expenseSummary.average} label="Average" />
   <Amount {trip} value={expenseSummary.largest as MoneyValue} label="Largest" />
@@ -28,8 +30,7 @@
 <style lang="scss">
   .DetailedStats {
     width: 100%;
-    flex-direction: column;
-    margin-top: calc(var(--dodo-ui-space) * 1);
     color: var(--dodo-color-neutral-700);
+    display: table;
   }
 </style>

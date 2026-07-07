@@ -2,10 +2,10 @@
   import type { ExpenseSummary } from '$lib/stores/stats/types';
   import type { Snippet } from 'svelte';
   import type { Trip } from '$lib/stores/trip/types';
-  import BasicStats from './BasicStats/BasicStats.svelte';
-  import type { StatsTopicTitleContext } from './BasicStats/Title.svelte';
-  import DetailedStats from './DetailedStats/DetailedStats.svelte';
   import type { LevelStage } from '../Controls/DetailsExpander/DetailsExpander.svelte';
+  import LevelNormal from './LevelNormal/LevelNormal.svelte';
+  import type { StatsTopicTitleContext } from './LevelNormal/Title.svelte';
+  import LevelExpert from './LevelExpert/LevelExpert.svelte';
 
   export type MultiLevelSummaryProps = {
     class?: string;
@@ -14,7 +14,6 @@
     topicTitle: string;
     expenseSummary: ExpenseSummary;
     customTopicTitle?: Snippet<[StatsTopicTitleContext]>;
-    showBasicStats?: boolean;
   };
 </script>
 
@@ -26,30 +25,11 @@
     customTopicTitle,
     level,
     expenseSummary,
-    showBasicStats = true,
   }: MultiLevelSummaryProps = $props();
-
-  const classes = $derived(['MultiLevelSummary', `level--${level}`, className].filter(Boolean));
 </script>
 
-<div class={classes.join(' ')}>
-  {#if showBasicStats}
-    <BasicStats
-      {topicTitle}
-      {customTopicTitle}
-      {expenseSummary}
-      {level}
-      detailed={level === 'normal' ? false : true}
-    />
-  {/if}
-
-  {#if level === 'expert'}
-    <DetailedStats {trip} {expenseSummary} />
-  {/if}
-</div>
-
-<style lang="scss">
-  .MultiLevelSummary {
-    width: 100%;
-  }
-</style>
+{#if level === 'normal'}
+  <LevelNormal {expenseSummary} {topicTitle} {customTopicTitle} class={className} />
+{:else}
+  <LevelExpert {expenseSummary} {trip} {topicTitle} {customTopicTitle} class={className} />
+{/if}

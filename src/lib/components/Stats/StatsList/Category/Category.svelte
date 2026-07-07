@@ -48,14 +48,10 @@
     }
 
     .customTopicTitle {
-      min-width: 150px;
       display: flex;
       align-items: center;
 
-      &.level--amateur,
       &.level--expert {
-        min-width: initial;
-
         :global(.CategoryIcon) {
           font-size: 1.4rem;
         }

@@ -4,11 +4,11 @@
   import type { Snippet } from 'svelte';
   import StatsHeader from './StatsHeader/StatsHeader.svelte';
   import type { Trip } from '$lib/stores/trip/types';
-  import type { StatsTopicTitleContext } from '../MultiLevelSummary/BasicStats/Title.svelte';
   import Summaries from './Summaries.svelte';
   import DetailsExpander, {
     type LevelStage,
   } from '../Controls/DetailsExpander/DetailsExpander.svelte';
+  import type { StatsTopicTitleContext } from '../MultiLevelSummary/LevelNormal/Title.svelte';
 
   export type StatsCardProProps = {
     class?: string;
@@ -18,7 +18,6 @@
     trip: Trip;
     groupStats: GroupStats[];
     customTopicTitle?: Snippet<[StatsTopicTitleContext]>;
-    showBasicStats?: boolean;
   };
 </script>
 
@@ -31,7 +30,6 @@
     groupStats,
     trip,
     customTopicTitle,
-    showBasicStats = true,
   }: StatsCardProProps = $props();
 
   const classes = $derived(['StatsCardPro', className].filter(Boolean));
@@ -40,7 +38,7 @@
 <div class={classes.join(' ')}>
   <Card class="StatsCardProCard">
     <StatsHeader {title} />
-    <Summaries {groupStats} {trip} {customTopicTitle} {level} {showBasicStats} />
+    <Summaries {groupStats} {trip} {customTopicTitle} {level} />
 
     {#if showLevel}
       <DetailsExpander bind:value={level} />

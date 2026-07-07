@@ -18,9 +18,3 @@
 <div class="DateFormatted">
   {formattedDate}
 </div>
-
-<style lang="scss">
-  .DateFormatted {
-    min-width: 110px;
-  }
-</style>

@@ -22,7 +22,11 @@
   .PercentValue {
     font-size: 0.9rem;
     font-weight: 400;
-    width: 80px;
-    padding-right: var(--dodo-ui-space);
+    width: 1%; /* Shrinks to minimum required width */
+    white-space: nowrap; /* Prevent wrapping if desired */
+    padding: var(--dodo-ui-space);
+    padding-left: 0;
+    display: table-cell;
+    color: var(--dodo-color-neutral-600);
   }
 </style>

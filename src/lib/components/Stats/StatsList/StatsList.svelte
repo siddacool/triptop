@@ -15,5 +15,7 @@
     :global(.StatsCard) {
       margin-top: calc(var(--dodo-ui-space) * 3);
     }
+
+    margin-bottom: 100px;
   }
 </style>
