@@ -8,9 +8,7 @@
   const activeTrip = $derived(useTripActivePageStore.activeTrip);
 
   $effect(() => {
-    if (pageName === 'trip' && activeTrip) {
-      goto(resolve(`/trips/${activeTrip}`), { replaceState: true });
-    } else if (pageName === 'add-expense' && activeTrip) {
+    if (pageName === 'add-expense' && activeTrip) {
       goto(resolve(`/trips/${activeTrip}/expenses/add`), { replaceState: true });
     } else {
       goto(resolve('/trips'), { replaceState: true });

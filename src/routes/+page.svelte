@@ -1,9 +1,15 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
-  import { onMount } from 'svelte';
+  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
 
-  onMount(() => {
-    goto(resolve('/trips'));
+  const activeTrip = $derived(useTripActivePageStore.activeTrip);
+
+  $effect(() => {
+    if (activeTrip) {
+      goto(resolve(`/trips/${activeTrip}`), { replaceState: true });
+    } else {
+      goto(resolve('/trips'), { replaceState: true });
+    }
   });
 </script>
