@@ -7,6 +7,7 @@
   import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
   import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import { Text } from '@flightlesslabs/dodo-ui';
+  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
 
   const tripId = page.params.tripId || '';
 
@@ -25,6 +26,8 @@
       });
 
       await useTripListStore.fetch();
+
+      useTripActivePageStore.reset();
 
       await goto(resolve('/trips'));
     } catch (e) {

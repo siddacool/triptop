@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { beforeNavigate } from '$app/navigation';
   import { page } from '$app/state';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
@@ -30,7 +29,6 @@
         useTripActivePageStore.updateActiveTrip(tripId);
       } catch (error) {
         console.error('Failed to fetch trip:', error);
-        useTripActivePageStore.reset();
       } finally {
         loading = false;
       }
@@ -44,20 +42,6 @@
     useExpenseListStore.reset();
     useExpenseStore.reset();
     useHistoricalCurrencyExchangeStore.clear();
-  });
-
-  beforeNavigate((navigation) => {
-    // Ignore refresh/tab close
-    if (!navigation.to) return;
-
-    const url = navigation.to.url.href;
-
-    // prevent action if within same layout
-    if (tripId && url.includes(`/trips/${tripId}`)) {
-      return;
-    }
-
-    useTripActivePageStore.reset();
   });
 </script>
 
