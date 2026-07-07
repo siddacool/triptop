@@ -1,5 +1,11 @@
 # triptop
 
+## 5.18.1
+
+### Patch Changes
+
+- 6fc47f6: Fix trips redirect
+
 ## 5.18.0
 
 ### Minor Changes
