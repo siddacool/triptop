@@ -1,5 +1,15 @@
 # triptop
 
+## 5.18.0
+
+### Minor Changes
+
+- e38c808: Active page addeed with active trip and add expense support
+
+### Patch Changes
+
+- 05463c4: css fix
+
 ## 5.17.2
 
 ### Patch Changes
