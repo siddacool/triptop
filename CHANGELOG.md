@@ -1,5 +1,13 @@
 # triptop
 
+## 5.18.2
+
+### Patch Changes
+
+- 0876944: Fix loading times
+- 827f1d7: Loader improved
+- 97507ea: Packages updated
+
 ## 5.18.1
 
 ### Patch Changes
