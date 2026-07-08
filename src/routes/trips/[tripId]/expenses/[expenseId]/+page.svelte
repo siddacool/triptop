@@ -6,7 +6,6 @@
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import { onMount } from 'svelte';
@@ -25,18 +24,16 @@
 
     const loadContents = async () => {
       try {
-        await useExpenseStore.fetch(expenseId);
-
+        useHistoricalCurrencyExchangeStore.clear();
         const tripCurrency = useTripStore.trip?.currency;
         const homeCurrency = useSettingsStore.settings.homeCurrency;
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-          await useExpenseListStore.fetch(tripId);
-          await useHistoricalCurrencyExchangeStore.fetchSilent(tripCurrency, homeCurrency);
+          await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
         }
 
-        useExpenseStore.updateExchangeData();
+        await useExpenseStore.fetch(expenseId);
       } catch (error) {
         console.error('Failed to fetch expsense:', error);
       }
@@ -50,7 +47,7 @@
   <title>{useExpenseStore.expense?.name || ''}</title>
 </svelte:head>
 
-{#if useExpenseStore.fetching || useTripStore.fetching}
+{#if useExpenseStore.fetching || useTripStore.fetching || useHistoricalCurrencyExchangeStore.fetching}
   <Loading />
 {:else if useExpenseStore.expense && useTripStore.trip}
   <ExpenseDetailsHeader />

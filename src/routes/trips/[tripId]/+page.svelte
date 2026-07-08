@@ -27,18 +27,18 @@
 
     const loadTrip = async () => {
       try {
+        useHistoricalCurrencyExchangeStore.clear();
         await useTripStore.fetch(tripId);
-        await useExpenseListStore.fetch(tripId);
 
         const tripCurrency = useTripStore.trip?.currency;
         const homeCurrency = useSettingsStore.settings.homeCurrency;
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-          await useHistoricalCurrencyExchangeStore.fetchSilent(tripCurrency, homeCurrency);
+          await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
         }
 
-        useExpenseListStore.updateExchangeData();
+        await useExpenseListStore.fetch(tripId);
       } catch (error) {
         console.error('Failed to fetch trip:', error);
       }
@@ -87,7 +87,7 @@
   <Loading />
 {:else if !useTripStore.fetching && useTripStore.mounted}
   <TripHeader />
-  {#if useExpenseListStore.fetching}
+  {#if useExpenseListStore.fetching || useHistoricalCurrencyExchangeStore.fetching}
     <Loading />
   {:else}
     {@render content()}

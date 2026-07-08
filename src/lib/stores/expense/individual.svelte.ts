@@ -26,10 +26,20 @@ function createExpenseStore() {
 
         fetching = true;
 
+        const exchangeRate = useHistoricalCurrencyExchangeStore.exchangeRate;
+
         const data = await db.expense.where({ _id: expenseId }).first();
 
         if (!data?._id) {
           throw new Error('Expense not found');
+        }
+
+        if (data) {
+          const amountHomeCurrency = updateExchangeDetails(data, exchangeRate);
+
+          data.virtualData = {
+            amountHomeCurrency,
+          };
         }
 
         expense = data;
@@ -46,33 +56,6 @@ function createExpenseStore() {
       } finally {
         fetching = false;
       }
-    },
-    updateExchangeData() {
-      if (!expense) {
-        return;
-      }
-
-      const exchangeRate = useHistoricalCurrencyExchangeStore.exchangeRate;
-
-      if (!exchangeRate) {
-        return;
-      }
-
-      let virtualData = expense.virtualData || {};
-      const filterFields = virtualData.filterFields;
-
-      const amountHomeCurrency = updateExchangeDetails(expense, exchangeRate);
-
-      virtualData = {
-        ...virtualData,
-        filterFields,
-        amountHomeCurrency,
-      };
-
-      expense = {
-        ...expense,
-        virtualData,
-      };
     },
     reset() {
       expense = undefined;

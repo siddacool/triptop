@@ -26,18 +26,16 @@
     const loadTrip = async () => {
       try {
         await useTripStore.fetch(tripId);
-        await useExpenseListStore.fetch(tripId);
 
         const tripCurrency = useTripStore.trip?.currency;
         const homeCurrency = useSettingsStore.settings.homeCurrency;
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-          await useHistoricalCurrencyExchangeStore.fetchSilent(tripCurrency, homeCurrency);
+          await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
         }
 
-        await useExpenseListStore.updateExchangeData();
-
+        await useExpenseListStore.fetch(tripId);
         await useTripStatsStore.fetch();
       } catch (error) {
         console.error('Failed to fetch trip stats', error);

@@ -2,7 +2,6 @@ import type { CurrencyCode } from '@flightlesslabs/currency';
 import { db } from '../../db';
 import { type HistoricalCurrencyExchangeRate } from '../types';
 import { createDate } from '$lib/helpers/date-time/createDate';
-import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
 import { validateFetchConditions } from './utils/validateFetchConditions';
 import { needsExchangeRateUpdate } from './utils/needsExchangeRateUpdate';
 import { fetchExchangeRates } from './utils/fetchExchangeRates';
@@ -24,13 +23,13 @@ function createHistoricalCurrencyExchangeStore() {
     get mounted() {
       return mounted;
     },
-    async fetch(tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
+    async fetch(tripId: string, tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
       try {
         fetching = true;
 
-        const expensesData = [...useExpenseListStore.expenses].sort((a, b) =>
-          a.date.localeCompare(b.date),
-        );
+        let expensesData = await db.expense.where({ tripId: tripId }).toArray();
+
+        expensesData = expensesData.sort((a, b) => a.date.localeCompare(b.date));
 
         // Conditions check before going further
         if (!validateFetchConditions(tripCurrency, homeCurrency, expensesData)) {
@@ -109,9 +108,9 @@ function createHistoricalCurrencyExchangeStore() {
         fetching = false;
       }
     },
-    async fetchSilent(tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
+    async fetchSilent(tripId: string, tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
       try {
-        await this.fetch(tripCurrency, homeCurrency);
+        await this.fetch(tripId, tripCurrency, homeCurrency);
       } catch (e) {
         console.error(e);
       }

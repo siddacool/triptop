@@ -1,17 +1,24 @@
+import type { HistoricalCurrencyExchangeRate } from '$lib/stores/currency/types';
 import type { Expense } from '../types';
+import { updateExchangeDetails } from './update-exchange-details';
 import { updateFilterFields } from './update-filter-fields';
 
-export function expensesListDecorator(expenses: Expense[]): Expense[] {
+export function expensesListDecorator(
+  expenses: Expense[],
+  exchangeRate: HistoricalCurrencyExchangeRate | undefined,
+): Expense[] {
   const result: Expense[] = [];
 
   for (let i = 0; i < expenses.length; i++) {
     const expense = expenses[i];
     let virtualData = expense.virtualData || {};
     const filterFields = updateFilterFields(expense);
+    const amountHomeCurrency = updateExchangeDetails(expense, exchangeRate);
 
     virtualData = {
       ...virtualData,
       filterFields,
+      amountHomeCurrency,
     };
 
     result.push({ ...expense, virtualData });
