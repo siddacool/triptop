@@ -2,6 +2,7 @@ import { nanoid } from 'nanoid';
 import { db } from '../db';
 import { Category } from '../category/types';
 import type { EditExpenseFormData } from './types';
+import { getExpense } from './individual.svelte';
 
 function createEditExpenseStore() {
   return {
@@ -21,6 +22,8 @@ function createEditExpenseStore() {
 
       const newExpenseId = nanoid();
 
+      const now = Date.now();
+
       await db.expense.add({
         _id: newExpenseId,
         tripId,
@@ -28,8 +31,8 @@ function createEditExpenseStore() {
         amount: formData.amount,
         date: formData.date,
         category: formData.category || Category.OTHER,
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: now,
+        updatedAt: now,
       });
 
       await this._syncTrip(tripId);
@@ -37,8 +40,7 @@ function createEditExpenseStore() {
       return Promise.resolve(newExpenseId);
     },
     async update(expenseId: string, formData: EditExpenseFormData) {
-      const expensesData = await db.expense.where({ _id: expenseId }).toArray();
-      const target = expensesData[0];
+      const target = await getExpense(expenseId);
 
       if (!target?.id) {
         return;
@@ -60,7 +62,7 @@ function createEditExpenseStore() {
       return Promise.resolve(expenseId);
     },
     async delete(expenseId: string) {
-      const target = await db.expense.where({ _id: expenseId }).first();
+      const target = await getExpense(expenseId);
 
       if (!target?.id) {
         return;
@@ -71,7 +73,7 @@ function createEditExpenseStore() {
       return Promise.resolve(expenseId);
     },
     async toggleArchived(expenseId: string, archiveCondition: boolean) {
-      const target = await db.expense.where({ _id: expenseId }).first();
+      const target = await getExpense(expenseId);
 
       if (!target?.id) {
         return;

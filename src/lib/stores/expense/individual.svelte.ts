@@ -3,6 +3,10 @@ import { db } from '../db';
 import { updateExchangeDetails } from './decorators/update-exchange-details';
 import { type Expense } from './types';
 
+export async function getExpense(expenseId: string) {
+  return await db.expense.where({ _id: expenseId }).first();
+}
+
 function createExpenseStore() {
   let expense: Expense | undefined = $state(undefined);
   let fetching: boolean = $state(false);
@@ -28,7 +32,7 @@ function createExpenseStore() {
 
         const exchangeRate = useHistoricalCurrencyExchangeStore.exchangeRate;
 
-        const data = await db.expense.where({ _id: expenseId }).first();
+        const data = await getExpense(expenseId);
 
         if (!data?._id) {
           throw new Error('Expense not found');

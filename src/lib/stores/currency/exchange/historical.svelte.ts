@@ -7,6 +7,7 @@ import { needsExchangeRateUpdate } from './utils/needsExchangeRateUpdate';
 import { fetchExchangeRates } from './utils/fetchExchangeRates';
 import { createFetchDateRange } from './utils/createFetchDateRange';
 import { convertResponseDataToExchangeRate } from './utils/convertResponseDataToExchangeRate';
+import { getExpenses } from '$lib/stores/expense/list.svelte';
 
 function createHistoricalCurrencyExchangeStore() {
   let exchangeRate: HistoricalCurrencyExchangeRate | undefined = $state(undefined);
@@ -27,7 +28,7 @@ function createHistoricalCurrencyExchangeStore() {
       try {
         fetching = true;
 
-        let expensesData = await db.expense.where({ tripId: tripId }).toArray();
+        let expensesData = await getExpenses(tripId);
 
         expensesData = expensesData.sort((a, b) => a.date.localeCompare(b.date));
 

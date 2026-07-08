@@ -103,9 +103,7 @@
 
       fetching = true;
 
-      const id = await useEditExpenseStore.toggleArchived(expenseId, archiveCondition);
-
-      console.log('debug:', id);
+      await useEditExpenseStore.toggleArchived(expenseId, archiveCondition);
 
       toasts.add({
         title: 'Successs',

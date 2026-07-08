@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import { db } from '../db';
 import type { EditTripFormData } from './types';
+import { getExpenses } from '../expense/list.svelte';
 
 function createEditTripStore() {
   return {
@@ -17,12 +18,14 @@ function createEditTripStore() {
 
       const { name, ...restData } = formData;
 
+      const now = Date.now();
+
       await db.trips.add({
         _id: newTripId,
         name: name.trim(),
         ...restData,
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: now,
+        updatedAt: now,
       });
 
       return Promise.resolve(newTripId);
@@ -57,7 +60,7 @@ function createEditTripStore() {
 
       await db.trips.delete(target.id);
 
-      const expenses = await db.expense.where({ tripId: tripId }).toArray();
+      const expenses = await getExpenses(tripId);
       const relatedExpenseKeys = expenses.map((item) => item.id);
 
       if (relatedExpenseKeys.length) {

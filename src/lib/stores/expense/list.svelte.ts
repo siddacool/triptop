@@ -5,6 +5,10 @@ import { useExpenseFiltersStore } from './filters.svelte';
 import { getFilteredExpenses } from './getters/filtered-expenses';
 import { type Expense } from './types';
 
+export async function getExpenses(tripId: string) {
+  return db.expense.where({ tripId }).toArray();
+}
+
 function createExpenseListStore() {
   let expenses: Expense[] = $state([]);
   let fetching: boolean = $state(false);
@@ -34,7 +38,7 @@ function createExpenseListStore() {
 
         const exchangeRate = useHistoricalCurrencyExchangeStore.exchangeRate;
 
-        let expensesData = await db.expense.where({ tripId: tripId }).toArray();
+        let expensesData = await getExpenses(tripId);
 
         expensesData = expensesData.sort((a, b) => b.date.localeCompare(a.date));
 
