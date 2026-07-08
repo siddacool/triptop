@@ -4,7 +4,9 @@ import type { Expense } from '../../types';
 export function categoryFilter(category: Category, expenses: Expense[]): Expense[] {
   const results: Expense[] = [];
 
-  for (const expense of expenses) {
+  for (let i = 0, len = expenses.length; i < len; i++) {
+    const expense = expenses[i];
+
     if (expense.category === category) {
       results.push(expense);
     }

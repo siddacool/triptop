@@ -3,10 +3,16 @@ import type { Expense } from '../../types';
 export function searchFilter(query: string, expenses: Expense[]): Expense[] {
   const search = query.trim().toLowerCase();
 
+  if (!search) {
+    return expenses;
+  }
+
   const results: Expense[] = [];
 
-  for (const expense of expenses) {
-    if (expense?.virtualData?.filterFields?.name.includes(search)) {
+  for (let i = 0, len = expenses.length; i < len; i++) {
+    const expense = expenses[i];
+
+    if (expense.virtualData?.filterFields?.name.includes(search)) {
       results.push(expense);
     }
   }

@@ -36,6 +36,8 @@ function createExpenseListStore() {
 
         let expensesData = await db.expense.where({ tripId: tripId }).toArray();
 
+        expensesData = expensesData.sort((a, b) => b.date.localeCompare(a.date));
+
         expensesData = expensesListDecorator(expensesData, exchangeRate);
 
         expenses = expensesData;
