@@ -1,5 +1,11 @@
 # triptop
 
+## 5.18.4
+
+### Patch Changes
+
+- 7149c07: code optimizations
+
 ## 5.18.3
 
 ### Patch Changes
