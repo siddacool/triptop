@@ -4,28 +4,25 @@
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
-  import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
-  import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import { Text } from '@flightlesslabs/dodo-ui';
   import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
+  import { deleteTrip } from '$lib/features/trip/logic/crud.svelte';
 
   const tripId = page.params.tripId || '';
 
-  async function deleteTrip() {
+  async function handleDeleteTrip() {
     try {
       if (!tripId) {
         return;
       }
 
-      await useEditTripStore.delete(tripId);
+      await deleteTrip(tripId);
 
       toasts.add({
         title: 'Successs',
         description: 'Trip deleted',
         color: 'primary',
       });
-
-      await useTripListStore.fetch();
 
       useTripActivePageStore.reset();
 
@@ -45,7 +42,7 @@
     modals.add('confirm', {
       title: 'Delete Trip',
       description: 'Are you sure you want to delete this trip?',
-      onaccept: deleteTrip,
+      onaccept: handleDeleteTrip,
     });
   }
 </script>

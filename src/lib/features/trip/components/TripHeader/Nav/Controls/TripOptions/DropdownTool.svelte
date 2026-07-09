@@ -37,7 +37,7 @@
 </Dropdown>
 
 <style lang="scss">
-  :global(.dodo-ui-Button.size--normal.TripPageTripOptionsButton) {
+  :global(.TripPageTripOptionsButton.dodo-ui-Button.size--normal) {
     font-size: 1.5rem;
   }
 

@@ -1,13 +1,13 @@
 <script lang="ts">
   import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { getExpensesTotalAmountHomeCurrency } from '$lib/stores/expense/getters/total-expenses';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
   const amountHomeCurrencyTotal = $derived(
     getExpensesTotalAmountHomeCurrency(useExpenseListStore.filtredExpenses),
   );
   const tripEnableCurrencyConversion = $derived(
-    useTripStore.trip?.enableCurrencyConversion === false ? false : true,
+    tripDetailStore.trip?.enableCurrencyConversion === false ? false : true,
   );
   const allExpensesOk = $derived(
     useExpenseListStore.filtredExpenses.every(

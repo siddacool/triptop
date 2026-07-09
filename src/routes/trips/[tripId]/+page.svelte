@@ -2,13 +2,13 @@
   import { beforeNavigate } from '$app/navigation';
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
-  import TripExpensesSection from '$lib/components/Trips/TripPage/TripExpensesSection/TripExpensesSection.svelte';
-  import TripHeader from '$lib/components/Trips/TripPage/TripHeader/TripHeader.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
   import PrimaryButton from '$lib/components/ui/Buttons/PrimaryButton/PrimaryButton.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
+  import TripExpensesSection from '$lib/features/trip/components/TripExpensesSection/TripExpensesSection.svelte';
+  import TripHeader from '$lib/features/trip/components/TripHeader/TripHeader.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';

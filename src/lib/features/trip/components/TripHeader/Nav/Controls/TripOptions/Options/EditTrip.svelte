@@ -8,7 +8,11 @@
   const tripId = page.params.tripId || '';
 </script>
 
-<DropdownMenuItem onSelect={() => goto(resolve(`/trips/${tripId}/edit`))} outline>
+<DropdownMenuItem
+  onSelect={() => goto(resolve(`/trips/${tripId}/edit`))}
+  outline
+  class="EditTripDropdownMenuItem"
+>
   <span class="Icon">
     <Icon icon="material-symbols:edit-outline" />
   </span>
@@ -16,7 +20,7 @@
 </DropdownMenuItem>
 
 <style lang="scss">
-  .Icon {
+  :global(.EditTripDropdownMenuItem .Icon) {
     font-size: 1.3rem;
   }
 </style>

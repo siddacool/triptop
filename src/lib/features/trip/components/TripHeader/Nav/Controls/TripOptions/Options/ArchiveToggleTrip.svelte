@@ -2,31 +2,33 @@
   import { DropdownMenuItem, modals, toasts } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
   import { page } from '$app/state';
-  import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { archiveTrip, unarchiveTrip } from '$lib/features/trip/logic/crud.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
 
   const tripId = page.params.tripId || '';
 
-  async function toggleArchive(archiveCondition: boolean) {
+  async function hnadleArchiveTrip(archiveState: boolean) {
     try {
       if (!tripId) {
         return;
       }
 
-      await useEditTripStore.toggleArchived(tripId, archiveCondition);
+      if (archiveState) {
+        await archiveTrip(tripId);
+      } else {
+        await unarchiveTrip(tripId);
+      }
 
       toasts.add({
         title: 'Successs',
-        description: archiveCondition ? 'Trip archived' : 'Trip unarchived',
+        description: `Trip ${archiveState ? 'archived' : 'unarchived'}`,
         color: 'primary',
       });
-
-      await useTripStore.fetch(tripId);
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 
       toasts.add({
-        title: archiveCondition ? 'Failed to archived trip' : 'Failed to unarchived trip',
+        title: `Failed to ${archiveState ? 'archive' : 'unarchive'} trip`,
         description: message,
         color: 'danger',
       });
@@ -37,12 +39,12 @@
     modals.add('confirm', {
       title: 'Archive Trip',
       description: 'Are you sure you want to archive this trip?',
-      onaccept: () => toggleArchive(true),
+      onaccept: () => hnadleArchiveTrip(true),
     });
   }
 
   function onselect() {
-    const archiveState = useTripStore.trip?.archived || false;
+    const archiveState = tripDetailStore.trip?.archived || false;
     const archiveCondition = !archiveState;
 
     if (archiveCondition) {
@@ -50,12 +52,12 @@
       return;
     }
 
-    toggleArchive(false);
+    hnadleArchiveTrip(false);
   }
 </script>
 
 <DropdownMenuItem onSelect={onselect} outline>
-  {#if useTripStore.trip?.archived}
+  {#if tripDetailStore.trip?.archived}
     <span class="Icon">
       <Icon icon="material-symbols:unarchive-outline" />
     </span>
