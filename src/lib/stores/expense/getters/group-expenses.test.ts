@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { getExpenseGroupList } from './group-expenses';
-import { mockDataExpenses } from '../data/mock-data-expenses';
+import { mockDataExpenses } from '../../../features/expense/mocks/mock-data-expenses';
 
 const expenses = [...mockDataExpenses].sort(
   (a, b) => b.date.localeCompare(a.date) || b.createdAt - a.createdAt,

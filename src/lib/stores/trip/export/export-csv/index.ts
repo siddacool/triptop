@@ -1,5 +1,5 @@
-import { categoryOptions } from '$lib/stores/category/data';
-import { Category } from '$lib/stores/category/types';
+import { categoryOptions } from '$lib/features/expense/config/category-options';
+import { Category } from '$lib/features/expense/types/category';
 import type { Expense } from '$lib/stores/expense/types';
 import type { DateFormatMode } from '$lib/stores/settings/date-format/types';
 import type { Trip } from '$lib/stores/trip/types';

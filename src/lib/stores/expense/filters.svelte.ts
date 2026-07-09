@@ -1,5 +1,5 @@
 import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
-import type { Category } from '../category/types';
+import type { Category } from '../../features/expense/types/category';
 
 export type ExpenseFiltersBase = {
   search?: string;

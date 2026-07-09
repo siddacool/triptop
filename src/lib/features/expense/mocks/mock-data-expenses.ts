@@ -1,5 +1,5 @@
-import { Category } from '$lib/stores/category/types';
-import { type Expense } from '$lib/stores/expense/types';
+import { Category } from '$lib/features/expense/types/category';
+import type { Expense } from '../types';
 
 export const mockDataExpenses: Expense[] = [
   {

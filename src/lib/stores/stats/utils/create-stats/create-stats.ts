@@ -1,4 +1,4 @@
-import { Category } from '$lib/stores/category/types';
+import { Category } from '$lib/features/expense/types/category';
 import type { Expense } from '$lib/stores/expense/types';
 import type { GroupStats, ExpenseSummary } from '../../types';
 import { defaultExpenseSummary } from './defaultExpenseSummary';

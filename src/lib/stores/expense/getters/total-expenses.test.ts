@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { getExpensesTotal, getExpensesTotalAmountHomeCurrency } from './total-expenses';
-import { mockDataExpenses } from '../data/mock-data-expenses';
+import { mockDataExpenses } from '../../../features/expense/mocks/mock-data-expenses';
 
 describe('getExpensesTotal', () => {
   it('returns 0 for an empty array', () => {

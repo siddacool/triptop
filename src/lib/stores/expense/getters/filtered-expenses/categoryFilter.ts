@@ -1,4 +1,4 @@
-import type { Category } from '$lib/stores/category/types';
+import type { Category } from '$lib/features/expense/types/category';
 import type { Expense } from '../../types';
 
 export function categoryFilter(category: Category, expenses: Expense[]): Expense[] {

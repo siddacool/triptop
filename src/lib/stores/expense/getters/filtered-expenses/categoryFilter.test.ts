@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { Category } from '$lib/stores/category/types';
+import { Category } from '$lib/features/expense/types/category';
 import { categoryFilter } from './categoryFilter';
-import { mockDataExpenses } from '../../data/mock-data-expenses';
+import { mockDataExpenses } from '../../../../features/expense/mocks/mock-data-expenses';
 
 describe('categoryFilter', () => {
   it('returns an empty array when given no expenses', () => {

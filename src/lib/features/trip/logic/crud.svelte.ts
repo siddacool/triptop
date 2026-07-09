@@ -1,3 +1,4 @@
+import { deleteExpenseByTripId } from '$lib/features/expense/logic/crud.svelte';
 import { createTrip, updateTrip, deleteTrip as deleteTripDb, getTripById } from '../db';
 import { tripDetailStore } from '../store/detail.svelte';
 import type { TripCreateData, TripUpdateData } from '../types';
@@ -18,9 +19,11 @@ export async function saveTrip(data: TripCreateData | TripUpdateData) {
   }
 }
 
-export function deleteTrip(id: string) {
-  // delete related expenses
-  return deleteTripDb(id);
+export async function deleteTrip(id: string) {
+  await deleteTripDb(id);
+  await deleteExpenseByTripId(id);
+
+  return id;
 }
 
 async function updateTripFields(id: string, data: Partial<TripUpdateData>) {
@@ -38,4 +41,8 @@ export function archiveTrip(id: string) {
 
 export function unarchiveTrip(id: string) {
   return updateTripFields(id, { archived: false });
+}
+
+export function updateTripCurrencyConversionFlag(id: string, enableCurrencyConversion: boolean) {
+  return updateTripFields(id, { enableCurrencyConversion });
 }

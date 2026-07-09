@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { searchFilter } from './searchFilter';
-import { mockDataExpenses } from '../../data/mock-data-expenses';
+import { mockDataExpenses } from '../../../../features/expense/mocks/mock-data-expenses';
 import { expensesListDecorator } from '../../decorators/list-decorator';
 
 const expenses = expensesListDecorator(mockDataExpenses, undefined);

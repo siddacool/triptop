@@ -1,4 +1,4 @@
-import type { Category } from '../../features/expense/types/category';
+import type { CategoryOption, Category } from './category';
 
 export interface ExpenseFilterFields {
   name: string;
@@ -28,6 +28,13 @@ export interface Expense {
 export interface EditExpenseFormData {
   name?: string;
   amount?: number;
-  category?: Category;
+  category?: CategoryOption;
   date?: string;
 }
+
+export type ExpenseCreateData = Omit<
+  Expense,
+  'id' | '_id' | 'createdAt' | 'updatedAt' | 'virtualData' | 'archived'
+>;
+
+export type ExpenseUpdateData = Omit<Expense, 'id'>;
