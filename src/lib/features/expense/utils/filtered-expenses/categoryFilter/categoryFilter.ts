@@ -1,5 +1,5 @@
 import type { Category } from '$lib/features/expense/types/category';
-import type { Expense } from '../../types';
+import type { Expense } from '../../../../../stores/expense/types';
 
 export function categoryFilter(category: Category, expenses: Expense[]): Expense[] {
   const results: Expense[] = [];

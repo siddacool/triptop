@@ -3,12 +3,8 @@ import { nanoid } from 'nanoid/non-secure';
 import type { Expense, ExpenseCreateData, ExpenseUpdateData } from '../types';
 import { Category } from '../types/category';
 
-export async function listTripExpenses(tripId: string) {
-  let expenses = await db.expense.where({ tripId }).toArray();
-
-  expenses = expenses.sort((a, b) => b.date.localeCompare(a.date));
-
-  return expenses;
+export function listTripExpenses(tripId: string) {
+  return db.expense.where({ tripId }).toArray();
 }
 
 export async function getExpenseById(id: string) {

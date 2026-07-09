@@ -1,8 +1,8 @@
-import type { ExpenseFilters } from '../../filters.svelte';
 import type { Expense } from '../../types';
-import { categoryFilter } from './categoryFilter';
-import { dateFilter } from './dateFilter';
-import { searchFilter } from './searchFilter';
+import type { ExpenseFilters } from '../../types/filters';
+import { categoryFilter } from './categoryFilter/categoryFilter';
+import { dateFilter } from './dateFilter/dateFilter';
+import { searchFilter } from './searchFilter/searchFilter';
 
 export function getFilteredExpenses(filters: ExpenseFilters, data: Expense[]) {
   let result = data;

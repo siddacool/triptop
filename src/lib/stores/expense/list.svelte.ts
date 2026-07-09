@@ -2,7 +2,7 @@ import { useHistoricalCurrencyExchangeStore } from '../currency/exchange/histori
 import { db } from '$lib/db';
 import { expensesListDecorator } from './decorators/list-decorator';
 import { useExpenseFiltersStore } from './filters.svelte';
-import { getFilteredExpenses } from './getters/filtered-expenses';
+import { getFilteredExpenses } from '../../features/expense/utils/filtered-expenses';
 import { type Expense } from './types';
 
 export async function getExpenses(tripId: string) {

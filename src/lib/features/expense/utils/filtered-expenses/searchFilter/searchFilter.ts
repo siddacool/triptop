@@ -1,4 +1,4 @@
-import type { Expense } from '../../types';
+import type { Expense } from '../../../../../stores/expense/types';
 
 export function searchFilter(query: string, expenses: Expense[]): Expense[] {
   const search = query.trim().toLowerCase();
