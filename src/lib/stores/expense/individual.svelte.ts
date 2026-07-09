@@ -1,5 +1,5 @@
 import { useHistoricalCurrencyExchangeStore } from '../currency/exchange/historical.svelte';
-import { db } from '../db';
+import { db } from '$lib/db';
 import { updateExchangeDetails } from './decorators/update-exchange-details';
 import { type Expense } from './types';
 

@@ -1,5 +1,5 @@
 import type { CurrencyCode } from '@flightlesslabs/currency';
-import { db } from '../../db';
+import { db } from '$lib/db';
 import { type HistoricalCurrencyExchangeRate } from '../types';
 import { createDate } from '$lib/helpers/date-time/createDate';
 import { validateFetchConditions } from './utils/validateFetchConditions';

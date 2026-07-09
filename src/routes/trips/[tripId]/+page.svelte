@@ -9,12 +9,11 @@
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
-  import { useTripPageStore } from '$lib/stores/app/pages/trip-page.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
   import Icon from '@iconify/svelte';
   import { onMount } from 'svelte';
 
@@ -28,9 +27,9 @@
     const loadTrip = async () => {
       try {
         useHistoricalCurrencyExchangeStore.clear();
-        await useTripStore.fetch(tripId);
+        await tripDetailStore.load(tripId);
 
-        const tripCurrency = useTripStore.trip?.currency;
+        const tripCurrency = tripDetailStore.trip?.currency;
         const homeCurrency = useSettingsStore.settings.homeCurrency;
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
@@ -52,12 +51,11 @@
     if (!navigation.to) return;
 
     useExpenseFiltersStore.reset();
-    useTripPageStore.reset();
   });
 </script>
 
 <svelte:head>
-  <title>{useTripStore.trip?.name || '...'}</title>
+  <title>{tripDetailStore.trip?.name || '...'}</title>
 </svelte:head>
 
 {#snippet content()}
@@ -83,15 +81,12 @@
   {/if}
 {/snippet}
 
-{#if useTripStore.fetching}
+<TripHeader />
+
+{#if useExpenseListStore.fetching || useHistoricalCurrencyExchangeStore.fetching}
   <Loading />
-{:else if !useTripStore.fetching && useTripStore.mounted}
-  <TripHeader />
-  {#if useExpenseListStore.fetching || useHistoricalCurrencyExchangeStore.fetching}
-    <Loading />
-  {:else}
-    {@render content()}
-  {/if}
+{:else}
+  {@render content()}
 {/if}
 
 <style lang="scss">

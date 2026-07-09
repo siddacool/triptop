@@ -1,13 +1,13 @@
 <script>
   import ArchivedTag from '$lib/components/ui/ArchivedTag/ArchivedTag.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import Name from './Name.svelte';
 </script>
 
 <div class="Title">
   <Name />
 
-  {#if useTripStore.trip?.archived}
+  {#if tripDetailStore.trip?.archived}
     <ArchivedTag />
   {/if}
 </div>

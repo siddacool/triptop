@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
   import TripListItems from './TripListItems/TripListItems.svelte';
 
   type Props = {

@@ -1,8 +1,8 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import EditTrip from './EditTrip.svelte';
-  import type { Trip } from '$lib/stores/trip/types';
   import { Theme } from '@flightlesslabs/dodo-ui';
+  import type { Trip } from '../../types';
 
   // ------------------------------
   // Storybook Meta

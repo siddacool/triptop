@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { db } from '../db';
+import { db } from '$lib/db';
 import { Category } from '../category/types';
 import type { EditExpenseFormData } from './types';
 import { getExpense } from './individual.svelte';

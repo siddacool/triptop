@@ -1,4 +1,4 @@
-import { db } from '../db';
+import { db } from '$lib/db';
 import type { Trip, TripDeviceOnlyData } from './types';
 
 function createTripStore() {

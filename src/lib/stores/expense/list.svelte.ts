@@ -1,5 +1,5 @@
 import { useHistoricalCurrencyExchangeStore } from '../currency/exchange/historical.svelte';
-import { db } from '../db';
+import { db } from '$lib/db';
 import { expensesListDecorator } from './decorators/list-decorator';
 import { useExpenseFiltersStore } from './filters.svelte';
 import { getFilteredExpenses } from './getters/filtered-expenses';

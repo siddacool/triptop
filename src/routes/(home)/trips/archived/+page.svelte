@@ -1,16 +1,28 @@
 <script>
-  import TripList from '$lib/components/Trips/TripList/TripList.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
+  import TripList from '$lib/features/trip/components/TripList/TripList.svelte';
+  import { tripListStore } from '$lib/features/trip/store/list.svelte';
   import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
-  import { useTripListStore } from '$lib/stores/trip/list.svelte';
 
   import { onMount } from 'svelte';
 
+  let loading = $state(true);
+
+  async function load() {
+    try {
+      await tripListStore.load();
+    } finally {
+      loading = false;
+    }
+  }
+
   onMount(() => {
-    useTripListStore.fetch();
+    load();
+
+    // Do change
     useTripActivePageStore.reset();
   });
 </script>
@@ -21,12 +33,12 @@
 
 <Box>
   <PageHeadingNav>Archived trips</PageHeadingNav>
-  {#if useTripListStore.fetching}
+  {#if loading}
     <Loading />
-  {:else if useTripListStore.mounted && !useTripListStore.tripsArchived.length}
+  {:else if tripListStore.tripsArchived.length}
+    <TripList trips={tripListStore.tripsArchived} />
+  {:else}
     <Instructions>No archived trips found</Instructions>
-  {:else if useTripListStore.mounted && useTripListStore.tripsArchived.length}
-    <TripList trips={useTripListStore.tripsArchived} />
   {/if}
 </Box>
 

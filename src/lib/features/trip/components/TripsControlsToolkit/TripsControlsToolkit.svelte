@@ -1,12 +1,12 @@
 <script>
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import CreateTrip from './CreateTrip.svelte';
-  // import ImportTrip from './ImportTrip.svelte';
+  import ImportTrip from './ImportTrip.svelte';
 </script>
 
 <ControlSection class="TripsControlsToolkit" controlsAlignment="center" columnLayout>
   <CreateTrip />
-  <!-- <ImportTrip /> -->
+  <ImportTrip />
 </ControlSection>
 
 <style lang="scss">

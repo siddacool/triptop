@@ -1,13 +1,6 @@
 <script lang="ts" module>
-  import {
-    localeOptionAuto,
-    localeOptions,
-    type EditTripFormData,
-    type Trip,
-  } from '$lib/stores/trip/types';
-
   type EditTripBaseProps = {
-    onsubmit?: (data: EditTripFormData) => void;
+    onsubmit?: (data: TripCreateData) => void;
     disabled?: boolean;
   };
 
@@ -27,6 +20,8 @@
   import Controls from './Controls.svelte';
   import { Select } from '@flightlesslabs/dodo-ui-bits';
   import { currencyOptions } from '$lib/stores/currency/types';
+  import type { TripCreateData, Trip } from '../../types';
+  import { localeOptionAuto, localeOptions } from '../../config';
 
   const { mode, data, onsubmit, disabled = false }: EditTripProps = $props();
 
@@ -49,13 +44,14 @@
       return;
     }
 
-    const data: EditTripFormData = {
+    const formData: TripCreateData = {
+      ...data,
       name: name || '',
       currency: currency || 'USD',
       locale: locale === localeOptionAuto.value ? undefined : locale,
     };
 
-    onsubmit?.(data);
+    onsubmit?.(formData);
   }
 
   function reset() {

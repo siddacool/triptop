@@ -1,16 +1,16 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf';
-  import TripListItems from './TripListItems.svelte';
+  import TripListItem from './TripListItem.svelte';
   import { Theme } from '@flightlesslabs/dodo-ui';
-  import { mockDataTrips } from '$lib/stores/trip/data/mock-data-trips';
+  import { mockDataTrips } from '$lib/features/trip/mocks/mock-data-trips';
 
   // ------------------------------
   // Storybook Meta
   // ------------------------------
   const { Story } = defineMeta({
-    component: TripListItems,
+    component: TripListItem,
     tags: ['autodocs'],
-    args: { trips: mockDataTrips },
+    args: { trip: mockDataTrips[0] },
   });
 </script>
 
@@ -22,6 +22,6 @@
 
 <Story name="Dark mode" asChild>
   <Theme type="dark">
-    <TripListItems trips={mockDataTrips} />
+    <TripListItem trip={mockDataTrips[0]} />
   </Theme>
 </Story>

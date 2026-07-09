@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { db } from '../db';
+import { db } from '$lib/db';
 import type { Expense } from '../expense/types';
 import type { ExportTripJsonValue } from './export/export-json';
 

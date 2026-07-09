@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { db } from '../db';
+import { db } from '$lib/db';
 import type { EditTripFormData } from './types';
 import { getExpenses } from '../expense/list.svelte';
 
