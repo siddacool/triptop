@@ -44,9 +44,16 @@ export async function bulkAddExpense(expenses: Expense[]) {
 
 export async function updateExpense(data: ExpenseUpdateData) {
   const id = data._id;
+
+   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  const { name, virtualData, ...restData } = data;
+
   const expense = await getExpenseById(id);
 
-  const { name, ...restData } = data;
+
+  if (!expense.id) {
+    throw new Error('Expense not found');
+  }
 
   await db.expense.update(expense.id, {
     name: name.trim(),
