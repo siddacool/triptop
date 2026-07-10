@@ -5,12 +5,12 @@
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import { settingsStore } from '$lib/features/settings/store/main.svelte';
-  import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onMount } from 'svelte';
   import StatsList from '$lib/features/stats/components/StatsList/StatsList.svelte';
   import StatsHeader from '$lib/features/stats/components/StatsCardPro/StatsHeader/StatsHeader.svelte';
   import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
+  import { statsStore } from '$lib/features/stats/store/main.svelte';
 
   const tripId = page.params.tripId;
 
@@ -34,7 +34,7 @@
         }
 
         await expenseListStore.load(tripId);
-        await useTripStatsStore.fetch();
+        await statsStore.load();
       } finally {
         loading = false;
       }

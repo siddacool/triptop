@@ -1,9 +1,9 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import StatsCardPro from './StatsCardPro.svelte';
-  import { mockStatsData } from '$lib/stores/stats/data/mock-stats-data';
   import { mockDataTrips } from '$lib/features/trip/mocks/mock-data-trips';
   import { Theme } from '@flightlesslabs/dodo-ui';
+  import { mockStatsData } from '../../mocks/mock-stats-data';
 
   // ------------------------------
   // Storybook Meta

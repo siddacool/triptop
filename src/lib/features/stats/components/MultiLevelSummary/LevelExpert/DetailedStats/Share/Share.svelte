@@ -1,6 +1,6 @@
 <script lang="ts">
   import ProgressFill from '$lib/components/ui/ProgressFill/ProgressFill.svelte';
-  import type { ExpenseSummary } from '$lib/stores/stats/types';
+  import type { ExpenseSummary } from '$lib/features/stats/types';
   import PercentValue from './PercentValue.svelte';
 
   type Props = {

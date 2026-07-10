@@ -1,11 +1,11 @@
 <script lang="ts">
   import { Column } from '@flightlesslabs/dodo-ui';
-  import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
+  import { statsStore } from '$lib/features/stats/store/main.svelte';
 </script>
 
 <Column>
   <div class="ExpensesCount">
-    Total expenses: <b>{useTripStatsStore.tripSummary?.expenseCount}</b>
+    Total expenses: <b>{statsStore.tripSummary?.expenseCount}</b>
   </div>
 </Column>
 

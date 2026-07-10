@@ -2,7 +2,7 @@
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { createDate } from '$lib/utils/date-time/createDate';
   import { getLocalStoreData, setLocalStoreData } from '$lib/utils/storage';
-  import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
+  import { statsStore } from '$lib/features/stats/store/main.svelte';
   import { transformDates } from './utils';
   import type { LevelStage } from '../../Controls/DetailsExpander/DetailsExpander.svelte';
   import StatsCardPro from '../../StatsCardPro/StatsCardPro.svelte';
@@ -10,7 +10,7 @@
   const DATE_LEVEL = 'STATS_DATE_LEVEL';
 
   const today = $derived(createDate());
-  const dates = $derived(transformDates(today, useTripStatsStore.dateStats));
+  const dates = $derived(transformDates(today, statsStore.dateStats));
 
   let level: LevelStage = $state(
     getLocalStoreData<LevelStage | undefined>('session', DATE_LEVEL) || 'normal',

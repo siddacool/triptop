@@ -1,17 +1,17 @@
 <script lang="ts">
   import { createDate } from '$lib/utils/date-time/createDate';
-  import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
+  import { statsStore } from '$lib/features/stats/store/main.svelte';
   import { Column } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
 
   const startDate = $derived(
-    useTripStatsStore.tripSummary?.startDate
-      ? createDate(useTripStatsStore.tripSummary?.startDate).format('MMM D, YYYY')
+    statsStore.tripSummary?.startDate
+      ? createDate(statsStore.tripSummary?.startDate).format('MMM D, YYYY')
       : undefined,
   );
   const endDate = $derived(
-    useTripStatsStore.tripSummary?.endDate
-      ? createDate(useTripStatsStore.tripSummary?.endDate).format('MMM D, YYYY')
+    statsStore.tripSummary?.endDate
+      ? createDate(statsStore.tripSummary?.endDate).format('MMM D, YYYY')
       : undefined,
   );
 </script>

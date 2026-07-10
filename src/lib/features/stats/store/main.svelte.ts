@@ -1,13 +1,11 @@
 import { expenseListStore } from '$lib/features/expense/store/list.svelte';
-import { type GroupStats, type ExpenseSummary } from './types';
-import { createStats } from './utils/create-stats/create-stats';
+import { type GroupStats, type ExpenseSummary } from '../types';
+import { createStats } from '../utils/create-stats/create-stats';
 
-function createTripStatsStore() {
+function createStatsStore() {
   let categoryStats: GroupStats[] = $state([]);
   let dateStats: GroupStats[] = $state([]);
   let tripSummary: ExpenseSummary | undefined = $state(undefined);
-  let fetching: boolean = $state(false);
-  let mounted: boolean = $state(false);
 
   return {
     get tripSummary() {
@@ -19,20 +17,8 @@ function createTripStatsStore() {
     get dateStats() {
       return dateStats;
     },
-    get fetching() {
-      return fetching;
-    },
-    get mounted() {
-      return mounted;
-    },
-    async fetch() {
+    async load() {
       try {
-        if (fetching) {
-          return;
-        }
-
-        fetching = true;
-
         const expensesData = [...expenseListStore.expenses].sort((a, b) =>
           a.date.localeCompare(b.date),
         );
@@ -52,27 +38,21 @@ function createTripStatsStore() {
 
         console.log('debug:stats', stats);
 
-        mounted = true;
-
         return Promise.resolve();
       } catch (e) {
         console.error(e);
 
-        this.reset();
+        this.clear();
 
         return Promise.reject(e);
-      } finally {
-        fetching = false;
       }
     },
-    reset() {
+    clear() {
       categoryStats = [];
       dateStats = [];
       tripSummary = undefined;
-      mounted = false;
-      fetching = false;
     },
   };
 }
 
-export const useTripStatsStore = createTripStatsStore();
+export const statsStore = createStatsStore();

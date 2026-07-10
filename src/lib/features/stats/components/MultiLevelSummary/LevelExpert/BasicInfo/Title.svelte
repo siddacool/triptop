@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ExpenseSummary } from '$lib/stores/stats/types';
+  import type { ExpenseSummary } from '$lib/features/stats/types';
   import type { Snippet } from 'svelte';
   import type { StatsTopicTitleContext } from '../../LevelNormal/Title.svelte';
 

@@ -4,7 +4,7 @@
   import { Category } from '$lib/features/expense/types/category';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { getLocalStoreData, setLocalStoreData } from '$lib/utils/storage';
-  import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
+  import { statsStore } from '$lib/features/stats/store/main.svelte';
   import StatsCardPro from '../../StatsCardPro/StatsCardPro.svelte';
   import type { LevelStage } from '../../Controls/DetailsExpander/DetailsExpander.svelte';
 
@@ -27,7 +27,7 @@
       bind:level
       showLevel
       trip={tripDetailStore.trip}
-      groupStats={useTripStatsStore.categoryStats}
+      groupStats={statsStore.categoryStats}
     >
       {#snippet customTopicTitle({ topicTitle })}
         <div class={`customTopicTitle level--${level}`}>

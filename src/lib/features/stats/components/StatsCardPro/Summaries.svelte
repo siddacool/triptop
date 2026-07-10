@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { GroupStats } from '$lib/stores/stats/types';
+  import type { GroupStats } from '$lib/features/stats/types';
   import type { Trip } from '$lib/features/trip/types';
   import type { Snippet } from 'svelte';
   import MultiLevelSummary from '../MultiLevelSummary/MultiLevelSummary.svelte';

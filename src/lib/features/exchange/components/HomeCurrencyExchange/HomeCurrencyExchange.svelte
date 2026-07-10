@@ -14,9 +14,7 @@
   const tripCurrency = $derived(tripDetailStore.trip?.currency);
   const isCurrencySame = $derived(homeCurrency === tripCurrency);
   const isShow = $derived(
-    settingsStore.settings.enableCurrencyConversion &&
-      !isCurrencySame &&
-      (amount || amount === 0),
+    settingsStore.settings.enableCurrencyConversion && !isCurrencySame && (amount || amount === 0),
   );
 
   const classes = $derived(['HomeCurrencyExchange', className].filter(Boolean));

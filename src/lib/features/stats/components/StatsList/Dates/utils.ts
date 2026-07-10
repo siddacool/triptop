@@ -1,5 +1,5 @@
 import { createDate } from '$lib/utils/date-time/createDate';
-import type { GroupStats } from '$lib/stores/stats/types';
+import type { GroupStats } from '$lib/features/stats/types';
 import type { Dayjs } from 'dayjs';
 
 export function transformDates(today: Dayjs, dateStats: GroupStats[]): GroupStats[] {

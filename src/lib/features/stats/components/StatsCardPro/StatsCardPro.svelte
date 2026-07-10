@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { GroupStats } from '$lib/stores/stats/types';
+  import type { GroupStats } from '$lib/features/stats/types';
   import { Card } from '@flightlesslabs/dodo-ui';
   import type { Snippet } from 'svelte';
   import StatsHeader from './StatsHeader/StatsHeader.svelte';

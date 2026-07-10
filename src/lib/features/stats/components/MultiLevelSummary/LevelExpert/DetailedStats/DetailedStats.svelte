@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import type { ExpenseSummary } from '$lib/stores/stats/types';
+  import type { ExpenseSummary } from '$lib/features/stats/types';
   import type { Trip } from '$lib/features/trip/types';
   import Amount from './Amount.svelte';
   import type { MoneyValue } from '$lib/features/trip/types/currency';
