@@ -2,13 +2,13 @@
   import { page } from '$app/state';
   import Box from '$lib/components/ui/Box/Box.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
-  import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onMount } from 'svelte';
   import ExpenseDetailsHeader from '$lib/features/expense/components/ExpenseDetailsHeader/ExpenseDetailsHeader.svelte';
   import ExpenseCardDetailed from '$lib/features/expense/components/ExpenseCardDetailed/ExpenseCardDetailed.svelte';
+  import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
 
   const tripId = page.params.tripId;
   const expenseId = page.params.expenseId;
@@ -26,13 +26,13 @@
 
     const loadContents = async () => {
       try {
-        useHistoricalCurrencyExchangeStore.clear();
+        historicalRatesExchangeStore.clear();
         const tripCurrency = tripDetailStore.trip?.currency;
         const homeCurrency = useSettingsStore.settings.homeCurrency;
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-          await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
+          await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);
         }
 
         await expenseDeatilStore.load(expenseId);

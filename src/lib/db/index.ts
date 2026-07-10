@@ -1,5 +1,4 @@
-// db.ts
-import type { HistoricalCurrencyExchangeRate } from '$lib/stores/currency/types';
+import type { CurrencyExchangeRate } from '$lib/features/exchange/types';
 import type { Expense } from '$lib/features/expense/types';
 import type { Trip } from '$lib/features/trip/types';
 import { Dexie, type EntityTable } from 'dexie';
@@ -14,7 +13,7 @@ const db = new Dexie('triptop-v5') as Dexie & {
     'id' // primary key "id" (for the typings only)
   >;
   historicalCurrencyExchangeRates: EntityTable<
-    HistoricalCurrencyExchangeRate,
+    CurrencyExchangeRate,
     'id' // primary key "id" (for the typings only)
   >;
 };

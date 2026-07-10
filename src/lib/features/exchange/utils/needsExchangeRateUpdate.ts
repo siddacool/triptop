@@ -1,10 +1,10 @@
-import { findNearestExchangeRate } from '$lib/utils/find-nearest-exchange-rate/find-nearest-exchange-rate';
+import { findNearestExchangeRate } from '$lib/features/exchange/utils/find-nearest-exchange-rate/find-nearest-exchange-rate';
 import type { Dayjs } from 'dayjs';
 import { isDateRangeCovered } from './isDateRangeCovered';
-import type { HistoricalCurrencyExchangeRate } from '../../types';
+import type { CurrencyExchangeRate } from '../types';
 
 export function needsExchangeRateUpdate(
-  exchangeRate: HistoricalCurrencyExchangeRate | undefined,
+  exchangeRate: CurrencyExchangeRate | undefined,
   startDate: Dayjs,
   endDate: Dayjs,
 ) {

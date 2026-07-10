@@ -3,7 +3,6 @@
   import Box from '$lib/components/ui/Box/Box.svelte';
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
-  import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
@@ -11,6 +10,7 @@
   import { onMount } from 'svelte';
   import StatsList from '$lib/features/stats/components/StatsList/StatsList.svelte';
   import StatsHeader from '$lib/features/stats/components/StatsCardPro/StatsHeader/StatsHeader.svelte';
+  import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
 
   const tripId = page.params.tripId;
 
@@ -30,7 +30,7 @@
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-          await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
+          await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);
         }
 
         await expenseListStore.load(tripId);

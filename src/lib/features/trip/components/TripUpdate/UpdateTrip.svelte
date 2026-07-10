@@ -3,11 +3,11 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import EditTrip from '$lib/features/trip/components/EditTrip/EditTrip.svelte';
-  import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
   import type { TripCreateData, Trip } from '../../types';
   import { saveTrip } from '../../logic/crud.svelte';
   import { tripDetailStore } from '../../store/detail.svelte';
+  import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
 
   let fetching: boolean = $state(false);
 
@@ -29,7 +29,7 @@
         color: 'primary',
       });
 
-      useHistoricalCurrencyExchangeStore.clear();
+      historicalRatesExchangeStore.clear();
 
       goto(resolve(`/trips/${tripId}`));
     } catch (e) {

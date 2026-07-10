@@ -5,7 +5,7 @@
   import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
+  import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
   import { archiveExpense, unarchiveExpense } from '$lib/features/expense/logic/crud.svelte';
 
   const tripId = page.params.tripId || '';
@@ -18,7 +18,7 @@
       const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
       if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-        await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
+        await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);
       }
 
       await expenseDeatilStore.load(expenseId);

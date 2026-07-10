@@ -2,10 +2,10 @@
   import { page } from '$app/state';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
-  import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onDestroy, onMount } from 'svelte';
   import { updateActiveTrip } from '$lib/features/trip/logic/page.svelte';
+  import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
 
   let { children } = $props();
 
@@ -36,7 +36,7 @@
   });
 
   onDestroy(() => {
-    useHistoricalCurrencyExchangeStore.clear();
+    historicalRatesExchangeStore.clear();
   });
 </script>
 

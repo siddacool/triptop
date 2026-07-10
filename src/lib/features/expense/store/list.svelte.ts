@@ -1,3 +1,4 @@
+import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
 import { listTripExpenses } from '../db';
 import type { Expense } from '../types';
 import { expensesListDecorator } from '../utils/decorators/list-decorator';
@@ -38,8 +39,9 @@ function createExpenseListStore() {
     },
     async load(tripId: string) {
       const generalExpenses = await listTripExpenses(tripId);
+      const exchangeRate = historicalRatesExchangeStore.exchangeRate;
 
-      expenses = expensesListDecorator(generalExpenses, undefined);
+      expenses = expensesListDecorator(generalExpenses, exchangeRate);
     },
   };
 }

@@ -1,15 +1,15 @@
 import { type CurrencyCode } from '@flightlesslabs/currency';
 
-export type HistoricalCurrencyExchangeRateEntry = {
+export type DateExchangeRate = {
   date: string;
   exchangeRate: number;
 };
 
-export type HistoricalCurrencyExchangeRate = {
+export type CurrencyExchangeRate = {
   id?: number;
   homeCurrency: CurrencyCode;
   tripCurrency: CurrencyCode;
-  data: HistoricalCurrencyExchangeRateEntry[];
+  data: DateExchangeRate[];
   requestedAt: number;
 };
 
@@ -19,3 +19,5 @@ export type CurrencyExchangeRateResponseFrankfurter = {
   quote: CurrencyCode;
   rate?: number;
 };
+
+export type ExchangeDateGrouping = 'week' | 'month';

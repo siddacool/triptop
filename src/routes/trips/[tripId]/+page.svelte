@@ -8,7 +8,7 @@
   import TripExpensesSection from '$lib/features/trip/components/TripExpensesSection/TripExpensesSection.svelte';
   import TripHeader from '$lib/features/trip/components/TripHeader/TripHeader.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
-  import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
+  import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { onMount } from 'svelte';
 
@@ -23,7 +23,7 @@
 
     const loadTrip = async () => {
       try {
-        useHistoricalCurrencyExchangeStore.clear();
+        historicalRatesExchangeStore.clear();
         await tripDetailStore.load(tripId);
 
         const tripCurrency = tripDetailStore.trip?.currency;
@@ -31,7 +31,7 @@
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-          await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
+          await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);
         }
 
         await expenseListStore.load(tripId);

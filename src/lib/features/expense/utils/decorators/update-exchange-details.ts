@@ -1,12 +1,12 @@
 import { convertCurrency } from '$lib/utils/convert-currency/convert-currency';
-import { findNearestExchangeRate } from '$lib/utils/find-nearest-exchange-rate/find-nearest-exchange-rate';
-import type { HistoricalCurrencyExchangeRate } from '$lib/stores/currency/types';
+import { findNearestExchangeRate } from '$lib/features/exchange/utils/find-nearest-exchange-rate/find-nearest-exchange-rate';
 import type { Expense } from '../../types';
+import type { CurrencyExchangeRate } from '$lib/features/exchange/types';
 
 //  fields added to simplify search and other expense filters
 export function updateExchangeDetails(
   expense: Expense,
-  exchangeRate: HistoricalCurrencyExchangeRate | undefined,
+  exchangeRate: CurrencyExchangeRate | undefined,
 ): number | undefined {
   if (!exchangeRate) {
     return undefined;

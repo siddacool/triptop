@@ -1,11 +1,11 @@
-import type { HistoricalCurrencyExchangeRate } from '$lib/stores/currency/types';
+import type { CurrencyExchangeRate } from '$lib/features/exchange/types';
 import type { Expense } from '../../types';
 import { updateExchangeDetails } from './update-exchange-details';
 import { updateFilterFields } from './update-filter-fields';
 
 export function expensesListDecorator(
   expenses: Expense[],
-  exchangeRate: HistoricalCurrencyExchangeRate | undefined,
+  exchangeRate: CurrencyExchangeRate | undefined,
 ): Expense[] {
   const result: Expense[] = [];
 

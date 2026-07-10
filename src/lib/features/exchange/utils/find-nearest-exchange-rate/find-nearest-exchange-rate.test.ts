@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
 import { findNearestExchangeRate } from './find-nearest-exchange-rate';
-import type { HistoricalCurrencyExchangeRate } from '$lib/stores/currency/types';
+import type { CurrencyExchangeRate } from '../../types';
 
-const historicalExchangeRate: HistoricalCurrencyExchangeRate = {
+const historicalExchangeRate: CurrencyExchangeRate = {
   homeCurrency: 'USD',
   tripCurrency: 'EUR',
   requestedAt: 0,
