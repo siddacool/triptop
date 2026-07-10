@@ -2,10 +2,10 @@
   import { page } from '$app/state';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
-  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onDestroy, onMount } from 'svelte';
+  import { updateActiveTrip } from '$lib/features/trip/logic/page.svelte';
 
   let { children } = $props();
 
@@ -24,7 +24,7 @@
         await tripDetailStore.load(tripId);
         pass = true;
 
-        useTripActivePageStore.updateActiveTrip(tripId);
+        updateActiveTrip(tripId);
       } catch (error) {
         console.error('Failed to fetch trip:', error);
       } finally {

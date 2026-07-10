@@ -6,8 +6,8 @@
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import EditTrip from '$lib/features/trip/components/EditTrip/EditTrip.svelte';
   import { saveTrip } from '$lib/features/trip/logic/crud.svelte';
+  import { clearActiveTrip } from '$lib/features/trip/logic/page.svelte';
   import type { TripCreateData } from '$lib/features/trip/types';
-  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
   import { onMount } from 'svelte';
 
@@ -33,7 +33,7 @@
   }
 
   onMount(() => {
-    useTripActivePageStore.reset();
+    clearActiveTrip();
   });
 </script>
 

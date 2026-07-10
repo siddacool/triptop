@@ -5,8 +5,8 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import { Text } from '@flightlesslabs/dodo-ui';
-  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { deleteTrip } from '$lib/features/trip/logic/crud.svelte';
+  import { clearActiveTrip } from '$lib/features/trip/logic/page.svelte';
 
   const tripId = page.params.tripId || '';
 
@@ -24,7 +24,7 @@
         color: 'primary',
       });
 
-      useTripActivePageStore.reset();
+      clearActiveTrip();
 
       await goto(resolve('/trips'));
     } catch (e) {

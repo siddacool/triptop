@@ -2,10 +2,10 @@
   import { page } from '$app/state';
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
-  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
+  import { tripPageStore } from '$lib/features/trip/store/page.svelte';
 
   const pageName = $derived(page.url.searchParams.get('pageName'));
-  const activeTrip = $derived(useTripActivePageStore.activeTrip);
+  const activeTrip = $derived(tripPageStore.activeTrip);
 
   $effect(() => {
     if (pageName === 'add-expense' && activeTrip) {

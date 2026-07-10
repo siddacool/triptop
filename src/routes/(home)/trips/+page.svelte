@@ -4,7 +4,6 @@
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import TripAchivedLink from '$lib/features/trip/components/TripAchivedLink.svelte';
-  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { onMount } from 'svelte';
   import { tripListStore } from '$lib/features/trip/store/list.svelte';
   import TripsControlsToolkit from '$lib/features/trip/components/TripsControlsToolkit/TripsControlsToolkit.svelte';
@@ -21,9 +20,6 @@
 
   onMount(() => {
     load();
-
-    // Do change
-    useTripActivePageStore.reset();
   });
 </script>
 

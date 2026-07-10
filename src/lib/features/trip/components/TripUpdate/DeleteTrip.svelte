@@ -2,10 +2,10 @@
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
-  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { Button } from '@flightlesslabs/dodo-ui';
   import { modals, toasts } from '@flightlesslabs/dodo-ui-bits';
   import { deleteTrip } from '../../logic/crud.svelte';
+  import { clearActiveTrip } from '../../logic/page.svelte';
 
   let fetching: boolean = $state(false);
 
@@ -26,7 +26,7 @@
         color: 'primary',
       });
 
-      useTripActivePageStore.reset();
+      clearActiveTrip();
 
       await goto(resolve('/trips'));
     } catch (e) {

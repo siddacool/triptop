@@ -5,7 +5,6 @@
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import TripList from '$lib/features/trip/components/TripList/TripList.svelte';
   import { tripListStore } from '$lib/features/trip/store/list.svelte';
-  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
 
   import { onMount } from 'svelte';
 
@@ -21,9 +20,6 @@
 
   onMount(() => {
     load();
-
-    // Do change
-    useTripActivePageStore.reset();
   });
 </script>
 

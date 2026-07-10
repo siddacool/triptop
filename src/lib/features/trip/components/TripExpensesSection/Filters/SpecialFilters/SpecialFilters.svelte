@@ -1,13 +1,14 @@
 <script lang="ts">
   import { Button, Indicator } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
-  import { useTripPageStore } from '$lib/stores/app/pages/trip-page.svelte';
   import { expenseFiltersStore } from '$lib/features/expense/store/filters.svelte';
+  import { tripPageStore } from '$lib/features/trip/store/page.svelte';
+  import { updateTripPageSpecialFiltersSelector } from '$lib/features/trip/logic/page.svelte';
 
   async function handleClick() {
-    const filterSelectorCondition = !useTripPageStore.showSpecailFiltersSelector;
+    const filterSelectorCondition = !tripPageStore.showSpecialFiltersSelector;
 
-    useTripPageStore.toggleShowSpecailFiltersSelector();
+    updateTripPageSpecialFiltersSelector(filterSelectorCondition);
 
     const element = document.getElementById('TripExpensesSection');
 

@@ -1,14 +1,17 @@
 <script lang="ts">
   import ExpenseFilter from '$lib/features/expense/components/ExpenseFilter/ExpenseFilter.svelte';
-  import { useTripPageStore } from '$lib/stores/app/pages/trip-page.svelte';
+  import { updateTripPageSpecialFiltersSelector } from '$lib/features/trip/logic/page.svelte';
+  import { tripPageStore } from '$lib/features/trip/store/page.svelte';
+
+  async function handleClick() {
+    const filterSelectorCondition = !tripPageStore.showSpecialFiltersSelector;
+
+    updateTripPageSpecialFiltersSelector(filterSelectorCondition);
+  }
 </script>
 
-{#if useTripPageStore.showSpecailFiltersSelector}
+{#if tripPageStore.showSpecialFiltersSelector}
   <div class="SpecialFiltersSelector">
-    <ExpenseFilter
-      onclear={useTripPageStore.toggleShowSpecailFiltersSelector}
-      onconfirm={useTripPageStore.toggleShowSpecailFiltersSelector}
-      onclose={useTripPageStore.toggleShowSpecailFiltersSelector}
-    />
+    <ExpenseFilter onclear={handleClick} onconfirm={handleClick} onclose={handleClick} />
   </div>
 {/if}
