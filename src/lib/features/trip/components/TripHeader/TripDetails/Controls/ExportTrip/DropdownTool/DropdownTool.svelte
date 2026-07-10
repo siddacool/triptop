@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { exportTripTypeOptions, type ExportTripTypeOption } from '$lib/stores/trip/export/types';
   import { useThemeStore } from '@flightlesslabs/dodo-ui';
   import { Dropdown } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
   import MenuIcon from './MenuIcon.svelte';
+  import { exportTripTypeOptions } from '$lib/features/trip/config/export';
+  import type { ExportTripTypeOption } from '$lib/features/trip/types/export';
 
   type Props = {
     onselect: (val: ExportTripTypeOption) => void;

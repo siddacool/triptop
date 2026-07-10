@@ -1,14 +1,19 @@
 <script lang="ts">
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
-  import { useTripExportStore } from '$lib/stores/trip/export/export.svelte';
-  import { type ExportTripTypeOption } from '$lib/stores/trip/export/types';
+  import { expenseListStore } from '$lib/features/expense/store/list.svelte';
+  import { downloadTripAsCSV } from '$lib/features/trip/logic/export/csv.svelte';
+  import { exportTrip } from '$lib/features/trip/logic/export/index.svelte';
+  import { ExportTripType, type ExportTripTypeOption } from '$lib/features/trip/types/export';
   import DropdownTool from './DropdownTool/DropdownTool.svelte';
 
   function handleSelect(value: ExportTripTypeOption) {
-    useTripExportStore.exportTrip(value.value);
+    if (value.value === ExportTripType.CSV) {
+      downloadTripAsCSV();
+    } else {
+      exportTrip();
+    }
   }
 </script>
 
-{#if useExpenseListStore.expenses.length}
+{#if expenseListStore.expenses.length}
   <DropdownTool onselect={handleSelect} />
 {/if}

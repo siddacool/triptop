@@ -1,8 +1,8 @@
 <script>
   import { page } from '$app/state';
+  import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import { updateTripCurrencyConversionFlag } from '$lib/features/trip/logic/crud.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
@@ -14,7 +14,7 @@
   const isShow = $derived(
     useSettingsStore.settings.enableCurrencyConversion &&
       !isCurrencySame &&
-      useExpenseListStore.expenses.length,
+      expenseListStore.expenses.length,
   );
   const isEnabled = $derived(
     tripDetailStore.trip?.enableCurrencyConversion === false ? false : true,

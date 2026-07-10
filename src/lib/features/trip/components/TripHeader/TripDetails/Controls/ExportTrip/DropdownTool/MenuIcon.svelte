@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { ExportTripType, type ExportTripTypeOption } from '$lib/stores/trip/export/types';
+  import { ExportTripType, type ExportTripTypeOption } from '$lib/features/trip/types/export';
   import Icon from '@iconify/svelte';
 
   type Props = {

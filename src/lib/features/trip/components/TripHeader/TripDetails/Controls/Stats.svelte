@@ -1,13 +1,13 @@
 <script>
   import { page } from '$app/state';
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+  import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
 
   const tripId = page.params.tripId || '';
 </script>
 
-{#if useExpenseListStore.expenses.length}
+{#if expenseListStore.expenses.length}
   <Button
     aria-label="Trip statistics"
     class="TripStatsButton"
