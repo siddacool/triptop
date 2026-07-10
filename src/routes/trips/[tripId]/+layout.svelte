@@ -27,7 +27,7 @@
         useTripActivePageStore.updateActiveTrip(tripId);
       } catch (error) {
         console.error('Failed to fetch trip:', error);
-    } finally {
+      } finally {
         loading = false;
       }
     };
