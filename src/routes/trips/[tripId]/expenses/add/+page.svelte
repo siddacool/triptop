@@ -15,7 +15,7 @@
 
   const tripId = page.params.tripId;
 
-  async function createTrip(data: ExpenseCreateData, eventSubmitter?: HTMLElement | null) {
+  async function addExpense(data: ExpenseCreateData, eventSubmitter?: HTMLElement | null) {
     try {
       if (!tripId) {
         return;
@@ -58,7 +58,7 @@
         <EditExpense
           trip={tripDetailStore.trip}
           mode="create"
-          onsubmit={createTrip}
+          onsubmit={addExpense}
           disabled={fetching}
         />
       </div>

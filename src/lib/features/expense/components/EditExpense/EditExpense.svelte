@@ -64,14 +64,16 @@
       return;
     }
 
-    const data = {
+    const formData = {
+      ...data,
+      tripId: trip._id,
       name,
       amount,
       category: category || Category.OTHER,
       date: date.toString(),
     } as ExpenseUpdateData;
 
-    onsubmit?.(data, eventSubmitter);
+    onsubmit?.(formData, eventSubmitter);
 
     reset();
   }

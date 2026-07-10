@@ -1,6 +1,10 @@
 import type { ExpenseCreateData, ExpenseUpdateData } from '../types';
 
 export function validateExpenseCreate(data: ExpenseCreateData) {
+  if (!data.tripId) {
+    throw new Error('tripId is required.');
+  }
+
   if (!data.amount) {
     throw new Error('Amount is required.');
   }
@@ -15,6 +19,10 @@ export function validateExpenseCreate(data: ExpenseCreateData) {
 }
 
 export function validateExpenseUpdate(data: ExpenseUpdateData) {
+  if (!data.tripId) {
+    throw new Error('tripId is required.');
+  }
+
   if (!data.amount) {
     throw new Error('Amount is required.');
   }

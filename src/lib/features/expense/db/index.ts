@@ -19,13 +19,12 @@ export async function getExpenseById(id: string) {
 
 export async function createExpense(data: ExpenseCreateData) {
   const newExpenseId = nanoid();
-  const tripId = data.tripId;
 
   const now = Date.now();
 
   await db.expense.add({
     _id: newExpenseId,
-    tripId,
+    tripId: data.tripId,
     name: data.name.trim(),
     amount: data.amount,
     date: data.date,
