@@ -1,4 +1,4 @@
-import { limitCharacters } from './limit-characters';
+import { limitCharacters } from '../limit-characters/limit-characters';
 
 /**
  * Converts a string into a filename-safe format.

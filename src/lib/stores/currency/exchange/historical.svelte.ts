@@ -1,13 +1,13 @@
 import type { CurrencyCode } from '@flightlesslabs/currency';
 import { db } from '$lib/db';
 import { type HistoricalCurrencyExchangeRate } from '../types';
-import { createDate } from '$lib/helpers/date-time/createDate';
 import { validateFetchConditions } from './utils/validateFetchConditions';
 import { needsExchangeRateUpdate } from './utils/needsExchangeRateUpdate';
 import { fetchExchangeRates } from './utils/fetchExchangeRates';
 import { createFetchDateRange } from './utils/createFetchDateRange';
 import { convertResponseDataToExchangeRate } from './utils/convertResponseDataToExchangeRate';
 import { listTripExpenses } from '$lib/features/expense/db';
+import { createDate } from '$lib/utils/date-time/createDate';
 
 function createHistoricalCurrencyExchangeStore() {
   let exchangeRate: HistoricalCurrencyExchangeRate | undefined = $state(undefined);

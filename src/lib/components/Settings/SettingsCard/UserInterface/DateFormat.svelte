@@ -4,7 +4,7 @@
   import { dateFormatOptions, type DateFormatMode } from '$lib/stores/settings/date-format/types';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import FieldMessage from '$lib/components/ui/FieldMessage/FieldMessage.svelte';
-  import { createDate } from '$lib/helpers/date-time/createDate';
+  import { createDate } from '$lib/utils/date-time/createDate';
 
   const dateExample = $derived(
     createDate('2026-06-18').format(useSettingsStore.settings.dateFormat),

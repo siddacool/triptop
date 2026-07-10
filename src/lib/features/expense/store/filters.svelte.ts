@@ -1,4 +1,4 @@
-import { getLocalStoreData } from '$lib/helpers/storage';
+import { getLocalStoreData } from '$lib/utils/storage';
 import type { ExpenseFilters } from '../types/filters';
 
 const dataFromStorage = getLocalStoreData<ExpenseFilters>('session', 'ExpenseFilters');

@@ -1,4 +1,4 @@
-import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
+import { getLocalStoreData, setLocalStoreData } from '$lib/utils/storage';
 
 const LOCAL_STORE_ACTIVE_TRIP = 'TripActive';
 

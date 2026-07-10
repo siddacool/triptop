@@ -5,7 +5,7 @@
   import { categoryOptions } from '$lib/features/expense/config/category-options';
   import { Category } from '$lib/features/expense/types/category';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
-  import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
+  import { getLocalStoreData, setLocalStoreData } from '$lib/utils/storage';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
 
   const CATEGORY_LEVEL = 'STATS_CATEGORY_LEVEL';

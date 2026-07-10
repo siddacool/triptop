@@ -1,8 +1,8 @@
 import { expenseListStore } from '$lib/features/expense/store/list.svelte';
 import type { Expense } from '$lib/features/expense/types';
-import { createDate } from '$lib/helpers/date-time/createDate';
-import { downloadFile } from '$lib/helpers/downloadFile';
-import { toSafeFilename } from '$lib/helpers/file-name';
+import { createDate } from '$lib/utils/date-time/createDate';
+import { downloadFile } from '$lib/utils/downloadFile';
+import { toSafeFilename } from '$lib/utils/file-name/file-name';
 import { tripDetailStore } from '../../store/detail.svelte';
 import type { Trip } from '../../types';
 import type { ExportTripData } from '../../types/export';

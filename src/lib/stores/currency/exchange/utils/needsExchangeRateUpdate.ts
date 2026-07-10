@@ -1,4 +1,4 @@
-import { findNearestExchangeRate } from '$lib/helpers/find-nearest-exchange-rate';
+import { findNearestExchangeRate } from '$lib/utils/find-nearest-exchange-rate/find-nearest-exchange-rate';
 import type { Dayjs } from 'dayjs';
 import { isDateRangeCovered } from './isDateRangeCovered';
 import type { HistoricalCurrencyExchangeRate } from '../../types';

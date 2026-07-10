@@ -27,7 +27,7 @@
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { dateFormatOptions } from '$lib/stores/settings/date-format/types';
   import Amount from './Amount.svelte';
-  import { createDate } from '$lib/helpers/date-time/createDate';
+  import { createDate } from '$lib/utils/date-time/createDate';
   import { Category } from '../../types/category';
   import CategorySelect from '../Category/CategorySelect/CategorySelect.svelte';
 

@@ -1,4 +1,4 @@
-import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
+import { getLocalStoreData, setLocalStoreData } from '$lib/utils/storage';
 import type { CurrencyCode } from '@flightlesslabs/currency';
 import { DEFAULT_DATE_FORMAT, type DateFormatMode } from './date-format/types';
 import type { ThemeMode } from './theme/types';

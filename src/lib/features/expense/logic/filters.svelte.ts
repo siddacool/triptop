@@ -1,4 +1,4 @@
-import { setLocalStoreData } from '$lib/helpers/storage';
+import { setLocalStoreData } from '$lib/utils/storage';
 import { expenseFiltersStore } from '../store/filters.svelte';
 import type { ExpenseFilters } from '../types/filters';
 

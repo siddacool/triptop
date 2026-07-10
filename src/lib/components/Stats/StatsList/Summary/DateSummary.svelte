@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createDate } from '$lib/helpers/date-time/createDate';
+  import { createDate } from '$lib/utils/date-time/createDate';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
   import { Column } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';

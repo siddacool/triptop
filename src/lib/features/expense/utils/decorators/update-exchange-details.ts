@@ -1,5 +1,5 @@
-import { convertCurrency } from '$lib/helpers/convert-currency';
-import { findNearestExchangeRate } from '$lib/helpers/find-nearest-exchange-rate';
+import { convertCurrency } from '$lib/utils/convert-currency/convert-currency';
+import { findNearestExchangeRate } from '$lib/utils/find-nearest-exchange-rate/find-nearest-exchange-rate';
 import type { HistoricalCurrencyExchangeRate } from '$lib/stores/currency/types';
 import type { Expense } from '../../types';
 

@@ -1,4 +1,4 @@
-import { createDate } from '$lib/helpers/date-time/createDate';
+import { createDate } from '$lib/utils/date-time/createDate';
 import type { Expense, ExpenseFilterFields } from '../../types';
 
 //  fields added to simplify search and other expense filters

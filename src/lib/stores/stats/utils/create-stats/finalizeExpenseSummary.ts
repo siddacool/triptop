@@ -1,5 +1,5 @@
-import { calculateAverage } from '$lib/helpers/calculateAverage';
-import { calculateShare } from '$lib/helpers/calculateShare';
+import { calculateAverage } from '$lib/utils/calculateAverage/calculateAverage';
+import { calculateShare } from '$lib/utils/calculateShare/calculateShare';
 import type { ExpenseSummary } from '../../types';
 
 export function finalizeExpenseSummary(summary: ExpenseSummary, tripTotal: number) {
