@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Chip from '../Chip/Chip.svelte';
+  import Chip from '../ui/Chip/Chip.svelte';
 
   type Props = {
     class?: string;

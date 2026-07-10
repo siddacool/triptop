@@ -2,7 +2,7 @@
   import type { ExpenseSummary } from '$lib/stores/stats/types';
   import type { Trip } from '$lib/features/trip/types';
   import Amount from './Amount.svelte';
-  import type { MoneyValue } from '$lib/stores/currency/types';
+  import type { MoneyValue } from '$lib/features/trip/types/currency';
   import LabelGroup from './LabelGroup.svelte';
   import Share from './Share/Share.svelte';
 

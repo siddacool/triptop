@@ -1,5 +1,5 @@
 <script lang="ts">
-  import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
+  import HomeCurrencyExchange from '$lib/features/exchange/components/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
   import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   const tripEnableCurrencyConversion = $derived(

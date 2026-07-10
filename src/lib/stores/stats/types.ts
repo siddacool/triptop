@@ -1,4 +1,4 @@
-import type { MoneyValue } from '../currency/types';
+import type { MoneyValue } from '$lib/features/trip/types/currency';
 
 export type ExpenseSummary = {
   expenseCount: number;

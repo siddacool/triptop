@@ -19,7 +19,7 @@
   import { Column, FormField, Grid, Row, TextInput } from '@flightlesslabs/dodo-ui';
   import Controls from './Controls.svelte';
   import { Select } from '@flightlesslabs/dodo-ui-bits';
-  import { currencyOptions } from '$lib/stores/currency/types';
+  import { currencyOptions } from '$lib/features/trip/config/currency';
   import type { TripCreateData, Trip } from '../../types';
   import { localeOptionAuto, localeOptions } from '../../config';
 

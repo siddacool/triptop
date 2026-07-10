@@ -2,8 +2,8 @@
   import { Column, FormField } from '@flightlesslabs/dodo-ui';
   import { Select } from '@flightlesslabs/dodo-ui-bits';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import { currencyOptions } from '$lib/stores/currency/types';
   import { type CurrencyCode } from '@flightlesslabs/currency';
+  import { currencyOptions } from '$lib/features/trip/config/currency';
 </script>
 
 <Column lg={5}>

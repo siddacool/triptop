@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Column } from '@flightlesslabs/dodo-ui';
-  import MultiLevelSummary from '$lib/components/ui/Stats/MultiLevelSummary/MultiLevelSummary.svelte';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
+  import MultiLevelSummary from '../../MultiLevelSummary/MultiLevelSummary.svelte';
 
   const expenseSummary = $derived(useTripStatsStore.tripSummary);
   const trip = $derived(tripDetailStore.trip);

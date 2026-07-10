@@ -3,7 +3,7 @@
   import { Column, Money, Threshold } from '@flightlesslabs/dodo-ui';
   import type { Trip } from '$lib/features/trip/types';
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
-  import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
+  import HomeCurrencyExchange from '$lib/features/exchange/components/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
 
   type Props = {
     expense: Expense;

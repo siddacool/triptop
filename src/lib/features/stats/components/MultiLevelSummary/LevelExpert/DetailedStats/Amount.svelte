@@ -1,6 +1,6 @@
 <script lang="ts">
-  import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
-  import type { MoneyValue } from '$lib/stores/currency/types';
+  import HomeCurrencyExchange from '$lib/features/exchange/components/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
+  import type { MoneyValue } from '$lib/features/trip/types/currency';
   import { Money, Threshold } from '@flightlesslabs/dodo-ui';
   import LabelGroup from './LabelGroup.svelte';
   import type { Trip } from '$lib/features/trip/types';

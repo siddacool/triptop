@@ -1,7 +1,5 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import StatsHeader from '$lib/components/Stats/StatsHeader/StatsHeader.svelte';
-  import StatsList from '$lib/components/Stats/StatsList/StatsList.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
@@ -11,6 +9,8 @@
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onMount } from 'svelte';
+  import StatsList from '$lib/features/stats/components/StatsList/StatsList.svelte';
+  import StatsHeader from '$lib/features/stats/components/StatsCardPro/StatsHeader/StatsHeader.svelte';
 
   const tripId = page.params.tripId;
 

@@ -1,5 +1,5 @@
 <script>
-  import ArchivedTag from '$lib/components/ui/ArchivedTag/ArchivedTag.svelte';
+  import ArchivedTag from '$lib/components/ArchivedTag/ArchivedTag.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import Name from './Name.svelte';
 </script>
