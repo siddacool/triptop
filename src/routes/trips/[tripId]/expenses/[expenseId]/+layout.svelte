@@ -2,7 +2,7 @@
   import { page } from '$app/state';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
-  import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
+  import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
   import { onMount } from 'svelte';
 
   let { children } = $props();
@@ -19,7 +19,7 @@
 
     const loadTrip = async () => {
       try {
-        await useExpenseStore.fetch(expenseId);
+        await expenseDeatilStore.load(expenseId);
 
         pass = true;
       } catch (error) {

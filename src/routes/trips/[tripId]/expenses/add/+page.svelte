@@ -8,7 +8,7 @@
   import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
-  import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
+  import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
   import type { EditExpenseFormData } from '$lib/features/expense/types';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
@@ -54,7 +54,7 @@
 
 <WhiteMaterial>
   <Box>
-    {#if useExpenseStore.fetching || tripDetailStore.loading}
+    {#if expenseDeatilStore.loading || tripDetailStore.loading}
       <Loading />
     {:else if tripDetailStore.trip}
       <div>

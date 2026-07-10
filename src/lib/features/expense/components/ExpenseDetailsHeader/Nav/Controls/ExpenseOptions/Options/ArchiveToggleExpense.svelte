@@ -3,7 +3,7 @@
   import Icon from '@iconify/svelte';
   import { page } from '$app/state';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
-  import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
+  import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
@@ -21,7 +21,7 @@
         await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
       }
 
-      await useExpenseStore.fetch(expenseId);
+      await expenseDeatilStore.load(expenseId);
     } catch (error) {
       console.error('Failed to fetch expsense:', error);
     }
@@ -66,7 +66,7 @@
   }
 
   function onselect() {
-    const archiveState = useExpenseStore.expense?.archived || false;
+    const archiveState = expenseDeatilStore.expense?.archived || false;
     const archiveCondition = !archiveState;
 
     if (archiveCondition) {
@@ -79,7 +79,7 @@
 </script>
 
 <DropdownMenuItem onSelect={onselect} outline>
-  {#if useExpenseStore.expense?.archived}
+  {#if expenseDeatilStore.expense?.archived}
     <span class="Icon">
       <Icon icon="material-symbols:unarchive-outline" />
     </span>

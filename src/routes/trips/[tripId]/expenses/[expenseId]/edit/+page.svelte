@@ -10,7 +10,7 @@
   import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
-  import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
+  import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
   import type { EditExpenseFormData } from '$lib/features/expense/types';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { Button, Column, Grid } from '@flightlesslabs/dodo-ui';
@@ -20,7 +20,7 @@
 
   const tripId = page.params.tripId;
   const expenseId = page.params.expenseId;
-  const isArchived = $derived(useExpenseStore.expense?.archived || false);
+  const isArchived = $derived(expenseDeatilStore.expense?.archived || false);
 
   async function deleteExpense() {
     try {
@@ -75,7 +75,7 @@
         color: 'primary',
       });
 
-      await useExpenseStore.fetch(expenseId);
+      await expenseDeatilStore.load(expenseId);
 
       await goto(resolve(`/trips/${tripId}/expenses/${expenseId}`));
     } catch (e) {
@@ -147,7 +147,7 @@
 </svelte:head>
 
 {#snippet content()}
-  {#if useExpenseStore.expense && tripDetailStore.trip}
+  {#if expenseDeatilStore.expense && tripDetailStore.trip}
     <Grid gap={2}>
       <Column>
         <div>
@@ -157,7 +157,7 @@
           <EditExpense
             trip={tripDetailStore.trip}
             mode="edit"
-            data={useExpenseStore.expense}
+            data={expenseDeatilStore.expense}
             onsubmit={updateExpense}
             disabled={fetching}
           />
@@ -183,7 +183,7 @@
 
 <WhiteMaterial>
   <Box>
-    {#if useExpenseStore.fetching || tripDetailStore.loading}
+    {#if expenseDeatilStore.loading || tripDetailStore.loading}
       <Loading />
     {:else}
       {@render content()}

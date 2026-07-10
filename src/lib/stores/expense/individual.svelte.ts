@@ -69,4 +69,4 @@ function createExpenseStore() {
   };
 }
 
-export const useExpenseStore = createExpenseStore();
+export const expenseDeatilStore = createExpenseStore();

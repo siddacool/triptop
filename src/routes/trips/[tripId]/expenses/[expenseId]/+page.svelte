@@ -5,7 +5,7 @@
   import Box from '$lib/components/ui/Box/Box.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
-  import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
+  import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { onMount } from 'svelte';
@@ -33,7 +33,7 @@
           await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
         }
 
-        await useExpenseStore.fetch(expenseId);
+        await expenseDeatilStore.load(expenseId);
       } catch (error) {
         console.error('Failed to fetch expsense:', error);
       }
@@ -44,16 +44,16 @@
 </script>
 
 <svelte:head>
-  <title>{useExpenseStore.expense?.name || ''}</title>
+  <title>{expenseDeatilStore.expense?.name || ''}</title>
 </svelte:head>
 
-{#if useExpenseStore.fetching || tripDetailStore.loading || useHistoricalCurrencyExchangeStore.fetching}
+{#if expenseDeatilStore.loading || tripDetailStore.loading || useHistoricalCurrencyExchangeStore.fetching}
   <Loading />
-{:else if useExpenseStore.expense && tripDetailStore.trip}
+{:else if expenseDeatilStore.expense && tripDetailStore.trip}
   <ExpenseDetailsHeader />
   <Box>
     <ExpenseCardDetailed
-      expense={useExpenseStore.expense}
+      expense={expenseDeatilStore.expense}
       trip={tripDetailStore.trip}
       class="ExpensesDetailsCard"
     />

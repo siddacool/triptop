@@ -4,7 +4,7 @@
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
   import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
-  import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
+  import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { onDestroy, onMount } from 'svelte';
@@ -40,7 +40,7 @@
   onDestroy(() => {
     tripDetailStore.reset();
     useExpenseListStore.reset();
-    useExpenseStore.reset();
+    expenseDeatilStore.reset();
     useHistoricalCurrencyExchangeStore.clear();
   });
 </script>
