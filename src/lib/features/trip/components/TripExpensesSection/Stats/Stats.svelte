@@ -1,9 +1,9 @@
 <script>
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+  import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import TotalExpenses from './TotalExpenses/TotalExpenses.svelte';
 </script>
 
-{#if useExpenseListStore.filtredExpenses.length}
+{#if expenseListStore.expensesFiltred.length}
   <div class="Stats">
     <TotalExpenses />
   </div>

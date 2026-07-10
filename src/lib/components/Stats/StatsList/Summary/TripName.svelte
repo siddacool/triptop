@@ -1,5 +1,5 @@
 <script>
-  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
 </script>
 
 <h2 class="TripName">{tripDetailStore.trip?.name}</h2>

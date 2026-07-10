@@ -1,5 +1,6 @@
 import type { Expense } from '$lib/features/expense/types';
 import type { Trip, TripCreateData, TripUpdateData } from '../types';
+import type { ExportTripData } from '../types/export';
 
 export function validateTripCreate(data: TripCreateData) {
   if (!data.currency) {
@@ -28,5 +29,15 @@ export function validateTripExportExpenses(trip: Trip | undefined, expenses: Exp
 
   if (!expenses.some((item) => item.tripId === trip._id)) {
     throw new Error('The expenses dont match the trip');
+  }
+}
+
+export function validateTripImport(data: ExportTripData) {
+  if (!data) {
+    throw new Error('Invalid data');
+  }
+
+  if (!data.trip) {
+    throw new Error('Trip not found');
   }
 }

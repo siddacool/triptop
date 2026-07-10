@@ -1,15 +1,15 @@
 <script lang="ts">
   import { resolve } from '$app/paths';
-  import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import Icon from '@iconify/svelte';
+  import { tripListStore } from '../store/list.svelte';
 </script>
 
-{#if useTripListStore.tripsArchived.length}
+{#if tripListStore.tripsArchived.length}
   <a class="TripAchivedLink" href={resolve('/trips/archived')}>
     <span class="Icon">
       <Icon icon="material-symbols:archive-outline" />
     </span>
-    Archived ({useTripListStore.tripsArchived.length})
+    Archived ({tripListStore.tripsArchived.length})
   </a>
 {/if}
 

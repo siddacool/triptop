@@ -1,8 +1,6 @@
 <script lang="ts">
-  import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import { createDate } from '$lib/helpers/date-time/createDate';
-  import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
   import { dateFormatOptions } from '$lib/stores/settings/date-format/types';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import {
@@ -17,6 +15,10 @@
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
   import Icon from '@iconify/svelte';
   import { parseDate, type DateValue } from '@internationalized/date';
+  import { expenseFiltersStore } from '../../store/filters.svelte';
+  import type { Category } from '../../types/category';
+  import { clearSpecialFilters, updateExpenseFilters } from '../../logic/filters.svelte';
+  import CategorySelect from '../Category/CategorySelect/CategorySelect.svelte';
 
   type Props = {
     onconfirm?: () => void;
@@ -26,15 +28,15 @@
 
   let { onconfirm, onclear, onclose }: Props = $props();
 
-  let category: Category | undefined = $derived(useExpenseFiltersStore.filters.category);
+  let category: Category | undefined = $derived(expenseFiltersStore.filters.category);
   let minDate = $derived<DateValue | undefined>(
-    useExpenseFiltersStore.filters.minDate
-      ? parseDate(createDate(useExpenseFiltersStore.filters.minDate).format('YYYY-MM-DD'))
+    expenseFiltersStore.filters.minDate
+      ? parseDate(createDate(expenseFiltersStore.filters.minDate).format('YYYY-MM-DD'))
       : undefined,
   );
   let maxDate = $derived<DateValue | undefined>(
-    useExpenseFiltersStore.filters.maxDate
-      ? parseDate(createDate(useExpenseFiltersStore.filters.maxDate).format('YYYY-MM-DD'))
+    expenseFiltersStore.filters.maxDate
+      ? parseDate(createDate(expenseFiltersStore.filters.maxDate).format('YYYY-MM-DD'))
       : undefined,
   );
 
@@ -46,7 +48,7 @@
   let isAnyActive = $derived(category || minDate || maxDate ? true : false);
 
   function handleOnConfirm() {
-    useExpenseFiltersStore.updateFilter({
+    updateExpenseFilters({
       category,
       minDate: minDate ? minDate.toString() : undefined,
       maxDate: maxDate ? maxDate.toString() : undefined,
@@ -58,7 +60,7 @@
   }
 
   function handleOnClear() {
-    useExpenseFiltersStore.clearSpecialFilters();
+    clearSpecialFilters();
 
     if (onclear) {
       onclear();

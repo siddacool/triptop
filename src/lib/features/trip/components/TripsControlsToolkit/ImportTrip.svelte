@@ -1,12 +1,12 @@
 <script lang="ts">
   import { Button } from '@flightlesslabs/dodo-ui';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
-  import { useTripImportStore } from '$lib/stores/trip/import.svelte';
-  import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import Icon from '@iconify/svelte';
-  import type { ExportTripJsonValue } from '$lib/stores/trip/export/export-json';
+  import { importTrip } from '../../logic/import.svelte';
+  import type { ExportTripData } from '../../types/export';
 
   let fileInput = $state<HTMLInputElement>();
+  let loading = $state(false);
 
   async function handleImport(event: Event) {
     const input = event.currentTarget as HTMLInputElement;
@@ -15,15 +15,10 @@
     if (!file) return;
 
     try {
-      const data = JSON.parse(await file.text()) as ExportTripJsonValue | undefined;
+      loading = true;
+      const data = JSON.parse(await file.text()) as ExportTripData;
 
-      if (!data?.trip?.name) {
-        throw new Error('Invalid trip format');
-      }
-
-      await useTripImportStore.importTrip(data);
-
-      await useTripListStore.fetch();
+      await importTrip(data);
 
       toasts.add({
         title: 'Success',
@@ -40,6 +35,7 @@
       });
     } finally {
       input.value = '';
+      loading = false;
     }
   }
 </script>
@@ -49,7 +45,7 @@
   outline
   roundness={2}
   onclick={() => fileInput?.showPicker()}
-  disabled={useTripImportStore.fetching}
+  disabled={loading}
 >
   <span class="Icon">
     <Icon icon="material-symbols:upload" />

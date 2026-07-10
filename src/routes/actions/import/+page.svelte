@@ -1,24 +1,16 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
-
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
-
-  import { useTripImportStore } from '$lib/stores/trip/import.svelte';
-  import { useTripListStore } from '$lib/stores/trip/list.svelte';
   import { resolve } from '$app/paths';
-  import type { ExportTripJsonValue } from '$lib/stores/trip/export/export-json';
+  import type { ExportTripData } from '$lib/features/trip/types/export';
+  import { importTrip } from '$lib/features/trip/logic/import.svelte';
 
-  async function importTrip(file: File) {
+  async function handleImport(file: File) {
     try {
-      const data = JSON.parse(await file.text()) as ExportTripJsonValue | undefined;
+      const data = JSON.parse(await file.text()) as ExportTripData;
 
-      if (!data?.trip?.name) {
-        throw new Error('Invalid trip format');
-      }
-
-      await useTripImportStore.importTrip(data);
-      await useTripListStore.fetch();
+      await importTrip(data);
 
       toasts.add({
         title: 'Success',
@@ -51,7 +43,7 @@
 
       const file = await files[0].getFile();
 
-      await importTrip(file);
+      await handleImport(file);
     });
   });
 </script>

@@ -1,17 +1,19 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import ExpenseCardDetailed from '$lib/components/Expenses/ExpenseCardDetailed/ExpenseCardDetailed.svelte';
-  import ExpenseDetailsHeader from '$lib/components/Expenses/ExpenseDetailsPage/ExpenseDetailsHeader/ExpenseDetailsHeader.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onMount } from 'svelte';
+  import ExpenseDetailsHeader from '$lib/features/expense/components/ExpenseDetailsHeader/ExpenseDetailsHeader.svelte';
+  import ExpenseCardDetailed from '$lib/features/expense/components/ExpenseCardDetailed/ExpenseCardDetailed.svelte';
 
   const tripId = page.params.tripId;
   const expenseId = page.params.expenseId;
+
+  let loading = $state(true);
 
   onMount(() => {
     if (!tripId) {
@@ -34,8 +36,8 @@
         }
 
         await expenseDeatilStore.load(expenseId);
-      } catch (error) {
-        console.error('Failed to fetch expsense:', error);
+      } finally {
+        loading = false;
       }
     };
 
@@ -47,7 +49,7 @@
   <title>{expenseDeatilStore.expense?.name || ''}</title>
 </svelte:head>
 
-{#if expenseDeatilStore.loading || tripDetailStore.loading || useHistoricalCurrencyExchangeStore.fetching}
+{#if loading}
   <Loading />
 {:else if expenseDeatilStore.expense && tripDetailStore.trip}
   <ExpenseDetailsHeader />

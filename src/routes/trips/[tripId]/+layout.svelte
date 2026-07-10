@@ -4,9 +4,7 @@
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
   import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
-  import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
-  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onDestroy, onMount } from 'svelte';
 
   let { children } = $props();
@@ -29,7 +27,7 @@
         useTripActivePageStore.updateActiveTrip(tripId);
       } catch (error) {
         console.error('Failed to fetch trip:', error);
-      } finally {
+    } finally {
         loading = false;
       }
     };
@@ -38,9 +36,6 @@
   });
 
   onDestroy(() => {
-    tripDetailStore.reset();
-    useExpenseListStore.reset();
-    expenseDeatilStore.reset();
     useHistoricalCurrencyExchangeStore.clear();
   });
 </script>

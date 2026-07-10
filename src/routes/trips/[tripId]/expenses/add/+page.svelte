@@ -2,22 +2,20 @@
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
-  import EditExpense from '$lib/components/Expenses/EditExpense/EditExpense.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
-  import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
-  import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
-  import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
-  import type { EditExpenseFormData } from '$lib/features/expense/types';
-  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
+  import type { ExpenseCreateData } from '$lib/features/expense/types';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
+  import EditExpense from '$lib/features/expense/components/EditExpense/EditExpense.svelte';
+  import { saveExpense } from '$lib/features/expense/logic/crud.svelte';
 
   let fetching: boolean = $state(false);
 
   const tripId = page.params.tripId;
 
-  async function createTrip(data: EditExpenseFormData, eventSubmitter?: HTMLElement | null) {
+  async function createTrip(data: ExpenseCreateData, eventSubmitter?: HTMLElement | null) {
     try {
       if (!tripId) {
         return;
@@ -25,7 +23,7 @@
 
       fetching = true;
 
-      await useEditExpenseStore.add(tripId, data);
+      await saveExpense(data);
 
       const eventSubmitterRaw = eventSubmitter as HTMLInputElement | null;
 
@@ -52,11 +50,9 @@
   <title>Add expense</title>
 </svelte:head>
 
-<WhiteMaterial>
-  <Box>
-    {#if expenseDeatilStore.loading || tripDetailStore.loading}
-      <Loading />
-    {:else if tripDetailStore.trip}
+{#if tripDetailStore.trip}
+  <WhiteMaterial>
+    <Box>
       <div>
         <PageHeadingNav class="TripHeader" href={`/trips/${tripId}`}>Add expense</PageHeadingNav>
         <EditExpense
@@ -66,6 +62,6 @@
           disabled={fetching}
         />
       </div>
-    {/if}
-  </Box>
-</WhiteMaterial>
+    </Box>
+  </WhiteMaterial>
+{/if}

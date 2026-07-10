@@ -4,7 +4,7 @@
   import { type Expense } from '$lib/features/expense/types';
   import { Theme } from '@flightlesslabs/dodo-ui';
   import { mockDataTrips } from '$lib/features/trip/mocks/mock-data-trips';
-  import { Category } from '$lib/stores/category/types';
+  import { Category } from '../../types/category';
 
   // ------------------------------
   // Storybook Meta
