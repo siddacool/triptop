@@ -2,7 +2,6 @@
   import { page } from '$app/state';
   import Box from '$lib/components/ui/Box/Box.svelte';
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
-  import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
@@ -11,6 +10,7 @@
   import StatsHeader from '$lib/features/stats/components/StatsCardPro/StatsHeader/StatsHeader.svelte';
   import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
   import { statsStore } from '$lib/features/stats/store/main.svelte';
+  import LoadingBoundary from '$lib/components/LoadingBoundary.svelte';
 
   const tripId = page.params.tripId;
 
@@ -18,6 +18,7 @@
 
   onMount(() => {
     if (!tripId) {
+      loading = false;
       return;
     }
 
@@ -48,7 +49,9 @@
   <title>Trip statistics</title>
 </svelte:head>
 
-{#snippet content()}
+<StatsHeader />
+
+<LoadingBoundary {loading}>
   {#if expenseListStore.expenses.length}
     <Box>
       <StatsList />
@@ -58,11 +61,4 @@
       <Instructions>No stats for you</Instructions>
     </Box>
   {/if}
-{/snippet}
-
-<StatsHeader />
-{#if loading}
-  <Loading />
-{:else}
-  {@render content()}
-{/if}
+</LoadingBoundary>

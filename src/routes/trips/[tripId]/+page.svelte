@@ -1,7 +1,6 @@
 <script lang="ts">
   import { beforeNavigate } from '$app/navigation';
   import { page } from '$app/state';
-  import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import NoExpenses from '$lib/features/expense/components/NoExpenses.svelte';
   import { clearExpenseFilters } from '$lib/features/expense/logic/filters.svelte';
   import { expenseListStore } from '$lib/features/expense/store/list.svelte';
@@ -11,6 +10,7 @@
   import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
   import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import { onMount } from 'svelte';
+  import LoadingBoundary from '$lib/components/LoadingBoundary.svelte';
 
   const tripId = page.params.tripId;
 
@@ -18,6 +18,7 @@
 
   onMount(() => {
     if (!tripId) {
+      loading = false;
       return;
     }
 
@@ -55,21 +56,15 @@
   <title>{tripDetailStore.trip?.name || '...'}</title>
 </svelte:head>
 
-{#snippet content()}
+<TripHeader />
+
+<LoadingBoundary {loading}>
   {#if expenseListStore.expenses.length}
     <TripExpensesSection />
   {:else}
     <NoExpenses />
   {/if}
-{/snippet}
-
-<TripHeader />
-
-{#if loading}
-  <Loading />
-{:else}
-  {@render content()}
-{/if}
+</LoadingBoundary>
 
 <style lang="scss">
   :global(.TripPageAddExpenseButton .Icon) {

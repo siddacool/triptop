@@ -1,11 +1,11 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onDestroy, onMount } from 'svelte';
   import { updateActiveTrip } from '$lib/features/trip/logic/page.svelte';
   import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
+  import LoadingBoundary from '$lib/components/LoadingBoundary.svelte';
 
   let { children } = $props();
 
@@ -16,6 +16,7 @@
 
   onMount(() => {
     if (!tripId) {
+      loading = false;
       return;
     }
 
@@ -40,10 +41,10 @@
   });
 </script>
 
-{#if loading}
-  <Loading />
-{:else if pass}
-  {@render children()}
-{:else}
-  <RedirectHomePage>Trip does not exists</RedirectHomePage>
-{/if}
+<LoadingBoundary {loading}>
+  {#if pass}
+    {@render children()}
+  {:else}
+    <RedirectHomePage>Trip does not exists</RedirectHomePage>
+  {/if}
+</LoadingBoundary>

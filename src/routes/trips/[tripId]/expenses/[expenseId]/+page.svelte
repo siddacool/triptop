@@ -1,7 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
   import Box from '$lib/components/ui/Box/Box.svelte';
-  import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
   import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
@@ -9,6 +8,7 @@
   import ExpenseDetailsHeader from '$lib/features/expense/components/ExpenseDetailsHeader/ExpenseDetailsHeader.svelte';
   import ExpenseCardDetailed from '$lib/features/expense/components/ExpenseCardDetailed/ExpenseCardDetailed.svelte';
   import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
+  import LoadingBoundary from '$lib/components/LoadingBoundary.svelte';
 
   const tripId = page.params.tripId;
   const expenseId = page.params.expenseId;
@@ -17,6 +17,7 @@
 
   onMount(() => {
     if (!tripId) {
+      loading = false;
       return;
     }
 
@@ -49,18 +50,18 @@
   <title>{expenseDeatilStore.expense?.name || ''}</title>
 </svelte:head>
 
-{#if loading}
-  <Loading />
-{:else if expenseDeatilStore.expense && tripDetailStore.trip}
-  <ExpenseDetailsHeader />
-  <Box>
-    <ExpenseCardDetailed
-      expense={expenseDeatilStore.expense}
-      trip={tripDetailStore.trip}
-      class="ExpensesDetailsCard"
-    />
-  </Box>
-{/if}
+<LoadingBoundary {loading}>
+  {#if expenseDeatilStore.expense && tripDetailStore.trip}
+    <ExpenseDetailsHeader />
+    <Box>
+      <ExpenseCardDetailed
+        expense={expenseDeatilStore.expense}
+        trip={tripDetailStore.trip}
+        class="ExpensesDetailsCard"
+      />
+    </Box>
+  {/if}
+</LoadingBoundary>
 
 <style lang="scss">
   :global(.ExpensesDetailsCard) {

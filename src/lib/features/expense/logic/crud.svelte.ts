@@ -35,6 +35,11 @@ export function deleteExpense(id: string) {
 
 export async function deleteExpenseByTripId(tripId: string) {
   const tripExpenses = await listTripExpenses(tripId);
+
+  if (!tripExpenses.length) {
+    return;
+  }
+
   const tripExpensesFiltred = tripExpenses.filter((item) => item.id);
   const tripExpensesKeys = tripExpensesFiltred.map((item) => item.id) as number[];
 
