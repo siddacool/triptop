@@ -1,16 +1,17 @@
 <script lang="ts">
   import { Column } from '@flightlesslabs/dodo-ui';
   import { Switch } from '@flightlesslabs/dodo-ui-bits';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
+  import { updateSettings } from '$lib/features/settings/logic/index.svelte';
 </script>
 
 <Column>
   <Switch
-    checked={useSettingsStore.settings.enableCurrencyConversion}
+    checked={settingsStore.settings.enableCurrencyConversion}
     name="enableCurrencyConversion"
     id="enableCurrencyConversion"
     onCheckedChange={(val) =>
-      useSettingsStore.updateSettings({
+      updateSettings({
         enableCurrencyConversion: val,
       })}
     color="primary"

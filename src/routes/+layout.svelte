@@ -9,15 +9,9 @@
   import { ModalManager, ToastManager } from '@flightlesslabs/dodo-ui-bits';
   import { Theme } from '@flightlesslabs/dodo-ui';
   import Main from '$lib/components/Main/Main.svelte';
-  import ThemeSetter from '$lib/components/Settings/ThemeSetter.svelte';
-  import { onMount } from 'svelte';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import ThemeSetter from '$lib/features/settings/components/SettingsCard/ThemeSetter.svelte';
 
   let { children } = $props();
-
-  onMount(() => {
-    useSettingsStore.fetchSettings();
-  });
 </script>
 
 <ThemeSetter />

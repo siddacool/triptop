@@ -9,7 +9,7 @@
   import TripHeader from '$lib/features/trip/components/TripHeader/TripHeader.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import { onMount } from 'svelte';
 
   const tripId = page.params.tripId;
@@ -27,8 +27,8 @@
         await tripDetailStore.load(tripId);
 
         const tripCurrency = tripDetailStore.trip?.currency;
-        const homeCurrency = useSettingsStore.settings.homeCurrency;
-        const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
+        const homeCurrency = settingsStore.settings.homeCurrency;
+        const enableCurrencyConversion = settingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
           await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);

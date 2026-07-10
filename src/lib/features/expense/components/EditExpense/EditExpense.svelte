@@ -24,12 +24,12 @@
   import { parseDate, type DateValue } from '@internationalized/date';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
   import type { Trip } from '$lib/features/trip/types';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import { dateFormatOptions } from '$lib/stores/settings/date-format/types';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import Amount from './Amount.svelte';
   import { createDate } from '$lib/utils/date-time/createDate';
   import { Category } from '../../types/category';
   import CategorySelect from '../Category/CategorySelect/CategorySelect.svelte';
+  import { dateFormatOptions } from '$lib/features/settings/config';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
@@ -38,7 +38,7 @@
   let category: Category = $derived(data?.category || Category.OTHER);
   let date = $derived<DateValue>(parseDate(createDate(data?.date).format('YYYY-MM-DD')));
   const dateFormat = $derived(
-    dateFormatOptions.find((item) => item.value === useSettingsStore.settings.dateFormat)
+    dateFormatOptions.find((item) => item.value === settingsStore.settings.dateFormat)
       ?.valueDatePickerFormat,
   );
 

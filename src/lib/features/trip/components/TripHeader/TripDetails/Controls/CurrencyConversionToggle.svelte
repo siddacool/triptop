@@ -3,16 +3,16 @@
   import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import { updateTripCurrencyConversionFlag } from '$lib/features/trip/logic/crud.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
 
   const tripId = page.params.tripId || '';
-  const homeCurrency = $derived(useSettingsStore.settings.homeCurrency);
+  const homeCurrency = $derived(settingsStore.settings.homeCurrency);
   const tripCurrency = $derived(tripDetailStore.trip?.currency);
   const isCurrencySame = $derived(homeCurrency === tripCurrency);
   const isShow = $derived(
-    useSettingsStore.settings.enableCurrencyConversion &&
+    settingsStore.settings.enableCurrencyConversion &&
       !isCurrencySame &&
       expenseListStore.expenses.length,
   );

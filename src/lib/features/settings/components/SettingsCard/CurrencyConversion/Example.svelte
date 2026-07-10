@@ -1,6 +1,6 @@
 <script>
   import { Column, Money } from '@flightlesslabs/dodo-ui';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
 </script>
 
 <Column>
@@ -9,8 +9,8 @@
     <b>
       <Money
         value={500000}
-        currency={useSettingsStore.settings.homeCurrency}
-        locale={useSettingsStore.settings.locale}
+        currency={settingsStore.settings.homeCurrency}
+        locale={settingsStore.settings.locale}
       />
     </b>
   </div>

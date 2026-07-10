@@ -1,8 +1,8 @@
 <script lang="ts">
   import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
   import { createDate } from '$lib/utils/date-time/createDate';
-  import { dateFormatOptions } from '$lib/stores/settings/date-format/types';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { dateFormatOptions } from '$lib/features/settings/config';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import {
     Button,
     Card,
@@ -41,7 +41,7 @@
   );
 
   const dateFormat = $derived(
-    dateFormatOptions.find((item) => item.value === useSettingsStore.settings.dateFormat)
+    dateFormatOptions.find((item) => item.value === settingsStore.settings.dateFormat)
       ?.valueDatePickerFormat,
   );
 

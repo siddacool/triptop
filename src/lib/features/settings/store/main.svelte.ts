@@ -1,11 +1,8 @@
-import { getLocalStoreData, setLocalStoreData } from '$lib/utils/storage';
+import { getLocalStoreData } from '$lib/utils/storage';
 import type { CurrencyCode } from '@flightlesslabs/currency';
-import { DEFAULT_DATE_FORMAT, type DateFormatMode } from './date-format/types';
-import type { ThemeMode } from './theme/types';
-import { DEFAULT_HOME_CURRENCY } from './home-currency/types';
 import { DEFAULT_LOCALE } from '$lib/features/trip/const';
-
-const LOCAL_STORE_SETTINGS_CONFIG = 'SettingsConfig';
+import type { DateFormatMode, ThemeMode } from '../types';
+import { DEFAULT_DATE_FORMAT, DEFAULT_HOME_CURRENCY, LOCAL_STORE_SETTINGS_CONFIG } from '../const';
 
 export type SettingsConfig = {
   theme: ThemeMode;
@@ -32,20 +29,10 @@ function createSettingsStore() {
     get settings() {
       return settings;
     },
-    fetchSettings() {
-      settings = { ...defaultStorageData, ...dataFromStorage };
-    },
-    updateSettings(value: Partial<SettingsConfig>) {
-      const newConfig = {
-        ...settings,
-        ...value,
-      };
-
-      settings = newConfig;
-
-      setLocalStoreData<SettingsConfig>('local', LOCAL_STORE_SETTINGS_CONFIG, settings);
+    update(value: SettingsConfig) {
+      settings = value;
     },
   };
 }
 
-export const useSettingsStore = createSettingsStore();
+export const settingsStore = createSettingsStore();

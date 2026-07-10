@@ -1,10 +1,11 @@
 <script lang="ts">
   import { Column, FormField } from '@flightlesslabs/dodo-ui';
   import { Select } from '@flightlesslabs/dodo-ui-bits';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import { localeOptionsBrowser } from '$lib/features/trip/config';
+  import { updateSettings } from '$lib/features/settings/logic/index.svelte';
 
-  const value = $derived(useSettingsStore.settings.locale);
+  const value = $derived(settingsStore.settings.locale);
 </script>
 
 <Column md={2}>
@@ -13,7 +14,7 @@
       {value}
       options={localeOptionsBrowser}
       onValueChange={(val) =>
-        useSettingsStore.updateSettings({
+        updateSettings({
           locale: val,
         })}
       name="locale"

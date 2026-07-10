@@ -4,7 +4,7 @@
   import { Column, Grid } from '@flightlesslabs/dodo-ui';
   import FieldHeader from '$lib/components/ui/FieldHeader/FieldHeader.svelte';
   import Example from './Example.svelte';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
 </script>
 
 <Column>
@@ -14,7 +14,7 @@
     </Column>
 
     <EnableCurrencyConversion />
-    {#if useSettingsStore.settings.enableCurrencyConversion}
+    {#if settingsStore.settings.enableCurrencyConversion}
       <CurrencySettings />
       <Example />
     {/if}

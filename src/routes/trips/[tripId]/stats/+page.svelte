@@ -4,7 +4,7 @@
   import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { expenseListStore } from '$lib/features/expense/store/list.svelte';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onMount } from 'svelte';
@@ -26,8 +26,8 @@
         await tripDetailStore.load(tripId);
 
         const tripCurrency = tripDetailStore.trip?.currency;
-        const homeCurrency = useSettingsStore.settings.homeCurrency;
-        const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
+        const homeCurrency = settingsStore.settings.homeCurrency;
+        const enableCurrencyConversion = settingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
           await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);

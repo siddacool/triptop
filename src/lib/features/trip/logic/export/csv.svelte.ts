@@ -2,10 +2,10 @@ import { categoryOptions } from '$lib/features/expense/config/category-options';
 import { expenseListStore } from '$lib/features/expense/store/list.svelte';
 import type { Expense } from '$lib/features/expense/types';
 import { Category } from '$lib/features/expense/types/category';
+import { settingsStore } from '$lib/features/settings/store/main.svelte';
 import { createDate } from '$lib/utils/date-time/createDate';
 import { downloadFile } from '$lib/utils/downloadFile';
 import { toSafeFilename } from '$lib/utils/file-name/file-name';
-import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
 import { tripDetailStore } from '../../store/detail.svelte';
 import type { Trip } from '../../types';
 import { validateTripExportExpenses } from '../../validation';
@@ -24,7 +24,7 @@ export function downloadTripAsCSV() {
 
   validateTripExportExpenses(trip, expenses);
 
-  const settings = useSettingsStore.settings;
+  const settings = settingsStore.settings;
   const dateFormat = settings.dateFormat;
   const enableCurrencyConversion = settings.enableCurrencyConversion;
   const homeCurrency = settings.homeCurrency;

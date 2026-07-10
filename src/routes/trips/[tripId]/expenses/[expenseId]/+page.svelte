@@ -3,7 +3,7 @@
   import Box from '$lib/components/ui/Box/Box.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onMount } from 'svelte';
   import ExpenseDetailsHeader from '$lib/features/expense/components/ExpenseDetailsHeader/ExpenseDetailsHeader.svelte';
@@ -28,8 +28,8 @@
       try {
         historicalRatesExchangeStore.clear();
         const tripCurrency = tripDetailStore.trip?.currency;
-        const homeCurrency = useSettingsStore.settings.homeCurrency;
-        const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
+        const homeCurrency = settingsStore.settings.homeCurrency;
+        const enableCurrencyConversion = settingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
           await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);

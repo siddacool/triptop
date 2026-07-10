@@ -1,14 +1,14 @@
 <script lang="ts">
   import { Column, FormField, Grid } from '@flightlesslabs/dodo-ui';
   import { Select } from '@flightlesslabs/dodo-ui-bits';
-  import { dateFormatOptions, type DateFormatMode } from '$lib/stores/settings/date-format/types';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import FieldMessage from '$lib/components/ui/FieldMessage/FieldMessage.svelte';
   import { createDate } from '$lib/utils/date-time/createDate';
+  import { updateSettings } from '$lib/features/settings/logic/index.svelte';
+  import { dateFormatOptions } from '$lib/features/settings/config';
+  import type { DateFormatMode } from '$lib/features/settings/types';
 
-  const dateExample = $derived(
-    createDate('2026-06-18').format(useSettingsStore.settings.dateFormat),
-  );
+  const dateExample = $derived(createDate('2026-06-18').format(settingsStore.settings.dateFormat));
 </script>
 
 <Column>
@@ -17,9 +17,8 @@
       <Column lg={3}>
         <Select
           options={dateFormatOptions}
-          value={useSettingsStore.settings.dateFormat}
-          onValueChange={(val) =>
-            useSettingsStore.updateSettings({ dateFormat: val as DateFormatMode })}
+          value={settingsStore.settings.dateFormat}
+          onValueChange={(val) => updateSettings({ dateFormat: val as DateFormatMode })}
           name="dateFormat"
         />
       </Column>

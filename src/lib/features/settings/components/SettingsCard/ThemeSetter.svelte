@@ -3,15 +3,16 @@
   import type { ComponentThemeColors } from '@flightlesslabs/dodo-ui';
   import { useThemeStore } from '@flightlesslabs/dodo-ui';
 
-  import { ThemeAppBarColors, type ThemeMode } from '$lib/stores/settings/theme/types';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
+  import { ThemeAppBarColors, type ThemeMode } from '$lib/features/settings/types';
+  import { updateSettings } from '$lib/features/settings/logic/index.svelte';
 
   function getSystemTheme(): ComponentThemeColors {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
 
   function applyTheme(mode: ThemeMode) {
-    useSettingsStore.updateSettings({ theme: mode });
+    updateSettings({ theme: mode });
 
     const newTheme = mode === 'auto' ? getSystemTheme() : mode;
 
@@ -28,12 +29,12 @@
   }
 
   onMount(() => {
-    applyTheme(useSettingsStore.settings.theme);
+    applyTheme(settingsStore.settings.theme);
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
     const handleSystemThemeChange = () => {
-      if (useSettingsStore.settings.theme === 'auto') {
+      if (settingsStore.settings.theme === 'auto') {
         applyTheme('auto');
       }
     };
