@@ -4,7 +4,7 @@
   import { createDate } from '$lib/helpers/date-time/createDate';
   import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { transformDates } from './utils';
 
   const DATE_LEVEL = 'STATS_DATE_LEVEL';
@@ -22,13 +22,13 @@
 </script>
 
 <div class="Dates">
-  {#if useTripStore.trip}
+  {#if tripDetailStore.trip}
     <StatsCardPro
       class="Dates"
       title="Dates"
       bind:level
       showLevel
-      trip={useTripStore.trip}
+      trip={tripDetailStore.trip}
       groupStats={dates}
     />
   {/if}

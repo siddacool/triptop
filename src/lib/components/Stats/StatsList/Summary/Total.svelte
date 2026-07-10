@@ -1,12 +1,12 @@
 <script lang="ts">
   import { Column, Money, Threshold } from '@flightlesslabs/dodo-ui';
   import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
   import Icon from '@iconify/svelte';
 </script>
 
-{#if useTripStore.trip && useTripStatsStore?.tripSummary}
+{#if tripDetailStore.trip && useTripStatsStore?.tripSummary}
   <Column>
     <div class="Total">
       <spn class="Icon">
@@ -21,13 +21,13 @@
       >
         <Money
           value={useTripStatsStore.tripSummary.total.amount}
-          currency={useTripStore.trip.currency}
-          locale={useTripStore.trip?.locale}
+          currency={tripDetailStore.trip.currency}
+          locale={tripDetailStore.trip?.locale}
           options={{ maximumFractionDigits: 2 }}
         />
       </Threshold>
 
-      {#if useTripStore.trip.enableCurrencyConversion !== false}
+      {#if tripDetailStore.trip.enableCurrencyConversion !== false}
         <HomeCurrencyExchange amount={useTripStatsStore.tripSummary.total.amountHomeCurrency} />
       {/if}
     </div>

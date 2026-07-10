@@ -9,8 +9,8 @@
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
-  import type { EditExpenseFormData } from '$lib/stores/expense/types';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import type { EditExpenseFormData } from '$lib/features/expense/types';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
 
   let fetching: boolean = $state(false);
@@ -54,13 +54,13 @@
 
 <WhiteMaterial>
   <Box>
-    {#if useExpenseStore.fetching || useTripStore.fetching}
+    {#if useExpenseStore.fetching || tripDetailStore.loading}
       <Loading />
-    {:else if useTripStore.trip}
+    {:else if tripDetailStore.trip}
       <div>
         <PageHeadingNav class="TripHeader" href={`/trips/${tripId}`}>Add expense</PageHeadingNav>
         <EditExpense
-          trip={useTripStore.trip}
+          trip={tripDetailStore.trip}
           mode="create"
           onsubmit={createTrip}
           disabled={fetching}

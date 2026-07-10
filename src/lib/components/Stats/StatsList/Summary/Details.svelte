@@ -2,10 +2,10 @@
   import { Column } from '@flightlesslabs/dodo-ui';
   import MultiLevelSummary from '$lib/components/ui/Stats/MultiLevelSummary/MultiLevelSummary.svelte';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
 
   const expenseSummary = $derived(useTripStatsStore.tripSummary);
-  const trip = $derived(useTripStore.trip);
+  const trip = $derived(tripDetailStore.trip);
 </script>
 
 {#if expenseSummary && trip}

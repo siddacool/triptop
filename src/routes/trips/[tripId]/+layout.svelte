@@ -6,7 +6,7 @@
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { onDestroy, onMount } from 'svelte';
 
   let { children } = $props();
@@ -23,7 +23,7 @@
 
     const loadTrip = async () => {
       try {
-        await useTripStore.fetch(tripId);
+        await tripDetailStore.load(tripId);
         pass = true;
 
         useTripActivePageStore.updateActiveTrip(tripId);
@@ -38,7 +38,7 @@
   });
 
   onDestroy(() => {
-    useTripStore.reset();
+    tripDetailStore.reset();
     useExpenseListStore.reset();
     useExpenseStore.reset();
     useHistoricalCurrencyExchangeStore.clear();

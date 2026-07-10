@@ -9,14 +9,14 @@
   import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { onMount } from 'svelte';
 
   const tripId = page.params.tripId;
   const fetching = $derived(
-    useExpenseListStore.fetching || useTripStore.fetching || useExpenseListStore.fetching,
+    useExpenseListStore.fetching || tripDetailStore.loading || useExpenseListStore.fetching,
   );
-  const mounted = $derived(useExpenseListStore.mounted && useTripStore.mounted);
+  const mounted = $derived(useExpenseListStore.mounted && tripDetailStore.mounted);
 
   onMount(() => {
     if (!tripId) {
@@ -25,9 +25,9 @@
 
     const loadTrip = async () => {
       try {
-        await useTripStore.fetch(tripId);
+        await tripDetailStore.load(tripId);
 
-        const tripCurrency = useTripStore.trip?.currency;
+        const tripCurrency = tripDetailStore.trip?.currency;
         const homeCurrency = useSettingsStore.settings.homeCurrency;
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 

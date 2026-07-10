@@ -1,5 +1,5 @@
 import { createDate } from '$lib/helpers/date-time/createDate';
-import type { Expense } from '../../../../../stores/expense/types';
+import type { Expense } from '$lib/features/expense/types';
 
 export function dateFilter(
   minDate: string | undefined,

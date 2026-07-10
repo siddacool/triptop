@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import { type EditExpenseFormData, type Expense } from '$lib/stores/expense/types';
+  import { type EditExpenseFormData, type Expense } from '$lib/features/expense/types';
 
   type EditExpenseBaseProps = {
     onsubmit?: (data: EditExpenseFormData, eventSubmitter?: HTMLElement | null) => void;

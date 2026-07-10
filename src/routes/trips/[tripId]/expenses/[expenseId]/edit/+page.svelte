@@ -11,8 +11,8 @@
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
-  import type { EditExpenseFormData } from '$lib/stores/expense/types';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import type { EditExpenseFormData } from '$lib/features/expense/types';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { Button, Column, Grid } from '@flightlesslabs/dodo-ui';
   import { modals, toasts } from '@flightlesslabs/dodo-ui-bits';
 
@@ -147,7 +147,7 @@
 </svelte:head>
 
 {#snippet content()}
-  {#if useExpenseStore.expense && useTripStore.trip}
+  {#if useExpenseStore.expense && tripDetailStore.trip}
     <Grid gap={2}>
       <Column>
         <div>
@@ -155,7 +155,7 @@
             Edit expense
           </PageHeadingNav>
           <EditExpense
-            trip={useTripStore.trip}
+            trip={tripDetailStore.trip}
             mode="edit"
             data={useExpenseStore.expense}
             onsubmit={updateExpense}
@@ -183,7 +183,7 @@
 
 <WhiteMaterial>
   <Box>
-    {#if useExpenseStore.fetching || useTripStore.fetching}
+    {#if useExpenseStore.fetching || tripDetailStore.loading}
       <Loading />
     {:else}
       {@render content()}

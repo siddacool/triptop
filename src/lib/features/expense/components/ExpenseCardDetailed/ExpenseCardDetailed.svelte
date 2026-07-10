@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { type Expense } from '$lib/stores/expense/types';
+  import { type Expense } from '$lib/features/expense/types';
   import { Column, Grid } from '@flightlesslabs/dodo-ui';
   import type { Trip } from '$lib/features/trip/types';
   import ArchivedPill from './ArchivedPill.svelte';

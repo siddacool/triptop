@@ -7,7 +7,7 @@
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { onMount } from 'svelte';
 
   const tripId = page.params.tripId;
@@ -25,7 +25,7 @@
     const loadContents = async () => {
       try {
         useHistoricalCurrencyExchangeStore.clear();
-        const tripCurrency = useTripStore.trip?.currency;
+        const tripCurrency = tripDetailStore.trip?.currency;
         const homeCurrency = useSettingsStore.settings.homeCurrency;
         const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 
@@ -47,14 +47,14 @@
   <title>{useExpenseStore.expense?.name || ''}</title>
 </svelte:head>
 
-{#if useExpenseStore.fetching || useTripStore.fetching || useHistoricalCurrencyExchangeStore.fetching}
+{#if useExpenseStore.fetching || tripDetailStore.loading || useHistoricalCurrencyExchangeStore.fetching}
   <Loading />
-{:else if useExpenseStore.expense && useTripStore.trip}
+{:else if useExpenseStore.expense && tripDetailStore.trip}
   <ExpenseDetailsHeader />
   <Box>
     <ExpenseCardDetailed
       expense={useExpenseStore.expense}
-      trip={useTripStore.trip}
+      trip={tripDetailStore.trip}
       class="ExpensesDetailsCard"
     />
   </Box>

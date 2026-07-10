@@ -6,7 +6,7 @@
   import { categoryOptions } from '$lib/stores/category/data';
   import { Category } from '$lib/stores/category/types';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
 
   const CATEGORY_LEVEL = 'STATS_CATEGORY_LEVEL';
 
@@ -20,13 +20,13 @@
 </script>
 
 <div class="Category">
-  {#if useTripStore.trip}
+  {#if tripDetailStore.trip}
     <StatsCardPro
       class="Category"
       title="Category"
       bind:level
       showLevel
-      trip={useTripStore.trip}
+      trip={tripDetailStore.trip}
       groupStats={useTripStatsStore.categoryStats}
     >
       {#snippet customTopicTitle({ topicTitle })}

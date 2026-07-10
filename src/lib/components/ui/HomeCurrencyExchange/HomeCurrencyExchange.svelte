@@ -1,6 +1,6 @@
 <script lang="ts">
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { Money } from '@flightlesslabs/dodo-ui';
 
   type Props = {
@@ -11,7 +11,7 @@
   const { class: className = '', amount }: Props = $props();
   const homeCurrency = $derived(useSettingsStore.settings.homeCurrency);
   const locale = $derived(useSettingsStore.settings.locale);
-  const tripCurrency = $derived(useTripStore.trip?.currency);
+  const tripCurrency = $derived(tripDetailStore.trip?.currency);
   const isCurrencySame = $derived(homeCurrency === tripCurrency);
   const isShow = $derived(
     useSettingsStore.settings.enableCurrencyConversion &&

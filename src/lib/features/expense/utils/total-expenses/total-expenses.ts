@@ -1,4 +1,4 @@
-import type { Expense } from '../../../../stores/expense/types';
+import type { Expense } from '$lib/features/expense/types';
 
 export function getExpensesTotal(expenses: Expense[]): number {
   let total = 0;

@@ -1,9 +1,9 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import EditExpense from './EditExpense.svelte';
-  import { type Expense } from '$lib/stores/expense/types';
+  import { type Expense } from '$lib/features/expense/types';
   import { Theme } from '@flightlesslabs/dodo-ui';
-  import { mockDataTrips } from '$lib/stores/trip/data/mock-data-trips';
+  import { mockDataTrips } from '$lib/features/trip/mocks/mock-data-trips';
   import { Category } from '$lib/stores/category/types';
 
   // ------------------------------

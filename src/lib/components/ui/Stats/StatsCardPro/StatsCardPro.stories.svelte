@@ -2,7 +2,7 @@
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import StatsCardPro from './StatsCardPro.svelte';
   import { mockStatsData } from '$lib/stores/stats/data/mock-stats-data';
-  import { mockDataTrips } from '$lib/stores/trip/data/mock-data-trips';
+  import { mockDataTrips } from '$lib/features/trip/mocks/mock-data-trips';
   import { Theme } from '@flightlesslabs/dodo-ui';
 
   // ------------------------------

@@ -1,8 +1,8 @@
 <script>
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
 </script>
 
-<h2 class="TripName">{useTripStore.trip?.name}</h2>
+<h2 class="TripName">{tripDetailStore.trip?.name}</h2>
 
 <style lang="scss">
   .TripName {

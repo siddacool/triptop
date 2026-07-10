@@ -4,7 +4,7 @@
   import { page } from '$app/state';
   import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
 
@@ -13,7 +13,7 @@
 
   const loadContents = async () => {
     try {
-      const tripCurrency = useTripStore.trip?.currency;
+      const tripCurrency = tripDetailStore.trip?.currency;
       const homeCurrency = useSettingsStore.settings.homeCurrency;
       const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
 

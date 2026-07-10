@@ -2,7 +2,7 @@
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import MultiLevelSummary from './MultiLevelSummary.svelte';
   import { mockStatsData } from '$lib/stores/stats/data/mock-stats-data';
-  import { mockDataTrips } from '$lib/stores/trip/data/mock-data-trips';
+  import { mockDataTrips } from '$lib/features/trip/mocks/mock-data-trips';
 
   // ------------------------------
   // Storybook Meta
