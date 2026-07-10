@@ -1,5 +1,5 @@
 import type { HistoricalCurrencyExchangeRate } from '$lib/stores/currency/types';
-import type { Expense } from '../types';
+import type { Expense } from '../../types';
 import { updateExchangeDetails } from './update-exchange-details';
 import { updateFilterFields } from './update-filter-fields';
 

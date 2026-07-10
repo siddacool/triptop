@@ -1,9 +1,9 @@
 import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
 import type { CurrencyCode } from '@flightlesslabs/currency';
-import { DEFAULT_LOCALE } from '../trip/types';
 import { DEFAULT_DATE_FORMAT, type DateFormatMode } from './date-format/types';
 import type { ThemeMode } from './theme/types';
 import { DEFAULT_HOME_CURRENCY } from './home-currency/types';
+import { DEFAULT_LOCALE } from '$lib/features/trip/const';
 
 const LOCAL_STORE_SETTINGS_CONFIG = 'SettingsConfig';
 

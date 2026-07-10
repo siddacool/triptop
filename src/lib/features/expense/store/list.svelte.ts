@@ -1,5 +1,6 @@
 import { listTripExpenses } from '../db';
 import type { Expense } from '../types';
+import { expensesListDecorator } from '../utils/decorators/list-decorator';
 import { getFilteredExpenses } from '../utils/filtered-expenses';
 import { getExpenseGroupList } from '../utils/group-expenses/group-expenses';
 import { getTotalAmountHomeCurrency } from '../utils/total-amount-home-currency/total-amount-home-currency';
@@ -36,7 +37,9 @@ function createExpenseListStore() {
       return totalAmountHomeCurrency;
     },
     async load(tripId: string) {
-      expenses = await listTripExpenses(tripId);
+      const generalExpenses = await listTripExpenses(tripId);
+
+      expenses = expensesListDecorator(generalExpenses, undefined);
     },
   };
 }

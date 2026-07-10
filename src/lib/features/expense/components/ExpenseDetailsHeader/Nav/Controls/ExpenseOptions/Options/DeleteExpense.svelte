@@ -5,7 +5,7 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import { Text } from '@flightlesslabs/dodo-ui';
-  import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
+  import { deleteExpense as deleteExpenseCRUD } from '$lib/features/expense/logic/crud.svelte';
 
   const tripId = page.params.tripId || '';
   const expenseId = page.params.expenseId || '';
@@ -20,7 +20,7 @@
         return;
       }
 
-      await useEditExpenseStore.delete(expenseId);
+      await deleteExpenseCRUD(expenseId);
 
       toasts.add({
         title: 'Successs',

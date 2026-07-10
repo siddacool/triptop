@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { Money } from '@flightlesslabs/dodo-ui';
 
   type Props = {

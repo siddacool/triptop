@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { LevelStage } from '$lib/components/ui/Stats/Controls/DetailsExpander/DetailsExpander.svelte';
   import StatsCardPro from '$lib/components/ui/Stats/StatsCardPro/StatsCardPro.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { createDate } from '$lib/helpers/date-time/createDate';
   import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
-  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { transformDates } from './utils';
 
   const DATE_LEVEL = 'STATS_DATE_LEVEL';

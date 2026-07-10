@@ -1,9 +1,9 @@
 <script lang="ts">
   import { Column, Money, Threshold } from '@flightlesslabs/dodo-ui';
   import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
-  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
   import Icon from '@iconify/svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
 </script>
 
 {#if tripDetailStore.trip && useTripStatsStore?.tripSummary}

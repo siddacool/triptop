@@ -2,11 +2,11 @@
   import { DropdownMenuItem, modals, toasts } from '@flightlesslabs/dodo-ui-bits';
   import Icon from '@iconify/svelte';
   import { page } from '$app/state';
-  import { useEditExpenseStore } from '$lib/stores/expense/edit.svelte';
   import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
-  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
+  import { archiveExpense, unarchiveExpense } from '$lib/features/expense/logic/crud.svelte';
 
   const tripId = page.params.tripId || '';
   const expenseId = page.params.expenseId || '';
@@ -37,7 +37,11 @@
         return;
       }
 
-      await useEditExpenseStore.toggleArchived(expenseId, archiveCondition);
+      if (archiveCondition) {
+        await archiveExpense(expenseId);
+      } else {
+        await unarchiveExpense(expenseId);
+      }
 
       toasts.add({
         title: 'Successs',

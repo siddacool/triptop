@@ -1,4 +1,4 @@
-import { useExpenseListStore } from '../expense/list.svelte';
+import { expenseListStore } from '$lib/features/expense/store/list.svelte';
 import { type GroupStats, type ExpenseSummary } from './types';
 import { createStats } from './utils/create-stats/create-stats';
 
@@ -33,7 +33,7 @@ function createTripStatsStore() {
 
         fetching = true;
 
-        const expensesData = [...useExpenseListStore.expenses].sort((a, b) =>
+        const expensesData = [...expenseListStore.expenses].sort((a, b) =>
           a.date.localeCompare(b.date),
         );
 

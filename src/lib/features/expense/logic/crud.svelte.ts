@@ -46,10 +46,10 @@ export async function deleteExpenseByTripId(tripId: string) {
 }
 
 async function updateExpenseFields(id: string, data: Partial<ExpenseUpdateData>) {
-  const trip = await getExpenseById(id);
+  const expense = await getExpenseById(id);
 
   return saveExpense({
-    ...trip,
+    ...expense,
     ...data,
   });
 }

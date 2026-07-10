@@ -1,12 +1,12 @@
 <script lang="ts">
-  import CategoryIcon from '$lib/components/ui/Category/CategoryIcon/CategoryIcon.svelte';
   import type { LevelStage } from '$lib/components/ui/Stats/Controls/DetailsExpander/DetailsExpander.svelte';
   import StatsCardPro from '$lib/components/ui/Stats/StatsCardPro/StatsCardPro.svelte';
+  import CategoryIcon from '$lib/features/expense/components/Category/CategoryIcon/CategoryIcon.svelte';
+  import { categoryOptions } from '$lib/features/expense/config/category-options';
+  import { Category } from '$lib/features/expense/types/category';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { getLocalStoreData, setLocalStoreData } from '$lib/helpers/storage';
-  import { categoryOptions } from '$lib/stores/category/data';
-  import { Category } from '$lib/stores/category/types';
   import { useTripStatsStore } from '$lib/stores/stats/trip-stats.svelte';
-  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte.ts';
 
   const CATEGORY_LEVEL = 'STATS_CATEGORY_LEVEL';
 

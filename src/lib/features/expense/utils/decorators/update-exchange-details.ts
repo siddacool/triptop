@@ -1,7 +1,7 @@
 import { convertCurrency } from '$lib/helpers/convert-currency';
 import { findNearestExchangeRate } from '$lib/helpers/find-nearest-exchange-rate';
 import type { HistoricalCurrencyExchangeRate } from '$lib/stores/currency/types';
-import type { Expense } from '../types';
+import type { Expense } from '../../types';
 
 //  fields added to simplify search and other expense filters
 export function updateExchangeDetails(

@@ -1,8 +1,8 @@
 <script lang="ts" module>
-  import { type EditExpenseFormData, type Expense } from '$lib/features/expense/types';
+  import { type Expense, type ExpenseUpdateData } from '$lib/features/expense/types';
 
   type EditExpenseBaseProps = {
-    onsubmit?: (data: EditExpenseFormData, eventSubmitter?: HTMLElement | null) => void;
+    onsubmit?: (data: ExpenseUpdateData, eventSubmitter?: HTMLElement | null) => void;
     disabled?: boolean;
     trip: Trip;
   };
@@ -24,12 +24,12 @@
   import { parseDate, type DateValue } from '@internationalized/date';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
   import type { Trip } from '$lib/features/trip/types';
-  import { Category } from '$lib/stores/category/types';
-  import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
   import { dateFormatOptions } from '$lib/stores/settings/date-format/types';
   import Amount from './Amount.svelte';
   import { createDate } from '$lib/helpers/date-time/createDate';
+  import { Category } from '../../types/category';
+  import CategorySelect from '../Category/CategorySelect/CategorySelect.svelte';
 
   const { mode, data, onsubmit, disabled = false, trip }: EditExpenseProps = $props();
 
@@ -69,7 +69,7 @@
       amount,
       category: category || Category.OTHER,
       date: date.toString(),
-    } as EditExpenseFormData;
+    } as ExpenseUpdateData;
 
     onsubmit?.(data, eventSubmitter);
 
