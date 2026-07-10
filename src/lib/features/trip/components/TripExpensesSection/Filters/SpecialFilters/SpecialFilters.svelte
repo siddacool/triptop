@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
   import { Button, Indicator } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
   import { useTripPageStore } from '$lib/stores/app/pages/trip-page.svelte';
+  import { expenseFiltersStore } from '$lib/features/expense/store/filters.svelte';
 
   async function handleClick() {
     const filterSelectorCondition = !useTripPageStore.showSpecailFiltersSelector;
@@ -21,7 +21,7 @@
 </script>
 
 <div class="SpecialFilters">
-  {#if useExpenseFiltersStore.isSpecialFiltersActive}
+  {#if expenseFiltersStore.isSpecialFiltersActive}
     <Indicator color="danger" class="SpecialFiltersDot" font-size="1rem" />
   {/if}
 

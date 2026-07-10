@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ExpenseFilter from '$lib/components/Expenses/ExpenseFilter/ExpenseFilter.svelte';
+  import ExpenseFilter from '$lib/features/expense/components/ExpenseFilter/ExpenseFilter.svelte';
   import { useTripPageStore } from '$lib/stores/app/pages/trip-page.svelte';
 </script>
 

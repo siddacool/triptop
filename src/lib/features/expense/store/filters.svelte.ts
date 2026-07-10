@@ -10,6 +10,9 @@ function createExpenseFiltersStore() {
     get filters() {
       return filters;
     },
+    get isSpecialFiltersActive() {
+      return filters?.category || filters?.minDate || filters?.maxDate ? true : false;
+    },
     update(value: ExpenseFilters) {
       filters = { ...value };
     },

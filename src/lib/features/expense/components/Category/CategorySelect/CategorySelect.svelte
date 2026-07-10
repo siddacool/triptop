@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Select, type SelectProps } from '@flightlesslabs/dodo-ui-bits';
   import DecoratedOption from './DecoratedOption.svelte';
-  import { categoryOptions } from '$lib/stores/category/data';
-  import { type CategoryOption } from '$lib/stores/category/types';
+  import { categoryOptions } from '$lib/features/expense/config/category-options';
+  import type { CategoryOption } from '$lib/features/expense/types/category';
 
   type Props = Partial<SelectProps>;
 

@@ -8,13 +8,13 @@ export function listTripExpenses(tripId: string) {
 }
 
 export async function getExpenseById(id: string) {
-  const trip = await db.expense.where({ _id: id }).first();
+  const expense = await db.expense.where({ _id: id }).first();
 
-  if (!trip) {
+  if (!expense) {
     throw new Error('Expense not found');
   }
 
-  return trip;
+  return expense;
 }
 
 export async function createExpense(data: ExpenseCreateData) {

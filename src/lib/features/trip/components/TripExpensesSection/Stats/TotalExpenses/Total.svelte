@@ -1,19 +1,15 @@
 <script lang="ts">
+  import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
-  import { getExpensesTotal } from '$lib/stores/expense/getters/total-expenses';
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { Money, Threshold } from '@flightlesslabs/dodo-ui';
-
-  const total = $derived(getExpensesTotal(useExpenseListStore.filtredExpenses));
-  const locale = $derived(tripDetailStore?.trip?.locale);
 </script>
 
 {#if tripDetailStore.trip}
-  <Threshold value={total} threshold={0} colorMap={{ above: 'default' }}>
+  <Threshold value={expenseListStore.totalAmount} threshold={0} colorMap={{ above: 'default' }}>
     <Money
-      value={total}
+      value={expenseListStore.totalAmount}
       currency={tripDetailStore.trip.currency}
-      {locale}
+      locale={tripDetailStore?.trip?.locale}
       options={{ maximumFractionDigits: 2 }}
     />
   </Threshold>

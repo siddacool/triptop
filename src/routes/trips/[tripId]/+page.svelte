@@ -1,23 +1,20 @@
 <script lang="ts">
   import { beforeNavigate } from '$app/navigation';
-  import { resolve } from '$app/paths';
   import { page } from '$app/state';
-  import Box from '$lib/components/ui/Box/Box.svelte';
-  import PrimaryButton from '$lib/components/ui/Buttons/PrimaryButton/PrimaryButton.svelte';
-  import ControlSection from '$lib/components/ui/ControlSection/ControlSection.svelte';
-  import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
   import Loading from '$lib/components/ui/Loading/Loading.svelte';
+  import NoExpenses from '$lib/features/expense/components/NoExpenses.svelte';
+  import { clearExpenseFilters } from '$lib/features/expense/logic/filters.svelte';
+  import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import TripExpensesSection from '$lib/features/trip/components/TripExpensesSection/TripExpensesSection.svelte';
   import TripHeader from '$lib/features/trip/components/TripHeader/TripHeader.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
-  import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import Icon from '@iconify/svelte';
   import { onMount } from 'svelte';
 
   const tripId = page.params.tripId;
+
+  let loading = $state(true);
 
   onMount(() => {
     if (!tripId) {
@@ -37,9 +34,9 @@
           await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
         }
 
-        await useExpenseListStore.fetch(tripId);
-      } catch (error) {
-        console.error('Failed to fetch trip:', error);
+        await expenseListStore.load(tripId);
+      } finally {
+        loading = false;
       }
     };
 
@@ -50,7 +47,7 @@
     // Ignore refresh/tab close
     if (!navigation.to) return;
 
-    useExpenseFiltersStore.reset();
+    clearExpenseFilters();
   });
 </script>
 
@@ -59,31 +56,16 @@
 </svelte:head>
 
 {#snippet content()}
-  {#if useExpenseListStore.mounted && !useExpenseListStore.expenses.length}
-    <Box>
-      <Instructions>
-        You don't have any expenses.<br /> use "Add expense" button to add an expense
-      </Instructions>
-      <ControlSection controlsAlignment="center">
-        <PrimaryButton
-          href={resolve(`/trips/${tripId}/expenses/add`)}
-          class="TripPageAddExpenseButton"
-        >
-          <span class="Icon">
-            <Icon icon="material-symbols:add-rounded" />
-          </span>
-          Add expense
-        </PrimaryButton>
-      </ControlSection>
-    </Box>
-  {:else if useExpenseListStore.mounted && useExpenseListStore.expenses.length}
+  {#if expenseListStore.expenses.length}
     <TripExpensesSection />
+  {:else}
+    <NoExpenses />
   {/if}
 {/snippet}
 
 <TripHeader />
 
-{#if useExpenseListStore.fetching || useHistoricalCurrencyExchangeStore.fetching}
+{#if loading}
   <Loading />
 {:else}
   {@render content()}

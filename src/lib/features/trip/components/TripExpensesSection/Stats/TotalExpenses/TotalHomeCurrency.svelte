@@ -1,16 +1,12 @@
 <script lang="ts">
   import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
+  import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
-  import { getExpensesTotalAmountHomeCurrency } from '$lib/stores/expense/getters/total-expenses';
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
-  const amountHomeCurrencyTotal = $derived(
-    getExpensesTotalAmountHomeCurrency(useExpenseListStore.filtredExpenses),
-  );
   const tripEnableCurrencyConversion = $derived(
     tripDetailStore.trip?.enableCurrencyConversion === false ? false : true,
   );
   const allExpensesOk = $derived(
-    useExpenseListStore.filtredExpenses.every(
+    expenseListStore.expensesFiltred.every(
       (item) => item.virtualData?.amountHomeCurrency || item.virtualData?.amountHomeCurrency === 0,
     ),
   );
@@ -18,7 +14,10 @@
 </script>
 
 {#if isShow}
-  <HomeCurrencyExchange amount={amountHomeCurrencyTotal} class="TotalExpensesTotalHomeCurrency" />
+  <HomeCurrencyExchange
+    amount={expenseListStore.totalAmountHomeCurrency}
+    class="TotalExpensesTotalHomeCurrency"
+  />
 {/if}
 
 <style lang="scss">

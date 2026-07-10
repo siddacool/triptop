@@ -1,14 +1,18 @@
 <script lang="ts">
-  import { useExpenseFiltersStore } from '$lib/stores/expense/filters.svelte';
+  import {
+    clearExpenseSearchFilter,
+    updateExpenseSearchFilter,
+  } from '$lib/features/expense/logic/filters.svelte';
+  import { expenseFiltersStore } from '$lib/features/expense/store/filters.svelte';
   import { Search } from '@flightlesslabs/dodo-ui';
 
-  let search = $state(useExpenseFiltersStore.searchFilter);
+  let search = $state(expenseFiltersStore.filters.search);
 
   $effect(() => {
     const value = search;
 
     const timeout = setTimeout(() => {
-      useExpenseFiltersStore.updateSearchFilter(value || '');
+      updateExpenseSearchFilter(value || '');
     }, 300);
 
     return () => clearTimeout(timeout);
@@ -24,7 +28,7 @@
     name="search-expense"
     onclear={() => {
       search = '';
-      useExpenseFiltersStore.updateSearchFilter('');
+      clearExpenseSearchFilter();
     }}
   />
 </div>

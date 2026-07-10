@@ -1,12 +1,14 @@
 import { categoryOptions } from '$lib/features/expense/config/category-options';
+import { expenseListStore } from '$lib/features/expense/store/list.svelte';
+import type { Expense } from '$lib/features/expense/types';
 import { Category } from '$lib/features/expense/types/category';
-import type { Expense } from '$lib/stores/expense/types';
-import type { DateFormatMode } from '$lib/stores/settings/date-format/types';
-import type { Trip } from '$lib/stores/trip/types';
 import { createDate } from '$lib/helpers/date-time/createDate';
-import type { ExportTripValue } from '../types';
+import { downloadFile } from '$lib/helpers/downloadFile';
 import { toSafeFilename } from '$lib/helpers/file-name';
-import type { CurrencyCode } from '@flightlesslabs/currency';
+import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
+import { tripDetailStore } from '../../store/detail.svelte';
+import type { Trip } from '../../types';
+import { validateTripExportExpenses } from '../../validation';
 
 const escapeCsvValue = (value: unknown): string => {
   const str = String(value ?? '');
@@ -16,13 +18,17 @@ const escapeCsvValue = (value: unknown): string => {
 
 const categoryMap = new Map(categoryOptions.map(({ value, label }) => [value, label]));
 
-export function exportTripAsCsv(
-  trip: Trip,
-  expenses: Expense[],
-  dateFormat: DateFormatMode,
-  enableCurrencyConversion: boolean,
-  homeCurrency: CurrencyCode,
-): ExportTripValue<string> {
+export function downloadTripAsCSV() {
+  const trip = tripDetailStore.trip as Trip;
+  const expenses = expenseListStore.expenses;
+
+  validateTripExportExpenses(trip, expenses);
+
+  const settings = useSettingsStore.settings;
+  const dateFormat = settings.dateFormat;
+  const enableCurrencyConversion = settings.enableCurrencyConversion;
+  const homeCurrency = settings.homeCurrency;
+
   const now = createDate();
   const exportedAt = now.format(dateFormat);
 
@@ -56,12 +62,7 @@ export function exportTripAsCsv(
   const csv = rows.map((row) => row.map(escapeCsvValue).join(',')).join('\n');
 
   const nameFormmated = toSafeFilename(trip.name, 20);
-  const filename = `triptop-export.${nameFormmated}.${now.format('YYYY-MM-DD_HH-mm-ss')}.csv`;
+  const filename = `triptop.${nameFormmated}.${now.format('YYYY-MM-DD_HH-mm-ss')}.csv`;
 
-  return {
-    data: csv,
-    dataString: csv,
-    filename,
-    type: 'text/csv',
-  };
+  downloadFile(filename, csv, 'text/csv');
 }

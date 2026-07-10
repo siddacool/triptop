@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type { CategoryOption } from '$lib/stores/category/types';
-
+  import type { CategoryOption } from '$lib/features/expense/types/category';
   import CategoryIcon from '../CategoryIcon/CategoryIcon.svelte';
 
   type Props = {

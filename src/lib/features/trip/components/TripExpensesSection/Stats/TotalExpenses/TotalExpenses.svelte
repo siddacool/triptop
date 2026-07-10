@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import Total from './Total.svelte';
   import TotalHomeCurrency from './TotalHomeCurrency.svelte';
 </script>
 
-{#if useTripStore.trip}
+{#if tripDetailStore.trip}
   <div class="TotalExpenses">
     <Total />
     <TotalHomeCurrency />

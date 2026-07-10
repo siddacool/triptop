@@ -1,15 +1,12 @@
 <script lang="ts">
-  import ExpenseGroup from '$lib/components/Expenses/ExpenseGroup/ExpenseGroup.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
-  import { getExpenseGroupList } from '$lib/stores/expense/getters/group-expenses';
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
+  import ExpenseGroup from '$lib/features/expense/components/ExpenseGroup/ExpenseGroup.svelte';
+  import { expenseListStore } from '$lib/features/expense/store/list.svelte';
   import { tripDetailStore } from '../../store/detail.svelte';
   import Filters from './Filters/Filters.svelte';
   import SpecialFiltersSelector from './Filters/SpecialFilters/SpecialFiltersSelector.svelte';
   import FloatingControls from './FloatingControls/FloatingControls.svelte';
   import Stats from './Stats/Stats.svelte';
-
-  const groupExpenses = $derived(getExpenseGroupList(useExpenseListStore.filtredExpenses));
 </script>
 
 {#if tripDetailStore.trip}
@@ -18,7 +15,7 @@
     <Box>
       <SpecialFiltersSelector />
       <Stats />
-      <ExpenseGroup data={groupExpenses} trip={tripDetailStore.trip} />
+      <ExpenseGroup data={expenseListStore.expenseDateGroups} trip={tripDetailStore.trip} />
       <FloatingControls />
     </Box>
   </div>

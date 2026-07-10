@@ -1,7 +1,7 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf';
   import CategoryShowCase from './CategoryShowCase.svelte';
-  import { categoryOptions } from '$lib/stores/category/data';
+  import { categoryOptions } from '$lib/features/expense/config/category-options';
 
   // ------------------------------
   // Storybook Meta
