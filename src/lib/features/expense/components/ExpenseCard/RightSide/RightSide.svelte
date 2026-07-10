@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Expense } from '$lib/stores/expense/types';
-  import type { Trip } from '$lib/stores/trip/types';
+  import type { Expense } from '$lib/features/expense/types';
+  import type { Trip } from '$lib/features/trip/types';
 
   type Props = {
     expense: Expense;

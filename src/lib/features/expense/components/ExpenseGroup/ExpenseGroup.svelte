@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { ExpenseGroup } from '$lib/stores/expense/getters/group-expenses';
-  import type { Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
+  import type { ExpenseGroup } from '../../utils/group-expenses/group-expenses';
   import Expense from './Expense/Expense.svelte';
   import Header from './Header/Header.svelte';
 

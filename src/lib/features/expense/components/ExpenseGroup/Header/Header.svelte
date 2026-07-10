@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ExpenseGroupHeader } from '$lib/stores/expense/getters/group-expenses';
+  import type { ExpenseGroupHeader } from '../../../utils/group-expenses/group-expenses';
   import Date from './Date.svelte';
 
   type Props = {

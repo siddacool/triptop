@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import type { ExpenseSummary } from '$lib/stores/stats/types';
-  import type { Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
   import Amount from './Amount.svelte';
   import type { MoneyValue } from '$lib/stores/currency/types';
   import LabelGroup from './LabelGroup.svelte';

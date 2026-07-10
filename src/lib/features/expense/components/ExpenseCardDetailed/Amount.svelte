@@ -1,7 +1,7 @@
 <script lang="ts">
   import { type Expense } from '$lib/stores/expense/types';
   import { Column, Money, Threshold } from '@flightlesslabs/dodo-ui';
-  import { type Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
   import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
 

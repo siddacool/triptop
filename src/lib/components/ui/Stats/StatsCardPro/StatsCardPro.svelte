@@ -3,7 +3,7 @@
   import { Card } from '@flightlesslabs/dodo-ui';
   import type { Snippet } from 'svelte';
   import StatsHeader from './StatsHeader/StatsHeader.svelte';
-  import type { Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
   import Summaries from './Summaries.svelte';
   import DetailsExpander, {
     type LevelStage,

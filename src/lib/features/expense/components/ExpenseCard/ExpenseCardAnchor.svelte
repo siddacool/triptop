@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from 'svelte';
   import { resolve } from '$app/paths';
-  import type { Expense } from '$lib/stores/expense/types';
+  import type { Expense } from '$lib/features/expense/types';
 
   type Props = {
     expense: Expense;

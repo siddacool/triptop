@@ -4,7 +4,7 @@
   import BasicInfo from './BasicInfo/BasicInfo.svelte';
   import type { StatsTopicTitleContext } from '../LevelNormal/Title.svelte';
   import DetailedStats from './DetailedStats/DetailedStats.svelte';
-  import type { Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
 
   type Props = {
     class?: string;

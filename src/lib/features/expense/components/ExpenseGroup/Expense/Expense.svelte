@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { ExpenseGroupExpense } from '$lib/stores/expense/getters/group-expenses';
   import ExpenseCard from '../../ExpenseCard/ExpenseCard.svelte';
-  import type { Trip } from '$lib/stores/trip/types';
+  import type { ExpenseGroupExpense } from '$lib/features/expense/utils/group-expenses/group-expenses';
+  import type { Trip } from '$lib/features/trip/types';
 
   type Props = {
     data: ExpenseGroupExpense;

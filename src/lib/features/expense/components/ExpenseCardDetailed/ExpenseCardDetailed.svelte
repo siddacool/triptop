@@ -1,7 +1,7 @@
 <script lang="ts">
   import { type Expense } from '$lib/stores/expense/types';
   import { Column, Grid } from '@flightlesslabs/dodo-ui';
-  import { type Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
   import ArchivedPill from './ArchivedPill.svelte';
   import Amount from './Amount.svelte';
   import Divider from '$lib/components/ui/Divider/Divider.svelte';

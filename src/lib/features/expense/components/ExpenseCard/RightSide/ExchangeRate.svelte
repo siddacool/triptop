@@ -1,7 +1,7 @@
 <script lang="ts">
   import HomeCurrencyExchange from '$lib/components/ui/HomeCurrencyExchange/HomeCurrencyExchange.svelte';
-  import type { Expense } from '$lib/stores/expense/types';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import type { Expense } from '$lib/features/expense/types';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
 
   type Props = {
     expense: Expense;
@@ -14,7 +14,7 @@
   );
 
   const tripEnableCurrencyConversion = $derived(
-    useTripStore.trip?.enableCurrencyConversion === false ? false : true,
+    tripDetailStore.trip?.enableCurrencyConversion === false ? false : true,
   );
 </script>
 

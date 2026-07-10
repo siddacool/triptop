@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import type { ExpenseSummary } from '$lib/stores/stats/types';
   import type { Snippet } from 'svelte';
-  import type { Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
   import type { LevelStage } from '../Controls/DetailsExpander/DetailsExpander.svelte';
   import LevelNormal from './LevelNormal/LevelNormal.svelte';
   import type { StatsTopicTitleContext } from './LevelNormal/Title.svelte';

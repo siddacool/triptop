@@ -2,7 +2,7 @@
   import { Column, FormField } from '@flightlesslabs/dodo-ui';
   import { NumericInput } from '@flightlesslabs/dodo-ui-numeric';
   import { NumberFormatStyle } from 'svelte-number-format';
-  import { type Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
 
   type Props = {
     amount?: number | null;

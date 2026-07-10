@@ -1,4 +1,4 @@
-import type { Expense } from '$lib/stores/expense/types';
+import type { Expense } from '$lib/features/expense/types';
 import type { ExpenseSummary } from '../../types';
 
 export function updateExpenseSummary(summary: ExpenseSummary, expense: Expense) {

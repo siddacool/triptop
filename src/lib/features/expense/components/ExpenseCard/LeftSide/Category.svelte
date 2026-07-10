@@ -1,6 +1,6 @@
 <script lang="ts">
-  import CategoryIcon from '$lib/components/ui/Category/CategoryIcon/CategoryIcon.svelte';
-  import type { Expense } from '$lib/stores/expense/types';
+  import type { Expense } from '$lib/features/expense/types';
+  import CategoryIcon from '../../Category/CategoryIcon/CategoryIcon.svelte';
 
   type Props = {
     expense: Expense;

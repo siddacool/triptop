@@ -1,6 +1,6 @@
 <script lang="ts">
   import ArchivedTag from '$lib/components/ui/ArchivedTag/ArchivedTag.svelte';
-  import type { Expense } from '$lib/stores/expense/types';
+  import type { Expense } from '$lib/features/expense/types';
   import { Column } from '@flightlesslabs/dodo-ui';
 
   type Props = {

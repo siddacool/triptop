@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { GroupStats } from '$lib/stores/stats/types';
-  import type { Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
   import type { Snippet } from 'svelte';
   import MultiLevelSummary from '../MultiLevelSummary/MultiLevelSummary.svelte';
   import type { LevelStage } from '../Controls/DetailsExpander/DetailsExpander.svelte';

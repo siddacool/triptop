@@ -1,7 +1,7 @@
 <script lang="ts">
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
   import { createDate } from '$lib/helpers/date-time/createDate';
-  import type { Expense } from '$lib/stores/expense/types';
+  import type { Expense } from '$lib/features/expense/types';
   import { Column } from '@flightlesslabs/dodo-ui';
 
   type Props = {

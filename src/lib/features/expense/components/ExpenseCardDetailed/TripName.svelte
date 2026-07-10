@@ -1,6 +1,6 @@
 <script lang="ts">
   import FieldValue from '$lib/components/ui/FieldValue/FieldValue.svelte';
-  import type { Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
   import { Column } from '@flightlesslabs/dodo-ui';
 
   type Props = {

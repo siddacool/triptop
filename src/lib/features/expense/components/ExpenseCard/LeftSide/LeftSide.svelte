@@ -1,14 +1,13 @@
 <script lang="ts">
-  import type { Expense } from '$lib/stores/expense/types';
+  import type { Expense } from '$lib/features/expense/types';
   import Category from './Category.svelte';
+  import Title from './Title.svelte';
 
   type Props = {
     expense: Expense;
   };
 
   let { expense }: Props = $props();
-
-  import Title from './Title.svelte';
 
   const classes = $derived(['LeftSide', expense.archived ? 'archived' : ''].filter(Boolean));
 </script>

@@ -3,7 +3,7 @@
   import type { MoneyValue } from '$lib/stores/currency/types';
   import { Money, Threshold } from '@flightlesslabs/dodo-ui';
   import LabelGroup from './LabelGroup.svelte';
-  import type { Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
 
   type Props = {
     trip: Trip;

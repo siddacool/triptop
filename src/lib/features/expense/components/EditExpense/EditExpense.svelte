@@ -23,7 +23,7 @@
   import Controls from './Controls.svelte';
   import { parseDate, type DateValue } from '@internationalized/date';
   import { DatePicker } from '@flightlesslabs/dodo-ui-date';
-  import { type Trip } from '$lib/stores/trip/types';
+  import type { Trip } from '$lib/features/trip/types';
   import { Category } from '$lib/stores/category/types';
   import CategorySelect from '$lib/components/ui/Category/CategorySelect/CategorySelect.svelte';
   import { useSettingsStore } from '$lib/stores/settings/settings.svelte';

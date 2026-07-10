@@ -1,4 +1,4 @@
-import type { Expense } from '$lib/stores/expense/types';
+import type { Expense } from '$lib/features/expense/types';
 
 /**
  * A date group header displayed before the expenses for a given day.
