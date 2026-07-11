@@ -1,5 +1,12 @@
 # triptop
 
+## 5.19.2
+
+### Patch Changes
+
+- 3b693b9: Trip save and sync error fixed
+- 26e0937: Expense save flow improved
+
 ## 5.19.1
 
 ### Patch Changes
