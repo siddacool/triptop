@@ -8,7 +8,7 @@ export async function importTrip(data: ExportTripData) {
   validateTripImport(data);
 
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-  const { _id, id, deviceOnlyData, ...restProps } = data.trip;
+  const { _id, id, ...restProps } = data.trip;
 
   const tripId = await saveTrip({ ...restProps });
 

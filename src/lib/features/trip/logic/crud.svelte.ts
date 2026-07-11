@@ -1,5 +1,6 @@
 import { deleteExpenseByTripId } from '$lib/features/expense/logic/crud.svelte';
 import { createTrip, updateTrip, deleteTrip as deleteTripDb, getTripById } from '../db';
+import { tripDetailStore } from '../store/detail.svelte';
 import type { TripCreateData, TripUpdateData } from '../types';
 import { validateTripCreate, validateTripUpdate } from '../validation';
 
@@ -7,7 +8,12 @@ export async function saveTrip(data: TripCreateData | TripUpdateData) {
   if ('_id' in data) {
     validateTripUpdate(data);
 
-    const id = await updateTrip(data);
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+    const { deviceOnlyData, ...restData } = data;
+
+    const id = await updateTrip({ ...restData });
+
+    tripDetailStore.load(data._id);
 
     return id;
   } else {
