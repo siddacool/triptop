@@ -1,0 +1,1 @@
+import{D as e,K as t,R as n,St as r,Z as i,a,bt as o,h as s,k as c,m as l,mt as u,ot as d,pt as f,y as p}from"./M6459hCJ.js";import"./xihTtKlq.js";var m=c(`<div><!></div>`);function h(c,h){u(h,!0);let g=a(h,`class`,3,``),_=d(()=>[`Box`,g()].filter(Boolean));var v=m();p(i(v),()=>h.children??r),o(v),t(e=>l(v,1,e,`svelte-lcxt5e`),[()=>s(n(_).join(` `))]),e(c,v),f()}export{h as t};

@@ -1,0 +1,1 @@
+import"./M6459hCJ.js";import{t as e}from"./DLApewn_.js";import{t}from"./6U64vzyK.js";import{r as n,s as r}from"./B8Vknj8p.js";async function i(i){r(i);let{_id:a,id:o,deviceOnlyData:s,...c}=i.trip;await t(await n({...c}),i.expenses),await e.load()}export{i as t};
