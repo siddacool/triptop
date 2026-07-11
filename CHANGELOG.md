@@ -1,5 +1,11 @@
 # triptop
 
+## 5.19.0
+
+### Minor Changes
+
+- Massive project restucture
+
 ## 5.18.4
 
 ### Patch Changes
