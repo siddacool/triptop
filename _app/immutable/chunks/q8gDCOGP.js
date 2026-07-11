@@ -1,1 +1,0 @@
-import{R as e,it as t,nt as n}from"./M6459hCJ.js";import{a as r}from"./CA1vuH1j.js";import{t as i}from"./NvY88smD.js";import{t as a}from"./DZswooOb.js";function o(){let o=t(void 0);return{get expense(){return e(o)},async load(e){let t=await r(e),s=i.exchangeRate;t.virtualData={amountHomeCurrency:a(t,s)},n(o,t,!0)}}}var s=o();export{s as t};

@@ -1,1 +1,0 @@
-import{n as e}from"./NvY88smD.js";function t(e,t){return e*t}function n(n,r){if(!r)return;let i=e(n.date,r);if(i?.exchangeRate)return t(n.amount,i?.exchangeRate)}export{n as t};
