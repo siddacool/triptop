@@ -1,9 +1,9 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
-  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
+  import { tripPageStore } from '$lib/features/trip/store/page.svelte';
 
-  const activeTrip = $derived(useTripActivePageStore.activeTrip);
+  const activeTrip = $derived(tripPageStore.activeTrip);
 
   $effect(() => {
     if (activeTrip) {

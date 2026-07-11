@@ -1,0 +1,44 @@
+<script module lang="ts">
+  import { defineMeta } from '@storybook/addon-svelte-csf';
+  import EditExpense from './EditExpense.svelte';
+  import { type Expense } from '$lib/features/expense/types';
+  import { Theme } from '@flightlesslabs/dodo-ui';
+  import { mockDataTrips } from '$lib/features/trip/mocks/mock-data-trips';
+  import { Category } from '../../types/category';
+
+  // ------------------------------
+  // Storybook Meta
+  // ------------------------------
+  const { Story } = defineMeta({
+    component: EditExpense,
+    tags: ['autodocs'],
+    args: {
+      trip: mockDataTrips[0],
+    },
+  });
+</script>
+
+<!-- ------------------------------ -->
+<!-- Stories -->
+<!-- ------------------------------ -->
+
+<Story name="Create" args={{ mode: 'create' }} />
+
+<Story
+  name="Edit"
+  args={{
+    mode: 'edit',
+    data: {
+      name: 'Dinner at Koko',
+      amount: 500,
+      category: Category.TRANSPORT,
+      date: '2025-05-12',
+    } as Expense,
+  }}
+/>
+
+<Story name="Dark mode" asChild>
+  <Theme type="dark">
+    <EditExpense mode="create" trip={mockDataTrips[0]} />
+  </Theme>
+</Story>

@@ -1,0 +1,29 @@
+<script lang="ts">
+  import { Select, type SelectProps } from '@flightlesslabs/dodo-ui-bits';
+  import DecoratedOption from './DecoratedOption.svelte';
+  import { categoryOptions } from '$lib/features/expense/config/category-options';
+  import type { CategoryOption } from '$lib/features/expense/types/category';
+
+  type Props = Partial<SelectProps>;
+
+  let { value = $bindable(), ...restProps }: Props = $props();
+</script>
+
+<div class="CategorySelect">
+  <Select {...restProps} options={categoryOptions} bind:value>
+    {#snippet customSelectedContent({ value, options })}
+      {#if value}
+        <DecoratedOption option={options.find((item) => item.value === value) as CategoryOption} />
+      {:else}
+        Select category
+      {/if}
+    {/snippet}
+
+    {#snippet customListItemContent({ option })}
+      <DecoratedOption option={option as CategoryOption} isListItem />
+    {/snippet}
+  </Select>
+</div>
+
+<style lang="scss">
+</style>

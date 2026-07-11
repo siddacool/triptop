@@ -1,13 +1,11 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import Loading from '$lib/components/ui/Loading/Loading.svelte';
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
-  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
-  import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
-  import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
-  import { useExpenseListStore } from '$lib/stores/expense/list.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onDestroy, onMount } from 'svelte';
+  import { updateActiveTrip } from '$lib/features/trip/logic/page.svelte';
+  import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
+  import LoadingBoundary from '$lib/components/LoadingBoundary.svelte';
 
   let { children } = $props();
 
@@ -18,15 +16,16 @@
 
   onMount(() => {
     if (!tripId) {
+      loading = false;
       return;
     }
 
     const loadTrip = async () => {
       try {
-        await useTripStore.fetch(tripId);
+        await tripDetailStore.load(tripId);
         pass = true;
 
-        useTripActivePageStore.updateActiveTrip(tripId);
+        updateActiveTrip(tripId);
       } catch (error) {
         console.error('Failed to fetch trip:', error);
       } finally {
@@ -38,17 +37,14 @@
   });
 
   onDestroy(() => {
-    useTripStore.reset();
-    useExpenseListStore.reset();
-    useExpenseStore.reset();
-    useHistoricalCurrencyExchangeStore.clear();
+    historicalRatesExchangeStore.clear();
   });
 </script>
 
-{#if loading}
-  <Loading />
-{:else if pass}
-  {@render children()}
-{:else}
-  <RedirectHomePage>Trip does not exists</RedirectHomePage>
-{/if}
+<LoadingBoundary {loading}>
+  {#if pass}
+    {@render children()}
+  {:else}
+    <RedirectHomePage>Trip does not exists</RedirectHomePage>
+  {/if}
+</LoadingBoundary>

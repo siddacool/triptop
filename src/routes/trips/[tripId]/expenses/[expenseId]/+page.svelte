@@ -1,20 +1,23 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import ExpenseCardDetailed from '$lib/components/Expenses/ExpenseCardDetailed/ExpenseCardDetailed.svelte';
-  import ExpenseDetailsHeader from '$lib/components/Expenses/ExpenseDetailsPage/ExpenseDetailsHeader/ExpenseDetailsHeader.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
-  import Loading from '$lib/components/ui/Loading/Loading.svelte';
-  import { useHistoricalCurrencyExchangeStore } from '$lib/stores/currency/exchange/historical.svelte';
-  import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
-  import { useSettingsStore } from '$lib/stores/settings/settings.svelte';
-  import { useTripStore } from '$lib/stores/trip/individual.svelte';
+  import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
+  import { settingsStore } from '$lib/features/settings/store/main.svelte';
+  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { onMount } from 'svelte';
+  import ExpenseDetailsHeader from '$lib/features/expense/components/ExpenseDetailsHeader/ExpenseDetailsHeader.svelte';
+  import ExpenseCardDetailed from '$lib/features/expense/components/ExpenseCardDetailed/ExpenseCardDetailed.svelte';
+  import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
+  import LoadingBoundary from '$lib/components/LoadingBoundary.svelte';
 
   const tripId = page.params.tripId;
   const expenseId = page.params.expenseId;
 
+  let loading = $state(true);
+
   onMount(() => {
     if (!tripId) {
+      loading = false;
       return;
     }
 
@@ -24,18 +27,18 @@
 
     const loadContents = async () => {
       try {
-        useHistoricalCurrencyExchangeStore.clear();
-        const tripCurrency = useTripStore.trip?.currency;
-        const homeCurrency = useSettingsStore.settings.homeCurrency;
-        const enableCurrencyConversion = useSettingsStore.settings.enableCurrencyConversion;
+        historicalRatesExchangeStore.clear();
+        const tripCurrency = tripDetailStore.trip?.currency;
+        const homeCurrency = settingsStore.settings.homeCurrency;
+        const enableCurrencyConversion = settingsStore.settings.enableCurrencyConversion;
 
         if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-          await useHistoricalCurrencyExchangeStore.fetchSilent(tripId, tripCurrency, homeCurrency);
+          await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);
         }
 
-        await useExpenseStore.fetch(expenseId);
-      } catch (error) {
-        console.error('Failed to fetch expsense:', error);
+        await expenseDeatilStore.load(expenseId);
+      } finally {
+        loading = false;
       }
     };
 
@@ -44,21 +47,21 @@
 </script>
 
 <svelte:head>
-  <title>{useExpenseStore.expense?.name || ''}</title>
+  <title>{expenseDeatilStore.expense?.name || ''}</title>
 </svelte:head>
 
-{#if useExpenseStore.fetching || useTripStore.fetching || useHistoricalCurrencyExchangeStore.fetching}
-  <Loading />
-{:else if useExpenseStore.expense && useTripStore.trip}
-  <ExpenseDetailsHeader />
-  <Box>
-    <ExpenseCardDetailed
-      expense={useExpenseStore.expense}
-      trip={useTripStore.trip}
-      class="ExpensesDetailsCard"
-    />
-  </Box>
-{/if}
+<LoadingBoundary {loading}>
+  {#if expenseDeatilStore.expense && tripDetailStore.trip}
+    <ExpenseDetailsHeader />
+    <Box>
+      <ExpenseCardDetailed
+        expense={expenseDeatilStore.expense}
+        trip={tripDetailStore.trip}
+        class="ExpensesDetailsCard"
+      />
+    </Box>
+  {/if}
+</LoadingBoundary>
 
 <style lang="scss">
   :global(.ExpensesDetailsCard) {

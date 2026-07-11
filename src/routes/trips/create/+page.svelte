@@ -1,22 +1,22 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
-  import EditTrip from '$lib/components/Trips/EditTrip/EditTrip.svelte';
   import Box from '$lib/components/ui/Box/Box.svelte';
   import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
-  import { useTripActivePageStore } from '$lib/stores/app/pages/trip-active-page.svelte';
-  import { useEditTripStore } from '$lib/stores/trip/edit.svelte';
-  import type { EditTripFormData } from '$lib/stores/trip/types';
+  import EditTrip from '$lib/features/trip/components/EditTrip/EditTrip.svelte';
+  import { saveTrip } from '$lib/features/trip/logic/crud.svelte';
+  import { clearActiveTrip } from '$lib/features/trip/logic/page.svelte';
+  import type { TripCreateData } from '$lib/features/trip/types';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
   import { onMount } from 'svelte';
 
   let fetching: boolean = $state(false);
 
-  async function createTrip(data: EditTripFormData) {
+  async function createTrip(data: TripCreateData) {
     try {
       fetching = true;
-      const newTripId = await useEditTripStore.add(data);
+      const newTripId = await saveTrip(data);
 
       await goto(resolve(`/trips/${newTripId}`));
     } catch (e) {
@@ -33,7 +33,7 @@
   }
 
   onMount(() => {
-    useTripActivePageStore.reset();
+    clearActiveTrip();
   });
 </script>
 

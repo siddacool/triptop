@@ -1,8 +1,8 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import Loading from '$lib/components/ui/Loading/Loading.svelte';
+  import LoadingBoundary from '$lib/components/LoadingBoundary.svelte';
   import RedirectHomePage from '$lib/components/ui/RedirectHomePage/RedirectHomePage.svelte';
-  import { useExpenseStore } from '$lib/stores/expense/individual.svelte';
+  import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
   import { onMount } from 'svelte';
 
   let { children } = $props();
@@ -14,12 +14,13 @@
 
   onMount(() => {
     if (!expenseId) {
+      loading = false;
       return;
     }
 
     const loadTrip = async () => {
       try {
-        await useExpenseStore.fetch(expenseId);
+        await expenseDeatilStore.load(expenseId);
 
         pass = true;
       } catch (error) {
@@ -33,10 +34,10 @@
   });
 </script>
 
-{#if loading}
-  <Loading />
-{:else if pass}
-  {@render children()}
-{:else}
-  <RedirectHomePage backTo={`/trips/${tripId}`}>Expense does not exists</RedirectHomePage>
-{/if}
+<LoadingBoundary {loading}>
+  {#if pass}
+    {@render children()}
+  {:else}
+    <RedirectHomePage backTo={`/trips/${tripId}`}>Expense does not exists</RedirectHomePage>
+  {/if}
+</LoadingBoundary>

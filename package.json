@@ -10,10 +10,10 @@
     "svelte-check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint .",
-    "check": "npm run svelte-check && eslint . && npm run lint",
-    "check:fix": "npm run svelte-check && eslint . && npm run format",
+    "check": "pnpm run svelte-check && eslint . && pnpm run lint",
+    "check:fix": "pnpm run svelte-check && eslint . && pnpm run format",
     "test:unit": "vitest",
-    "test": "npm run test:unit -- --run",
+    "test": "pnpm run test:unit --run",
     "storybook": "storybook dev -p 6006"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { calculatePercentage } from '$lib/helpers/calculatePercentage';
+  import { calculatePercentage } from '$lib/utils/calculatePercentage/calculatePercentage';
   import { Meter } from 'bits-ui';
 
   type Props = {
