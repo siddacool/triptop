@@ -14,12 +14,18 @@ import {
   validateExpenseCreate,
   validateExpenseUpdate,
 } from '../validation';
+import { expenseDeatilStore } from '../store/detail.svelte';
 
 export async function saveExpense(data: ExpenseCreateData | ExpenseUpdateData) {
   if ('_id' in data) {
     validateExpenseUpdate(data);
 
-    const id = await updateExpense(data);
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+    const { virtualData, ...restData } = data;
+
+    const id = await updateExpense({ ...restData });
+
+    await expenseDeatilStore.load(data._id);
 
     return id;
   } else {

@@ -3,29 +3,10 @@
   import Icon from '@iconify/svelte';
   import { page } from '$app/state';
   import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
-  import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
-  import { settingsStore } from '$lib/features/settings/store/main.svelte';
-  import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
   import { archiveExpense, unarchiveExpense } from '$lib/features/expense/logic/crud.svelte';
 
   const tripId = page.params.tripId || '';
   const expenseId = page.params.expenseId || '';
-
-  const loadContents = async () => {
-    try {
-      const tripCurrency = tripDetailStore.trip?.currency;
-      const homeCurrency = settingsStore.settings.homeCurrency;
-      const enableCurrencyConversion = settingsStore.settings.enableCurrencyConversion;
-
-      if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-        await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);
-      }
-
-      await expenseDeatilStore.load(expenseId);
-    } catch (error) {
-      console.error('Failed to fetch expsense:', error);
-    }
-  };
 
   async function toggleArchive(archiveCondition: boolean) {
     try {
@@ -48,8 +29,6 @@
         description: archiveCondition ? 'Expense archived' : 'Expense unarchived',
         color: 'primary',
       });
-
-      loadContents();
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
 
