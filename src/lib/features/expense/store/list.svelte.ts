@@ -14,9 +14,7 @@ function createExpenseListStore() {
   const expensesFiltred = $derived(
     getFilteredExpenses(expenseFiltersStore.filters, expensesSorted),
   );
-  const expensesActive = $derived(
-    expensesFiltred.filter(item => !item.archived)
-  );
+  const expensesActive = $derived(expensesFiltred.filter((item) => !item.archived));
   const expenseDateGroups = $derived(getExpenseGroupList(expensesFiltred));
   const totalAmount = $derived(getTotalAmount(expensesActive));
   const totalAmountHomeCurrency = $derived(getTotalAmountHomeCurrency(expensesActive));

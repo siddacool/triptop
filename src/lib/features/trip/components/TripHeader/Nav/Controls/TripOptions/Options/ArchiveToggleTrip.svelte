@@ -19,6 +19,8 @@
         await unarchiveTrip(tripId);
       }
 
+      await tripDetailStore.load(tripId);
+
       toasts.add({
         title: 'Successs',
         description: `Trip ${archiveState ? 'archived' : 'unarchived'}`,

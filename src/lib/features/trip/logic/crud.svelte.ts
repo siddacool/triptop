@@ -1,6 +1,5 @@
 import { deleteExpenseByTripId } from '$lib/features/expense/logic/crud.svelte';
 import { createTrip, updateTrip, deleteTrip as deleteTripDb, getTripById } from '../db';
-import { tripDetailStore } from '../store/detail.svelte';
 import type { TripCreateData, TripUpdateData } from '../types';
 import { validateTripCreate, validateTripUpdate } from '../validation';
 
@@ -9,8 +8,6 @@ export async function saveTrip(data: TripCreateData | TripUpdateData) {
     validateTripUpdate(data);
 
     const id = await updateTrip(data);
-
-    await tripDetailStore.load(data._id);
 
     return id;
   } else {
