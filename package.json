@@ -13,7 +13,7 @@
     "check": "pnpm run svelte-check && eslint . && pnpm run lint",
     "check:fix": "pnpm run svelte-check && eslint . && pnpm run format",
     "test:unit": "vitest",
-    "test": "pnpm run test:unit -- --run",
+    "test": "pnpm run test:unit --run",
     "storybook": "storybook dev -p 6006"
   },
   "devDependencies": {
