@@ -1,5 +1,12 @@
 # triptop
 
+## 5.19.1
+
+### Patch Changes
+
+- c0bff7a: libraries updated
+- f8a9a32: Fix storybook docs error
+
 ## 5.19.0
 
 ### Minor Changes

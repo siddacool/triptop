@@ -1,5 +1,0 @@
----
-'triptop': patch
----
-
-libraries updated
