@@ -49,6 +49,10 @@ export function createStats(expenses: Expense[]): CreateStatsReturnValue {
 
     tripSummary.endDate = expenseDate;
 
+    if (expense.archived) {
+      continue;
+    }
+
     updateExpenseSummary(tripSummary, expense);
 
     const category = getOrCreate(categoryMap, expenseCategory, () => ({

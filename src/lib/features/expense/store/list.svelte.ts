@@ -20,6 +20,9 @@ function createExpenseListStore() {
     get expenses() {
       return expenses;
     },
+    get expensesActive() {
+      return expensesActive;
+    },
     get expensesFiltred() {
       return expensesFiltred;
     },

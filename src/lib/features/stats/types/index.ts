@@ -5,11 +5,7 @@ export type ExpenseSummary = {
   share: number;
   total: MoneyValue;
   average: MoneyValue;
-  largest: {
-    amount?: number;
-    amountHomeCurrency?: number;
-    expenseId?: string;
-  };
+  largest: MoneyValue;
   startDate?: string;
   endDate?: string;
 };

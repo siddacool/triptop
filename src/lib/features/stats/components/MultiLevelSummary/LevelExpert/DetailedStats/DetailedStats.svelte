@@ -1,8 +1,7 @@
 <script lang="ts" module>
   import type { ExpenseSummary } from '$lib/features/stats/types';
   import type { Trip } from '$lib/features/trip/types';
-  import Amount from './Amount.svelte';
-  import type { MoneyValue } from '$lib/features/trip/types/currency';
+  import AmountGroup from './AmountGroup/AmountGroup.svelte';
   import LabelGroup from './LabelGroup.svelte';
   import Share from './Share/Share.svelte';
 
@@ -21,9 +20,9 @@
 
 <div class={classes.join(' ')}>
   <Share {expenseSummary} />
-  <Amount {trip} value={expenseSummary.total} label="Total" />
-  <Amount {trip} value={expenseSummary.average} label="Average" />
-  <Amount {trip} value={expenseSummary.largest as MoneyValue} label="Largest" />
+  <AmountGroup {trip} value={expenseSummary.total} label="Total" />
+  <AmountGroup {trip} value={expenseSummary.average} label="Average" />
+  <AmountGroup {trip} value={expenseSummary.largest} label="Largest" />
   <LabelGroup label="Expenses">{expenseSummary.expenseCount}</LabelGroup>
 </div>
 

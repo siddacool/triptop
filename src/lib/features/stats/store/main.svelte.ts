@@ -19,9 +19,7 @@ function createStatsStore() {
     },
     async load() {
       try {
-        const expensesData = [...expenseListStore.expenses].sort((a, b) =>
-          a.date.localeCompare(b.date),
-        );
+        const expensesData = expenseListStore.expenses;
 
         if (!expensesData.length) {
           categoryStats = [];
@@ -35,8 +33,6 @@ function createStatsStore() {
         tripSummary = stats.tripSummary;
         categoryStats = stats.categoryStats;
         dateStats = stats.dateStats;
-
-        console.log('debug:stats', stats);
 
         return Promise.resolve();
       } catch (e) {
