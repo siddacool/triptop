@@ -1,5 +1,16 @@
 # triptop
 
+## 5.19.3
+
+### Patch Changes
+
+- ed8cbaa: Trip crud data simplified
+- 5b56610: Details link added
+- 2283343: Expenses crud fixed
+- 9962bc3: Libraries updated
+- 6005cb4: Historical data crud fixed
+- 9dc1658: Add expense button added in the header
+
 ## 5.19.2
 
 ### Patch Changes
