@@ -1,6 +1,6 @@
 import { db } from '$lib/db';
 import { nanoid } from 'nanoid/non-secure';
-import type { TripCreateData, TripUpdateData } from '../types';
+import type { Trip, TripCreateData } from '../types';
 
 export async function listTrips() {
   let trips = await db.trips.toArray();
@@ -23,14 +23,11 @@ export async function getTripById(id: string) {
 export async function createTrip(data: TripCreateData) {
   const newId = nanoid();
 
-  const { name, ...restData } = data;
-
   const now = Date.now();
 
   await db.trips.add({
     _id: newId,
-    name: name.trim(),
-    ...restData,
+    ...data,
     createdAt: now,
     updatedAt: now,
   });
@@ -38,19 +35,13 @@ export async function createTrip(data: TripCreateData) {
   return newId;
 }
 
-export async function updateTrip(data: TripUpdateData) {
-  const id = data._id;
-  const trip = await getTripById(id);
-
-  const { name, ...restData } = data;
-
-  await db.trips.update(trip.id, {
-    name: name.trim(),
-    ...restData,
+export async function updateTrip(data: Trip) {
+  await db.trips.update(data.id, {
+    ...data,
     updatedAt: Date.now(),
   });
 
-  return id;
+  return data._id;
 }
 
 export async function deleteTrip(id: string) {

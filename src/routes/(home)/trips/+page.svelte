@@ -7,6 +7,7 @@
   import { tripListStore } from '$lib/features/trip/store/list.svelte';
   import TripsControlsToolkit from '$lib/features/trip/components/TripsControlsToolkit/TripsControlsToolkit.svelte';
   import LoadingBoundary from '$lib/components/LoadingBoundary.svelte';
+  import { clearActiveTrip } from '$lib/features/trip/logic/page.svelte';
 
   let loading = $state(true);
 
@@ -20,6 +21,7 @@
 
   onMount(() => {
     load();
+    clearActiveTrip();
   });
 </script>
 
@@ -34,7 +36,7 @@
       <TripList trips={tripListStore.tripsActive} />
     {:else}
       <Instructions>
-        Triptop - Travel budgeting app. <br /> Create/import a trip to get started
+        Triptop - Simple, offline travel budgeting app. <br /> Create/import a trip to get started
       </Instructions>
     {/if}
     <TripsControlsToolkit />

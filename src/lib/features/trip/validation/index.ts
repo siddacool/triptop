@@ -1,5 +1,5 @@
 import type { Expense } from '$lib/features/expense/types';
-import type { Trip, TripCreateData, TripUpdateData } from '../types';
+import type { Trip, TripCreateData } from '../types';
 import type { ExportTripData } from '../types/export';
 
 export function validateTripCreate(data: TripCreateData) {
@@ -12,13 +12,17 @@ export function validateTripCreate(data: TripCreateData) {
   }
 }
 
-export function validateTripUpdate(data: TripUpdateData) {
+export function validateTripUpdate(data: Trip) {
   if (!data.currency) {
     throw new Error('Currency is required.');
   }
 
   if (!data.name.trim()) {
     throw new Error('Name is required.');
+  }
+
+  if (data.deviceOnlyData) {
+    throw new Error('deviceOnlyData not allowed');
   }
 }
 

@@ -21,5 +21,3 @@ export type TripCreateData = Omit<
   Trip,
   'id' | '_id' | 'createdAt' | 'updatedAt' | 'deviceOnlyData' | 'archived'
 >;
-
-export type TripUpdateData = Omit<Trip, 'id'>;

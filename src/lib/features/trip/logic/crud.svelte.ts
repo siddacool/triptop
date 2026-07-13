@@ -1,24 +1,37 @@
 import { deleteExpenseByTripId } from '$lib/features/expense/logic/crud.svelte';
 import { createTrip, updateTrip, deleteTrip as deleteTripDb, getTripById } from '../db';
 import { tripDetailStore } from '../store/detail.svelte';
-import type { TripCreateData, TripUpdateData } from '../types';
+import type { TripCreateData, Trip } from '../types';
 import { validateTripCreate, validateTripUpdate } from '../validation';
 
-export async function saveTrip(data: TripCreateData | TripUpdateData) {
+export async function saveTrip(data: TripCreateData | Trip) {
   if ('_id' in data) {
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+    const { name, deviceOnlyData, ...restData } = data;
+
+    const newData: Trip = {
+      name: name.trim(),
+      ...restData,
+    };
+
     validateTripUpdate(data);
 
-    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    const { deviceOnlyData, ...restData } = data;
-
-    const id = await updateTrip({ ...restData });
+    const id = await updateTrip(newData);
 
     tripDetailStore.load(data._id);
 
     return id;
   } else {
-    validateTripCreate(data);
-    return await createTrip(data);
+    const { name, ...restData } = data;
+
+    const newData: TripCreateData = {
+      name: name.trim(),
+      ...restData,
+    };
+
+    validateTripCreate(newData);
+
+    return await createTrip(newData);
   }
 }
 
@@ -29,7 +42,7 @@ export async function deleteTrip(id: string) {
   return id;
 }
 
-async function updateTripFields(id: string, data: Partial<TripUpdateData>) {
+async function updateTripFields(id: string, data: Partial<Trip>) {
   const trip = await getTripById(id);
 
   return saveTrip({
