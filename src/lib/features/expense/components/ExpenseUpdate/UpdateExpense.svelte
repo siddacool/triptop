@@ -3,7 +3,7 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import { expenseDeatilStore } from '$lib/features/expense/store/detail.svelte';
-  import type { Expense, ExpenseUpdateData } from '$lib/features/expense/types';
+  import type { Expense, ExpenseCreateData } from '$lib/features/expense/types';
   import { tripDetailStore } from '$lib/features/trip/store/detail.svelte';
   import { toasts } from '@flightlesslabs/dodo-ui-bits';
   import { saveExpense } from '../../logic/crud.svelte';
@@ -14,7 +14,7 @@
   const tripId = page.params.tripId;
   const expenseId = page.params.expenseId;
 
-  async function updateExpense(data: ExpenseUpdateData) {
+  async function updateExpense(data: ExpenseCreateData) {
     try {
       if (!tripId) {
         return;

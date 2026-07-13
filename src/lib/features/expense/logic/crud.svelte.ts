@@ -8,7 +8,7 @@ import {
   getExpenseById,
   listTripExpenses,
 } from '../db';
-import type { Expense, ExpenseCreateData, ExpenseUpdateData } from '../types';
+import type { Expense, ExpenseCreateData } from '../types';
 import {
   validateDeleteExpenseByTripId,
   validateExpenseCreate,
@@ -16,22 +16,33 @@ import {
 } from '../validation';
 import { expenseDeatilStore } from '../store/detail.svelte';
 
-export async function saveExpense(data: ExpenseCreateData | ExpenseUpdateData) {
+export async function saveExpense(data: ExpenseCreateData | Expense) {
   if ('_id' in data) {
-    validateExpenseUpdate(data);
-
     /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-    const { virtualData, ...restData } = data;
+    const { virtualData, name = '', ...restData } = data;
+    const newData = {
+      name: name.trim(),
+      ...restData,
+    };
 
-    const id = await updateExpense({ ...restData });
+    validateExpenseUpdate(newData);
 
-    await expenseDeatilStore.load(data._id);
+    const id = await updateExpense(newData);
+
+    await expenseDeatilStore.load(id);
 
     return id;
   } else {
-    validateExpenseCreate(data);
+    const { name = '', ...restData } = data;
 
-    return await createExpense(data);
+    const newData = {
+      name: name.trim(),
+      ...restData,
+    };
+
+    validateExpenseCreate(newData);
+
+    return await createExpense(newData);
   }
 }
 
@@ -56,7 +67,7 @@ export async function deleteExpenseByTripId(tripId: string) {
   return tripExpensesFiltred.map((item) => item._id);
 }
 
-async function updateExpenseFields(id: string, data: Partial<ExpenseUpdateData>) {
+async function updateExpenseFields(id: string, data: Partial<Expense>) {
   const expense = await getExpenseById(id);
 
   return saveExpense({

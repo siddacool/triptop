@@ -1,10 +1,13 @@
 import { db } from '$lib/db';
 import { nanoid } from 'nanoid/non-secure';
-import type { Expense, ExpenseCreateData, ExpenseUpdateData } from '../types';
+import type { Expense, ExpenseCreateData } from '../types';
 import { Category } from '../types/category';
 
-export function listTripExpenses(tripId: string) {
-  return db.expense.where({ tripId }).toArray();
+export async function listTripExpenses(tripId: string) {
+  const data = await db.expense.where({ tripId }).toArray();
+  const sortedData = data.sort((a, b) => b.date.localeCompare(a.date));
+
+  return sortedData;
 }
 
 export async function getExpenseById(id: string) {
@@ -24,10 +27,7 @@ export async function createExpense(data: ExpenseCreateData) {
 
   await db.expense.add({
     _id: newExpenseId,
-    tripId: data.tripId,
-    name: data.name.trim(),
-    amount: data.amount,
-    date: data.date,
+    ...data,
     category: data.category || Category.OTHER,
     createdAt: now,
     updatedAt: now,
@@ -42,24 +42,13 @@ export async function bulkAddExpense(expenses: Expense[]) {
   return expenses;
 }
 
-export async function updateExpense(data: ExpenseUpdateData) {
-  const id = data._id;
-
-  const { name, ...restData } = data;
-
-  const expense = await getExpenseById(id);
-
-  if (!expense.id) {
-    throw new Error('Expense not found');
-  }
-
-  await db.expense.update(expense.id, {
-    name: name.trim(),
-    ...restData,
+export async function updateExpense(data: Expense) {
+  await db.expense.update(data.id, {
+    ...data,
     updatedAt: Date.now(),
   });
 
-  return id;
+  return data._id;
 }
 
 export async function deleteExpense(id: string) {

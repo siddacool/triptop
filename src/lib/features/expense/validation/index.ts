@@ -1,4 +1,4 @@
-import type { ExpenseCreateData, ExpenseUpdateData } from '../types';
+import type { ExpenseCreateData, Expense } from '../types';
 
 export function validateExpenseCreate(data: ExpenseCreateData) {
   if (!data.tripId) {
@@ -18,7 +18,7 @@ export function validateExpenseCreate(data: ExpenseCreateData) {
   }
 }
 
-export function validateExpenseUpdate(data: ExpenseUpdateData) {
+export function validateExpenseUpdate(data: Expense) {
   if (!data.tripId) {
     throw new Error('tripId is required.');
   }
@@ -33,6 +33,10 @@ export function validateExpenseUpdate(data: ExpenseUpdateData) {
 
   if (!data.name.trim()) {
     throw new Error('Name is required.');
+  }
+
+  if (data.virtualData) {
+    throw new Error('virtualData is not allowed.');
   }
 }
 

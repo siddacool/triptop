@@ -1,8 +1,8 @@
 <script lang="ts" module>
-  import { type Expense, type ExpenseUpdateData } from '$lib/features/expense/types';
+  import { type Expense, type ExpenseCreateData } from '$lib/features/expense/types';
 
   type EditExpenseBaseProps = {
-    onsubmit?: (data: ExpenseUpdateData, eventSubmitter?: HTMLElement | null) => void;
+    onsubmit?: (data: ExpenseCreateData, eventSubmitter?: HTMLElement | null) => void;
     disabled?: boolean;
     trip: Trip;
   };
@@ -71,7 +71,7 @@
       amount,
       category: category || Category.OTHER,
       date: date.toString(),
-    } as ExpenseUpdateData;
+    } as ExpenseCreateData;
 
     onsubmit?.(formData, eventSubmitter);
 

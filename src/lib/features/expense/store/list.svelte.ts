@@ -10,10 +10,7 @@ import { expenseFiltersStore } from './filters.svelte';
 
 function createExpenseListStore() {
   let expenses = $state<Expense[]>([]);
-  const expensesSorted = $derived(expenses.sort((a, b) => b.date.localeCompare(a.date)));
-  const expensesFiltred = $derived(
-    getFilteredExpenses(expenseFiltersStore.filters, expensesSorted),
-  );
+  const expensesFiltred = $derived(getFilteredExpenses(expenseFiltersStore.filters, expenses));
   const expensesActive = $derived(expensesFiltred.filter((item) => !item.archived));
   const expenseDateGroups = $derived(getExpenseGroupList(expensesFiltred));
   const totalAmount = $derived(getTotalAmount(expensesActive));
@@ -22,9 +19,6 @@ function createExpenseListStore() {
   return {
     get expenses() {
       return expenses;
-    },
-    get expensesSorted() {
-      return expensesSorted;
     },
     get expensesFiltred() {
       return expensesFiltred;

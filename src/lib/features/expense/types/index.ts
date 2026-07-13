@@ -29,5 +29,3 @@ export type ExpenseCreateData = Omit<
   Expense,
   'id' | '_id' | 'createdAt' | 'updatedAt' | 'virtualData' | 'archived'
 >;
-
-export type ExpenseUpdateData = Omit<Expense, 'id'>;
