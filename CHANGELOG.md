@@ -1,5 +1,11 @@
 # triptop
 
+## 5.20.0
+
+### Minor Changes
+
+- b878339: site-details.json added
+
 ## 5.19.3
 
 ### Patch Changes
