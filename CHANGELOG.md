@@ -1,5 +1,11 @@
 # triptop
 
+## 5.20.1
+
+### Patch Changes
+
+- 7de340f: Fix stats dates
+
 ## 5.20.0
 
 ### Minor Changes
