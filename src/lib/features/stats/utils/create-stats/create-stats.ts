@@ -43,11 +43,11 @@ export function createStats(expenses: Expense[]): CreateStatsReturnValue {
       continue;
     }
 
-    if (!tripSummary.startDate) {
-      tripSummary.startDate = expenseDate;
+    if (!tripSummary.endDate) {
+      tripSummary.endDate = expenseDate;
     }
 
-    tripSummary.endDate = expenseDate;
+    tripSummary.startDate = expenseDate;
 
     if (expense.archived) {
       continue;
