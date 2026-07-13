@@ -1,15 +1,18 @@
 <script lang="ts">
+  import { page } from '$app/state';
   import { Button } from '@flightlesslabs/dodo-ui';
   import Icon from '@iconify/svelte';
+
+  const tripId = page.params.tripId || '';
 </script>
 
 <Button
-  aria-label="Create trip"
-  class="TheHeaderCreateTripButton"
+  aria-label="Add expense"
+  class="TripHeaderCreateExpenseButton"
   variant="text"
   roundness="pill"
-  title="Create new trip"
-  href="/trips/create"
+  title="Add expense"
+  href={`/trips/${tripId}/expenses/add`}
   compact
   color="neutral"
   background="none"
@@ -18,7 +21,7 @@
 </Button>
 
 <style lang="scss">
-  :global(.dodo-ui-Button.size--normal.TheHeaderCreateTripButton) {
+  :global(.dodo-ui-Button.size--normal.TripHeaderCreateExpenseButton) {
     font-size: 1.55rem;
   }
 </style>
