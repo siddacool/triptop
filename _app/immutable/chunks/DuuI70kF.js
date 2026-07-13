@@ -1,0 +1,1 @@
+import{n as e}from"./CZ4k4__K.js";function t(e,t){return e*t}function n(n,r){if(!r)return;let i=e(n.date,r);if(i?.exchangeRate)return t(n.amount,i?.exchangeRate)}export{n as t};
