@@ -4,6 +4,8 @@ Simple, offline travel budgeting app.
 
 ![img](https://triptop.siddheshmangela.com/assets/social/og_image.png)
 
+[site details](https://triptop.siddheshmangela.com/site-details.json)
+
 ---
 
 ## Development

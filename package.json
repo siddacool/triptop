@@ -2,6 +2,13 @@
   "name": "triptop",
   "version": "5.19.3",
   "type": "module",
+  "description": "Simple, offline travel budgeting app",
+  "homepage": "https://triptop.siddheshmangela.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siddacool/triptop.git"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
