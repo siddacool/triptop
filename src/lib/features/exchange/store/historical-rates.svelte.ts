@@ -1,12 +1,13 @@
 import type { CurrencyCode } from '@flightlesslabs/currency';
 import type { CurrencyExchangeRate } from '../types';
-import { listTripExpenses } from '$lib/features/expense/db';
-import { getHistoricalExchangeRate } from '../db';
-import { createDate } from '$lib/utils/date-time/createDate';
+import { listTripExpensesPure } from '$lib/features/expense/db';
 import { createFetchDateRange } from '../utils/createFetchDateRange';
 import { saveHistoricalExchangeRate } from '../logic';
 import { fetchHistoricalExchangeRates } from '../api/historical-rates';
 import { needsExchangeRateUpdate } from '../utils/needsExchangeRateUpdate';
+import { shouldSkip } from '../utils/shouldSkip';
+import { loadCachedRate } from '../utils/loadCachedRate';
+import { getExpenseDateRange } from '../utils/getExpenseDateRange';
 
 function createHistoricalRatesExchangeStore() {
   let exchangeRate: CurrencyExchangeRate | undefined = $state(undefined);
@@ -17,64 +18,41 @@ function createHistoricalRatesExchangeStore() {
     },
     async load(tripId: string, tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
       try {
-        let expensesData = await listTripExpenses(tripId);
+        let expensesData = await listTripExpensesPure(tripId);
 
         expensesData = expensesData.sort((a, b) => a.date.localeCompare(b.date));
 
-        if (tripCurrency === homeCurrency) {
+        if (shouldSkip(expensesData, tripCurrency, homeCurrency)) {
           exchangeRate = undefined;
           return;
         }
 
-        if (!expensesData?.length) {
-          exchangeRate = undefined;
+        exchangeRate = await loadCachedRate(exchangeRate, tripCurrency, homeCurrency);
+
+        const { start, end } = getExpenseDateRange(expensesData);
+
+        if (!needsExchangeRateUpdate(exchangeRate, end, start)) {
           return;
         }
 
-        // Load cached from store or fresh data from dexie
-        const target =
-          exchangeRate ?? (await getHistoricalExchangeRate(tripCurrency, homeCurrency));
+        const { startDate, endDate } = createFetchDateRange(start, end);
 
-        exchangeRate = target;
-
-        // Create reusable expene dates
-        const expenseStartDate = createDate(expensesData[0].date);
-        const expenseEndDate = createDate(expensesData[expensesData.length - 1].date);
-
-        const isUpdateNeeded = needsExchangeRateUpdate(
-          exchangeRate,
-          expenseEndDate,
-          expenseStartDate,
-        );
-
-        if (!isUpdateNeeded) {
-          console.log('debug: range already present, no update needed', exchangeRate);
-          return;
-        }
-
-        // Considering the data for the whole month
-        const { startDate, endDate } = createFetchDateRange(expenseStartDate, expenseEndDate);
-
-        // Fetch the weekly data
-        const newExchangeRate = await fetchHistoricalExchangeRates(
+        const latestRate = await fetchHistoricalExchangeRates(
           tripCurrency,
           homeCurrency,
           startDate,
           endDate,
         );
 
-        if (!newExchangeRate) {
+        if (!latestRate) {
           exchangeRate = undefined;
 
           return;
         }
 
-        console.log('debug: fetch', newExchangeRate);
+        await saveHistoricalExchangeRate(tripCurrency, homeCurrency, exchangeRate, latestRate);
 
-        await saveHistoricalExchangeRate(tripCurrency, homeCurrency, exchangeRate, newExchangeRate);
-
-        // Update store
-        exchangeRate = newExchangeRate;
+        exchangeRate = latestRate;
 
         return Promise.resolve();
       } catch (e) {
