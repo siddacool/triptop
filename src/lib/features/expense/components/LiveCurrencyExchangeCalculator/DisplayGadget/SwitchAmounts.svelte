@@ -21,14 +21,7 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <Button
-    onclick={handleSwitch}
-    roundness="pill"
-    class="SwitchAmountsButton"
-    size="large"
-    variant="text"
-    outline
-  >
+  <Button onclick={handleSwitch} roundness="pill" class="SwitchAmountsButton" size="large">
     <Icon icon="basil:exchange-outline" />
   </Button>
 </div>

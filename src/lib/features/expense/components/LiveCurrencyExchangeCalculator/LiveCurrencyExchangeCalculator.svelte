@@ -1,7 +1,8 @@
 <script lang="ts">
   import { LiveCurrencyExchangeActiveCurrency } from '$lib/features/exchange/types';
   import type { CurrencyCode } from '@flightlesslabs/currency';
-  import AmountsGadget from './AmountsGadget/AmountsGadget.svelte';
+  import DisplayGadget from './DisplayGadget/DisplayGadget.svelte';
+  import EditGadget from './EditGadget/EditGadget.svelte';
 
   type Props = {
     class?: string;
@@ -24,11 +25,11 @@
   }: Props = $props();
 
   const classes = $derived(['LiveCurrencyExchangeCalculator', className].filter(Boolean));
-  const value = $state(0);
+  let value = $state('0');
 </script>
 
 <div class={classes.join(' ')}>
-  <AmountsGadget
+  <DisplayGadget
     bind:activeCurrency
     amount={value}
     {homeCurrencyLocale}
@@ -37,6 +38,7 @@
     {tripCurrency}
     {tripCurrencyLocale}
   />
+  <EditGadget bind:amount={value} />
 </div>
 
 <style lang="scss">

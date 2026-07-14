@@ -8,10 +8,19 @@
     class?: string;
     currency: CurrencyCode;
     amount: number;
+    originalAmount: string;
     locale: string | undefined;
+    isActive?: boolean;
   };
 
-  const { class: className = '', currency, amount, locale }: Props = $props();
+  const {
+    class: className = '',
+    currency,
+    amount,
+    locale,
+    originalAmount,
+    isActive,
+  }: Props = $props();
 
   const classes = $derived(['Screen', className].filter(Boolean));
 </script>
@@ -19,7 +28,7 @@
 <div class={classes.join(' ')}>
   <Card class="ScreenCard" shadow={0} outline>
     <Currency {currency} />
-    <Amount value={amount} {locale} {currency} />
+    <Amount value={amount} {locale} {currency} {isActive} {originalAmount} />
   </Card>
 </div>
 

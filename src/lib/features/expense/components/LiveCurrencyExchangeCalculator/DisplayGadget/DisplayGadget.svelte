@@ -1,7 +1,7 @@
 <script lang="ts">
   import { LiveCurrencyExchangeActiveCurrency } from '$lib/features/exchange/types';
   import type { CurrencyCode } from '@flightlesslabs/currency';
-  import Screen from '../Screen/Screen.svelte';
+  import Screen from './Screen/Screen.svelte';
   import { dynamicCurrencyConverter } from '$lib/features/exchange/utils/dynamic-currency-converter';
   import SwitchAmounts from './SwitchAmounts.svelte';
 
@@ -9,7 +9,7 @@
     class?: string;
     activeCurrency: LiveCurrencyExchangeActiveCurrency;
     exchangeRate: number;
-    amount: number;
+    amount: string;
     homeCurrency: CurrencyCode;
     homeCurrencyLocale: string | undefined;
     tripCurrency: CurrencyCode;
@@ -35,7 +35,7 @@
     dynamicCurrencyConverter(
       LiveCurrencyExchangeActiveCurrency.TRIP_CURRENCY,
       activeCurrency,
-      amount,
+      Number(amount),
       exchangeRate,
     ),
   );
@@ -44,7 +44,7 @@
     dynamicCurrencyConverter(
       LiveCurrencyExchangeActiveCurrency.HOME_CURRENCY,
       activeCurrency,
-      amount,
+      Number(amount),
       exchangeRate,
     ),
   );
@@ -56,6 +56,8 @@
     locale={tripCurrencyLocale}
     currency={tripCurrency}
     amount={homeCurrencyAmount}
+    originalAmount={amount}
+    isActive={activeCurrency === LiveCurrencyExchangeActiveCurrency.TRIP_CURRENCY}
   />
   <SwitchAmounts bind:activeCurrency />
   <Screen
@@ -63,6 +65,8 @@
     locale={homeCurrencyLocale}
     currency={homeCurrency}
     amount={tripCurrencyAmount}
+    originalAmount={amount}
+    isActive={activeCurrency === LiveCurrencyExchangeActiveCurrency.HOME_CURRENCY}
   />
 </div>
 
@@ -71,7 +75,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: calc(var(--dodo-ui-space) * -2) 0;
+    margin-top: calc(var(--dodo-ui-space) * -2);
 
     &.activeCurrency--HOME_CURRENCY {
       :global(.homeCurrencyValue) {

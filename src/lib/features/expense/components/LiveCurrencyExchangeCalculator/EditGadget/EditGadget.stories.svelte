@@ -1,17 +1,15 @@
 <script module lang="ts">
   import { defineMeta } from '@storybook/addon-svelte-csf';
-  import Screen from './Screen.svelte';
+  import EditGadget from './EditGadget.svelte';
 
   // ------------------------------
   // Storybook Meta
   // ------------------------------
   const { Story } = defineMeta({
-    component: Screen,
+    component: EditGadget,
     tags: ['autodocs'],
     args: {
-      currency: 'INR',
-      amount: 300000,
-      locale: 'en-IN',
+      amount: '35',
     },
   });
 </script>
