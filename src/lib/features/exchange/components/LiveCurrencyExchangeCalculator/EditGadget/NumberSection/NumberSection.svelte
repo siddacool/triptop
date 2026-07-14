@@ -19,7 +19,7 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <Grid gap={2}>
+  <Grid gap={1}>
     {#each numberValues as valueRow, i (valueRow)}
       <Row class={`row-${i}`}>
         {#each valueRow as item (item)}

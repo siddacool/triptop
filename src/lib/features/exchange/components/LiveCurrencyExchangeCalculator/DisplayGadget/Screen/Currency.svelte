@@ -17,11 +17,11 @@
 
 <style>
   .Currency {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--dodo-color-neutral-500);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--dodo-color-neutral-600);
     position: absolute;
-    top: calc(var(--dodo-ui-space) * 2);
-    left: calc(var(--dodo-ui-space) * 2);
+    top: calc(var(--dodo-ui-space) * 1);
+    left: calc(var(--dodo-ui-space) * 1);
   }
 </style>

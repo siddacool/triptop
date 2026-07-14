@@ -37,6 +37,7 @@
 
     :global(.CalculatorButtonButton.dodo-ui-Button.compact.size--large) {
       width: 100%;
+      font-size: 1.5rem;
     }
   }
 </style>

@@ -46,14 +46,14 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <Grid gap={2}>
+  <Grid gap={1}>
     <Column size={9}>
       <NumberSection onclick={handleClick} />
     </Column>
     <Column size={3}>
       <div class="rightSection">
         <div>
-          <Grid gap={2}>
+          <Grid gap={1}>
             <Column>
               <BackspaceButton onclick={handleClick} />
             </Column>
@@ -78,6 +78,7 @@
       flex-direction: column;
       width: 100%;
       justify-content: space-between;
+      margin-left: calc(var(--dodo-ui-space) * 1);
     }
   }
 </style>

@@ -21,7 +21,7 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <Button onclick={handleSwitch} roundness="pill" class="SwitchAmountsButton" size="large">
+  <Button onclick={handleSwitch} roundness="full" class="SwitchAmountsButton" compact>
     <Icon icon="basil:exchange-outline" />
   </Button>
 </div>
@@ -30,7 +30,7 @@
   .SwitchAmounts {
     order: 2;
     :global(.SwitchAmountsButton) {
-      font-size: 2rem;
+      font-size: 1.6rem;
     }
 
     :global(.SwitchAmountsButton svg) {

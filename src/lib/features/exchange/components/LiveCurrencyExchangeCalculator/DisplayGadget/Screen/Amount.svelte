@@ -54,7 +54,7 @@
 
 <style>
   :global(.LiveCurrencyExchangeCalculatorScreenAmount) {
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 1.3rem;
+    font-weight: 400;
   }
 </style>
