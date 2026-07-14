@@ -21,3 +21,8 @@ export type CurrencyExchangeRateResponseFrankfurter = {
 };
 
 export type ExchangeDateGrouping = 'week' | 'month';
+
+export const enum LiveCurrencyExchangeActiveCurrency {
+  HOME_CURRENCY = 'HOME_CURRENCY',
+  TRIP_CURRENCY = 'TRIP_CURRENCY',
+}

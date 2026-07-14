@@ -29,3 +29,32 @@ export async function createHistoricalExchangeRate(
 
   return exchangeRate;
 }
+
+// LiveExchangeRate
+export function getLiveExchangeRate(tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
+  return db.liveCurrencyExchangeRates
+    .where('[homeCurrency+tripCurrency]')
+    .equals([homeCurrency, tripCurrency])
+    .first();
+}
+
+export async function updateLiveExchangeRate(
+  tripCurrency: CurrencyCode,
+  homeCurrency: CurrencyCode,
+  exchangeRate: CurrencyExchangeRate,
+): Promise<CurrencyExchangeRate> {
+  await db.liveCurrencyExchangeRates
+    .where('[homeCurrency+tripCurrency]')
+    .equals([homeCurrency, tripCurrency])
+    .modify(exchangeRate);
+
+  return exchangeRate;
+}
+
+export async function createLiveExchangeRate(
+  exchangeRate: CurrencyExchangeRate,
+): Promise<CurrencyExchangeRate> {
+  await db.liveCurrencyExchangeRates.add(exchangeRate);
+
+  return exchangeRate;
+}
