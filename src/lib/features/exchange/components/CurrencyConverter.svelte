@@ -54,7 +54,7 @@
     margin-top: calc(var(--dodo-ui-space) * 1);
 
     &.pwa {
-      height: calc(100vh - 60px);
+      height: calc(100vh - 76px);
     }
 
     :global(.Box) {
