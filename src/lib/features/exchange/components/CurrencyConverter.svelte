@@ -6,6 +6,7 @@
   import { LiveCurrencyExchangeActiveCurrency } from '$lib/features/exchange/types';
   import LiveCurrencyExchangeCalculator from './LiveCurrencyExchangeCalculator/LiveCurrencyExchangeCalculator.svelte';
   import { updateTripLiveCurrencyExchangeActiveCurrency } from '$lib/features/trip/logic/crud.svelte';
+  import { isPWAMode } from '$lib/utils/pwa-mode';
 
   const liveRate = $derived(liveRatesExchangeStore?.exchangeRate?.data[0]);
   const exchangeRate = $derived(liveRate?.exchangeRate);
@@ -22,10 +23,13 @@
 
     updateTripLiveCurrencyExchangeActiveCurrency(trip?._id, activeCurrency);
   });
+
+  const pwaMode = $derived(isPWAMode());
+  const classes = $derived(['CurrencyConverter', pwaMode ? 'pwa' : ''].filter(Boolean));
 </script>
 
 {#if trip && exchangeRate && exchangeDate}
-  <div class="CurrencyConverter">
+  <div class={classes.join(' ')}>
     <Box>
       <LiveCurrencyExchangeCalculator
         homeCurrency={settingsStore.settings.homeCurrency}
@@ -48,6 +52,10 @@
     flex-direction: column;
     height: calc(100vh - 150px);
     margin-top: calc(var(--dodo-ui-space) * 1);
+
+    &.pwa {
+      height: calc(100vh - 60px);
+    }
 
     :global(.Box) {
       display: flex;
