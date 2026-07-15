@@ -16,6 +16,10 @@ const db = new Dexie('triptop-v5') as Dexie & {
     CurrencyExchangeRate,
     'id' // primary key "id" (for the typings only)
   >;
+  liveCurrencyExchangeRates: EntityTable<
+    CurrencyExchangeRate,
+    'id' // primary key "id" (for the typings only)
+  >;
 };
 
 // Schema declaration:
@@ -23,6 +27,7 @@ db.version(5).stores({
   trips: '++id, _id', // primary key "id" (for the runtime!)
   expense: '++id, _id, tripId, [tripId+date]', // primary key "id" (for the runtime!)
   historicalCurrencyExchangeRates: '++id, homeCurrency, tripCurrency, [homeCurrency+tripCurrency]', // primary key "id" (for the runtime!)
+  liveCurrencyExchangeRates: '++id, homeCurrency, tripCurrency, [homeCurrency+tripCurrency]', // primary key "id" (for the runtime!)
 });
 
 export { db };

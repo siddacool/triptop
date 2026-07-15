@@ -1,3 +1,4 @@
+import type { LiveCurrencyExchangeActiveCurrency } from '$lib/features/exchange/types';
 import type { CurrencyCode } from '@flightlesslabs/currency';
 
 export interface TripDeviceOnlyData {
@@ -14,6 +15,7 @@ export interface Trip {
   archived?: boolean;
   locale?: string;
   enableCurrencyConversion?: boolean;
+  liveCurrencyExchangeActiveCurrency?: LiveCurrencyExchangeActiveCurrency;
   deviceOnlyData?: TripDeviceOnlyData;
 }
 

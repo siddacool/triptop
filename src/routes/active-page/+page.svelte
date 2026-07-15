@@ -8,8 +8,15 @@
   const activeTrip = $derived(tripPageStore.activeTrip);
 
   $effect(() => {
-    if (pageName === 'add-expense' && activeTrip) {
+    if (!activeTrip) {
+      goto(resolve('/trips'), { replaceState: true });
+      return;
+    }
+
+    if (pageName === 'add-expense') {
       goto(resolve(`/trips/${activeTrip}/expenses/add`), { replaceState: true });
+    } else if (pageName === 'currency-converter') {
+      goto(resolve(`/trips/${activeTrip}/currency-converter`), { replaceState: true });
     } else {
       goto(resolve('/trips'), { replaceState: true });
     }

@@ -14,7 +14,7 @@
   const classes = $derived(['Callout', `size--${size}`, className].filter(Boolean));
 </script>
 
-<Card class={classes.join(' ')} {color} shadow={0}>
+<Card class={classes.join(' ')} {color} shadow={0} roundness={0}>
   <Text {color}>
     {@render children?.()}
   </Text>
