@@ -30,7 +30,7 @@
     "@storybook/addon-docs": "10.4.4",
     "@storybook/addon-svelte-csf": "^5.1.2",
     "@storybook/sveltekit": "10.4.4",
-    "@sveltejs/kit": "^2.69.2",
+    "@sveltejs/kit": "^2.69.3",
     "@sveltejs/vite-plugin-svelte": "^7.2.0",
     "@types/node": "^24.13.3",
     "eslint": "^10.7.0",
@@ -45,7 +45,7 @@
     "svelte": "^5.56.4",
     "svelte-check": "^4.7.2",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.63.0",
+    "typescript-eslint": "^8.64.0",
     "vite": "^8.1.4",
     "vitest": "^4.1.10"
   },
@@ -61,7 +61,7 @@
     "bits-ui": "^2.18.1",
     "dayjs": "^1.11.21",
     "dexie": "^4.4.4",
-    "nanoid": "^5.1.16",
+    "nanoid": "^6.0.0",
     "svelte-number-format": "^2.0.0"
   }
 }
