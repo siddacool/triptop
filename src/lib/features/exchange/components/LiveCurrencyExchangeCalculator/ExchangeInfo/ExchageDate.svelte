@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { DateFormatMode } from '$lib/features/settings/types';
-  import { createDate } from '$lib/utils/date-time/createDate';
+  import { getDateFormatDate } from '$lib/utils/get-dateformat-date';
 
   type Props = {
     class?: string;
@@ -9,7 +9,7 @@
   };
 
   let { class: className = '', exchangeDate, dateFormat }: Props = $props();
-  const formattedDate = $derived(createDate(exchangeDate).format(dateFormat));
+  const formattedDate = $derived(getDateFormatDate(exchangeDate, dateFormat, true));
 
   const classes = $derived(['ExchageDate', className].filter(Boolean));
 </script>

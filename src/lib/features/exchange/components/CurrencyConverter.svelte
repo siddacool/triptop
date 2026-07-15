@@ -57,6 +57,10 @@
       height: calc(100vh - 76px);
     }
 
+    @media (min-width: 1100px) {
+      height: calc(100vh - 76px);
+    }
+
     :global(.Box) {
       display: flex;
       flex-direction: column;
