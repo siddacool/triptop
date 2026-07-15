@@ -1,1 +1,0 @@
-import{R as e,et as t,it as n,nt as r}from"./M6459hCJ.js";import{i}from"./CqaG5HEx2.js";function a(){let a=n(t([]));return{get trips(){return e(a)},get tripsActive(){return e(a).filter(e=>!e.archived)},get tripsArchived(){return e(a).filter(e=>e.archived)},async load(){r(a,await i(),!0)}}}var o=a();export{o as t};

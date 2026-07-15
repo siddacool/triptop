@@ -1,0 +1,1 @@
+import{n as e}from"./Cs3gbj6-.js";function t(e,t){return e*t}function n(n,r){if(!r)return;let i=e(n.date,r);if(i?.exchangeRate)return t(n.amount,i?.exchangeRate)}export{t as n,n as t};
