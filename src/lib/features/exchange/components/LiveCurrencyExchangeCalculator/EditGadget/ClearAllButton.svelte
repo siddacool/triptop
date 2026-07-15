@@ -12,11 +12,15 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <CalculatorButton value="clearAll" {onclick}>Clear</CalculatorButton>
+  <CalculatorButton value="clearAll" {onclick} color="danger" outline>Clear</CalculatorButton>
 </div>
 
 <style lang="scss">
-  .BackspaceButton {
+  .ClearAllButton {
     width: 100%;
+
+    :global(.CalculatorButtonButton.dodo-ui-Button.compact.size--large) {
+      font-size: 1.2rem;
+    }
   }
 </style>

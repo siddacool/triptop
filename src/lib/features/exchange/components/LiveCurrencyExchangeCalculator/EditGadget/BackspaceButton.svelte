@@ -13,7 +13,7 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <CalculatorButton value="backspace" {onclick}>
+  <CalculatorButton value="backspace" {onclick} outline>
     <Icon icon="material-symbols:keyboard-backspace-rounded" />
   </CalculatorButton>
 </div>

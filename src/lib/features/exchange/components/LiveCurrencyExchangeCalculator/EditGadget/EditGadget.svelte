@@ -78,7 +78,7 @@
       flex-direction: column;
       width: 100%;
       justify-content: space-between;
-      margin-left: calc(var(--dodo-ui-space) * 1);
+      margin-left: calc(var(--dodo-ui-space) * 0.5);
     }
   }
 </style>

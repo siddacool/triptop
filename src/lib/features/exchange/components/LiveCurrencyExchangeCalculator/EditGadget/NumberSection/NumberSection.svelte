@@ -24,15 +24,12 @@
       <Row class={`row-${i}`}>
         {#each valueRow as item (item)}
           <Column size={4}>
-            <CalculatorButton value={item} {onclick}>{item}</CalculatorButton>
+            <CalculatorButton value={item} {onclick} color="primary" outline>
+              {item}
+            </CalculatorButton>
           </Column>
         {/each}
       </Row>
     {/each}
   </Grid>
 </div>
-
-<style lang="scss">
-  .NumberSection {
-  }
-</style>

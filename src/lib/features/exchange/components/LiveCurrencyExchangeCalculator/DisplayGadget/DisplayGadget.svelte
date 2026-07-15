@@ -76,6 +76,7 @@
     flex-direction: column;
     position: relative;
     margin-top: calc(var(--dodo-ui-space) * -2);
+    flex: 1;
 
     &.activeCurrency--HOME_CURRENCY {
       :global(.homeCurrencyValue) {

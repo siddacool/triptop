@@ -13,7 +13,7 @@
 </script>
 
 <div class={classes.join(' ')}>
-  <CalculatorButton {value} {onclick}>{value}</CalculatorButton>
+  <CalculatorButton {value} {onclick} color="primary" outline>{value}</CalculatorButton>
 </div>
 
 <style lang="scss">

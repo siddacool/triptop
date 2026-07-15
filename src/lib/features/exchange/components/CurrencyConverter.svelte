@@ -5,9 +5,6 @@
   import { liveRatesExchangeStore } from '$lib/features/exchange/store/live-rates.svelte';
   import { LiveCurrencyExchangeActiveCurrency } from '$lib/features/exchange/types';
   import LiveCurrencyExchangeCalculator from './LiveCurrencyExchangeCalculator/LiveCurrencyExchangeCalculator.svelte';
-  import Instructions from '$lib/components/ui/Instructions/Instructions.svelte';
-  import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
-  import { useThemeStore } from '@flightlesslabs/dodo-ui';
 
   const exchangeRate = $derived(liveRatesExchangeStore?.exchangeRate?.data[0].exchangeRate);
   const trip = $derived(tripDetailStore.trip);
@@ -16,29 +13,31 @@
   );
 </script>
 
-{#snippet content()}
-  {#if trip && exchangeRate}
-    {#if settingsStore.settings.homeCurrency === trip?.currency}
-      <Instructions>Nothing to show</Instructions>
-    {:else if exchangeRate}
-      <Box>
-        <LiveCurrencyExchangeCalculator
-          homeCurrency={settingsStore.settings.homeCurrency}
-          tripCurrency={trip.currency}
-          {exchangeRate}
-          homeCurrencyLocale={settingsStore.settings.locale}
-          tripCurrencyLocale={trip.locale}
-          bind:activeCurrency
-        />
-      </Box>
-    {/if}
-  {/if}
-{/snippet}
-
-{#if useThemeStore.theme === 'dark'}
-  {@render content()}
-{:else}
-  <WhiteMaterial>
-    {@render content()}
-  </WhiteMaterial>
+{#if trip && exchangeRate}
+  <div class="CurrencyConverter">
+    <Box>
+      <LiveCurrencyExchangeCalculator
+        homeCurrency={settingsStore.settings.homeCurrency}
+        tripCurrency={trip.currency}
+        {exchangeRate}
+        homeCurrencyLocale={settingsStore.settings.locale}
+        tripCurrencyLocale={trip.locale}
+        bind:activeCurrency
+      />
+    </Box>
+  </div>
 {/if}
+
+<style lang="scss">
+  .CurrencyConverter {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px);
+
+    :global(.Box) {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+  }
+</style>

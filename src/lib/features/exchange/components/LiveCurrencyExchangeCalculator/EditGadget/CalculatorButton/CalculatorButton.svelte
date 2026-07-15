@@ -1,34 +1,31 @@
 <script lang="ts">
   import { Button } from '@flightlesslabs/dodo-ui';
-  import type { Snippet } from 'svelte';
+  import type { ButtonAsButtonProps } from '@flightlesslabs/dodo-ui';
 
-  type Props = {
-    class?: string;
+  export type ButtonBaseProps = Omit<ButtonAsButtonProps, 'onclick' | 'size'>;
+
+  type Props = ButtonBaseProps & {
     value: number | string;
     onclick: (value: number | string) => void;
-    children?: Snippet;
-    disabled?: boolean;
   };
 
-  let { class: className = '', onclick, value, children, disabled }: Props = $props();
+  let { class: className = '', onclick, value, ...restProps }: Props = $props();
 
   const classes = $derived(['CalculatorButton', className].filter(Boolean));
 </script>
 
 <div class={classes.join(' ')}>
   <Button
-    fullWidth
     roundness="pill"
     variant="text"
     color="neutral"
-    onclick={() => onclick(value)}
-    size="large"
     compact
+    {...restProps}
+    fullWidth
+    size="large"
+    onclick={() => onclick(value)}
     class="CalculatorButtonButton"
-    {disabled}
-  >
-    {@render children?.()}
-  </Button>
+  />
 </div>
 
 <style lang="scss">
