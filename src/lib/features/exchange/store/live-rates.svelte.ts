@@ -4,13 +4,18 @@ import { saveLiveExchangeRate } from '../logic';
 import { getLiveExchangeRate } from '../db';
 import { fetchLiveExchangeRate } from '../api/live-rates';
 import { needsLiveExchangeRateUpdate } from '../utils/needsLiveExchangeRateUpdate';
+import { checkLiveRateStale } from '../utils/check-live-rate-stale';
 
 function createLiveRatesExchangeStore() {
-  let exchangeRate: CurrencyExchangeRate | undefined = $state(undefined);
+  let exchangeRate = $state<CurrencyExchangeRate | undefined>(undefined);
+  const isRateStale = $derived(checkLiveRateStale(exchangeRate?.requestedAt));
 
   return {
     get exchangeRate() {
       return exchangeRate;
+    },
+    get isRateStale() {
+      return isRateStale;
     },
     async load(tripCurrency: CurrencyCode, homeCurrency: CurrencyCode) {
       try {

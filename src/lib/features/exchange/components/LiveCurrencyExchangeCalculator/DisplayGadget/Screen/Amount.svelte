@@ -62,7 +62,7 @@
     color: inherit;
 
     @media (min-width: 400px) {
-      font-size: 1.7rem;
+      font-size: 1.6rem;
     }
   }
 </style>

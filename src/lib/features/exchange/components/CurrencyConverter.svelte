@@ -27,6 +27,7 @@
         bind:activeCurrency
         {exchangeDate}
         dateFormat={settingsStore.settings.dateFormat}
+        isRateStale={liveRatesExchangeStore.isRateStale}
       />
     </Box>
   </div>
@@ -36,7 +37,8 @@
   .CurrencyConverter {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 145px);
+    height: calc(100vh - 150px);
+    margin-top: calc(var(--dodo-ui-space) * 1);
 
     :global(.Box) {
       display: flex;

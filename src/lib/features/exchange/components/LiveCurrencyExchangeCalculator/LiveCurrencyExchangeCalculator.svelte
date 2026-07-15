@@ -5,6 +5,7 @@
   import EditGadget from './EditGadget/EditGadget.svelte';
   import type { DateFormatMode } from '$lib/features/settings/types';
   import ExchangeInfo from './ExchangeInfo/ExchangeInfo.svelte';
+  import RateStale from './RateStale.svelte';
 
   type Props = {
     class?: string;
@@ -16,6 +17,7 @@
     tripCurrencyLocale: string | undefined;
     exchangeDate: string;
     dateFormat: DateFormatMode;
+    isRateStale: boolean;
   };
 
   let {
@@ -28,6 +30,7 @@
     tripCurrency,
     exchangeDate,
     dateFormat,
+    isRateStale,
   }: Props = $props();
 
   const classes = $derived(['LiveCurrencyExchangeCalculator', className].filter(Boolean));
@@ -35,6 +38,10 @@
 </script>
 
 <div class={classes.join(' ')}>
+  {#if isRateStale}
+    <RateStale />
+  {/if}
+
   <DisplayGadget
     bind:activeCurrency
     amount={value}
