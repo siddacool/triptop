@@ -1,3 +1,4 @@
+import type { LiveCurrencyExchangeActiveCurrency } from '$lib/features/exchange/types';
 import { deleteExpenseByTripId } from '$lib/features/expense/logic/crud.svelte';
 import { createTrip, updateTrip, deleteTrip as deleteTripDb, getTripById } from '../db';
 import { tripDetailStore } from '../store/detail.svelte';
@@ -61,4 +62,17 @@ export function unarchiveTrip(id: string) {
 
 export function updateTripCurrencyConversionFlag(id: string, enableCurrencyConversion: boolean) {
   return updateTripFields(id, { enableCurrencyConversion });
+}
+
+export async function updateTripLiveCurrencyExchangeActiveCurrency(
+  id: string,
+  liveCurrencyExchangeActiveCurrency: LiveCurrencyExchangeActiveCurrency,
+) {
+  const trip = await getTripById(id);
+
+  if (liveCurrencyExchangeActiveCurrency === trip.liveCurrencyExchangeActiveCurrency) {
+    return trip._id;
+  }
+
+  return updateTripFields(id, { liveCurrencyExchangeActiveCurrency });
 }

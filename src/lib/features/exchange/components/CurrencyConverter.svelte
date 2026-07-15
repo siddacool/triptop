@@ -5,6 +5,7 @@
   import { liveRatesExchangeStore } from '$lib/features/exchange/store/live-rates.svelte';
   import { LiveCurrencyExchangeActiveCurrency } from '$lib/features/exchange/types';
   import LiveCurrencyExchangeCalculator from './LiveCurrencyExchangeCalculator/LiveCurrencyExchangeCalculator.svelte';
+  import { updateTripLiveCurrencyExchangeActiveCurrency } from '$lib/features/trip/logic/crud.svelte';
 
   const liveRate = $derived(liveRatesExchangeStore?.exchangeRate?.data[0]);
   const exchangeRate = $derived(liveRate?.exchangeRate);
@@ -13,6 +14,14 @@
   let activeCurrency = $derived(
     trip?.liveCurrencyExchangeActiveCurrency || LiveCurrencyExchangeActiveCurrency.TRIP_CURRENCY,
   );
+
+  $effect(() => {
+    if (!trip?._id) {
+      return;
+    }
+
+    updateTripLiveCurrencyExchangeActiveCurrency(trip?._id, activeCurrency);
+  });
 </script>
 
 {#if trip && exchangeRate && exchangeDate}
