@@ -1,0 +1,1 @@
+import{R as e,it as t,nt as n}from"./M6459hCJ.js";import{r}from"./CqaG5HEx2.js";function i(){let i=t(void 0);return{get trip(){return e(i)},async load(e){n(i,await r(e),!0)},clear(){n(i,void 0)}}}var a=i();export{a as t};
