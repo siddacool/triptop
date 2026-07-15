@@ -8,38 +8,40 @@
   import CurrencyConverter from '$lib/features/exchange/components/CurrencyConverter.svelte';
   import { goto } from '$app/navigation';
   import { resolve } from '$app/paths';
+  import { onMount } from 'svelte';
 
   const tripId = page.params.tripId;
   let loading = $state(true);
-  const tripCurrency = $derived(tripDetailStore.trip?.currency);
-  const homeCurrency = $derived(settingsStore.settings.homeCurrency);
 
-  const loadLiveRates = async () => {
-    try {
-      if (tripCurrency && homeCurrency) {
-        await liveRatesExchangeStore.load(tripCurrency, homeCurrency);
-      }
-    } finally {
-      loading = false;
-    }
-  };
-
-  $effect(() => {
+  onMount(() => {
     if (!tripId) {
       loading = false;
       return;
     }
 
-    if (!tripCurrency || !homeCurrency) {
-      return;
-    }
+    const loadTrip = async () => {
+      try {
+        liveRatesExchangeStore.clear();
+        await tripDetailStore.load(tripId);
 
-    if (tripCurrency === homeCurrency) {
-      goto(resolve(`/trips/${tripId}`), { replaceState: true });
-      return;
-    }
+        const tripCurrency = tripDetailStore.trip?.currency;
+        const homeCurrency = settingsStore.settings.homeCurrency;
+        const enableCurrencyConversion = settingsStore.settings.enableCurrencyConversion;
 
-    loadLiveRates();
+        if (tripCurrency === homeCurrency) {
+          goto(resolve(`/trips/${tripId}`), { replaceState: true });
+          return;
+        }
+
+        if (tripCurrency && homeCurrency && enableCurrencyConversion) {
+          await liveRatesExchangeStore.load(tripCurrency, homeCurrency);
+        }
+      } finally {
+        loading = false;
+      }
+    };
+
+    loadTrip();
   });
 </script>
 
