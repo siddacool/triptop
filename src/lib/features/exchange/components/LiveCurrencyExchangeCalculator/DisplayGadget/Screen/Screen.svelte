@@ -37,7 +37,7 @@
     margin: calc(var(--dodo-ui-space) * 2) 0;
     flex: 1;
     min-height: 70px;
-    max-height: 200px;
+    max-height: 150px;
 
     :global(.ScreenCard) {
       padding: calc(var(--dodo-ui-space) * 1);
@@ -49,6 +49,10 @@
       overflow: hidden;
       color: var(--dodo-color-neutral-800);
       position: relative;
+
+      @media (min-width: 400px) {
+        padding: calc(var(--dodo-ui-space) * 2);
+      }
     }
   }
 </style>

@@ -3,6 +3,8 @@
   import type { CurrencyCode } from '@flightlesslabs/currency';
   import DisplayGadget from './DisplayGadget/DisplayGadget.svelte';
   import EditGadget from './EditGadget/EditGadget.svelte';
+  import type { DateFormatMode } from '$lib/features/settings/types';
+  import ExchangeInfo from './ExchangeInfo/ExchangeInfo.svelte';
 
   type Props = {
     class?: string;
@@ -13,6 +15,7 @@
     tripCurrency: CurrencyCode;
     tripCurrencyLocale: string | undefined;
     exchangeDate: string;
+    dateFormat: DateFormatMode;
   };
 
   let {
@@ -24,6 +27,7 @@
     tripCurrencyLocale,
     tripCurrency,
     exchangeDate,
+    dateFormat,
   }: Props = $props();
 
   const classes = $derived(['LiveCurrencyExchangeCalculator', className].filter(Boolean));
@@ -39,6 +43,16 @@
     {exchangeRate}
     {tripCurrency}
     {tripCurrencyLocale}
+  />
+  <ExchangeInfo
+    {exchangeDate}
+    {dateFormat}
+    {homeCurrencyLocale}
+    {homeCurrency}
+    {exchangeRate}
+    {tripCurrency}
+    {tripCurrencyLocale}
+    {activeCurrency}
   />
   <EditGadget bind:amount={value} />
 </div>

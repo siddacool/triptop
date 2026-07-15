@@ -16,7 +16,7 @@
 
 <div class={classes.join(' ')}>
   <Button
-    roundness="pill"
+    roundness={3}
     variant="text"
     color="neutral"
     compact
@@ -34,7 +34,12 @@
 
     :global(.CalculatorButtonButton.dodo-ui-Button.compact.size--large) {
       width: 100%;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
+
+      @media (min-width: 400px) {
+        height: 70px;
+        font-size: 1.5rem;
+      }
     }
   }
 </style>

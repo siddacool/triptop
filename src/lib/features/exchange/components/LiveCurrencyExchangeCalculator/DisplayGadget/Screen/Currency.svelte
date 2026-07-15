@@ -23,5 +23,10 @@
     position: absolute;
     top: calc(var(--dodo-ui-space) * 1);
     left: calc(var(--dodo-ui-space) * 1);
+
+    @media (min-width: 400px) {
+      top: calc(var(--dodo-ui-space) * 2);
+      left: calc(var(--dodo-ui-space) * 2);
+    }
   }
 </style>

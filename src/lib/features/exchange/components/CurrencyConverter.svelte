@@ -26,6 +26,7 @@
         tripCurrencyLocale={trip.locale}
         bind:activeCurrency
         {exchangeDate}
+        dateFormat={settingsStore.settings.dateFormat}
       />
     </Box>
   </div>
@@ -35,7 +36,7 @@
   .CurrencyConverter {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 145px);
 
     :global(.Box) {
       display: flex;
