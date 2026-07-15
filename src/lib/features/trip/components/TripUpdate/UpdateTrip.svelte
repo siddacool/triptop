@@ -8,6 +8,7 @@
   import { saveTrip } from '../../logic/crud.svelte';
   import { tripDetailStore } from '../../store/detail.svelte';
   import { historicalRatesExchangeStore } from '$lib/features/exchange/store/historical-rates.svelte';
+  import { exchangeRatesCleanup } from '$lib/features/exchange/logic';
 
   let fetching: boolean = $state(false);
 
@@ -28,6 +29,8 @@
         description: 'Trip details updated',
         color: 'primary',
       });
+
+      exchangeRatesCleanup();
 
       historicalRatesExchangeStore.clear();
 

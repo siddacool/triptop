@@ -1,3 +1,4 @@
+import { exchangeRatesCleanup } from '$lib/features/exchange/logic';
 import type { LiveCurrencyExchangeActiveCurrency } from '$lib/features/exchange/types';
 import { deleteExpenseByTripId } from '$lib/features/expense/logic/crud.svelte';
 import { createTrip, updateTrip, deleteTrip as deleteTripDb, getTripById } from '../db';
@@ -39,6 +40,8 @@ export async function saveTrip(data: TripCreateData | Trip) {
 export async function deleteTrip(id: string) {
   await deleteTripDb(id);
   await deleteExpenseByTripId(id);
+
+  exchangeRatesCleanup();
 
   return id;
 }

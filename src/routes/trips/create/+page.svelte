@@ -4,6 +4,7 @@
   import Box from '$lib/components/ui/Box/Box.svelte';
   import WhiteMaterial from '$lib/components/ui/Materials/WhiteMaterial/WhiteMaterial.svelte';
   import PageHeadingNav from '$lib/components/ui/PageHeadingNav/PageHeadingNav.svelte';
+  import { exchangeRatesCleanup } from '$lib/features/exchange/logic';
   import EditTrip from '$lib/features/trip/components/EditTrip/EditTrip.svelte';
   import { saveTrip } from '$lib/features/trip/logic/crud.svelte';
   import { clearActiveTrip } from '$lib/features/trip/logic/page.svelte';
@@ -17,6 +18,8 @@
     try {
       fetching = true;
       const newTripId = await saveTrip(data);
+
+      exchangeRatesCleanup();
 
       await goto(resolve(`/trips/${newTripId}`));
     } catch (e) {

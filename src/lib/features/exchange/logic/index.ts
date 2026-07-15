@@ -2,10 +2,17 @@ import type { CurrencyCode } from '@flightlesslabs/currency';
 import {
   createHistoricalExchangeRate,
   createLiveExchangeRate,
+  deleteBulkHistoricalExchangeRates,
+  deleteBulkLiveExchangeRates,
+  listHistoricalExchangeRates,
+  listLiveExchangeRates,
   updateHistoricalExchangeRate,
   updateLiveExchangeRate,
 } from '../db';
 import type { CurrencyExchangeRate } from '../types';
+import { listTrips } from '$lib/features/trip/db';
+import { settingsStore } from '$lib/features/settings/store/main.svelte';
+import { getCleanupCandidates } from '../utils/get-cleanup-candidates';
 
 /**
  * Persists a historical exchange rate.
@@ -54,4 +61,28 @@ export function saveLiveExchangeRate(
   }
 
   return createLiveExchangeRate(newExchangeRate);
+}
+
+export async function exchangeRatesCleanup() {
+  const trips = await listTrips();
+  const historicalExchangeRates = await listHistoricalExchangeRates();
+  const liveExchangeRates = await listLiveExchangeRates();
+  const homeCurrency = settingsStore.settings.homeCurrency;
+  const currencies: CurrencyCode[] = [...new Set(trips.map((t) => t.currency))];
+  const historicalExchangeRateIds = getCleanupCandidates(
+    homeCurrency,
+    currencies,
+    historicalExchangeRates,
+  );
+  const liveExchangeRateIds = getCleanupCandidates(homeCurrency, currencies, liveExchangeRates);
+
+  if (historicalExchangeRateIds.length) {
+    deleteBulkHistoricalExchangeRates(historicalExchangeRateIds);
+  }
+
+  if (liveExchangeRateIds.length) {
+    deleteBulkLiveExchangeRates(liveExchangeRateIds);
+  }
+
+  return currencies;
 }
