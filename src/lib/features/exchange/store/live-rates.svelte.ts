@@ -24,7 +24,7 @@ function createLiveRatesExchangeStore() {
           return;
         }
 
-        exchangeRate = exchangeRate ?? (await getLiveExchangeRate(tripCurrency, homeCurrency));
+        exchangeRate = await getLiveExchangeRate(tripCurrency, homeCurrency);
 
         if (!needsLiveExchangeRateUpdate(exchangeRate)) {
           return;
