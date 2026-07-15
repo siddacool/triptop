@@ -1,5 +1,11 @@
 # triptop
 
+## 5.21.0
+
+### Minor Changes
+
+- 605107d: Currency Converter added
+
 ## 5.20.1
 
 ### Patch Changes
