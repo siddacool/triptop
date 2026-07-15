@@ -85,6 +85,7 @@
               name="currency"
               searchable
               placeholder="Select currency"
+              clearable
             />
           </FormField>
         </Column>
