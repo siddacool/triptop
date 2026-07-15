@@ -6,14 +6,16 @@
   import { LiveCurrencyExchangeActiveCurrency } from '$lib/features/exchange/types';
   import LiveCurrencyExchangeCalculator from './LiveCurrencyExchangeCalculator/LiveCurrencyExchangeCalculator.svelte';
 
-  const exchangeRate = $derived(liveRatesExchangeStore?.exchangeRate?.data[0].exchangeRate);
+  const liveRate = $derived(liveRatesExchangeStore?.exchangeRate?.data[0]);
+  const exchangeRate = $derived(liveRate?.exchangeRate);
+  const exchangeDate = $derived(liveRate?.date);
   const trip = $derived(tripDetailStore.trip);
   let activeCurrency = $derived(
     trip?.liveCurrencyExchangeActiveCurrency || LiveCurrencyExchangeActiveCurrency.TRIP_CURRENCY,
   );
 </script>
 
-{#if trip && exchangeRate}
+{#if trip && exchangeRate && exchangeDate}
   <div class="CurrencyConverter">
     <Box>
       <LiveCurrencyExchangeCalculator
@@ -23,6 +25,7 @@
         homeCurrencyLocale={settingsStore.settings.locale}
         tripCurrencyLocale={trip.locale}
         bind:activeCurrency
+        {exchangeDate}
       />
     </Box>
   </div>

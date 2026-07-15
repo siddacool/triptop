@@ -4,6 +4,7 @@
   import BackspaceButton from './BackspaceButton.svelte';
   import DecimalMarkButton from './DecimalMarkButton.svelte';
   import ClearAllButton from './ClearAllButton.svelte';
+  import { calculatorAmount } from '$lib/features/exchange/utils/calculator-amount';
 
   type Props = {
     class?: string;
@@ -15,33 +16,7 @@
   const classes = $derived(['EditGadget', className].filter(Boolean));
 
   function handleClick(value: number | string) {
-    const [, afterDecimal = ''] = amount.split('.');
-
-    if (typeof value === 'number') {
-      if (amount === '0') {
-        amount = `${value}`;
-      } else if (afterDecimal.length >= 4) {
-        return;
-      } else {
-        amount = `${amount}${value}`;
-      }
-    } else if (value.includes('00')) {
-      if (amount === '0' || amount.includes('.')) {
-        return;
-      }
-
-      amount = `${amount}${value}`;
-    } else if (value === 'backspace') {
-      amount = `${amount}`.slice(0, -1);
-    } else if (value === '.') {
-      if (amount.includes('.')) {
-        return;
-      }
-
-      amount = `${amount}${value}`;
-    } else if (value === 'clearAll') {
-      amount = '0';
-    }
+    amount = calculatorAmount(amount, value);
   }
 </script>
 

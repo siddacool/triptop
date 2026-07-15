@@ -12,6 +12,7 @@
     homeCurrencyLocale: string | undefined;
     tripCurrency: CurrencyCode;
     tripCurrencyLocale: string | undefined;
+    exchangeDate: string;
   };
 
   let {
@@ -22,6 +23,7 @@
     homeCurrencyLocale,
     tripCurrencyLocale,
     tripCurrency,
+    exchangeDate,
   }: Props = $props();
 
   const classes = $derived(['LiveCurrencyExchangeCalculator', className].filter(Boolean));
