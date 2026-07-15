@@ -1,5 +1,11 @@
 # triptop
 
+## 5.21.2
+
+### Patch Changes
+
+- b941690: Fix height
+
 ## 5.21.1
 
 ### Patch Changes
