@@ -1,5 +1,13 @@
 # triptop
 
+## 5.21.3
+
+### Patch Changes
+
+- c1751dd: Exchange rate cleanup added
+- 77a3f26: Libraries updated
+- d92c679: Fix tomorrow's date showing in exchange
+
 ## 5.21.2
 
 ### Patch Changes
