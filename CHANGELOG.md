@@ -1,5 +1,12 @@
 # triptop
 
+## 5.21.4
+
+### Patch Changes
+
+- 61273ee: Fix Currency converter showing old trip Currency
+- 9ab92dd: Trip currency cleaable
+
 ## 5.21.3
 
 ### Patch Changes
