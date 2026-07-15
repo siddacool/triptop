@@ -1,5 +1,11 @@
 # triptop
 
+## 5.21.1
+
+### Patch Changes
+
+- f0d4830: Fix screen for PWA mode
+
 ## 5.21.0
 
 ### Minor Changes
