@@ -24,7 +24,17 @@ function createLiveRatesExchangeStore() {
           return;
         }
 
-        exchangeRate = exchangeRate ?? (await getLiveExchangeRate(tripCurrency, homeCurrency));
+        if (
+          !exchangeRate ||
+          exchangeRate?.homeCurrency !== homeCurrency ||
+          exchangeRate?.tripCurrency !== tripCurrency
+        ) {
+          const dbData = await getLiveExchangeRate(tripCurrency, homeCurrency);
+
+          if (dbData) {
+            exchangeRate = dbData;
+          }
+        }
 
         if (!needsLiveExchangeRateUpdate(exchangeRate)) {
           return;
@@ -33,8 +43,6 @@ function createLiveRatesExchangeStore() {
         const latestRate = await fetchLiveExchangeRate(tripCurrency, homeCurrency);
 
         if (!latestRate) {
-          exchangeRate = undefined;
-
           return;
         }
 
