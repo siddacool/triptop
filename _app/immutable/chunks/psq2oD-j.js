@@ -1,0 +1,1 @@
+import{R as e,rt as t,tt as n}from"./CddUEI5d.js";function r(){let r=t(null);return{get _activeModal(){return e(r)},add(e,t){n(r,{type:e,config:t},!0)},clear(){n(r,null)}}}var i=r();export{i as t};

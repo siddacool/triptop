@@ -1,1 +1,0 @@
-import{lt as e}from"./M6459hCJ.js";var[t,n]=e();function r(){try{return t()}catch{return{theme:`light`}}}export{r as n,n as t};
