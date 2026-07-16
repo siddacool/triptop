@@ -1,5 +1,20 @@
 # triptop
 
+## 5.22.0
+
+### Minor Changes
+
+- 152c333: Offline Indicator added
+- cae8246: Network connection added
+
+### Patch Changes
+
+- 9553d5b: Currency converter background refresh added
+- b3e0fef: Expense details page refresh
+- ca6104d: Trip details refresh
+- 690cab1: Libraries updated
+- 82405d0: Fix Rate stale
+
 ## 5.21.4
 
 ### Patch Changes
