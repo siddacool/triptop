@@ -10,11 +10,13 @@
   import { Theme } from '@flightlesslabs/dodo-ui';
   import Main from '$lib/components/Main/Main.svelte';
   import ThemeSetter from '$lib/features/settings/components/SettingsCard/ThemeSetter.svelte';
+  import NetworkConnection from '$lib/features/shared/components/NetworkConnection.svelte';
 
   let { children } = $props();
 </script>
 
 <ThemeSetter />
+<NetworkConnection />
 <Theme global class="Theme" type="auto">
   <div class="App">
     <Main>
