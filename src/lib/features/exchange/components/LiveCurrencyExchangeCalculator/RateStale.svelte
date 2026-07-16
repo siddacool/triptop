@@ -3,13 +3,13 @@
 </script>
 
 <div class="RateStale">
-  <Callout class="RateStale" color="warning">The exchange rates are outdated</Callout>
+  <Callout class="RateStale" color="warning" size="small">The exchange rates are outdated</Callout>
 </div>
 
 <style lang="scss">
   .RateStale {
-    margin-bottom: calc(var(--dodo-ui-space) * 2);
-    margin-top: calc(var(--dodo-ui-space) * -2);
+    margin-bottom: calc(var(--dodo-ui-space) * 3);
+    margin-top: calc(var(--dodo-ui-space) * -3);
     margin-right: calc(var(--dodo-ui-space) * -2);
     margin-left: calc(var(--dodo-ui-space) * -2);
 

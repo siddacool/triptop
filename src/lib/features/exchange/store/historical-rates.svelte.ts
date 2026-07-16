@@ -6,8 +6,8 @@ import { saveHistoricalExchangeRate } from '../logic';
 import { fetchHistoricalExchangeRates } from '../api/historical-rates';
 import { needsExchangeRateUpdate } from '../utils/needsExchangeRateUpdate';
 import { shouldSkip } from '../utils/shouldSkip';
-import { loadCachedRate } from '../utils/loadCachedRate';
 import { getExpenseDateRange } from '../utils/getExpenseDateRange';
+import { getHistoricalExchangeRate } from '../db';
 
 function createHistoricalRatesExchangeStore() {
   let exchangeRate: CurrencyExchangeRate | undefined = $state(undefined);
@@ -27,7 +27,17 @@ function createHistoricalRatesExchangeStore() {
           return;
         }
 
-        exchangeRate = await loadCachedRate(exchangeRate, tripCurrency, homeCurrency);
+        if (
+          !exchangeRate ||
+          exchangeRate?.homeCurrency !== homeCurrency ||
+          exchangeRate?.tripCurrency !== tripCurrency
+        ) {
+          const dbData = await getHistoricalExchangeRate(tripCurrency, homeCurrency);
+
+          if (dbData) {
+            exchangeRate = dbData;
+          }
+        }
 
         const { start, end } = getExpenseDateRange(expensesData);
 
@@ -45,7 +55,13 @@ function createHistoricalRatesExchangeStore() {
         );
 
         if (!latestRate) {
-          exchangeRate = undefined;
+          if (
+            !exchangeRate ||
+            exchangeRate?.homeCurrency !== homeCurrency ||
+            exchangeRate?.tripCurrency !== tripCurrency
+          ) {
+            exchangeRate = undefined;
+          }
 
           return;
         }

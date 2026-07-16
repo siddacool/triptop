@@ -4,11 +4,10 @@ import { saveLiveExchangeRate } from '../logic';
 import { getLiveExchangeRate } from '../db';
 import { fetchLiveExchangeRate } from '../api/live-rates';
 import { needsLiveExchangeRateUpdate } from '../utils/needsLiveExchangeRateUpdate';
-import { checkLiveRateStale } from '../utils/check-live-rate-stale';
 
 function createLiveRatesExchangeStore() {
   let exchangeRate = $state<CurrencyExchangeRate | undefined>(undefined);
-  const isRateStale = $derived(checkLiveRateStale(exchangeRate?.requestedAt));
+  const isRateStale = $derived(needsLiveExchangeRateUpdate(exchangeRate));
 
   return {
     get exchangeRate() {
@@ -24,7 +23,17 @@ function createLiveRatesExchangeStore() {
           return;
         }
 
-        exchangeRate = exchangeRate ?? (await getLiveExchangeRate(tripCurrency, homeCurrency));
+        if (
+          !exchangeRate ||
+          exchangeRate?.homeCurrency !== homeCurrency ||
+          exchangeRate?.tripCurrency !== tripCurrency
+        ) {
+          const dbData = await getLiveExchangeRate(tripCurrency, homeCurrency);
+
+          if (dbData) {
+            exchangeRate = dbData;
+          }
+        }
 
         if (!needsLiveExchangeRateUpdate(exchangeRate)) {
           return;
@@ -33,7 +42,13 @@ function createLiveRatesExchangeStore() {
         const latestRate = await fetchLiveExchangeRate(tripCurrency, homeCurrency);
 
         if (!latestRate) {
-          exchangeRate = undefined;
+          if (
+            !exchangeRate ||
+            exchangeRate?.homeCurrency !== homeCurrency ||
+            exchangeRate?.tripCurrency !== tripCurrency
+          ) {
+            exchangeRate = undefined;
+          }
 
           return;
         }
