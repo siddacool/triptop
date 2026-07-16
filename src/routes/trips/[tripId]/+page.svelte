@@ -11,37 +11,67 @@
   import { settingsStore } from '$lib/features/settings/store/main.svelte';
   import { onMount } from 'svelte';
   import LoadingBoundary from '$lib/components/LoadingBoundary.svelte';
+  import { networkConnectionStore } from '$lib/features/shared/store/network-connection.svelte';
 
   const tripId = page.params.tripId;
 
   let loading = $state(true);
 
-  onMount(() => {
-    if (!tripId) {
+  const loadTrip = async () => {
+    try {
+      if (!tripId) {
+        loading = false;
+        return;
+      }
+
+      historicalRatesExchangeStore.clear();
+      await tripDetailStore.load(tripId);
+
+      const tripCurrency = tripDetailStore.trip?.currency;
+      const homeCurrency = settingsStore.settings.homeCurrency;
+      const enableCurrencyConversion = settingsStore.settings.enableCurrencyConversion;
+
+      if (tripCurrency && homeCurrency && enableCurrencyConversion) {
+        await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);
+      }
+
+      await expenseListStore.load(tripId);
+    } finally {
       loading = false;
+    }
+  };
+
+  const backgroundRefresh = async () => {
+    if (!tripId) {
       return;
     }
 
-    const loadTrip = async () => {
-      try {
-        historicalRatesExchangeStore.clear();
-        await tripDetailStore.load(tripId);
+    if (!settingsStore.settings.enableCurrencyConversion) {
+      return;
+    }
 
-        const tripCurrency = tripDetailStore.trip?.currency;
-        const homeCurrency = settingsStore.settings.homeCurrency;
-        const enableCurrencyConversion = settingsStore.settings.enableCurrencyConversion;
+    await tripDetailStore.load(tripId);
 
-        if (tripCurrency && homeCurrency && enableCurrencyConversion) {
-          await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);
-        }
+    const tripCurrency = tripDetailStore.trip?.currency;
+    const homeCurrency = settingsStore.settings.homeCurrency;
 
-        await expenseListStore.load(tripId);
-      } finally {
-        loading = false;
-      }
-    };
+    if (tripCurrency && homeCurrency) {
+      await historicalRatesExchangeStore.load(tripId, tripCurrency, homeCurrency);
+    }
 
+    await expenseListStore.load(tripId);
+  };
+
+  onMount(() => {
     loadTrip();
+  });
+
+  $effect(() => {
+    if (!networkConnectionStore.online) {
+      return;
+    }
+
+    backgroundRefresh();
   });
 
   beforeNavigate((navigation) => {

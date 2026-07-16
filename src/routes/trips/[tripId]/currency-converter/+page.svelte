@@ -45,8 +45,6 @@
       return;
     }
 
-    console.log('debug:', 'backgroundRefresh');
-
     await tripDetailStore.load(tripId);
 
     const tripCurrency = tripDetailStore.trip?.currency;
@@ -67,10 +65,6 @@
   });
 
   $effect(() => {
-    if (!tripId) {
-      return;
-    }
-
     if (!networkConnectionStore.online) {
       return;
     }

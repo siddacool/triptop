@@ -43,6 +43,14 @@ function createLiveRatesExchangeStore() {
         const latestRate = await fetchLiveExchangeRate(tripCurrency, homeCurrency);
 
         if (!latestRate) {
+          if (
+            !exchangeRate ||
+            exchangeRate?.homeCurrency !== homeCurrency ||
+            exchangeRate?.tripCurrency !== tripCurrency
+          ) {
+            exchangeRate = undefined;
+          }
+
           return;
         }
 
