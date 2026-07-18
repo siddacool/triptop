@@ -1,5 +1,11 @@
 # triptop
 
+## 5.22.3
+
+### Patch Changes
+
+- 8d1413c: Fix type
+
 ## 5.22.2
 
 ### Patch Changes
