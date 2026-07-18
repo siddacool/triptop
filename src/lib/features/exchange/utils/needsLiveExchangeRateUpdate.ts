@@ -1,6 +1,5 @@
 import type { CurrencyExchangeRate } from '../types';
 import { createDate } from '$lib/utils/date-time/createDate';
-import { LIVE_EXCHANGE_RATE_DIFFERENCE } from '../const';
 
 export function needsLiveExchangeRateUpdate(exchangeRate: CurrencyExchangeRate | undefined) {
   if (!exchangeRate) {
@@ -16,5 +15,5 @@ export function needsLiveExchangeRateUpdate(exchangeRate: CurrencyExchangeRate |
   const lastUpdated = createDate(date);
   const now = createDate();
 
-  return now.diff(lastUpdated, 'hour', true) >= LIVE_EXCHANGE_RATE_DIFFERENCE;
+  return now.diff(lastUpdated, 'day', false) > 1;
 }
