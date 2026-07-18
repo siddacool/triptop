@@ -4,7 +4,7 @@
   // Addon (dodo-ui-bits)
   import '@flightlesslabs/dodo-ui-bits/styles/main.scss';
   // Addon (dodo-ui-date)
-  import '@flightlesslabs/dodo-ui-date/styles/main.css';
+  import '@flightlesslabs/dodo-ui-date/styles/main.scss';
 
   import { ModalManager, ToastManager } from '@flightlesslabs/dodo-ui-bits';
   import { Theme } from '@flightlesslabs/dodo-ui';
