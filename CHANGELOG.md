@@ -1,5 +1,11 @@
 # triptop
 
+## 5.22.2
+
+### Patch Changes
+
+- 55d63a9: Check if live rates stale function improved using startof day
+
 ## 5.22.1
 
 ### Patch Changes
