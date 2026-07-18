@@ -1,5 +1,13 @@
 # triptop
 
+## 5.22.1
+
+### Patch Changes
+
+- 036144c: Datepicker scss import fixed
+- 2273b4b: Live rates stale logic fixed
+- 5b52f08: Libraries updated
+
 ## 5.22.0
 
 ### Minor Changes
