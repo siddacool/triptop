@@ -2,12 +2,12 @@ import type { CurrencyExchangeRate } from '../types';
 import { createDate } from '$lib/utils/date-time/createDate';
 import { LIVE_EXCHANGE_RATE_DIFFERENCE } from '../const';
 
-export function needsLiveExchangeRateUpdate(exchangeRate: CurrencyExchangeRate | undefined) {
+export function checkIfLiveRateStale(exchangeRate: CurrencyExchangeRate | undefined) {
   if (!exchangeRate) {
     return true;
   }
 
-  const date = exchangeRate?.data?.[0]?.date;
+  const date = exchangeRate.requestedAt;
 
   if (!date) {
     return true;
