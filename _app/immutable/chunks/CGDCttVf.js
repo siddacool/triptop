@@ -1,1 +1,0 @@
-import{$ as e,R as t,rt as n,tt as r}from"./CddUEI5d.js";import{r as i,t as a}from"./D8l6_-dJ2.js";var o=i(`local`,a);function s(){let i=n(e(o)),a=n(!1);return{get activeTrip(){return t(i)},get showSpecialFiltersSelector(){return t(a)},updateActiveTrip(e){r(i,e,!0)},updateShowSpecialFiltersSelector(e){r(a,e,!0)}}}var c=s();export{c as t};

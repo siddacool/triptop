@@ -1,0 +1,1 @@
+import{$ as e,R as t,rt as n,tt as r}from"./Cmyz5nlQ.js";function i(){let i=n(e(navigator.onLine));return{get online(){return t(i)},update(){r(i,navigator.onLine,!0)}}}var a=i();export{a as t};

@@ -1,0 +1,1 @@
+import{D as e,K as t,R as n,a as r,at as i,h as a,k as o,m as s,mt as c,pt as l}from"./Cmyz5nlQ.js";import"./xihTtKlq.js";var u=o(`<hr/>`);function d(o,d){c(d,!0);let f=r(d,`class`,3,``),p=i(()=>[`Divider`,f()].filter(Boolean));var m=u();t(e=>s(m,1,e,`svelte-195md7u`),[()=>a(n(p).join(` `))]),e(o,m),l()}export{d as t};

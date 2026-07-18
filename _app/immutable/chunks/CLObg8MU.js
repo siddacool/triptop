@@ -1,0 +1,1 @@
+import"./Cmyz5nlQ.js";import{t as e}from"./DKjwUhb7.js";import{t}from"./CLolUcwk.js";import{c as n,r}from"./CnZW53FA.js";async function i(i){n(i);let{_id:a,id:o,...s}=i.trip;await t(await r({...s}),i.expenses),await e.load()}export{i as t};

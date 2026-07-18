@@ -1,0 +1,1 @@
+import{vt as e}from"./Cmyz5nlQ.js";e();var t=[{value:`DD/MM/YYYY`,label:`DD/MM/YYYY`,valueDatePickerFormat:`dd/mm/yyyy`},{value:`MM/DD/YYYY`,label:`MM/DD/YYYY`,valueDatePickerFormat:`mm/dd/yyyy`}],n=[{value:`auto`,label:`Auto`},{value:`light`,label:`Light`},{value:`dark`,label:`Dark`}];export{n,t};
