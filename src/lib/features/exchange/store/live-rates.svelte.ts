@@ -4,7 +4,7 @@ import { saveLiveExchangeRate } from '../logic';
 import { getLiveExchangeRate } from '../db';
 import { fetchLiveExchangeRate } from '../api/live-rates';
 import { needsLiveExchangeRateUpdate } from '../utils/needsLiveExchangeRateUpdate';
-import { checkIfLiveRateStale } from '../utils/checkIfLiverateStale';
+import { checkIfLiveRateStale } from '../utils/checkIfLiveRateStale';
 
 function createLiveRatesExchangeStore() {
   let exchangeRate = $state<CurrencyExchangeRate | undefined>(undefined);
