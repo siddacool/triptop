@@ -1,5 +1,11 @@
 # triptop
 
+## 5.22.2
+
+### Patch Changes
+
+- 936c2ab: Libraries updated
+
 ## 5.22.1
 
 ### Patch Changes
