@@ -1,0 +1,1 @@
+export const LIVE_EXCHANGE_RATE_DIFFERENCE = 12;

@@ -1,10 +1,22 @@
 # triptop
 
+## 5.22.4
+
+### Patch Changes
+
+- Libraries updated
+
+## 5.22.3
+
+### Patch Changes
+
+- 8d1413c: Fix type
+
 ## 5.22.2
 
 ### Patch Changes
 
-- 936c2ab: Libraries updated
+- 55d63a9: Check if live rates stale function improved using startof day
 
 ## 5.22.1
 
