@@ -2,8 +2,7 @@ allowBuilds:
   '@parcel/watcher': true
   esbuild: true
 minimumReleaseAgeExclude:
-  - '@flightlesslabs/dodo-ui-bits@0.10.11 || 0.10.12 || 0.11.0 || 0.11.1 || 0.11.2 || 0.11.3 || 0.11.6'
-  - '@flightlesslabs/dodo-ui-date@0.4.32 || 0.4.33 || 0.4.34 || 0.4.37'
-  - '@flightlesslabs/dodo-ui-numeric@0.2.31 || 0.2.32 || 0.2.35'
-  - '@flightlesslabs/dodo-ui@0.36.9 || 0.36.10 || 0.36.13'
-  - '@flightlesslabs/time-utils@0.2.3'
+  - '@flightlesslabs/dodo-ui-bits@0.10.11 || 0.11.7'
+  - '@flightlesslabs/dodo-ui-date@0.4.32 || 0.4.38'
+  - '@flightlesslabs/dodo-ui-numeric@0.2.31 || 0.2.36'
+  - '@flightlesslabs/dodo-ui@0.36.9 || 0.36.14'
