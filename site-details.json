@@ -1,7 +1,7 @@
 {
   "name": "triptop",
-  "version": "5.22.3",
+  "version": "5.22.4",
   "description": "Simple, offline travel budgeting app",
-  "buildTime": "2026-07-18T06:53:15.606Z",
+  "buildTime": "2026-07-29T05:44:34.007Z",
   "nodeEnv": "production"
 }

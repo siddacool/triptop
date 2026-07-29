@@ -1,0 +1,1 @@
+import{R as e,rt as t,tt as n}from"./Bmh03r0T.js";function r(){let r=t(`light`);return{get theme(){return e(r)},updateSystemTheme(e){n(r,e,!0)}}}var i=r();export{i as t};
