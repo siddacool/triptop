@@ -1,5 +1,11 @@
 # triptop
 
+## 5.22.5
+
+### Patch Changes
+
+- 50e54f6: Libraries updated
+
 ## 5.22.4
 
 ### Patch Changes
