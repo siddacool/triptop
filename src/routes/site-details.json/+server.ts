@@ -4,7 +4,7 @@ import pkg from '../../../package.json';
 export const prerender = true;
 
 export function GET() {
-  const buildTime = createDate();
+  const buildTime = createDate().tz('Asia/Kolkata');
 
   return new Response(
     JSON.stringify(
