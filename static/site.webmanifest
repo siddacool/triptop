@@ -27,18 +27,6 @@
    ],
   "shortcuts": [
     {
-      "name": "Create trip",
-      "short_name": "Create trip",
-      "url": "/trips/create",
-      "icons": [
-         {
-           "src": "/assets/icons/shortcut-icon-plus.png",
-           "sizes": "96x96",
-           "type": "image/png"
-         }
-       ]
-    },
-    {
       "name": "Add expense",
       "short_name": "Add expense",
       "url": "/active-page?pageName=add-expense",
