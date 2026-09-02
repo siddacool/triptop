@@ -18,7 +18,7 @@
     } else if (pageName === 'currency-converter') {
       goto(resolve(`/trips/${activeTrip}/currency-converter`), { replaceState: true });
     } else {
-      goto(resolve('/trips'), { replaceState: true });
+      goto(resolve(`/trips/${activeTrip}`), { replaceState: true });
     }
   });
 </script>
