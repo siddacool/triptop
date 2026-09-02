@@ -1,16 +1,22 @@
+import { createDate } from '$lib/utils/date-time/createDate';
 import pkg from '../../../package.json';
 
 export const prerender = true;
 
 export function GET() {
+  const buildTime = createDate();
+
   return new Response(
     JSON.stringify(
       {
         name: pkg.name,
         version: pkg.version,
-        description: pkg.description,
-        buildTime: new Date().toISOString(),
-        nodeEnv: 'production',
+        build: {
+          iso: buildTime.toISOString(),
+          date: buildTime.format('DD-MM-YYYY'),
+          time: buildTime.format('hh:mm:ss A'),
+          zone: buildTime.format('Z'),
+        },
       },
       null,
       2,
