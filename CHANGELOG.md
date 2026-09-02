@@ -1,5 +1,18 @@
 # triptop
 
+## 5.23.0
+
+### Minor Changes
+
+- 801706c: About page added
+
+### Patch Changes
+
+- bfe9c29: Default navbar color set to dark theme color, to fix an Android 17 bug.
+- 2163790: Libararies updated
+- 2ee387f: Create trip shortcut removed
+- Site details page improved
+
 ## 5.22.5
 
 ### Patch Changes
