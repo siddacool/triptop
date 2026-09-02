@@ -1,10 +1,10 @@
 <script>
   import PageHeadingNavControls from '$lib/components/ui/PageHeadingNavControls/PageHeadingNavControls.svelte';
   import CreateTrip from './CreateTrip.svelte';
-  import Settings from './Settings.svelte';
+  import TheHeaderOptions from './TheHeaderOptions/TheHeaderOptions.svelte';
 </script>
 
 <PageHeadingNavControls>
   <CreateTrip />
-  <Settings />
+  <TheHeaderOptions />
 </PageHeadingNavControls>

@@ -8,6 +8,7 @@
   import TripsControlsToolkit from '$lib/features/trip/components/TripsControlsToolkit/TripsControlsToolkit.svelte';
   import LoadingBoundary from '$lib/components/LoadingBoundary.svelte';
   import { clearActiveTrip } from '$lib/features/trip/logic/page.svelte';
+  import LogoWithText from '$lib/features/about/components/LogoWithText/LogoWithText.svelte';
 
   let loading = $state(true);
 
@@ -36,7 +37,8 @@
       <TripList trips={tripListStore.tripsActive} />
     {:else}
       <Instructions>
-        Triptop - Simple, offline travel budgeting app. <br /> Create/import a trip to get started
+        <LogoWithText /> <br />
+        Simple, offline travel budgeting app.
       </Instructions>
     {/if}
     <TripsControlsToolkit />
