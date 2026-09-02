@@ -11,7 +11,7 @@
     "standalone"
   ],
   "orientation": "portrait-primary",
-  "theme_color": "#ddd6ff",
+  "theme_color": "#1a162f",
   "background_color": "#8e51ff",
   "categories": ["travel", "finance", "productivity"],
   "lang": "en-US",
