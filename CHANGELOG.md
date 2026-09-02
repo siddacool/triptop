@@ -1,5 +1,12 @@
 # triptop
 
+## 5.23.1
+
+### Patch Changes
+
+- a50632d: site details shows Indian time
+- dde9235: Active route defaults to activeTrip
+
 ## 5.23.0
 
 ### Minor Changes
