@@ -1,0 +1,1 @@
+import{V as e,at as t,st as n}from"./DlqeK2Lh.js";import{r}from"./CHpm-KMQ.js";function i(){let i=n(void 0);return{get trip(){return e(i)},async load(e){t(i,await r(e),!0)},clear(){t(i,void 0)}}}var a=i();export{a as t};

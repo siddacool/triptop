@@ -1,0 +1,1 @@
+import{V as e,at as t,st as n}from"./DlqeK2Lh.js";function r(){let r=n(null);return{get _activeModal(){return e(r)},add(e,n){t(r,{type:e,config:n},!0)},clear(){t(r,null)}}}var i=r();export{i as t};

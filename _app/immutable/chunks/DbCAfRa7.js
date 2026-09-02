@@ -1,0 +1,1 @@
+import{V as e,at as t,rt as n,st as r}from"./DlqeK2Lh.js";import{t as i}from"./Do3fB2V2.js";function a(){let a=r(n([]));return{get _toastsList(){return e(a)},add(n){let r={...n,id:i(),createdAt:new Date};t(a,[...e(a),r],!0)},clear(n){t(a,e(a).filter(e=>e.id!==n),!0)},_multiClear(n){t(a,e(a).filter(e=>!n.includes(e.id)),!0)},clearAll(){t(a,[],!0)}}}var o=a();export{o as t};

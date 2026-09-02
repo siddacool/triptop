@@ -11,7 +11,7 @@
     "standalone"
   ],
   "orientation": "portrait-primary",
-  "theme_color": "#ddd6ff",
+  "theme_color": "#1a162f",
   "background_color": "#8e51ff",
   "categories": ["travel", "finance", "productivity"],
   "lang": "en-US",
@@ -26,18 +26,6 @@
      }
    ],
   "shortcuts": [
-    {
-      "name": "Create trip",
-      "short_name": "Create trip",
-      "url": "/trips/create",
-      "icons": [
-         {
-           "src": "/assets/icons/shortcut-icon-plus.png",
-           "sizes": "96x96",
-           "type": "image/png"
-         }
-       ]
-    },
     {
       "name": "Add expense",
       "short_name": "Add expense",
