@@ -1,5 +1,12 @@
 # triptop
 
+## 5.23.2
+
+### Patch Changes
+
+- 243825e: Libraries updated
+- 338deed: activeTrip check added for main and active-page routes
+
 ## 5.23.1
 
 ### Patch Changes
