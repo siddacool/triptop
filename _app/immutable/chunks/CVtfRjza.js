@@ -1,0 +1,1 @@
+import{H as e,ct as t,ot as n}from"./DdZqCTDQ.js";function r(){let r=t(null);return{get _activeModal(){return e(r)},add(e,t){n(r,{type:e,config:t},!0)},clear(){n(r,null)}}}var i=r();export{i as t};

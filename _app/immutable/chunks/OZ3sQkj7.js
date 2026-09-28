@@ -1,0 +1,1 @@
+import{H as e,ct as t,ot as n}from"./DdZqCTDQ.js";import{r}from"./BDUe9u5X.js";function i(){let i=t(void 0);return{get trip(){return e(i)},async load(e){n(i,await r(e),!0)},clear(){n(i,void 0)}}}var a=i();export{a as t};

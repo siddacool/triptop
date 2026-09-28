@@ -1,0 +1,1 @@
+import{H as e,ct as t,it as n,ot as r}from"./DdZqCTDQ.js";import{r as i,t as a}from"./D8l6_-dJ.js";var o=i(`local`,a);function s(){let i=t(n(o)),a=t(!1);return{get activeTrip(){return e(i)},get showSpecialFiltersSelector(){return e(a)},updateActiveTrip(e){r(i,e,!0)},updateShowSpecialFiltersSelector(e){r(a,e,!0)}}}var c=s();export{c as t};
