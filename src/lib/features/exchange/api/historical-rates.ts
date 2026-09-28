@@ -14,7 +14,7 @@ export async function fetchHistoricalExchangeRatesFrankfurter(
   group: ExchangeDateGrouping = 'week',
 ): Promise<CurrencyExchangeRateResponseFrankfurter[]> {
   const response = await fetch(
-    `https://api.frankfurter.dev/v2/rates/?from=${startDate}&to=${endDate}&base=${tripCurrency}&quotes=${homeCurrency}&group=${group}`,
+    `https://api.frankfurter.dev/v2/rates?from=${startDate}&to=${endDate}&base=${tripCurrency}&quotes=${homeCurrency}&group=${group}`,
   );
 
   if (!response.ok) {
