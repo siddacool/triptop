@@ -1,5 +1,13 @@
 # triptop
 
+## 5.23.3
+
+### Patch Changes
+
+- 7f53d2c: Vitest upgraded
+- f8ab9d2: Libs updated
+- abe89a1: Fix historical rates not showinmg bug
+
 ## 5.23.2
 
 ### Patch Changes
